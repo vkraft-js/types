@@ -12,6 +12,10 @@ bun cicd              # Hash-check schema, bump version, write GITHUB_OUTPUT (CI
 bun jsr               # Prepare JSR publish: sync version + copy out/*.d.ts → source/*.ts
 ```
 
+## Reference
+
+This project is a fork/reference of [gramio/types](https://github.com/gramiojs/types.git) — the upstream GramIO types package for the Telegram Bot API.
+
 ## Architecture
 
 This repo generates TypeScript declaration files for the Telegram Bot API. Nothing is hand-authored in `out/` — every `.d.ts` there is produced by `bun generate`.
