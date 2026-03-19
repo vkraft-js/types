@@ -10,21 +10,21 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 14:04:09 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 18:30:47 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
 import type * as Objects from "./objects"
 
 /**
- * Params for {@link APIMethods["account.ban"] | account.ban} method
+ * Params for {@link APIMethodsAccount["ban"] | account.ban} method
  */
 export interface AccountBanParams {
     owner_id?: number
 }
 
 /**
- * Params for {@link APIMethods["account.changePassword"] | account.changePassword} method
+ * Params for {@link APIMethodsAccount["changePassword"] | account.changePassword} method
  */
 export interface AccountChangePasswordParams {
     /**
@@ -46,7 +46,7 @@ export interface AccountChangePasswordParams {
 }
 
 /**
- * Params for {@link APIMethods["account.getActiveOffers"] | account.getActiveOffers} method
+ * Params for {@link APIMethodsAccount["getActiveOffers"] | account.getActiveOffers} method
  */
 export interface AccountGetActiveOffersParams {
     offset?: number
@@ -57,7 +57,7 @@ export interface AccountGetActiveOffersParams {
 }
 
 /**
- * Params for {@link APIMethods["account.getAppPermissions"] | account.getAppPermissions} method
+ * Params for {@link APIMethodsAccount["getAppPermissions"] | account.getAppPermissions} method
  */
 export interface AccountGetAppPermissionsParams {
     /**
@@ -67,7 +67,7 @@ export interface AccountGetAppPermissionsParams {
 }
 
 /**
- * Params for {@link APIMethods["account.getBanned"] | account.getBanned} method
+ * Params for {@link APIMethodsAccount["getBanned"] | account.getBanned} method
  */
 export interface AccountGetBannedParams {
     /**
@@ -85,7 +85,7 @@ export interface AccountGetBannedParams {
 }
 
 /**
- * Params for {@link APIMethods["account.getCounters"] | account.getCounters} method
+ * Params for {@link APIMethodsAccount["getCounters"] | account.getCounters} method
  */
 export interface AccountGetCountersParams {
     /**
@@ -104,7 +104,7 @@ export type AccountGetInfoFields =
     | "audio_autoplay"
 
 /**
- * Params for {@link APIMethods["account.getInfo"] | account.getInfo} method
+ * Params for {@link APIMethodsAccount["getInfo"] | account.getInfo} method
  */
 export interface AccountGetInfoParams {
     /**
@@ -114,7 +114,7 @@ export interface AccountGetInfoParams {
 }
 
 /**
- * Params for {@link APIMethods["account.getPushSettings"] | account.getPushSettings} method
+ * Params for {@link APIMethodsAccount["getPushSettings"] | account.getPushSettings} method
  */
 export interface AccountGetPushSettingsParams {
     /**
@@ -124,7 +124,7 @@ export interface AccountGetPushSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["account.registerDevice"] | account.registerDevice} method
+ * Params for {@link APIMethodsAccount["registerDevice"] | account.registerDevice} method
  */
 export interface AccountRegisterDeviceParams {
     /**
@@ -181,7 +181,7 @@ export type AccountSaveProfileInfoRelation = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 export type AccountSaveProfileInfoBdateVisibility = 0 | 1 | 2
 
 /**
- * Params for {@link APIMethods["account.saveProfileInfo"] | account.saveProfileInfo} method
+ * Params for {@link APIMethodsAccount["saveProfileInfo"] | account.saveProfileInfo} method
  */
 export interface AccountSaveProfileInfoParams {
     /**
@@ -249,7 +249,7 @@ export type AccountSetInfoName =
     | "own_posts_default"
 
 /**
- * Params for {@link APIMethods["account.setInfo"] | account.setInfo} method
+ * Params for {@link APIMethodsAccount["setInfo"] | account.setInfo} method
  */
 export interface AccountSetInfoParams {
     /**
@@ -263,7 +263,7 @@ export interface AccountSetInfoParams {
 }
 
 /**
- * Params for {@link APIMethods["account.setOnline"] | account.setOnline} method
+ * Params for {@link APIMethodsAccount["setOnline"] | account.setOnline} method
  */
 export interface AccountSetOnlineParams {
     /**
@@ -273,7 +273,7 @@ export interface AccountSetOnlineParams {
 }
 
 /**
- * Params for {@link APIMethods["account.setPushSettings"] | account.setPushSettings} method
+ * Params for {@link APIMethodsAccount["setPushSettings"] | account.setPushSettings} method
  */
 export interface AccountSetPushSettingsParams {
     /**
@@ -295,7 +295,7 @@ export interface AccountSetPushSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["account.setSilenceMode"] | account.setSilenceMode} method
+ * Params for {@link APIMethodsAccount["setSilenceMode"] | account.setSilenceMode} method
  */
 export interface AccountSetSilenceModeParams {
     /**
@@ -317,14 +317,14 @@ export interface AccountSetSilenceModeParams {
 }
 
 /**
- * Params for {@link APIMethods["account.unban"] | account.unban} method
+ * Params for {@link APIMethodsAccount["unban"] | account.unban} method
  */
 export interface AccountUnbanParams {
     owner_id?: number
 }
 
 /**
- * Params for {@link APIMethods["account.unregisterDevice"] | account.unregisterDevice} method
+ * Params for {@link APIMethodsAccount["unregisterDevice"] | account.unregisterDevice} method
  */
 export interface AccountUnregisterDeviceParams {
     /**
@@ -335,7 +335,7 @@ export interface AccountUnregisterDeviceParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.addOfficeUsers"] | ads.addOfficeUsers} method
+ * Params for {@link APIMethodsAds["addOfficeUsers"] | ads.addOfficeUsers} method
  */
 export interface AdsAddOfficeUsersParams {
     /**
@@ -359,7 +359,7 @@ export type AdsCheckLinkLinkType =
     | "video"
 
 /**
- * Params for {@link APIMethods["ads.checkLink"] | ads.checkLink} method
+ * Params for {@link APIMethodsAds["checkLink"] | ads.checkLink} method
  */
 export interface AdsCheckLinkParams {
     /**
@@ -381,7 +381,7 @@ export interface AdsCheckLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.createAds"] | ads.createAds} method
+ * Params for {@link APIMethodsAds["createAds"] | ads.createAds} method
  */
 export interface AdsCreateAdsParams {
     /**
@@ -395,7 +395,7 @@ export interface AdsCreateAdsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.createCampaigns"] | ads.createCampaigns} method
+ * Params for {@link APIMethodsAds["createCampaigns"] | ads.createCampaigns} method
  */
 export interface AdsCreateCampaignsParams {
     /**
@@ -409,7 +409,7 @@ export interface AdsCreateCampaignsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.createClients"] | ads.createClients} method
+ * Params for {@link APIMethodsAds["createClients"] | ads.createClients} method
  */
 export interface AdsCreateClientsParams {
     /**
@@ -423,7 +423,7 @@ export interface AdsCreateClientsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.createLookalikeRequest"] | ads.createLookalikeRequest} method
+ * Params for {@link APIMethodsAds["createLookalikeRequest"] | ads.createLookalikeRequest} method
  */
 export interface AdsCreateLookalikeRequestParams {
     account_id: number
@@ -433,7 +433,7 @@ export interface AdsCreateLookalikeRequestParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.createTargetGroup"] | ads.createTargetGroup} method
+ * Params for {@link APIMethodsAds["createTargetGroup"] | ads.createTargetGroup} method
  */
 export interface AdsCreateTargetGroupParams {
     /**
@@ -457,7 +457,7 @@ export interface AdsCreateTargetGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.createTargetPixel"] | ads.createTargetPixel} method
+ * Params for {@link APIMethodsAds["createTargetPixel"] | ads.createTargetPixel} method
  */
 export interface AdsCreateTargetPixelParams {
     account_id: number
@@ -468,7 +468,7 @@ export interface AdsCreateTargetPixelParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.deleteAds"] | ads.deleteAds} method
+ * Params for {@link APIMethodsAds["deleteAds"] | ads.deleteAds} method
  */
 export interface AdsDeleteAdsParams {
     /**
@@ -482,7 +482,7 @@ export interface AdsDeleteAdsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.deleteCampaigns"] | ads.deleteCampaigns} method
+ * Params for {@link APIMethodsAds["deleteCampaigns"] | ads.deleteCampaigns} method
  */
 export interface AdsDeleteCampaignsParams {
     /**
@@ -496,7 +496,7 @@ export interface AdsDeleteCampaignsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.deleteClients"] | ads.deleteClients} method
+ * Params for {@link APIMethodsAds["deleteClients"] | ads.deleteClients} method
  */
 export interface AdsDeleteClientsParams {
     /**
@@ -510,7 +510,7 @@ export interface AdsDeleteClientsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.deleteTargetGroup"] | ads.deleteTargetGroup} method
+ * Params for {@link APIMethodsAds["deleteTargetGroup"] | ads.deleteTargetGroup} method
  */
 export interface AdsDeleteTargetGroupParams {
     /**
@@ -528,7 +528,7 @@ export interface AdsDeleteTargetGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.deleteTargetPixel"] | ads.deleteTargetPixel} method
+ * Params for {@link APIMethodsAds["deleteTargetPixel"] | ads.deleteTargetPixel} method
  */
 export interface AdsDeleteTargetPixelParams {
     account_id: number
@@ -537,7 +537,7 @@ export interface AdsDeleteTargetPixelParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getAds"] | ads.getAds} method
+ * Params for {@link APIMethodsAds["getAds"] | ads.getAds} method
  */
 export interface AdsGetAdsParams {
     /**
@@ -575,7 +575,7 @@ export interface AdsGetAdsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getAdsLayout"] | ads.getAdsLayout} method
+ * Params for {@link APIMethodsAds["getAdsLayout"] | ads.getAdsLayout} method
  */
 export interface AdsGetAdsLayoutParams {
     /**
@@ -613,7 +613,7 @@ export interface AdsGetAdsLayoutParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getAdsTargeting"] | ads.getAdsTargeting} method
+ * Params for {@link APIMethodsAds["getAdsTargeting"] | ads.getAdsTargeting} method
  */
 export interface AdsGetAdsTargetingParams {
     /**
@@ -648,7 +648,7 @@ export interface AdsGetAdsTargetingParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getBudget"] | ads.getBudget} method
+ * Params for {@link APIMethodsAds["getBudget"] | ads.getBudget} method
  */
 export interface AdsGetBudgetParams {
     /**
@@ -660,7 +660,7 @@ export interface AdsGetBudgetParams {
 export type AdsGetCampaignsFields = "ads_count"
 
 /**
- * Params for {@link APIMethods["ads.getCampaigns"] | ads.getCampaigns} method
+ * Params for {@link APIMethodsAds["getCampaigns"] | ads.getCampaigns} method
  */
 export interface AdsGetCampaignsParams {
     /**
@@ -683,7 +683,7 @@ export interface AdsGetCampaignsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getCategories"] | ads.getCategories} method
+ * Params for {@link APIMethodsAds["getCategories"] | ads.getCategories} method
  */
 export interface AdsGetCategoriesParams {
     /**
@@ -693,7 +693,7 @@ export interface AdsGetCategoriesParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getClients"] | ads.getClients} method
+ * Params for {@link APIMethodsAds["getClients"] | ads.getClients} method
  */
 export interface AdsGetClientsParams {
     /**
@@ -706,7 +706,7 @@ export type AdsGetDemographicsIdsType = "ad" | "campaign"
 export type AdsGetDemographicsPeriod = "day" | "month" | "overall"
 
 /**
- * Params for {@link APIMethods["ads.getDemographics"] | ads.getDemographics} method
+ * Params for {@link APIMethodsAds["getDemographics"] | ads.getDemographics} method
  */
 export interface AdsGetDemographicsParams {
     /**
@@ -736,7 +736,7 @@ export interface AdsGetDemographicsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getFloodStats"] | ads.getFloodStats} method
+ * Params for {@link APIMethodsAds["getFloodStats"] | ads.getFloodStats} method
  */
 export interface AdsGetFloodStatsParams {
     /**
@@ -746,7 +746,7 @@ export interface AdsGetFloodStatsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getLookalikeRequests"] | ads.getLookalikeRequests} method
+ * Params for {@link APIMethodsAds["getLookalikeRequests"] | ads.getLookalikeRequests} method
  */
 export interface AdsGetLookalikeRequestsParams {
     account_id: number
@@ -758,21 +758,21 @@ export interface AdsGetLookalikeRequestsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getMusicians"] | ads.getMusicians} method
+ * Params for {@link APIMethodsAds["getMusicians"] | ads.getMusicians} method
  */
 export interface AdsGetMusiciansParams {
     artist_name: string
 }
 
 /**
- * Params for {@link APIMethods["ads.getMusiciansByIds"] | ads.getMusiciansByIds} method
+ * Params for {@link APIMethodsAds["getMusiciansByIds"] | ads.getMusiciansByIds} method
  */
 export interface AdsGetMusiciansByIdsParams {
     ids: number[]
 }
 
 /**
- * Params for {@link APIMethods["ads.getOfficeUsers"] | ads.getOfficeUsers} method
+ * Params for {@link APIMethodsAds["getOfficeUsers"] | ads.getOfficeUsers} method
  */
 export interface AdsGetOfficeUsersParams {
     /**
@@ -784,7 +784,7 @@ export interface AdsGetOfficeUsersParams {
 export type AdsGetPostsReachIdsType = "ad" | "campaign"
 
 /**
- * Params for {@link APIMethods["ads.getPostsReach"] | ads.getPostsReach} method
+ * Params for {@link APIMethodsAds["getPostsReach"] | ads.getPostsReach} method
  */
 export interface AdsGetPostsReachParams {
     /**
@@ -802,7 +802,7 @@ export interface AdsGetPostsReachParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getRejectionReason"] | ads.getRejectionReason} method
+ * Params for {@link APIMethodsAds["getRejectionReason"] | ads.getRejectionReason} method
  */
 export interface AdsGetRejectionReasonParams {
     /**
@@ -825,7 +825,7 @@ export type AdsGetStatisticsPeriod =
 export type AdsGetStatisticsStatsFields = "views_times"
 
 /**
- * Params for {@link APIMethods["ads.getStatistics"] | ads.getStatistics} method
+ * Params for {@link APIMethodsAds["getStatistics"] | ads.getStatistics} method
  */
 export interface AdsGetStatisticsParams {
     /**
@@ -882,7 +882,7 @@ export type AdsGetSuggestionsSection =
     | "user_os"
 
 /**
- * Params for {@link APIMethods["ads.getSuggestions"] | ads.getSuggestions} method
+ * Params for {@link APIMethodsAds["getSuggestions"] | ads.getSuggestions} method
  */
 export interface AdsGetSuggestionsParams {
     /**
@@ -912,7 +912,7 @@ export interface AdsGetSuggestionsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getTargetGroups"] | ads.getTargetGroups} method
+ * Params for {@link APIMethodsAds["getTargetGroups"] | ads.getTargetGroups} method
  */
 export interface AdsGetTargetGroupsParams {
     /**
@@ -930,7 +930,7 @@ export interface AdsGetTargetGroupsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.getTargetPixels"] | ads.getTargetPixels} method
+ * Params for {@link APIMethodsAds["getTargetPixels"] | ads.getTargetPixels} method
  */
 export interface AdsGetTargetPixelsParams {
     account_id: number
@@ -950,7 +950,7 @@ export interface AdsGetTargetPixelsParams {
 export type AdsGetTargetingStatsAdFormat = 1 | 2 | 4 | 7 | 10 | 6 | 9 | 11
 
 /**
- * Params for {@link APIMethods["ads.getTargetingStats"] | ads.getTargetingStats} method
+ * Params for {@link APIMethodsAds["getTargetingStats"] | ads.getTargetingStats} method
  */
 export interface AdsGetTargetingStatsParams {
     /**
@@ -1006,7 +1006,7 @@ export interface AdsGetTargetingStatsParams {
 export type AdsGetUploadURLAdFormat = 1 | 2 | 4 | 7 | 10 | 11
 
 /**
- * Params for {@link APIMethods["ads.getUploadURL"] | ads.getUploadURL} method
+ * Params for {@link APIMethodsAds["getUploadURL"] | ads.getUploadURL} method
  */
 export interface AdsGetUploadURLParams {
     /**
@@ -1017,7 +1017,7 @@ export interface AdsGetUploadURLParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.importTargetContacts"] | ads.importTargetContacts} method
+ * Params for {@link APIMethodsAds["importTargetContacts"] | ads.importTargetContacts} method
  */
 export interface AdsImportTargetContactsParams {
     /**
@@ -1039,7 +1039,7 @@ export interface AdsImportTargetContactsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.removeOfficeUsers"] | ads.removeOfficeUsers} method
+ * Params for {@link APIMethodsAds["removeOfficeUsers"] | ads.removeOfficeUsers} method
  */
 export interface AdsRemoveOfficeUsersParams {
     /**
@@ -1053,7 +1053,7 @@ export interface AdsRemoveOfficeUsersParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.removeTargetContacts"] | ads.removeTargetContacts} method
+ * Params for {@link APIMethodsAds["removeTargetContacts"] | ads.removeTargetContacts} method
  */
 export interface AdsRemoveTargetContactsParams {
     account_id: number
@@ -1063,7 +1063,7 @@ export interface AdsRemoveTargetContactsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.saveLookalikeRequestResult"] | ads.saveLookalikeRequestResult} method
+ * Params for {@link APIMethodsAds["saveLookalikeRequestResult"] | ads.saveLookalikeRequestResult} method
  */
 export interface AdsSaveLookalikeRequestResultParams {
     account_id: number
@@ -1073,7 +1073,7 @@ export interface AdsSaveLookalikeRequestResultParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.shareTargetGroup"] | ads.shareTargetGroup} method
+ * Params for {@link APIMethodsAds["shareTargetGroup"] | ads.shareTargetGroup} method
  */
 export interface AdsShareTargetGroupParams {
     account_id: number
@@ -1083,7 +1083,7 @@ export interface AdsShareTargetGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.updateAds"] | ads.updateAds} method
+ * Params for {@link APIMethodsAds["updateAds"] | ads.updateAds} method
  */
 export interface AdsUpdateAdsParams {
     /**
@@ -1097,7 +1097,7 @@ export interface AdsUpdateAdsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.updateCampaigns"] | ads.updateCampaigns} method
+ * Params for {@link APIMethodsAds["updateCampaigns"] | ads.updateCampaigns} method
  */
 export interface AdsUpdateCampaignsParams {
     /**
@@ -1111,7 +1111,7 @@ export interface AdsUpdateCampaignsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.updateClients"] | ads.updateClients} method
+ * Params for {@link APIMethodsAds["updateClients"] | ads.updateClients} method
  */
 export interface AdsUpdateClientsParams {
     /**
@@ -1125,7 +1125,7 @@ export interface AdsUpdateClientsParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.updateOfficeUsers"] | ads.updateOfficeUsers} method
+ * Params for {@link APIMethodsAds["updateOfficeUsers"] | ads.updateOfficeUsers} method
  */
 export interface AdsUpdateOfficeUsersParams {
     /**
@@ -1139,7 +1139,7 @@ export interface AdsUpdateOfficeUsersParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.updateTargetGroup"] | ads.updateTargetGroup} method
+ * Params for {@link APIMethodsAds["updateTargetGroup"] | ads.updateTargetGroup} method
  */
 export interface AdsUpdateTargetGroupParams {
     /**
@@ -1171,7 +1171,7 @@ export interface AdsUpdateTargetGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["ads.updateTargetPixel"] | ads.updateTargetPixel} method
+ * Params for {@link APIMethodsAds["updateTargetPixel"] | ads.updateTargetPixel} method
  */
 export interface AdsUpdateTargetPixelParams {
     account_id: number
@@ -1190,7 +1190,7 @@ export type AppWidgetsGetAppImageUploadServerImageType =
     | "510x128"
 
 /**
- * Params for {@link APIMethods["appWidgets.getAppImageUploadServer"] | appWidgets.getAppImageUploadServer} method
+ * Params for {@link APIMethodsAppWidgets["getAppImageUploadServer"] | appWidgets.getAppImageUploadServer} method
  */
 export interface AppWidgetsGetAppImageUploadServerParams {
     image_type: AppWidgetsGetAppImageUploadServerImageType
@@ -1204,7 +1204,7 @@ export type AppWidgetsGetAppImagesImageType =
     | "510x128"
 
 /**
- * Params for {@link APIMethods["appWidgets.getAppImages"] | appWidgets.getAppImages} method
+ * Params for {@link APIMethodsAppWidgets["getAppImages"] | appWidgets.getAppImages} method
  */
 export interface AppWidgetsGetAppImagesParams {
     /**
@@ -1226,7 +1226,7 @@ export type AppWidgetsGetGroupImageUploadServerImageType =
     | "510x128"
 
 /**
- * Params for {@link APIMethods["appWidgets.getGroupImageUploadServer"] | appWidgets.getGroupImageUploadServer} method
+ * Params for {@link APIMethodsAppWidgets["getGroupImageUploadServer"] | appWidgets.getGroupImageUploadServer} method
  */
 export interface AppWidgetsGetGroupImageUploadServerParams {
     image_type: AppWidgetsGetGroupImageUploadServerImageType
@@ -1240,7 +1240,7 @@ export type AppWidgetsGetGroupImagesImageType =
     | "510x128"
 
 /**
- * Params for {@link APIMethods["appWidgets.getGroupImages"] | appWidgets.getGroupImages} method
+ * Params for {@link APIMethodsAppWidgets["getGroupImages"] | appWidgets.getGroupImages} method
  */
 export interface AppWidgetsGetGroupImagesParams {
     /**
@@ -1255,7 +1255,7 @@ export interface AppWidgetsGetGroupImagesParams {
 }
 
 /**
- * Params for {@link APIMethods["appWidgets.getImagesById"] | appWidgets.getImagesById} method
+ * Params for {@link APIMethodsAppWidgets["getImagesById"] | appWidgets.getImagesById} method
  */
 export interface AppWidgetsGetImagesByIdParams {
     /**
@@ -1265,7 +1265,7 @@ export interface AppWidgetsGetImagesByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["appWidgets.saveAppImage"] | appWidgets.saveAppImage} method
+ * Params for {@link APIMethodsAppWidgets["saveAppImage"] | appWidgets.saveAppImage} method
  */
 export interface AppWidgetsSaveAppImageParams {
     /**
@@ -1279,7 +1279,7 @@ export interface AppWidgetsSaveAppImageParams {
 }
 
 /**
- * Params for {@link APIMethods["appWidgets.saveGroupImage"] | appWidgets.saveGroupImage} method
+ * Params for {@link APIMethodsAppWidgets["saveGroupImage"] | appWidgets.saveGroupImage} method
  */
 export interface AppWidgetsSaveGroupImageParams {
     /**
@@ -1304,7 +1304,7 @@ export type AppWidgetsUpdateType =
     | "tiles"
 
 /**
- * Params for {@link APIMethods["appWidgets.update"] | appWidgets.update} method
+ * Params for {@link APIMethodsAppWidgets["update"] | appWidgets.update} method
  */
 export interface AppWidgetsUpdateParams {
     code: string
@@ -1325,7 +1325,7 @@ export type AppsAddSnippetButton =
     | "play"
 
 /**
- * Params for {@link APIMethods["apps.addSnippet"] | apps.addSnippet} method
+ * Params for {@link APIMethodsApps["addSnippet"] | apps.addSnippet} method
  */
 export interface AppsAddSnippetParams {
     vk_ref?: AppsAddSnippetVkRef[]
@@ -1340,7 +1340,7 @@ export interface AppsAddSnippetParams {
 }
 
 /**
- * Params for {@link APIMethods["apps.addUsersToTestingGroup"] | apps.addUsersToTestingGroup} method
+ * Params for {@link APIMethodsApps["addUsersToTestingGroup"] | apps.addUsersToTestingGroup} method
  */
 export interface AppsAddUsersToTestingGroupParams {
     user_ids: number[]
@@ -1348,7 +1348,7 @@ export interface AppsAddUsersToTestingGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["apps.deleteSnippet"] | apps.deleteSnippet} method
+ * Params for {@link APIMethodsApps["deleteSnippet"] | apps.deleteSnippet} method
  */
 export interface AppsDeleteSnippetParams {
     id?: number
@@ -1357,7 +1357,7 @@ export interface AppsDeleteSnippetParams {
 export type AppsGetPlatform = "android" | "ios" | "web"
 
 /**
- * Params for {@link APIMethods["apps.get"] | apps.get} method
+ * Params for {@link APIMethodsApps["get"] | apps.get} method
  */
 export interface AppsGetParams {
     /**
@@ -1403,7 +1403,7 @@ export type AppsGetCatalogFilter =
     | "recommended"
 
 /**
- * Params for {@link APIMethods["apps.getCatalog"] | apps.getCatalog} method
+ * Params for {@link APIMethodsApps["getCatalog"] | apps.getCatalog} method
  */
 export interface AppsGetCatalogParams {
     /**
@@ -1440,7 +1440,7 @@ export interface AppsGetCatalogParams {
 export type AppsGetFriendsListType = "invite" | "request"
 
 /**
- * Params for {@link APIMethods["apps.getFriendsList"] | apps.getFriendsList} method
+ * Params for {@link APIMethodsApps["getFriendsList"] | apps.getFriendsList} method
  */
 export interface AppsGetFriendsListParams {
     extended?: boolean | 0 | 1
@@ -1466,7 +1466,7 @@ export interface AppsGetFriendsListParams {
 export type AppsGetLeaderboardType = "level" | "points" | "score"
 
 /**
- * Params for {@link APIMethods["apps.getLeaderboard"] | apps.getLeaderboard} method
+ * Params for {@link APIMethodsApps["getLeaderboard"] | apps.getLeaderboard} method
  */
 export interface AppsGetLeaderboardParams {
     /**
@@ -1484,7 +1484,7 @@ export interface AppsGetLeaderboardParams {
 }
 
 /**
- * Params for {@link APIMethods["apps.getMiniAppPolicies"] | apps.getMiniAppPolicies} method
+ * Params for {@link APIMethodsApps["getMiniAppPolicies"] | apps.getMiniAppPolicies} method
  */
 export interface AppsGetMiniAppPoliciesParams {
     /**
@@ -1496,35 +1496,35 @@ export interface AppsGetMiniAppPoliciesParams {
 export type AppsGetScopesType = "group" | "user"
 
 /**
- * Params for {@link APIMethods["apps.getScopes"] | apps.getScopes} method
+ * Params for {@link APIMethodsApps["getScopes"] | apps.getScopes} method
  */
 export interface AppsGetScopesParams {
     type?: AppsGetScopesType
 }
 
 /**
- * Params for {@link APIMethods["apps.getScore"] | apps.getScore} method
+ * Params for {@link APIMethodsApps["getScore"] | apps.getScore} method
  */
 export interface AppsGetScoreParams {
     user_id?: number
 }
 
 /**
- * Params for {@link APIMethods["apps.getTestingGroups"] | apps.getTestingGroups} method
+ * Params for {@link APIMethodsApps["getTestingGroups"] | apps.getTestingGroups} method
  */
 export interface AppsGetTestingGroupsParams {
     group_id?: number
 }
 
 /**
- * Params for {@link APIMethods["apps.isNotificationsAllowed"] | apps.isNotificationsAllowed} method
+ * Params for {@link APIMethodsApps["isNotificationsAllowed"] | apps.isNotificationsAllowed} method
  */
 export interface AppsIsNotificationsAllowedParams {
     user_id?: number
 }
 
 /**
- * Params for {@link APIMethods["apps.promoHasActiveGift"] | apps.promoHasActiveGift} method
+ * Params for {@link APIMethodsApps["promoHasActiveGift"] | apps.promoHasActiveGift} method
  */
 export interface AppsPromoHasActiveGiftParams {
     /**
@@ -1535,7 +1535,7 @@ export interface AppsPromoHasActiveGiftParams {
 }
 
 /**
- * Params for {@link APIMethods["apps.promoUseGift"] | apps.promoUseGift} method
+ * Params for {@link APIMethodsApps["promoUseGift"] | apps.promoUseGift} method
  */
 export interface AppsPromoUseGiftParams {
     /**
@@ -1546,14 +1546,14 @@ export interface AppsPromoUseGiftParams {
 }
 
 /**
- * Params for {@link APIMethods["apps.removeTestingGroup"] | apps.removeTestingGroup} method
+ * Params for {@link APIMethodsApps["removeTestingGroup"] | apps.removeTestingGroup} method
  */
 export interface AppsRemoveTestingGroupParams {
     group_id: number
 }
 
 /**
- * Params for {@link APIMethods["apps.removeUsersFromTestingGroups"] | apps.removeUsersFromTestingGroups} method
+ * Params for {@link APIMethodsApps["removeUsersFromTestingGroups"] | apps.removeUsersFromTestingGroups} method
  */
 export interface AppsRemoveUsersFromTestingGroupsParams {
     user_ids: number[]
@@ -1562,7 +1562,7 @@ export interface AppsRemoveUsersFromTestingGroupsParams {
 export type AppsSendRequestType = "invite" | "request"
 
 /**
- * Params for {@link APIMethods["apps.sendRequest"] | apps.sendRequest} method
+ * Params for {@link APIMethodsApps["sendRequest"] | apps.sendRequest} method
  */
 export interface AppsSendRequestParams {
     /**
@@ -1588,7 +1588,7 @@ export interface AppsSendRequestParams {
 export type AppsUpdateMetaForTestingGroupPlatforms = "mobile" | "web" | "mvk"
 
 /**
- * Params for {@link APIMethods["apps.updateMetaForTestingGroup"] | apps.updateMetaForTestingGroup} method
+ * Params for {@link APIMethodsApps["updateMetaForTestingGroup"] | apps.updateMetaForTestingGroup} method
  */
 export interface AppsUpdateMetaForTestingGroupParams {
     group_id?: number
@@ -1599,7 +1599,7 @@ export interface AppsUpdateMetaForTestingGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["auth.restore"] | auth.restore} method
+ * Params for {@link APIMethodsAuth["restore"] | auth.restore} method
  */
 export interface AuthRestoreParams {
     /**
@@ -1613,7 +1613,7 @@ export interface AuthRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["board.addTopic"] | board.addTopic} method
+ * Params for {@link APIMethodsBoard["addTopic"] | board.addTopic} method
  */
 export interface BoardAddTopicParams {
     /**
@@ -1639,7 +1639,7 @@ export interface BoardAddTopicParams {
 }
 
 /**
- * Params for {@link APIMethods["board.closeTopic"] | board.closeTopic} method
+ * Params for {@link APIMethodsBoard["closeTopic"] | board.closeTopic} method
  */
 export interface BoardCloseTopicParams {
     /**
@@ -1653,7 +1653,7 @@ export interface BoardCloseTopicParams {
 }
 
 /**
- * Params for {@link APIMethods["board.createComment"] | board.createComment} method
+ * Params for {@link APIMethodsBoard["createComment"] | board.createComment} method
  */
 export interface BoardCreateCommentParams {
     /**
@@ -1687,7 +1687,7 @@ export interface BoardCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["board.deleteComment"] | board.deleteComment} method
+ * Params for {@link APIMethodsBoard["deleteComment"] | board.deleteComment} method
  */
 export interface BoardDeleteCommentParams {
     /**
@@ -1705,7 +1705,7 @@ export interface BoardDeleteCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["board.deleteTopic"] | board.deleteTopic} method
+ * Params for {@link APIMethodsBoard["deleteTopic"] | board.deleteTopic} method
  */
 export interface BoardDeleteTopicParams {
     /**
@@ -1719,7 +1719,7 @@ export interface BoardDeleteTopicParams {
 }
 
 /**
- * Params for {@link APIMethods["board.editComment"] | board.editComment} method
+ * Params for {@link APIMethodsBoard["editComment"] | board.editComment} method
  */
 export interface BoardEditCommentParams {
     /**
@@ -1745,7 +1745,7 @@ export interface BoardEditCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["board.editTopic"] | board.editTopic} method
+ * Params for {@link APIMethodsBoard["editTopic"] | board.editTopic} method
  */
 export interface BoardEditTopicParams {
     /**
@@ -1763,7 +1763,7 @@ export interface BoardEditTopicParams {
 }
 
 /**
- * Params for {@link APIMethods["board.fixTopic"] | board.fixTopic} method
+ * Params for {@link APIMethodsBoard["fixTopic"] | board.fixTopic} method
  */
 export interface BoardFixTopicParams {
     /**
@@ -1783,7 +1783,7 @@ export interface BoardFixTopicParams {
 export type BoardGetCommentsSort = "asc" | "desc"
 
 /**
- * Params for {@link APIMethods["board.getComments"] | board.getComments} method
+ * Params for {@link APIMethodsBoard["getComments"] | board.getComments} method
  */
 export interface BoardGetCommentsParams {
     /**
@@ -1833,7 +1833,7 @@ export type BoardGetTopicsOrder = 1 | 2 | -1 | -2 | 0
 export type BoardGetTopicsPreview = 1 | 2 | 0
 
 /**
- * Params for {@link APIMethods["board.getTopics"] | board.getTopics} method
+ * Params for {@link APIMethodsBoard["getTopics"] | board.getTopics} method
  */
 export interface BoardGetTopicsParams {
     /**
@@ -1871,7 +1871,7 @@ export interface BoardGetTopicsParams {
 }
 
 /**
- * Params for {@link APIMethods["board.openTopic"] | board.openTopic} method
+ * Params for {@link APIMethodsBoard["openTopic"] | board.openTopic} method
  */
 export interface BoardOpenTopicParams {
     /**
@@ -1885,7 +1885,7 @@ export interface BoardOpenTopicParams {
 }
 
 /**
- * Params for {@link APIMethods["board.restoreComment"] | board.restoreComment} method
+ * Params for {@link APIMethodsBoard["restoreComment"] | board.restoreComment} method
  */
 export interface BoardRestoreCommentParams {
     /**
@@ -1903,7 +1903,7 @@ export interface BoardRestoreCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["board.unfixTopic"] | board.unfixTopic} method
+ * Params for {@link APIMethodsBoard["unfixTopic"] | board.unfixTopic} method
  */
 export interface BoardUnfixTopicParams {
     /**
@@ -1917,7 +1917,7 @@ export interface BoardUnfixTopicParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.addCompanyGroupsMembers"] | bugtracker.addCompanyGroupsMembers} method
+ * Params for {@link APIMethodsBugtracker["addCompanyGroupsMembers"] | bugtracker.addCompanyGroupsMembers} method
  */
 export interface BugtrackerAddCompanyGroupsMembersParams {
     company_id: number
@@ -1926,7 +1926,7 @@ export interface BugtrackerAddCompanyGroupsMembersParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.addCompanyMembers"] | bugtracker.addCompanyMembers} method
+ * Params for {@link APIMethodsBugtracker["addCompanyMembers"] | bugtracker.addCompanyMembers} method
  */
 export interface BugtrackerAddCompanyMembersParams {
     user_ids: number[]
@@ -1934,7 +1934,7 @@ export interface BugtrackerAddCompanyMembersParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.changeBugreportStatus"] | bugtracker.changeBugreportStatus} method
+ * Params for {@link APIMethodsBugtracker["changeBugreportStatus"] | bugtracker.changeBugreportStatus} method
  */
 export interface BugtrackerChangeBugreportStatusParams {
     bugreport_id: number
@@ -1945,7 +1945,7 @@ export interface BugtrackerChangeBugreportStatusParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.createComment"] | bugtracker.createComment} method
+ * Params for {@link APIMethodsBugtracker["createComment"] | bugtracker.createComment} method
  */
 export interface BugtrackerCreateCommentParams {
     bugreport_id: number
@@ -1956,7 +1956,7 @@ export interface BugtrackerCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.getBugreportById"] | bugtracker.getBugreportById} method
+ * Params for {@link APIMethodsBugtracker["getBugreportById"] | bugtracker.getBugreportById} method
  */
 export interface BugtrackerGetBugreportByIdParams {
     bugreport_id: number
@@ -1965,7 +1965,7 @@ export interface BugtrackerGetBugreportByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.getCompanyGroupMembers"] | bugtracker.getCompanyGroupMembers} method
+ * Params for {@link APIMethodsBugtracker["getCompanyGroupMembers"] | bugtracker.getCompanyGroupMembers} method
  */
 export interface BugtrackerGetCompanyGroupMembersParams {
     company_id: number
@@ -1980,7 +1980,7 @@ export interface BugtrackerGetCompanyGroupMembersParams {
 export type BugtrackerGetCompanyMembersFilterRole = 0 | 1
 
 /**
- * Params for {@link APIMethods["bugtracker.getCompanyMembers"] | bugtracker.getCompanyMembers} method
+ * Params for {@link APIMethodsBugtracker["getCompanyMembers"] | bugtracker.getCompanyMembers} method
  */
 export interface BugtrackerGetCompanyMembersParams {
     company_id: number
@@ -1996,7 +1996,7 @@ export interface BugtrackerGetCompanyMembersParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.getDownloadVersionUrl"] | bugtracker.getDownloadVersionUrl} method
+ * Params for {@link APIMethodsBugtracker["getDownloadVersionUrl"] | bugtracker.getDownloadVersionUrl} method
  */
 export interface BugtrackerGetDownloadVersionUrlParams {
     product_id: number
@@ -2005,14 +2005,14 @@ export interface BugtrackerGetDownloadVersionUrlParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.getProductBuildUploadServer"] | bugtracker.getProductBuildUploadServer} method
+ * Params for {@link APIMethodsBugtracker["getProductBuildUploadServer"] | bugtracker.getProductBuildUploadServer} method
  */
 export interface BugtrackerGetProductBuildUploadServerParams {
     product_id: number
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.removeCompanyGroupMember"] | bugtracker.removeCompanyGroupMember} method
+ * Params for {@link APIMethodsBugtracker["removeCompanyGroupMember"] | bugtracker.removeCompanyGroupMember} method
  */
 export interface BugtrackerRemoveCompanyGroupMemberParams {
     company_id: number
@@ -2021,7 +2021,7 @@ export interface BugtrackerRemoveCompanyGroupMemberParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.removeCompanyMember"] | bugtracker.removeCompanyMember} method
+ * Params for {@link APIMethodsBugtracker["removeCompanyMember"] | bugtracker.removeCompanyMember} method
  */
 export interface BugtrackerRemoveCompanyMemberParams {
     user_id: number
@@ -2029,7 +2029,7 @@ export interface BugtrackerRemoveCompanyMemberParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.saveProductVersion"] | bugtracker.saveProductVersion} method
+ * Params for {@link APIMethodsBugtracker["saveProductVersion"] | bugtracker.saveProductVersion} method
  */
 export interface BugtrackerSaveProductVersionParams {
     product_id?: number
@@ -2043,7 +2043,7 @@ export interface BugtrackerSaveProductVersionParams {
 export type BugtrackerSetCompanyMemberRoleRole = 0 | 1
 
 /**
- * Params for {@link APIMethods["bugtracker.setCompanyMemberRole"] | bugtracker.setCompanyMemberRole} method
+ * Params for {@link APIMethodsBugtracker["setCompanyMemberRole"] | bugtracker.setCompanyMemberRole} method
  */
 export interface BugtrackerSetCompanyMemberRoleParams {
     user_id: number
@@ -2052,7 +2052,7 @@ export interface BugtrackerSetCompanyMemberRoleParams {
 }
 
 /**
- * Params for {@link APIMethods["bugtracker.setProductIsOver"] | bugtracker.setProductIsOver} method
+ * Params for {@link APIMethodsBugtracker["setProductIsOver"] | bugtracker.setProductIsOver} method
  */
 export interface BugtrackerSetProductIsOverParams {
     product_id: number
@@ -2060,21 +2060,21 @@ export interface BugtrackerSetProductIsOverParams {
 }
 
 /**
- * Params for {@link APIMethods["calls.forceFinish"] | calls.forceFinish} method
+ * Params for {@link APIMethodsCalls["forceFinish"] | calls.forceFinish} method
  */
 export interface CallsForceFinishParams {
     call_id: string
 }
 
 /**
- * Params for {@link APIMethods["calls.start"] | calls.start} method
+ * Params for {@link APIMethodsCalls["start"] | calls.start} method
  */
 export interface CallsStartParams {
     group_id?: number
 }
 
 /**
- * Params for {@link APIMethods["database.getChairs"] | database.getChairs} method
+ * Params for {@link APIMethodsDatabase["getChairs"] | database.getChairs} method
  */
 export interface DatabaseGetChairsParams {
     /**
@@ -2092,7 +2092,7 @@ export interface DatabaseGetChairsParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getCities"] | database.getCities} method
+ * Params for {@link APIMethodsDatabase["getCities"] | database.getCities} method
  */
 export interface DatabaseGetCitiesParams {
     /**
@@ -2122,7 +2122,7 @@ export interface DatabaseGetCitiesParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getCitiesById"] | database.getCitiesById} method
+ * Params for {@link APIMethodsDatabase["getCitiesById"] | database.getCitiesById} method
  */
 export interface DatabaseGetCitiesByIdParams {
     /**
@@ -2136,7 +2136,7 @@ export interface DatabaseGetCitiesByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getCountries"] | database.getCountries} method
+ * Params for {@link APIMethodsDatabase["getCountries"] | database.getCountries} method
  */
 export interface DatabaseGetCountriesParams {
     /**
@@ -2158,7 +2158,7 @@ export interface DatabaseGetCountriesParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getCountriesById"] | database.getCountriesById} method
+ * Params for {@link APIMethodsDatabase["getCountriesById"] | database.getCountriesById} method
  */
 export interface DatabaseGetCountriesByIdParams {
     /**
@@ -2168,7 +2168,7 @@ export interface DatabaseGetCountriesByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getFaculties"] | database.getFaculties} method
+ * Params for {@link APIMethodsDatabase["getFaculties"] | database.getFaculties} method
  */
 export interface DatabaseGetFacultiesParams {
     /**
@@ -2186,7 +2186,7 @@ export interface DatabaseGetFacultiesParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getMetroStations"] | database.getMetroStations} method
+ * Params for {@link APIMethodsDatabase["getMetroStations"] | database.getMetroStations} method
  */
 export interface DatabaseGetMetroStationsParams {
     city_id: number
@@ -2196,14 +2196,14 @@ export interface DatabaseGetMetroStationsParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getMetroStationsById"] | database.getMetroStationsById} method
+ * Params for {@link APIMethodsDatabase["getMetroStationsById"] | database.getMetroStationsById} method
  */
 export interface DatabaseGetMetroStationsByIdParams {
     station_ids?: number[]
 }
 
 /**
- * Params for {@link APIMethods["database.getRegions"] | database.getRegions} method
+ * Params for {@link APIMethodsDatabase["getRegions"] | database.getRegions} method
  */
 export interface DatabaseGetRegionsParams {
     /**
@@ -2221,7 +2221,7 @@ export interface DatabaseGetRegionsParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getSchoolClasses"] | database.getSchoolClasses} method
+ * Params for {@link APIMethodsDatabase["getSchoolClasses"] | database.getSchoolClasses} method
  */
 export interface DatabaseGetSchoolClassesParams {
     /**
@@ -2231,7 +2231,7 @@ export interface DatabaseGetSchoolClassesParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getSchools"] | database.getSchools} method
+ * Params for {@link APIMethodsDatabase["getSchools"] | database.getSchools} method
  */
 export interface DatabaseGetSchoolsParams {
     /**
@@ -2253,7 +2253,7 @@ export interface DatabaseGetSchoolsParams {
 }
 
 /**
- * Params for {@link APIMethods["database.getUniversities"] | database.getUniversities} method
+ * Params for {@link APIMethodsDatabase["getUniversities"] | database.getUniversities} method
  */
 export interface DatabaseGetUniversitiesParams {
     /**
@@ -2275,7 +2275,7 @@ export interface DatabaseGetUniversitiesParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.add"] | docs.add} method
+ * Params for {@link APIMethodsDocs["add"] | docs.add} method
  */
 export interface DocsAddParams {
     /**
@@ -2293,7 +2293,7 @@ export interface DocsAddParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.delete"] | docs.delete} method
+ * Params for {@link APIMethodsDocs["delete"] | docs.delete} method
  */
 export interface DocsDeleteParams {
     /**
@@ -2307,7 +2307,7 @@ export interface DocsDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.edit"] | docs.edit} method
+ * Params for {@link APIMethodsDocs["edit"] | docs.edit} method
  */
 export interface DocsEditParams {
     /**
@@ -2342,7 +2342,7 @@ export interface DocsEditParams {
 export type DocsGetType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 /**
- * Params for {@link APIMethods["docs.get"] | docs.get} method
+ * Params for {@link APIMethodsDocs["get"] | docs.get} method
  */
 export interface DocsGetParams {
     /**
@@ -2362,7 +2362,7 @@ export interface DocsGetParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.getById"] | docs.getById} method
+ * Params for {@link APIMethodsDocs["getById"] | docs.getById} method
  */
 export interface DocsGetByIdParams {
     /**
@@ -2378,7 +2378,7 @@ export type DocsGetMessagesUploadServerType =
     | "graffiti"
 
 /**
- * Params for {@link APIMethods["docs.getMessagesUploadServer"] | docs.getMessagesUploadServer} method
+ * Params for {@link APIMethodsDocs["getMessagesUploadServer"] | docs.getMessagesUploadServer} method
  */
 export interface DocsGetMessagesUploadServerParams {
     /**
@@ -2392,7 +2392,7 @@ export interface DocsGetMessagesUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.getTypes"] | docs.getTypes} method
+ * Params for {@link APIMethodsDocs["getTypes"] | docs.getTypes} method
  */
 export interface DocsGetTypesParams {
     /**
@@ -2402,7 +2402,7 @@ export interface DocsGetTypesParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.getUploadServer"] | docs.getUploadServer} method
+ * Params for {@link APIMethodsDocs["getUploadServer"] | docs.getUploadServer} method
  */
 export interface DocsGetUploadServerParams {
     /**
@@ -2412,7 +2412,7 @@ export interface DocsGetUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.getWallUploadServer"] | docs.getWallUploadServer} method
+ * Params for {@link APIMethodsDocs["getWallUploadServer"] | docs.getWallUploadServer} method
  */
 export interface DocsGetWallUploadServerParams {
     /**
@@ -2422,7 +2422,7 @@ export interface DocsGetWallUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.restore"] | docs.restore} method
+ * Params for {@link APIMethodsDocs["restore"] | docs.restore} method
  */
 export interface DocsRestoreParams {
     owner_id: number
@@ -2430,7 +2430,7 @@ export interface DocsRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.save"] | docs.save} method
+ * Params for {@link APIMethodsDocs["save"] | docs.save} method
  */
 export interface DocsSaveParams {
     /**
@@ -2449,7 +2449,7 @@ export interface DocsSaveParams {
 }
 
 /**
- * Params for {@link APIMethods["docs.search"] | docs.search} method
+ * Params for {@link APIMethodsDocs["search"] | docs.search} method
  */
 export interface DocsSearchParams {
     /**
@@ -2469,7 +2469,7 @@ export interface DocsSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["donut.getFriends"] | donut.getFriends} method
+ * Params for {@link APIMethodsDonut["getFriends"] | donut.getFriends} method
  */
 export interface DonutGetFriendsParams {
     owner_id: number
@@ -2479,14 +2479,14 @@ export interface DonutGetFriendsParams {
 }
 
 /**
- * Params for {@link APIMethods["donut.getSubscription"] | donut.getSubscription} method
+ * Params for {@link APIMethodsDonut["getSubscription"] | donut.getSubscription} method
  */
 export interface DonutGetSubscriptionParams {
     owner_id: number
 }
 
 /**
- * Params for {@link APIMethods["donut.getSubscriptions"] | donut.getSubscriptions} method
+ * Params for {@link APIMethodsDonut["getSubscriptions"] | donut.getSubscriptions} method
  */
 export interface DonutGetSubscriptionsParams {
     fields?: Objects.VKBaseUserGroupFields[]
@@ -2495,28 +2495,28 @@ export interface DonutGetSubscriptionsParams {
 }
 
 /**
- * Params for {@link APIMethods["donut.isDon"] | donut.isDon} method
+ * Params for {@link APIMethodsDonut["isDon"] | donut.isDon} method
  */
 export interface DonutIsDonParams {
     owner_id: number
 }
 
 /**
- * Params for {@link APIMethods["downloadedGames.getPaidStatus"] | downloadedGames.getPaidStatus} method
+ * Params for {@link APIMethodsDownloadedGames["getPaidStatus"] | downloadedGames.getPaidStatus} method
  */
 export interface DownloadedGamesGetPaidStatusParams {
     user_id?: number
 }
 
 /**
- * Params for {@link APIMethods["fave.addArticle"] | fave.addArticle} method
+ * Params for {@link APIMethodsFave["addArticle"] | fave.addArticle} method
  */
 export interface FaveAddArticleParams {
     url: string
 }
 
 /**
- * Params for {@link APIMethods["fave.addLink"] | fave.addLink} method
+ * Params for {@link APIMethodsFave["addLink"] | fave.addLink} method
  */
 export interface FaveAddLinkParams {
     /**
@@ -2526,7 +2526,7 @@ export interface FaveAddLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.addPage"] | fave.addPage} method
+ * Params for {@link APIMethodsFave["addPage"] | fave.addPage} method
  */
 export interface FaveAddPageParams {
     user_id?: number
@@ -2534,7 +2534,7 @@ export interface FaveAddPageParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.addPost"] | fave.addPost} method
+ * Params for {@link APIMethodsFave["addPost"] | fave.addPost} method
  */
 export interface FaveAddPostParams {
     owner_id: number
@@ -2543,7 +2543,7 @@ export interface FaveAddPostParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.addProduct"] | fave.addProduct} method
+ * Params for {@link APIMethodsFave["addProduct"] | fave.addProduct} method
  */
 export interface FaveAddProductParams {
     owner_id: number
@@ -2554,7 +2554,7 @@ export interface FaveAddProductParams {
 export type FaveAddTagPosition = "back" | "front"
 
 /**
- * Params for {@link APIMethods["fave.addTag"] | fave.addTag} method
+ * Params for {@link APIMethodsFave["addTag"] | fave.addTag} method
  */
 export interface FaveAddTagParams {
     name?: string
@@ -2562,7 +2562,7 @@ export interface FaveAddTagParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.addVideo"] | fave.addVideo} method
+ * Params for {@link APIMethodsFave["addVideo"] | fave.addVideo} method
  */
 export interface FaveAddVideoParams {
     owner_id: number
@@ -2571,7 +2571,7 @@ export interface FaveAddVideoParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.editTag"] | fave.editTag} method
+ * Params for {@link APIMethodsFave["editTag"] | fave.editTag} method
  */
 export interface FaveEditTagParams {
     id: number
@@ -2593,7 +2593,7 @@ export type FaveGetItemType =
     | "youla_product"
 
 /**
- * Params for {@link APIMethods["fave.get"] | fave.get} method
+ * Params for {@link APIMethodsFave["get"] | fave.get} method
  */
 export interface FaveGetParams {
     /**
@@ -2620,7 +2620,7 @@ export interface FaveGetParams {
 export type FaveGetPagesType = "groups" | "hints" | "users"
 
 /**
- * Params for {@link APIMethods["fave.getPages"] | fave.getPages} method
+ * Params for {@link APIMethodsFave["getPages"] | fave.getPages} method
  */
 export interface FaveGetPagesParams {
     offset?: number
@@ -2631,7 +2631,7 @@ export interface FaveGetPagesParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.removeArticle"] | fave.removeArticle} method
+ * Params for {@link APIMethodsFave["removeArticle"] | fave.removeArticle} method
  */
 export interface FaveRemoveArticleParams {
     owner_id: number
@@ -2639,7 +2639,7 @@ export interface FaveRemoveArticleParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.removeLink"] | fave.removeLink} method
+ * Params for {@link APIMethodsFave["removeLink"] | fave.removeLink} method
  */
 export interface FaveRemoveLinkParams {
     /**
@@ -2653,7 +2653,7 @@ export interface FaveRemoveLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.removePage"] | fave.removePage} method
+ * Params for {@link APIMethodsFave["removePage"] | fave.removePage} method
  */
 export interface FaveRemovePageParams {
     user_id?: number
@@ -2661,7 +2661,7 @@ export interface FaveRemovePageParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.removePost"] | fave.removePost} method
+ * Params for {@link APIMethodsFave["removePost"] | fave.removePost} method
  */
 export interface FaveRemovePostParams {
     owner_id: number
@@ -2669,7 +2669,7 @@ export interface FaveRemovePostParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.removeProduct"] | fave.removeProduct} method
+ * Params for {@link APIMethodsFave["removeProduct"] | fave.removeProduct} method
  */
 export interface FaveRemoveProductParams {
     owner_id: number
@@ -2677,14 +2677,14 @@ export interface FaveRemoveProductParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.removeTag"] | fave.removeTag} method
+ * Params for {@link APIMethodsFave["removeTag"] | fave.removeTag} method
  */
 export interface FaveRemoveTagParams {
     id: number
 }
 
 /**
- * Params for {@link APIMethods["fave.removeVideo"] | fave.removeVideo} method
+ * Params for {@link APIMethodsFave["removeVideo"] | fave.removeVideo} method
  */
 export interface FaveRemoveVideoParams {
     owner_id: number
@@ -2692,14 +2692,14 @@ export interface FaveRemoveVideoParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.reorderTags"] | fave.reorderTags} method
+ * Params for {@link APIMethodsFave["reorderTags"] | fave.reorderTags} method
  */
 export interface FaveReorderTagsParams {
     ids: number[]
 }
 
 /**
- * Params for {@link APIMethods["fave.setPageTags"] | fave.setPageTags} method
+ * Params for {@link APIMethodsFave["setPageTags"] | fave.setPageTags} method
  */
 export interface FaveSetPageTagsParams {
     user_id?: number
@@ -2722,7 +2722,7 @@ export type FaveSetTagsItemType =
     | "youla_product"
 
 /**
- * Params for {@link APIMethods["fave.setTags"] | fave.setTags} method
+ * Params for {@link APIMethodsFave["setTags"] | fave.setTags} method
  */
 export interface FaveSetTagsParams {
     item_type?: FaveSetTagsItemType
@@ -2734,7 +2734,7 @@ export interface FaveSetTagsParams {
 }
 
 /**
- * Params for {@link APIMethods["fave.trackPageInteraction"] | fave.trackPageInteraction} method
+ * Params for {@link APIMethodsFave["trackPageInteraction"] | fave.trackPageInteraction} method
  */
 export interface FaveTrackPageInteractionParams {
     user_id?: number
@@ -2742,7 +2742,7 @@ export interface FaveTrackPageInteractionParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.add"] | friends.add} method
+ * Params for {@link APIMethodsFriends["add"] | friends.add} method
  */
 export interface FriendsAddParams {
     /**
@@ -2760,7 +2760,7 @@ export interface FriendsAddParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.addList"] | friends.addList} method
+ * Params for {@link APIMethodsFriends["addList"] | friends.addList} method
  */
 export interface FriendsAddListParams {
     /**
@@ -2774,7 +2774,7 @@ export interface FriendsAddListParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.areFriends"] | friends.areFriends} method
+ * Params for {@link APIMethodsFriends["areFriends"] | friends.areFriends} method
  */
 export interface FriendsAreFriendsParams {
     /**
@@ -2792,7 +2792,7 @@ export interface FriendsAreFriendsParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.delete"] | friends.delete} method
+ * Params for {@link APIMethodsFriends["delete"] | friends.delete} method
  */
 export interface FriendsDeleteParams {
     /**
@@ -2802,7 +2802,7 @@ export interface FriendsDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.deleteList"] | friends.deleteList} method
+ * Params for {@link APIMethodsFriends["deleteList"] | friends.deleteList} method
  */
 export interface FriendsDeleteListParams {
     /**
@@ -2812,7 +2812,7 @@ export interface FriendsDeleteListParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.edit"] | friends.edit} method
+ * Params for {@link APIMethodsFriends["edit"] | friends.edit} method
  */
 export interface FriendsEditParams {
     /**
@@ -2826,7 +2826,7 @@ export interface FriendsEditParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.editList"] | friends.editList} method
+ * Params for {@link APIMethodsFriends["editList"] | friends.editList} method
  */
 export interface FriendsEditListParams {
     /**
@@ -2854,7 +2854,7 @@ export interface FriendsEditListParams {
 export type FriendsGetOrder = "hints" | "mobile" | "name" | "random" | "smart"
 
 /**
- * Params for {@link APIMethods["friends.get"] | friends.get} method
+ * Params for {@link APIMethodsFriends["get"] | friends.get} method
  */
 export interface FriendsGetParams {
     /**
@@ -2885,7 +2885,7 @@ export interface FriendsGetParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.getLists"] | friends.getLists} method
+ * Params for {@link APIMethodsFriends["getLists"] | friends.getLists} method
  */
 export interface FriendsGetListsParams {
     /**
@@ -2899,7 +2899,7 @@ export interface FriendsGetListsParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.getMutual"] | friends.getMutual} method
+ * Params for {@link APIMethodsFriends["getMutual"] | friends.getMutual} method
  */
 export interface FriendsGetMutualParams {
     /**
@@ -2933,7 +2933,7 @@ export interface FriendsGetMutualParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.getOnline"] | friends.getOnline} method
+ * Params for {@link APIMethodsFriends["getOnline"] | friends.getOnline} method
  */
 export interface FriendsGetOnlineParams {
     /**
@@ -2963,7 +2963,7 @@ export interface FriendsGetOnlineParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.getRecent"] | friends.getRecent} method
+ * Params for {@link APIMethodsFriends["getRecent"] | friends.getRecent} method
  */
 export interface FriendsGetRecentParams {
     /**
@@ -2980,7 +2980,7 @@ export interface FriendsGetRecentParams {
 export type FriendsGetRequestsSort = 0 | 1 | 2
 
 /**
- * Params for {@link APIMethods["friends.getRequests"] | friends.getRequests} method
+ * Params for {@link APIMethodsFriends["getRequests"] | friends.getRequests} method
  */
 export interface FriendsGetRequestsParams {
     /**
@@ -3022,7 +3022,7 @@ export type FriendsGetSuggestionsFilter =
     | "mutual_contacts"
 
 /**
- * Params for {@link APIMethods["friends.getSuggestions"] | friends.getSuggestions} method
+ * Params for {@link APIMethodsFriends["getSuggestions"] | friends.getSuggestions} method
  */
 export interface FriendsGetSuggestionsParams {
     /**
@@ -3048,7 +3048,7 @@ export interface FriendsGetSuggestionsParams {
 }
 
 /**
- * Params for {@link APIMethods["friends.search"] | friends.search} method
+ * Params for {@link APIMethodsFriends["search"] | friends.search} method
  */
 export interface FriendsSearchParams {
     /**
@@ -3078,7 +3078,7 @@ export interface FriendsSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["gifts.get"] | gifts.get} method
+ * Params for {@link APIMethodsGifts["get"] | gifts.get} method
  */
 export interface GiftsGetParams {
     /**
@@ -3103,7 +3103,7 @@ export type GroupsAddAddressWorkInfoStatus =
     | "timetable"
 
 /**
- * Params for {@link APIMethods["groups.addAddress"] | groups.addAddress} method
+ * Params for {@link APIMethodsGroups["addAddress"] | groups.addAddress} method
  */
 export interface GroupsAddAddressParams {
     group_id: number
@@ -3121,7 +3121,7 @@ export interface GroupsAddAddressParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.addCallbackServer"] | groups.addCallbackServer} method
+ * Params for {@link APIMethodsGroups["addCallbackServer"] | groups.addCallbackServer} method
  */
 export interface GroupsAddCallbackServerParams {
     group_id: number
@@ -3131,7 +3131,7 @@ export interface GroupsAddCallbackServerParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.addLink"] | groups.addLink} method
+ * Params for {@link APIMethodsGroups["addLink"] | groups.addLink} method
  */
 export interface GroupsAddLinkParams {
     /**
@@ -3149,7 +3149,7 @@ export interface GroupsAddLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.approveRequest"] | groups.approveRequest} method
+ * Params for {@link APIMethodsGroups["approveRequest"] | groups.approveRequest} method
  */
 export interface GroupsApproveRequestParams {
     /**
@@ -3163,7 +3163,7 @@ export interface GroupsApproveRequestParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.ban"] | groups.ban} method
+ * Params for {@link APIMethodsGroups["ban"] | groups.ban} method
  */
 export interface GroupsBanParams {
     group_id: number
@@ -3185,7 +3185,7 @@ export type GroupsCreateType = "event" | "group" | "public"
 export type GroupsCreateSubtype = 0 | 1 | 2 | 3 | 4
 
 /**
- * Params for {@link APIMethods["groups.create"] | groups.create} method
+ * Params for {@link APIMethodsGroups["create"] | groups.create} method
  */
 export interface GroupsCreateParams {
     /**
@@ -3215,7 +3215,7 @@ export interface GroupsCreateParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.deleteAddress"] | groups.deleteAddress} method
+ * Params for {@link APIMethodsGroups["deleteAddress"] | groups.deleteAddress} method
  */
 export interface GroupsDeleteAddressParams {
     group_id: number
@@ -3223,7 +3223,7 @@ export interface GroupsDeleteAddressParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.deleteCallbackServer"] | groups.deleteCallbackServer} method
+ * Params for {@link APIMethodsGroups["deleteCallbackServer"] | groups.deleteCallbackServer} method
  */
 export interface GroupsDeleteCallbackServerParams {
     group_id: number
@@ -3231,7 +3231,7 @@ export interface GroupsDeleteCallbackServerParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.deleteLink"] | groups.deleteLink} method
+ * Params for {@link APIMethodsGroups["deleteLink"] | groups.deleteLink} method
  */
 export interface GroupsDeleteLinkParams {
     /**
@@ -3245,7 +3245,7 @@ export interface GroupsDeleteLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.disableOnline"] | groups.disableOnline} method
+ * Params for {@link APIMethodsGroups["disableOnline"] | groups.disableOnline} method
  */
 export interface GroupsDisableOnlineParams {
     group_id: number
@@ -3254,7 +3254,7 @@ export interface GroupsDisableOnlineParams {
 export type GroupsEditAgeLimits = 1 | 2 | 3
 
 /**
- * Params for {@link APIMethods["groups.edit"] | groups.edit} method
+ * Params for {@link APIMethodsGroups["edit"] | groups.edit} method
  */
 export interface GroupsEditParams {
     /**
@@ -3441,7 +3441,7 @@ export type GroupsEditAddressWorkInfoStatus =
     | "timetable"
 
 /**
- * Params for {@link APIMethods["groups.editAddress"] | groups.editAddress} method
+ * Params for {@link APIMethodsGroups["editAddress"] | groups.editAddress} method
  */
 export interface GroupsEditAddressParams {
     group_id: number
@@ -3460,7 +3460,7 @@ export interface GroupsEditAddressParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.editCallbackServer"] | groups.editCallbackServer} method
+ * Params for {@link APIMethodsGroups["editCallbackServer"] | groups.editCallbackServer} method
  */
 export interface GroupsEditCallbackServerParams {
     group_id: number
@@ -3471,7 +3471,7 @@ export interface GroupsEditCallbackServerParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.editLink"] | groups.editLink} method
+ * Params for {@link APIMethodsGroups["editLink"] | groups.editLink} method
  */
 export interface GroupsEditLinkParams {
     /**
@@ -3489,7 +3489,7 @@ export interface GroupsEditLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.editManager"] | groups.editManager} method
+ * Params for {@link APIMethodsGroups["editManager"] | groups.editManager} method
  */
 export interface GroupsEditManagerParams {
     /**
@@ -3527,14 +3527,14 @@ export interface GroupsEditManagerParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.enableOnline"] | groups.enableOnline} method
+ * Params for {@link APIMethodsGroups["enableOnline"] | groups.enableOnline} method
  */
 export interface GroupsEnableOnlineParams {
     group_id: number
 }
 
 /**
- * Params for {@link APIMethods["groups.get"] | groups.get} method
+ * Params for {@link APIMethodsGroups["get"] | groups.get} method
  */
 export interface GroupsGetParams {
     /**
@@ -3564,7 +3564,7 @@ export interface GroupsGetParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getAddresses"] | groups.getAddresses} method
+ * Params for {@link APIMethodsGroups["getAddresses"] | groups.getAddresses} method
  */
 export interface GroupsGetAddressesParams {
     /**
@@ -3595,7 +3595,7 @@ export interface GroupsGetAddressesParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getBanned"] | groups.getBanned} method
+ * Params for {@link APIMethodsGroups["getBanned"] | groups.getBanned} method
  */
 export interface GroupsGetBannedParams {
     /**
@@ -3615,7 +3615,7 @@ export interface GroupsGetBannedParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getById"] | groups.getById} method
+ * Params for {@link APIMethodsGroups["getById"] | groups.getById} method
  */
 export interface GroupsGetByIdParams {
     /**
@@ -3633,7 +3633,7 @@ export interface GroupsGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getCallbackConfirmationCode"] | groups.getCallbackConfirmationCode} method
+ * Params for {@link APIMethodsGroups["getCallbackConfirmationCode"] | groups.getCallbackConfirmationCode} method
  */
 export interface GroupsGetCallbackConfirmationCodeParams {
     /**
@@ -3643,7 +3643,7 @@ export interface GroupsGetCallbackConfirmationCodeParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getCallbackServers"] | groups.getCallbackServers} method
+ * Params for {@link APIMethodsGroups["getCallbackServers"] | groups.getCallbackServers} method
  */
 export interface GroupsGetCallbackServersParams {
     group_id: number
@@ -3651,7 +3651,7 @@ export interface GroupsGetCallbackServersParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getCallbackSettings"] | groups.getCallbackSettings} method
+ * Params for {@link APIMethodsGroups["getCallbackSettings"] | groups.getCallbackSettings} method
  */
 export interface GroupsGetCallbackSettingsParams {
     /**
@@ -3665,7 +3665,7 @@ export interface GroupsGetCallbackSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getCatalogInfo"] | groups.getCatalogInfo} method
+ * Params for {@link APIMethodsGroups["getCatalogInfo"] | groups.getCatalogInfo} method
  */
 export interface GroupsGetCatalogInfoParams {
     /**
@@ -3679,7 +3679,7 @@ export interface GroupsGetCatalogInfoParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getInvitedUsers"] | groups.getInvitedUsers} method
+ * Params for {@link APIMethodsGroups["getInvitedUsers"] | groups.getInvitedUsers} method
  */
 export interface GroupsGetInvitedUsersParams {
     /**
@@ -3705,7 +3705,7 @@ export interface GroupsGetInvitedUsersParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getInvites"] | groups.getInvites} method
+ * Params for {@link APIMethodsGroups["getInvites"] | groups.getInvites} method
  */
 export interface GroupsGetInvitesParams {
     /**
@@ -3723,7 +3723,7 @@ export interface GroupsGetInvitesParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getLongPollServer"] | groups.getLongPollServer} method
+ * Params for {@link APIMethodsGroups["getLongPollServer"] | groups.getLongPollServer} method
  */
 export interface GroupsGetLongPollServerParams {
     /**
@@ -3733,7 +3733,7 @@ export interface GroupsGetLongPollServerParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getLongPollSettings"] | groups.getLongPollSettings} method
+ * Params for {@link APIMethodsGroups["getLongPollSettings"] | groups.getLongPollSettings} method
  */
 export interface GroupsGetLongPollSettingsParams {
     /**
@@ -3755,7 +3755,7 @@ export type GroupsGetMembersFilter =
     | "unsure_friends"
 
 /**
- * Params for {@link APIMethods["groups.getMembers"] | groups.getMembers} method
+ * Params for {@link APIMethodsGroups["getMembers"] | groups.getMembers} method
  */
 export interface GroupsGetMembersParams {
     /**
@@ -3785,14 +3785,14 @@ export interface GroupsGetMembersParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getOnlineStatus"] | groups.getOnlineStatus} method
+ * Params for {@link APIMethodsGroups["getOnlineStatus"] | groups.getOnlineStatus} method
  */
 export interface GroupsGetOnlineStatusParams {
     group_id: number
 }
 
 /**
- * Params for {@link APIMethods["groups.getRequests"] | groups.getRequests} method
+ * Params for {@link APIMethodsGroups["getRequests"] | groups.getRequests} method
  */
 export interface GroupsGetRequestsParams {
     /**
@@ -3814,7 +3814,7 @@ export interface GroupsGetRequestsParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getSettings"] | groups.getSettings} method
+ * Params for {@link APIMethodsGroups["getSettings"] | groups.getSettings} method
  */
 export interface GroupsGetSettingsParams {
     /**
@@ -3824,14 +3824,14 @@ export interface GroupsGetSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.getTagList"] | groups.getTagList} method
+ * Params for {@link APIMethodsGroups["getTagList"] | groups.getTagList} method
  */
 export interface GroupsGetTagListParams {
     group_id: number
 }
 
 /**
- * Params for {@link APIMethods["groups.invite"] | groups.invite} method
+ * Params for {@link APIMethodsGroups["invite"] | groups.invite} method
  */
 export interface GroupsInviteParams {
     /**
@@ -3849,7 +3849,7 @@ export interface GroupsInviteParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.isMember"] | groups.isMember} method
+ * Params for {@link APIMethodsGroups["isMember"] | groups.isMember} method
  */
 export interface GroupsIsMemberParams {
     /**
@@ -3871,7 +3871,7 @@ export interface GroupsIsMemberParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.join"] | groups.join} method
+ * Params for {@link APIMethodsGroups["join"] | groups.join} method
  */
 export interface GroupsJoinParams {
     /**
@@ -3885,7 +3885,7 @@ export interface GroupsJoinParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.leave"] | groups.leave} method
+ * Params for {@link APIMethodsGroups["leave"] | groups.leave} method
  */
 export interface GroupsLeaveParams {
     /**
@@ -3895,7 +3895,7 @@ export interface GroupsLeaveParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.removeUser"] | groups.removeUser} method
+ * Params for {@link APIMethodsGroups["removeUser"] | groups.removeUser} method
  */
 export interface GroupsRemoveUserParams {
     /**
@@ -3909,7 +3909,7 @@ export interface GroupsRemoveUserParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.reorderLink"] | groups.reorderLink} method
+ * Params for {@link APIMethodsGroups["reorderLink"] | groups.reorderLink} method
  */
 export interface GroupsReorderLinkParams {
     /**
@@ -3939,7 +3939,7 @@ export type GroupsSearchType = "event" | "group" | "page"
 export type GroupsSearchSort = 0 | 1 | 2 | 3 | 4 | 5 | 6
 
 /**
- * Params for {@link APIMethods["groups.search"] | groups.search} method
+ * Params for {@link APIMethodsGroups["search"] | groups.search} method
  */
 export interface GroupsSearchParams {
     /**
@@ -3981,7 +3981,7 @@ export interface GroupsSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.setCallbackSettings"] | groups.setCallbackSettings} method
+ * Params for {@link APIMethodsGroups["setCallbackSettings"] | groups.setCallbackSettings} method
  */
 export interface GroupsSetCallbackSettingsParams {
     /**
@@ -4166,7 +4166,7 @@ export interface GroupsSetCallbackSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.setLongPollSettings"] | groups.setLongPollSettings} method
+ * Params for {@link APIMethodsGroups["setLongPollSettings"] | groups.setLongPollSettings} method
  */
 export interface GroupsSetLongPollSettingsParams {
     /**
@@ -4340,7 +4340,7 @@ export interface GroupsSetLongPollSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.setSettings"] | groups.setSettings} method
+ * Params for {@link APIMethodsGroups["setSettings"] | groups.setSettings} method
  */
 export interface GroupsSetSettingsParams {
     group_id: number
@@ -4364,7 +4364,7 @@ export interface GroupsSetSettingsParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.setUserNote"] | groups.setUserNote} method
+ * Params for {@link APIMethodsGroups["setUserNote"] | groups.setUserNote} method
  */
 export interface GroupsSetUserNoteParams {
     group_id: number
@@ -4398,7 +4398,7 @@ export type GroupsTagAddTagColor =
     | "ffc107"
 
 /**
- * Params for {@link APIMethods["groups.tagAdd"] | groups.tagAdd} method
+ * Params for {@link APIMethodsGroups["tagAdd"] | groups.tagAdd} method
  */
 export interface GroupsTagAddParams {
     group_id: number
@@ -4409,7 +4409,7 @@ export interface GroupsTagAddParams {
 export type GroupsTagBindAct = "bind" | "unbind"
 
 /**
- * Params for {@link APIMethods["groups.tagBind"] | groups.tagBind} method
+ * Params for {@link APIMethodsGroups["tagBind"] | groups.tagBind} method
  */
 export interface GroupsTagBindParams {
     group_id: number
@@ -4422,7 +4422,7 @@ export interface GroupsTagBindParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.tagDelete"] | groups.tagDelete} method
+ * Params for {@link APIMethodsGroups["tagDelete"] | groups.tagDelete} method
  */
 export interface GroupsTagDeleteParams {
     group_id: number
@@ -4430,7 +4430,7 @@ export interface GroupsTagDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.tagUpdate"] | groups.tagUpdate} method
+ * Params for {@link APIMethodsGroups["tagUpdate"] | groups.tagUpdate} method
  */
 export interface GroupsTagUpdateParams {
     group_id: number
@@ -4441,7 +4441,7 @@ export interface GroupsTagUpdateParams {
 export type GroupsToggleMarketState = "advanced" | "basic" | "none"
 
 /**
- * Params for {@link APIMethods["groups.toggleMarket"] | groups.toggleMarket} method
+ * Params for {@link APIMethodsGroups["toggleMarket"] | groups.toggleMarket} method
  */
 export interface GroupsToggleMarketParams {
     group_id: number
@@ -4450,7 +4450,7 @@ export interface GroupsToggleMarketParams {
 }
 
 /**
- * Params for {@link APIMethods["groups.unban"] | groups.unban} method
+ * Params for {@link APIMethodsGroups["unban"] | groups.unban} method
  */
 export interface GroupsUnbanParams {
     group_id: number
@@ -4458,7 +4458,7 @@ export interface GroupsUnbanParams {
 }
 
 /**
- * Params for {@link APIMethods["leadForms.create"] | leadForms.create} method
+ * Params for {@link APIMethodsLeadForms["create"] | leadForms.create} method
  */
 export interface LeadFormsCreateParams {
     group_id: number
@@ -4478,7 +4478,7 @@ export interface LeadFormsCreateParams {
 }
 
 /**
- * Params for {@link APIMethods["leadForms.delete"] | leadForms.delete} method
+ * Params for {@link APIMethodsLeadForms["delete"] | leadForms.delete} method
  */
 export interface LeadFormsDeleteParams {
     group_id: number
@@ -4486,7 +4486,7 @@ export interface LeadFormsDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["leadForms.get"] | leadForms.get} method
+ * Params for {@link APIMethodsLeadForms["get"] | leadForms.get} method
  */
 export interface LeadFormsGetParams {
     group_id: number
@@ -4494,7 +4494,7 @@ export interface LeadFormsGetParams {
 }
 
 /**
- * Params for {@link APIMethods["leadForms.getLeads"] | leadForms.getLeads} method
+ * Params for {@link APIMethodsLeadForms["getLeads"] | leadForms.getLeads} method
  */
 export interface LeadFormsGetLeadsParams {
     group_id: number
@@ -4504,14 +4504,14 @@ export interface LeadFormsGetLeadsParams {
 }
 
 /**
- * Params for {@link APIMethods["leadForms.list"] | leadForms.list} method
+ * Params for {@link APIMethodsLeadForms["list"] | leadForms.list} method
  */
 export interface LeadFormsListParams {
     group_id: number
 }
 
 /**
- * Params for {@link APIMethods["leadForms.update"] | leadForms.update} method
+ * Params for {@link APIMethodsLeadForms["update"] | leadForms.update} method
  */
 export interface LeadFormsUpdateParams {
     group_id: number
@@ -4532,7 +4532,7 @@ export interface LeadFormsUpdateParams {
 }
 
 /**
- * Params for {@link APIMethods["likes.add"] | likes.add} method
+ * Params for {@link APIMethodsLikes["add"] | likes.add} method
  */
 export interface LikesAddParams {
     /**
@@ -4558,7 +4558,7 @@ export interface LikesAddParams {
 }
 
 /**
- * Params for {@link APIMethods["likes.delete"] | likes.delete} method
+ * Params for {@link APIMethodsLikes["delete"] | likes.delete} method
  */
 export interface LikesDeleteParams {
     /**
@@ -4587,7 +4587,7 @@ export type LikesGetListFilter = "copies" | "likes"
 export type LikesGetListFriendsOnly = 0 | 1 | 2 | 3
 
 /**
- * Params for {@link APIMethods["likes.getList"] | likes.getList} method
+ * Params for {@link APIMethodsLikes["getList"] | likes.getList} method
  */
 export interface LikesGetListParams {
     /**
@@ -4631,7 +4631,7 @@ export interface LikesGetListParams {
 }
 
 /**
- * Params for {@link APIMethods["likes.isLiked"] | likes.isLiked} method
+ * Params for {@link APIMethodsLikes["isLiked"] | likes.isLiked} method
  */
 export interface LikesIsLikedParams {
     /**
@@ -4653,7 +4653,7 @@ export interface LikesIsLikedParams {
 }
 
 /**
- * Params for {@link APIMethods["market.add"] | market.add} method
+ * Params for {@link APIMethodsMarket["add"] | market.add} method
  */
 export interface MarketAddParams {
     /**
@@ -4714,7 +4714,7 @@ export interface MarketAddParams {
 }
 
 /**
- * Params for {@link APIMethods["market.addAlbum"] | market.addAlbum} method
+ * Params for {@link APIMethodsMarket["addAlbum"] | market.addAlbum} method
  */
 export interface MarketAddAlbumParams {
     /**
@@ -4740,7 +4740,7 @@ export interface MarketAddAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["market.addProperty"] | market.addProperty} method
+ * Params for {@link APIMethodsMarket["addProperty"] | market.addProperty} method
  */
 export interface MarketAddPropertyParams {
     /**
@@ -4754,7 +4754,7 @@ export interface MarketAddPropertyParams {
 }
 
 /**
- * Params for {@link APIMethods["market.addPropertyVariant"] | market.addPropertyVariant} method
+ * Params for {@link APIMethodsMarket["addPropertyVariant"] | market.addPropertyVariant} method
  */
 export interface MarketAddPropertyVariantParams {
     /**
@@ -4772,7 +4772,7 @@ export interface MarketAddPropertyVariantParams {
 }
 
 /**
- * Params for {@link APIMethods["market.addToAlbum"] | market.addToAlbum} method
+ * Params for {@link APIMethodsMarket["addToAlbum"] | market.addToAlbum} method
  */
 export interface MarketAddToAlbumParams {
     /**
@@ -4787,7 +4787,7 @@ export interface MarketAddToAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["market.createComment"] | market.createComment} method
+ * Params for {@link APIMethodsMarket["createComment"] | market.createComment} method
  */
 export interface MarketCreateCommentParams {
     /**
@@ -4825,7 +4825,7 @@ export interface MarketCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["market.delete"] | market.delete} method
+ * Params for {@link APIMethodsMarket["delete"] | market.delete} method
  */
 export interface MarketDeleteParams {
     /**
@@ -4839,7 +4839,7 @@ export interface MarketDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["market.deleteAlbum"] | market.deleteAlbum} method
+ * Params for {@link APIMethodsMarket["deleteAlbum"] | market.deleteAlbum} method
  */
 export interface MarketDeleteAlbumParams {
     /**
@@ -4853,7 +4853,7 @@ export interface MarketDeleteAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["market.deleteComment"] | market.deleteComment} method
+ * Params for {@link APIMethodsMarket["deleteComment"] | market.deleteComment} method
  */
 export interface MarketDeleteCommentParams {
     /**
@@ -4867,7 +4867,7 @@ export interface MarketDeleteCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["market.deleteProperty"] | market.deleteProperty} method
+ * Params for {@link APIMethodsMarket["deleteProperty"] | market.deleteProperty} method
  */
 export interface MarketDeletePropertyParams {
     /**
@@ -4881,7 +4881,7 @@ export interface MarketDeletePropertyParams {
 }
 
 /**
- * Params for {@link APIMethods["market.deletePropertyVariant"] | market.deletePropertyVariant} method
+ * Params for {@link APIMethodsMarket["deletePropertyVariant"] | market.deletePropertyVariant} method
  */
 export interface MarketDeletePropertyVariantParams {
     /**
@@ -4895,7 +4895,7 @@ export interface MarketDeletePropertyVariantParams {
 }
 
 /**
- * Params for {@link APIMethods["market.edit"] | market.edit} method
+ * Params for {@link APIMethodsMarket["edit"] | market.edit} method
  */
 export interface MarketEditParams {
     /**
@@ -4960,7 +4960,7 @@ export interface MarketEditParams {
 }
 
 /**
- * Params for {@link APIMethods["market.editAlbum"] | market.editAlbum} method
+ * Params for {@link APIMethodsMarket["editAlbum"] | market.editAlbum} method
  */
 export interface MarketEditAlbumParams {
     /**
@@ -4990,7 +4990,7 @@ export interface MarketEditAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["market.editComment"] | market.editComment} method
+ * Params for {@link APIMethodsMarket["editComment"] | market.editComment} method
  */
 export interface MarketEditCommentParams {
     /**
@@ -5014,7 +5014,7 @@ export interface MarketEditCommentParams {
 export type MarketEditOrderPaymentStatus = "not_paid" | "paid" | "returned"
 
 /**
- * Params for {@link APIMethods["market.editOrder"] | market.editOrder} method
+ * Params for {@link APIMethodsMarket["editOrder"] | market.editOrder} method
  */
 export interface MarketEditOrderParams {
     user_id: number
@@ -5033,7 +5033,7 @@ export interface MarketEditOrderParams {
 }
 
 /**
- * Params for {@link APIMethods["market.editProperty"] | market.editProperty} method
+ * Params for {@link APIMethodsMarket["editProperty"] | market.editProperty} method
  */
 export interface MarketEditPropertyParams {
     /**
@@ -5051,7 +5051,7 @@ export interface MarketEditPropertyParams {
 }
 
 /**
- * Params for {@link APIMethods["market.editPropertyVariant"] | market.editPropertyVariant} method
+ * Params for {@link APIMethodsMarket["editPropertyVariant"] | market.editPropertyVariant} method
  */
 export interface MarketEditPropertyVariantParams {
     /**
@@ -5069,7 +5069,7 @@ export interface MarketEditPropertyVariantParams {
 }
 
 /**
- * Params for {@link APIMethods["market.filterCategories"] | market.filterCategories} method
+ * Params for {@link APIMethodsMarket["filterCategories"] | market.filterCategories} method
  */
 export interface MarketFilterCategoriesParams {
     /**
@@ -5087,7 +5087,7 @@ export interface MarketFilterCategoriesParams {
 }
 
 /**
- * Params for {@link APIMethods["market.get"] | market.get} method
+ * Params for {@link APIMethodsMarket["get"] | market.get} method
  */
 export interface MarketGetParams {
     /**
@@ -5127,7 +5127,7 @@ export interface MarketGetParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getAlbumById"] | market.getAlbumById} method
+ * Params for {@link APIMethodsMarket["getAlbumById"] | market.getAlbumById} method
  */
 export interface MarketGetAlbumByIdParams {
     /**
@@ -5141,7 +5141,7 @@ export interface MarketGetAlbumByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getAlbums"] | market.getAlbums} method
+ * Params for {@link APIMethodsMarket["getAlbums"] | market.getAlbums} method
  */
 export interface MarketGetAlbumsParams {
     /**
@@ -5159,7 +5159,7 @@ export interface MarketGetAlbumsParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getById"] | market.getById} method
+ * Params for {@link APIMethodsMarket["getById"] | market.getById} method
  */
 export interface MarketGetByIdParams {
     /**
@@ -5173,7 +5173,7 @@ export interface MarketGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getCategories"] | market.getCategories} method
+ * Params for {@link APIMethodsMarket["getCategories"] | market.getCategories} method
  */
 export interface MarketGetCategoriesParams {
     /**
@@ -5190,7 +5190,7 @@ export interface MarketGetCategoriesParams {
 export type MarketGetCommentsSort = "asc" | "desc"
 
 /**
- * Params for {@link APIMethods["market.getComments"] | market.getComments} method
+ * Params for {@link APIMethodsMarket["getComments"] | market.getComments} method
  */
 export interface MarketGetCommentsParams {
     /**
@@ -5229,7 +5229,7 @@ export interface MarketGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getFavesForAttach"] | market.getFavesForAttach} method
+ * Params for {@link APIMethodsMarket["getFavesForAttach"] | market.getFavesForAttach} method
  */
 export interface MarketGetFavesForAttachParams {
     /**
@@ -5248,7 +5248,7 @@ export interface MarketGetFavesForAttachParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getGroupOrders"] | market.getGroupOrders} method
+ * Params for {@link APIMethodsMarket["getGroupOrders"] | market.getGroupOrders} method
  */
 export interface MarketGetGroupOrdersParams {
     /**
@@ -5260,7 +5260,7 @@ export interface MarketGetGroupOrdersParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getOrderById"] | market.getOrderById} method
+ * Params for {@link APIMethodsMarket["getOrderById"] | market.getOrderById} method
  */
 export interface MarketGetOrderByIdParams {
     user_id?: number
@@ -5269,7 +5269,7 @@ export interface MarketGetOrderByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getOrderItems"] | market.getOrderItems} method
+ * Params for {@link APIMethodsMarket["getOrderItems"] | market.getOrderItems} method
  */
 export interface MarketGetOrderItemsParams {
     user_id?: number
@@ -5279,7 +5279,7 @@ export interface MarketGetOrderItemsParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getOrders"] | market.getOrders} method
+ * Params for {@link APIMethodsMarket["getOrders"] | market.getOrders} method
  */
 export interface MarketGetOrdersParams {
     offset?: number
@@ -5296,7 +5296,7 @@ export interface MarketGetOrdersParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getProductPhotoUploadServer"] | market.getProductPhotoUploadServer} method
+ * Params for {@link APIMethodsMarket["getProductPhotoUploadServer"] | market.getProductPhotoUploadServer} method
  */
 export interface MarketGetProductPhotoUploadServerParams {
     /**
@@ -5307,14 +5307,14 @@ export interface MarketGetProductPhotoUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["market.getProperties"] | market.getProperties} method
+ * Params for {@link APIMethodsMarket["getProperties"] | market.getProperties} method
  */
 export interface MarketGetPropertiesParams {
     group_id: number
 }
 
 /**
- * Params for {@link APIMethods["market.groupItems"] | market.groupItems} method
+ * Params for {@link APIMethodsMarket["groupItems"] | market.groupItems} method
  */
 export interface MarketGroupItemsParams {
     /**
@@ -5332,7 +5332,7 @@ export interface MarketGroupItemsParams {
 }
 
 /**
- * Params for {@link APIMethods["market.removeFromAlbum"] | market.removeFromAlbum} method
+ * Params for {@link APIMethodsMarket["removeFromAlbum"] | market.removeFromAlbum} method
  */
 export interface MarketRemoveFromAlbumParams {
     /**
@@ -5350,7 +5350,7 @@ export interface MarketRemoveFromAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["market.reorderAlbums"] | market.reorderAlbums} method
+ * Params for {@link APIMethodsMarket["reorderAlbums"] | market.reorderAlbums} method
  */
 export interface MarketReorderAlbumsParams {
     /**
@@ -5372,7 +5372,7 @@ export interface MarketReorderAlbumsParams {
 }
 
 /**
- * Params for {@link APIMethods["market.reorderItems"] | market.reorderItems} method
+ * Params for {@link APIMethodsMarket["reorderItems"] | market.reorderItems} method
  */
 export interface MarketReorderItemsParams {
     /**
@@ -5409,7 +5409,7 @@ export interface MarketReorderItemsParams {
 export type MarketReportReason = 0 | 1 | 2 | 3 | 4 | 5 | 6
 
 /**
- * Params for {@link APIMethods["market.report"] | market.report} method
+ * Params for {@link APIMethodsMarket["report"] | market.report} method
  */
 export interface MarketReportParams {
     /**
@@ -5438,7 +5438,7 @@ export interface MarketReportParams {
 export type MarketReportCommentReason = 0 | 1 | 2 | 3 | 4 | 5 | 6
 
 /**
- * Params for {@link APIMethods["market.reportComment"] | market.reportComment} method
+ * Params for {@link APIMethodsMarket["reportComment"] | market.reportComment} method
  */
 export interface MarketReportCommentParams {
     /**
@@ -5456,7 +5456,7 @@ export interface MarketReportCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["market.restore"] | market.restore} method
+ * Params for {@link APIMethodsMarket["restore"] | market.restore} method
  */
 export interface MarketRestoreParams {
     /**
@@ -5470,7 +5470,7 @@ export interface MarketRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["market.restoreComment"] | market.restoreComment} method
+ * Params for {@link APIMethodsMarket["restoreComment"] | market.restoreComment} method
  */
 export interface MarketRestoreCommentParams {
     /**
@@ -5484,7 +5484,7 @@ export interface MarketRestoreCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["market.saveProductPhoto"] | market.saveProductPhoto} method
+ * Params for {@link APIMethodsMarket["saveProductPhoto"] | market.saveProductPhoto} method
  */
 export interface MarketSaveProductPhotoParams {
     /**
@@ -5494,7 +5494,7 @@ export interface MarketSaveProductPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["market.saveProductPhotoBulk"] | market.saveProductPhotoBulk} method
+ * Params for {@link APIMethodsMarket["saveProductPhotoBulk"] | market.saveProductPhotoBulk} method
  */
 export interface MarketSaveProductPhotoBulkParams {
     /**
@@ -5517,7 +5517,7 @@ export type MarketSearchSort = 0 | 1 | 2 | 3
 export type MarketSearchRev = 0 | 1
 
 /**
- * Params for {@link APIMethods["market.search"] | market.search} method
+ * Params for {@link APIMethodsMarket["search"] | market.search} method
  */
 export interface MarketSearchParams {
     /**
@@ -5570,7 +5570,7 @@ export type MarketSearchItemsSortBy = 1 | 2 | 3
 export type MarketSearchItemsSortDirection = 0 | 1
 
 /**
- * Params for {@link APIMethods["market.searchItems"] | market.searchItems} method
+ * Params for {@link APIMethodsMarket["searchItems"] | market.searchItems} method
  */
 export interface MarketSearchItemsParams {
     q: string
@@ -5594,7 +5594,7 @@ export type MarketSearchItemsBasicSortBy = 1 | 2 | 3
 export type MarketSearchItemsBasicSortDirection = 0 | 1
 
 /**
- * Params for {@link APIMethods["market.searchItemsBasic"] | market.searchItemsBasic} method
+ * Params for {@link APIMethodsMarket["searchItemsBasic"] | market.searchItemsBasic} method
  */
 export interface MarketSearchItemsBasicParams {
     q: string
@@ -5611,7 +5611,7 @@ export interface MarketSearchItemsBasicParams {
 }
 
 /**
- * Params for {@link APIMethods["market.ungroupItems"] | market.ungroupItems} method
+ * Params for {@link APIMethodsMarket["ungroupItems"] | market.ungroupItems} method
  */
 export interface MarketUngroupItemsParams {
     /**
@@ -5625,7 +5625,7 @@ export interface MarketUngroupItemsParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.addChatUser"] | messages.addChatUser} method
+ * Params for {@link APIMethodsMessages["addChatUser"] | messages.addChatUser} method
  */
 export interface MessagesAddChatUserParams {
     /**
@@ -5640,7 +5640,7 @@ export interface MessagesAddChatUserParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.addChatUsers"] | messages.addChatUsers} method
+ * Params for {@link APIMethodsMessages["addChatUsers"] | messages.addChatUsers} method
  */
 export interface MessagesAddChatUsersParams {
     chat_id?: number
@@ -5648,7 +5648,7 @@ export interface MessagesAddChatUsersParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.allowMessagesFromGroup"] | messages.allowMessagesFromGroup} method
+ * Params for {@link APIMethodsMessages["allowMessagesFromGroup"] | messages.allowMessagesFromGroup} method
  */
 export interface MessagesAllowMessagesFromGroupParams {
     /**
@@ -5659,7 +5659,7 @@ export interface MessagesAllowMessagesFromGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.createChat"] | messages.createChat} method
+ * Params for {@link APIMethodsMessages["createChat"] | messages.createChat} method
  */
 export interface MessagesCreateChatParams {
     /**
@@ -5674,7 +5674,7 @@ export interface MessagesCreateChatParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.delete"] | messages.delete} method
+ * Params for {@link APIMethodsMessages["delete"] | messages.delete} method
  */
 export interface MessagesDeleteParams {
     /**
@@ -5708,7 +5708,7 @@ export interface MessagesDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.deleteChatPhoto"] | messages.deleteChatPhoto} method
+ * Params for {@link APIMethodsMessages["deleteChatPhoto"] | messages.deleteChatPhoto} method
  */
 export interface MessagesDeleteChatPhotoParams {
     /**
@@ -5719,7 +5719,7 @@ export interface MessagesDeleteChatPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.deleteConversation"] | messages.deleteConversation} method
+ * Params for {@link APIMethodsMessages["deleteConversation"] | messages.deleteConversation} method
  */
 export interface MessagesDeleteConversationParams {
     /**
@@ -5737,7 +5737,7 @@ export interface MessagesDeleteConversationParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.deleteReaction"] | messages.deleteReaction} method
+ * Params for {@link APIMethodsMessages["deleteReaction"] | messages.deleteReaction} method
  */
 export interface MessagesDeleteReactionParams {
     peer_id: number
@@ -5745,7 +5745,7 @@ export interface MessagesDeleteReactionParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.denyMessagesFromGroup"] | messages.denyMessagesFromGroup} method
+ * Params for {@link APIMethodsMessages["denyMessagesFromGroup"] | messages.denyMessagesFromGroup} method
  */
 export interface MessagesDenyMessagesFromGroupParams {
     /**
@@ -5755,7 +5755,7 @@ export interface MessagesDenyMessagesFromGroupParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.edit"] | messages.edit} method
+ * Params for {@link APIMethodsMessages["edit"] | messages.edit} method
  */
 export interface MessagesEditParams {
     /**
@@ -5799,7 +5799,7 @@ export interface MessagesEditParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.editChat"] | messages.editChat} method
+ * Params for {@link APIMethodsMessages["editChat"] | messages.editChat} method
  */
 export interface MessagesEditChatParams {
     /**
@@ -5813,7 +5813,7 @@ export interface MessagesEditChatParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getByConversationMessageId"] | messages.getByConversationMessageId} method
+ * Params for {@link APIMethodsMessages["getByConversationMessageId"] | messages.getByConversationMessageId} method
  */
 export interface MessagesGetByConversationMessageIdParams {
     /**
@@ -5839,7 +5839,7 @@ export interface MessagesGetByConversationMessageIdParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getById"] | messages.getById} method
+ * Params for {@link APIMethodsMessages["getById"] | messages.getById} method
  */
 export interface MessagesGetByIdParams {
     /**
@@ -5867,7 +5867,7 @@ export interface MessagesGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getChat"] | messages.getChat} method
+ * Params for {@link APIMethodsMessages["getChat"] | messages.getChat} method
  */
 export interface MessagesGetChatParams {
     /**
@@ -5889,7 +5889,7 @@ export interface MessagesGetChatParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getChatPreview"] | messages.getChatPreview} method
+ * Params for {@link APIMethodsMessages["getChatPreview"] | messages.getChatPreview} method
  */
 export interface MessagesGetChatPreviewParams {
     peer_id?: number
@@ -5904,7 +5904,7 @@ export interface MessagesGetChatPreviewParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getConversationMembers"] | messages.getConversationMembers} method
+ * Params for {@link APIMethodsMessages["getConversationMembers"] | messages.getConversationMembers} method
  */
 export interface MessagesGetConversationMembersParams {
     /**
@@ -5937,7 +5937,7 @@ export type MessagesGetConversationsFilter =
     | "unread"
 
 /**
- * Params for {@link APIMethods["messages.getConversations"] | messages.getConversations} method
+ * Params for {@link APIMethodsMessages["getConversations"] | messages.getConversations} method
  */
 export interface MessagesGetConversationsParams {
     /**
@@ -5971,7 +5971,7 @@ export interface MessagesGetConversationsParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getConversationsById"] | messages.getConversationsById} method
+ * Params for {@link APIMethodsMessages["getConversationsById"] | messages.getConversationsById} method
  */
 export interface MessagesGetConversationsByIdParams {
     /**
@@ -5999,7 +5999,7 @@ export interface MessagesGetConversationsByIdParams {
 export type MessagesGetHistoryRev = 1 | 0
 
 /**
- * Params for {@link APIMethods["messages.getHistory"] | messages.getHistory} method
+ * Params for {@link APIMethodsMessages["getHistory"] | messages.getHistory} method
  */
 export interface MessagesGetHistoryParams {
     /**
@@ -6067,7 +6067,7 @@ export type MessagesGetHistoryAttachmentsMediaType =
     | "wall"
 
 /**
- * Params for {@link APIMethods["messages.getHistoryAttachments"] | messages.getHistoryAttachments} method
+ * Params for {@link APIMethodsMessages["getHistoryAttachments"] | messages.getHistoryAttachments} method
  */
 export interface MessagesGetHistoryAttachmentsParams {
     attachment_types?: MessagesGetHistoryAttachmentsAttachmentTypes[]
@@ -6109,7 +6109,7 @@ export interface MessagesGetHistoryAttachmentsParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getImportantMessages"] | messages.getImportantMessages} method
+ * Params for {@link APIMethodsMessages["getImportantMessages"] | messages.getImportantMessages} method
  */
 export interface MessagesGetImportantMessagesParams {
     /**
@@ -6142,7 +6142,7 @@ export type MessagesGetIntentUsersIntent =
     | "promo_newsletter"
 
 /**
- * Params for {@link APIMethods["messages.getIntentUsers"] | messages.getIntentUsers} method
+ * Params for {@link APIMethodsMessages["getIntentUsers"] | messages.getIntentUsers} method
  */
 export interface MessagesGetIntentUsersParams {
     intent: MessagesGetIntentUsersIntent
@@ -6155,7 +6155,7 @@ export interface MessagesGetIntentUsersParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getInviteLink"] | messages.getInviteLink} method
+ * Params for {@link APIMethodsMessages["getInviteLink"] | messages.getInviteLink} method
  */
 export interface MessagesGetInviteLinkParams {
     /**
@@ -6173,7 +6173,7 @@ export interface MessagesGetInviteLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getLastActivity"] | messages.getLastActivity} method
+ * Params for {@link APIMethodsMessages["getLastActivity"] | messages.getLastActivity} method
  */
 export interface MessagesGetLastActivityParams {
     /**
@@ -6183,7 +6183,7 @@ export interface MessagesGetLastActivityParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getLongPollHistory"] | messages.getLongPollHistory} method
+ * Params for {@link APIMethodsMessages["getLongPollHistory"] | messages.getLongPollHistory} method
  */
 export interface MessagesGetLongPollHistoryParams {
     /**
@@ -6229,7 +6229,7 @@ export interface MessagesGetLongPollHistoryParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getLongPollServer"] | messages.getLongPollServer} method
+ * Params for {@link APIMethodsMessages["getLongPollServer"] | messages.getLongPollServer} method
  */
 export interface MessagesGetLongPollServerParams {
     /**
@@ -6247,7 +6247,7 @@ export interface MessagesGetLongPollServerParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getMessagesReactions"] | messages.getMessagesReactions} method
+ * Params for {@link APIMethodsMessages["getMessagesReactions"] | messages.getMessagesReactions} method
  */
 export interface MessagesGetMessagesReactionsParams {
     peer_id: number
@@ -6255,7 +6255,7 @@ export interface MessagesGetMessagesReactionsParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getReactedPeers"] | messages.getReactedPeers} method
+ * Params for {@link APIMethodsMessages["getReactedPeers"] | messages.getReactedPeers} method
  */
 export interface MessagesGetReactedPeersParams {
     peer_id: number
@@ -6264,14 +6264,14 @@ export interface MessagesGetReactedPeersParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.getReactionsAssets"] | messages.getReactionsAssets} method
+ * Params for {@link APIMethodsMessages["getReactionsAssets"] | messages.getReactionsAssets} method
  */
 export interface MessagesGetReactionsAssetsParams {
     client_version?: number
 }
 
 /**
- * Params for {@link APIMethods["messages.isMessagesFromGroupAllowed"] | messages.isMessagesFromGroupAllowed} method
+ * Params for {@link APIMethodsMessages["isMessagesFromGroupAllowed"] | messages.isMessagesFromGroupAllowed} method
  */
 export interface MessagesIsMessagesFromGroupAllowedParams {
     /**
@@ -6285,7 +6285,7 @@ export interface MessagesIsMessagesFromGroupAllowedParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.joinChatByInviteLink"] | messages.joinChatByInviteLink} method
+ * Params for {@link APIMethodsMessages["joinChatByInviteLink"] | messages.joinChatByInviteLink} method
  */
 export interface MessagesJoinChatByInviteLinkParams {
     /**
@@ -6295,7 +6295,7 @@ export interface MessagesJoinChatByInviteLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.markAsAnsweredConversation"] | messages.markAsAnsweredConversation} method
+ * Params for {@link APIMethodsMessages["markAsAnsweredConversation"] | messages.markAsAnsweredConversation} method
  */
 export interface MessagesMarkAsAnsweredConversationParams {
     /**
@@ -6313,7 +6313,7 @@ export interface MessagesMarkAsAnsweredConversationParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.markAsImportant"] | messages.markAsImportant} method
+ * Params for {@link APIMethodsMessages["markAsImportant"] | messages.markAsImportant} method
  */
 export interface MessagesMarkAsImportantParams {
     /**
@@ -6327,7 +6327,7 @@ export interface MessagesMarkAsImportantParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.markAsImportantConversation"] | messages.markAsImportantConversation} method
+ * Params for {@link APIMethodsMessages["markAsImportantConversation"] | messages.markAsImportantConversation} method
  */
 export interface MessagesMarkAsImportantConversationParams {
     /**
@@ -6345,7 +6345,7 @@ export interface MessagesMarkAsImportantConversationParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.markAsRead"] | messages.markAsRead} method
+ * Params for {@link APIMethodsMessages["markAsRead"] | messages.markAsRead} method
  */
 export interface MessagesMarkAsReadParams {
     /**
@@ -6369,7 +6369,7 @@ export interface MessagesMarkAsReadParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.markReactionsAsRead"] | messages.markReactionsAsRead} method
+ * Params for {@link APIMethodsMessages["markReactionsAsRead"] | messages.markReactionsAsRead} method
  */
 export interface MessagesMarkReactionsAsReadParams {
     peer_id: number
@@ -6379,7 +6379,7 @@ export interface MessagesMarkReactionsAsReadParams {
 export type MessagesMuteChatMentionsMentionStatus = "all" | "allOnline" | "none"
 
 /**
- * Params for {@link APIMethods["messages.muteChatMentions"] | messages.muteChatMentions} method
+ * Params for {@link APIMethodsMessages["muteChatMentions"] | messages.muteChatMentions} method
  */
 export interface MessagesMuteChatMentionsParams {
     /**
@@ -6390,7 +6390,7 @@ export interface MessagesMuteChatMentionsParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.pin"] | messages.pin} method
+ * Params for {@link APIMethodsMessages["pin"] | messages.pin} method
  */
 export interface MessagesPinParams {
     /**
@@ -6408,7 +6408,7 @@ export interface MessagesPinParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.removeChatUser"] | messages.removeChatUser} method
+ * Params for {@link APIMethodsMessages["removeChatUser"] | messages.removeChatUser} method
  */
 export interface MessagesRemoveChatUserParams {
     /**
@@ -6423,7 +6423,7 @@ export interface MessagesRemoveChatUserParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.restore"] | messages.restore} method
+ * Params for {@link APIMethodsMessages["restore"] | messages.restore} method
  */
 export interface MessagesRestoreParams {
     /**
@@ -6442,7 +6442,7 @@ export interface MessagesRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.search"] | messages.search} method
+ * Params for {@link APIMethodsMessages["search"] | messages.search} method
  */
 export interface MessagesSearchParams {
     /**
@@ -6478,7 +6478,7 @@ export interface MessagesSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.searchConversations"] | messages.searchConversations} method
+ * Params for {@link APIMethodsMessages["searchConversations"] | messages.searchConversations} method
  */
 export interface MessagesSearchConversationsParams {
     /**
@@ -6518,7 +6518,7 @@ export type MessagesSendIntent =
     | "purchase_update"
 
 /**
- * Params for {@link APIMethods["messages.send"] | messages.send} method
+ * Params for {@link APIMethodsMessages["send"] | messages.send} method
  */
 export interface MessagesSendParams {
     /**
@@ -6592,7 +6592,7 @@ export interface MessagesSendParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.sendMessageEventAnswer"] | messages.sendMessageEventAnswer} method
+ * Params for {@link APIMethodsMessages["sendMessageEventAnswer"] | messages.sendMessageEventAnswer} method
  */
 export interface MessagesSendMessageEventAnswerParams {
     event_id: string
@@ -6602,7 +6602,7 @@ export interface MessagesSendMessageEventAnswerParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.sendReaction"] | messages.sendReaction} method
+ * Params for {@link APIMethodsMessages["sendReaction"] | messages.sendReaction} method
  */
 export interface MessagesSendReactionParams {
     peer_id: number
@@ -6618,7 +6618,7 @@ export type MessagesSetActivityType =
     | "video"
 
 /**
- * Params for {@link APIMethods["messages.setActivity"] | messages.setActivity} method
+ * Params for {@link APIMethodsMessages["setActivity"] | messages.setActivity} method
  */
 export interface MessagesSetActivityParams {
     /**
@@ -6640,7 +6640,7 @@ export interface MessagesSetActivityParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.setChatPhoto"] | messages.setChatPhoto} method
+ * Params for {@link APIMethodsMessages["setChatPhoto"] | messages.setChatPhoto} method
  */
 export interface MessagesSetChatPhotoParams {
     /**
@@ -6650,7 +6650,7 @@ export interface MessagesSetChatPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["messages.unpin"] | messages.unpin} method
+ * Params for {@link APIMethodsMessages["unpin"] | messages.unpin} method
  */
 export interface MessagesUnpinParams {
     peer_id: number
@@ -6658,7 +6658,7 @@ export interface MessagesUnpinParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.addBan"] | newsfeed.addBan} method
+ * Params for {@link APIMethodsNewsfeed["addBan"] | newsfeed.addBan} method
  */
 export interface NewsfeedAddBanParams {
     user_ids?: number[]
@@ -6666,7 +6666,7 @@ export interface NewsfeedAddBanParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.deleteBan"] | newsfeed.deleteBan} method
+ * Params for {@link APIMethodsNewsfeed["deleteBan"] | newsfeed.deleteBan} method
  */
 export interface NewsfeedDeleteBanParams {
     user_ids?: number[]
@@ -6674,14 +6674,14 @@ export interface NewsfeedDeleteBanParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.deleteList"] | newsfeed.deleteList} method
+ * Params for {@link APIMethodsNewsfeed["deleteList"] | newsfeed.deleteList} method
  */
 export interface NewsfeedDeleteListParams {
     list_id: number
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.get"] | newsfeed.get} method
+ * Params for {@link APIMethodsNewsfeed["get"] | newsfeed.get} method
  */
 export interface NewsfeedGetParams {
     /**
@@ -6724,7 +6724,7 @@ export interface NewsfeedGetParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.getBanned"] | newsfeed.getBanned} method
+ * Params for {@link APIMethodsNewsfeed["getBanned"] | newsfeed.getBanned} method
  */
 export interface NewsfeedGetBannedParams {
     /**
@@ -6742,7 +6742,7 @@ export interface NewsfeedGetBannedParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.getComments"] | newsfeed.getComments} method
+ * Params for {@link APIMethodsNewsfeed["getComments"] | newsfeed.getComments} method
  */
 export interface NewsfeedGetCommentsParams {
     /**
@@ -6777,7 +6777,7 @@ export interface NewsfeedGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.getLists"] | newsfeed.getLists} method
+ * Params for {@link APIMethodsNewsfeed["getLists"] | newsfeed.getLists} method
  */
 export interface NewsfeedGetListsParams {
     /**
@@ -6791,7 +6791,7 @@ export interface NewsfeedGetListsParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.getMentions"] | newsfeed.getMentions} method
+ * Params for {@link APIMethodsNewsfeed["getMentions"] | newsfeed.getMentions} method
  */
 export interface NewsfeedGetMentionsParams {
     /**
@@ -6817,7 +6817,7 @@ export interface NewsfeedGetMentionsParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.getRecommended"] | newsfeed.getRecommended} method
+ * Params for {@link APIMethodsNewsfeed["getRecommended"] | newsfeed.getRecommended} method
  */
 export interface NewsfeedGetRecommendedParams {
     /**
@@ -6847,7 +6847,7 @@ export interface NewsfeedGetRecommendedParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.getSuggestedSources"] | newsfeed.getSuggestedSources} method
+ * Params for {@link APIMethodsNewsfeed["getSuggestedSources"] | newsfeed.getSuggestedSources} method
  */
 export interface NewsfeedGetSuggestedSourcesParams {
     /**
@@ -6869,7 +6869,7 @@ export interface NewsfeedGetSuggestedSourcesParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.ignoreItem"] | newsfeed.ignoreItem} method
+ * Params for {@link APIMethodsNewsfeed["ignoreItem"] | newsfeed.ignoreItem} method
  */
 export interface NewsfeedIgnoreItemParams {
     /**
@@ -6887,7 +6887,7 @@ export interface NewsfeedIgnoreItemParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.saveList"] | newsfeed.saveList} method
+ * Params for {@link APIMethodsNewsfeed["saveList"] | newsfeed.saveList} method
  */
 export interface NewsfeedSaveListParams {
     /**
@@ -6909,7 +6909,7 @@ export interface NewsfeedSaveListParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.search"] | newsfeed.search} method
+ * Params for {@link APIMethodsNewsfeed["search"] | newsfeed.search} method
  */
 export interface NewsfeedSearchParams {
     /**
@@ -6948,7 +6948,7 @@ export interface NewsfeedSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["newsfeed.unignoreItem"] | newsfeed.unignoreItem} method
+ * Params for {@link APIMethodsNewsfeed["unignoreItem"] | newsfeed.unignoreItem} method
  */
 export interface NewsfeedUnignoreItemParams {
     /**
@@ -6979,7 +6979,7 @@ export type NewsfeedUnsubscribeType =
     | "video"
 
 /**
- * Params for {@link APIMethods["newsfeed.unsubscribe"] | newsfeed.unsubscribe} method
+ * Params for {@link APIMethodsNewsfeed["unsubscribe"] | newsfeed.unsubscribe} method
  */
 export interface NewsfeedUnsubscribeParams {
     /**
@@ -6997,7 +6997,7 @@ export interface NewsfeedUnsubscribeParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.add"] | notes.add} method
+ * Params for {@link APIMethodsNotes["add"] | notes.add} method
  */
 export interface NotesAddParams {
     /**
@@ -7013,7 +7013,7 @@ export interface NotesAddParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.createComment"] | notes.createComment} method
+ * Params for {@link APIMethodsNotes["createComment"] | notes.createComment} method
  */
 export interface NotesCreateCommentParams {
     /**
@@ -7036,7 +7036,7 @@ export interface NotesCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.delete"] | notes.delete} method
+ * Params for {@link APIMethodsNotes["delete"] | notes.delete} method
  */
 export interface NotesDeleteParams {
     /**
@@ -7046,7 +7046,7 @@ export interface NotesDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.deleteComment"] | notes.deleteComment} method
+ * Params for {@link APIMethodsNotes["deleteComment"] | notes.deleteComment} method
  */
 export interface NotesDeleteCommentParams {
     /**
@@ -7060,7 +7060,7 @@ export interface NotesDeleteCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.edit"] | notes.edit} method
+ * Params for {@link APIMethodsNotes["edit"] | notes.edit} method
  */
 export interface NotesEditParams {
     /**
@@ -7080,7 +7080,7 @@ export interface NotesEditParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.editComment"] | notes.editComment} method
+ * Params for {@link APIMethodsNotes["editComment"] | notes.editComment} method
  */
 export interface NotesEditCommentParams {
     /**
@@ -7100,7 +7100,7 @@ export interface NotesEditCommentParams {
 export type NotesGetSort = 0 | 1
 
 /**
- * Params for {@link APIMethods["notes.get"] | notes.get} method
+ * Params for {@link APIMethodsNotes["get"] | notes.get} method
  */
 export interface NotesGetParams {
     /**
@@ -7120,7 +7120,7 @@ export interface NotesGetParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.getById"] | notes.getById} method
+ * Params for {@link APIMethodsNotes["getById"] | notes.getById} method
  */
 export interface NotesGetByIdParams {
     /**
@@ -7137,7 +7137,7 @@ export interface NotesGetByIdParams {
 export type NotesGetCommentsSort = 0 | 1
 
 /**
- * Params for {@link APIMethods["notes.getComments"] | notes.getComments} method
+ * Params for {@link APIMethodsNotes["getComments"] | notes.getComments} method
  */
 export interface NotesGetCommentsParams {
     /**
@@ -7157,7 +7157,7 @@ export interface NotesGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["notes.restoreComment"] | notes.restoreComment} method
+ * Params for {@link APIMethodsNotes["restoreComment"] | notes.restoreComment} method
  */
 export interface NotesRestoreCommentParams {
     /**
@@ -7180,7 +7180,7 @@ export type NotificationsGetFilters =
     | "friends"
 
 /**
- * Params for {@link APIMethods["notifications.get"] | notifications.get} method
+ * Params for {@link APIMethodsNotifications["get"] | notifications.get} method
  */
 export interface NotificationsGetParams {
     /**
@@ -7209,7 +7209,7 @@ export type NotificationsSendMessageSendingMode =
     | "without_push"
 
 /**
- * Params for {@link APIMethods["notifications.sendMessage"] | notifications.sendMessage} method
+ * Params for {@link APIMethodsNotifications["sendMessage"] | notifications.sendMessage} method
  */
 export interface NotificationsSendMessageParams {
     user_ids: number[]
@@ -7224,7 +7224,7 @@ export interface NotificationsSendMessageParams {
 }
 
 /**
- * Params for {@link APIMethods["orders.cancelSubscription"] | orders.cancelSubscription} method
+ * Params for {@link APIMethodsOrders["cancelSubscription"] | orders.cancelSubscription} method
  */
 export interface OrdersCancelSubscriptionParams {
     user_id: number
@@ -7235,7 +7235,7 @@ export interface OrdersCancelSubscriptionParams {
 export type OrdersChangeStateAction = "cancel" | "charge" | "refund"
 
 /**
- * Params for {@link APIMethods["orders.changeState"] | orders.changeState} method
+ * Params for {@link APIMethodsOrders["changeState"] | orders.changeState} method
  */
 export interface OrdersChangeStateParams {
     /**
@@ -7257,7 +7257,7 @@ export interface OrdersChangeStateParams {
 }
 
 /**
- * Params for {@link APIMethods["orders.get"] | orders.get} method
+ * Params for {@link APIMethodsOrders["get"] | orders.get} method
  */
 export interface OrdersGetParams {
     offset?: number
@@ -7272,7 +7272,7 @@ export interface OrdersGetParams {
 }
 
 /**
- * Params for {@link APIMethods["orders.getAmount"] | orders.getAmount} method
+ * Params for {@link APIMethodsOrders["getAmount"] | orders.getAmount} method
  */
 export interface OrdersGetAmountParams {
     user_id: number
@@ -7280,7 +7280,7 @@ export interface OrdersGetAmountParams {
 }
 
 /**
- * Params for {@link APIMethods["orders.getById"] | orders.getById} method
+ * Params for {@link APIMethodsOrders["getById"] | orders.getById} method
  */
 export interface OrdersGetByIdParams {
     /**
@@ -7298,7 +7298,7 @@ export interface OrdersGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["orders.getUserSubscriptionById"] | orders.getUserSubscriptionById} method
+ * Params for {@link APIMethodsOrders["getUserSubscriptionById"] | orders.getUserSubscriptionById} method
  */
 export interface OrdersGetUserSubscriptionByIdParams {
     user_id: number
@@ -7306,14 +7306,14 @@ export interface OrdersGetUserSubscriptionByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["orders.getUserSubscriptions"] | orders.getUserSubscriptions} method
+ * Params for {@link APIMethodsOrders["getUserSubscriptions"] | orders.getUserSubscriptions} method
  */
 export interface OrdersGetUserSubscriptionsParams {
     user_id: number
 }
 
 /**
- * Params for {@link APIMethods["pages.clearCache"] | pages.clearCache} method
+ * Params for {@link APIMethodsPages["clearCache"] | pages.clearCache} method
  */
 export interface PagesClearCacheParams {
     /**
@@ -7323,7 +7323,7 @@ export interface PagesClearCacheParams {
 }
 
 /**
- * Params for {@link APIMethods["pages.get"] | pages.get} method
+ * Params for {@link APIMethodsPages["get"] | pages.get} method
  */
 export interface PagesGetParams {
     /**
@@ -7354,7 +7354,7 @@ export interface PagesGetParams {
 }
 
 /**
- * Params for {@link APIMethods["pages.getHistory"] | pages.getHistory} method
+ * Params for {@link APIMethodsPages["getHistory"] | pages.getHistory} method
  */
 export interface PagesGetHistoryParams {
     /**
@@ -7369,7 +7369,7 @@ export interface PagesGetHistoryParams {
 }
 
 /**
- * Params for {@link APIMethods["pages.getTitles"] | pages.getTitles} method
+ * Params for {@link APIMethodsPages["getTitles"] | pages.getTitles} method
  */
 export interface PagesGetTitlesParams {
     /**
@@ -7379,7 +7379,7 @@ export interface PagesGetTitlesParams {
 }
 
 /**
- * Params for {@link APIMethods["pages.getVersion"] | pages.getVersion} method
+ * Params for {@link APIMethodsPages["getVersion"] | pages.getVersion} method
  */
 export interface PagesGetVersionParams {
     version_id: number
@@ -7395,7 +7395,7 @@ export interface PagesGetVersionParams {
 }
 
 /**
- * Params for {@link APIMethods["pages.parseWiki"] | pages.parseWiki} method
+ * Params for {@link APIMethodsPages["parseWiki"] | pages.parseWiki} method
  */
 export interface PagesParseWikiParams {
     /**
@@ -7409,7 +7409,7 @@ export interface PagesParseWikiParams {
 }
 
 /**
- * Params for {@link APIMethods["pages.save"] | pages.save} method
+ * Params for {@link APIMethodsPages["save"] | pages.save} method
  */
 export interface PagesSaveParams {
     /**
@@ -7448,7 +7448,7 @@ export type PagesSaveAccessView = 0 | 1 | 2
 export type PagesSaveAccessEdit = 0 | 1 | 2
 
 /**
- * Params for {@link APIMethods["pages.saveAccess"] | pages.saveAccess} method
+ * Params for {@link APIMethodsPages["saveAccess"] | pages.saveAccess} method
  */
 export interface PagesSaveAccessParams {
     /**
@@ -7471,7 +7471,7 @@ export interface PagesSaveAccessParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.confirmTag"] | photos.confirmTag} method
+ * Params for {@link APIMethodsPhotos["confirmTag"] | photos.confirmTag} method
  */
 export interface PhotosConfirmTagParams {
     /**
@@ -7489,7 +7489,7 @@ export interface PhotosConfirmTagParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.copy"] | photos.copy} method
+ * Params for {@link APIMethodsPhotos["copy"] | photos.copy} method
  */
 export interface PhotosCopyParams {
     /**
@@ -7507,7 +7507,7 @@ export interface PhotosCopyParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.createAlbum"] | photos.createAlbum} method
+ * Params for {@link APIMethodsPhotos["createAlbum"] | photos.createAlbum} method
  */
 export interface PhotosCreateAlbumParams {
     /**
@@ -7529,7 +7529,7 @@ export interface PhotosCreateAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.createComment"] | photos.createComment} method
+ * Params for {@link APIMethodsPhotos["createComment"] | photos.createComment} method
  */
 export interface PhotosCreateCommentParams {
     /**
@@ -7559,7 +7559,7 @@ export interface PhotosCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.delete"] | photos.delete} method
+ * Params for {@link APIMethodsPhotos["delete"] | photos.delete} method
  */
 export interface PhotosDeleteParams {
     /**
@@ -7574,7 +7574,7 @@ export interface PhotosDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.deleteAlbum"] | photos.deleteAlbum} method
+ * Params for {@link APIMethodsPhotos["deleteAlbum"] | photos.deleteAlbum} method
  */
 export interface PhotosDeleteAlbumParams {
     /**
@@ -7588,7 +7588,7 @@ export interface PhotosDeleteAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.deleteComment"] | photos.deleteComment} method
+ * Params for {@link APIMethodsPhotos["deleteComment"] | photos.deleteComment} method
  */
 export interface PhotosDeleteCommentParams {
     /**
@@ -7602,7 +7602,7 @@ export interface PhotosDeleteCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.edit"] | photos.edit} method
+ * Params for {@link APIMethodsPhotos["edit"] | photos.edit} method
  */
 export interface PhotosEditParams {
     /**
@@ -7625,7 +7625,7 @@ export interface PhotosEditParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.editAlbum"] | photos.editAlbum} method
+ * Params for {@link APIMethodsPhotos["editAlbum"] | photos.editAlbum} method
  */
 export interface PhotosEditAlbumParams {
     /**
@@ -7651,7 +7651,7 @@ export interface PhotosEditAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.editComment"] | photos.editComment} method
+ * Params for {@link APIMethodsPhotos["editComment"] | photos.editComment} method
  */
 export interface PhotosEditCommentParams {
     /**
@@ -7673,7 +7673,7 @@ export interface PhotosEditCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.get"] | photos.get} method
+ * Params for {@link APIMethodsPhotos["get"] | photos.get} method
  */
 export interface PhotosGetParams {
     /**
@@ -7713,7 +7713,7 @@ export interface PhotosGetParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getAlbums"] | photos.getAlbums} method
+ * Params for {@link APIMethodsPhotos["getAlbums"] | photos.getAlbums} method
  */
 export interface PhotosGetAlbumsParams {
     /**
@@ -7747,7 +7747,7 @@ export interface PhotosGetAlbumsParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getAlbumsCount"] | photos.getAlbumsCount} method
+ * Params for {@link APIMethodsPhotos["getAlbumsCount"] | photos.getAlbumsCount} method
  */
 export interface PhotosGetAlbumsCountParams {
     /**
@@ -7762,7 +7762,7 @@ export interface PhotosGetAlbumsCountParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getAll"] | photos.getAll} method
+ * Params for {@link APIMethodsPhotos["getAll"] | photos.getAll} method
  */
 export interface PhotosGetAllParams {
     /**
@@ -7800,7 +7800,7 @@ export interface PhotosGetAllParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getAllComments"] | photos.getAllComments} method
+ * Params for {@link APIMethodsPhotos["getAllComments"] | photos.getAllComments} method
  */
 export interface PhotosGetAllCommentsParams {
     /**
@@ -7826,7 +7826,7 @@ export interface PhotosGetAllCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getById"] | photos.getById} method
+ * Params for {@link APIMethodsPhotos["getById"] | photos.getById} method
  */
 export interface PhotosGetByIdParams {
     /**
@@ -7844,7 +7844,7 @@ export interface PhotosGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getChatUploadServer"] | photos.getChatUploadServer} method
+ * Params for {@link APIMethodsPhotos["getChatUploadServer"] | photos.getChatUploadServer} method
  */
 export interface PhotosGetChatUploadServerParams {
     /**
@@ -7866,7 +7866,7 @@ export interface PhotosGetChatUploadServerParams {
 export type PhotosGetCommentsSort = "asc" | "desc"
 
 /**
- * Params for {@link APIMethods["photos.getComments"] | photos.getComments} method
+ * Params for {@link APIMethodsPhotos["getComments"] | photos.getComments} method
  */
 export interface PhotosGetCommentsParams {
     /**
@@ -7900,7 +7900,7 @@ export interface PhotosGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getMarketAlbumUploadServer"] | photos.getMarketAlbumUploadServer} method
+ * Params for {@link APIMethodsPhotos["getMarketAlbumUploadServer"] | photos.getMarketAlbumUploadServer} method
  */
 export interface PhotosGetMarketAlbumUploadServerParams {
     /**
@@ -7910,7 +7910,7 @@ export interface PhotosGetMarketAlbumUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getMessagesUploadServer"] | photos.getMessagesUploadServer} method
+ * Params for {@link APIMethodsPhotos["getMessagesUploadServer"] | photos.getMessagesUploadServer} method
  */
 export interface PhotosGetMessagesUploadServerParams {
     /**
@@ -7920,7 +7920,7 @@ export interface PhotosGetMessagesUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getNewTags"] | photos.getNewTags} method
+ * Params for {@link APIMethodsPhotos["getNewTags"] | photos.getNewTags} method
  */
 export interface PhotosGetNewTagsParams {
     /**
@@ -7934,7 +7934,7 @@ export interface PhotosGetNewTagsParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getOwnerCoverPhotoUploadServer"] | photos.getOwnerCoverPhotoUploadServer} method
+ * Params for {@link APIMethodsPhotos["getOwnerCoverPhotoUploadServer"] | photos.getOwnerCoverPhotoUploadServer} method
  */
 export interface PhotosGetOwnerCoverPhotoUploadServerParams {
     /**
@@ -7961,7 +7961,7 @@ export interface PhotosGetOwnerCoverPhotoUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getOwnerPhotoUploadServer"] | photos.getOwnerPhotoUploadServer} method
+ * Params for {@link APIMethodsPhotos["getOwnerPhotoUploadServer"] | photos.getOwnerPhotoUploadServer} method
  */
 export interface PhotosGetOwnerPhotoUploadServerParams {
     /**
@@ -7971,7 +7971,7 @@ export interface PhotosGetOwnerPhotoUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getTags"] | photos.getTags} method
+ * Params for {@link APIMethodsPhotos["getTags"] | photos.getTags} method
  */
 export interface PhotosGetTagsParams {
     /**
@@ -7986,7 +7986,7 @@ export interface PhotosGetTagsParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getUploadServer"] | photos.getUploadServer} method
+ * Params for {@link APIMethodsPhotos["getUploadServer"] | photos.getUploadServer} method
  */
 export interface PhotosGetUploadServerParams {
     album_id?: number
@@ -7997,7 +7997,7 @@ export interface PhotosGetUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getUserPhotos"] | photos.getUserPhotos} method
+ * Params for {@link APIMethodsPhotos["getUserPhotos"] | photos.getUserPhotos} method
  */
 export interface PhotosGetUserPhotosParams {
     /**
@@ -8023,7 +8023,7 @@ export interface PhotosGetUserPhotosParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.getWallUploadServer"] | photos.getWallUploadServer} method
+ * Params for {@link APIMethodsPhotos["getWallUploadServer"] | photos.getWallUploadServer} method
  */
 export interface PhotosGetWallUploadServerParams {
     /**
@@ -8033,7 +8033,7 @@ export interface PhotosGetWallUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.makeCover"] | photos.makeCover} method
+ * Params for {@link APIMethodsPhotos["makeCover"] | photos.makeCover} method
  */
 export interface PhotosMakeCoverParams {
     /**
@@ -8051,7 +8051,7 @@ export interface PhotosMakeCoverParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.move"] | photos.move} method
+ * Params for {@link APIMethodsPhotos["move"] | photos.move} method
  */
 export interface PhotosMoveParams {
     /**
@@ -8066,7 +8066,7 @@ export interface PhotosMoveParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.putTag"] | photos.putTag} method
+ * Params for {@link APIMethodsPhotos["putTag"] | photos.putTag} method
  */
 export interface PhotosPutTagParams {
     /**
@@ -8100,7 +8100,7 @@ export interface PhotosPutTagParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.removeTag"] | photos.removeTag} method
+ * Params for {@link APIMethodsPhotos["removeTag"] | photos.removeTag} method
  */
 export interface PhotosRemoveTagParams {
     /**
@@ -8118,7 +8118,7 @@ export interface PhotosRemoveTagParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.reorderAlbums"] | photos.reorderAlbums} method
+ * Params for {@link APIMethodsPhotos["reorderAlbums"] | photos.reorderAlbums} method
  */
 export interface PhotosReorderAlbumsParams {
     /**
@@ -8140,7 +8140,7 @@ export interface PhotosReorderAlbumsParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.reorderPhotos"] | photos.reorderPhotos} method
+ * Params for {@link APIMethodsPhotos["reorderPhotos"] | photos.reorderPhotos} method
  */
 export interface PhotosReorderPhotosParams {
     /**
@@ -8174,7 +8174,7 @@ export interface PhotosReorderPhotosParams {
 export type PhotosReportReason = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8
 
 /**
- * Params for {@link APIMethods["photos.report"] | photos.report} method
+ * Params for {@link APIMethodsPhotos["report"] | photos.report} method
  */
 export interface PhotosReportParams {
     /**
@@ -8203,7 +8203,7 @@ export interface PhotosReportParams {
 export type PhotosReportCommentReason = 0 | 1 | 2 | 3 | 4 | 5 | 6
 
 /**
- * Params for {@link APIMethods["photos.reportComment"] | photos.reportComment} method
+ * Params for {@link APIMethodsPhotos["reportComment"] | photos.reportComment} method
  */
 export interface PhotosReportCommentParams {
     /**
@@ -8221,7 +8221,7 @@ export interface PhotosReportCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.restore"] | photos.restore} method
+ * Params for {@link APIMethodsPhotos["restore"] | photos.restore} method
  */
 export interface PhotosRestoreParams {
     /**
@@ -8235,7 +8235,7 @@ export interface PhotosRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.restoreComment"] | photos.restoreComment} method
+ * Params for {@link APIMethodsPhotos["restoreComment"] | photos.restoreComment} method
  */
 export interface PhotosRestoreCommentParams {
     /**
@@ -8249,7 +8249,7 @@ export interface PhotosRestoreCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.save"] | photos.save} method
+ * Params for {@link APIMethodsPhotos["save"] | photos.save} method
  */
 export interface PhotosSaveParams {
     /**
@@ -8287,7 +8287,7 @@ export interface PhotosSaveParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.saveMarketAlbumPhoto"] | photos.saveMarketAlbumPhoto} method
+ * Params for {@link APIMethodsPhotos["saveMarketAlbumPhoto"] | photos.saveMarketAlbumPhoto} method
  */
 export interface PhotosSaveMarketAlbumPhotoParams {
     /**
@@ -8309,7 +8309,7 @@ export interface PhotosSaveMarketAlbumPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.saveMessagesPhoto"] | photos.saveMessagesPhoto} method
+ * Params for {@link APIMethodsPhotos["saveMessagesPhoto"] | photos.saveMessagesPhoto} method
  */
 export interface PhotosSaveMessagesPhotoParams {
     /**
@@ -8321,7 +8321,7 @@ export interface PhotosSaveMessagesPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.saveOwnerCoverPhoto"] | photos.saveOwnerCoverPhoto} method
+ * Params for {@link APIMethodsPhotos["saveOwnerCoverPhoto"] | photos.saveOwnerCoverPhoto} method
  */
 export interface PhotosSaveOwnerCoverPhotoParams {
     crop_x?: number
@@ -8341,7 +8341,7 @@ export interface PhotosSaveOwnerCoverPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.saveOwnerPhoto"] | photos.saveOwnerPhoto} method
+ * Params for {@link APIMethodsPhotos["saveOwnerPhoto"] | photos.saveOwnerPhoto} method
  */
 export interface PhotosSaveOwnerPhotoParams {
     /**
@@ -8359,7 +8359,7 @@ export interface PhotosSaveOwnerPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.saveWallPhoto"] | photos.saveWallPhoto} method
+ * Params for {@link APIMethodsPhotos["saveWallPhoto"] | photos.saveWallPhoto} method
  */
 export interface PhotosSaveWallPhotoParams {
     /**
@@ -8391,7 +8391,7 @@ export interface PhotosSaveWallPhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["photos.search"] | photos.search} method
+ * Params for {@link APIMethodsPhotos["search"] | photos.search} method
  */
 export interface PhotosSearchParams {
     /**
@@ -8427,7 +8427,7 @@ export interface PhotosSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["podcasts.searchPodcast"] | podcasts.searchPodcast} method
+ * Params for {@link APIMethodsPodcasts["searchPodcast"] | podcasts.searchPodcast} method
  */
 export interface PodcastsSearchPodcastParams {
     search_string: string
@@ -8436,7 +8436,7 @@ export interface PodcastsSearchPodcastParams {
 }
 
 /**
- * Params for {@link APIMethods["polls.addVote"] | polls.addVote} method
+ * Params for {@link APIMethodsPolls["addVote"] | polls.addVote} method
  */
 export interface PollsAddVoteParams {
     /**
@@ -8454,7 +8454,7 @@ export interface PollsAddVoteParams {
 export type PollsCreateBackgroundId = "1" | "2" | "3" | "4" | "6" | "8" | "9"
 
 /**
- * Params for {@link APIMethods["polls.create"] | polls.create} method
+ * Params for {@link APIMethodsPolls["create"] | polls.create} method
  */
 export interface PollsCreateParams {
     /**
@@ -8482,7 +8482,7 @@ export interface PollsCreateParams {
 }
 
 /**
- * Params for {@link APIMethods["polls.deleteVote"] | polls.deleteVote} method
+ * Params for {@link APIMethodsPolls["deleteVote"] | polls.deleteVote} method
  */
 export interface PollsDeleteVoteParams {
     /**
@@ -8507,7 +8507,7 @@ export type PollsEditBackgroundId =
     | "9"
 
 /**
- * Params for {@link APIMethods["polls.edit"] | polls.edit} method
+ * Params for {@link APIMethodsPolls["edit"] | polls.edit} method
  */
 export interface PollsEditParams {
     /**
@@ -8540,7 +8540,7 @@ export interface PollsEditParams {
 }
 
 /**
- * Params for {@link APIMethods["polls.getById"] | polls.getById} method
+ * Params for {@link APIMethodsPolls["getById"] | polls.getById} method
  */
 export interface PollsGetByIdParams {
     /**
@@ -8562,14 +8562,14 @@ export interface PollsGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["polls.getPhotoUploadServer"] | polls.getPhotoUploadServer} method
+ * Params for {@link APIMethodsPolls["getPhotoUploadServer"] | polls.getPhotoUploadServer} method
  */
 export interface PollsGetPhotoUploadServerParams {
     owner_id?: number
 }
 
 /**
- * Params for {@link APIMethods["polls.getVoters"] | polls.getVoters} method
+ * Params for {@link APIMethodsPolls["getVoters"] | polls.getVoters} method
  */
 export interface PollsGetVotersParams {
     /**
@@ -8608,7 +8608,7 @@ export interface PollsGetVotersParams {
 }
 
 /**
- * Params for {@link APIMethods["polls.savePhoto"] | polls.savePhoto} method
+ * Params for {@link APIMethodsPolls["savePhoto"] | polls.savePhoto} method
  */
 export interface PollsSavePhotoParams {
     photo?: string
@@ -8616,7 +8616,7 @@ export interface PollsSavePhotoParams {
 }
 
 /**
- * Params for {@link APIMethods["prettyCards.create"] | prettyCards.create} method
+ * Params for {@link APIMethodsPrettyCards["create"] | prettyCards.create} method
  */
 export interface PrettyCardsCreateParams {
     owner_id: number
@@ -8629,7 +8629,7 @@ export interface PrettyCardsCreateParams {
 }
 
 /**
- * Params for {@link APIMethods["prettyCards.delete"] | prettyCards.delete} method
+ * Params for {@link APIMethodsPrettyCards["delete"] | prettyCards.delete} method
  */
 export interface PrettyCardsDeleteParams {
     owner_id: number
@@ -8637,7 +8637,7 @@ export interface PrettyCardsDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["prettyCards.edit"] | prettyCards.edit} method
+ * Params for {@link APIMethodsPrettyCards["edit"] | prettyCards.edit} method
  */
 export interface PrettyCardsEditParams {
     owner_id: number
@@ -8651,7 +8651,7 @@ export interface PrettyCardsEditParams {
 }
 
 /**
- * Params for {@link APIMethods["prettyCards.get"] | prettyCards.get} method
+ * Params for {@link APIMethodsPrettyCards["get"] | prettyCards.get} method
  */
 export interface PrettyCardsGetParams {
     owner_id: number
@@ -8660,7 +8660,7 @@ export interface PrettyCardsGetParams {
 }
 
 /**
- * Params for {@link APIMethods["prettyCards.getById"] | prettyCards.getById} method
+ * Params for {@link APIMethodsPrettyCards["getById"] | prettyCards.getById} method
  */
 export interface PrettyCardsGetByIdParams {
     owner_id: number
@@ -8668,7 +8668,7 @@ export interface PrettyCardsGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["search.getHints"] | search.getHints} method
+ * Params for {@link APIMethodsSearch["getHints"] | search.getHints} method
  */
 export interface SearchGetHintsParams {
     /**
@@ -8689,7 +8689,7 @@ export interface SearchGetHintsParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.addAppEvent"] | secure.addAppEvent} method
+ * Params for {@link APIMethodsSecure["addAppEvent"] | secure.addAppEvent} method
  */
 export interface SecureAddAppEventParams {
     /**
@@ -8707,7 +8707,7 @@ export interface SecureAddAppEventParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.checkToken"] | secure.checkToken} method
+ * Params for {@link APIMethodsSecure["checkToken"] | secure.checkToken} method
  */
 export interface SecureCheckTokenParams {
     /**
@@ -8721,7 +8721,7 @@ export interface SecureCheckTokenParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.getSMSHistory"] | secure.getSMSHistory} method
+ * Params for {@link APIMethodsSecure["getSMSHistory"] | secure.getSMSHistory} method
  */
 export interface SecureGetSMSHistoryParams {
     user_id?: number
@@ -8740,7 +8740,7 @@ export interface SecureGetSMSHistoryParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.getTransactionsHistory"] | secure.getTransactionsHistory} method
+ * Params for {@link APIMethodsSecure["getTransactionsHistory"] | secure.getTransactionsHistory} method
  */
 export interface SecureGetTransactionsHistoryParams {
     type?: number
@@ -8752,14 +8752,14 @@ export interface SecureGetTransactionsHistoryParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.getUserLevel"] | secure.getUserLevel} method
+ * Params for {@link APIMethodsSecure["getUserLevel"] | secure.getUserLevel} method
  */
 export interface SecureGetUserLevelParams {
     user_ids: number[]
 }
 
 /**
- * Params for {@link APIMethods["secure.giveEventSticker"] | secure.giveEventSticker} method
+ * Params for {@link APIMethodsSecure["giveEventSticker"] | secure.giveEventSticker} method
  */
 export interface SecureGiveEventStickerParams {
     user_ids: number[]
@@ -8767,7 +8767,7 @@ export interface SecureGiveEventStickerParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.sendNotification"] | secure.sendNotification} method
+ * Params for {@link APIMethodsSecure["sendNotification"] | secure.sendNotification} method
  */
 export interface SecureSendNotificationParams {
     user_ids?: number[]
@@ -8781,7 +8781,7 @@ export interface SecureSendNotificationParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.sendSMSNotification"] | secure.sendSMSNotification} method
+ * Params for {@link APIMethodsSecure["sendSMSNotification"] | secure.sendSMSNotification} method
  */
 export interface SecureSendSMSNotificationParams {
     /**
@@ -8795,7 +8795,7 @@ export interface SecureSendSMSNotificationParams {
 }
 
 /**
- * Params for {@link APIMethods["secure.setCounter"] | secure.setCounter} method
+ * Params for {@link APIMethodsSecure["setCounter"] | secure.setCounter} method
  */
 export interface SecureSetCounterParams {
     counters?: string[]
@@ -8810,7 +8810,7 @@ export interface SecureSetCounterParams {
 export type StatsGetInterval = "all" | "day" | "month" | "week" | "year"
 
 /**
- * Params for {@link APIMethods["stats.get"] | stats.get} method
+ * Params for {@link APIMethodsStats["get"] | stats.get} method
  */
 export interface StatsGetParams {
     /**
@@ -8831,7 +8831,7 @@ export interface StatsGetParams {
 }
 
 /**
- * Params for {@link APIMethods["stats.getPostReach"] | stats.getPostReach} method
+ * Params for {@link APIMethodsStats["getPostReach"] | stats.getPostReach} method
  */
 export interface StatsGetPostReachParams {
     /**
@@ -8847,14 +8847,14 @@ export interface StatsGetPostReachParams {
 export type StatsTrackVisitorType = "activity" | "close" | "open"
 
 /**
- * Params for {@link APIMethods["stats.trackVisitor"] | stats.trackVisitor} method
+ * Params for {@link APIMethodsStats["trackVisitor"] | stats.trackVisitor} method
  */
 export interface StatsTrackVisitorParams {
     type?: StatsTrackVisitorType
 }
 
 /**
- * Params for {@link APIMethods["status.get"] | status.get} method
+ * Params for {@link APIMethodsStatus["get"] | status.get} method
  */
 export interface StatusGetParams {
     /**
@@ -8865,7 +8865,7 @@ export interface StatusGetParams {
 }
 
 /**
- * Params for {@link APIMethods["status.set"] | status.set} method
+ * Params for {@link APIMethodsStatus["set"] | status.set} method
  */
 export interface StatusSetParams {
     /**
@@ -8879,7 +8879,7 @@ export interface StatusSetParams {
 }
 
 /**
- * Params for {@link APIMethods["storage.get"] | storage.get} method
+ * Params for {@link APIMethodsStorage["get"] | storage.get} method
  */
 export interface StorageGetParams {
     key?: string
@@ -8888,7 +8888,7 @@ export interface StorageGetParams {
 }
 
 /**
- * Params for {@link APIMethods["storage.getKeys"] | storage.getKeys} method
+ * Params for {@link APIMethodsStorage["getKeys"] | storage.getKeys} method
  */
 export interface StorageGetKeysParams {
     /**
@@ -8903,7 +8903,7 @@ export interface StorageGetKeysParams {
 }
 
 /**
- * Params for {@link APIMethods["storage.set"] | storage.set} method
+ * Params for {@link APIMethodsStorage["set"] | storage.set} method
  */
 export interface StorageSetParams {
     key: string
@@ -8912,7 +8912,7 @@ export interface StorageSetParams {
 }
 
 /**
- * Params for {@link APIMethods["store.addStickersToFavorite"] | store.addStickersToFavorite} method
+ * Params for {@link APIMethodsStore["addStickersToFavorite"] | store.addStickersToFavorite} method
  */
 export interface StoreAddStickersToFavoriteParams {
     /**
@@ -8922,7 +8922,7 @@ export interface StoreAddStickersToFavoriteParams {
 }
 
 /**
- * Params for {@link APIMethods["store.getProducts"] | store.getProducts} method
+ * Params for {@link APIMethodsStore["getProducts"] | store.getProducts} method
  */
 export interface StoreGetProductsParams {
     type?: string
@@ -8934,7 +8934,7 @@ export interface StoreGetProductsParams {
 }
 
 /**
- * Params for {@link APIMethods["store.getStickersKeywords"] | store.getStickersKeywords} method
+ * Params for {@link APIMethodsStore["getStickersKeywords"] | store.getStickersKeywords} method
  */
 export interface StoreGetStickersKeywordsParams {
     stickers_ids?: number[]
@@ -8946,7 +8946,7 @@ export interface StoreGetStickersKeywordsParams {
 }
 
 /**
- * Params for {@link APIMethods["store.removeStickersFromFavorite"] | store.removeStickersFromFavorite} method
+ * Params for {@link APIMethodsStore["removeStickersFromFavorite"] | store.removeStickersFromFavorite} method
  */
 export interface StoreRemoveStickersFromFavoriteParams {
     /**
@@ -8956,7 +8956,7 @@ export interface StoreRemoveStickersFromFavoriteParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.banOwner"] | stories.banOwner} method
+ * Params for {@link APIMethodsStories["banOwner"] | stories.banOwner} method
  */
 export interface StoriesBanOwnerParams {
     /**
@@ -8966,7 +8966,7 @@ export interface StoriesBanOwnerParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.delete"] | stories.delete} method
+ * Params for {@link APIMethodsStories["delete"] | stories.delete} method
  */
 export interface StoriesDeleteParams {
     /**
@@ -8981,7 +8981,7 @@ export interface StoriesDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.get"] | stories.get} method
+ * Params for {@link APIMethodsStories["get"] | stories.get} method
  */
 export interface StoriesGetParams {
     /**
@@ -8996,7 +8996,7 @@ export interface StoriesGetParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getBanned"] | stories.getBanned} method
+ * Params for {@link APIMethodsStories["getBanned"] | stories.getBanned} method
  */
 export interface StoriesGetBannedParams {
     /**
@@ -9010,7 +9010,7 @@ export interface StoriesGetBannedParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getById"] | stories.getById} method
+ * Params for {@link APIMethodsStories["getById"] | stories.getById} method
  */
 export interface StoriesGetByIdParams {
     /**
@@ -9028,7 +9028,7 @@ export interface StoriesGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getPhotoUploadServer"] | stories.getPhotoUploadServer} method
+ * Params for {@link APIMethodsStories["getPhotoUploadServer"] | stories.getPhotoUploadServer} method
  */
 export interface StoriesGetPhotoUploadServerParams {
     /**
@@ -9059,7 +9059,7 @@ export interface StoriesGetPhotoUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getReplies"] | stories.getReplies} method
+ * Params for {@link APIMethodsStories["getReplies"] | stories.getReplies} method
  */
 export interface StoriesGetRepliesParams {
     /**
@@ -9085,7 +9085,7 @@ export interface StoriesGetRepliesParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getStats"] | stories.getStats} method
+ * Params for {@link APIMethodsStories["getStats"] | stories.getStats} method
  */
 export interface StoriesGetStatsParams {
     /**
@@ -9099,7 +9099,7 @@ export interface StoriesGetStatsParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getVideoUploadServer"] | stories.getVideoUploadServer} method
+ * Params for {@link APIMethodsStories["getVideoUploadServer"] | stories.getVideoUploadServer} method
  */
 export interface StoriesGetVideoUploadServerParams {
     /**
@@ -9130,7 +9130,7 @@ export interface StoriesGetVideoUploadServerParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.getViewers"] | stories.getViewers} method
+ * Params for {@link APIMethodsStories["getViewers"] | stories.getViewers} method
  */
 export interface StoriesGetViewersParams {
     /**
@@ -9157,7 +9157,7 @@ export interface StoriesGetViewersParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.hideAllReplies"] | stories.hideAllReplies} method
+ * Params for {@link APIMethodsStories["hideAllReplies"] | stories.hideAllReplies} method
  */
 export interface StoriesHideAllRepliesParams {
     /**
@@ -9168,7 +9168,7 @@ export interface StoriesHideAllRepliesParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.hideReply"] | stories.hideReply} method
+ * Params for {@link APIMethodsStories["hideReply"] | stories.hideReply} method
  */
 export interface StoriesHideReplyParams {
     /**
@@ -9182,7 +9182,7 @@ export interface StoriesHideReplyParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.save"] | stories.save} method
+ * Params for {@link APIMethodsStories["save"] | stories.save} method
  */
 export interface StoriesSaveParams {
     upload_results?: string[]
@@ -9192,7 +9192,7 @@ export interface StoriesSaveParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.search"] | stories.search} method
+ * Params for {@link APIMethodsStories["search"] | stories.search} method
  */
 export interface StoriesSearchParams {
     q?: string
@@ -9207,7 +9207,7 @@ export interface StoriesSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.sendInteraction"] | stories.sendInteraction} method
+ * Params for {@link APIMethodsStories["sendInteraction"] | stories.sendInteraction} method
  */
 export interface StoriesSendInteractionParams {
     access_key: string
@@ -9218,7 +9218,7 @@ export interface StoriesSendInteractionParams {
 }
 
 /**
- * Params for {@link APIMethods["stories.unbanOwner"] | stories.unbanOwner} method
+ * Params for {@link APIMethodsStories["unbanOwner"] | stories.unbanOwner} method
  */
 export interface StoriesUnbanOwnerParams {
     /**
@@ -9231,7 +9231,7 @@ export type StreamingGetStatsType = "prepared" | "received"
 export type StreamingGetStatsInterval = "1h" | "24h" | "5m"
 
 /**
- * Params for {@link APIMethods["streaming.getStats"] | streaming.getStats} method
+ * Params for {@link APIMethodsStreaming["getStats"] | streaming.getStats} method
  */
 export interface StreamingGetStatsParams {
     type?: StreamingGetStatsType
@@ -9241,14 +9241,14 @@ export interface StreamingGetStatsParams {
 }
 
 /**
- * Params for {@link APIMethods["streaming.getStem"] | streaming.getStem} method
+ * Params for {@link APIMethodsStreaming["getStem"] | streaming.getStem} method
  */
 export interface StreamingGetStemParams {
     word: string
 }
 
 /**
- * Params for {@link APIMethods["translations.translate"] | translations.translate} method
+ * Params for {@link APIMethodsTranslations["translate"] | translations.translate} method
  */
 export interface TranslationsTranslateParams {
     texts: string[]
@@ -9256,7 +9256,7 @@ export interface TranslationsTranslateParams {
 }
 
 /**
- * Params for {@link APIMethods["users.get"] | users.get} method
+ * Params for {@link APIMethodsUsers["get"] | users.get} method
  */
 export interface UsersGetParams {
     /**
@@ -9275,7 +9275,7 @@ export interface UsersGetParams {
 }
 
 /**
- * Params for {@link APIMethods["users.getFollowers"] | users.getFollowers} method
+ * Params for {@link APIMethodsUsers["getFollowers"] | users.getFollowers} method
  */
 export interface UsersGetFollowersParams {
     /**
@@ -9301,7 +9301,7 @@ export interface UsersGetFollowersParams {
 }
 
 /**
- * Params for {@link APIMethods["users.getSubscriptions"] | users.getSubscriptions} method
+ * Params for {@link APIMethodsUsers["getSubscriptions"] | users.getSubscriptions} method
  */
 export interface UsersGetSubscriptionsParams {
     /**
@@ -9332,7 +9332,7 @@ export type UsersReportType =
     | "spam"
 
 /**
- * Params for {@link APIMethods["users.report"] | users.report} method
+ * Params for {@link APIMethodsUsers["report"] | users.report} method
  */
 export interface UsersReportParams {
     /**
@@ -9374,7 +9374,7 @@ export type UsersSearchSex = 0 | 1 | 2
 export type UsersSearchStatus = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 /**
- * Params for {@link APIMethods["users.search"] | users.search} method
+ * Params for {@link APIMethodsUsers["search"] | users.search} method
  */
 export interface UsersSearchParams {
     /**
@@ -9512,7 +9512,7 @@ export interface UsersSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["utils.checkLink"] | utils.checkLink} method
+ * Params for {@link APIMethodsUtils["checkLink"] | utils.checkLink} method
  */
 export interface UtilsCheckLinkParams {
     /**
@@ -9522,7 +9522,7 @@ export interface UtilsCheckLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["utils.deleteFromLastShortened"] | utils.deleteFromLastShortened} method
+ * Params for {@link APIMethodsUtils["deleteFromLastShortened"] | utils.deleteFromLastShortened} method
  */
 export interface UtilsDeleteFromLastShortenedParams {
     /**
@@ -9532,7 +9532,7 @@ export interface UtilsDeleteFromLastShortenedParams {
 }
 
 /**
- * Params for {@link APIMethods["utils.getLastShortenedLinks"] | utils.getLastShortenedLinks} method
+ * Params for {@link APIMethodsUtils["getLastShortenedLinks"] | utils.getLastShortenedLinks} method
  */
 export interface UtilsGetLastShortenedLinksParams {
     /**
@@ -9554,7 +9554,7 @@ export type UtilsGetLinkStatsInterval =
     | "week"
 
 /**
- * Params for {@link APIMethods["utils.getLinkStats"] | utils.getLinkStats} method
+ * Params for {@link APIMethodsUtils["getLinkStats"] | utils.getLinkStats} method
  */
 export interface UtilsGetLinkStatsParams {
     /**
@@ -9584,7 +9584,7 @@ export interface UtilsGetLinkStatsParams {
 }
 
 /**
- * Params for {@link APIMethods["utils.getShortLink"] | utils.getShortLink} method
+ * Params for {@link APIMethodsUtils["getShortLink"] | utils.getShortLink} method
  */
 export interface UtilsGetShortLinkParams {
     /**
@@ -9598,7 +9598,7 @@ export interface UtilsGetShortLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["utils.resolveScreenName"] | utils.resolveScreenName} method
+ * Params for {@link APIMethodsUtils["resolveScreenName"] | utils.resolveScreenName} method
  */
 export interface UtilsResolveScreenNameParams {
     /**
@@ -9608,7 +9608,7 @@ export interface UtilsResolveScreenNameParams {
 }
 
 /**
- * Params for {@link APIMethods["video.add"] | video.add} method
+ * Params for {@link APIMethodsVideo["add"] | video.add} method
  */
 export interface VideoAddParams {
     /**
@@ -9626,7 +9626,7 @@ export interface VideoAddParams {
 }
 
 /**
- * Params for {@link APIMethods["video.addAlbum"] | video.addAlbum} method
+ * Params for {@link APIMethodsVideo["addAlbum"] | video.addAlbum} method
  */
 export interface VideoAddAlbumParams {
     /**
@@ -9644,7 +9644,7 @@ export interface VideoAddAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["video.addToAlbum"] | video.addToAlbum} method
+ * Params for {@link APIMethodsVideo["addToAlbum"] | video.addToAlbum} method
  */
 export interface VideoAddToAlbumParams {
     target_id?: number
@@ -9655,7 +9655,7 @@ export interface VideoAddToAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["video.createComment"] | video.createComment} method
+ * Params for {@link APIMethodsVideo["createComment"] | video.createComment} method
  */
 export interface VideoCreateCommentParams {
     /**
@@ -9685,7 +9685,7 @@ export interface VideoCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["video.delete"] | video.delete} method
+ * Params for {@link APIMethodsVideo["delete"] | video.delete} method
  */
 export interface VideoDeleteParams {
     /**
@@ -9700,7 +9700,7 @@ export interface VideoDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["video.deleteAlbum"] | video.deleteAlbum} method
+ * Params for {@link APIMethodsVideo["deleteAlbum"] | video.deleteAlbum} method
  */
 export interface VideoDeleteAlbumParams {
     /**
@@ -9715,7 +9715,7 @@ export interface VideoDeleteAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["video.deleteComment"] | video.deleteComment} method
+ * Params for {@link APIMethodsVideo["deleteComment"] | video.deleteComment} method
  */
 export interface VideoDeleteCommentParams {
     /**
@@ -9729,7 +9729,7 @@ export interface VideoDeleteCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["video.deleteThread"] | video.deleteThread} method
+ * Params for {@link APIMethodsVideo["deleteThread"] | video.deleteThread} method
  */
 export interface VideoDeleteThreadParams {
     /**
@@ -9743,7 +9743,7 @@ export interface VideoDeleteThreadParams {
 }
 
 /**
- * Params for {@link APIMethods["video.edit"] | video.edit} method
+ * Params for {@link APIMethodsVideo["edit"] | video.edit} method
  */
 export interface VideoEditParams {
     /**
@@ -9782,7 +9782,7 @@ export interface VideoEditParams {
 }
 
 /**
- * Params for {@link APIMethods["video.editAlbum"] | video.editAlbum} method
+ * Params for {@link APIMethodsVideo["editAlbum"] | video.editAlbum} method
  */
 export interface VideoEditAlbumParams {
     /**
@@ -9805,7 +9805,7 @@ export interface VideoEditAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["video.editComment"] | video.editComment} method
+ * Params for {@link APIMethodsVideo["editComment"] | video.editComment} method
  */
 export interface VideoEditCommentParams {
     /**
@@ -9829,7 +9829,7 @@ export interface VideoEditCommentParams {
 export type VideoGetSortAlbum = 0 | 1
 
 /**
- * Params for {@link APIMethods["video.get"] | video.get} method
+ * Params for {@link APIMethodsVideo["get"] | video.get} method
  */
 export interface VideoGetParams {
     /**
@@ -9864,7 +9864,7 @@ export interface VideoGetParams {
 }
 
 /**
- * Params for {@link APIMethods["video.getAlbumById"] | video.getAlbumById} method
+ * Params for {@link APIMethodsVideo["getAlbumById"] | video.getAlbumById} method
  */
 export interface VideoGetAlbumByIdParams {
     /**
@@ -9878,7 +9878,7 @@ export interface VideoGetAlbumByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["video.getAlbums"] | video.getAlbums} method
+ * Params for {@link APIMethodsVideo["getAlbums"] | video.getAlbums} method
  */
 export interface VideoGetAlbumsParams {
     /**
@@ -9901,7 +9901,7 @@ export interface VideoGetAlbumsParams {
 }
 
 /**
- * Params for {@link APIMethods["video.getAlbumsByVideo"] | video.getAlbumsByVideo} method
+ * Params for {@link APIMethodsVideo["getAlbumsByVideo"] | video.getAlbumsByVideo} method
  */
 export interface VideoGetAlbumsByVideoParams {
     target_id?: number
@@ -9918,7 +9918,7 @@ export interface VideoGetAlbumsByVideoParams {
 export type VideoGetCommentsSort = "asc" | "desc" | "interest"
 
 /**
- * Params for {@link APIMethods["video.getComments"] | video.getComments} method
+ * Params for {@link APIMethodsVideo["getComments"] | video.getComments} method
  */
 export interface VideoGetCommentsParams {
     /**
@@ -9953,7 +9953,7 @@ export interface VideoGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["video.getLongPollServer"] | video.getLongPollServer} method
+ * Params for {@link APIMethodsVideo["getLongPollServer"] | video.getLongPollServer} method
  */
 export interface VideoGetLongPollServerParams {
     owner_id?: number
@@ -9961,7 +9961,7 @@ export interface VideoGetLongPollServerParams {
 }
 
 /**
- * Params for {@link APIMethods["video.getOembed"] | video.getOembed} method
+ * Params for {@link APIMethodsVideo["getOembed"] | video.getOembed} method
  */
 export interface VideoGetOembedParams {
     /**
@@ -9979,14 +9979,14 @@ export interface VideoGetOembedParams {
 }
 
 /**
- * Params for {@link APIMethods["video.getThumbUploadUrl"] | video.getThumbUploadUrl} method
+ * Params for {@link APIMethodsVideo["getThumbUploadUrl"] | video.getThumbUploadUrl} method
  */
 export interface VideoGetThumbUploadUrlParams {
     owner_id: number
 }
 
 /**
- * Params for {@link APIMethods["video.removeFromAlbum"] | video.removeFromAlbum} method
+ * Params for {@link APIMethodsVideo["removeFromAlbum"] | video.removeFromAlbum} method
  */
 export interface VideoRemoveFromAlbumParams {
     target_id?: number
@@ -9997,7 +9997,7 @@ export interface VideoRemoveFromAlbumParams {
 }
 
 /**
- * Params for {@link APIMethods["video.reorderAlbums"] | video.reorderAlbums} method
+ * Params for {@link APIMethodsVideo["reorderAlbums"] | video.reorderAlbums} method
  */
 export interface VideoReorderAlbumsParams {
     /**
@@ -10019,7 +10019,7 @@ export interface VideoReorderAlbumsParams {
 }
 
 /**
- * Params for {@link APIMethods["video.reorderVideos"] | video.reorderVideos} method
+ * Params for {@link APIMethodsVideo["reorderVideos"] | video.reorderVideos} method
  */
 export interface VideoReorderVideosParams {
     /**
@@ -10077,7 +10077,7 @@ export type VideoReportReason =
     | 101
 
 /**
- * Params for {@link APIMethods["video.report"] | video.report} method
+ * Params for {@link APIMethodsVideo["report"] | video.report} method
  */
 export interface VideoReportParams {
     /**
@@ -10123,7 +10123,7 @@ export type VideoReportCommentReason =
     | 101
 
 /**
- * Params for {@link APIMethods["video.reportComment"] | video.reportComment} method
+ * Params for {@link APIMethodsVideo["reportComment"] | video.reportComment} method
  */
 export interface VideoReportCommentParams {
     /**
@@ -10141,7 +10141,7 @@ export interface VideoReportCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["video.restore"] | video.restore} method
+ * Params for {@link APIMethodsVideo["restore"] | video.restore} method
  */
 export interface VideoRestoreParams {
     /**
@@ -10155,7 +10155,7 @@ export interface VideoRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["video.restoreComment"] | video.restoreComment} method
+ * Params for {@link APIMethodsVideo["restoreComment"] | video.restoreComment} method
  */
 export interface VideoRestoreCommentParams {
     /**
@@ -10169,7 +10169,7 @@ export interface VideoRestoreCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["video.restoreThread"] | video.restoreThread} method
+ * Params for {@link APIMethodsVideo["restoreThread"] | video.restoreThread} method
  */
 export interface VideoRestoreThreadParams {
     /**
@@ -10183,7 +10183,7 @@ export interface VideoRestoreThreadParams {
 }
 
 /**
- * Params for {@link APIMethods["video.save"] | video.save} method
+ * Params for {@link APIMethodsVideo["save"] | video.save} method
  */
 export interface VideoSaveParams {
     /**
@@ -10227,7 +10227,7 @@ export interface VideoSaveParams {
 }
 
 /**
- * Params for {@link APIMethods["video.saveUploadedThumb"] | video.saveUploadedThumb} method
+ * Params for {@link APIMethodsVideo["saveUploadedThumb"] | video.saveUploadedThumb} method
  */
 export interface VideoSaveUploadedThumbParams {
     owner_id: number
@@ -10253,7 +10253,7 @@ export type VideoSearchSort = 1 | 2 | 0
 export type VideoSearchFilters = "long" | "short" | "vimeo" | "vk" | "youtube"
 
 /**
- * Params for {@link APIMethods["video.search"] | video.search} method
+ * Params for {@link APIMethodsVideo["search"] | video.search} method
  */
 export interface VideoSearchParams {
     /**
@@ -10294,7 +10294,7 @@ export interface VideoSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["video.startStreaming"] | video.startStreaming} method
+ * Params for {@link APIMethodsVideo["startStreaming"] | video.startStreaming} method
  */
 export interface VideoStartStreamingParams {
     video_id?: number
@@ -10310,7 +10310,7 @@ export interface VideoStartStreamingParams {
 }
 
 /**
- * Params for {@link APIMethods["video.stopStreaming"] | video.stopStreaming} method
+ * Params for {@link APIMethodsVideo["stopStreaming"] | video.stopStreaming} method
  */
 export interface VideoStopStreamingParams {
     group_id?: number
@@ -10318,7 +10318,7 @@ export interface VideoStopStreamingParams {
 }
 
 /**
- * Params for {@link APIMethods["video.unpinComment"] | video.unpinComment} method
+ * Params for {@link APIMethodsVideo["unpinComment"] | video.unpinComment} method
  */
 export interface VideoUnpinCommentParams {
     /**
@@ -10329,14 +10329,14 @@ export interface VideoUnpinCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.checkCopyrightLink"] | wall.checkCopyrightLink} method
+ * Params for {@link APIMethodsWall["checkCopyrightLink"] | wall.checkCopyrightLink} method
  */
 export interface WallCheckCopyrightLinkParams {
     link: string
 }
 
 /**
- * Params for {@link APIMethods["wall.closeComments"] | wall.closeComments} method
+ * Params for {@link APIMethodsWall["closeComments"] | wall.closeComments} method
  */
 export interface WallCloseCommentsParams {
     owner_id: number
@@ -10344,7 +10344,7 @@ export interface WallCloseCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.createComment"] | wall.createComment} method
+ * Params for {@link APIMethodsWall["createComment"] | wall.createComment} method
  */
 export interface WallCreateCommentParams {
     /**
@@ -10382,7 +10382,7 @@ export interface WallCreateCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.delete"] | wall.delete} method
+ * Params for {@link APIMethodsWall["delete"] | wall.delete} method
  */
 export interface WallDeleteParams {
     /**
@@ -10396,7 +10396,7 @@ export interface WallDeleteParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.deleteComment"] | wall.deleteComment} method
+ * Params for {@link APIMethodsWall["deleteComment"] | wall.deleteComment} method
  */
 export interface WallDeleteCommentParams {
     /**
@@ -10442,7 +10442,7 @@ export type WallEditTopicId =
     | 43
 
 /**
- * Params for {@link APIMethods["wall.edit"] | wall.edit} method
+ * Params for {@link APIMethodsWall["edit"] | wall.edit} method
  */
 export interface WallEditParams {
     /**
@@ -10479,7 +10479,7 @@ export interface WallEditParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.editAdsStealth"] | wall.editAdsStealth} method
+ * Params for {@link APIMethodsWall["editAdsStealth"] | wall.editAdsStealth} method
  */
 export interface WallEditAdsStealthParams {
     /**
@@ -10533,7 +10533,7 @@ export interface WallEditAdsStealthParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.editComment"] | wall.editComment} method
+ * Params for {@link APIMethodsWall["editComment"] | wall.editComment} method
  */
 export interface WallEditCommentParams {
     /**
@@ -10559,7 +10559,7 @@ export interface WallEditCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.get"] | wall.get} method
+ * Params for {@link APIMethodsWall["get"] | wall.get} method
  */
 export interface WallGetParams {
     /**
@@ -10583,7 +10583,7 @@ export interface WallGetParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.getById"] | wall.getById} method
+ * Params for {@link APIMethodsWall["getById"] | wall.getById} method
  */
 export interface WallGetByIdParams {
     /**
@@ -10602,7 +10602,7 @@ export interface WallGetByIdParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.getComment"] | wall.getComment} method
+ * Params for {@link APIMethodsWall["getComment"] | wall.getComment} method
  */
 export interface WallGetCommentParams {
     /**
@@ -10625,7 +10625,7 @@ export interface WallGetCommentParams {
 export type WallGetCommentsSort = "asc" | "desc" | "smart"
 
 /**
- * Params for {@link APIMethods["wall.getComments"] | wall.getComments} method
+ * Params for {@link APIMethodsWall["getComments"] | wall.getComments} method
  */
 export interface WallGetCommentsParams {
     /**
@@ -10670,7 +10670,7 @@ export interface WallGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.getReposts"] | wall.getReposts} method
+ * Params for {@link APIMethodsWall["getReposts"] | wall.getReposts} method
  */
 export interface WallGetRepostsParams {
     /**
@@ -10692,7 +10692,7 @@ export interface WallGetRepostsParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.openComments"] | wall.openComments} method
+ * Params for {@link APIMethodsWall["openComments"] | wall.openComments} method
  */
 export interface WallOpenCommentsParams {
     owner_id: number
@@ -10700,7 +10700,7 @@ export interface WallOpenCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.parseAttachedLink"] | wall.parseAttachedLink} method
+ * Params for {@link APIMethodsWall["parseAttachedLink"] | wall.parseAttachedLink} method
  */
 export interface WallParseAttachedLinkParams {
     links: string
@@ -10710,7 +10710,7 @@ export interface WallParseAttachedLinkParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.pin"] | wall.pin} method
+ * Params for {@link APIMethodsWall["pin"] | wall.pin} method
  */
 export interface WallPinParams {
     /**
@@ -10724,7 +10724,7 @@ export interface WallPinParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.post"] | wall.post} method
+ * Params for {@link APIMethodsWall["post"] | wall.post} method
  */
 export interface WallPostParams {
     /**
@@ -10786,7 +10786,7 @@ export interface WallPostParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.postAdsStealth"] | wall.postAdsStealth} method
+ * Params for {@link APIMethodsWall["postAdsStealth"] | wall.postAdsStealth} method
  */
 export interface WallPostAdsStealthParams {
     /**
@@ -10853,7 +10853,7 @@ export interface WallPostAdsStealthParams {
 export type WallReportCommentReason = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 11
 
 /**
- * Params for {@link APIMethods["wall.reportComment"] | wall.reportComment} method
+ * Params for {@link APIMethodsWall["reportComment"] | wall.reportComment} method
  */
 export interface WallReportCommentParams {
     /**
@@ -10884,7 +10884,7 @@ export interface WallReportCommentParams {
 export type WallReportPostReason = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 11
 
 /**
- * Params for {@link APIMethods["wall.reportPost"] | wall.reportPost} method
+ * Params for {@link APIMethodsWall["reportPost"] | wall.reportPost} method
  */
 export interface WallReportPostParams {
     /**
@@ -10902,7 +10902,7 @@ export interface WallReportPostParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.repost"] | wall.repost} method
+ * Params for {@link APIMethodsWall["repost"] | wall.repost} method
  */
 export interface WallRepostParams {
     /**
@@ -10922,7 +10922,7 @@ export interface WallRepostParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.restore"] | wall.restore} method
+ * Params for {@link APIMethodsWall["restore"] | wall.restore} method
  */
 export interface WallRestoreParams {
     /**
@@ -10936,7 +10936,7 @@ export interface WallRestoreParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.restoreComment"] | wall.restoreComment} method
+ * Params for {@link APIMethodsWall["restoreComment"] | wall.restoreComment} method
  */
 export interface WallRestoreCommentParams {
     /**
@@ -10950,7 +10950,7 @@ export interface WallRestoreCommentParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.search"] | wall.search} method
+ * Params for {@link APIMethodsWall["search"] | wall.search} method
  */
 export interface WallSearchParams {
     /**
@@ -10981,7 +10981,7 @@ export interface WallSearchParams {
 }
 
 /**
- * Params for {@link APIMethods["wall.unpin"] | wall.unpin} method
+ * Params for {@link APIMethodsWall["unpin"] | wall.unpin} method
  */
 export interface WallUnpinParams {
     /**
@@ -10995,7 +10995,7 @@ export interface WallUnpinParams {
 }
 
 /**
- * Params for {@link APIMethods["widgets.getComments"] | widgets.getComments} method
+ * Params for {@link APIMethodsWidgets["getComments"] | widgets.getComments} method
  */
 export interface WidgetsGetCommentsParams {
     widget_api_id?: number
@@ -11008,7 +11008,7 @@ export interface WidgetsGetCommentsParams {
 }
 
 /**
- * Params for {@link APIMethods["widgets.getPages"] | widgets.getPages} method
+ * Params for {@link APIMethodsWidgets["getPages"] | widgets.getPages} method
  */
 export interface WidgetsGetPagesParams {
     widget_api_id?: number

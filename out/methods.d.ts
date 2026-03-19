@@ -7,12 +7,12 @@
  * ```typescript
  * import { APIMethods } from "@vkraft/types/methods";
  *
- * type UsersGetReturn = Awaited<ReturnType<APIMethods["users.get"]>>;
+ * type UsersGetReturn = Awaited<ReturnType<APIMethods["users"]["get"]>>;
  * ```
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 14:04:09 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 18:30:47 using [types](https://github.com/vkraft/types) generator
  */
 
 import type {
@@ -26,15 +26,15 @@ import type * as Objects from "./objects"
 import type * as Responses from "./responses"
 
 /**
- * This object is a map of VK API methods (functions map with input/output)
+ * VK API account.* methods
  */
-export interface APIMethods {
+export interface APIMethodsAccount {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/account.ban)
      */
-    "account.ban": CallAPIWithOptionalParams<
+    ban: CallAPIWithOptionalParams<
         Params.AccountBanParams,
         Responses.BaseOkResponse
     >
@@ -43,7 +43,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.changePassword)
      */
-    "account.changePassword": CallAPI<
+    changePassword: CallAPI<
         Params.AccountChangePasswordParams,
         Responses.AccountChangePasswordResponse
     >
@@ -52,7 +52,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.getActiveOffers)
      */
-    "account.getActiveOffers": CallAPIWithOptionalParams<
+    getActiveOffers: CallAPIWithOptionalParams<
         Params.AccountGetActiveOffersParams,
         Responses.AccountGetActiveOffersResponse
     >
@@ -61,7 +61,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.getAppPermissions)
      */
-    "account.getAppPermissions": CallAPIWithOptionalParams<
+    getAppPermissions: CallAPIWithOptionalParams<
         Params.AccountGetAppPermissionsParams,
         Responses.AccountGetAppPermissionsResponse
     >
@@ -70,7 +70,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.getBanned)
      */
-    "account.getBanned": CallAPIWithOptionalParams<
+    getBanned: CallAPIWithOptionalParams<
         Params.AccountGetBannedParams,
         Responses.AccountGetBannedResponse
     >
@@ -79,7 +79,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.getCounters)
      */
-    "account.getCounters": CallAPIWithOptionalParams<
+    getCounters: CallAPIWithOptionalParams<
         Params.AccountGetCountersParams,
         Objects.VKAccountAccountCounters
     >
@@ -88,7 +88,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.getInfo)
      */
-    "account.getInfo": CallAPIWithOptionalParams<
+    getInfo: CallAPIWithOptionalParams<
         Params.AccountGetInfoParams,
         Objects.VKAccountInfo
     >
@@ -97,13 +97,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.getProfileInfo)
      */
-    "account.getProfileInfo": CallAPIWithoutParams<Objects.VKAccountUserSettings>
+    getProfileInfo: CallAPIWithoutParams<Objects.VKAccountUserSettings>
     /**
      * Gets settings of push notifications.
      *
      * [Documentation](https://dev.vk.com/method/account.getPushSettings)
      */
-    "account.getPushSettings": CallAPIWithOptionalParams<
+    getPushSettings: CallAPIWithOptionalParams<
         Params.AccountGetPushSettingsParams,
         Objects.VKAccountPushSettings
     >
@@ -112,7 +112,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.registerDevice)
      */
-    "account.registerDevice": CallAPI<
+    registerDevice: CallAPI<
         Params.AccountRegisterDeviceParams,
         Responses.BaseOkResponse
     >
@@ -121,7 +121,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.saveProfileInfo)
      */
-    "account.saveProfileInfo": CallAPIWithOptionalParams<
+    saveProfileInfo: CallAPIWithOptionalParams<
         Params.AccountSaveProfileInfoParams,
         Responses.AccountSaveProfileInfoResponse
     >
@@ -130,7 +130,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.setInfo)
      */
-    "account.setInfo": CallAPIWithOptionalParams<
+    setInfo: CallAPIWithOptionalParams<
         Params.AccountSetInfoParams,
         Responses.BaseOkResponse
     >
@@ -139,13 +139,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.setOffline)
      */
-    "account.setOffline": CallAPIWithoutParams<Responses.BaseOkResponse>
+    setOffline: CallAPIWithoutParams<Responses.BaseOkResponse>
     /**
      * Marks the current user as online for 15 minutes.
      *
      * [Documentation](https://dev.vk.com/method/account.setOnline)
      */
-    "account.setOnline": CallAPIWithOptionalParams<
+    setOnline: CallAPIWithOptionalParams<
         Params.AccountSetOnlineParams,
         Responses.BaseOkResponse
     >
@@ -154,7 +154,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.setPushSettings)
      */
-    "account.setPushSettings": CallAPI<
+    setPushSettings: CallAPI<
         Params.AccountSetPushSettingsParams,
         Responses.BaseOkResponse
     >
@@ -163,7 +163,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.setSilenceMode)
      */
-    "account.setSilenceMode": CallAPIWithOptionalParams<
+    setSilenceMode: CallAPIWithOptionalParams<
         Params.AccountSetSilenceModeParams,
         Responses.BaseOkResponse
     >
@@ -172,7 +172,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.unban)
      */
-    "account.unban": CallAPIWithOptionalParams<
+    unban: CallAPIWithOptionalParams<
         Params.AccountUnbanParams,
         Responses.BaseOkResponse
     >
@@ -181,16 +181,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/account.unregisterDevice)
      */
-    "account.unregisterDevice": CallAPIWithOptionalParams<
+    unregisterDevice: CallAPIWithOptionalParams<
         Params.AccountUnregisterDeviceParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API ads.* methods
+ */
+export interface APIMethodsAds {
     /**
      * Adds managers and/or supervisors to advertising account.
      *
      * [Documentation](https://dev.vk.com/method/ads.addOfficeUsers)
      */
-    "ads.addOfficeUsers": CallAPI<
+    addOfficeUsers: CallAPI<
         Params.AdsAddOfficeUsersParams,
         Responses.AdsAddOfficeUsersResponse
     >
@@ -199,13 +205,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.checkLink)
      */
-    "ads.checkLink": CallAPI<Params.AdsCheckLinkParams, Objects.VKAdsLinkStatus>
+    checkLink: CallAPI<Params.AdsCheckLinkParams, Objects.VKAdsLinkStatus>
     /**
      * Creates ads.
      *
      * [Documentation](https://dev.vk.com/method/ads.createAds)
      */
-    "ads.createAds": CallAPI<
+    createAds: CallAPI<
         Params.AdsCreateAdsParams,
         Responses.AdsCreateAdsResponse
     >
@@ -214,7 +220,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.createCampaigns)
      */
-    "ads.createCampaigns": CallAPI<
+    createCampaigns: CallAPI<
         Params.AdsCreateCampaignsParams,
         Responses.AdsCreateCampaignsResponse
     >
@@ -223,7 +229,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.createClients)
      */
-    "ads.createClients": CallAPI<
+    createClients: CallAPI<
         Params.AdsCreateClientsParams,
         Responses.AdsCreateClientsResponse
     >
@@ -232,7 +238,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.createLookalikeRequest)
      */
-    "ads.createLookalikeRequest": CallAPI<
+    createLookalikeRequest: CallAPI<
         Params.AdsCreateLookalikeRequestParams,
         Responses.AdsCreateLookalikeRequestResponse
     >
@@ -241,7 +247,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.createTargetGroup)
      */
-    "ads.createTargetGroup": CallAPI<
+    createTargetGroup: CallAPI<
         Params.AdsCreateTargetGroupParams,
         Responses.AdsCreateTargetGroupResponse
     >
@@ -250,7 +256,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.createTargetPixel)
      */
-    "ads.createTargetPixel": CallAPI<
+    createTargetPixel: CallAPI<
         Params.AdsCreateTargetPixelParams,
         Responses.AdsCreateTargetPixelResponse
     >
@@ -259,7 +265,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.deleteAds)
      */
-    "ads.deleteAds": CallAPI<
+    deleteAds: CallAPI<
         Params.AdsDeleteAdsParams,
         Responses.AdsDeleteAdsResponse
     >
@@ -268,7 +274,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.deleteCampaigns)
      */
-    "ads.deleteCampaigns": CallAPI<
+    deleteCampaigns: CallAPI<
         Params.AdsDeleteCampaignsParams,
         Responses.AdsDeleteCampaignsResponse
     >
@@ -277,7 +283,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.deleteClients)
      */
-    "ads.deleteClients": CallAPI<
+    deleteClients: CallAPI<
         Params.AdsDeleteClientsParams,
         Responses.AdsDeleteClientsResponse
     >
@@ -286,7 +292,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.deleteTargetGroup)
      */
-    "ads.deleteTargetGroup": CallAPI<
+    deleteTargetGroup: CallAPI<
         Params.AdsDeleteTargetGroupParams,
         Responses.BaseOkResponse
     >
@@ -295,7 +301,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.deleteTargetPixel)
      */
-    "ads.deleteTargetPixel": CallAPI<
+    deleteTargetPixel: CallAPI<
         Params.AdsDeleteTargetPixelParams,
         Responses.BaseUndefinedResponse
     >
@@ -304,19 +310,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getAccounts)
      */
-    "ads.getAccounts": CallAPIWithoutParams<Responses.AdsGetAccountsResponse>
+    getAccounts: CallAPIWithoutParams<Responses.AdsGetAccountsResponse>
     /**
      * Returns number of ads.
      *
      * [Documentation](https://dev.vk.com/method/ads.getAds)
      */
-    "ads.getAds": CallAPI<Params.AdsGetAdsParams, Responses.AdsGetAdsResponse>
+    getAds: CallAPI<Params.AdsGetAdsParams, Responses.AdsGetAdsResponse>
     /**
      * Returns descriptions of ad layouts.
      *
      * [Documentation](https://dev.vk.com/method/ads.getAdsLayout)
      */
-    "ads.getAdsLayout": CallAPI<
+    getAdsLayout: CallAPI<
         Params.AdsGetAdsLayoutParams,
         Responses.AdsGetAdsLayoutResponse
     >
@@ -325,7 +331,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getAdsTargeting)
      */
-    "ads.getAdsTargeting": CallAPI<
+    getAdsTargeting: CallAPI<
         Params.AdsGetAdsTargetingParams,
         Responses.AdsGetAdsTargetingResponse
     >
@@ -334,7 +340,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getBudget)
      */
-    "ads.getBudget": CallAPI<
+    getBudget: CallAPI<
         Params.AdsGetBudgetParams,
         Responses.AdsGetBudgetResponse
     >
@@ -343,7 +349,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getCampaigns)
      */
-    "ads.getCampaigns": CallAPI<
+    getCampaigns: CallAPI<
         Params.AdsGetCampaignsParams,
         Responses.AdsGetCampaignsResponse
     >
@@ -352,7 +358,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getCategories)
      */
-    "ads.getCategories": CallAPIWithOptionalParams<
+    getCategories: CallAPIWithOptionalParams<
         Params.AdsGetCategoriesParams,
         Responses.AdsGetCategoriesResponse
     >
@@ -361,7 +367,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getClients)
      */
-    "ads.getClients": CallAPI<
+    getClients: CallAPI<
         Params.AdsGetClientsParams,
         Responses.AdsGetClientsResponse
     >
@@ -370,7 +376,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getDemographics)
      */
-    "ads.getDemographics": CallAPI<
+    getDemographics: CallAPI<
         Params.AdsGetDemographicsParams,
         Responses.AdsGetDemographicsResponse
     >
@@ -379,7 +385,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getFloodStats)
      */
-    "ads.getFloodStats": CallAPI<
+    getFloodStats: CallAPI<
         Params.AdsGetFloodStatsParams,
         Objects.VKAdsFloodStats
     >
@@ -388,7 +394,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getLookalikeRequests)
      */
-    "ads.getLookalikeRequests": CallAPI<
+    getLookalikeRequests: CallAPI<
         Params.AdsGetLookalikeRequestsParams,
         Responses.AdsGetLookalikeRequestsResponse
     >
@@ -397,7 +403,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getMusicians)
      */
-    "ads.getMusicians": CallAPI<
+    getMusicians: CallAPI<
         Params.AdsGetMusiciansParams,
         Responses.AdsGetMusiciansResponse
     >
@@ -406,7 +412,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getMusiciansByIds)
      */
-    "ads.getMusiciansByIds": CallAPI<
+    getMusiciansByIds: CallAPI<
         Params.AdsGetMusiciansByIdsParams,
         Responses.AdsGetMusiciansResponse
     >
@@ -415,7 +421,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getOfficeUsers)
      */
-    "ads.getOfficeUsers": CallAPI<
+    getOfficeUsers: CallAPI<
         Params.AdsGetOfficeUsersParams,
         Responses.AdsGetOfficeUsersResponse
     >
@@ -424,7 +430,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getPostsReach)
      */
-    "ads.getPostsReach": CallAPI<
+    getPostsReach: CallAPI<
         Params.AdsGetPostsReachParams,
         Responses.AdsGetPostsReachResponse
     >
@@ -433,7 +439,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getRejectionReason)
      */
-    "ads.getRejectionReason": CallAPI<
+    getRejectionReason: CallAPI<
         Params.AdsGetRejectionReasonParams,
         Objects.VKAdsRejectReason
     >
@@ -442,7 +448,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getStatistics)
      */
-    "ads.getStatistics": CallAPI<
+    getStatistics: CallAPI<
         Params.AdsGetStatisticsParams,
         Responses.AdsGetStatisticsResponse
     >
@@ -451,7 +457,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getSuggestions)
      */
-    "ads.getSuggestions": {
+    getSuggestions: {
         (
             params: Params.AdsGetSuggestionsParams & {
                 cities: Required<
@@ -472,7 +478,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getTargetGroups)
      */
-    "ads.getTargetGroups": CallAPI<
+    getTargetGroups: CallAPI<
         Params.AdsGetTargetGroupsParams,
         Responses.AdsGetTargetGroupsResponse
     >
@@ -481,7 +487,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getTargetPixels)
      */
-    "ads.getTargetPixels": CallAPI<
+    getTargetPixels: CallAPI<
         Params.AdsGetTargetPixelsParams,
         Responses.AdsGetTargetPixelsResponse
     >
@@ -490,7 +496,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getTargetingStats)
      */
-    "ads.getTargetingStats": CallAPI<
+    getTargetingStats: CallAPI<
         Params.AdsGetTargetingStatsParams,
         Objects.VKAdsTargStats
     >
@@ -499,7 +505,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getUploadURL)
      */
-    "ads.getUploadURL": CallAPI<
+    getUploadURL: CallAPI<
         Params.AdsGetUploadURLParams,
         Responses.AdsGetUploadURLResponse
     >
@@ -508,13 +514,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.getVideoUploadURL)
      */
-    "ads.getVideoUploadURL": CallAPIWithoutParams<Responses.AdsGetVideoUploadURLResponse>
+    getVideoUploadURL: CallAPIWithoutParams<Responses.AdsGetVideoUploadURLResponse>
     /**
      * Imports a list of advertiser's contacts to count VK registered users against the target group.
      *
      * [Documentation](https://dev.vk.com/method/ads.importTargetContacts)
      */
-    "ads.importTargetContacts": CallAPI<
+    importTargetContacts: CallAPI<
         Params.AdsImportTargetContactsParams,
         Responses.AdsImportTargetContactsResponse
     >
@@ -523,7 +529,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.removeOfficeUsers)
      */
-    "ads.removeOfficeUsers": CallAPI<
+    removeOfficeUsers: CallAPI<
         Params.AdsRemoveOfficeUsersParams,
         Responses.AdsRemoveOfficeUsersResponse
     >
@@ -532,7 +538,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.removeTargetContacts)
      */
-    "ads.removeTargetContacts": CallAPI<
+    removeTargetContacts: CallAPI<
         Params.AdsRemoveTargetContactsParams,
         Responses.AdsRemoveTargetContactsResponse
     >
@@ -541,7 +547,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.saveLookalikeRequestResult)
      */
-    "ads.saveLookalikeRequestResult": CallAPI<
+    saveLookalikeRequestResult: CallAPI<
         Params.AdsSaveLookalikeRequestResultParams,
         Responses.AdsSaveLookalikeRequestResultResponse
     >
@@ -550,7 +556,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.shareTargetGroup)
      */
-    "ads.shareTargetGroup": CallAPI<
+    shareTargetGroup: CallAPI<
         Params.AdsShareTargetGroupParams,
         Responses.AdsShareTargetGroupResponse
     >
@@ -559,7 +565,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.updateAds)
      */
-    "ads.updateAds": CallAPI<
+    updateAds: CallAPI<
         Params.AdsUpdateAdsParams,
         Responses.AdsUpdateAdsResponse
     >
@@ -568,7 +574,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.updateCampaigns)
      */
-    "ads.updateCampaigns": CallAPI<
+    updateCampaigns: CallAPI<
         Params.AdsUpdateCampaignsParams,
         Responses.AdsUpdateCampaignsResponse
     >
@@ -577,7 +583,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.updateClients)
      */
-    "ads.updateClients": CallAPI<
+    updateClients: CallAPI<
         Params.AdsUpdateClientsParams,
         Responses.AdsUpdateClientsResponse
     >
@@ -586,7 +592,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.updateOfficeUsers)
      */
-    "ads.updateOfficeUsers": CallAPI<
+    updateOfficeUsers: CallAPI<
         Params.AdsUpdateOfficeUsersParams,
         Responses.AdsUpdateOfficeUsersResponse
     >
@@ -595,7 +601,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.updateTargetGroup)
      */
-    "ads.updateTargetGroup": CallAPI<
+    updateTargetGroup: CallAPI<
         Params.AdsUpdateTargetGroupParams,
         Responses.BaseOkResponse
     >
@@ -604,16 +610,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/ads.updateTargetPixel)
      */
-    "ads.updateTargetPixel": CallAPI<
+    updateTargetPixel: CallAPI<
         Params.AdsUpdateTargetPixelParams,
         Responses.BaseUndefinedResponse
     >
+}
+
+/**
+ * VK API appWidgets.* methods
+ */
+export interface APIMethodsAppWidgets {
     /**
      * Returns a URL for uploading a photo to the community collection for community app widgets
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.getAppImageUploadServer)
      */
-    "appWidgets.getAppImageUploadServer": CallAPI<
+    getAppImageUploadServer: CallAPI<
         Params.AppWidgetsGetAppImageUploadServerParams,
         Responses.AppWidgetsGetAppImageUploadServerResponse
     >
@@ -622,7 +634,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.getAppImages)
      */
-    "appWidgets.getAppImages": CallAPIWithOptionalParams<
+    getAppImages: CallAPIWithOptionalParams<
         Params.AppWidgetsGetAppImagesParams,
         Objects.VKAppWidgetsPhotos
     >
@@ -631,7 +643,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.getGroupImageUploadServer)
      */
-    "appWidgets.getGroupImageUploadServer": CallAPI<
+    getGroupImageUploadServer: CallAPI<
         Params.AppWidgetsGetGroupImageUploadServerParams,
         Responses.AppWidgetsGetGroupImageUploadServerResponse
     >
@@ -640,7 +652,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.getGroupImages)
      */
-    "appWidgets.getGroupImages": CallAPIWithOptionalParams<
+    getGroupImages: CallAPIWithOptionalParams<
         Params.AppWidgetsGetGroupImagesParams,
         Objects.VKAppWidgetsPhotos
     >
@@ -649,7 +661,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.getImagesById)
      */
-    "appWidgets.getImagesById": CallAPI<
+    getImagesById: CallAPI<
         Params.AppWidgetsGetImagesByIdParams,
         Responses.AppWidgetsGetImagesByIdResponse
     >
@@ -658,7 +670,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.saveAppImage)
      */
-    "appWidgets.saveAppImage": CallAPI<
+    saveAppImage: CallAPI<
         Params.AppWidgetsSaveAppImageParams,
         Objects.VKAppWidgetsPhoto
     >
@@ -667,7 +679,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.saveGroupImage)
      */
-    "appWidgets.saveGroupImage": CallAPI<
+    saveGroupImage: CallAPI<
         Params.AppWidgetsSaveGroupImageParams,
         Objects.VKAppWidgetsPhoto
     >
@@ -676,16 +688,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/appWidgets.update)
      */
-    "appWidgets.update": CallAPI<
-        Params.AppWidgetsUpdateParams,
-        Responses.BaseOkResponse
-    >
+    update: CallAPI<Params.AppWidgetsUpdateParams, Responses.BaseOkResponse>
+}
+
+/**
+ * VK API apps.* methods
+ */
+export interface APIMethodsApps {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/apps.addSnippet)
      */
-    "apps.addSnippet": CallAPIWithOptionalParams<
+    addSnippet: CallAPIWithOptionalParams<
         Params.AppsAddSnippetParams,
         Responses.AppsAddSnippetResponse
     >
@@ -694,7 +709,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.addUsersToTestingGroup)
      */
-    "apps.addUsersToTestingGroup": CallAPI<
+    addUsersToTestingGroup: CallAPI<
         Params.AppsAddUsersToTestingGroupParams,
         Objects.VKBaseBoolInt
     >
@@ -703,13 +718,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.deleteAppRequests)
      */
-    "apps.deleteAppRequests": CallAPIWithoutParams<Responses.BaseOkResponse>
+    deleteAppRequests: CallAPIWithoutParams<Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/apps.deleteSnippet)
      */
-    "apps.deleteSnippet": CallAPIWithOptionalParams<
+    deleteSnippet: CallAPIWithOptionalParams<
         Params.AppsDeleteSnippetParams,
         Responses.BaseOkResponse
     >
@@ -718,7 +733,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.get)
      */
-    "apps.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.AppsGetParams,
         Responses.AppsGetResponse
     >
@@ -727,7 +742,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getCatalog)
      */
-    "apps.getCatalog": CallAPIWithOptionalParams<
+    getCatalog: CallAPIWithOptionalParams<
         Params.AppsGetCatalogParams,
         Objects.VKAppsCatalogList
     >
@@ -736,7 +751,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getFriendsList)
      */
-    "apps.getFriendsList": {
+    getFriendsList: {
         (
             params: Params.AppsGetFriendsListParams & { extended: 1 | true },
         ): Promise<Responses.AppsGetFriendsListExtendedResponse>
@@ -749,7 +764,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getLeaderboard)
      */
-    "apps.getLeaderboard": {
+    getLeaderboard: {
         (
             params: Params.AppsGetLeaderboardParams & { extended: 1 | true },
         ): Promise<Responses.AppsGetLeaderboardExtendedResponse>
@@ -762,7 +777,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getMiniAppPolicies)
      */
-    "apps.getMiniAppPolicies": CallAPI<
+    getMiniAppPolicies: CallAPI<
         Params.AppsGetMiniAppPoliciesParams,
         Responses.AppsGetMiniAppPoliciesResponse
     >
@@ -771,7 +786,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getScopes)
      */
-    "apps.getScopes": CallAPIWithOptionalParams<
+    getScopes: CallAPIWithOptionalParams<
         Params.AppsGetScopesParams,
         Responses.AppsGetScopesResponse
     >
@@ -780,7 +795,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getScore)
      */
-    "apps.getScore": CallAPIWithOptionalParams<
+    getScore: CallAPIWithOptionalParams<
         Params.AppsGetScoreParams,
         Responses.AppsGetScoreResponse
     >
@@ -789,13 +804,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.getSnippets)
      */
-    "apps.getSnippets": CallAPIWithoutParams<Responses.AppsGetSnippetsResponse>
+    getSnippets: CallAPIWithoutParams<Responses.AppsGetSnippetsResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/apps.getTestingGroups)
      */
-    "apps.getTestingGroups": CallAPIWithOptionalParams<
+    getTestingGroups: CallAPIWithOptionalParams<
         Params.AppsGetTestingGroupsParams,
         Responses.AppsGetTestingGroupsResponse
     >
@@ -804,7 +819,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.isNotificationsAllowed)
      */
-    "apps.isNotificationsAllowed": CallAPIWithOptionalParams<
+    isNotificationsAllowed: CallAPIWithOptionalParams<
         Params.AppsIsNotificationsAllowedParams,
         Responses.AppsIsNotificationsAllowedResponse
     >
@@ -813,7 +828,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.promoHasActiveGift)
      */
-    "apps.promoHasActiveGift": CallAPI<
+    promoHasActiveGift: CallAPI<
         Params.AppsPromoHasActiveGiftParams,
         Objects.VKBaseBoolInt
     >
@@ -822,16 +837,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.promoUseGift)
      */
-    "apps.promoUseGift": CallAPI<
-        Params.AppsPromoUseGiftParams,
-        Objects.VKBaseBoolInt
-    >
+    promoUseGift: CallAPI<Params.AppsPromoUseGiftParams, Objects.VKBaseBoolInt>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/apps.removeTestingGroup)
      */
-    "apps.removeTestingGroup": CallAPI<
+    removeTestingGroup: CallAPI<
         Params.AppsRemoveTestingGroupParams,
         Objects.VKBaseBoolInt
     >
@@ -840,7 +852,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.removeUsersFromTestingGroups)
      */
-    "apps.removeUsersFromTestingGroups": CallAPI<
+    removeUsersFromTestingGroups: CallAPI<
         Params.AppsRemoveUsersFromTestingGroupsParams,
         Objects.VKBaseBoolInt
     >
@@ -849,7 +861,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.sendRequest)
      */
-    "apps.sendRequest": CallAPI<
+    sendRequest: CallAPI<
         Params.AppsSendRequestParams,
         Responses.AppsSendRequestResponse
     >
@@ -858,25 +870,34 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/apps.updateMetaForTestingGroup)
      */
-    "apps.updateMetaForTestingGroup": CallAPI<
+    updateMetaForTestingGroup: CallAPI<
         Params.AppsUpdateMetaForTestingGroupParams,
         Responses.AppsCreatedGroupResponse
     >
+}
+
+/**
+ * VK API auth.* methods
+ */
+export interface APIMethodsAuth {
     /**
      * Allows to restore account access using a code received via SMS. " This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. "
      *
      * [Documentation](https://dev.vk.com/method/auth.restore)
      */
-    "auth.restore": CallAPI<
-        Params.AuthRestoreParams,
-        Responses.AuthRestoreResponse
-    >
+    restore: CallAPI<Params.AuthRestoreParams, Responses.AuthRestoreResponse>
+}
+
+/**
+ * VK API board.* methods
+ */
+export interface APIMethodsBoard {
     /**
      * Creates a new topic on a community's discussion board.
      *
      * [Documentation](https://dev.vk.com/method/board.addTopic)
      */
-    "board.addTopic": CallAPI<
+    addTopic: CallAPI<
         Params.BoardAddTopicParams,
         Responses.BoardAddTopicResponse
     >
@@ -885,16 +906,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.closeTopic)
      */
-    "board.closeTopic": CallAPI<
-        Params.BoardCloseTopicParams,
-        Responses.BaseOkResponse
-    >
+    closeTopic: CallAPI<Params.BoardCloseTopicParams, Responses.BaseOkResponse>
     /**
      * Adds a comment on a topic on a community's discussion board.
      *
      * [Documentation](https://dev.vk.com/method/board.createComment)
      */
-    "board.createComment": CallAPI<
+    createComment: CallAPI<
         Params.BoardCreateCommentParams,
         Responses.BoardCreateCommentResponse
     >
@@ -903,7 +921,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.deleteComment)
      */
-    "board.deleteComment": CallAPI<
+    deleteComment: CallAPI<
         Params.BoardDeleteCommentParams,
         Responses.BaseOkResponse
     >
@@ -912,7 +930,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.deleteTopic)
      */
-    "board.deleteTopic": CallAPI<
+    deleteTopic: CallAPI<
         Params.BoardDeleteTopicParams,
         Responses.BaseOkResponse
     >
@@ -921,7 +939,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.editComment)
      */
-    "board.editComment": CallAPI<
+    editComment: CallAPI<
         Params.BoardEditCommentParams,
         Responses.BaseOkResponse
     >
@@ -930,25 +948,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.editTopic)
      */
-    "board.editTopic": CallAPI<
-        Params.BoardEditTopicParams,
-        Responses.BaseOkResponse
-    >
+    editTopic: CallAPI<Params.BoardEditTopicParams, Responses.BaseOkResponse>
     /**
      * Pins a topic (fixes its place) to the top of a community's discussion board.
      *
      * [Documentation](https://dev.vk.com/method/board.fixTopic)
      */
-    "board.fixTopic": CallAPI<
-        Params.BoardFixTopicParams,
-        Responses.BaseOkResponse
-    >
+    fixTopic: CallAPI<Params.BoardFixTopicParams, Responses.BaseOkResponse>
     /**
      * Returns a list of comments on a topic on a community's discussion board.
      *
      * [Documentation](https://dev.vk.com/method/board.getComments)
      */
-    "board.getComments": {
+    getComments: {
         (
             params: Params.BoardGetCommentsParams & { extended: 1 | true },
         ): Promise<Responses.BoardGetCommentsExtendedResponse>
@@ -961,7 +973,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.getTopics)
      */
-    "board.getTopics": {
+    getTopics: {
         (
             params: Params.BoardGetTopicsParams & { extended: 1 | true },
         ): Promise<Responses.BoardGetTopicsExtendedResponse>
@@ -974,16 +986,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.openTopic)
      */
-    "board.openTopic": CallAPI<
-        Params.BoardOpenTopicParams,
-        Responses.BaseOkResponse
-    >
+    openTopic: CallAPI<Params.BoardOpenTopicParams, Responses.BaseOkResponse>
     /**
      * Restores a comment deleted from a topic on a community's discussion board.
      *
      * [Documentation](https://dev.vk.com/method/board.restoreComment)
      */
-    "board.restoreComment": CallAPI<
+    restoreComment: CallAPI<
         Params.BoardRestoreCommentParams,
         Responses.BaseOkResponse
     >
@@ -992,16 +1001,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/board.unfixTopic)
      */
-    "board.unfixTopic": CallAPI<
-        Params.BoardUnfixTopicParams,
-        Responses.BaseOkResponse
-    >
+    unfixTopic: CallAPI<Params.BoardUnfixTopicParams, Responses.BaseOkResponse>
+}
+
+/**
+ * VK API bugtracker.* methods
+ */
+export interface APIMethodsBugtracker {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.addCompanyGroupsMembers)
      */
-    "bugtracker.addCompanyGroupsMembers": CallAPI<
+    addCompanyGroupsMembers: CallAPI<
         Params.BugtrackerAddCompanyGroupsMembersParams,
         Responses.BugtrackerAddCompanyGroupsMembersResponse
     >
@@ -1010,7 +1022,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.addCompanyMembers)
      */
-    "bugtracker.addCompanyMembers": CallAPI<
+    addCompanyMembers: CallAPI<
         Params.BugtrackerAddCompanyMembersParams,
         Responses.BugtrackerAddCompanyMembersResponse
     >
@@ -1019,7 +1031,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.changeBugreportStatus)
      */
-    "bugtracker.changeBugreportStatus": CallAPI<
+    changeBugreportStatus: CallAPI<
         Params.BugtrackerChangeBugreportStatusParams,
         Objects.VKBaseBoolInt
     >
@@ -1028,7 +1040,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.createComment)
      */
-    "bugtracker.createComment": CallAPI<
+    createComment: CallAPI<
         Params.BugtrackerCreateCommentParams,
         Responses.BugtrackerCreateCommentResponse
     >
@@ -1037,7 +1049,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.getBugreportById)
      */
-    "bugtracker.getBugreportById": CallAPI<
+    getBugreportById: CallAPI<
         Params.BugtrackerGetBugreportByIdParams,
         Responses.BugtrackerGetBugreportByIdResponse
     >
@@ -1046,7 +1058,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.getCompanyGroupMembers)
      */
-    "bugtracker.getCompanyGroupMembers": CallAPI<
+    getCompanyGroupMembers: CallAPI<
         Params.BugtrackerGetCompanyGroupMembersParams,
         Responses.BugtrackerGetCompanyGroupMembersResponse
     >
@@ -1055,7 +1067,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.getCompanyMembers)
      */
-    "bugtracker.getCompanyMembers": CallAPI<
+    getCompanyMembers: CallAPI<
         Params.BugtrackerGetCompanyMembersParams,
         Responses.BugtrackerGetCompanyMembersResponse
     >
@@ -1064,7 +1076,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.getDownloadVersionUrl)
      */
-    "bugtracker.getDownloadVersionUrl": CallAPI<
+    getDownloadVersionUrl: CallAPI<
         Params.BugtrackerGetDownloadVersionUrlParams,
         Responses.BugtrackerGetDownloadVersionUrlResponse
     >
@@ -1073,7 +1085,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.getProductBuildUploadServer)
      */
-    "bugtracker.getProductBuildUploadServer": CallAPI<
+    getProductBuildUploadServer: CallAPI<
         Params.BugtrackerGetProductBuildUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -1082,7 +1094,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.removeCompanyGroupMember)
      */
-    "bugtracker.removeCompanyGroupMember": CallAPI<
+    removeCompanyGroupMember: CallAPI<
         Params.BugtrackerRemoveCompanyGroupMemberParams,
         Responses.BaseOkResponse
     >
@@ -1091,7 +1103,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.removeCompanyMember)
      */
-    "bugtracker.removeCompanyMember": CallAPI<
+    removeCompanyMember: CallAPI<
         Params.BugtrackerRemoveCompanyMemberParams,
         Responses.BaseOkResponse
     >
@@ -1100,7 +1112,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.saveProductVersion)
      */
-    "bugtracker.saveProductVersion": CallAPI<
+    saveProductVersion: CallAPI<
         Params.BugtrackerSaveProductVersionParams,
         Responses.BaseOkResponse
     >
@@ -1109,7 +1121,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.setCompanyMemberRole)
      */
-    "bugtracker.setCompanyMemberRole": CallAPI<
+    setCompanyMemberRole: CallAPI<
         Params.BugtrackerSetCompanyMemberRoleParams,
         Responses.BaseOkResponse
     >
@@ -1118,16 +1130,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/bugtracker.setProductIsOver)
      */
-    "bugtracker.setProductIsOver": CallAPI<
+    setProductIsOver: CallAPI<
         Params.BugtrackerSetProductIsOverParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API calls.* methods
+ */
+export interface APIMethodsCalls {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/calls.forceFinish)
      */
-    "calls.forceFinish": CallAPI<
+    forceFinish: CallAPI<
         Params.CallsForceFinishParams,
         Responses.BaseOkResponse
     >
@@ -1136,16 +1154,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/calls.start)
      */
-    "calls.start": CallAPIWithOptionalParams<
+    start: CallAPIWithOptionalParams<
         Params.CallsStartParams,
         Responses.CallsStartResponse
     >
+}
+
+/**
+ * VK API database.* methods
+ */
+export interface APIMethodsDatabase {
     /**
      * Returns list of chairs on a specified faculty.
      *
      * [Documentation](https://dev.vk.com/method/database.getChairs)
      */
-    "database.getChairs": CallAPI<
+    getChairs: CallAPI<
         Params.DatabaseGetChairsParams,
         Responses.DatabaseGetChairsResponse
     >
@@ -1154,7 +1178,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getCities)
      */
-    "database.getCities": CallAPIWithOptionalParams<
+    getCities: CallAPIWithOptionalParams<
         Params.DatabaseGetCitiesParams,
         Responses.DatabaseGetCitiesResponse
     >
@@ -1163,7 +1187,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getCitiesById)
      */
-    "database.getCitiesById": CallAPIWithOptionalParams<
+    getCitiesById: CallAPIWithOptionalParams<
         Params.DatabaseGetCitiesByIdParams,
         Responses.DatabaseGetCitiesByIdResponse
     >
@@ -1172,7 +1196,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getCountries)
      */
-    "database.getCountries": CallAPIWithOptionalParams<
+    getCountries: CallAPIWithOptionalParams<
         Params.DatabaseGetCountriesParams,
         Responses.DatabaseGetCountriesResponse
     >
@@ -1181,7 +1205,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getCountriesById)
      */
-    "database.getCountriesById": CallAPIWithOptionalParams<
+    getCountriesById: CallAPIWithOptionalParams<
         Params.DatabaseGetCountriesByIdParams,
         Responses.DatabaseGetCountriesByIdResponse
     >
@@ -1190,7 +1214,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getFaculties)
      */
-    "database.getFaculties": CallAPI<
+    getFaculties: CallAPI<
         Params.DatabaseGetFacultiesParams,
         Responses.DatabaseGetFacultiesResponse
     >
@@ -1199,7 +1223,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getMetroStations)
      */
-    "database.getMetroStations": CallAPI<
+    getMetroStations: CallAPI<
         Params.DatabaseGetMetroStationsParams,
         Responses.DatabaseGetMetroStationsResponse
     >
@@ -1208,7 +1232,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getMetroStationsById)
      */
-    "database.getMetroStationsById": CallAPIWithOptionalParams<
+    getMetroStationsById: CallAPIWithOptionalParams<
         Params.DatabaseGetMetroStationsByIdParams,
         Responses.DatabaseGetMetroStationsByIdResponse
     >
@@ -1217,7 +1241,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getRegions)
      */
-    "database.getRegions": CallAPIWithOptionalParams<
+    getRegions: CallAPIWithOptionalParams<
         Params.DatabaseGetRegionsParams,
         Responses.DatabaseGetRegionsResponse
     >
@@ -1226,7 +1250,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getSchoolClasses)
      */
-    "database.getSchoolClasses": CallAPIWithOptionalParams<
+    getSchoolClasses: CallAPIWithOptionalParams<
         Params.DatabaseGetSchoolClassesParams,
         Responses.DatabaseGetSchoolClassesNewResponse
     >
@@ -1235,7 +1259,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getSchools)
      */
-    "database.getSchools": CallAPI<
+    getSchools: CallAPI<
         Params.DatabaseGetSchoolsParams,
         Responses.DatabaseGetSchoolsResponse
     >
@@ -1244,34 +1268,40 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/database.getUniversities)
      */
-    "database.getUniversities": CallAPIWithOptionalParams<
+    getUniversities: CallAPIWithOptionalParams<
         Params.DatabaseGetUniversitiesParams,
         Responses.DatabaseGetUniversitiesResponse
     >
+}
+
+/**
+ * VK API docs.* methods
+ */
+export interface APIMethodsDocs {
     /**
      * Copies a document to a user's or community's document list.
      *
      * [Documentation](https://dev.vk.com/method/docs.add)
      */
-    "docs.add": CallAPI<Params.DocsAddParams, Responses.DocsAddResponse>
+    add: CallAPI<Params.DocsAddParams, Responses.DocsAddResponse>
     /**
      * Deletes a user or community document.
      *
      * [Documentation](https://dev.vk.com/method/docs.delete)
      */
-    "docs.delete": CallAPI<Params.DocsDeleteParams, Responses.BaseOkResponse>
+    delete: CallAPI<Params.DocsDeleteParams, Responses.BaseOkResponse>
     /**
      * Edits a document.
      *
      * [Documentation](https://dev.vk.com/method/docs.edit)
      */
-    "docs.edit": CallAPI<Params.DocsEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.DocsEditParams, Responses.BaseOkResponse>
     /**
      * Returns detailed information about user or community documents.
      *
      * [Documentation](https://dev.vk.com/method/docs.get)
      */
-    "docs.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.DocsGetParams,
         Responses.DocsGetResponse
     >
@@ -1280,16 +1310,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/docs.getById)
      */
-    "docs.getById": CallAPI<
-        Params.DocsGetByIdParams,
-        Responses.DocsGetByIdResponse
-    >
+    getById: CallAPI<Params.DocsGetByIdParams, Responses.DocsGetByIdResponse>
     /**
      * Returns the server address for document upload.
      *
      * [Documentation](https://dev.vk.com/method/docs.getMessagesUploadServer)
      */
-    "docs.getMessagesUploadServer": CallAPIWithOptionalParams<
+    getMessagesUploadServer: CallAPIWithOptionalParams<
         Params.DocsGetMessagesUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -1298,7 +1325,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/docs.getTypes)
      */
-    "docs.getTypes": CallAPIWithOptionalParams<
+    getTypes: CallAPIWithOptionalParams<
         Params.DocsGetTypesParams,
         Responses.DocsGetTypesResponse
     >
@@ -1307,7 +1334,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/docs.getUploadServer)
      */
-    "docs.getUploadServer": CallAPIWithOptionalParams<
+    getUploadServer: CallAPIWithOptionalParams<
         Params.DocsGetUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -1316,7 +1343,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/docs.getWallUploadServer)
      */
-    "docs.getWallUploadServer": CallAPIWithOptionalParams<
+    getWallUploadServer: CallAPIWithOptionalParams<
         Params.DocsGetWallUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -1325,28 +1352,34 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/docs.restore)
      */
-    "docs.restore": CallAPI<Params.DocsRestoreParams, Responses.BaseOkResponse>
+    restore: CallAPI<Params.DocsRestoreParams, Responses.BaseOkResponse>
     /**
      * Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
      *
      * [Documentation](https://dev.vk.com/method/docs.save)
      */
-    "docs.save": CallAPI<Params.DocsSaveParams, Responses.DocsSaveResponse>
+    save: CallAPI<Params.DocsSaveParams, Responses.DocsSaveResponse>
     /**
      * Returns a list of documents matching the search criteria.
      *
      * [Documentation](https://dev.vk.com/method/docs.search)
      */
-    "docs.search": CallAPIWithOptionalParams<
+    search: CallAPIWithOptionalParams<
         Params.DocsSearchParams,
         Responses.DocsSearchResponse
     >
+}
+
+/**
+ * VK API donut.* methods
+ */
+export interface APIMethodsDonut {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/donut.getFriends)
      */
-    "donut.getFriends": CallAPI<
+    getFriends: CallAPI<
         Params.DonutGetFriendsParams,
         Responses.GroupsGetMembersFieldsResponse
     >
@@ -1355,7 +1388,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/donut.getSubscription)
      */
-    "donut.getSubscription": CallAPI<
+    getSubscription: CallAPI<
         Params.DonutGetSubscriptionParams,
         Objects.VKDonutDonatorSubscriptionInfo
     >
@@ -1364,7 +1397,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/donut.getSubscriptions)
      */
-    "donut.getSubscriptions": CallAPIWithOptionalParams<
+    getSubscriptions: CallAPIWithOptionalParams<
         Params.DonutGetSubscriptionsParams,
         Responses.DonutGetSubscriptionsResponse
     >
@@ -1373,43 +1406,58 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/donut.isDon)
      */
-    "donut.isDon": CallAPI<Params.DonutIsDonParams, Objects.VKBaseBoolInt>
+    isDon: CallAPI<Params.DonutIsDonParams, Objects.VKBaseBoolInt>
+}
+
+/**
+ * VK API downloadedGames.* methods
+ */
+export interface APIMethodsDownloadedGames {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/downloadedGames.getPaidStatus)
      */
-    "downloadedGames.getPaidStatus": CallAPIWithOptionalParams<
+    getPaidStatus: CallAPIWithOptionalParams<
         Params.DownloadedGamesGetPaidStatusParams,
         Responses.DownloadedGamesPaidStatusResponse
     >
+}
+
+/**
+ * VK API execute.* methods
+ */
+export interface APIMethodsExecute {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/execute)
      */
-    execute: CallAPIWithoutParams<Responses.BaseUndefinedResponse>
+    undefined: CallAPIWithoutParams<Responses.BaseUndefinedResponse>
+}
+
+/**
+ * VK API fave.* methods
+ */
+export interface APIMethodsFave {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.addArticle)
      */
-    "fave.addArticle": CallAPI<
-        Params.FaveAddArticleParams,
-        Responses.BaseOkResponse
-    >
+    addArticle: CallAPI<Params.FaveAddArticleParams, Responses.BaseOkResponse>
     /**
      * Adds a link to user faves.
      *
      * [Documentation](https://dev.vk.com/method/fave.addLink)
      */
-    "fave.addLink": CallAPI<Params.FaveAddLinkParams, Responses.BaseOkResponse>
+    addLink: CallAPI<Params.FaveAddLinkParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.addPage)
      */
-    "fave.addPage": CallAPIWithOptionalParams<
+    addPage: CallAPIWithOptionalParams<
         Params.FaveAddPageParams,
         Responses.BaseOkResponse
     >
@@ -1418,22 +1466,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.addPost)
      */
-    "fave.addPost": CallAPI<Params.FaveAddPostParams, Responses.BaseOkResponse>
+    addPost: CallAPI<Params.FaveAddPostParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.addProduct)
      */
-    "fave.addProduct": CallAPI<
-        Params.FaveAddProductParams,
-        Responses.BaseOkResponse
-    >
+    addProduct: CallAPI<Params.FaveAddProductParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.addTag)
      */
-    "fave.addTag": CallAPIWithOptionalParams<
+    addTag: CallAPIWithOptionalParams<
         Params.FaveAddTagParams,
         Objects.VKFaveTag
     >
@@ -1442,22 +1487,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.addVideo)
      */
-    "fave.addVideo": CallAPI<
-        Params.FaveAddVideoParams,
-        Responses.BaseOkResponse
-    >
+    addVideo: CallAPI<Params.FaveAddVideoParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.editTag)
      */
-    "fave.editTag": CallAPI<Params.FaveEditTagParams, Responses.BaseOkResponse>
+    editTag: CallAPI<Params.FaveEditTagParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.get)
      */
-    "fave.get": {
+    get: {
         (
             params: Params.FaveGetParams & { extended: 1 | true },
         ): Promise<Responses.FaveGetExtendedResponse>
@@ -1468,7 +1510,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.getPages)
      */
-    "fave.getPages": CallAPIWithOptionalParams<
+    getPages: CallAPIWithOptionalParams<
         Params.FaveGetPagesParams,
         Responses.FaveGetPagesResponse
     >
@@ -1477,19 +1519,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.getTags)
      */
-    "fave.getTags": CallAPIWithoutParams<Responses.FaveGetTagsResponse>
+    getTags: CallAPIWithoutParams<Responses.FaveGetTagsResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.markSeen)
      */
-    "fave.markSeen": CallAPIWithoutParams<Objects.VKBaseBoolInt>
+    markSeen: CallAPIWithoutParams<Objects.VKBaseBoolInt>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.removeArticle)
      */
-    "fave.removeArticle": CallAPI<
+    removeArticle: CallAPI<
         Params.FaveRemoveArticleParams,
         Objects.VKBaseBoolInt
     >
@@ -1498,7 +1540,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.removeLink)
      */
-    "fave.removeLink": CallAPIWithOptionalParams<
+    removeLink: CallAPIWithOptionalParams<
         Params.FaveRemoveLinkParams,
         Responses.BaseOkResponse
     >
@@ -1507,7 +1549,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.removePage)
      */
-    "fave.removePage": CallAPIWithOptionalParams<
+    removePage: CallAPIWithOptionalParams<
         Params.FaveRemovePageParams,
         Responses.BaseOkResponse
     >
@@ -1516,16 +1558,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.removePost)
      */
-    "fave.removePost": CallAPI<
-        Params.FaveRemovePostParams,
-        Responses.BaseOkResponse
-    >
+    removePost: CallAPI<Params.FaveRemovePostParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.removeProduct)
      */
-    "fave.removeProduct": CallAPI<
+    removeProduct: CallAPI<
         Params.FaveRemoveProductParams,
         Responses.BaseOkResponse
     >
@@ -1534,34 +1573,25 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.removeTag)
      */
-    "fave.removeTag": CallAPI<
-        Params.FaveRemoveTagParams,
-        Responses.BaseOkResponse
-    >
+    removeTag: CallAPI<Params.FaveRemoveTagParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.removeVideo)
      */
-    "fave.removeVideo": CallAPI<
-        Params.FaveRemoveVideoParams,
-        Responses.BaseOkResponse
-    >
+    removeVideo: CallAPI<Params.FaveRemoveVideoParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.reorderTags)
      */
-    "fave.reorderTags": CallAPI<
-        Params.FaveReorderTagsParams,
-        Responses.BaseOkResponse
-    >
+    reorderTags: CallAPI<Params.FaveReorderTagsParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/fave.setPageTags)
      */
-    "fave.setPageTags": CallAPIWithOptionalParams<
+    setPageTags: CallAPIWithOptionalParams<
         Params.FaveSetPageTagsParams,
         Responses.BaseOkResponse
     >
@@ -1570,7 +1600,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.setTags)
      */
-    "fave.setTags": CallAPIWithOptionalParams<
+    setTags: CallAPIWithOptionalParams<
         Params.FaveSetTagsParams,
         Responses.BaseOkResponse
     >
@@ -1579,16 +1609,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/fave.trackPageInteraction)
      */
-    "fave.trackPageInteraction": CallAPIWithOptionalParams<
+    trackPageInteraction: CallAPIWithOptionalParams<
         Params.FaveTrackPageInteractionParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API friends.* methods
+ */
+export interface APIMethodsFriends {
     /**
      * Approves or creates a friend request.
      *
      * [Documentation](https://dev.vk.com/method/friends.add)
      */
-    "friends.add": CallAPIWithOptionalParams<
+    add: CallAPIWithOptionalParams<
         Params.FriendsAddParams,
         Responses.FriendsAddResponse
     >
@@ -1597,7 +1633,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.addList)
      */
-    "friends.addList": CallAPI<
+    addList: CallAPI<
         Params.FriendsAddListParams,
         Responses.FriendsAddListResponse
     >
@@ -1606,7 +1642,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.areFriends)
      */
-    "friends.areFriends": {
+    areFriends: {
         (
             params: Params.FriendsAreFriendsParams & { extended: 1 | true },
         ): Promise<Responses.FriendsAreFriendsExtendedResponse>
@@ -1619,7 +1655,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.delete)
      */
-    "friends.delete": CallAPIWithOptionalParams<
+    delete: CallAPIWithOptionalParams<
         Params.FriendsDeleteParams,
         Responses.FriendsDeleteResponse
     >
@@ -1628,13 +1664,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.deleteAllRequests)
      */
-    "friends.deleteAllRequests": CallAPIWithoutParams<Responses.BaseOkResponse>
+    deleteAllRequests: CallAPIWithoutParams<Responses.BaseOkResponse>
     /**
      * Deletes a friend list of the current user.
      *
      * [Documentation](https://dev.vk.com/method/friends.deleteList)
      */
-    "friends.deleteList": CallAPI<
+    deleteList: CallAPI<
         Params.FriendsDeleteListParams,
         Responses.BaseOkResponse
     >
@@ -1643,22 +1679,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.edit)
      */
-    "friends.edit": CallAPI<Params.FriendsEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.FriendsEditParams, Responses.BaseOkResponse>
     /**
      * Edits a friend list of the current user.
      *
      * [Documentation](https://dev.vk.com/method/friends.editList)
      */
-    "friends.editList": CallAPI<
-        Params.FriendsEditListParams,
-        Responses.BaseOkResponse
-    >
+    editList: CallAPI<Params.FriendsEditListParams, Responses.BaseOkResponse>
     /**
      * Returns a list of user IDs or detailed information about a user's friends.
      *
      * [Documentation](https://dev.vk.com/method/friends.get)
      */
-    "friends.get": {
+    get: {
         <F extends Objects.VKUsersFields>(
             params: Params.FriendsGetParams & { fields: F[] },
         ): Promise<
@@ -1682,13 +1715,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.getAppUsers)
      */
-    "friends.getAppUsers": CallAPIWithoutParams<Responses.FriendsGetAppUsersResponse>
+    getAppUsers: CallAPIWithoutParams<Responses.FriendsGetAppUsersResponse>
     /**
      * Returns a list of the user's friend lists.
      *
      * [Documentation](https://dev.vk.com/method/friends.getLists)
      */
-    "friends.getLists": CallAPIWithOptionalParams<
+    getLists: CallAPIWithOptionalParams<
         Params.FriendsGetListsParams,
         Responses.FriendsGetListsResponse
     >
@@ -1697,7 +1730,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.getMutual)
      */
-    "friends.getMutual": {
+    getMutual: {
         (
             params: Params.FriendsGetMutualParams & {
                 target_uids: Required<
@@ -1721,7 +1754,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.getOnline)
      */
-    "friends.getOnline": {
+    getOnline: {
         (
             params: Params.FriendsGetOnlineParams & { online_mobile: 1 | true },
         ): Promise<
@@ -1739,7 +1772,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.getRecent)
      */
-    "friends.getRecent": CallAPIWithOptionalParams<
+    getRecent: CallAPIWithOptionalParams<
         Params.FriendsGetRecentParams,
         Responses.FriendsGetRecentResponse
     >
@@ -1748,7 +1781,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.getRequests)
      */
-    "friends.getRequests": {
+    getRequests: {
         (
             params: Params.FriendsGetRequestsParams & { need_mutual: 1 | true },
         ): Promise<Responses.FriendsGetRequestsNeedMutualResponse>
@@ -1764,7 +1797,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.getSuggestions)
      */
-    "friends.getSuggestions": CallAPIWithOptionalParams<
+    getSuggestions: CallAPIWithOptionalParams<
         Params.FriendsGetSuggestionsParams,
         Responses.FriendsGetSuggestionsResponse
     >
@@ -1773,34 +1806,43 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/friends.search)
      */
-    "friends.search": CallAPIWithOptionalParams<
+    search: CallAPIWithOptionalParams<
         Params.FriendsSearchParams,
         Responses.FriendsSearchResponse
     >
+}
+
+/**
+ * VK API gifts.* methods
+ */
+export interface APIMethodsGifts {
     /**
      * Returns a list of user gifts.
      *
      * [Documentation](https://dev.vk.com/method/gifts.get)
      */
-    "gifts.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.GiftsGetParams,
         Responses.GiftsGetResponse
     >
+}
+
+/**
+ * VK API groups.* methods
+ */
+export interface APIMethodsGroups {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/groups.addAddress)
      */
-    "groups.addAddress": CallAPI<
-        Params.GroupsAddAddressParams,
-        Objects.VKGroupsAddress
-    >
+    addAddress: CallAPI<Params.GroupsAddAddressParams, Objects.VKGroupsAddress>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/groups.addCallbackServer)
      */
-    "groups.addCallbackServer": CallAPI<
+    addCallbackServer: CallAPI<
         Params.GroupsAddCallbackServerParams,
         Responses.GroupsAddCallbackServerResponse
     >
@@ -1809,16 +1851,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.addLink)
      */
-    "groups.addLink": CallAPI<
-        Params.GroupsAddLinkParams,
-        Objects.VKGroupsLinksItem
-    >
+    addLink: CallAPI<Params.GroupsAddLinkParams, Objects.VKGroupsLinksItem>
     /**
      * Allows to approve join request to the community.
      *
      * [Documentation](https://dev.vk.com/method/groups.approveRequest)
      */
-    "groups.approveRequest": CallAPI<
+    approveRequest: CallAPI<
         Params.GroupsApproveRequestParams,
         Responses.BaseOkResponse
     >
@@ -1827,22 +1866,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.ban)
      */
-    "groups.ban": CallAPI<Params.GroupsBanParams, Responses.BaseOkResponse>
+    ban: CallAPI<Params.GroupsBanParams, Responses.BaseOkResponse>
     /**
      * Creates a new community.
      *
      * [Documentation](https://dev.vk.com/method/groups.create)
      */
-    "groups.create": CallAPI<
-        Params.GroupsCreateParams,
-        Objects.VKGroupsGroupFull
-    >
+    create: CallAPI<Params.GroupsCreateParams, Objects.VKGroupsGroupFull>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/groups.deleteAddress)
      */
-    "groups.deleteAddress": CallAPI<
+    deleteAddress: CallAPI<
         Params.GroupsDeleteAddressParams,
         Responses.BaseOkResponse
     >
@@ -1851,7 +1887,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.deleteCallbackServer)
      */
-    "groups.deleteCallbackServer": CallAPI<
+    deleteCallbackServer: CallAPI<
         Params.GroupsDeleteCallbackServerParams,
         Responses.BaseOkResponse
     >
@@ -1860,16 +1896,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.deleteLink)
      */
-    "groups.deleteLink": CallAPI<
-        Params.GroupsDeleteLinkParams,
-        Responses.BaseOkResponse
-    >
+    deleteLink: CallAPI<Params.GroupsDeleteLinkParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/groups.disableOnline)
      */
-    "groups.disableOnline": CallAPI<
+    disableOnline: CallAPI<
         Params.GroupsDisableOnlineParams,
         Responses.BaseOkResponse
     >
@@ -1878,13 +1911,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.edit)
      */
-    "groups.edit": CallAPI<Params.GroupsEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.GroupsEditParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/groups.editAddress)
      */
-    "groups.editAddress": CallAPI<
+    editAddress: CallAPI<
         Params.GroupsEditAddressParams,
         Objects.VKGroupsAddress
     >
@@ -1893,7 +1926,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.editCallbackServer)
      */
-    "groups.editCallbackServer": CallAPI<
+    editCallbackServer: CallAPI<
         Params.GroupsEditCallbackServerParams,
         Responses.BaseOkResponse
     >
@@ -1902,16 +1935,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.editLink)
      */
-    "groups.editLink": CallAPI<
-        Params.GroupsEditLinkParams,
-        Responses.BaseOkResponse
-    >
+    editLink: CallAPI<Params.GroupsEditLinkParams, Responses.BaseOkResponse>
     /**
      * Allows to add, remove or edit the community manager.
      *
      * [Documentation](https://dev.vk.com/method/groups.editManager)
      */
-    "groups.editManager": CallAPI<
+    editManager: CallAPI<
         Params.GroupsEditManagerParams,
         Responses.BaseOkResponse
     >
@@ -1920,7 +1950,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.enableOnline)
      */
-    "groups.enableOnline": CallAPI<
+    enableOnline: CallAPI<
         Params.GroupsEnableOnlineParams,
         Responses.BaseOkResponse
     >
@@ -1929,7 +1959,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.get)
      */
-    "groups.get": {
+    get: {
         (
             params: Params.GroupsGetParams & { extended: 1 | true },
         ): Promise<Responses.GroupsGetObjectExtendedResponse>
@@ -1940,7 +1970,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getAddresses)
      */
-    "groups.getAddresses": CallAPI<
+    getAddresses: CallAPI<
         Params.GroupsGetAddressesParams,
         Responses.GroupsGetAddressesResponse
     >
@@ -1949,7 +1979,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getBanned)
      */
-    "groups.getBanned": CallAPI<
+    getBanned: CallAPI<
         Params.GroupsGetBannedParams,
         Responses.GroupsGetBannedResponse
     >
@@ -1958,7 +1988,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getById)
      */
-    "groups.getById": CallAPIWithOptionalParams<
+    getById: CallAPIWithOptionalParams<
         Params.GroupsGetByIdParams,
         Responses.GroupsGetByIdObjectResponse
     >
@@ -1967,7 +1997,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getCallbackConfirmationCode)
      */
-    "groups.getCallbackConfirmationCode": CallAPI<
+    getCallbackConfirmationCode: CallAPI<
         Params.GroupsGetCallbackConfirmationCodeParams,
         Responses.GroupsGetCallbackConfirmationCodeResponse
     >
@@ -1976,7 +2006,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getCallbackServers)
      */
-    "groups.getCallbackServers": CallAPI<
+    getCallbackServers: CallAPI<
         Params.GroupsGetCallbackServersParams,
         Responses.GroupsGetCallbackServersResponse
     >
@@ -1985,7 +2015,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getCallbackSettings)
      */
-    "groups.getCallbackSettings": CallAPI<
+    getCallbackSettings: CallAPI<
         Params.GroupsGetCallbackSettingsParams,
         Objects.VKGroupsCallbackSettings
     >
@@ -1994,7 +2024,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getCatalogInfo)
      */
-    "groups.getCatalogInfo": {
+    getCatalogInfo: {
         (
             params: Params.GroupsGetCatalogInfoParams & { extended: 1 | true },
         ): Promise<Responses.GroupsGetCatalogInfoExtendedResponse>
@@ -2007,7 +2037,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getInvitedUsers)
      */
-    "groups.getInvitedUsers": CallAPI<
+    getInvitedUsers: CallAPI<
         Params.GroupsGetInvitedUsersParams,
         Responses.GroupsGetInvitedUsersResponse
     >
@@ -2016,7 +2046,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getInvites)
      */
-    "groups.getInvites": {
+    getInvites: {
         (
             params: Params.GroupsGetInvitesParams & { extended: 1 | true },
         ): Promise<Responses.GroupsGetInvitesExtendedResponse>
@@ -2029,7 +2059,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getLongPollServer)
      */
-    "groups.getLongPollServer": CallAPI<
+    getLongPollServer: CallAPI<
         Params.GroupsGetLongPollServerParams,
         Objects.VKGroupsLongPollServer
     >
@@ -2038,7 +2068,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getLongPollSettings)
      */
-    "groups.getLongPollSettings": CallAPI<
+    getLongPollSettings: CallAPI<
         Params.GroupsGetLongPollSettingsParams,
         Objects.VKGroupsLongPollSettings
     >
@@ -2047,7 +2077,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getMembers)
      */
-    "groups.getMembers": {
+    getMembers: {
         <F extends Objects.VKUsersFields>(
             params: Params.GroupsGetMembersParams & { fields: F[] },
         ): Promise<
@@ -2078,7 +2108,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getOnlineStatus)
      */
-    "groups.getOnlineStatus": CallAPI<
+    getOnlineStatus: CallAPI<
         Params.GroupsGetOnlineStatusParams,
         Responses.GroupsGetOnlineStatusResponse
     >
@@ -2087,7 +2117,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getRequests)
      */
-    "groups.getRequests": {
+    getRequests: {
         <F extends Objects.VKUsersFields>(
             params: Params.GroupsGetRequestsParams & { fields: F[] },
         ): Promise<
@@ -2111,7 +2141,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getSettings)
      */
-    "groups.getSettings": CallAPI<
+    getSettings: CallAPI<
         Params.GroupsGetSettingsParams,
         Responses.GroupsGetSettingsResponse
     >
@@ -2120,7 +2150,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getTagList)
      */
-    "groups.getTagList": CallAPI<
+    getTagList: CallAPI<
         Params.GroupsGetTagListParams,
         Responses.GroupsGetTagListResponse
     >
@@ -2129,13 +2159,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.getTokenPermissions)
      */
-    "groups.getTokenPermissions": CallAPIWithoutParams<Responses.GroupsGetTokenPermissionsResponse>
+    getTokenPermissions: CallAPIWithoutParams<Responses.GroupsGetTokenPermissionsResponse>
     /**
      * Allows to invite friends to the community.
      *
      * [Documentation](https://dev.vk.com/method/groups.invite)
      */
-    "groups.invite": CallAPI<
+    invite: CallAPI<
         Params.GroupsInviteParams,
         Responses.BaseOkResponse | Responses.GroupsInviteUserIdsListResponse
     >
@@ -2144,7 +2174,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.isMember)
      */
-    "groups.isMember": {
+    isMember: {
         (
             params: Params.GroupsIsMemberParams & {
                 extended: 1 | true
@@ -2170,28 +2200,25 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.join)
      */
-    "groups.join": CallAPI<Params.GroupsJoinParams, Responses.BaseOkResponse>
+    join: CallAPI<Params.GroupsJoinParams, Responses.BaseOkResponse>
     /**
      * With this method you can leave a group, public page, or event.
      *
      * [Documentation](https://dev.vk.com/method/groups.leave)
      */
-    "groups.leave": CallAPI<Params.GroupsLeaveParams, Responses.BaseOkResponse>
+    leave: CallAPI<Params.GroupsLeaveParams, Responses.BaseOkResponse>
     /**
      * Removes a user from the community.
      *
      * [Documentation](https://dev.vk.com/method/groups.removeUser)
      */
-    "groups.removeUser": CallAPI<
-        Params.GroupsRemoveUserParams,
-        Responses.BaseOkResponse
-    >
+    removeUser: CallAPI<Params.GroupsRemoveUserParams, Responses.BaseOkResponse>
     /**
      * Allows to reorder links in the community.
      *
      * [Documentation](https://dev.vk.com/method/groups.reorderLink)
      */
-    "groups.reorderLink": CallAPI<
+    reorderLink: CallAPI<
         Params.GroupsReorderLinkParams,
         Responses.BaseOkResponse
     >
@@ -2200,16 +2227,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.search)
      */
-    "groups.search": CallAPI<
-        Params.GroupsSearchParams,
-        Responses.GroupsSearchResponse
-    >
+    search: CallAPI<Params.GroupsSearchParams, Responses.GroupsSearchResponse>
     /**
      * Allow to set notifications settings for group.
      *
      * [Documentation](https://dev.vk.com/method/groups.setCallbackSettings)
      */
-    "groups.setCallbackSettings": CallAPI<
+    setCallbackSettings: CallAPI<
         Params.GroupsSetCallbackSettingsParams,
         Responses.BaseOkResponse
     >
@@ -2218,7 +2242,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.setLongPollSettings)
      */
-    "groups.setLongPollSettings": CallAPI<
+    setLongPollSettings: CallAPI<
         Params.GroupsSetLongPollSettingsParams,
         Responses.BaseOkResponse
     >
@@ -2227,7 +2251,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.setSettings)
      */
-    "groups.setSettings": CallAPI<
+    setSettings: CallAPI<
         Params.GroupsSetSettingsParams,
         Responses.BaseOkResponse
     >
@@ -2236,46 +2260,37 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.setUserNote)
      */
-    "groups.setUserNote": CallAPI<
-        Params.GroupsSetUserNoteParams,
-        Objects.VKBaseBoolInt
-    >
+    setUserNote: CallAPI<Params.GroupsSetUserNoteParams, Objects.VKBaseBoolInt>
     /**
      * Add new group's tag
      *
      * [Documentation](https://dev.vk.com/method/groups.tagAdd)
      */
-    "groups.tagAdd": CallAPI<Params.GroupsTagAddParams, Objects.VKBaseBoolInt>
+    tagAdd: CallAPI<Params.GroupsTagAddParams, Objects.VKBaseBoolInt>
     /**
      * Bind or unbind group's tag to user
      *
      * [Documentation](https://dev.vk.com/method/groups.tagBind)
      */
-    "groups.tagBind": CallAPI<Params.GroupsTagBindParams, Objects.VKBaseBoolInt>
+    tagBind: CallAPI<Params.GroupsTagBindParams, Objects.VKBaseBoolInt>
     /**
      * Delete group's tag
      *
      * [Documentation](https://dev.vk.com/method/groups.tagDelete)
      */
-    "groups.tagDelete": CallAPI<
-        Params.GroupsTagDeleteParams,
-        Objects.VKBaseBoolInt
-    >
+    tagDelete: CallAPI<Params.GroupsTagDeleteParams, Objects.VKBaseBoolInt>
     /**
      * Update group's tag
      *
      * [Documentation](https://dev.vk.com/method/groups.tagUpdate)
      */
-    "groups.tagUpdate": CallAPI<
-        Params.GroupsTagUpdateParams,
-        Objects.VKBaseBoolInt
-    >
+    tagUpdate: CallAPI<Params.GroupsTagUpdateParams, Objects.VKBaseBoolInt>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/groups.toggleMarket)
      */
-    "groups.toggleMarket": CallAPI<
+    toggleMarket: CallAPI<
         Params.GroupsToggleMarketParams,
         Responses.BaseOkResponse
     >
@@ -2284,13 +2299,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.unban)
      */
-    "groups.unban": CallAPI<Params.GroupsUnbanParams, Responses.BaseOkResponse>
+    unban: CallAPI<Params.GroupsUnbanParams, Responses.BaseOkResponse>
+}
+
+/**
+ * VK API leadForms.* methods
+ */
+export interface APIMethodsLeadForms {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/leadForms.create)
      */
-    "leadForms.create": CallAPI<
+    create: CallAPI<
         Params.LeadFormsCreateParams,
         Responses.LeadFormsCreateResponse
     >
@@ -2299,7 +2320,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/leadForms.delete)
      */
-    "leadForms.delete": CallAPI<
+    delete: CallAPI<
         Params.LeadFormsDeleteParams,
         Responses.LeadFormsDeleteResponse
     >
@@ -2308,13 +2329,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/leadForms.get)
      */
-    "leadForms.get": CallAPI<Params.LeadFormsGetParams, Objects.VKLeadFormsForm>
+    get: CallAPI<Params.LeadFormsGetParams, Objects.VKLeadFormsForm>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/leadForms.getLeads)
      */
-    "leadForms.getLeads": CallAPI<
+    getLeads: CallAPI<
         Params.LeadFormsGetLeadsParams,
         Responses.LeadFormsGetLeadsResponse
     >
@@ -2323,46 +2344,46 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/leadForms.getUploadURL)
      */
-    "leadForms.getUploadURL": CallAPIWithoutParams<Responses.LeadFormsUploadUrlResponse>
+    getUploadURL: CallAPIWithoutParams<Responses.LeadFormsUploadUrlResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/leadForms.list)
      */
-    "leadForms.list": CallAPI<
-        Params.LeadFormsListParams,
-        Responses.LeadFormsListResponse
-    >
+    list: CallAPI<Params.LeadFormsListParams, Responses.LeadFormsListResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/leadForms.update)
      */
-    "leadForms.update": CallAPI<
+    update: CallAPI<
         Params.LeadFormsUpdateParams,
         Responses.LeadFormsCreateResponse
     >
+}
+
+/**
+ * VK API likes.* methods
+ */
+export interface APIMethodsLikes {
     /**
      * Adds the specified object to the 'Likes' list of the current user.
      *
      * [Documentation](https://dev.vk.com/method/likes.add)
      */
-    "likes.add": CallAPI<Params.LikesAddParams, Responses.LikesAddResponse>
+    add: CallAPI<Params.LikesAddParams, Responses.LikesAddResponse>
     /**
      * Deletes the specified object from the 'Likes' list of the current user.
      *
      * [Documentation](https://dev.vk.com/method/likes.delete)
      */
-    "likes.delete": CallAPI<
-        Params.LikesDeleteParams,
-        Responses.LikesDeleteResponse
-    >
+    delete: CallAPI<Params.LikesDeleteParams, Responses.LikesDeleteResponse>
     /**
      * Returns a list of IDs of users who added the specified object to their 'Likes' list.
      *
      * [Documentation](https://dev.vk.com/method/likes.getList)
      */
-    "likes.getList": {
+    getList: {
         (
             params: Params.LikesGetListParams & { extended: 1 | true },
         ): Promise<Responses.LikesGetListExtendedResponse>
@@ -2375,22 +2396,25 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/likes.isLiked)
      */
-    "likes.isLiked": CallAPI<
-        Params.LikesIsLikedParams,
-        Responses.LikesIsLikedResponse
-    >
+    isLiked: CallAPI<Params.LikesIsLikedParams, Responses.LikesIsLikedResponse>
+}
+
+/**
+ * VK API market.* methods
+ */
+export interface APIMethodsMarket {
     /**
      * Ads a new item to the market.
      *
      * [Documentation](https://dev.vk.com/method/market.add)
      */
-    "market.add": CallAPI<Params.MarketAddParams, Responses.MarketAddResponse>
+    add: CallAPI<Params.MarketAddParams, Responses.MarketAddResponse>
     /**
      * Creates new collection of items
      *
      * [Documentation](https://dev.vk.com/method/market.addAlbum)
      */
-    "market.addAlbum": CallAPI<
+    addAlbum: CallAPI<
         Params.MarketAddAlbumParams,
         Responses.MarketAddAlbumResponse
     >
@@ -2399,7 +2423,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.addProperty)
      */
-    "market.addProperty": CallAPI<
+    addProperty: CallAPI<
         Params.MarketAddPropertyParams,
         Responses.MarketAddPropertyResponse
     >
@@ -2408,7 +2432,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.addPropertyVariant)
      */
-    "market.addPropertyVariant": CallAPI<
+    addPropertyVariant: CallAPI<
         Params.MarketAddPropertyVariantParams,
         Responses.MarketAddPropertyVariantResponse
     >
@@ -2417,16 +2441,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.addToAlbum)
      */
-    "market.addToAlbum": CallAPI<
-        Params.MarketAddToAlbumParams,
-        Responses.BaseOkResponse
-    >
+    addToAlbum: CallAPI<Params.MarketAddToAlbumParams, Responses.BaseOkResponse>
     /**
      * Creates a new comment for an item.
      *
      * [Documentation](https://dev.vk.com/method/market.createComment)
      */
-    "market.createComment": CallAPI<
+    createComment: CallAPI<
         Params.MarketCreateCommentParams,
         Responses.MarketCreateCommentResponse
     >
@@ -2435,16 +2456,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.delete)
      */
-    "market.delete": CallAPI<
-        Params.MarketDeleteParams,
-        Responses.BaseOkResponse
-    >
+    delete: CallAPI<Params.MarketDeleteParams, Responses.BaseOkResponse>
     /**
      * Deletes a collection of items.
      *
      * [Documentation](https://dev.vk.com/method/market.deleteAlbum)
      */
-    "market.deleteAlbum": CallAPI<
+    deleteAlbum: CallAPI<
         Params.MarketDeleteAlbumParams,
         Responses.BaseOkResponse
     >
@@ -2453,7 +2471,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.deleteComment)
      */
-    "market.deleteComment": CallAPI<
+    deleteComment: CallAPI<
         Params.MarketDeleteCommentParams,
         Objects.VKBaseBoolInt
     >
@@ -2462,7 +2480,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.deleteProperty)
      */
-    "market.deleteProperty": CallAPI<
+    deleteProperty: CallAPI<
         Params.MarketDeletePropertyParams,
         Responses.BaseOkResponse
     >
@@ -2471,7 +2489,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.deletePropertyVariant)
      */
-    "market.deletePropertyVariant": CallAPI<
+    deletePropertyVariant: CallAPI<
         Params.MarketDeletePropertyVariantParams,
         Responses.BaseOkResponse
     >
@@ -2480,22 +2498,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.edit)
      */
-    "market.edit": CallAPI<Params.MarketEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.MarketEditParams, Responses.BaseOkResponse>
     /**
      * Edits a collection of items
      *
      * [Documentation](https://dev.vk.com/method/market.editAlbum)
      */
-    "market.editAlbum": CallAPI<
-        Params.MarketEditAlbumParams,
-        Responses.BaseOkResponse
-    >
+    editAlbum: CallAPI<Params.MarketEditAlbumParams, Responses.BaseOkResponse>
     /**
      * Chages item comment's text
      *
      * [Documentation](https://dev.vk.com/method/market.editComment)
      */
-    "market.editComment": CallAPI<
+    editComment: CallAPI<
         Params.MarketEditCommentParams,
         Responses.BaseOkResponse
     >
@@ -2504,16 +2519,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.editOrder)
      */
-    "market.editOrder": CallAPI<
-        Params.MarketEditOrderParams,
-        Responses.BaseOkResponse
-    >
+    editOrder: CallAPI<Params.MarketEditOrderParams, Responses.BaseOkResponse>
     /**
      * Adds property
      *
      * [Documentation](https://dev.vk.com/method/market.editProperty)
      */
-    "market.editProperty": CallAPI<
+    editProperty: CallAPI<
         Params.MarketEditPropertyParams,
         Responses.BaseOkResponse
     >
@@ -2522,7 +2534,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.editPropertyVariant)
      */
-    "market.editPropertyVariant": CallAPI<
+    editPropertyVariant: CallAPI<
         Params.MarketEditPropertyVariantParams,
         Responses.BaseOkResponse
     >
@@ -2531,7 +2543,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.filterCategories)
      */
-    "market.filterCategories": CallAPIWithOptionalParams<
+    filterCategories: CallAPIWithOptionalParams<
         Params.MarketFilterCategoriesParams,
         Responses.MarketGetCategoriesNewResponse
     >
@@ -2540,7 +2552,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.get)
      */
-    "market.get": {
+    get: {
         (
             params: Params.MarketGetParams & { extended: 1 | true },
         ): Promise<Responses.MarketGetExtendedResponse>
@@ -2551,7 +2563,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getAlbumById)
      */
-    "market.getAlbumById": CallAPI<
+    getAlbumById: CallAPI<
         Params.MarketGetAlbumByIdParams,
         Responses.MarketGetAlbumByIdResponse
     >
@@ -2560,7 +2572,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getAlbums)
      */
-    "market.getAlbums": CallAPI<
+    getAlbums: CallAPI<
         Params.MarketGetAlbumsParams,
         Responses.MarketGetAlbumsResponse
     >
@@ -2569,7 +2581,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getById)
      */
-    "market.getById": {
+    getById: {
         (
             params: Params.MarketGetByIdParams & { extended: 1 | true },
         ): Promise<Responses.MarketGetByIdExtendedResponse>
@@ -2582,7 +2594,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getCategories)
      */
-    "market.getCategories": CallAPIWithOptionalParams<
+    getCategories: CallAPIWithOptionalParams<
         Params.MarketGetCategoriesParams,
         Responses.MarketGetCategoriesNewResponse
     >
@@ -2591,7 +2603,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getComments)
      */
-    "market.getComments": CallAPI<
+    getComments: CallAPI<
         Params.MarketGetCommentsParams,
         Responses.MarketGetCommentsResponse
     >
@@ -2600,7 +2612,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getFavesForAttach)
      */
-    "market.getFavesForAttach": CallAPIWithOptionalParams<
+    getFavesForAttach: CallAPIWithOptionalParams<
         Params.MarketGetFavesForAttachParams,
         Responses.MarketGetFavesForAttachResponse
     >
@@ -2609,7 +2621,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getGroupOrders)
      */
-    "market.getGroupOrders": CallAPIWithOptionalParams<
+    getGroupOrders: CallAPIWithOptionalParams<
         Params.MarketGetGroupOrdersParams,
         Responses.MarketGetGroupOrdersResponse
     >
@@ -2618,7 +2630,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getOrderById)
      */
-    "market.getOrderById": CallAPI<
+    getOrderById: CallAPI<
         Params.MarketGetOrderByIdParams,
         Responses.MarketGetOrderByIdResponse
     >
@@ -2627,7 +2639,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getOrderItems)
      */
-    "market.getOrderItems": CallAPI<
+    getOrderItems: CallAPI<
         Params.MarketGetOrderItemsParams,
         Responses.MarketGetOrderItemsResponse
     >
@@ -2636,7 +2648,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getOrders)
      */
-    "market.getOrders": {
+    getOrders: {
         (
             params: Params.MarketGetOrdersParams & { extended: 1 | true },
         ): Promise<Responses.MarketGetOrdersExtendedResponse>
@@ -2649,7 +2661,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getProductPhotoUploadServer)
      */
-    "market.getProductPhotoUploadServer": CallAPI<
+    getProductPhotoUploadServer: CallAPI<
         Params.MarketGetProductPhotoUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -2658,7 +2670,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.getProperties)
      */
-    "market.getProperties": CallAPI<
+    getProperties: CallAPI<
         Params.MarketGetPropertiesParams,
         Responses.MarketGetPropertiesResponse
     >
@@ -2667,7 +2679,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.groupItems)
      */
-    "market.groupItems": CallAPI<
+    groupItems: CallAPI<
         Params.MarketGroupItemsParams,
         Responses.MarketGroupItemsResponse
     >
@@ -2676,7 +2688,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.removeFromAlbum)
      */
-    "market.removeFromAlbum": CallAPI<
+    removeFromAlbum: CallAPI<
         Params.MarketRemoveFromAlbumParams,
         Responses.BaseOkResponse
     >
@@ -2685,7 +2697,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.reorderAlbums)
      */
-    "market.reorderAlbums": CallAPI<
+    reorderAlbums: CallAPI<
         Params.MarketReorderAlbumsParams,
         Responses.BaseOkResponse
     >
@@ -2694,7 +2706,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.reorderItems)
      */
-    "market.reorderItems": CallAPI<
+    reorderItems: CallAPI<
         Params.MarketReorderItemsParams,
         Responses.BaseOkResponse
     >
@@ -2703,16 +2715,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.report)
      */
-    "market.report": CallAPI<
-        Params.MarketReportParams,
-        Responses.BaseOkResponse
-    >
+    report: CallAPI<Params.MarketReportParams, Responses.BaseOkResponse>
     /**
      * Sends a complaint to the item's comment.
      *
      * [Documentation](https://dev.vk.com/method/market.reportComment)
      */
-    "market.reportComment": CallAPI<
+    reportComment: CallAPI<
         Params.MarketReportCommentParams,
         Responses.BaseOkResponse
     >
@@ -2721,16 +2730,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.restore)
      */
-    "market.restore": CallAPI<
-        Params.MarketRestoreParams,
-        Responses.BaseOkResponse
-    >
+    restore: CallAPI<Params.MarketRestoreParams, Responses.BaseOkResponse>
     /**
      * Restores a recently deleted comment
      *
      * [Documentation](https://dev.vk.com/method/market.restoreComment)
      */
-    "market.restoreComment": CallAPI<
+    restoreComment: CallAPI<
         Params.MarketRestoreCommentParams,
         Objects.VKBaseBoolInt
     >
@@ -2739,7 +2745,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.saveProductPhoto)
      */
-    "market.saveProductPhoto": CallAPI<
+    saveProductPhoto: CallAPI<
         Params.MarketSaveProductPhotoParams,
         Responses.MarketPhotoIdResponse
     >
@@ -2748,7 +2754,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.saveProductPhotoBulk)
      */
-    "market.saveProductPhotoBulk": CallAPI<
+    saveProductPhotoBulk: CallAPI<
         Params.MarketSaveProductPhotoBulkParams,
         Responses.MarketPhotoIdBulkResponse
     >
@@ -2757,7 +2763,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.search)
      */
-    "market.search": {
+    search: {
         (
             params: Params.MarketSearchParams & { extended: 1 | true },
         ): Promise<Responses.MarketSearchExtendedResponse>
@@ -2770,7 +2776,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.searchItems)
      */
-    "market.searchItems": CallAPI<
+    searchItems: CallAPI<
         Params.MarketSearchItemsParams,
         Responses.MarketSearchResponse
     >
@@ -2779,7 +2785,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.searchItemsBasic)
      */
-    "market.searchItemsBasic": CallAPI<
+    searchItemsBasic: CallAPI<
         Params.MarketSearchItemsBasicParams,
         Responses.MarketSearchBasicResponse
     >
@@ -2788,16 +2794,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.ungroupItems)
      */
-    "market.ungroupItems": CallAPI<
+    ungroupItems: CallAPI<
         Params.MarketUngroupItemsParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API messages.* methods
+ */
+export interface APIMethodsMessages {
     /**
      * Adds a new user to a chat.
      *
      * [Documentation](https://dev.vk.com/method/messages.addChatUser)
      */
-    "messages.addChatUser": CallAPI<
+    addChatUser: CallAPI<
         Params.MessagesAddChatUserParams,
         Responses.BaseOkResponse
     >
@@ -2806,7 +2818,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.addChatUsers)
      */
-    "messages.addChatUsers": CallAPIWithOptionalParams<
+    addChatUsers: CallAPIWithOptionalParams<
         Params.MessagesAddChatUsersParams,
         Responses.MessagesAddChatUsersResponse
     >
@@ -2815,7 +2827,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.allowMessagesFromGroup)
      */
-    "messages.allowMessagesFromGroup": CallAPI<
+    allowMessagesFromGroup: CallAPI<
         Params.MessagesAllowMessagesFromGroupParams,
         Responses.BaseOkResponse
     >
@@ -2824,7 +2836,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.createChat)
      */
-    "messages.createChat": CallAPIWithOptionalParams<
+    createChat: CallAPIWithOptionalParams<
         Params.MessagesCreateChatParams,
         Responses.MessagesCreateChatWithPeerIdsResponse
     >
@@ -2833,7 +2845,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.delete)
      */
-    "messages.delete": CallAPIWithOptionalParams<
+    delete: CallAPIWithOptionalParams<
         Params.MessagesDeleteParams,
         Responses.MessagesDeleteFullResponse
     >
@@ -2842,7 +2854,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.deleteChatPhoto)
      */
-    "messages.deleteChatPhoto": CallAPI<
+    deleteChatPhoto: CallAPI<
         Params.MessagesDeleteChatPhotoParams,
         Responses.MessagesDeleteChatPhotoResponse
     >
@@ -2851,7 +2863,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.deleteConversation)
      */
-    "messages.deleteConversation": CallAPIWithOptionalParams<
+    deleteConversation: CallAPIWithOptionalParams<
         Params.MessagesDeleteConversationParams,
         Responses.MessagesDeleteConversationResponse
     >
@@ -2860,7 +2872,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.deleteReaction)
      */
-    "messages.deleteReaction": CallAPI<
+    deleteReaction: CallAPI<
         Params.MessagesDeleteReactionParams,
         Objects.VKBaseBoolInt
     >
@@ -2869,7 +2881,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.denyMessagesFromGroup)
      */
-    "messages.denyMessagesFromGroup": CallAPI<
+    denyMessagesFromGroup: CallAPI<
         Params.MessagesDenyMessagesFromGroupParams,
         Responses.BaseOkResponse
     >
@@ -2878,22 +2890,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.edit)
      */
-    "messages.edit": CallAPI<Params.MessagesEditParams, Objects.VKBaseBoolInt>
+    edit: CallAPI<Params.MessagesEditParams, Objects.VKBaseBoolInt>
     /**
      * Edits the title of a chat.
      *
      * [Documentation](https://dev.vk.com/method/messages.editChat)
      */
-    "messages.editChat": CallAPI<
-        Params.MessagesEditChatParams,
-        Responses.BaseOkResponse
-    >
+    editChat: CallAPI<Params.MessagesEditChatParams, Responses.BaseOkResponse>
     /**
      * Returns messages by their IDs within the conversation.
      *
      * [Documentation](https://dev.vk.com/method/messages.getByConversationMessageId)
      */
-    "messages.getByConversationMessageId": {
+    getByConversationMessageId: {
         (
             params: Params.MessagesGetByConversationMessageIdParams & {
                 extended: 1 | true
@@ -2908,7 +2917,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getById)
      */
-    "messages.getById": {
+    getById: {
         (
             params: Params.MessagesGetByIdParams & { extended: 1 | true },
         ): Promise<Responses.MessagesGetByIdExtendedResponse>
@@ -2921,7 +2930,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getChat)
      */
-    "messages.getChat": {
+    getChat: {
         (
             params: Params.MessagesGetChatParams & {
                 chat_ids: Required<
@@ -2953,7 +2962,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getChatPreview)
      */
-    "messages.getChatPreview": CallAPIWithOptionalParams<
+    getChatPreview: CallAPIWithOptionalParams<
         Params.MessagesGetChatPreviewParams,
         Responses.MessagesGetChatPreviewResponse
     >
@@ -2962,7 +2971,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getConversationMembers)
      */
-    "messages.getConversationMembers": CallAPI<
+    getConversationMembers: CallAPI<
         Params.MessagesGetConversationMembersParams,
         Objects.VKMessagesGetConversationMembers
     >
@@ -2971,7 +2980,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getConversations)
      */
-    "messages.getConversations": CallAPIWithOptionalParams<
+    getConversations: CallAPIWithOptionalParams<
         Params.MessagesGetConversationsParams,
         Responses.MessagesGetConversationsResponse
     >
@@ -2980,7 +2989,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getConversationsById)
      */
-    "messages.getConversationsById": {
+    getConversationsById: {
         (
             params: Params.MessagesGetConversationsByIdParams & {
                 extended: 1 | true
@@ -2995,7 +3004,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getHistory)
      */
-    "messages.getHistory": {
+    getHistory: {
         (
             params: Params.MessagesGetHistoryParams & { extended: 1 | true },
         ): Promise<Responses.MessagesGetHistoryExtendedResponse>
@@ -3008,7 +3017,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getHistoryAttachments)
      */
-    "messages.getHistoryAttachments": CallAPIWithOptionalParams<
+    getHistoryAttachments: CallAPIWithOptionalParams<
         Params.MessagesGetHistoryAttachmentsParams,
         Responses.MessagesGetHistoryAttachmentsResponse
     >
@@ -3017,7 +3026,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getImportantMessages)
      */
-    "messages.getImportantMessages": {
+    getImportantMessages: {
         (
             params: Params.MessagesGetImportantMessagesParams & {
                 extended: 1 | true
@@ -3032,7 +3041,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getIntentUsers)
      */
-    "messages.getIntentUsers": CallAPI<
+    getIntentUsers: CallAPI<
         Params.MessagesGetIntentUsersParams,
         Responses.MessagesGetIntentUsersResponse
     >
@@ -3041,7 +3050,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getInviteLink)
      */
-    "messages.getInviteLink": CallAPI<
+    getInviteLink: CallAPI<
         Params.MessagesGetInviteLinkParams,
         | Responses.MessagesGetInviteLinkResponse
         | Responses.MessagesGetInviteLinkByOwnerResponse
@@ -3051,7 +3060,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getLastActivity)
      */
-    "messages.getLastActivity": CallAPI<
+    getLastActivity: CallAPI<
         Params.MessagesGetLastActivityParams,
         Objects.VKMessagesLastActivity
     >
@@ -3060,7 +3069,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getLongPollHistory)
      */
-    "messages.getLongPollHistory": CallAPIWithOptionalParams<
+    getLongPollHistory: CallAPIWithOptionalParams<
         Params.MessagesGetLongPollHistoryParams,
         Responses.MessagesGetLongPollHistoryResponse
     >
@@ -3069,7 +3078,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getLongPollServer)
      */
-    "messages.getLongPollServer": CallAPIWithOptionalParams<
+    getLongPollServer: CallAPIWithOptionalParams<
         Params.MessagesGetLongPollServerParams,
         Objects.VKMessagesLongpollParams
     >
@@ -3078,7 +3087,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getMessagesReactions)
      */
-    "messages.getMessagesReactions": CallAPI<
+    getMessagesReactions: CallAPI<
         Params.MessagesGetMessagesReactionsParams,
         Responses.MessagesGetMessagesReactionsResponse
     >
@@ -3087,7 +3096,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getReactedPeers)
      */
-    "messages.getReactedPeers": CallAPI<
+    getReactedPeers: CallAPI<
         Params.MessagesGetReactedPeersParams,
         Responses.MessagesGetReactedPeersResponse
     >
@@ -3096,7 +3105,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getReactionsAssets)
      */
-    "messages.getReactionsAssets": CallAPIWithOptionalParams<
+    getReactionsAssets: CallAPIWithOptionalParams<
         Params.MessagesGetReactionsAssetsParams,
         Responses.MessagesGetReactionsAssetsResponse
     >
@@ -3105,7 +3114,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.isMessagesFromGroupAllowed)
      */
-    "messages.isMessagesFromGroupAllowed": CallAPI<
+    isMessagesFromGroupAllowed: CallAPI<
         Params.MessagesIsMessagesFromGroupAllowedParams,
         Responses.MessagesIsMessagesFromGroupAllowedResponse
     >
@@ -3114,7 +3123,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.joinChatByInviteLink)
      */
-    "messages.joinChatByInviteLink": CallAPI<
+    joinChatByInviteLink: CallAPI<
         Params.MessagesJoinChatByInviteLinkParams,
         Responses.MessagesJoinChatByInviteLinkResponse
     >
@@ -3123,7 +3132,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.markAsAnsweredConversation)
      */
-    "messages.markAsAnsweredConversation": CallAPI<
+    markAsAnsweredConversation: CallAPI<
         Params.MessagesMarkAsAnsweredConversationParams,
         Responses.BaseOkResponse
     >
@@ -3132,7 +3141,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.markAsImportant)
      */
-    "messages.markAsImportant": CallAPIWithOptionalParams<
+    markAsImportant: CallAPIWithOptionalParams<
         Params.MessagesMarkAsImportantParams,
         Responses.MessagesMarkAsImportantDeprecatedResponse
     >
@@ -3141,7 +3150,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.markAsImportantConversation)
      */
-    "messages.markAsImportantConversation": CallAPI<
+    markAsImportantConversation: CallAPI<
         Params.MessagesMarkAsImportantConversationParams,
         Responses.BaseOkResponse
     >
@@ -3150,7 +3159,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.markAsRead)
      */
-    "messages.markAsRead": CallAPIWithOptionalParams<
+    markAsRead: CallAPIWithOptionalParams<
         Params.MessagesMarkAsReadParams,
         Responses.BaseOkResponse
     >
@@ -3159,7 +3168,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.markReactionsAsRead)
      */
-    "messages.markReactionsAsRead": CallAPI<
+    markReactionsAsRead: CallAPI<
         Params.MessagesMarkReactionsAsReadParams,
         Objects.VKBaseBoolInt
     >
@@ -3168,7 +3177,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.muteChatMentions)
      */
-    "messages.muteChatMentions": CallAPI<
+    muteChatMentions: CallAPI<
         Params.MessagesMuteChatMentionsParams,
         Responses.BaseOkResponse
     >
@@ -3177,16 +3186,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.pin)
      */
-    "messages.pin": CallAPI<
-        Params.MessagesPinParams,
-        Objects.VKMessagesPinnedMessage
-    >
+    pin: CallAPI<Params.MessagesPinParams, Objects.VKMessagesPinnedMessage>
     /**
      * Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.
      *
      * [Documentation](https://dev.vk.com/method/messages.removeChatUser)
      */
-    "messages.removeChatUser": CallAPI<
+    removeChatUser: CallAPI<
         Params.MessagesRemoveChatUserParams,
         Responses.BaseOkResponse
     >
@@ -3195,7 +3201,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.restore)
      */
-    "messages.restore": CallAPIWithOptionalParams<
+    restore: CallAPIWithOptionalParams<
         Params.MessagesRestoreParams,
         Responses.BaseOkResponse
     >
@@ -3204,7 +3210,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.search)
      */
-    "messages.search": {
+    search: {
         (
             params: Params.MessagesSearchParams & { extended: 1 | true },
         ): Promise<Responses.MessagesSearchExtendedResponse>
@@ -3217,7 +3223,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.searchConversations)
      */
-    "messages.searchConversations": {
+    searchConversations: {
         (
             params: Params.MessagesSearchConversationsParams & {
                 extended: 1 | true
@@ -3232,7 +3238,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.send)
      */
-    "messages.send": CallAPIWithOptionalParams<
+    send: CallAPIWithOptionalParams<
         Params.MessagesSendParams,
         | Responses.MessagesSendDeprecatedResponse
         | Responses.MessagesSendUserIdsResponse
@@ -3242,7 +3248,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.sendMessageEventAnswer)
      */
-    "messages.sendMessageEventAnswer": CallAPI<
+    sendMessageEventAnswer: CallAPI<
         Params.MessagesSendMessageEventAnswerParams,
         Responses.BaseOkResponse
     >
@@ -3251,7 +3257,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.sendReaction)
      */
-    "messages.sendReaction": CallAPI<
+    sendReaction: CallAPI<
         Params.MessagesSendReactionParams,
         Objects.VKBaseBoolInt
     >
@@ -3260,7 +3266,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.setActivity)
      */
-    "messages.setActivity": CallAPIWithOptionalParams<
+    setActivity: CallAPIWithOptionalParams<
         Params.MessagesSetActivityParams,
         Responses.BaseOkResponse
     >
@@ -3269,7 +3275,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.setChatPhoto)
      */
-    "messages.setChatPhoto": CallAPI<
+    setChatPhoto: CallAPI<
         Params.MessagesSetChatPhotoParams,
         Responses.MessagesSetChatPhotoResponse
     >
@@ -3278,16 +3284,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.unpin)
      */
-    "messages.unpin": CallAPI<
-        Params.MessagesUnpinParams,
-        Responses.BaseOkResponse
-    >
+    unpin: CallAPI<Params.MessagesUnpinParams, Responses.BaseOkResponse>
+}
+
+/**
+ * VK API newsfeed.* methods
+ */
+export interface APIMethodsNewsfeed {
     /**
      * Prevents news from specified users and communities from appearing in the current user's newsfeed.
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.addBan)
      */
-    "newsfeed.addBan": CallAPIWithOptionalParams<
+    addBan: CallAPIWithOptionalParams<
         Params.NewsfeedAddBanParams,
         Objects.VKBaseBoolInt
     >
@@ -3296,7 +3305,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.deleteBan)
      */
-    "newsfeed.deleteBan": CallAPIWithOptionalParams<
+    deleteBan: CallAPIWithOptionalParams<
         Params.NewsfeedDeleteBanParams,
         Responses.BaseOkResponse
     >
@@ -3305,7 +3314,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.deleteList)
      */
-    "newsfeed.deleteList": CallAPI<
+    deleteList: CallAPI<
         Params.NewsfeedDeleteListParams,
         Responses.BaseOkResponse
     >
@@ -3314,7 +3323,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.get)
      */
-    "newsfeed.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.NewsfeedGetParams,
         Responses.NewsfeedGenericResponse
     >
@@ -3323,7 +3332,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.getBanned)
      */
-    "newsfeed.getBanned": {
+    getBanned: {
         (
             params: Params.NewsfeedGetBannedParams & { extended: 1 | true },
         ): Promise<Responses.NewsfeedGetBannedExtendedResponse>
@@ -3336,7 +3345,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.getComments)
      */
-    "newsfeed.getComments": CallAPIWithOptionalParams<
+    getComments: CallAPIWithOptionalParams<
         Params.NewsfeedGetCommentsParams,
         Responses.NewsfeedGetCommentsResponse
     >
@@ -3345,7 +3354,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.getLists)
      */
-    "newsfeed.getLists": {
+    getLists: {
         (
             params: Params.NewsfeedGetListsParams & { extended: 1 | true },
         ): Promise<Responses.NewsfeedGetListsExtendedResponse>
@@ -3358,7 +3367,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.getMentions)
      */
-    "newsfeed.getMentions": CallAPIWithOptionalParams<
+    getMentions: CallAPIWithOptionalParams<
         Params.NewsfeedGetMentionsParams,
         Responses.NewsfeedGetMentionsResponse
     >
@@ -3367,7 +3376,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.getRecommended)
      */
-    "newsfeed.getRecommended": CallAPIWithOptionalParams<
+    getRecommended: CallAPIWithOptionalParams<
         Params.NewsfeedGetRecommendedParams,
         Responses.NewsfeedGenericResponse
     >
@@ -3376,7 +3385,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.getSuggestedSources)
      */
-    "newsfeed.getSuggestedSources": CallAPIWithOptionalParams<
+    getSuggestedSources: CallAPIWithOptionalParams<
         Params.NewsfeedGetSuggestedSourcesParams,
         Responses.NewsfeedGetSuggestedSourcesResponse
     >
@@ -3385,7 +3394,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.ignoreItem)
      */
-    "newsfeed.ignoreItem": CallAPI<
+    ignoreItem: CallAPI<
         Params.NewsfeedIgnoreItemParams,
         Responses.NewsfeedIgnoreItemResponse
     >
@@ -3394,7 +3403,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.saveList)
      */
-    "newsfeed.saveList": CallAPI<
+    saveList: CallAPI<
         Params.NewsfeedSaveListParams,
         Responses.NewsfeedSaveListResponse
     >
@@ -3403,7 +3412,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.search)
      */
-    "newsfeed.search": {
+    search: {
         (
             params: Params.NewsfeedSearchParams & { extended: 1 | true },
         ): Promise<
@@ -3422,7 +3431,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.unignoreItem)
      */
-    "newsfeed.unignoreItem": CallAPI<
+    unignoreItem: CallAPI<
         Params.NewsfeedUnignoreItemParams,
         Responses.BaseOkResponse
     >
@@ -3431,22 +3440,28 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/newsfeed.unsubscribe)
      */
-    "newsfeed.unsubscribe": CallAPI<
+    unsubscribe: CallAPI<
         Params.NewsfeedUnsubscribeParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API notes.* methods
+ */
+export interface APIMethodsNotes {
     /**
      * Creates a new note for the current user.
      *
      * [Documentation](https://dev.vk.com/method/notes.add)
      */
-    "notes.add": CallAPI<Params.NotesAddParams, Responses.NotesAddResponse>
+    add: CallAPI<Params.NotesAddParams, Responses.NotesAddResponse>
     /**
      * Adds a new comment on a note.
      *
      * [Documentation](https://dev.vk.com/method/notes.createComment)
      */
-    "notes.createComment": CallAPI<
+    createComment: CallAPI<
         Params.NotesCreateCommentParams,
         Responses.NotesCreateCommentResponse
     >
@@ -3455,13 +3470,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/notes.delete)
      */
-    "notes.delete": CallAPI<Params.NotesDeleteParams, Responses.BaseOkResponse>
+    delete: CallAPI<Params.NotesDeleteParams, Responses.BaseOkResponse>
     /**
      * Deletes a comment on a note.
      *
      * [Documentation](https://dev.vk.com/method/notes.deleteComment)
      */
-    "notes.deleteComment": CallAPI<
+    deleteComment: CallAPI<
         Params.NotesDeleteCommentParams,
         Responses.BaseOkResponse
     >
@@ -3470,13 +3485,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/notes.edit)
      */
-    "notes.edit": CallAPI<Params.NotesEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.NotesEditParams, Responses.BaseOkResponse>
     /**
      * Edits a comment on a note.
      *
      * [Documentation](https://dev.vk.com/method/notes.editComment)
      */
-    "notes.editComment": CallAPI<
+    editComment: CallAPI<
         Params.NotesEditCommentParams,
         Responses.BaseOkResponse
     >
@@ -3485,7 +3500,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/notes.get)
      */
-    "notes.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.NotesGetParams,
         Responses.NotesGetResponse
     >
@@ -3494,13 +3509,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/notes.getById)
      */
-    "notes.getById": CallAPI<Params.NotesGetByIdParams, Objects.VKNotesNote>
+    getById: CallAPI<Params.NotesGetByIdParams, Objects.VKNotesNote>
     /**
      * Returns a list of comments on a note.
      *
      * [Documentation](https://dev.vk.com/method/notes.getComments)
      */
-    "notes.getComments": CallAPI<
+    getComments: CallAPI<
         Params.NotesGetCommentsParams,
         Responses.NotesGetCommentsResponse
     >
@@ -3509,16 +3524,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/notes.restoreComment)
      */
-    "notes.restoreComment": CallAPI<
+    restoreComment: CallAPI<
         Params.NotesRestoreCommentParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API notifications.* methods
+ */
+export interface APIMethodsNotifications {
     /**
      * Returns a list of notifications about other users' feedback to the current user's wall posts.
      *
      * [Documentation](https://dev.vk.com/method/notifications.get)
      */
-    "notifications.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.NotificationsGetParams,
         Responses.NotificationsGetResponse
     >
@@ -3527,22 +3548,28 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/notifications.markAsViewed)
      */
-    "notifications.markAsViewed": CallAPIWithoutParams<Objects.VKBaseBoolInt>
+    markAsViewed: CallAPIWithoutParams<Objects.VKBaseBoolInt>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/notifications.sendMessage)
      */
-    "notifications.sendMessage": CallAPI<
+    sendMessage: CallAPI<
         Params.NotificationsSendMessageParams,
         Responses.NotificationsSendMessageResponse
     >
+}
+
+/**
+ * VK API orders.* methods
+ */
+export interface APIMethodsOrders {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/orders.cancelSubscription)
      */
-    "orders.cancelSubscription": CallAPI<
+    cancelSubscription: CallAPI<
         Params.OrdersCancelSubscriptionParams,
         Objects.VKBaseBoolInt
     >
@@ -3551,7 +3578,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/orders.changeState)
      */
-    "orders.changeState": CallAPI<
+    changeState: CallAPI<
         Params.OrdersChangeStateParams,
         Responses.OrdersChangeStateResponse
     >
@@ -3560,7 +3587,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/orders.get)
      */
-    "orders.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.OrdersGetParams,
         Responses.OrdersGetResponse
     >
@@ -3569,7 +3596,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/orders.getAmount)
      */
-    "orders.getAmount": CallAPI<
+    getAmount: CallAPI<
         Params.OrdersGetAmountParams,
         Responses.OrdersGetAmountResponse
     >
@@ -3578,7 +3605,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/orders.getById)
      */
-    "orders.getById": CallAPIWithOptionalParams<
+    getById: CallAPIWithOptionalParams<
         Params.OrdersGetByIdParams,
         Responses.OrdersGetByIdResponse
     >
@@ -3587,7 +3614,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/orders.getUserSubscriptionById)
      */
-    "orders.getUserSubscriptionById": CallAPI<
+    getUserSubscriptionById: CallAPI<
         Params.OrdersGetUserSubscriptionByIdParams,
         Objects.VKOrdersSubscription
     >
@@ -3596,25 +3623,28 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/orders.getUserSubscriptions)
      */
-    "orders.getUserSubscriptions": CallAPI<
+    getUserSubscriptions: CallAPI<
         Params.OrdersGetUserSubscriptionsParams,
         Responses.OrdersGetUserSubscriptionsResponse
     >
+}
+
+/**
+ * VK API pages.* methods
+ */
+export interface APIMethodsPages {
     /**
      * Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
      *
      * [Documentation](https://dev.vk.com/method/pages.clearCache)
      */
-    "pages.clearCache": CallAPI<
-        Params.PagesClearCacheParams,
-        Responses.BaseOkResponse
-    >
+    clearCache: CallAPI<Params.PagesClearCacheParams, Responses.BaseOkResponse>
     /**
      * Returns information about a wiki page.
      *
      * [Documentation](https://dev.vk.com/method/pages.get)
      */
-    "pages.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.PagesGetParams,
         Objects.VKPagesWikipageFull
     >
@@ -3623,7 +3653,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/pages.getHistory)
      */
-    "pages.getHistory": CallAPI<
+    getHistory: CallAPI<
         Params.PagesGetHistoryParams,
         Responses.PagesGetHistoryResponse
     >
@@ -3632,7 +3662,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/pages.getTitles)
      */
-    "pages.getTitles": CallAPIWithOptionalParams<
+    getTitles: CallAPIWithOptionalParams<
         Params.PagesGetTitlesParams,
         Responses.PagesGetTitlesResponse
     >
@@ -3641,7 +3671,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/pages.getVersion)
      */
-    "pages.getVersion": CallAPI<
+    getVersion: CallAPI<
         Params.PagesGetVersionParams,
         Responses.PagesGetVersionResponse
     >
@@ -3650,7 +3680,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/pages.parseWiki)
      */
-    "pages.parseWiki": CallAPI<
+    parseWiki: CallAPI<
         Params.PagesParseWikiParams,
         Responses.PagesParseWikiResponse
     >
@@ -3659,7 +3689,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/pages.save)
      */
-    "pages.save": CallAPIWithOptionalParams<
+    save: CallAPIWithOptionalParams<
         Params.PagesSaveParams,
         Responses.PagesSaveResponse
     >
@@ -3668,34 +3698,34 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/pages.saveAccess)
      */
-    "pages.saveAccess": CallAPI<
+    saveAccess: CallAPI<
         Params.PagesSaveAccessParams,
         Responses.PagesSaveAccessResponse
     >
+}
+
+/**
+ * VK API photos.* methods
+ */
+export interface APIMethodsPhotos {
     /**
      * Confirms a tag on a photo.
      *
      * [Documentation](https://dev.vk.com/method/photos.confirmTag)
      */
-    "photos.confirmTag": CallAPI<
-        Params.PhotosConfirmTagParams,
-        Responses.BaseOkResponse
-    >
+    confirmTag: CallAPI<Params.PhotosConfirmTagParams, Responses.BaseOkResponse>
     /**
      * Allows to copy a photo to the "Saved photos" album
      *
      * [Documentation](https://dev.vk.com/method/photos.copy)
      */
-    "photos.copy": CallAPI<
-        Params.PhotosCopyParams,
-        Responses.PhotosCopyResponse
-    >
+    copy: CallAPI<Params.PhotosCopyParams, Responses.PhotosCopyResponse>
     /**
      * Creates an empty photo album.
      *
      * [Documentation](https://dev.vk.com/method/photos.createAlbum)
      */
-    "photos.createAlbum": CallAPI<
+    createAlbum: CallAPI<
         Params.PhotosCreateAlbumParams,
         Objects.VKPhotosPhotoAlbumFull
     >
@@ -3704,7 +3734,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.createComment)
      */
-    "photos.createComment": CallAPI<
+    createComment: CallAPI<
         Params.PhotosCreateCommentParams,
         Responses.PhotosCreateCommentResponse
     >
@@ -3713,7 +3743,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.delete)
      */
-    "photos.delete": CallAPIWithOptionalParams<
+    delete: CallAPIWithOptionalParams<
         Params.PhotosDeleteParams,
         Responses.BaseOkResponse
     >
@@ -3722,7 +3752,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.deleteAlbum)
      */
-    "photos.deleteAlbum": CallAPI<
+    deleteAlbum: CallAPI<
         Params.PhotosDeleteAlbumParams,
         Responses.BaseOkResponse
     >
@@ -3731,7 +3761,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.deleteComment)
      */
-    "photos.deleteComment": CallAPI<
+    deleteComment: CallAPI<
         Params.PhotosDeleteCommentParams,
         Objects.VKBaseBoolInt
     >
@@ -3740,22 +3770,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.edit)
      */
-    "photos.edit": CallAPI<Params.PhotosEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.PhotosEditParams, Responses.BaseOkResponse>
     /**
      * Edits information about a photo album.
      *
      * [Documentation](https://dev.vk.com/method/photos.editAlbum)
      */
-    "photos.editAlbum": CallAPI<
-        Params.PhotosEditAlbumParams,
-        Responses.BaseOkResponse
-    >
+    editAlbum: CallAPI<Params.PhotosEditAlbumParams, Responses.BaseOkResponse>
     /**
      * Edits a comment on a photo.
      *
      * [Documentation](https://dev.vk.com/method/photos.editComment)
      */
-    "photos.editComment": CallAPI<
+    editComment: CallAPI<
         Params.PhotosEditCommentParams,
         Responses.BaseOkResponse
     >
@@ -3764,7 +3791,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.get)
      */
-    "photos.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.PhotosGetParams,
         Responses.PhotosGetResponse
     >
@@ -3773,7 +3800,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getAlbums)
      */
-    "photos.getAlbums": CallAPIWithOptionalParams<
+    getAlbums: CallAPIWithOptionalParams<
         Params.PhotosGetAlbumsParams,
         Responses.PhotosGetAlbumsResponse
     >
@@ -3782,7 +3809,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getAlbumsCount)
      */
-    "photos.getAlbumsCount": CallAPIWithOptionalParams<
+    getAlbumsCount: CallAPIWithOptionalParams<
         Params.PhotosGetAlbumsCountParams,
         Responses.PhotosGetAlbumsCountResponse
     >
@@ -3791,7 +3818,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getAll)
      */
-    "photos.getAll": CallAPIWithOptionalParams<
+    getAll: CallAPIWithOptionalParams<
         Params.PhotosGetAllParams,
         Responses.PhotosGetAllResponse
     >
@@ -3800,7 +3827,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getAllComments)
      */
-    "photos.getAllComments": CallAPIWithOptionalParams<
+    getAllComments: CallAPIWithOptionalParams<
         Params.PhotosGetAllCommentsParams,
         Responses.PhotosGetAllCommentsResponse
     >
@@ -3809,7 +3836,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getById)
      */
-    "photos.getById": CallAPI<
+    getById: CallAPI<
         Params.PhotosGetByIdParams,
         Responses.PhotosGetByIdResponse
     >
@@ -3818,7 +3845,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getChatUploadServer)
      */
-    "photos.getChatUploadServer": CallAPI<
+    getChatUploadServer: CallAPI<
         Params.PhotosGetChatUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -3827,7 +3854,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getComments)
      */
-    "photos.getComments": {
+    getComments: {
         (
             params: Params.PhotosGetCommentsParams & { extended: 1 | true },
         ): Promise<Responses.PhotosGetCommentsExtendedResponse>
@@ -3840,7 +3867,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getMarketAlbumUploadServer)
      */
-    "photos.getMarketAlbumUploadServer": CallAPI<
+    getMarketAlbumUploadServer: CallAPI<
         Params.PhotosGetMarketAlbumUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -3849,7 +3876,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getMessagesUploadServer)
      */
-    "photos.getMessagesUploadServer": CallAPIWithOptionalParams<
+    getMessagesUploadServer: CallAPIWithOptionalParams<
         Params.PhotosGetMessagesUploadServerParams,
         Objects.VKPhotosPhotoUpload
     >
@@ -3858,7 +3885,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getNewTags)
      */
-    "photos.getNewTags": CallAPIWithOptionalParams<
+    getNewTags: CallAPIWithOptionalParams<
         Params.PhotosGetNewTagsParams,
         Responses.PhotosGetNewTagsResponse
     >
@@ -3867,7 +3894,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getOwnerCoverPhotoUploadServer)
      */
-    "photos.getOwnerCoverPhotoUploadServer": CallAPIWithOptionalParams<
+    getOwnerCoverPhotoUploadServer: CallAPIWithOptionalParams<
         Params.PhotosGetOwnerCoverPhotoUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -3876,7 +3903,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getOwnerPhotoUploadServer)
      */
-    "photos.getOwnerPhotoUploadServer": CallAPIWithOptionalParams<
+    getOwnerPhotoUploadServer: CallAPIWithOptionalParams<
         Params.PhotosGetOwnerPhotoUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -3885,7 +3912,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getTags)
      */
-    "photos.getTags": CallAPI<
+    getTags: CallAPI<
         Params.PhotosGetTagsParams,
         Responses.PhotosGetTagsResponse
     >
@@ -3894,7 +3921,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getUploadServer)
      */
-    "photos.getUploadServer": CallAPIWithOptionalParams<
+    getUploadServer: CallAPIWithOptionalParams<
         Params.PhotosGetUploadServerParams,
         Objects.VKPhotosPhotoUpload
     >
@@ -3903,7 +3930,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getUserPhotos)
      */
-    "photos.getUserPhotos": CallAPIWithOptionalParams<
+    getUserPhotos: CallAPIWithOptionalParams<
         Params.PhotosGetUserPhotosParams,
         Responses.PhotosGetUserPhotosResponse
     >
@@ -3912,7 +3939,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.getWallUploadServer)
      */
-    "photos.getWallUploadServer": CallAPIWithOptionalParams<
+    getWallUploadServer: CallAPIWithOptionalParams<
         Params.PhotosGetWallUploadServerParams,
         Objects.VKPhotosPhotoUpload
     >
@@ -3921,40 +3948,31 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.makeCover)
      */
-    "photos.makeCover": CallAPI<
-        Params.PhotosMakeCoverParams,
-        Responses.BaseOkResponse
-    >
+    makeCover: CallAPI<Params.PhotosMakeCoverParams, Responses.BaseOkResponse>
     /**
      * Moves a photo from one album to another.
      *
      * [Documentation](https://dev.vk.com/method/photos.move)
      */
-    "photos.move": CallAPI<Params.PhotosMoveParams, Responses.BaseOkResponse>
+    move: CallAPI<Params.PhotosMoveParams, Responses.BaseOkResponse>
     /**
      * Adds a tag on the photo.
      *
      * [Documentation](https://dev.vk.com/method/photos.putTag)
      */
-    "photos.putTag": CallAPI<
-        Params.PhotosPutTagParams,
-        Responses.PhotosPutTagResponse
-    >
+    putTag: CallAPI<Params.PhotosPutTagParams, Responses.PhotosPutTagResponse>
     /**
      * Removes a tag from a photo.
      *
      * [Documentation](https://dev.vk.com/method/photos.removeTag)
      */
-    "photos.removeTag": CallAPI<
-        Params.PhotosRemoveTagParams,
-        Responses.BaseOkResponse
-    >
+    removeTag: CallAPI<Params.PhotosRemoveTagParams, Responses.BaseOkResponse>
     /**
      * Reorders the album in the list of user albums.
      *
      * [Documentation](https://dev.vk.com/method/photos.reorderAlbums)
      */
-    "photos.reorderAlbums": CallAPI<
+    reorderAlbums: CallAPI<
         Params.PhotosReorderAlbumsParams,
         Responses.BaseOkResponse
     >
@@ -3963,7 +3981,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.reorderPhotos)
      */
-    "photos.reorderPhotos": CallAPI<
+    reorderPhotos: CallAPI<
         Params.PhotosReorderPhotosParams,
         Responses.BaseOkResponse
     >
@@ -3972,16 +3990,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.report)
      */
-    "photos.report": CallAPI<
-        Params.PhotosReportParams,
-        Responses.BaseOkResponse
-    >
+    report: CallAPI<Params.PhotosReportParams, Responses.BaseOkResponse>
     /**
      * Reports (submits a complaint about) a comment on a photo.
      *
      * [Documentation](https://dev.vk.com/method/photos.reportComment)
      */
-    "photos.reportComment": CallAPI<
+    reportComment: CallAPI<
         Params.PhotosReportCommentParams,
         Responses.BaseOkResponse
     >
@@ -3990,16 +4005,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.restore)
      */
-    "photos.restore": CallAPI<
-        Params.PhotosRestoreParams,
-        Responses.BaseOkResponse
-    >
+    restore: CallAPI<Params.PhotosRestoreParams, Responses.BaseOkResponse>
     /**
      * Restores a deleted comment on a photo.
      *
      * [Documentation](https://dev.vk.com/method/photos.restoreComment)
      */
-    "photos.restoreComment": CallAPI<
+    restoreComment: CallAPI<
         Params.PhotosRestoreCommentParams,
         Objects.VKBaseBoolInt
     >
@@ -4008,7 +4020,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.save)
      */
-    "photos.save": CallAPIWithOptionalParams<
+    save: CallAPIWithOptionalParams<
         Params.PhotosSaveParams,
         Responses.PhotosSaveResponse
     >
@@ -4017,7 +4029,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.saveMarketAlbumPhoto)
      */
-    "photos.saveMarketAlbumPhoto": CallAPI<
+    saveMarketAlbumPhoto: CallAPI<
         Params.PhotosSaveMarketAlbumPhotoParams,
         Responses.PhotosSaveMarketAlbumPhotoResponse
     >
@@ -4026,7 +4038,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.saveMessagesPhoto)
      */
-    "photos.saveMessagesPhoto": CallAPI<
+    saveMessagesPhoto: CallAPI<
         Params.PhotosSaveMessagesPhotoParams,
         Responses.PhotosSaveMessagesPhotoResponse
     >
@@ -4035,7 +4047,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.saveOwnerCoverPhoto)
      */
-    "photos.saveOwnerCoverPhoto": CallAPIWithOptionalParams<
+    saveOwnerCoverPhoto: CallAPIWithOptionalParams<
         Params.PhotosSaveOwnerCoverPhotoParams,
         Responses.PhotosSaveOwnerCoverPhotoResponse
     >
@@ -4044,7 +4056,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.saveOwnerPhoto)
      */
-    "photos.saveOwnerPhoto": CallAPIWithOptionalParams<
+    saveOwnerPhoto: CallAPIWithOptionalParams<
         Params.PhotosSaveOwnerPhotoParams,
         Responses.PhotosSaveOwnerPhotoResponse
     >
@@ -4053,7 +4065,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.saveWallPhoto)
      */
-    "photos.saveWallPhoto": CallAPI<
+    saveWallPhoto: CallAPI<
         Params.PhotosSaveWallPhotoParams,
         Responses.PhotosSaveWallPhotoResponse
     >
@@ -4062,31 +4074,43 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/photos.search)
      */
-    "photos.search": CallAPIWithOptionalParams<
+    search: CallAPIWithOptionalParams<
         Params.PhotosSearchParams,
         Responses.PhotosSearchResponse
     >
+}
+
+/**
+ * VK API podcasts.* methods
+ */
+export interface APIMethodsPodcasts {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/podcasts.searchPodcast)
      */
-    "podcasts.searchPodcast": CallAPI<
+    searchPodcast: CallAPI<
         Params.PodcastsSearchPodcastParams,
         Responses.PodcastsSearchPodcastResponse
     >
+}
+
+/**
+ * VK API polls.* methods
+ */
+export interface APIMethodsPolls {
     /**
      * Adds the current user's vote to the selected answer in the poll.
      *
      * [Documentation](https://dev.vk.com/method/polls.addVote)
      */
-    "polls.addVote": CallAPI<Params.PollsAddVoteParams, Objects.VKBaseBoolInt>
+    addVote: CallAPI<Params.PollsAddVoteParams, Objects.VKBaseBoolInt>
     /**
      * Creates polls that can be attached to the users' or communities' posts.
      *
      * [Documentation](https://dev.vk.com/method/polls.create)
      */
-    "polls.create": CallAPIWithOptionalParams<
+    create: CallAPIWithOptionalParams<
         Params.PollsCreateParams,
         Objects.VKPollsPoll
     >
@@ -4095,37 +4119,31 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/polls.deleteVote)
      */
-    "polls.deleteVote": CallAPI<
-        Params.PollsDeleteVoteParams,
-        Objects.VKBaseBoolInt
-    >
+    deleteVote: CallAPI<Params.PollsDeleteVoteParams, Objects.VKBaseBoolInt>
     /**
      * Edits created polls
      *
      * [Documentation](https://dev.vk.com/method/polls.edit)
      */
-    "polls.edit": CallAPI<Params.PollsEditParams, Responses.BaseOkResponse>
+    edit: CallAPI<Params.PollsEditParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/polls.getBackgrounds)
      */
-    "polls.getBackgrounds": CallAPIWithoutParams<Responses.PollsGetBackgroundsResponse>
+    getBackgrounds: CallAPIWithoutParams<Responses.PollsGetBackgroundsResponse>
     /**
      * Returns detailed information about a poll by its ID.
      *
      * [Documentation](https://dev.vk.com/method/polls.getById)
      */
-    "polls.getById": CallAPI<
-        Params.PollsGetByIdParams,
-        Objects.VKPollsPollExtended
-    >
+    getById: CallAPI<Params.PollsGetByIdParams, Objects.VKPollsPollExtended>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/polls.getPhotoUploadServer)
      */
-    "polls.getPhotoUploadServer": CallAPIWithOptionalParams<
+    getPhotoUploadServer: CallAPIWithOptionalParams<
         Params.PollsGetPhotoUploadServerParams,
         Objects.VKBaseUploadServer
     >
@@ -4134,7 +4152,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/polls.getVoters)
      */
-    "polls.getVoters": {
+    getVoters: {
         (
             params: Params.PollsGetVotersParams & {
                 fields: Required<
@@ -4151,16 +4169,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/polls.savePhoto)
      */
-    "polls.savePhoto": CallAPIWithOptionalParams<
+    savePhoto: CallAPIWithOptionalParams<
         Params.PollsSavePhotoParams,
         Objects.VKPollsBackground
     >
+}
+
+/**
+ * VK API prettyCards.* methods
+ */
+export interface APIMethodsPrettyCards {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/prettyCards.create)
      */
-    "prettyCards.create": CallAPI<
+    create: CallAPI<
         Params.PrettyCardsCreateParams,
         Responses.PrettyCardsCreateResponse
     >
@@ -4169,7 +4193,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/prettyCards.delete)
      */
-    "prettyCards.delete": CallAPI<
+    delete: CallAPI<
         Params.PrettyCardsDeleteParams,
         Responses.PrettyCardsDeleteResponse
     >
@@ -4178,7 +4202,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/prettyCards.edit)
      */
-    "prettyCards.edit": CallAPI<
+    edit: CallAPI<
         Params.PrettyCardsEditParams,
         Responses.PrettyCardsEditResponse
     >
@@ -4187,16 +4211,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/prettyCards.get)
      */
-    "prettyCards.get": CallAPI<
-        Params.PrettyCardsGetParams,
-        Responses.PrettyCardsGetResponse
-    >
+    get: CallAPI<Params.PrettyCardsGetParams, Responses.PrettyCardsGetResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/prettyCards.getById)
      */
-    "prettyCards.getById": CallAPI<
+    getById: CallAPI<
         Params.PrettyCardsGetByIdParams,
         Responses.PrettyCardsGetByIdResponse
     >
@@ -4205,22 +4226,34 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/prettyCards.getUploadURL)
      */
-    "prettyCards.getUploadURL": CallAPIWithoutParams<Responses.PrettyCardsGetUploadURLResponse>
+    getUploadURL: CallAPIWithoutParams<Responses.PrettyCardsGetUploadURLResponse>
+}
+
+/**
+ * VK API search.* methods
+ */
+export interface APIMethodsSearch {
     /**
      * Allows the programmer to do a quick search for any substring.
      *
      * [Documentation](https://dev.vk.com/method/search.getHints)
      */
-    "search.getHints": CallAPIWithOptionalParams<
+    getHints: CallAPIWithOptionalParams<
         Params.SearchGetHintsParams,
         Responses.SearchGetHintsResponse
     >
+}
+
+/**
+ * VK API secure.* methods
+ */
+export interface APIMethodsSecure {
     /**
      * Adds user activity information to an application
      *
      * [Documentation](https://dev.vk.com/method/secure.addAppEvent)
      */
-    "secure.addAppEvent": CallAPI<
+    addAppEvent: CallAPI<
         Params.SecureAddAppEventParams,
         Responses.BaseOkResponse
     >
@@ -4229,7 +4262,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.checkToken)
      */
-    "secure.checkToken": CallAPIWithOptionalParams<
+    checkToken: CallAPIWithOptionalParams<
         Params.SecureCheckTokenParams,
         Objects.VKSecureTokenChecked
     >
@@ -4238,13 +4271,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.getAppBalance)
      */
-    "secure.getAppBalance": CallAPIWithoutParams<Responses.SecureGetAppBalanceResponse>
+    getAppBalance: CallAPIWithoutParams<Responses.SecureGetAppBalanceResponse>
     /**
      * Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
      *
      * [Documentation](https://dev.vk.com/method/secure.getSMSHistory)
      */
-    "secure.getSMSHistory": CallAPIWithOptionalParams<
+    getSMSHistory: CallAPIWithOptionalParams<
         Params.SecureGetSMSHistoryParams,
         Responses.SecureGetSMSHistoryResponse
     >
@@ -4253,7 +4286,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.getTransactionsHistory)
      */
-    "secure.getTransactionsHistory": CallAPIWithOptionalParams<
+    getTransactionsHistory: CallAPIWithOptionalParams<
         Params.SecureGetTransactionsHistoryParams,
         Responses.SecureGetTransactionsHistoryResponse
     >
@@ -4262,7 +4295,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.getUserLevel)
      */
-    "secure.getUserLevel": CallAPI<
+    getUserLevel: CallAPI<
         Params.SecureGetUserLevelParams,
         Responses.SecureGetUserLevelResponse
     >
@@ -4271,7 +4304,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.giveEventSticker)
      */
-    "secure.giveEventSticker": CallAPI<
+    giveEventSticker: CallAPI<
         Params.SecureGiveEventStickerParams,
         Responses.SecureGiveEventStickerResponse
     >
@@ -4280,7 +4313,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.sendNotification)
      */
-    "secure.sendNotification": CallAPI<
+    sendNotification: CallAPI<
         Params.SecureSendNotificationParams,
         Responses.SecureSendNotificationResponse
     >
@@ -4289,7 +4322,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.sendSMSNotification)
      */
-    "secure.sendSMSNotification": CallAPI<
+    sendSMSNotification: CallAPI<
         Params.SecureSendSMSNotificationParams,
         Responses.BaseOkResponse
     >
@@ -4298,16 +4331,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.setCounter)
      */
-    "secure.setCounter": CallAPIWithOptionalParams<
+    setCounter: CallAPIWithOptionalParams<
         Params.SecureSetCounterParams,
         Objects.VKBaseBoolInt | Responses.SecureSetCounterArrayResponse
     >
+}
+
+/**
+ * VK API stats.* methods
+ */
+export interface APIMethodsStats {
     /**
      * Returns statistics of a community or an application.
      *
      * [Documentation](https://dev.vk.com/method/stats.get)
      */
-    "stats.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.StatsGetParams,
         Responses.StatsGetResponse
     >
@@ -4316,7 +4355,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stats.getPostReach)
      */
-    "stats.getPostReach": CallAPI<
+    getPostReach: CallAPI<
         Params.StatsGetPostReachParams,
         Responses.StatsGetPostReachResponse
     >
@@ -4325,16 +4364,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stats.trackVisitor)
      */
-    "stats.trackVisitor": CallAPIWithOptionalParams<
+    trackVisitor: CallAPIWithOptionalParams<
         Params.StatsTrackVisitorParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API status.* methods
+ */
+export interface APIMethodsStatus {
     /**
      * Returns data required to show the status of a user or community.
      *
      * [Documentation](https://dev.vk.com/method/status.get)
      */
-    "status.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.StatusGetParams,
         Objects.VKStatusStatus
     >
@@ -4343,16 +4388,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/status.set)
      */
-    "status.set": CallAPIWithOptionalParams<
+    set: CallAPIWithOptionalParams<
         Params.StatusSetParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API storage.* methods
+ */
+export interface APIMethodsStorage {
     /**
      * Returns a value of variable with the name set by key parameter.
      *
      * [Documentation](https://dev.vk.com/method/storage.get)
      */
-    "storage.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.StorageGetParams,
         Responses.StorageGetResponse
     >
@@ -4361,7 +4412,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/storage.getKeys)
      */
-    "storage.getKeys": CallAPIWithOptionalParams<
+    getKeys: CallAPIWithOptionalParams<
         Params.StorageGetKeysParams,
         Responses.StorageGetKeysResponse
     >
@@ -4370,13 +4421,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/storage.set)
      */
-    "storage.set": CallAPI<Params.StorageSetParams, Responses.BaseOkResponse>
+    set: CallAPI<Params.StorageSetParams, Responses.BaseOkResponse>
+}
+
+/**
+ * VK API store.* methods
+ */
+export interface APIMethodsStore {
     /**
      * Adds given sticker IDs to the list of user's favorite stickers
      *
      * [Documentation](https://dev.vk.com/method/store.addStickersToFavorite)
      */
-    "store.addStickersToFavorite": CallAPI<
+    addStickersToFavorite: CallAPI<
         Params.StoreAddStickersToFavoriteParams,
         Responses.BaseOkResponse
     >
@@ -4385,13 +4442,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/store.getFavoriteStickers)
      */
-    "store.getFavoriteStickers": CallAPIWithoutParams<Responses.StoreGetFavoriteStickersResponse>
+    getFavoriteStickers: CallAPIWithoutParams<Responses.StoreGetFavoriteStickersResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/store.getProducts)
      */
-    "store.getProducts": CallAPIWithOptionalParams<
+    getProducts: CallAPIWithOptionalParams<
         Params.StoreGetProductsParams,
         Responses.StoreGetProductsResponse
     >
@@ -4400,7 +4457,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/store.getStickersKeywords)
      */
-    "store.getStickersKeywords": CallAPIWithOptionalParams<
+    getStickersKeywords: CallAPIWithOptionalParams<
         Params.StoreGetStickersKeywordsParams,
         Responses.StoreGetStickersKeywordsResponse
     >
@@ -4409,25 +4466,28 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/store.removeStickersFromFavorite)
      */
-    "store.removeStickersFromFavorite": CallAPI<
+    removeStickersFromFavorite: CallAPI<
         Params.StoreRemoveStickersFromFavoriteParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API stories.* methods
+ */
+export interface APIMethodsStories {
     /**
      * Allows to hide stories from chosen sources from current user's feed.
      *
      * [Documentation](https://dev.vk.com/method/stories.banOwner)
      */
-    "stories.banOwner": CallAPI<
-        Params.StoriesBanOwnerParams,
-        Responses.BaseOkResponse
-    >
+    banOwner: CallAPI<Params.StoriesBanOwnerParams, Responses.BaseOkResponse>
     /**
      * Allows to delete story.
      *
      * [Documentation](https://dev.vk.com/method/stories.delete)
      */
-    "stories.delete": CallAPIWithOptionalParams<
+    delete: CallAPIWithOptionalParams<
         Params.StoriesDeleteParams,
         Responses.BaseOkResponse
     >
@@ -4436,7 +4496,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.get)
      */
-    "stories.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.StoriesGetParams,
         Responses.StoriesGetV5113Response
     >
@@ -4445,7 +4505,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.getBanned)
      */
-    "stories.getBanned": {
+    getBanned: {
         (
             params: Params.StoriesGetBannedParams & { extended: 1 | true },
         ): Promise<Responses.StoriesGetBannedExtendedResponse>
@@ -4458,7 +4518,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.getById)
      */
-    "stories.getById": CallAPI<
+    getById: CallAPI<
         Params.StoriesGetByIdParams,
         Responses.StoriesGetByIdExtendedResponse
     >
@@ -4467,7 +4527,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.getPhotoUploadServer)
      */
-    "stories.getPhotoUploadServer": CallAPIWithOptionalParams<
+    getPhotoUploadServer: CallAPIWithOptionalParams<
         Params.StoriesGetPhotoUploadServerParams,
         Responses.StoriesGetPhotoUploadServerResponse
     >
@@ -4476,7 +4536,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.getReplies)
      */
-    "stories.getReplies": CallAPI<
+    getReplies: CallAPI<
         Params.StoriesGetRepliesParams,
         Responses.StoriesGetV5113Response
     >
@@ -4485,16 +4545,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.getStats)
      */
-    "stories.getStats": CallAPI<
-        Params.StoriesGetStatsParams,
-        Objects.VKStoriesStoryStats
-    >
+    getStats: CallAPI<Params.StoriesGetStatsParams, Objects.VKStoriesStoryStats>
     /**
      * Allows to receive URL for uploading story with video.
      *
      * [Documentation](https://dev.vk.com/method/stories.getVideoUploadServer)
      */
-    "stories.getVideoUploadServer": CallAPIWithOptionalParams<
+    getVideoUploadServer: CallAPIWithOptionalParams<
         Params.StoriesGetVideoUploadServerParams,
         Responses.StoriesGetVideoUploadServerResponse
     >
@@ -4503,7 +4560,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.getViewers)
      */
-    "stories.getViewers": CallAPI<
+    getViewers: CallAPI<
         Params.StoriesGetViewersParams,
         Responses.StoriesGetViewersExtendedV5115Response
     >
@@ -4512,7 +4569,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.hideAllReplies)
      */
-    "stories.hideAllReplies": CallAPI<
+    hideAllReplies: CallAPI<
         Params.StoriesHideAllRepliesParams,
         Responses.BaseOkResponse
     >
@@ -4521,16 +4578,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.hideReply)
      */
-    "stories.hideReply": CallAPI<
-        Params.StoriesHideReplyParams,
-        Responses.BaseOkResponse
-    >
+    hideReply: CallAPI<Params.StoriesHideReplyParams, Responses.BaseOkResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/stories.save)
      */
-    "stories.save": CallAPIWithOptionalParams<
+    save: CallAPIWithOptionalParams<
         Params.StoriesSaveParams,
         Responses.StoriesSaveResponse
     >
@@ -4539,7 +4593,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.search)
      */
-    "stories.search": CallAPIWithOptionalParams<
+    search: CallAPIWithOptionalParams<
         Params.StoriesSearchParams,
         Responses.StoriesGetV5113Response
     >
@@ -4548,7 +4602,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.sendInteraction)
      */
-    "stories.sendInteraction": CallAPI<
+    sendInteraction: CallAPI<
         Params.StoriesSendInteractionParams,
         Responses.BaseOkResponse
     >
@@ -4557,22 +4611,28 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/stories.unbanOwner)
      */
-    "stories.unbanOwner": CallAPI<
+    unbanOwner: CallAPI<
         Params.StoriesUnbanOwnerParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API streaming.* methods
+ */
+export interface APIMethodsStreaming {
     /**
      * Allows to receive data for the connection to Streaming API.
      *
      * [Documentation](https://dev.vk.com/method/streaming.getServerUrl)
      */
-    "streaming.getServerUrl": CallAPIWithoutParams<Responses.StreamingGetServerUrlResponse>
+    getServerUrl: CallAPIWithoutParams<Responses.StreamingGetServerUrlResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/streaming.getStats)
      */
-    "streaming.getStats": CallAPIWithOptionalParams<
+    getStats: CallAPIWithOptionalParams<
         Params.StreamingGetStatsParams,
         Responses.StreamingGetStatsResponse
     >
@@ -4581,25 +4641,37 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/streaming.getStem)
      */
-    "streaming.getStem": CallAPI<
+    getStem: CallAPI<
         Params.StreamingGetStemParams,
         Responses.StreamingGetStemResponse
     >
+}
+
+/**
+ * VK API translations.* methods
+ */
+export interface APIMethodsTranslations {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/translations.translate)
      */
-    "translations.translate": CallAPI<
+    translate: CallAPI<
         Params.TranslationsTranslateParams,
         Responses.TranslationsTranslateResponse
     >
+}
+
+/**
+ * VK API users.* methods
+ */
+export interface APIMethodsUsers {
     /**
      * Returns detailed information on users.
      *
      * [Documentation](https://dev.vk.com/method/users.get)
      */
-    "users.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.UsersGetParams,
         Responses.UsersGetResponse
     >
@@ -4608,7 +4680,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/users.getFollowers)
      */
-    "users.getFollowers": {
+    getFollowers: {
         <F extends Objects.VKUsersFields>(
             params: Params.UsersGetFollowersParams & { fields: F[] },
         ): Promise<
@@ -4632,7 +4704,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/users.getSubscriptions)
      */
-    "users.getSubscriptions": {
+    getSubscriptions: {
         (
             params: Params.UsersGetSubscriptionsParams & { extended: 1 | true },
         ): Promise<Responses.UsersGetSubscriptionsExtendedResponse>
@@ -4645,31 +4717,34 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/users.report)
      */
-    "users.report": CallAPI<Params.UsersReportParams, Responses.BaseOkResponse>
+    report: CallAPI<Params.UsersReportParams, Responses.BaseOkResponse>
     /**
      * Returns a list of users matching the search criteria.
      *
      * [Documentation](https://dev.vk.com/method/users.search)
      */
-    "users.search": CallAPIWithOptionalParams<
+    search: CallAPIWithOptionalParams<
         Params.UsersSearchParams,
         Responses.UsersSearchResponse
     >
+}
+
+/**
+ * VK API utils.* methods
+ */
+export interface APIMethodsUtils {
     /**
      * Checks whether a link is blocked in VK.
      *
      * [Documentation](https://dev.vk.com/method/utils.checkLink)
      */
-    "utils.checkLink": CallAPI<
-        Params.UtilsCheckLinkParams,
-        Objects.VKUtilsLinkChecked
-    >
+    checkLink: CallAPI<Params.UtilsCheckLinkParams, Objects.VKUtilsLinkChecked>
     /**
      * Deletes shortened link from user's list.
      *
      * [Documentation](https://dev.vk.com/method/utils.deleteFromLastShortened)
      */
-    "utils.deleteFromLastShortened": CallAPI<
+    deleteFromLastShortened: CallAPI<
         Params.UtilsDeleteFromLastShortenedParams,
         Responses.BaseOkResponse
     >
@@ -4678,7 +4753,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/utils.getLastShortenedLinks)
      */
-    "utils.getLastShortenedLinks": CallAPIWithOptionalParams<
+    getLastShortenedLinks: CallAPIWithOptionalParams<
         Params.UtilsGetLastShortenedLinksParams,
         Responses.UtilsGetLastShortenedLinksResponse
     >
@@ -4687,7 +4762,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/utils.getLinkStats)
      */
-    "utils.getLinkStats": {
+    getLinkStats: {
         (
             params: Params.UtilsGetLinkStatsParams & { extended: 1 | true },
         ): Promise<Objects.VKUtilsLinkStatsExtended>
@@ -4700,13 +4775,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/utils.getServerTime)
      */
-    "utils.getServerTime": CallAPIWithoutParams<Responses.UtilsGetServerTimeResponse>
+    getServerTime: CallAPIWithoutParams<Responses.UtilsGetServerTimeResponse>
     /**
      * Allows to receive a link shortened via vk.cc.
      *
      * [Documentation](https://dev.vk.com/method/utils.getShortLink)
      */
-    "utils.getShortLink": CallAPI<
+    getShortLink: CallAPI<
         Params.UtilsGetShortLinkParams,
         Objects.VKUtilsShortLink
     >
@@ -4715,22 +4790,28 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/utils.resolveScreenName)
      */
-    "utils.resolveScreenName": CallAPI<
+    resolveScreenName: CallAPI<
         Params.UtilsResolveScreenNameParams,
         Objects.VKUtilsDomainResolved
     >
+}
+
+/**
+ * VK API video.* methods
+ */
+export interface APIMethodsVideo {
     /**
      * Adds a video to a user or community page.
      *
      * [Documentation](https://dev.vk.com/method/video.add)
      */
-    "video.add": CallAPI<Params.VideoAddParams, Responses.BaseOkResponse>
+    add: CallAPI<Params.VideoAddParams, Responses.BaseOkResponse>
     /**
      * Creates an empty album for videos.
      *
      * [Documentation](https://dev.vk.com/method/video.addAlbum)
      */
-    "video.addAlbum": CallAPIWithOptionalParams<
+    addAlbum: CallAPIWithOptionalParams<
         Params.VideoAddAlbumParams,
         Responses.VideoAddAlbumResponse
     >
@@ -4739,7 +4820,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.addToAlbum)
      */
-    "video.addToAlbum": CallAPI<
+    addToAlbum: CallAPI<
         Params.VideoAddToAlbumParams,
         Responses.BaseOkResponse | Responses.VideoChangeVideoAlbumsResponse
     >
@@ -4748,7 +4829,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.createComment)
      */
-    "video.createComment": CallAPI<
+    createComment: CallAPI<
         Params.VideoCreateCommentParams,
         Responses.VideoCreateCommentResponse
     >
@@ -4757,13 +4838,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.delete)
      */
-    "video.delete": CallAPI<Params.VideoDeleteParams, Responses.BaseOkResponse>
+    delete: CallAPI<Params.VideoDeleteParams, Responses.BaseOkResponse>
     /**
      * Deletes a video album.
      *
      * [Documentation](https://dev.vk.com/method/video.deleteAlbum)
      */
-    "video.deleteAlbum": CallAPI<
+    deleteAlbum: CallAPI<
         Params.VideoDeleteAlbumParams,
         Responses.BaseOkResponse
     >
@@ -4772,7 +4853,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.deleteComment)
      */
-    "video.deleteComment": CallAPI<
+    deleteComment: CallAPI<
         Params.VideoDeleteCommentParams,
         Responses.BaseOkResponse
     >
@@ -4781,7 +4862,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.deleteThread)
      */
-    "video.deleteThread": CallAPI<
+    deleteThread: CallAPI<
         Params.VideoDeleteThreadParams,
         Responses.BaseOkResponse
     >
@@ -4790,22 +4871,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.edit)
      */
-    "video.edit": CallAPI<Params.VideoEditParams, Responses.VideoEditResponse>
+    edit: CallAPI<Params.VideoEditParams, Responses.VideoEditResponse>
     /**
      * Edits the title of a video album.
      *
      * [Documentation](https://dev.vk.com/method/video.editAlbum)
      */
-    "video.editAlbum": CallAPI<
-        Params.VideoEditAlbumParams,
-        Responses.BaseOkResponse
-    >
+    editAlbum: CallAPI<Params.VideoEditAlbumParams, Responses.BaseOkResponse>
     /**
      * Edits the text of a comment on a video.
      *
      * [Documentation](https://dev.vk.com/method/video.editComment)
      */
-    "video.editComment": CallAPI<
+    editComment: CallAPI<
         Params.VideoEditCommentParams,
         Responses.BaseOkResponse
     >
@@ -4814,7 +4892,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.get)
      */
-    "video.get": CallAPIWithOptionalParams<
+    get: CallAPIWithOptionalParams<
         Params.VideoGetParams,
         Responses.VideoGetResponse
     >
@@ -4823,7 +4901,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getAlbumById)
      */
-    "video.getAlbumById": CallAPI<
+    getAlbumById: CallAPI<
         Params.VideoGetAlbumByIdParams,
         Objects.VKVideoVideoAlbumFull
     >
@@ -4832,7 +4910,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getAlbums)
      */
-    "video.getAlbums": {
+    getAlbums: {
         (
             params: Params.VideoGetAlbumsParams & { extended: 1 | true },
         ): Promise<Responses.VideoGetAlbumsExtendedResponse>
@@ -4845,7 +4923,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getAlbumsByVideo)
      */
-    "video.getAlbumsByVideo": {
+    getAlbumsByVideo: {
         (
             params: Params.VideoGetAlbumsByVideoParams & { extended: 1 | true },
         ): Promise<Responses.VideoGetAlbumsByVideoExtendedResponse>
@@ -4858,7 +4936,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getComments)
      */
-    "video.getComments": {
+    getComments: {
         (
             params: Params.VideoGetCommentsParams & { extended: 1 | true },
         ): Promise<Responses.VideoGetCommentsExtendedResponse>
@@ -4871,7 +4949,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getLongPollServer)
      */
-    "video.getLongPollServer": CallAPI<
+    getLongPollServer: CallAPI<
         Params.VideoGetLongPollServerParams,
         Responses.VideoGetLongPollServerResponse
     >
@@ -4880,7 +4958,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getOembed)
      */
-    "video.getOembed": CallAPI<
+    getOembed: CallAPI<
         Params.VideoGetOembedParams,
         Responses.VideoGetOembedResponse
     >
@@ -4889,7 +4967,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.getThumbUploadUrl)
      */
-    "video.getThumbUploadUrl": CallAPI<
+    getThumbUploadUrl: CallAPI<
         Params.VideoGetThumbUploadUrlParams,
         Responses.VideoGetThumbUploadUrlResponse
     >
@@ -4898,13 +4976,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.liveGetCategories)
      */
-    "video.liveGetCategories": CallAPIWithoutParams<Responses.VideoLiveGetCategoriesResponse>
+    liveGetCategories: CallAPIWithoutParams<Responses.VideoLiveGetCategoriesResponse>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/video.removeFromAlbum)
      */
-    "video.removeFromAlbum": CallAPI<
+    removeFromAlbum: CallAPI<
         Params.VideoRemoveFromAlbumParams,
         Responses.BaseOkResponse | Responses.VideoChangeVideoAlbumsResponse
     >
@@ -4913,7 +4991,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.reorderAlbums)
      */
-    "video.reorderAlbums": CallAPI<
+    reorderAlbums: CallAPI<
         Params.VideoReorderAlbumsParams,
         Responses.BaseOkResponse
     >
@@ -4922,7 +5000,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.reorderVideos)
      */
-    "video.reorderVideos": CallAPI<
+    reorderVideos: CallAPI<
         Params.VideoReorderVideosParams,
         Responses.BaseOkResponse
     >
@@ -4931,13 +5009,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.report)
      */
-    "video.report": CallAPI<Params.VideoReportParams, Responses.BaseOkResponse>
+    report: CallAPI<Params.VideoReportParams, Responses.BaseOkResponse>
     /**
      * Reports (submits a complaint about) a comment on a video.
      *
      * [Documentation](https://dev.vk.com/method/video.reportComment)
      */
-    "video.reportComment": CallAPI<
+    reportComment: CallAPI<
         Params.VideoReportCommentParams,
         Responses.BaseOkResponse
     >
@@ -4946,16 +5024,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.restore)
      */
-    "video.restore": CallAPI<
-        Params.VideoRestoreParams,
-        Responses.BaseOkResponse
-    >
+    restore: CallAPI<Params.VideoRestoreParams, Responses.BaseOkResponse>
     /**
      * Restores a previously deleted comment on a video.
      *
      * [Documentation](https://dev.vk.com/method/video.restoreComment)
      */
-    "video.restoreComment": CallAPI<
+    restoreComment: CallAPI<
         Params.VideoRestoreCommentParams,
         Objects.VKBaseBoolInt
     >
@@ -4964,7 +5039,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.restoreThread)
      */
-    "video.restoreThread": CallAPI<
+    restoreThread: CallAPI<
         Params.VideoRestoreThreadParams,
         Responses.BaseOkResponse
     >
@@ -4973,7 +5048,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.save)
      */
-    "video.save": CallAPIWithOptionalParams<
+    save: CallAPIWithOptionalParams<
         Params.VideoSaveParams,
         Objects.VKVideoSaveResult
     >
@@ -4982,7 +5057,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.saveUploadedThumb)
      */
-    "video.saveUploadedThumb": CallAPI<
+    saveUploadedThumb: CallAPI<
         Params.VideoSaveUploadedThumbParams,
         Responses.VideoSaveUploadedThumbResponse
     >
@@ -4991,7 +5066,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.search)
      */
-    "video.search": {
+    search: {
         (
             params: Params.VideoSearchParams & { extended: 1 | true },
         ): Promise<Responses.VideoSearchExtendedResponse>
@@ -5004,7 +5079,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.startStreaming)
      */
-    "video.startStreaming": CallAPIWithOptionalParams<
+    startStreaming: CallAPIWithOptionalParams<
         Params.VideoStartStreamingParams,
         Responses.VideoStartStreamingResponse
     >
@@ -5013,7 +5088,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.stopStreaming)
      */
-    "video.stopStreaming": CallAPIWithOptionalParams<
+    stopStreaming: CallAPIWithOptionalParams<
         Params.VideoStopStreamingParams,
         Responses.VideoStopStreamingResponse
     >
@@ -5022,16 +5097,22 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.unpinComment)
      */
-    "video.unpinComment": CallAPI<
+    unpinComment: CallAPI<
         Params.VideoUnpinCommentParams,
         Responses.BaseOkResponse
     >
+}
+
+/**
+ * VK API wall.* methods
+ */
+export interface APIMethodsWall {
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/wall.checkCopyrightLink)
      */
-    "wall.checkCopyrightLink": CallAPI<
+    checkCopyrightLink: CallAPI<
         Params.WallCheckCopyrightLinkParams,
         Objects.VKBaseBoolInt
     >
@@ -5040,7 +5121,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.closeComments)
      */
-    "wall.closeComments": CallAPI<
+    closeComments: CallAPI<
         Params.WallCloseCommentsParams,
         Objects.VKBaseBoolInt
     >
@@ -5049,7 +5130,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.createComment)
      */
-    "wall.createComment": CallAPI<
+    createComment: CallAPI<
         Params.WallCreateCommentParams,
         Responses.WallCreateCommentResponse
     >
@@ -5058,7 +5139,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.delete)
      */
-    "wall.delete": CallAPIWithOptionalParams<
+    delete: CallAPIWithOptionalParams<
         Params.WallDeleteParams,
         Responses.BaseOkResponse
     >
@@ -5067,7 +5148,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.deleteComment)
      */
-    "wall.deleteComment": CallAPI<
+    deleteComment: CallAPI<
         Params.WallDeleteCommentParams,
         Responses.BaseOkResponse
     >
@@ -5076,13 +5157,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.edit)
      */
-    "wall.edit": CallAPI<Params.WallEditParams, Responses.WallEditResponse>
+    edit: CallAPI<Params.WallEditParams, Responses.WallEditResponse>
     /**
      * Allows to edit hidden post.
      *
      * [Documentation](https://dev.vk.com/method/wall.editAdsStealth)
      */
-    "wall.editAdsStealth": CallAPI<
+    editAdsStealth: CallAPI<
         Params.WallEditAdsStealthParams,
         Responses.BaseOkResponse
     >
@@ -5091,16 +5172,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.editComment)
      */
-    "wall.editComment": CallAPI<
-        Params.WallEditCommentParams,
-        Responses.BaseOkResponse
-    >
+    editComment: CallAPI<Params.WallEditCommentParams, Responses.BaseOkResponse>
     /**
      * Returns a list of posts on a user wall or community wall.
      *
      * [Documentation](https://dev.vk.com/method/wall.get)
      */
-    "wall.get": {
+    get: {
         (
             params: Params.WallGetParams & { extended: 1 | true },
         ): Promise<Responses.WallGetExtendedResponse>
@@ -5111,7 +5189,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.getById)
      */
-    "wall.getById": {
+    getById: {
         (
             params: Params.WallGetByIdParams & { extended: 1 | true },
         ): Promise<Responses.WallGetByIdExtendedResponse>
@@ -5124,7 +5202,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.getComment)
      */
-    "wall.getComment": {
+    getComment: {
         (
             params: Params.WallGetCommentParams & { extended: 1 | true },
         ): Promise<Responses.WallGetCommentExtendedResponse>
@@ -5137,7 +5215,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.getComments)
      */
-    "wall.getComments": {
+    getComments: {
         (
             params: Params.WallGetCommentsParams & { extended: 1 | true },
         ): Promise<Responses.WallGetCommentsExtendedResponse>
@@ -5150,7 +5228,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.getReposts)
      */
-    "wall.getReposts": CallAPIWithOptionalParams<
+    getReposts: CallAPIWithOptionalParams<
         Params.WallGetRepostsParams,
         Responses.WallGetRepostsResponse
     >
@@ -5159,16 +5237,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.openComments)
      */
-    "wall.openComments": CallAPI<
-        Params.WallOpenCommentsParams,
-        Objects.VKBaseBoolInt
-    >
+    openComments: CallAPI<Params.WallOpenCommentsParams, Objects.VKBaseBoolInt>
     /**
      *
      *
      * [Documentation](https://dev.vk.com/method/wall.parseAttachedLink)
      */
-    "wall.parseAttachedLink": CallAPI<
+    parseAttachedLink: CallAPI<
         Params.WallParseAttachedLinkParams,
         Responses.WallParseAttachedLinkResponse
     >
@@ -5177,13 +5252,13 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.pin)
      */
-    "wall.pin": CallAPI<Params.WallPinParams, Responses.BaseOkResponse>
+    pin: CallAPI<Params.WallPinParams, Responses.BaseOkResponse>
     /**
      * Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
      *
      * [Documentation](https://dev.vk.com/method/wall.post)
      */
-    "wall.post": CallAPIWithOptionalParams<
+    post: CallAPIWithOptionalParams<
         Params.WallPostParams,
         Responses.WallPostResponse
     >
@@ -5192,7 +5267,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.postAdsStealth)
      */
-    "wall.postAdsStealth": CallAPI<
+    postAdsStealth: CallAPI<
         Params.WallPostAdsStealthParams,
         Responses.WallPostAdsStealthResponse
     >
@@ -5201,7 +5276,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.reportComment)
      */
-    "wall.reportComment": CallAPI<
+    reportComment: CallAPI<
         Params.WallReportCommentParams,
         Responses.BaseOkResponse
     >
@@ -5210,25 +5285,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.reportPost)
      */
-    "wall.reportPost": CallAPI<
-        Params.WallReportPostParams,
-        Responses.BaseOkResponse
-    >
+    reportPost: CallAPI<Params.WallReportPostParams, Responses.BaseOkResponse>
     /**
      * Reposts (copies) an object to a user wall or community wall.
      *
      * [Documentation](https://dev.vk.com/method/wall.repost)
      */
-    "wall.repost": CallAPI<
-        Params.WallRepostParams,
-        Responses.WallRepostResponse
-    >
+    repost: CallAPI<Params.WallRepostParams, Responses.WallRepostResponse>
     /**
      * Restores a post deleted from a user wall or community wall.
      *
      * [Documentation](https://dev.vk.com/method/wall.restore)
      */
-    "wall.restore": CallAPIWithOptionalParams<
+    restore: CallAPIWithOptionalParams<
         Params.WallRestoreParams,
         Responses.BaseOkResponse
     >
@@ -5237,7 +5306,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.restoreComment)
      */
-    "wall.restoreComment": CallAPI<
+    restoreComment: CallAPI<
         Params.WallRestoreCommentParams,
         Responses.BaseOkResponse
     >
@@ -5246,7 +5315,7 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.search)
      */
-    "wall.search": {
+    search: {
         (
             params: Params.WallSearchParams & { extended: 1 | true },
         ): Promise<Responses.WallSearchExtendedResponse>
@@ -5259,13 +5328,19 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/wall.unpin)
      */
-    "wall.unpin": CallAPI<Params.WallUnpinParams, Responses.BaseOkResponse>
+    unpin: CallAPI<Params.WallUnpinParams, Responses.BaseOkResponse>
+}
+
+/**
+ * VK API widgets.* methods
+ */
+export interface APIMethodsWidgets {
     /**
      * Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
      *
      * [Documentation](https://dev.vk.com/method/widgets.getComments)
      */
-    "widgets.getComments": CallAPIWithOptionalParams<
+    getComments: CallAPIWithOptionalParams<
         Params.WidgetsGetCommentsParams,
         Responses.WidgetsGetCommentsResponse
     >
@@ -5274,8 +5349,58 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/widgets.getPages)
      */
-    "widgets.getPages": CallAPIWithOptionalParams<
+    getPages: CallAPIWithOptionalParams<
         Params.WidgetsGetPagesParams,
         Responses.WidgetsGetPagesResponse
     >
+}
+
+/**
+ * Map of all VK API methods organized by category
+ */
+export interface APIMethods {
+    account: APIMethodsAccount
+    ads: APIMethodsAds
+    appWidgets: APIMethodsAppWidgets
+    apps: APIMethodsApps
+    auth: APIMethodsAuth
+    board: APIMethodsBoard
+    bugtracker: APIMethodsBugtracker
+    calls: APIMethodsCalls
+    database: APIMethodsDatabase
+    docs: APIMethodsDocs
+    donut: APIMethodsDonut
+    downloadedGames: APIMethodsDownloadedGames
+    execute: APIMethodsExecute
+    fave: APIMethodsFave
+    friends: APIMethodsFriends
+    gifts: APIMethodsGifts
+    groups: APIMethodsGroups
+    leadForms: APIMethodsLeadForms
+    likes: APIMethodsLikes
+    market: APIMethodsMarket
+    messages: APIMethodsMessages
+    newsfeed: APIMethodsNewsfeed
+    notes: APIMethodsNotes
+    notifications: APIMethodsNotifications
+    orders: APIMethodsOrders
+    pages: APIMethodsPages
+    photos: APIMethodsPhotos
+    podcasts: APIMethodsPodcasts
+    polls: APIMethodsPolls
+    prettyCards: APIMethodsPrettyCards
+    search: APIMethodsSearch
+    secure: APIMethodsSecure
+    stats: APIMethodsStats
+    status: APIMethodsStatus
+    storage: APIMethodsStorage
+    store: APIMethodsStore
+    stories: APIMethodsStories
+    streaming: APIMethodsStreaming
+    translations: APIMethodsTranslations
+    users: APIMethodsUsers
+    utils: APIMethodsUtils
+    video: APIMethodsVideo
+    wall: APIMethodsWall
+    widgets: APIMethodsWidgets
 }

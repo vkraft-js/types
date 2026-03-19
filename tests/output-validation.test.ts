@@ -36,10 +36,10 @@ describe("generated output validation", () => {
 		expect(content).toContain("export type VK");
 	});
 
-	it("methods.d.ts contains APIMethods interface", () => {
+	it("methods.d.ts contains nested APIMethods interfaces", () => {
 		const content = readFileSync("out/methods.d.ts", "utf-8");
+		expect(content).toContain("export interface APIMethodsUsers");
 		expect(content).toContain("export interface APIMethods");
-		expect(content).toContain('"users.get"');
 	});
 
 	it("params.d.ts contains Params interfaces", () => {

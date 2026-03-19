@@ -83,7 +83,7 @@ const files: IGeneratedFile[] = [
 					"```typescript",
 					`import { APIMethods } from "@vkraft/types/methods";`,
 					"",
-					`type UsersGetReturn = Awaited<ReturnType<APIMethods["users.get"]>>;`,
+					`type UsersGetReturn = Awaited<ReturnType<APIMethods["users"]["get"]>>;`,
 					"```",
 				],
 			),
@@ -127,7 +127,7 @@ const files: IGeneratedFile[] = [
 			[`export type * as VKResponses from "./responses"`],
 			[`export type * from "./errors"`],
 			[
-				`export type { APIMethodParams, APIMethodReturn, VKAPINested, WithFields } from "./utils"`,
+				`export type { APIMethod, APIMethodParams, APIMethodReturn, VKAPINested, WithFields } from "./utils"`,
 			],
 		],
 	},
@@ -151,24 +151,34 @@ const files: IGeneratedFile[] = [
 				"export type CallAPIWithOptionalParams<T, R> = (params?: T) => Promise<R>",
 				"",
 				...CodeGenerator.generateComment([
+					"Resolve a dot-notation method name to its call signature.",
+					"",
+					"@example",
+					"```typescript",
+					`type UsersGet = APIMethod<"users.get">;`,
+					"```",
+				]),
+				"export type APIMethod<T extends string> = T extends `${infer Cat}.${infer Method}` ? Cat extends keyof APIMethods ? Method extends keyof APIMethods[Cat] ? APIMethods[Cat][Method] : never : never : never",
+				"",
+				...CodeGenerator.generateComment([
 					"@example",
 					"```typescript",
 					`type UsersGetParams = APIMethodParams<"users.get">;`,
 					"```",
 				]),
-				"export type APIMethodParams<APIMethod extends keyof APIMethods> = Parameters<APIMethods[APIMethod]>[0]",
+				"export type APIMethodParams<T extends string> = Parameters<APIMethod<T>>[0]",
 				...CodeGenerator.generateComment([
 					"@example",
 					"```typescript",
 					`type UsersGetReturn = APIMethodReturn<"users.get">;`,
 					"```",
 				]),
-				"export type APIMethodReturn<APIMethod extends keyof APIMethods> = Awaited<ReturnType<APIMethods[APIMethod]>>",
+				"export type APIMethodReturn<T extends string> = Awaited<ReturnType<APIMethod<T>>>",
 				"",
 				...CodeGenerator.generateComment([
 					"Nested proxy type for `api.users.get()` style access.",
 					"",
-					'Splits flat `APIMethods` keys like `"users.get"` into `{ users: { get: ... } }`.',
+					"APIMethods is already natively nested, so this is a simple alias.",
 					"",
 					"@example",
 					"```typescript",
@@ -176,12 +186,7 @@ const files: IGeneratedFile[] = [
 					"await api.users.get({ user_ids: [1] });",
 					"```",
 				]),
-				"type ExtractCategory<T extends string> = T extends `${infer C}.${string}` ? C : never",
-				`export type VKAPINested = {
-	[Cat in ExtractCategory<keyof APIMethods & string>]: {
-		[M in keyof APIMethods as M extends \`\${Cat}.\${infer Method}\` ? Method : never]: APIMethods[M]
-	}
-}`,
+				"export type VKAPINested = APIMethods",
 				"",
 				...CodeGenerator.generateComment([
 					"Make properties whose names match the given fields required.",

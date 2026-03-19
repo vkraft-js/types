@@ -10,7 +10,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 14:04:09 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 18:30:47 using [types](https://github.com/vkraft/types) generator
  */
 
 import type * as Objects from "./objects"

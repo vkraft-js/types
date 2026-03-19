@@ -13,7 +13,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 14:04:09 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 18:30:47 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
@@ -23,28 +23,43 @@ export type CallAPIWithoutParams<R> = () => Promise<R>
 export type CallAPIWithOptionalParams<T, R> = (params?: T) => Promise<R>
 
 /**
+ * Resolve a dot-notation method name to its call signature.
+ *
+ * @example
+ * ```typescript
+ * type UsersGet = APIMethod<"users.get">;
+ * ```
+ */
+export type APIMethod<T extends string> =
+    T extends `${infer Cat}.${infer Method}`
+        ? Cat extends keyof APIMethods
+            ? Method extends keyof APIMethods[Cat]
+                ? APIMethods[Cat][Method]
+                : never
+            : never
+        : never
+
+/**
  * @example
  * ```typescript
  * type UsersGetParams = APIMethodParams<"users.get">;
  * ```
  */
-export type APIMethodParams<APIMethod extends keyof APIMethods> = Parameters<
-    APIMethods[APIMethod]
->[0]
+export type APIMethodParams<T extends string> = Parameters<APIMethod<T>>[0]
 /**
  * @example
  * ```typescript
  * type UsersGetReturn = APIMethodReturn<"users.get">;
  * ```
  */
-export type APIMethodReturn<APIMethod extends keyof APIMethods> = Awaited<
-    ReturnType<APIMethods[APIMethod]>
+export type APIMethodReturn<T extends string> = Awaited<
+    ReturnType<APIMethod<T>>
 >
 
 /**
  * Nested proxy type for `api.users.get()` style access.
  *
- * Splits flat `APIMethods` keys like `"users.get"` into `{ users: { get: ... } }`.
+ * APIMethods is already natively nested, so this is a simple alias.
  *
  * @example
  * ```typescript
@@ -52,16 +67,7 @@ export type APIMethodReturn<APIMethod extends keyof APIMethods> = Awaited<
  * await api.users.get({ user_ids: [1] });
  * ```
  */
-type ExtractCategory<T extends string> = T extends `${infer C}.${string}`
-    ? C
-    : never
-export type VKAPINested = {
-    [Cat in ExtractCategory<keyof APIMethods & string>]: {
-        [M in keyof APIMethods as M extends `${Cat}.${infer Method}`
-            ? Method
-            : never]: APIMethods[M]
-    }
-}
+export type VKAPINested = APIMethods
 
 /**
  * Make properties whose names match the given fields required.

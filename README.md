@@ -17,8 +17,12 @@ bun add @vkraft/types
 ## Usage
 
 ```ts
-import type { APIMethods, APIMethodReturn, APIMethodParams } from "@vkraft/types";
+import type { APIMethods, APIMethod, APIMethodReturn, APIMethodParams } from "@vkraft/types";
 
+// APIMethods is natively nested — api.users.get style
+type UsersGet = APIMethods["users"]["get"];
+
+// Dot-notation helpers resolve "users.get" to the same signature
 type UsersGetReturn = APIMethodReturn<"users.get">;
 type UsersGetParams = APIMethodParams<"users.get">;
 ```
@@ -47,26 +51,26 @@ See [docs/smart-responses.md](docs/smart-responses.md) for details.
 ## Imports
 
 - `index` — exports everything
-- `methods` — exports `APIMethods` interface (method signatures map)
+- `methods` — exports nested `APIMethods` interface and per-category interfaces (`APIMethodsUsers`, `APIMethodsWall`, etc.)
 - `objects` — exports VK API objects with the `VK` prefix (e.g. `VKUsersUserFull`)
 - `params` — exports parameter interfaces with `Params` postfix (e.g. `UsersGetParams`)
 - `responses` — exports response types (e.g. `UsersGetResponse`)
 - `errors` — exports `VKError`, `VKErrorCode`
-- `utils` — exports `APIMethodParams`, `APIMethodReturn`, `VKAPINested`, `WithFields`, `CallAPI`
+- `utils` — exports `APIMethod`, `APIMethodParams`, `APIMethodReturn`, `VKAPINested`, `WithFields`, `CallAPI`
 
 ## Write your own type-safe VK API wrapper
 
-Use `VKAPINested` for a clean `api.users.get()` style:
+`APIMethods` is natively nested, so you get `api.users.get()` style access directly:
 
 ```typescript
-import type { VKAPINested } from "@vkraft/types";
+import type { APIMethods } from "@vkraft/types";
 
 const VK_API_URL = "https://api.vk.com/method";
 const TOKEN = process.env.VK_TOKEN!;
 const API_VERSION = "5.199";
 
-function createAPI(): VKAPINested {
-    return new Proxy({} as VKAPINested, {
+function createAPI(): APIMethods {
+    return new Proxy({} as APIMethods, {
         get: (_target, category: string) =>
             new Proxy(
                 {},
@@ -106,22 +110,7 @@ const users = await api.users.get({ user_ids: [1] });
 const wall = await api.wall.post({ message: "Hello from vkraft!" });
 ```
 
-Or use the flat `APIMethods` directly if you prefer bracket access:
-
-```typescript
-import type { APIMethods, APIMethodParams, APIMethodReturn } from "@vkraft/types";
-
-const api = new Proxy({} as APIMethods, {
-    get:
-        <T extends keyof APIMethods>(_target: APIMethods, method: T) =>
-        async (params: APIMethodParams<T>) => {
-            // ... same fetch logic, using method directly as "users.get"
-            return data.response as APIMethodReturn<T>;
-        },
-});
-
-await api["users.get"]({ user_ids: [1] });
-```
+> `VKAPINested` is still exported as an alias for `APIMethods` for backwards compatibility.
 
 ## `WithFields` — Narrow by Requested Fields
 

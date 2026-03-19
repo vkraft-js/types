@@ -35,11 +35,16 @@ export class Params {
 			"method",
 		);
 
+		const [cat, short] = method.name.split(".");
+		const sectionInterface = `APIMethods${TextEditor.uppercaseFirstLetter(
+			cat,
+		)}`;
+
 		const lines: string[] = [
 			...enumAliases,
 			"",
 			...CodeGenerator.generateComment(
-				`Params for {@link APIMethods["${method.name}"] | ${method.name}} method`,
+				`Params for {@link ${sectionInterface}["${short}"] | ${method.name}} method`,
 			),
 			`export interface ${methodPascal}Params {`,
 		];

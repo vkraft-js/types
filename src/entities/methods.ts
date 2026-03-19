@@ -155,14 +155,40 @@ export class APIMethods {
 		responses: Map<string, VKSchemaProperty>,
 		allObjects: Map<string, VKSchemaProperty>,
 	): string[] {
-		return [
+		const categories = new Map<string, VKMethod[]>();
+		for (const m of methods) {
+			const [cat] = m.name.split(".");
+			const group = categories.get(cat) ?? [];
+			group.push(m);
+			categories.set(cat, group);
+		}
+
+		const lines: string[] = [];
+		for (const [cat, catMethods] of categories) {
+			const name = `APIMethods${TextEditor.uppercaseFirstLetter(cat)}`;
+			lines.push(
+				...CodeGenerator.generateComment(`VK API ${cat}.* methods`),
+				`export interface ${name} {`,
+				...catMethods.flatMap((m) =>
+					APIMethods.generate(m, responses, allObjects),
+				),
+				"}",
+				"",
+			);
+		}
+
+		lines.push(
 			...CodeGenerator.generateComment(
-				"This object is a map of VK API methods (functions map with input/output)",
+				"Map of all VK API methods organized by category",
 			),
 			"export interface APIMethods {",
-			...methods.flatMap((m) => APIMethods.generate(m, responses, allObjects)),
+			...Array.from(categories.keys()).map(
+				(cat) => `${cat}: APIMethods${TextEditor.uppercaseFirstLetter(cat)}`,
+			),
 			"}",
-		];
+		);
+
+		return lines;
 	}
 
 	static generate(
@@ -170,6 +196,7 @@ export class APIMethods {
 		responses: Map<string, VKSchemaProperty>,
 		allObjects: Map<string, VKSchemaProperty>,
 	): string[] {
+		const methodKey = method.name.split(".")[1];
 		const doc = `${
 			method.description ?? ""
 		}\n\n[Documentation](${VK_API_DOCS}/${method.name})`;
@@ -208,10 +235,7 @@ export class APIMethods {
 			const call = hasParams
 				? `(params: ${paramsType}) => Promise<unknown>`
 				: "() => Promise<unknown>";
-			return [
-				...CodeGenerator.generateComment(doc),
-				`"${method.name}": ${call}`,
-			];
+			return [...CodeGenerator.generateComment(doc), `${methodKey}: ${call}`];
 		}
 
 		// Single response, no variants
@@ -219,14 +243,14 @@ export class APIMethods {
 			if (!hasParams) {
 				return [
 					...CodeGenerator.generateComment(doc),
-					`"${method.name}": CallAPIWithoutParams<${baseReturnType}>`,
+					`${methodKey}: CallAPIWithoutParams<${baseReturnType}>`,
 				];
 			}
 			const allOptional = method.parameters!.every((p) => !p.required);
 			const callType = allOptional ? "CallAPIWithOptionalParams" : "CallAPI";
 			return [
 				...CodeGenerator.generateComment(doc),
-				`"${method.name}": ${callType}<${paramsType}, ${baseReturnType}>`,
+				`${methodKey}: ${callType}<${paramsType}, ${baseReturnType}>`,
 			];
 		}
 
@@ -247,14 +271,14 @@ export class APIMethods {
 			if (!hasParams) {
 				return [
 					...CodeGenerator.generateComment(doc),
-					`"${method.name}": CallAPIWithoutParams<${returnType}>`,
+					`${methodKey}: CallAPIWithoutParams<${returnType}>`,
 				];
 			}
 			const allOptional = method.parameters!.every((p) => !p.required);
 			const callType = allOptional ? "CallAPIWithOptionalParams" : "CallAPI";
 			return [
 				...CodeGenerator.generateComment(doc),
-				`"${method.name}": ${callType}<${paramsType}, ${returnType}>`,
+				`${methodKey}: ${callType}<${paramsType}, ${returnType}>`,
 			];
 		}
 
@@ -289,7 +313,7 @@ export class APIMethods {
 
 		const lines: string[] = [];
 		lines.push(...CodeGenerator.generateComment(doc));
-		lines.push(`"${method.name}": {`);
+		lines.push(`${methodKey}: {`);
 
 		// Generate generic WithFields overloads for fieldsResponse variants
 		for (const v of resolved) {
