@@ -10,7 +10,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 03:53:01 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
@@ -151,8 +151,8 @@ export interface AccountRegisterDeviceParams {
      * Push settings in a [vk.com/dev/push_settings|special format].
      */
     settings?: string
-    sandbox?: boolean
-    pushes_granted?: boolean
+    sandbox?: boolean | 0 | 1
+    pushes_granted?: boolean | 0 | 1
 }
 
 /**
@@ -269,7 +269,7 @@ export interface AccountSetOnlineParams {
     /**
      * '1' if videocalls are available for current device.
      */
-    voip?: boolean
+    voip?: boolean | 0 | 1
 }
 
 /**
@@ -331,7 +331,7 @@ export interface AccountUnregisterDeviceParams {
      * Unique device ID.
      */
     device_id?: string
-    sandbox?: boolean
+    sandbox?: boolean | 0 | 1
 }
 
 /**
@@ -551,11 +551,11 @@ export interface AdsGetAdsParams {
     /**
      * Flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.
      */
-    include_deleted?: boolean
+    include_deleted?: boolean | 0 | 1
     /**
      * Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1
      */
-    only_deleted?: boolean
+    only_deleted?: boolean | 0 | 1
     /**
      * Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
      */
@@ -589,11 +589,11 @@ export interface AdsGetAdsLayoutParams {
     /**
      * Flag that specifies whether archived ads shall be shown. *0 - show only active ads,, *1 - show all ads.
      */
-    include_deleted?: boolean
+    include_deleted?: boolean | 0 | 1
     /**
      * Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1
      */
-    only_deleted?: boolean
+    only_deleted?: boolean | 0 | 1
     /**
      * Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
      */
@@ -627,8 +627,8 @@ export interface AdsGetAdsTargetingParams {
     /**
      * flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.
      */
-    include_deleted?: boolean
-    only_deleted?: boolean
+    include_deleted?: boolean | 0 | 1
+    only_deleted?: boolean | 0 | 1
     /**
      * Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
      */
@@ -674,7 +674,7 @@ export interface AdsGetCampaignsParams {
     /**
      * Flag that specifies whether archived ads shall be shown. *0 - show only active campaigns,, *1 - show all campaigns.
      */
-    include_deleted?: boolean
+    include_deleted?: boolean | 0 | 1
     /**
      * Filter of advertising campaigns to show. Serialized JSON array with campaign IDs. Only campaigns that exist in 'campaign_ids' and belong to the specified advertising account will be shown. If the parameter is null, all campaigns will be shown.
      */
@@ -926,7 +926,7 @@ export interface AdsGetTargetGroupsParams {
     /**
      * '1' - to return pixel code.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -988,7 +988,7 @@ export interface AdsGetTargetingStatsParams {
     /**
      * Additionally return recommended cpc and cpm to reach 5,10..95 percents of audience.
      */
-    need_precise?: boolean
+    need_precise?: boolean | 0 | 1
     /**
      * Impressions limit period in seconds, must be a multiple of 86400(day)
      */
@@ -1372,8 +1372,8 @@ export interface AppsGetParams {
      * platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.com. By default: 'web'.
      */
     platform?: AppsGetPlatform
-    extended?: boolean
-    return_friends?: boolean
+    extended?: boolean | 0 | 1
+    return_friends?: boolean | 0 | 1
     /**
      * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', (only if return_friends - 1)
      */
@@ -1422,8 +1422,8 @@ export interface AppsGetCatalogParams {
     /**
      * '1' - to return additional fields 'screenshots', 'MAU', 'catalog_position', and 'international'. If set, 'count' must be less than or equal to '100'. '0' - not to return additional fields (default).
      */
-    extended?: boolean
-    return_friends?: boolean
+    extended?: boolean | 0 | 1
+    return_friends?: boolean | 0 | 1
     fields?: Objects.VKUsersFields[]
     name_case?: Objects.VKBaseNameCase
     /**
@@ -1443,7 +1443,7 @@ export type AppsGetFriendsListType = "invite" | "request"
  * Params for {@link APIMethods["apps.getFriendsList"] | apps.getFriendsList} method
  */
 export interface AppsGetFriendsListParams {
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * List size.
      */
@@ -1476,11 +1476,11 @@ export interface AppsGetLeaderboardParams {
     /**
      * Rating type. Possible values: *'1' - global rating among all players,, *'0' - rating among user friends.
      */
-    global?: boolean
+    global?: boolean | 0 | 1
     /**
      * 1 - to return additional info about users
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -1582,7 +1582,7 @@ export interface AppsSendRequestParams {
      * special string key to be sent with the request
      */
     key?: string
-    separate?: boolean
+    separate?: boolean | 0 | 1
 }
 
 export type AppsUpdateMetaForTestingGroupPlatforms = "mobile" | "web" | "mvk"
@@ -1631,7 +1631,7 @@ export interface BoardAddTopicParams {
     /**
      * For a community: '1' - to post the topic as by the community, '0' - to post the topic as by the user (default)
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
     /**
      * List of media objects attached to the topic, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. Example: "photo100172_166443618,photo66748_265827614", , "NOTE: If you try to attach more than one reference, an error will be thrown.",
      */
@@ -1675,7 +1675,7 @@ export interface BoardCreateCommentParams {
     /**
      * '1' - to post the comment as by the community, '0' - to post the comment as by the user (default)
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
     /**
      * Sticker ID.
      */
@@ -1797,7 +1797,7 @@ export interface BoardGetCommentsParams {
     /**
      * '1' - to return the 'likes' field, '0' - not to return the 'likes' field (default)
      */
-    need_likes?: boolean
+    need_likes?: boolean | 0 | 1
     start_comment_id?: number
     /**
      * Offset needed to return a specific subset of comments.
@@ -1810,7 +1810,7 @@ export interface BoardGetCommentsParams {
     /**
      * '1' - to return information about users who posted comments, '0' - to return no additional fields (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Sort order: 'asc' - by creation date in chronological order, 'desc' - by creation date in reverse chronological order,
      */
@@ -1859,7 +1859,7 @@ export interface BoardGetTopicsParams {
     /**
      * '1' - to return information about users who created topics or who posted there last, '0' - to return no additional fields (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * '1' - to return the first comment in each topic,, '2' - to return the last comment in each topic,, '0' - to return no comments. By default: '0'.
      */
@@ -1950,9 +1950,9 @@ export interface BugtrackerChangeBugreportStatusParams {
 export interface BugtrackerCreateCommentParams {
     bugreport_id: number
     text?: string
-    hidden?: boolean
-    hidden_attachments?: boolean
-    force?: boolean
+    hidden?: boolean | 0 | 1
+    hidden_attachments?: boolean | 0 | 1
+    force?: boolean | 0 | 1
 }
 
 /**
@@ -1960,7 +1960,7 @@ export interface BugtrackerCreateCommentParams {
  */
 export interface BugtrackerGetBugreportByIdParams {
     bugreport_id: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -1973,7 +1973,7 @@ export interface BugtrackerGetCompanyGroupMembersParams {
     count?: number
     offset?: number
     filter_name?: string
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -1990,9 +1990,9 @@ export interface BugtrackerGetCompanyMembersParams {
     filter_role?: BugtrackerGetCompanyMembersFilterRole
     filter_not_group?: number
     filter_member_ids?: number[]
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
-    extra?: boolean
+    extra?: boolean | 0 | 1
 }
 
 /**
@@ -2036,8 +2036,8 @@ export interface BugtrackerSaveProductVersionParams {
     version_id?: number
     title: string
     release_notes?: string
-    visible?: boolean
-    set_rft?: boolean
+    visible?: boolean | 0 | 1
+    set_rft?: boolean | 0 | 1
 }
 
 export type BugtrackerSetCompanyMemberRoleRole = 0 | 1
@@ -2056,7 +2056,7 @@ export interface BugtrackerSetCompanyMemberRoleParams {
  */
 export interface BugtrackerSetProductIsOverParams {
     product_id: number
-    is_over?: boolean
+    is_over?: boolean | 0 | 1
 }
 
 /**
@@ -2106,7 +2106,7 @@ export interface DatabaseGetCitiesParams {
     /**
      * '1' - to return all cities in the country, '0' - to return major cities in the country (default),
      */
-    need_all?: boolean
+    need_all?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of cities.
      */
@@ -2142,7 +2142,7 @@ export interface DatabaseGetCountriesParams {
     /**
      * '1' - to return a full list of all countries, '0' - to return a list of countries near the current user's country (default).
      */
-    need_all?: boolean
+    need_all?: boolean | 0 | 1
     /**
      * Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
      */
@@ -2192,7 +2192,7 @@ export interface DatabaseGetMetroStationsParams {
     city_id: number
     offset?: number
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -2358,7 +2358,7 @@ export interface DocsGetParams {
      * ID of the user or community that owns the documents. Use a negative value to designate a community ID.
      */
     owner_id?: number
-    return_tags?: boolean
+    return_tags?: boolean | 0 | 1
 }
 
 /**
@@ -2369,7 +2369,7 @@ export interface DocsGetByIdParams {
      * Document IDs. Example: , "66748_91488,66748_91455",
      */
     docs: string[]
-    return_tags?: boolean
+    return_tags?: boolean | 0 | 1
 }
 
 export type DocsGetMessagesUploadServerType =
@@ -2445,7 +2445,7 @@ export interface DocsSaveParams {
      * Document tags.
      */
     tags?: string
-    return_tags?: boolean
+    return_tags?: boolean | 0 | 1
 }
 
 /**
@@ -2456,7 +2456,7 @@ export interface DocsSearchParams {
      * Search query string.
      */
     q?: string
-    search_own?: boolean
+    search_own?: boolean | 0 | 1
     /**
      * Number of results to return.
      */
@@ -2465,7 +2465,7 @@ export interface DocsSearchParams {
      * Offset needed to return a specific subset of results.
      */
     offset?: number
-    return_tags?: boolean
+    return_tags?: boolean | 0 | 1
 }
 
 /**
@@ -2599,7 +2599,7 @@ export interface FaveGetParams {
     /**
      * '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     item_type?: FaveGetItemType
     /**
      * Tag ID.
@@ -2614,7 +2614,7 @@ export interface FaveGetParams {
      */
     count?: number
     fields?: string
-    is_from_snackbar?: boolean
+    is_from_snackbar?: boolean | 0 | 1
 }
 
 export type FaveGetPagesType = "groups" | "hints" | "users"
@@ -2756,7 +2756,7 @@ export interface FriendsAddParams {
     /**
      * '1' to pass an incoming request to followers list.
      */
-    follow?: boolean
+    follow?: boolean | 0 | 1
 }
 
 /**
@@ -2784,11 +2784,11 @@ export interface FriendsAreFriendsParams {
     /**
      * '1' - to return 'sign' field. 'sign' is md5("{id}_{user_id}_{friends_status}_{application_secret}"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.
      */
-    need_sign?: boolean
+    need_sign?: boolean | 0 | 1
     /**
      * Return friend request read_state field
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -2895,7 +2895,7 @@ export interface FriendsGetListsParams {
     /**
      * '1' - to return system friend lists. By default: '0'.
      */
-    return_system?: boolean
+    return_system?: boolean | 0 | 1
 }
 
 /**
@@ -2929,7 +2929,7 @@ export interface FriendsGetMutualParams {
     /**
      * Return mutual friends total count
      */
-    need_common_count?: boolean
+    need_common_count?: boolean | 0 | 1
 }
 
 /**
@@ -2947,7 +2947,7 @@ export interface FriendsGetOnlineParams {
     /**
      * '1' - to return an additional 'online_mobile' field, '0' - (default),
      */
-    online_mobile?: boolean
+    online_mobile?: boolean | 0 | 1
     /**
      * Sort order: 'random' - random order
      */
@@ -2994,24 +2994,24 @@ export interface FriendsGetRequestsParams {
     /**
      * '1' - to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * '1' - to return a list of mutual friends (up to 20), if any
      */
-    need_mutual?: boolean
+    need_mutual?: boolean | 0 | 1
     /**
      * '1' - to return outgoing requests, '0' - to return incoming requests (default)
      */
-    out?: boolean
+    out?: boolean | 0 | 1
     /**
      * Sort order: '1' - by number of mutual friends, '0' - by date
      */
     sort?: FriendsGetRequestsSort
-    need_viewed?: boolean
+    need_viewed?: boolean | 0 | 1
     /**
      * '1' - to return a list of suggested friends, '0' - to return friend requests (default)
      */
-    suggested?: boolean
+    suggested?: boolean | 0 | 1
     ref?: string
     fields?: Objects.VKUsersFields[]
 }
@@ -3117,7 +3117,7 @@ export interface GroupsAddAddressParams {
     phone?: string
     work_info_status?: Objects.VKGroupsAddressWorkInfoStatus
     timetable?: string
-    is_main_address?: boolean
+    is_main_address?: boolean | 0 | 1
 }
 
 /**
@@ -3171,7 +3171,7 @@ export interface GroupsBanParams {
     end_date?: number
     reason?: number
     comment?: string
-    comment_visible?: boolean
+    comment_visible?: boolean | 0 | 1
 }
 
 export type GroupsCreateType = "event" | "group" | "public"
@@ -3344,19 +3344,19 @@ export interface GroupsEditParams {
     /**
      * Links settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    links?: boolean
+    links?: boolean | 0 | 1
     /**
      * Events settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    events?: boolean
+    events?: boolean | 0 | 1
     /**
      * Places settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    places?: boolean
+    places?: boolean | 0 | 1
     /**
      * Contacts settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    contacts?: boolean
+    contacts?: boolean | 0 | 1
     /**
      * Documents settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
      */
@@ -3368,9 +3368,9 @@ export interface GroupsEditParams {
     /**
      * Community messages. Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    messages?: boolean
-    articles?: boolean
-    addresses?: boolean
+    messages?: boolean | 0 | 1
+    articles?: boolean | 0 | 1
+    addresses?: boolean | 0 | 1
     /**
      * Community age limits. Possible values: *'1' - no limits,, *'2' - 16+,, *'3' - 18+.
      */
@@ -3378,7 +3378,7 @@ export interface GroupsEditParams {
     /**
      * Market settings. Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    market?: boolean
+    market?: boolean | 0 | 1
     /**
      * Buttons details, see market/objects.json#/definitions/market_custom_button
      */
@@ -3386,7 +3386,7 @@ export interface GroupsEditParams {
     /**
      * market comments settings. Possible values: *'0' - disabled,, *'1' - enabled.
      */
-    market_comments?: boolean
+    market_comments?: boolean | 0 | 1
     /**
      * Market delivery countries.
      */
@@ -3410,13 +3410,13 @@ export interface GroupsEditParams {
     /**
      * Obscene expressions filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.
      */
-    obscene_filter?: boolean
+    obscene_filter?: boolean | 0 | 1
     /**
      * Stopwords filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.
      */
-    obscene_stopwords?: boolean
-    toxic_filter?: boolean
-    disable_replies_from_groups?: boolean
+    obscene_stopwords?: boolean | 0 | 1
+    toxic_filter?: boolean | 0 | 1
+    disable_replies_from_groups?: boolean | 0 | 1
     /**
      * Keywords for stopwords filter.
      */
@@ -3456,7 +3456,7 @@ export interface GroupsEditAddressParams {
     phone?: string
     work_info_status?: Objects.VKGroupsAddressWorkInfoStatus
     timetable?: string
-    is_main_address?: boolean
+    is_main_address?: boolean | 0 | 1
 }
 
 /**
@@ -3507,11 +3507,11 @@ export interface GroupsEditManagerParams {
     /**
      * '1' — allow the manager to accept community calls.
      */
-    is_call_operator?: boolean
+    is_call_operator?: boolean | 0 | 1
     /**
      * '1' - to show the manager in Contacts block of the community.
      */
-    is_contact?: boolean
+    is_contact?: boolean | 0 | 1
     /**
      * Position to show in Contacts block.
      */
@@ -3544,7 +3544,7 @@ export interface GroupsGetParams {
     /**
      * '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Types of communities to return: 'admin' - to return communities administered by the user , 'editor' - to return communities where the user is an administrator or editor, 'moder' - to return communities where the user is an administrator, editor, or moderator, 'groups' - to return only groups, 'publics' - to return only public pages, 'events' - to return only events
      */
@@ -3671,11 +3671,11 @@ export interface GroupsGetCatalogInfoParams {
     /**
      * 1 - to return communities count and three communities for preview. By default: 0.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * 1 - to return subcategories info. By default: 0.
      */
-    subcategories?: boolean
+    subcategories?: boolean | 0 | 1
 }
 
 /**
@@ -3719,7 +3719,7 @@ export interface GroupsGetInvitesParams {
     /**
      * '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -3867,7 +3867,7 @@ export interface GroupsIsMemberParams {
     /**
      * '1' - to return an extended response with additional fields. By default: '0'.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -3961,11 +3961,11 @@ export interface GroupsSearchParams {
     /**
      * '1' - to return only upcoming events. Works with the 'type' = 'event' only.
      */
-    future?: boolean
+    future?: boolean | 0 | 1
     /**
      * '1' - to return communities with enabled market only.
      */
-    market?: boolean
+    market?: boolean | 0 | 1
     /**
      * Sort order. Possible values: *'0' - default sorting (similar the full version of the site),, *'1' - by growth speed,, *'2'- by the "day attendance/members number" ratio,, *'3' - by the "Likes number/members number" ratio,, *'4' - by the "comments number/members number" ratio,, *'5' - by the "boards entries number/members number" ratio.
      */
@@ -3996,173 +3996,173 @@ export interface GroupsSetCallbackSettingsParams {
     /**
      * A new incoming message has been received ('0' - disabled, '1' - enabled).
      */
-    message_new?: boolean
+    message_new?: boolean | 0 | 1
     /**
      * A new outcoming message has been received ('0' - disabled, '1' - enabled).
      */
-    message_reply?: boolean
+    message_reply?: boolean | 0 | 1
     /**
      * Allowed messages notifications ('0' - disabled, '1' - enabled).
      */
-    message_allow?: boolean
-    message_edit?: boolean
+    message_allow?: boolean | 0 | 1
+    message_edit?: boolean | 0 | 1
     /**
      * Denied messages notifications ('0' - disabled, '1' - enabled).
      */
-    message_deny?: boolean
-    message_typing_state?: boolean
+    message_deny?: boolean | 0 | 1
+    message_typing_state?: boolean | 0 | 1
     /**
      * Messages read notifications ('0' - disabled, '1' - enabled).
      */
-    message_read?: boolean
+    message_read?: boolean | 0 | 1
     /**
      * New photos notifications ('0' - disabled, '1' - enabled).
      */
-    photo_new?: boolean
+    photo_new?: boolean | 0 | 1
     /**
      * New audios notifications ('0' - disabled, '1' - enabled).
      */
-    audio_new?: boolean
+    audio_new?: boolean | 0 | 1
     /**
      * New videos notifications ('0' - disabled, '1' - enabled).
      */
-    video_new?: boolean
+    video_new?: boolean | 0 | 1
     /**
      * New wall replies notifications ('0' - disabled, '1' - enabled).
      */
-    wall_reply_new?: boolean
+    wall_reply_new?: boolean | 0 | 1
     /**
      * Wall replies edited notifications ('0' - disabled, '1' - enabled).
      */
-    wall_reply_edit?: boolean
+    wall_reply_edit?: boolean | 0 | 1
     /**
      * A wall comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    wall_reply_delete?: boolean
+    wall_reply_delete?: boolean | 0 | 1
     /**
      * A wall comment has been restored ('0' - disabled, '1' - enabled).
      */
-    wall_reply_restore?: boolean
+    wall_reply_restore?: boolean | 0 | 1
     /**
      * New wall posts notifications ('0' - disabled, '1' - enabled).
      */
-    wall_post_new?: boolean
+    wall_post_new?: boolean | 0 | 1
     /**
      * New wall posts notifications ('0' - disabled, '1' - enabled).
      */
-    wall_repost?: boolean
+    wall_repost?: boolean | 0 | 1
     /**
      * Scheduled post added to time slot ('0' - disabled, '1' - enabled).
      */
-    wall_schedule_post_new?: boolean
+    wall_schedule_post_new?: boolean | 0 | 1
     /**
      * Scheduled post removed from time slot ('0' - disabled, '1' - enabled).
      */
-    wall_schedule_post_delete?: boolean
+    wall_schedule_post_delete?: boolean | 0 | 1
     /**
      * New board posts notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_new?: boolean
+    board_post_new?: boolean | 0 | 1
     /**
      * Board posts edited notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_edit?: boolean
+    board_post_edit?: boolean | 0 | 1
     /**
      * Board posts restored notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_restore?: boolean
+    board_post_restore?: boolean | 0 | 1
     /**
      * Board posts deleted notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_delete?: boolean
+    board_post_delete?: boolean | 0 | 1
     /**
      * New comment to photo notifications ('0' - disabled, '1' - enabled).
      */
-    photo_comment_new?: boolean
+    photo_comment_new?: boolean | 0 | 1
     /**
      * A photo comment has been edited ('0' - disabled, '1' - enabled).
      */
-    photo_comment_edit?: boolean
+    photo_comment_edit?: boolean | 0 | 1
     /**
      * A photo comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    photo_comment_delete?: boolean
+    photo_comment_delete?: boolean | 0 | 1
     /**
      * A photo comment has been restored ('0' - disabled, '1' - enabled).
      */
-    photo_comment_restore?: boolean
+    photo_comment_restore?: boolean | 0 | 1
     /**
      * New comment to video notifications ('0' - disabled, '1' - enabled).
      */
-    video_comment_new?: boolean
+    video_comment_new?: boolean | 0 | 1
     /**
      * A video comment has been edited ('0' - disabled, '1' - enabled).
      */
-    video_comment_edit?: boolean
+    video_comment_edit?: boolean | 0 | 1
     /**
      * A video comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    video_comment_delete?: boolean
+    video_comment_delete?: boolean | 0 | 1
     /**
      * A video comment has been restored ('0' - disabled, '1' - enabled).
      */
-    video_comment_restore?: boolean
+    video_comment_restore?: boolean | 0 | 1
     /**
      * New comment to market item notifications ('0' - disabled, '1' - enabled).
      */
-    market_comment_new?: boolean
+    market_comment_new?: boolean | 0 | 1
     /**
      * A market comment has been edited ('0' - disabled, '1' - enabled).
      */
-    market_comment_edit?: boolean
+    market_comment_edit?: boolean | 0 | 1
     /**
      * A market comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    market_comment_delete?: boolean
+    market_comment_delete?: boolean | 0 | 1
     /**
      * A market comment has been restored ('0' - disabled, '1' - enabled).
      */
-    market_comment_restore?: boolean
-    market_order_new?: boolean
-    market_order_edit?: boolean
+    market_comment_restore?: boolean | 0 | 1
+    market_order_new?: boolean | 0 | 1
+    market_order_edit?: boolean | 0 | 1
     /**
      * A vote in a public poll has been added ('0' - disabled, '1' - enabled).
      */
-    poll_vote_new?: boolean
+    poll_vote_new?: boolean | 0 | 1
     /**
      * Joined community notifications ('0' - disabled, '1' - enabled).
      */
-    group_join?: boolean
+    group_join?: boolean | 0 | 1
     /**
      * Left community notifications ('0' - disabled, '1' - enabled).
      */
-    group_leave?: boolean
-    group_change_settings?: boolean
-    group_change_photo?: boolean
-    group_officers_edit?: boolean
+    group_leave?: boolean | 0 | 1
+    group_change_settings?: boolean | 0 | 1
+    group_change_photo?: boolean | 0 | 1
+    group_officers_edit?: boolean | 0 | 1
     /**
      * User added to community blacklist
      */
-    user_block?: boolean
+    user_block?: boolean | 0 | 1
     /**
      * User removed from community blacklist
      */
-    user_unblock?: boolean
+    user_unblock?: boolean | 0 | 1
     /**
      * New form in lead forms
      */
-    lead_forms_new?: boolean
-    like_add?: boolean
-    like_remove?: boolean
-    message_event?: boolean
-    message_reaction_event?: boolean
-    donut_subscription_create?: boolean
-    donut_subscription_prolonged?: boolean
-    donut_subscription_cancelled?: boolean
-    donut_subscription_price_changed?: boolean
-    donut_subscription_expired?: boolean
-    donut_money_withdraw?: boolean
-    donut_money_withdraw_error?: boolean
+    lead_forms_new?: boolean | 0 | 1
+    like_add?: boolean | 0 | 1
+    like_remove?: boolean | 0 | 1
+    message_event?: boolean | 0 | 1
+    message_reaction_event?: boolean | 0 | 1
+    donut_subscription_create?: boolean | 0 | 1
+    donut_subscription_prolonged?: boolean | 0 | 1
+    donut_subscription_cancelled?: boolean | 0 | 1
+    donut_subscription_price_changed?: boolean | 0 | 1
+    donut_subscription_expired?: boolean | 0 | 1
+    donut_money_withdraw?: boolean | 0 | 1
+    donut_money_withdraw_error?: boolean | 0 | 1
 }
 
 /**
@@ -4176,167 +4176,167 @@ export interface GroupsSetLongPollSettingsParams {
     /**
      * Sets whether Long Poll is enabled ('0' - disabled, '1' - enabled).
      */
-    enabled?: boolean
+    enabled?: boolean | 0 | 1
     api_version?: string
     /**
      * A new incoming message has been received ('0' - disabled, '1' - enabled).
      */
-    message_new?: boolean
+    message_new?: boolean | 0 | 1
     /**
      * A new outcoming message has been received ('0' - disabled, '1' - enabled).
      */
-    message_reply?: boolean
+    message_reply?: boolean | 0 | 1
     /**
      * Allowed messages notifications ('0' - disabled, '1' - enabled).
      */
-    message_allow?: boolean
+    message_allow?: boolean | 0 | 1
     /**
      * Denied messages notifications ('0' - disabled, '1' - enabled).
      */
-    message_deny?: boolean
+    message_deny?: boolean | 0 | 1
     /**
      * A message has been edited ('0' - disabled, '1' - enabled).
      */
-    message_edit?: boolean
-    message_typing_state?: boolean
+    message_edit?: boolean | 0 | 1
+    message_typing_state?: boolean | 0 | 1
     /**
      * Messages read notifications ('0' - disabled, '1' - enabled).
      */
-    message_read?: boolean
+    message_read?: boolean | 0 | 1
     /**
      * New photos notifications ('0' - disabled, '1' - enabled).
      */
-    photo_new?: boolean
+    photo_new?: boolean | 0 | 1
     /**
      * New audios notifications ('0' - disabled, '1' - enabled).
      */
-    audio_new?: boolean
+    audio_new?: boolean | 0 | 1
     /**
      * New videos notifications ('0' - disabled, '1' - enabled).
      */
-    video_new?: boolean
+    video_new?: boolean | 0 | 1
     /**
      * New wall replies notifications ('0' - disabled, '1' - enabled).
      */
-    wall_reply_new?: boolean
+    wall_reply_new?: boolean | 0 | 1
     /**
      * Wall replies edited notifications ('0' - disabled, '1' - enabled).
      */
-    wall_reply_edit?: boolean
+    wall_reply_edit?: boolean | 0 | 1
     /**
      * A wall comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    wall_reply_delete?: boolean
+    wall_reply_delete?: boolean | 0 | 1
     /**
      * A wall comment has been restored ('0' - disabled, '1' - enabled).
      */
-    wall_reply_restore?: boolean
+    wall_reply_restore?: boolean | 0 | 1
     /**
      * New wall posts notifications ('0' - disabled, '1' - enabled).
      */
-    wall_post_new?: boolean
+    wall_post_new?: boolean | 0 | 1
     /**
      * New wall posts notifications ('0' - disabled, '1' - enabled).
      */
-    wall_repost?: boolean
+    wall_repost?: boolean | 0 | 1
     /**
      * New board posts notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_new?: boolean
+    board_post_new?: boolean | 0 | 1
     /**
      * Board posts edited notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_edit?: boolean
+    board_post_edit?: boolean | 0 | 1
     /**
      * Board posts restored notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_restore?: boolean
+    board_post_restore?: boolean | 0 | 1
     /**
      * Board posts deleted notifications ('0' - disabled, '1' - enabled).
      */
-    board_post_delete?: boolean
+    board_post_delete?: boolean | 0 | 1
     /**
      * New comment to photo notifications ('0' - disabled, '1' - enabled).
      */
-    photo_comment_new?: boolean
+    photo_comment_new?: boolean | 0 | 1
     /**
      * A photo comment has been edited ('0' - disabled, '1' - enabled).
      */
-    photo_comment_edit?: boolean
+    photo_comment_edit?: boolean | 0 | 1
     /**
      * A photo comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    photo_comment_delete?: boolean
+    photo_comment_delete?: boolean | 0 | 1
     /**
      * A photo comment has been restored ('0' - disabled, '1' - enabled).
      */
-    photo_comment_restore?: boolean
+    photo_comment_restore?: boolean | 0 | 1
     /**
      * New comment to video notifications ('0' - disabled, '1' - enabled).
      */
-    video_comment_new?: boolean
+    video_comment_new?: boolean | 0 | 1
     /**
      * A video comment has been edited ('0' - disabled, '1' - enabled).
      */
-    video_comment_edit?: boolean
+    video_comment_edit?: boolean | 0 | 1
     /**
      * A video comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    video_comment_delete?: boolean
+    video_comment_delete?: boolean | 0 | 1
     /**
      * A video comment has been restored ('0' - disabled, '1' - enabled).
      */
-    video_comment_restore?: boolean
+    video_comment_restore?: boolean | 0 | 1
     /**
      * New comment to market item notifications ('0' - disabled, '1' - enabled).
      */
-    market_comment_new?: boolean
+    market_comment_new?: boolean | 0 | 1
     /**
      * A market comment has been edited ('0' - disabled, '1' - enabled).
      */
-    market_comment_edit?: boolean
+    market_comment_edit?: boolean | 0 | 1
     /**
      * A market comment has been deleted ('0' - disabled, '1' - enabled).
      */
-    market_comment_delete?: boolean
+    market_comment_delete?: boolean | 0 | 1
     /**
      * A market comment has been restored ('0' - disabled, '1' - enabled).
      */
-    market_comment_restore?: boolean
+    market_comment_restore?: boolean | 0 | 1
     /**
      * A vote in a public poll has been added ('0' - disabled, '1' - enabled).
      */
-    poll_vote_new?: boolean
+    poll_vote_new?: boolean | 0 | 1
     /**
      * Joined community notifications ('0' - disabled, '1' - enabled).
      */
-    group_join?: boolean
+    group_join?: boolean | 0 | 1
     /**
      * Left community notifications ('0' - disabled, '1' - enabled).
      */
-    group_leave?: boolean
-    group_change_settings?: boolean
-    group_change_photo?: boolean
-    group_officers_edit?: boolean
+    group_leave?: boolean | 0 | 1
+    group_change_settings?: boolean | 0 | 1
+    group_change_photo?: boolean | 0 | 1
+    group_officers_edit?: boolean | 0 | 1
     /**
      * User added to community blacklist
      */
-    user_block?: boolean
+    user_block?: boolean | 0 | 1
     /**
      * User removed from community blacklist
      */
-    user_unblock?: boolean
-    like_add?: boolean
-    like_remove?: boolean
-    message_event?: boolean
-    message_reaction_event?: boolean
-    donut_subscription_create?: boolean
-    donut_subscription_prolonged?: boolean
-    donut_subscription_cancelled?: boolean
-    donut_subscription_price_changed?: boolean
-    donut_subscription_expired?: boolean
-    donut_money_withdraw?: boolean
-    donut_money_withdraw_error?: boolean
+    user_unblock?: boolean | 0 | 1
+    like_add?: boolean | 0 | 1
+    like_remove?: boolean | 0 | 1
+    message_event?: boolean | 0 | 1
+    message_reaction_event?: boolean | 0 | 1
+    donut_subscription_create?: boolean | 0 | 1
+    donut_subscription_prolonged?: boolean | 0 | 1
+    donut_subscription_cancelled?: boolean | 0 | 1
+    donut_subscription_price_changed?: boolean | 0 | 1
+    donut_subscription_expired?: boolean | 0 | 1
+    donut_money_withdraw?: boolean | 0 | 1
+    donut_money_withdraw_error?: boolean | 0 | 1
 }
 
 /**
@@ -4344,23 +4344,23 @@ export interface GroupsSetLongPollSettingsParams {
  */
 export interface GroupsSetSettingsParams {
     group_id: number
-    messages?: boolean
+    messages?: boolean | 0 | 1
     /**
      * By enabling bot abilities, you can send users messages with a customized keyboard attached as well as use other promotional abilities
      */
-    bots_capabilities?: boolean
+    bots_capabilities?: boolean | 0 | 1
     /**
      * If this setting is enabled, users will see a Start button when they start a chat with your community for the first time
      */
-    bots_start_button?: boolean
+    bots_start_button?: boolean | 0 | 1
     /**
      * If this setting is enabled then users can add your community to a chat
      */
-    bots_add_to_chat?: boolean
+    bots_add_to_chat?: boolean | 0 | 1
     /**
      * If this setting is enabled then online booking chatbot add in your community chats
      */
-    bot_online_booking_enabled?: boolean
+    bot_online_booking_enabled?: boolean | 0 | 1
 }
 
 /**
@@ -4470,8 +4470,8 @@ export interface LeadFormsCreateParams {
     photo?: string
     confirmation?: string
     site_link_url?: string
-    active?: boolean
-    once_per_user?: boolean
+    active?: boolean | 0 | 1
+    once_per_user?: boolean | 0 | 1
     pixel_code?: string
     notify_admins?: number[]
     notify_emails?: string[]
@@ -4524,8 +4524,8 @@ export interface LeadFormsUpdateParams {
     photo?: string
     confirmation?: string
     site_link_url?: string
-    active?: boolean
-    once_per_user?: boolean
+    active?: boolean | 0 | 1
+    once_per_user?: boolean | 0 | 1
     pixel_code?: string
     notify_admins?: number[]
     notify_emails?: string[]
@@ -4554,7 +4554,7 @@ export interface LikesAddParams {
     /**
      * Impersonate group
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
 }
 
 /**
@@ -4580,7 +4580,7 @@ export interface LikesDeleteParams {
     /**
      * Impersonate group
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
 }
 
 export type LikesGetListFilter = "copies" | "likes"
@@ -4617,7 +4617,7 @@ export interface LikesGetListParams {
     /**
      * Specifies whether extended information will be returned. '1' - to return extended information about users and communities from the 'Likes' list, '0' - to return no additional information (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Offset needed to select a specific subset of users.
      */
@@ -4626,7 +4626,7 @@ export interface LikesGetListParams {
      * Number of user IDs to return (maximum '1000'). Default is '100' if 'friends_only' is set to '0', otherwise, the default is '10' if 'friends_only' is set to '1'.
      */
     count?: number
-    skip_own?: boolean
+    skip_own?: boolean | 0 | 1
     fields?: string[]
 }
 
@@ -4680,7 +4680,7 @@ export interface MarketAddParams {
     /**
      * Item status ('1' - deleted, '0' - not deleted).
      */
-    deleted?: boolean
+    deleted?: boolean | 0 | 1
     /**
      * Cover photo ID.
      */
@@ -4704,7 +4704,7 @@ export interface MarketAddParams {
     /**
      * Is main in their group.
      */
-    is_main_variant?: boolean
+    is_main_variant?: boolean | 0 | 1
     dimension_width?: number
     dimension_height?: number
     dimension_length?: number
@@ -4732,11 +4732,11 @@ export interface MarketAddAlbumParams {
     /**
      * Set as main ('1' - set, '0' - no).
      */
-    main_album?: boolean
+    main_album?: boolean | 0 | 1
     /**
      * Set as hidden
      */
-    is_hidden?: boolean
+    is_hidden?: boolean | 0 | 1
 }
 
 /**
@@ -4809,7 +4809,7 @@ export interface MarketCreateCommentParams {
     /**
      * '1' - comment will be published on behalf of a community, '0' - on behalf of a user (by default).
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
     /**
      * ID of a comment to reply with current comment to.
      */
@@ -4926,7 +4926,7 @@ export interface MarketEditParams {
     /**
      * Item status ('1' - deleted, '0' - not deleted).
      */
-    deleted?: boolean
+    deleted?: boolean | 0 | 1
     /**
      * Cover photo ID.
      */
@@ -4950,7 +4950,7 @@ export interface MarketEditParams {
     /**
      * Is main in their group.
      */
-    is_main_variant?: boolean
+    is_main_variant?: boolean | 0 | 1
     dimension_width?: number
     dimension_height?: number
     dimension_length?: number
@@ -4982,11 +4982,11 @@ export interface MarketEditAlbumParams {
     /**
      * Set as main ('1' - set, '0' - no).
      */
-    main_album?: boolean
+    main_album?: boolean | 0 | 1
     /**
      * Set as hidden
      */
-    is_hidden?: boolean
+    is_hidden?: boolean | 0 | 1
 }
 
 /**
@@ -5106,7 +5106,7 @@ export interface MarketGetParams {
     /**
      * '1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Items update date from (format: yyyy-mm-dd)
      */
@@ -5118,11 +5118,11 @@ export interface MarketGetParams {
     /**
      * Add variants to response if exist
      */
-    need_variants?: boolean
+    need_variants?: boolean | 0 | 1
     /**
      * Add disabled items to response
      */
-    with_disabled?: boolean
+    with_disabled?: boolean | 0 | 1
     fields?: string[]
 }
 
@@ -5169,7 +5169,7 @@ export interface MarketGetByIdParams {
     /**
      * '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -5204,7 +5204,7 @@ export interface MarketGetCommentsParams {
     /**
      * '1' - to return likes info.
      */
-    need_likes?: boolean
+    need_likes?: boolean | 0 | 1
     /**
      * ID of a comment to start a list from (details below).
      */
@@ -5221,7 +5221,7 @@ export interface MarketGetCommentsParams {
     /**
      * '1' - comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * List of additional profile fields to return. See the [vk.com/dev/fields|details]
      */
@@ -5236,7 +5236,7 @@ export interface MarketGetFavesForAttachParams {
      * Group which represents content
      */
     current_group_id?: number
-    public_only?: boolean
+    public_only?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of users.
      */
@@ -5265,7 +5265,7 @@ export interface MarketGetGroupOrdersParams {
 export interface MarketGetOrderByIdParams {
     user_id?: number
     order_id: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -5284,7 +5284,7 @@ export interface MarketGetOrderItemsParams {
 export interface MarketGetOrdersParams {
     offset?: number
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Orders status updated date from (format: yyyy-mm-dd)
      */
@@ -5303,7 +5303,7 @@ export interface MarketGetProductPhotoUploadServerParams {
      * Community ID.
      */
     group_id: number
-    bulk?: boolean
+    bulk?: boolean | 0 | 1
 }
 
 /**
@@ -5553,12 +5553,12 @@ export interface MarketSearchParams {
     /**
      * '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     status?: number[]
     /**
      * Add variants to response if exist
      */
-    need_variants?: boolean
+    need_variants?: boolean | 0 | 1
 }
 
 /**
@@ -5607,7 +5607,7 @@ export interface MarketSearchItemsBasicParams {
     sort_direction?: MarketSearchItemsBasicSortDirection
     country?: number
     city?: number
-    only_my_groups?: boolean
+    only_my_groups?: boolean | 0 | 1
 }
 
 /**
@@ -5684,7 +5684,7 @@ export interface MessagesDeleteParams {
     /**
      * '1' - to mark message as spam.
      */
-    spam?: boolean
+    spam?: boolean | 0 | 1
     /**
      * Reason for spam
      */
@@ -5696,7 +5696,7 @@ export interface MessagesDeleteParams {
     /**
      * '1' - delete message for for all.
      */
-    delete_for_all?: boolean
+    delete_for_all?: boolean | 0 | 1
     /**
      * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
      */
@@ -5781,17 +5781,17 @@ export interface MessagesEditParams {
     /**
      * '1' - to keep forwarded, messages.
      */
-    keep_forward_messages?: boolean
+    keep_forward_messages?: boolean | 0 | 1
     /**
      * '1' - to keep attached snippets.
      */
-    keep_snippets?: boolean
+    keep_snippets?: boolean | 0 | 1
     /**
      * Group ID (for group messages with user access token)
      */
     group_id?: number
-    dont_parse_links?: boolean
-    disable_mentions?: boolean
+    dont_parse_links?: boolean | 0 | 1
+    disable_mentions?: boolean | 0 | 1
     message_id?: number
     cmid?: number
     template?: string
@@ -5827,7 +5827,7 @@ export interface MessagesGetByConversationMessageIdParams {
     /**
      * Information whether the response should be extended
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile fields to return.
      */
@@ -5853,7 +5853,7 @@ export interface MessagesGetByIdParams {
     /**
      * Information whether the response should be extended
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile fields to return.
      */
@@ -5916,7 +5916,7 @@ export interface MessagesGetConversationMembersParams {
     /**
      * Extended flag
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile fields to return.
      */
@@ -5955,7 +5955,7 @@ export interface MessagesGetConversationsParams {
     /**
      * '1' - return extra information about users and communities
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * ID of the message from what to return dialogs.
      */
@@ -5981,7 +5981,7 @@ export interface MessagesGetConversationsByIdParams {
     /**
      * Return extended properties
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile and communities fields to return.
      */
@@ -6026,7 +6026,7 @@ export interface MessagesGetHistoryParams {
     /**
      * Information whether the response should be extended
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile fields to return.
      */
@@ -6086,13 +6086,13 @@ export interface MessagesGetHistoryAttachmentsParams {
      * Number of objects to return.
      */
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Additional profile [vk.com/dev/fields|fields] to return.
      */
     fields?: Objects.VKUsersFields[]
     max_forwards_level?: number
-    message_video?: boolean
+    message_video?: boolean | 0 | 1
     /**
      * Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'
      */
@@ -6101,11 +6101,11 @@ export interface MessagesGetHistoryAttachmentsParams {
      * Message ID to start return results from.
      */
     start_from?: string
-    preserve_order?: boolean
+    preserve_order?: boolean | 0 | 1
     /**
      * '1' - to return photo sizes in a
      */
-    photo_sizes?: boolean
+    photo_sizes?: boolean | 0 | 1
 }
 
 /**
@@ -6129,7 +6129,7 @@ export interface MessagesGetImportantMessagesParams {
     /**
      * Return extended properties
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Group ID (for group messages with group access token)
      */
@@ -6149,7 +6149,7 @@ export interface MessagesGetIntentUsersParams {
     subscribe_id?: number
     offset?: number
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     name_case?: Objects.VKBaseNameCase
     fields?: string[]
 }
@@ -6165,7 +6165,7 @@ export interface MessagesGetInviteLinkParams {
     /**
      * 1 - to generate new link (revoke previous), 0 - to return previous link.
      */
-    reset?: boolean
+    reset?: boolean | 0 | 1
     /**
      * Group ID
      */
@@ -6201,7 +6201,7 @@ export interface MessagesGetLongPollHistoryParams {
     /**
      * '1' - to return history with online users only.
      */
-    onlines?: boolean
+    onlines?: boolean | 0 | 1
     /**
      * Additional profile [vk.com/dev/fields|fields] to return.
      */
@@ -6224,8 +6224,8 @@ export interface MessagesGetLongPollHistoryParams {
     group_id?: number
     lp_version?: number
     last_n?: number
-    credentials?: boolean
-    extended?: boolean
+    credentials?: boolean | 0 | 1
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -6235,7 +6235,7 @@ export interface MessagesGetLongPollServerParams {
     /**
      * '1' - to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
      */
-    need_pts?: boolean
+    need_pts?: boolean | 0 | 1
     /**
      * Group ID (for group messages with user access token)
      */
@@ -6305,7 +6305,7 @@ export interface MessagesMarkAsAnsweredConversationParams {
     /**
      * '1' - to mark as answered, '0' - to remove the mark
      */
-    answered?: boolean
+    answered?: boolean | 0 | 1
     /**
      * Group ID (for group messages with group access token)
      */
@@ -6337,7 +6337,7 @@ export interface MessagesMarkAsImportantConversationParams {
     /**
      * '1' - to add a star (mark as important), '0' - to remove the star
      */
-    important?: boolean
+    important?: boolean | 0 | 1
     /**
      * Group ID (for group messages with group access token)
      */
@@ -6364,7 +6364,7 @@ export interface MessagesMarkAsReadParams {
      * Group ID (for group messages with user access token)
      */
     group_id?: number
-    mark_conversation_as_read?: boolean
+    mark_conversation_as_read?: boolean | 0 | 1
     up_to_cmid?: number
 }
 
@@ -6469,7 +6469,7 @@ export interface MessagesSearchParams {
      * Number of messages to return.
      */
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: string[]
     /**
      * Group ID (for group messages with group access token)
@@ -6492,7 +6492,7 @@ export interface MessagesSearchConversationsParams {
     /**
      * '1' - return extra information about users and communities
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile fields to return.
      */
@@ -6585,8 +6585,8 @@ export interface MessagesSendParams {
      * JSON describing the content source in the message
      */
     content_source?: string
-    dont_parse_links?: boolean
-    disable_mentions?: boolean
+    dont_parse_links?: boolean | 0 | 1
+    disable_mentions?: boolean | 0 | 1
     intent?: MessagesSendIntent
     subscribe_id?: number
 }
@@ -6691,7 +6691,7 @@ export interface NewsfeedGetParams {
     /**
      * '1' - to return news items from banned sources
      */
-    return_banned?: boolean
+    return_banned?: boolean | 0 | 1
     /**
      * Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
      */
@@ -6730,7 +6730,7 @@ export interface NewsfeedGetBannedParams {
     /**
      * '1' - return extra information about users and communities
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Profile fields to return.
      */
@@ -6787,7 +6787,7 @@ export interface NewsfeedGetListsParams {
     /**
      * Return additional list info
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -6861,7 +6861,7 @@ export interface NewsfeedGetSuggestedSourcesParams {
     /**
      * shuffle the returned list or not.
      */
-    shuffle?: boolean
+    shuffle?: boolean | 0 | 1
     /**
      * list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].
      */
@@ -6905,7 +6905,7 @@ export interface NewsfeedSaveListParams {
     /**
      * reposts display on and off ('1' is for off).
      */
-    no_reposts?: boolean
+    no_reposts?: boolean | 0 | 1
 }
 
 /**
@@ -6919,7 +6919,7 @@ export interface NewsfeedSearchParams {
     /**
      * '1' - to return additional information about the user or community that placed the post.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Number of posts to return.
      */
@@ -7131,7 +7131,7 @@ export interface NotesGetByIdParams {
      * Note owner ID.
      */
     owner_id?: number
-    need_wiki?: boolean
+    need_wiki?: boolean | 0 | 1
 }
 
 export type NotesGetCommentsSort = 0 | 1
@@ -7229,7 +7229,7 @@ export interface NotificationsSendMessageParams {
 export interface OrdersCancelSubscriptionParams {
     user_id: number
     subscription_id: number
-    pending_cancel?: boolean
+    pending_cancel?: boolean | 0 | 1
 }
 
 export type OrdersChangeStateAction = "cancel" | "charge" | "refund"
@@ -7253,7 +7253,7 @@ export interface OrdersChangeStateParams {
     /**
      * if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
      */
-    test_mode?: boolean
+    test_mode?: boolean | 0 | 1
 }
 
 /**
@@ -7268,7 +7268,7 @@ export interface OrdersGetParams {
     /**
      * if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
      */
-    test_mode?: boolean
+    test_mode?: boolean | 0 | 1
 }
 
 /**
@@ -7294,7 +7294,7 @@ export interface OrdersGetByIdParams {
     /**
      * if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
      */
-    test_mode?: boolean
+    test_mode?: boolean | 0 | 1
 }
 
 /**
@@ -7337,20 +7337,20 @@ export interface PagesGetParams {
     /**
      * '1' - to return information about a global wiki page
      */
-    global?: boolean
+    global?: boolean | 0 | 1
     /**
      * '1' - resulting wiki page is a preview for the attached link
      */
-    site_preview?: boolean
+    site_preview?: boolean | 0 | 1
     /**
      * Wiki page title.
      */
     title?: string
-    need_source?: boolean
+    need_source?: boolean | 0 | 1
     /**
      * '1' - to return the page as HTML,
      */
-    need_html?: boolean
+    need_html?: boolean | 0 | 1
 }
 
 /**
@@ -7391,7 +7391,7 @@ export interface PagesGetVersionParams {
     /**
      * '1' - to return the page as HTML
      */
-    need_html?: boolean
+    need_html?: boolean | 0 | 1
 }
 
 /**
@@ -7524,8 +7524,8 @@ export interface PhotosCreateAlbumParams {
     description?: string
     privacy_view?: string[]
     privacy_comment?: string[]
-    upload_by_admins_only?: boolean
-    comments_disabled?: boolean
+    upload_by_admins_only?: boolean | 0 | 1
+    comments_disabled?: boolean | 0 | 1
 }
 
 /**
@@ -7551,7 +7551,7 @@ export interface PhotosCreateCommentParams {
     /**
      * '1' - to post a comment from the community
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
     reply_to_comment?: number
     sticker_id?: number
     access_key?: string
@@ -7621,7 +7621,7 @@ export interface PhotosEditParams {
     longitude?: number
     place_str?: string
     foursquare_id?: string
-    delete_place?: boolean
+    delete_place?: boolean | 0 | 1
 }
 
 /**
@@ -7646,8 +7646,8 @@ export interface PhotosEditAlbumParams {
     owner_id?: number
     privacy_view?: string[]
     privacy_comment?: string[]
-    upload_by_admins_only?: boolean
-    comments_disabled?: boolean
+    upload_by_admins_only?: boolean | 0 | 1
+    comments_disabled?: boolean | 0 | 1
 }
 
 /**
@@ -7691,11 +7691,11 @@ export interface PhotosGetParams {
     /**
      * Sort order: '1' - reverse chronological, '0' - chronological
      */
-    rev?: boolean
+    rev?: boolean | 0 | 1
     /**
      * '1' - to return additional 'likes', 'comments', and 'tags' fields, '0' - (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Type of feed obtained in 'feed' field of the method.
      */
@@ -7707,7 +7707,7 @@ export interface PhotosGetParams {
     /**
      * '1' - to return photo sizes in a [vk.com/dev/photo_sizes|special format]
      */
-    photo_sizes?: boolean
+    photo_sizes?: boolean | 0 | 1
     offset?: number
     count?: number
 }
@@ -7735,15 +7735,15 @@ export interface PhotosGetAlbumsParams {
     /**
      * '1' - to return system albums with negative IDs
      */
-    need_system?: boolean
+    need_system?: boolean | 0 | 1
     /**
      * '1' - to return an additional 'thumb_src' field, '0' - (default)
      */
-    need_covers?: boolean
+    need_covers?: boolean | 0 | 1
     /**
      * '1' - to return photo sizes in a
      */
-    photo_sizes?: boolean
+    photo_sizes?: boolean | 0 | 1
 }
 
 /**
@@ -7758,7 +7758,7 @@ export interface PhotosGetAlbumsCountParams {
      * Community ID.
      */
     group_id?: number
-    need_system?: boolean
+    need_system?: boolean | 0 | 1
 }
 
 /**
@@ -7772,7 +7772,7 @@ export interface PhotosGetAllParams {
     /**
      * '1' - to return detailed information about photos
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of photos. By default, '0'.
      */
@@ -7784,19 +7784,19 @@ export interface PhotosGetAllParams {
     /**
      * '1' - to return image sizes in [vk.com/dev/photo_sizes|special format].
      */
-    photo_sizes?: boolean
+    photo_sizes?: boolean | 0 | 1
     /**
      * '1' - to return photos only from standard albums, '0' - to return all photos including those in service albums, e.g., 'My wall photos' (default)
      */
-    no_service_albums?: boolean
+    no_service_albums?: boolean | 0 | 1
     /**
      * '1' - to show information about photos being hidden from the block above the wall.
      */
-    need_hidden?: boolean
+    need_hidden?: boolean | 0 | 1
     /**
      * '1' - not to return photos being hidden from the block above the wall. Works only with owner_id>0, no_service_albums is ignored.
      */
-    skip_hidden?: boolean
+    skip_hidden?: boolean | 0 | 1
 }
 
 /**
@@ -7814,7 +7814,7 @@ export interface PhotosGetAllCommentsParams {
     /**
      * '1' - to return an additional 'likes' field, '0' - (default)
      */
-    need_likes?: boolean
+    need_likes?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of comments. By default, '0'.
      */
@@ -7836,11 +7836,11 @@ export interface PhotosGetByIdParams {
     /**
      * '1' - to return additional fields, '0' - (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * '1' - to return photo sizes in a
      */
-    photo_sizes?: boolean
+    photo_sizes?: boolean | 0 | 1
 }
 
 /**
@@ -7880,7 +7880,7 @@ export interface PhotosGetCommentsParams {
     /**
      * '1' - to return an additional 'likes' field, '0' - (default)
      */
-    need_likes?: boolean
+    need_likes?: boolean | 0 | 1
     start_comment_id?: number
     /**
      * Offset needed to return a specific subset of comments. By default, '0'.
@@ -7895,7 +7895,7 @@ export interface PhotosGetCommentsParams {
      */
     sort?: PhotosGetCommentsSort
     access_key?: string
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKUsersFields[]
 }
 
@@ -7957,7 +7957,7 @@ export interface PhotosGetOwnerCoverPhotoUploadServerParams {
      * Y coordinate of the right-bottom corner
      */
     crop_y2?: number
-    is_video_cover?: boolean
+    is_video_cover?: boolean | 0 | 1
 }
 
 /**
@@ -8015,7 +8015,7 @@ export interface PhotosGetUserPhotosParams {
     /**
      * '1' - to return an additional 'likes' field, '0' - (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Sort order: '1' - by date the tag was added in ascending order, '0' - by date the tag was added in descending order
      */
@@ -8337,7 +8337,7 @@ export interface PhotosSaveOwnerCoverPhotoParams {
      * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
      */
     photo?: string
-    is_video_cover?: boolean
+    is_video_cover?: boolean | 0 | 1
 }
 
 /**
@@ -8448,7 +8448,7 @@ export interface PollsAddVoteParams {
      */
     poll_id: number
     answer_ids: number[]
-    is_board?: boolean
+    is_board?: boolean | 0 | 1
 }
 
 export type PollsCreateBackgroundId = "1" | "2" | "3" | "4" | "6" | "8" | "9"
@@ -8464,8 +8464,8 @@ export interface PollsCreateParams {
     /**
      * '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
      */
-    is_anonymous?: boolean
-    is_multiple?: boolean
+    is_anonymous?: boolean | 0 | 1
+    is_multiple?: boolean | 0 | 1
     end_date?: number
     /**
      * If a poll will be added to a communty it is required to send a negative group identifier. Current user by default.
@@ -8478,7 +8478,7 @@ export interface PollsCreateParams {
     add_answers?: string
     photo_id?: number
     background_id?: PollsCreateBackgroundId
-    disable_unvote?: boolean
+    disable_unvote?: boolean | 0 | 1
 }
 
 /**
@@ -8493,7 +8493,7 @@ export interface PollsDeleteVoteParams {
      * Poll ID.
      */
     poll_id: number
-    is_board?: boolean
+    is_board?: boolean | 0 | 1
 }
 
 export type PollsEditBackgroundId =
@@ -8550,12 +8550,12 @@ export interface PollsGetByIdParams {
     /**
      * '1' - poll is in a board, '0' - poll is on a wall. '0' by default.
      */
-    is_board?: boolean
+    is_board?: boolean | 0 | 1
     /**
      * Poll ID.
      */
     poll_id: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     friends_count?: number
     fields?: string[]
     name_case?: Objects.VKBaseNameCase
@@ -8584,11 +8584,11 @@ export interface PollsGetVotersParams {
      * Answer IDs.
      */
     answer_ids: number[]
-    is_board?: boolean
+    is_board?: boolean | 0 | 1
     /**
      * '1' - to return only current user's friends, '0' - to return all users (default),
      */
-    friends_only?: boolean
+    friends_only?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of voters. '0' - (default)
      */
@@ -8685,7 +8685,7 @@ export interface SearchGetHintsParams {
     limit?: number
     filters?: string[]
     fields?: string[]
-    search_global?: boolean
+    search_global?: boolean | 0 | 1
 }
 
 /**
@@ -8804,7 +8804,7 @@ export interface SecureSetCounterParams {
      * counter value.
      */
     counter?: number
-    increment?: boolean
+    increment?: boolean | 0 | 1
 }
 
 export type StatsGetInterval = "all" | "day" | "month" | "week" | "year"
@@ -8827,7 +8827,7 @@ export interface StatsGetParams {
     intervals_count?: number
     filters?: string[]
     stats_groups?: string[]
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -8930,7 +8930,7 @@ export interface StoreGetProductsParams {
     section?: string
     product_ids?: number[]
     filters?: string[]
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -8939,10 +8939,10 @@ export interface StoreGetProductsParams {
 export interface StoreGetStickersKeywordsParams {
     stickers_ids?: number[]
     products_ids?: number[]
-    aliases?: boolean
-    all_products?: boolean
-    need_stickers?: boolean
-    vmoji_promo?: boolean
+    aliases?: boolean | 0 | 1
+    all_products?: boolean | 0 | 1
+    need_stickers?: boolean | 0 | 1
+    vmoji_promo?: boolean | 0 | 1
 }
 
 /**
@@ -8991,7 +8991,7 @@ export interface StoriesGetParams {
     /**
      * '1' - to return additional fields for users and communities. Default value is 0.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -9002,7 +9002,7 @@ export interface StoriesGetBannedParams {
     /**
      * '1' - to return additional fields for users and communities. Default value is 0.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Additional fields to return
      */
@@ -9020,7 +9020,7 @@ export interface StoriesGetByIdParams {
     /**
      * '1' - to return additional fields for users and communities. Default value is 0.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Additional fields to return
      */
@@ -9034,7 +9034,7 @@ export interface StoriesGetPhotoUploadServerParams {
     /**
      * 1 - to add the story to friend's feed.
      */
-    add_to_news?: boolean
+    add_to_news?: boolean | 0 | 1
     /**
      * List of users IDs who can see the story.
      */
@@ -9077,7 +9077,7 @@ export interface StoriesGetRepliesParams {
     /**
      * '1' - to return additional fields for users and communities. Default value is 0.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Additional fields to return
      */
@@ -9105,7 +9105,7 @@ export interface StoriesGetVideoUploadServerParams {
     /**
      * 1 - to add the story to friend's feed.
      */
-    add_to_news?: boolean
+    add_to_news?: boolean | 0 | 1
     /**
      * List of users IDs who can see the story.
      */
@@ -9152,7 +9152,7 @@ export interface StoriesGetViewersParams {
     /**
      * '1' - to return detailed information about photos
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -9187,7 +9187,7 @@ export interface StoriesHideReplyParams {
 export interface StoriesSaveParams {
     upload_results?: string[]
     upload_results_json?: string
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -9202,7 +9202,7 @@ export interface StoriesSearchParams {
     radius?: number
     mentioned_id?: number
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -9212,9 +9212,9 @@ export interface StoriesSearchParams {
 export interface StoriesSendInteractionParams {
     access_key: string
     message?: string
-    is_broadcast?: boolean
-    is_anonymous?: boolean
-    unseen_marker?: boolean
+    is_broadcast?: boolean | 0 | 1
+    is_anonymous?: boolean | 0 | 1
+    unseen_marker?: boolean | 0 | 1
 }
 
 /**
@@ -9311,7 +9311,7 @@ export interface UsersGetSubscriptionsParams {
     /**
      * '1' - to return a combined list of users and communities, '0' - to return separate lists of users and communities (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of subscriptions.
      */
@@ -9468,11 +9468,11 @@ export interface UsersSearchParams {
     /**
      * '1' - online only, '0' - all users
      */
-    online?: boolean
+    online?: boolean | 0 | 1
     /**
      * '1' - with photo only, '0' - all users
      */
-    has_photo?: boolean
+    has_photo?: boolean | 0 | 1
     /**
      * ID of the country where users finished school.
      */
@@ -9580,7 +9580,7 @@ export interface UtilsGetLinkStatsParams {
     /**
      * 1 - to return extended stats data (sex, age, geo). 0 - to return views number only.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -9594,7 +9594,7 @@ export interface UtilsGetShortLinkParams {
     /**
      * 1 - private stats, 0 - public stats.
      */
-    private?: boolean
+    private?: boolean | 0 | 1
 }
 
 /**
@@ -9677,7 +9677,7 @@ export interface VideoCreateCommentParams {
     /**
      * '1' - to post the comment from a community name (only if 'owner_id'<0)
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
     reply_to_comment?: number
     sticker_id?: number
     guid?: string
@@ -9773,11 +9773,11 @@ export interface VideoEditParams {
     /**
      * Disable comments for the group video.
      */
-    no_comments?: boolean
+    no_comments?: boolean | 0 | 1
     /**
      * '1' - to repeat the playback of the video, '0' - to play the video once,
      */
-    repeat?: boolean
+    repeat?: boolean | 0 | 1
     ord_info?: string
 }
 
@@ -9855,7 +9855,7 @@ export interface VideoGetParams {
     /**
      * '1' - to return an extended response with additional fields
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: string[]
     /**
      * Sort order: '0' - newest video first, '1' - oldest video first
@@ -9896,8 +9896,8 @@ export interface VideoGetAlbumsParams {
     /**
      * '1' - to return additional information about album privacy settings for the current user
      */
-    extended?: boolean
-    need_system?: boolean
+    extended?: boolean | 0 | 1
+    need_system?: boolean | 0 | 1
 }
 
 /**
@@ -9907,7 +9907,7 @@ export interface VideoGetAlbumsByVideoParams {
     target_id?: number
     owner_id: number
     video_id: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
 }
 
 /**
@@ -9932,7 +9932,7 @@ export interface VideoGetCommentsParams {
     /**
      * '1' - to return an additional 'likes' field
      */
-    need_likes?: boolean
+    need_likes?: boolean | 0 | 1
     start_comment_id?: number
     /**
      * Offset needed to return a specific subset of comments.
@@ -9946,7 +9946,7 @@ export interface VideoGetCommentsParams {
      * Sort order: 'asc' - oldest comment first, 'desc' - newest comment first
      */
     sort?: VideoGetCommentsSort
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: string[]
     comment_id?: number
     thread_items_count?: number
@@ -10197,11 +10197,11 @@ export interface VideoSaveParams {
     /**
      * '1' - to designate the video as private (send it via a private message), the video will not appear on the user's video list and will not be available by ID for other users, '0' - not to designate the video as private
      */
-    is_private?: boolean
+    is_private?: boolean | 0 | 1
     /**
      * '1' - to post the saved video on a user's wall, '0' - not to post the saved video on a user's wall
      */
-    wallpost?: boolean
+    wallpost?: boolean | 0 | 1
     /**
      * URL for embedding the video from an external website.
      */
@@ -10216,14 +10216,14 @@ export interface VideoSaveParams {
     album_id?: number
     privacy_view?: string[]
     privacy_comment?: string[]
-    no_comments?: boolean
+    no_comments?: boolean | 0 | 1
     /**
      * '1' - to repeat the playback of the video, '0' - to play the video once,
      */
-    repeat?: boolean
-    compression?: boolean
+    repeat?: boolean | 0 | 1
+    compression?: boolean | 0 | 1
     ord_info?: string
-    auto_publish?: boolean
+    auto_publish?: boolean | 0 | 1
 }
 
 /**
@@ -10241,7 +10241,7 @@ export interface VideoSaveUploadedThumbParams {
     /**
      * If flag passed uploaded thumb will automatically set to passed video. Work only with video_id.
      */
-    set_thumb?: boolean
+    set_thumb?: boolean | 0 | 1
 }
 
 /**
@@ -10271,13 +10271,13 @@ export interface VideoSearchParams {
     /**
      * '1' - to disable the Safe Search filter, '0' - to enable the Safe Search filter
      */
-    adult?: boolean
-    live?: boolean
+    adult?: boolean | 0 | 1
+    live?: boolean | 0 | 1
     /**
      * Filters to apply: 'youtube' - return YouTube videos only, 'vimeo' - return Vimeo videos only, 'vk' - return VK videos only, 'short' - return short videos only, 'long' - return long videos only
      */
     filters?: VideoSearchFilters[]
-    search_own?: boolean
+    search_own?: boolean | 0 | 1
     /**
      * Offset needed to return a specific subset of videos.
      */
@@ -10288,7 +10288,7 @@ export interface VideoSearchParams {
      * Number of videos to return.
      */
     count?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     owner_id?: number
     fields?: string[]
 }
@@ -10300,13 +10300,13 @@ export interface VideoStartStreamingParams {
     video_id?: number
     name?: string
     description?: string
-    wallpost?: boolean
+    wallpost?: boolean | 0 | 1
     group_id?: number
     privacy_view?: string[]
     privacy_comment?: string[]
-    no_comments?: boolean
+    no_comments?: boolean | 0 | 1
     category_id?: number
-    publish?: boolean
+    publish?: boolean | 0 | 1
 }
 
 /**
@@ -10450,7 +10450,7 @@ export interface WallEditParams {
      */
     owner_id?: number
     post_id: number
-    friends_only?: boolean
+    friends_only?: boolean | 0 | 1
     /**
      * (Required if 'attachments' is not set.) Text of the post.
      */
@@ -10460,13 +10460,13 @@ export interface WallEditParams {
      */
     attachments?: string[]
     services?: string
-    signed?: boolean
+    signed?: boolean | 0 | 1
     publish_date?: number
     lat?: number
     long?: number
     place_id?: number
-    mark_as_ads?: boolean
-    close_comments?: boolean
+    mark_as_ads?: boolean | 0 | 1
+    close_comments?: boolean | 0 | 1
     donut_paid_duration?: number
     poster_bkg_id?: number
     poster_bkg_owner_id?: number
@@ -10501,7 +10501,7 @@ export interface WallEditAdsStealthParams {
     /**
      * Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)
      */
-    signed?: boolean
+    signed?: boolean | 0 | 1
     /**
      * Geographical latitude of a check-in, in degrees (from -90 to 90).
      */
@@ -10578,7 +10578,7 @@ export interface WallGetParams {
     /**
      * '1' - to return 'wall', 'profiles', and 'groups' fields, '0' - to return no additional fields (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -10593,7 +10593,7 @@ export interface WallGetByIdParams {
     /**
      * '1' - to return user and community objects needed to display posts, '0' - no additional fields are returned (default)
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     /**
      * Sets the number of parent elements to include in the array 'copy_history' that is returned if the post is a repost from another wall.
      */
@@ -10613,7 +10613,7 @@ export interface WallGetCommentParams {
      * Comment ID.
      */
     comment_id: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 
@@ -10639,7 +10639,7 @@ export interface WallGetCommentsParams {
     /**
      * '1' - to return the 'likes' field, '0' - not to return the 'likes' field (default)
      */
-    need_likes?: boolean
+    need_likes?: boolean | 0 | 1
     start_comment_id?: number
     /**
      * Offset needed to return a specific subset of comments.
@@ -10657,7 +10657,7 @@ export interface WallGetCommentsParams {
      * Number of characters at which to truncate comments when previewed. By default, '90'. Specify '0' if you do not want to truncate comments.
      */
     preview_length?: number
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
     /**
      * Comment ID.
@@ -10704,7 +10704,7 @@ export interface WallOpenCommentsParams {
  */
 export interface WallParseAttachedLinkParams {
     links: string
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: string[]
     name_case?: Objects.VKBaseNameCase
 }
@@ -10734,11 +10734,11 @@ export interface WallPostParams {
     /**
      * '1' - post will be available to friends only, '0' - post will be available to all users (default)
      */
-    friends_only?: boolean
+    friends_only?: boolean | 0 | 1
     /**
      * For a community: '1' - post will be published by the community, '0' - post will be published by the user (default)
      */
-    from_group?: boolean
+    from_group?: boolean | 0 | 1
     /**
      * (Required if 'attachments' is not set.) Text of the post.
      */
@@ -10754,7 +10754,7 @@ export interface WallPostParams {
     /**
      * Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)
      */
-    signed?: boolean
+    signed?: boolean | 0 | 1
     /**
      * Publication date (in Unix time). If used, posting will be delayed until the set time.
      */
@@ -10776,12 +10776,12 @@ export interface WallPostParams {
      */
     post_id?: number
     guid?: string
-    mark_as_ads?: boolean
+    mark_as_ads?: boolean | 0 | 1
     link_title?: string
     link_photo_id?: string
-    close_comments?: boolean
+    close_comments?: boolean | 0 | 1
     donut_paid_duration?: number
-    mute_notifications?: boolean
+    mute_notifications?: boolean | 0 | 1
     copyright?: string
 }
 
@@ -10804,7 +10804,7 @@ export interface WallPostAdsStealthParams {
     /**
      * Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)
      */
-    signed?: boolean
+    signed?: boolean | 0 | 1
     /**
      * Geographical latitude of a check-in, in degrees (from -90 to 90).
      */
@@ -10917,8 +10917,8 @@ export interface WallRepostParams {
      * Target community ID when reposting to a community.
      */
     group_id?: number
-    mark_as_ads?: boolean
-    mute_notifications?: boolean
+    mark_as_ads?: boolean | 0 | 1
+    mute_notifications?: boolean | 0 | 1
 }
 
 /**
@@ -10964,7 +10964,7 @@ export interface WallSearchParams {
     /**
      * '1' - returns only page owner's posts.
      */
-    owners_only?: boolean
+    owners_only?: boolean | 0 | 1
     /**
      * count of posts to return.
      */
@@ -10976,7 +10976,7 @@ export interface WallSearchParams {
     /**
      * show extended post info.
      */
-    extended?: boolean
+    extended?: boolean | 0 | 1
     fields?: Objects.VKBaseUserGroupFields[]
 }
 

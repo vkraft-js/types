@@ -10,7 +10,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 03:53:01 using [types](https://github.com/vkraft/types) generator
  */
 
 export type * from "./methods"

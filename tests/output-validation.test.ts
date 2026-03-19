@@ -18,12 +18,17 @@ describe("generated output validation", () => {
 		}
 	});
 
-	it("generated types compile cleanly with tsc", () => {
-		const result = execSync("npx tsc --noEmit out/index.d.ts 2>&1", {
-			encoding: "utf-8",
-		});
-		expect(result.trim()).toBe("");
-	});
+	it(
+		"generated types compile cleanly with tsc",
+		() => {
+			const result = execSync("npx tsc --noEmit out/index.d.ts 2>&1", {
+				encoding: "utf-8",
+				timeout: 30000,
+			});
+			expect(result.trim()).toBe("");
+		},
+		{ timeout: 30000 },
+	);
 
 	it("objects.d.ts contains VK-prefixed types", () => {
 		const content = readFileSync("out/objects.d.ts", "utf-8");

@@ -89,7 +89,10 @@ export function schemaToType(
 			case "number":
 				return "number";
 			case "boolean":
-				return "boolean";
+				// VK API accepts both true/false and 1/0 for boolean params
+				return ctx.objectType === "method"
+					? "boolean | 0 | 1"
+					: "boolean";
 
 			case "array": {
 				if (prop.items) {
