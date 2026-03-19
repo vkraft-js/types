@@ -126,7 +126,9 @@ const files: IGeneratedFile[] = [
 			[`export type * from "./responses"`],
 			[`export type * as VKResponses from "./responses"`],
 			[`export type * from "./errors"`],
-			[`export type { APIMethodParams, APIMethodReturn, VKAPINested } from "./utils"`],
+			[
+				`export type { APIMethodParams, APIMethodReturn, VKAPINested } from "./utils"`,
+			],
 		],
 	},
 	{
@@ -166,7 +168,7 @@ const files: IGeneratedFile[] = [
 				...CodeGenerator.generateComment([
 					"Nested proxy type for `api.users.get()` style access.",
 					"",
-					"Splits flat `APIMethods` keys like `\"users.get\"` into `{ users: { get: ... } }`.",
+					'Splits flat `APIMethods` keys like `"users.get"` into `{ users: { get: ... } }`.',
 					"",
 					"@example",
 					"```typescript",
@@ -174,7 +176,7 @@ const files: IGeneratedFile[] = [
 					"await api.users.get({ user_ids: [1] });",
 					"```",
 				]),
-				`type ExtractCategory<T extends string> = T extends \`\${infer C}.\${string}\` ? C : never`,
+				"type ExtractCategory<T extends string> = T extends `${infer C}.${string}` ? C : never",
 				`export type VKAPINested = {
 	[Cat in ExtractCategory<keyof APIMethods & string>]: {
 		[M in keyof APIMethods as M extends \`\${Cat}.\${infer Method}\` ? Method : never]: APIMethods[M]

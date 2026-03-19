@@ -12,7 +12,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 04:14:29 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 12:32:27 using [types](https://github.com/vkraft/types) generator
  */
 
 import type {
@@ -452,17 +452,19 @@ export interface APIMethods {
      */
     "ads.getSuggestions": {
         (
-            params: Params.AdsGetSuggestionsParams,
-        ): Promise<Responses.AdsGetSuggestionsResponse>
-        (
-            params: Params.AdsGetSuggestionsParams,
-        ): Promise<Responses.AdsGetSuggestionsRegionsResponse>
-        (
-            params: Params.AdsGetSuggestionsParams,
+            params: Params.AdsGetSuggestionsParams & {
+                cities: Required<
+                    Pick<Params.AdsGetSuggestionsParams, "cities">
+                >["cities"]
+            },
         ): Promise<Responses.AdsGetSuggestionsCitiesResponse>
         (
             params: Params.AdsGetSuggestionsParams,
-        ): Promise<Responses.AdsGetSuggestionsSchoolsResponse>
+        ): Promise<
+            | Responses.AdsGetSuggestionsResponse
+            | Responses.AdsGetSuggestionsRegionsResponse
+            | Responses.AdsGetSuggestionsSchoolsResponse
+        >
     }
     /**
      * Returns a list of target groups.
@@ -735,11 +737,11 @@ export interface APIMethods {
      */
     "apps.getFriendsList": {
         (
-            params: Params.AppsGetFriendsListParams,
-        ): Promise<Responses.AppsGetFriendsListResponse>
-        (
-            params: Params.AppsGetFriendsListParams,
+            params: Params.AppsGetFriendsListParams & { extended: 1 | true },
         ): Promise<Responses.AppsGetFriendsListExtendedResponse>
+        (
+            params?: Params.AppsGetFriendsListParams,
+        ): Promise<Responses.AppsGetFriendsListResponse>
     }
     /**
      * Returns players rating in the game.
@@ -748,11 +750,11 @@ export interface APIMethods {
      */
     "apps.getLeaderboard": {
         (
-            params: Params.AppsGetLeaderboardParams,
-        ): Promise<Responses.AppsGetLeaderboardResponse>
+            params: Params.AppsGetLeaderboardParams & { extended: 1 | true },
+        ): Promise<Responses.AppsGetLeaderboardExtendedResponse>
         (
             params: Params.AppsGetLeaderboardParams,
-        ): Promise<Responses.AppsGetLeaderboardExtendedResponse>
+        ): Promise<Responses.AppsGetLeaderboardResponse>
     }
     /**
      * Returns policies and terms given to a mini app.
@@ -947,11 +949,11 @@ export interface APIMethods {
      */
     "board.getComments": {
         (
-            params: Params.BoardGetCommentsParams,
-        ): Promise<Responses.BoardGetCommentsResponse>
+            params: Params.BoardGetCommentsParams & { extended: 1 | true },
+        ): Promise<Responses.BoardGetCommentsExtendedResponse>
         (
             params: Params.BoardGetCommentsParams,
-        ): Promise<Responses.BoardGetCommentsExtendedResponse>
+        ): Promise<Responses.BoardGetCommentsResponse>
     }
     /**
      * Returns a list of topics on a community's discussion board.
@@ -960,11 +962,11 @@ export interface APIMethods {
      */
     "board.getTopics": {
         (
-            params: Params.BoardGetTopicsParams,
-        ): Promise<Responses.BoardGetTopicsResponse>
+            params: Params.BoardGetTopicsParams & { extended: 1 | true },
+        ): Promise<Responses.BoardGetTopicsExtendedResponse>
         (
             params: Params.BoardGetTopicsParams,
-        ): Promise<Responses.BoardGetTopicsExtendedResponse>
+        ): Promise<Responses.BoardGetTopicsResponse>
     }
     /**
      * Re-opens a previously closed topic on a community's discussion board.
@@ -1455,10 +1457,10 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/fave.get)
      */
     "fave.get": {
-        (params: Params.FaveGetParams): Promise<Responses.FaveGetResponse>
         (
-            params: Params.FaveGetParams,
+            params: Params.FaveGetParams & { extended: 1 | true },
         ): Promise<Responses.FaveGetExtendedResponse>
+        (params?: Params.FaveGetParams): Promise<Responses.FaveGetResponse>
     }
     /**
      *
@@ -1605,11 +1607,11 @@ export interface APIMethods {
      */
     "friends.areFriends": {
         (
-            params: Params.FriendsAreFriendsParams,
-        ): Promise<Responses.FriendsAreFriendsResponse>
+            params: Params.FriendsAreFriendsParams & { extended: 1 | true },
+        ): Promise<Responses.FriendsAreFriendsExtendedResponse>
         (
             params: Params.FriendsAreFriendsParams,
-        ): Promise<Responses.FriendsAreFriendsExtendedResponse>
+        ): Promise<Responses.FriendsAreFriendsResponse>
     }
     /**
      * Declines a friend request or deletes a user from the current user's friend list.
@@ -1656,10 +1658,16 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/friends.get)
      */
     "friends.get": {
-        (params: Params.FriendsGetParams): Promise<Responses.FriendsGetResponse>
         (
-            params: Params.FriendsGetParams,
+            params: Params.FriendsGetParams & {
+                fields: Required<
+                    Pick<Params.FriendsGetParams, "fields">
+                >["fields"]
+            },
         ): Promise<Responses.FriendsGetFieldsResponse>
+        (
+            params?: Params.FriendsGetParams,
+        ): Promise<Responses.FriendsGetResponse>
     }
     /**
      * Returns a list of IDs of the current user's friends who installed the application.
@@ -1683,14 +1691,22 @@ export interface APIMethods {
      */
     "friends.getMutual": {
         (
-            params: Params.FriendsGetMutualParams,
-        ): Promise<Responses.FriendsGetMutualResponse>
-        (
-            params: Params.FriendsGetMutualParams,
+            params: Params.FriendsGetMutualParams & {
+                target_uids: Required<
+                    Pick<Params.FriendsGetMutualParams, "target_uids">
+                >["target_uids"]
+            },
         ): Promise<Responses.FriendsGetMutualTargetUidsResponse>
         (
-            params: Params.FriendsGetMutualParams,
+            params: Params.FriendsGetMutualParams & {
+                count: Required<
+                    Pick<Params.FriendsGetMutualParams, "count">
+                >["count"]
+            },
         ): Promise<Objects.VKFriendsMutualFriend>
+        (
+            params?: Params.FriendsGetMutualParams,
+        ): Promise<Responses.FriendsGetMutualResponse>
     }
     /**
      * Returns a list of user IDs of a user's friends who are online.
@@ -1699,17 +1715,16 @@ export interface APIMethods {
      */
     "friends.getOnline": {
         (
-            params: Params.FriendsGetOnlineParams,
-        ): Promise<Responses.FriendsGetOnlineResponse>
+            params: Params.FriendsGetOnlineParams & { online_mobile: 1 | true },
+        ): Promise<
+            | Responses.FriendsGetOnlineOnlineMobileResponse
+            | Objects.VKFriendsOnlineUsersWithMobile
+        >
         (
-            params: Params.FriendsGetOnlineParams,
-        ): Promise<Responses.FriendsGetOnlineOnlineMobileResponse>
-        (
-            params: Params.FriendsGetOnlineParams,
-        ): Promise<Objects.VKFriendsOnlineUsers>
-        (
-            params: Params.FriendsGetOnlineParams,
-        ): Promise<Objects.VKFriendsOnlineUsersWithMobile>
+            params?: Params.FriendsGetOnlineParams,
+        ): Promise<
+            Responses.FriendsGetOnlineResponse | Objects.VKFriendsOnlineUsers
+        >
     }
     /**
      * Returns a list of user IDs of the current user's recently added friends.
@@ -1727,14 +1742,14 @@ export interface APIMethods {
      */
     "friends.getRequests": {
         (
-            params: Params.FriendsGetRequestsParams,
-        ): Promise<Responses.FriendsGetRequestsResponse>
-        (
-            params: Params.FriendsGetRequestsParams,
+            params: Params.FriendsGetRequestsParams & { need_mutual: 1 | true },
         ): Promise<Responses.FriendsGetRequestsNeedMutualResponse>
         (
-            params: Params.FriendsGetRequestsParams,
+            params: Params.FriendsGetRequestsParams & { extended: 1 | true },
         ): Promise<Responses.FriendsGetRequestsExtendedResponse>
+        (
+            params?: Params.FriendsGetRequestsParams,
+        ): Promise<Responses.FriendsGetRequestsResponse>
     }
     /**
      * Returns a list of profiles of users whom the current user may know.
@@ -1907,10 +1922,10 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/groups.get)
      */
     "groups.get": {
-        (params: Params.GroupsGetParams): Promise<Responses.GroupsGetResponse>
         (
-            params: Params.GroupsGetParams,
+            params: Params.GroupsGetParams & { extended: 1 | true },
         ): Promise<Responses.GroupsGetObjectExtendedResponse>
+        (params?: Params.GroupsGetParams): Promise<Responses.GroupsGetResponse>
     }
     /**
      * Returns a list of community addresses.
@@ -1973,11 +1988,11 @@ export interface APIMethods {
      */
     "groups.getCatalogInfo": {
         (
-            params: Params.GroupsGetCatalogInfoParams,
-        ): Promise<Responses.GroupsGetCatalogInfoResponse>
-        (
-            params: Params.GroupsGetCatalogInfoParams,
+            params: Params.GroupsGetCatalogInfoParams & { extended: 1 | true },
         ): Promise<Responses.GroupsGetCatalogInfoExtendedResponse>
+        (
+            params?: Params.GroupsGetCatalogInfoParams,
+        ): Promise<Responses.GroupsGetCatalogInfoResponse>
     }
     /**
      * Returns invited users list of a community
@@ -1995,11 +2010,11 @@ export interface APIMethods {
      */
     "groups.getInvites": {
         (
-            params: Params.GroupsGetInvitesParams,
-        ): Promise<Responses.GroupsGetInvitesResponse>
-        (
-            params: Params.GroupsGetInvitesParams,
+            params: Params.GroupsGetInvitesParams & { extended: 1 | true },
         ): Promise<Responses.GroupsGetInvitesExtendedResponse>
+        (
+            params?: Params.GroupsGetInvitesParams,
+        ): Promise<Responses.GroupsGetInvitesResponse>
     }
     /**
      * Returns the data needed to query a Long Poll server for events
@@ -2026,14 +2041,22 @@ export interface APIMethods {
      */
     "groups.getMembers": {
         (
-            params: Params.GroupsGetMembersParams,
-        ): Promise<Responses.GroupsGetMembersResponse>
-        (
-            params: Params.GroupsGetMembersParams,
+            params: Params.GroupsGetMembersParams & {
+                fields: Required<
+                    Pick<Params.GroupsGetMembersParams, "fields">
+                >["fields"]
+            },
         ): Promise<Responses.GroupsGetMembersFieldsResponse>
         (
-            params: Params.GroupsGetMembersParams,
+            params: Params.GroupsGetMembersParams & {
+                filter: Required<
+                    Pick<Params.GroupsGetMembersParams, "filter">
+                >["filter"]
+            },
         ): Promise<Responses.GroupsGetMembersFilterResponse>
+        (
+            params?: Params.GroupsGetMembersParams,
+        ): Promise<Responses.GroupsGetMembersResponse>
     }
     /**
      *
@@ -2051,11 +2074,15 @@ export interface APIMethods {
      */
     "groups.getRequests": {
         (
-            params: Params.GroupsGetRequestsParams,
-        ): Promise<Responses.GroupsGetRequestsResponse>
+            params: Params.GroupsGetRequestsParams & {
+                fields: Required<
+                    Pick<Params.GroupsGetRequestsParams, "fields">
+                >["fields"]
+            },
+        ): Promise<Responses.GroupsGetRequestsFieldsResponse>
         (
             params: Params.GroupsGetRequestsParams,
-        ): Promise<Responses.GroupsGetRequestsFieldsResponse>
+        ): Promise<Responses.GroupsGetRequestsResponse>
     }
     /**
      * Returns community settings.
@@ -2086,28 +2113,35 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/groups.invite)
      */
-    "groups.invite": {
-        (params: Params.GroupsInviteParams): Promise<Responses.BaseOkResponse>
-        (
-            params: Params.GroupsInviteParams,
-        ): Promise<Responses.GroupsInviteUserIdsListResponse>
-    }
+    "groups.invite": CallAPI<
+        Params.GroupsInviteParams,
+        Responses.BaseOkResponse | Responses.GroupsInviteUserIdsListResponse
+    >
     /**
      * Returns information specifying whether a user is a member of a community.
      *
      * [Documentation](https://dev.vk.com/method/groups.isMember)
      */
     "groups.isMember": {
-        (params: Params.GroupsIsMemberParams): Promise<Objects.VKBaseBoolInt>
         (
-            params: Params.GroupsIsMemberParams,
+            params: Params.GroupsIsMemberParams & {
+                extended: 1 | true
+                user_ids: Required<
+                    Pick<Params.GroupsIsMemberParams, "user_ids">
+                >["user_ids"]
+            },
+        ): Promise<Responses.GroupsIsMemberUserIdsExtendedResponse>
+        (
+            params: Params.GroupsIsMemberParams & {
+                user_ids: Required<
+                    Pick<Params.GroupsIsMemberParams, "user_ids">
+                >["user_ids"]
+            },
         ): Promise<Responses.GroupsIsMemberUserIdsResponse>
         (
-            params: Params.GroupsIsMemberParams,
+            params: Params.GroupsIsMemberParams & { extended: 1 | true },
         ): Promise<Responses.GroupsIsMemberExtendedResponse>
-        (
-            params: Params.GroupsIsMemberParams,
-        ): Promise<Responses.GroupsIsMemberUserIdsExtendedResponse>
+        (params: Params.GroupsIsMemberParams): Promise<Objects.VKBaseBoolInt>
     }
     /**
      * With this method you can join the group or public page, and also confirm your participation in an event.
@@ -2308,11 +2342,11 @@ export interface APIMethods {
      */
     "likes.getList": {
         (
-            params: Params.LikesGetListParams,
-        ): Promise<Responses.LikesGetListResponse>
+            params: Params.LikesGetListParams & { extended: 1 | true },
+        ): Promise<Responses.LikesGetListExtendedResponse>
         (
             params: Params.LikesGetListParams,
-        ): Promise<Responses.LikesGetListExtendedResponse>
+        ): Promise<Responses.LikesGetListResponse>
     }
     /**
      * Checks for the object in the 'Likes' list of the specified user.
@@ -2361,11 +2395,10 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/market.addToAlbum)
      */
-    "market.addToAlbum": {
-        (
-            params: Params.MarketAddToAlbumParams,
-        ): Promise<Responses.BaseOkResponse>
-    }
+    "market.addToAlbum": CallAPI<
+        Params.MarketAddToAlbumParams,
+        Responses.BaseOkResponse
+    >
     /**
      * Creates a new comment for an item.
      *
@@ -2486,10 +2519,10 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/market.get)
      */
     "market.get": {
-        (params: Params.MarketGetParams): Promise<Responses.MarketGetResponse>
         (
-            params: Params.MarketGetParams,
+            params: Params.MarketGetParams & { extended: 1 | true },
         ): Promise<Responses.MarketGetExtendedResponse>
+        (params: Params.MarketGetParams): Promise<Responses.MarketGetResponse>
     }
     /**
      * Returns items album's data
@@ -2516,11 +2549,11 @@ export interface APIMethods {
      */
     "market.getById": {
         (
-            params: Params.MarketGetByIdParams,
-        ): Promise<Responses.MarketGetByIdResponse>
+            params: Params.MarketGetByIdParams & { extended: 1 | true },
+        ): Promise<Responses.MarketGetByIdExtendedResponse>
         (
             params: Params.MarketGetByIdParams,
-        ): Promise<Responses.MarketGetByIdExtendedResponse>
+        ): Promise<Responses.MarketGetByIdResponse>
     }
     /**
      * Returns a list of market categories.
@@ -2583,11 +2616,11 @@ export interface APIMethods {
      */
     "market.getOrders": {
         (
-            params: Params.MarketGetOrdersParams,
-        ): Promise<Responses.MarketGetOrdersResponse>
-        (
-            params: Params.MarketGetOrdersParams,
+            params: Params.MarketGetOrdersParams & { extended: 1 | true },
         ): Promise<Responses.MarketGetOrdersExtendedResponse>
+        (
+            params?: Params.MarketGetOrdersParams,
+        ): Promise<Responses.MarketGetOrdersResponse>
     }
     /**
      * Returns the server address for market photo upload.
@@ -2704,11 +2737,11 @@ export interface APIMethods {
      */
     "market.search": {
         (
-            params: Params.MarketSearchParams,
-        ): Promise<Responses.MarketSearchResponse>
+            params: Params.MarketSearchParams & { extended: 1 | true },
+        ): Promise<Responses.MarketSearchExtendedResponse>
         (
             params: Params.MarketSearchParams,
-        ): Promise<Responses.MarketSearchExtendedResponse>
+        ): Promise<Responses.MarketSearchResponse>
     }
     /**
      *
@@ -2840,11 +2873,13 @@ export interface APIMethods {
      */
     "messages.getByConversationMessageId": {
         (
-            params: Params.MessagesGetByConversationMessageIdParams,
-        ): Promise<Responses.MessagesGetByConversationMessageIdResponse>
+            params: Params.MessagesGetByConversationMessageIdParams & {
+                extended: 1 | true
+            },
+        ): Promise<Responses.MessagesGetByConversationMessageIdExtendedResponse>
         (
             params: Params.MessagesGetByConversationMessageIdParams,
-        ): Promise<Responses.MessagesGetByConversationMessageIdExtendedResponse>
+        ): Promise<Responses.MessagesGetByConversationMessageIdResponse>
     }
     /**
      * Returns messages by their IDs.
@@ -2853,11 +2888,11 @@ export interface APIMethods {
      */
     "messages.getById": {
         (
-            params: Params.MessagesGetByIdParams,
-        ): Promise<Responses.MessagesGetByIdResponse>
-        (
-            params: Params.MessagesGetByIdParams,
+            params: Params.MessagesGetByIdParams & { extended: 1 | true },
         ): Promise<Responses.MessagesGetByIdExtendedResponse>
+        (
+            params?: Params.MessagesGetByIdParams,
+        ): Promise<Responses.MessagesGetByIdResponse>
     }
     /**
      * Returns information about a chat.
@@ -2865,16 +2900,31 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/messages.getChat)
      */
     "messages.getChat": {
-        (params: Params.MessagesGetChatParams): Promise<Objects.VKMessagesChat>
         (
-            params: Params.MessagesGetChatParams,
+            params: Params.MessagesGetChatParams & {
+                chat_ids: Required<
+                    Pick<Params.MessagesGetChatParams, "chat_ids">
+                >["chat_ids"]
+                fields: Required<
+                    Pick<Params.MessagesGetChatParams, "fields">
+                >["fields"]
+            },
+        ): Promise<Responses.MessagesGetChatChatIdsFieldsResponse>
+        (
+            params: Params.MessagesGetChatParams & {
+                fields: Required<
+                    Pick<Params.MessagesGetChatParams, "fields">
+                >["fields"]
+            },
         ): Promise<Objects.VKMessagesChatFull>
         (
-            params: Params.MessagesGetChatParams,
+            params: Params.MessagesGetChatParams & {
+                chat_ids: Required<
+                    Pick<Params.MessagesGetChatParams, "chat_ids">
+                >["chat_ids"]
+            },
         ): Promise<Responses.MessagesGetChatChatIdsResponse>
-        (
-            params: Params.MessagesGetChatParams,
-        ): Promise<Responses.MessagesGetChatChatIdsFieldsResponse>
+        (params?: Params.MessagesGetChatParams): Promise<Objects.VKMessagesChat>
     }
     /**
      *
@@ -2910,11 +2960,13 @@ export interface APIMethods {
      */
     "messages.getConversationsById": {
         (
-            params: Params.MessagesGetConversationsByIdParams,
-        ): Promise<Objects.VKMessagesGetConversationById>
+            params: Params.MessagesGetConversationsByIdParams & {
+                extended: 1 | true
+            },
+        ): Promise<Objects.VKMessagesGetConversationByIdExtended>
         (
             params: Params.MessagesGetConversationsByIdParams,
-        ): Promise<Objects.VKMessagesGetConversationByIdExtended>
+        ): Promise<Objects.VKMessagesGetConversationById>
     }
     /**
      * Returns message history for the specified user or group chat.
@@ -2923,11 +2975,11 @@ export interface APIMethods {
      */
     "messages.getHistory": {
         (
-            params: Params.MessagesGetHistoryParams,
-        ): Promise<Responses.MessagesGetHistoryResponse>
-        (
-            params: Params.MessagesGetHistoryParams,
+            params: Params.MessagesGetHistoryParams & { extended: 1 | true },
         ): Promise<Responses.MessagesGetHistoryExtendedResponse>
+        (
+            params?: Params.MessagesGetHistoryParams,
+        ): Promise<Responses.MessagesGetHistoryResponse>
     }
     /**
      * Returns media files from the dialog or group chat.
@@ -2945,11 +2997,13 @@ export interface APIMethods {
      */
     "messages.getImportantMessages": {
         (
-            params: Params.MessagesGetImportantMessagesParams,
-        ): Promise<Responses.MessagesGetImportantMessagesResponse>
-        (
-            params: Params.MessagesGetImportantMessagesParams,
+            params: Params.MessagesGetImportantMessagesParams & {
+                extended: 1 | true
+            },
         ): Promise<Responses.MessagesGetImportantMessagesExtendedResponse>
+        (
+            params?: Params.MessagesGetImportantMessagesParams,
+        ): Promise<Responses.MessagesGetImportantMessagesResponse>
     }
     /**
      *
@@ -2965,14 +3019,11 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/messages.getInviteLink)
      */
-    "messages.getInviteLink": {
-        (
-            params: Params.MessagesGetInviteLinkParams,
-        ): Promise<Responses.MessagesGetInviteLinkResponse>
-        (
-            params: Params.MessagesGetInviteLinkParams,
-        ): Promise<Responses.MessagesGetInviteLinkByOwnerResponse>
-    }
+    "messages.getInviteLink": CallAPI<
+        Params.MessagesGetInviteLinkParams,
+        | Responses.MessagesGetInviteLinkResponse
+        | Responses.MessagesGetInviteLinkByOwnerResponse
+    >
     /**
      * Returns a user's current status and date of last activity.
      *
@@ -3133,11 +3184,11 @@ export interface APIMethods {
      */
     "messages.search": {
         (
-            params: Params.MessagesSearchParams,
-        ): Promise<Responses.MessagesSearchResponse>
-        (
-            params: Params.MessagesSearchParams,
+            params: Params.MessagesSearchParams & { extended: 1 | true },
         ): Promise<Responses.MessagesSearchExtendedResponse>
+        (
+            params?: Params.MessagesSearchParams,
+        ): Promise<Responses.MessagesSearchResponse>
     }
     /**
      * Returns a list of the current user's conversations that match search criteria.
@@ -3146,25 +3197,24 @@ export interface APIMethods {
      */
     "messages.searchConversations": {
         (
-            params: Params.MessagesSearchConversationsParams,
-        ): Promise<Responses.MessagesSearchConversationsResponse>
-        (
-            params: Params.MessagesSearchConversationsParams,
+            params: Params.MessagesSearchConversationsParams & {
+                extended: 1 | true
+            },
         ): Promise<Responses.MessagesSearchConversationsExtendedResponse>
+        (
+            params?: Params.MessagesSearchConversationsParams,
+        ): Promise<Responses.MessagesSearchConversationsResponse>
     }
     /**
      * Sends a message.
      *
      * [Documentation](https://dev.vk.com/method/messages.send)
      */
-    "messages.send": {
-        (
-            params: Params.MessagesSendParams,
-        ): Promise<Responses.MessagesSendDeprecatedResponse>
-        (
-            params: Params.MessagesSendParams,
-        ): Promise<Responses.MessagesSendUserIdsResponse>
-    }
+    "messages.send": CallAPIWithOptionalParams<
+        Params.MessagesSendParams,
+        | Responses.MessagesSendDeprecatedResponse
+        | Responses.MessagesSendUserIdsResponse
+    >
     /**
      *
      *
@@ -3253,11 +3303,11 @@ export interface APIMethods {
      */
     "newsfeed.getBanned": {
         (
-            params: Params.NewsfeedGetBannedParams,
-        ): Promise<Responses.NewsfeedGetBannedResponse>
-        (
-            params: Params.NewsfeedGetBannedParams,
+            params: Params.NewsfeedGetBannedParams & { extended: 1 | true },
         ): Promise<Responses.NewsfeedGetBannedExtendedResponse>
+        (
+            params?: Params.NewsfeedGetBannedParams,
+        ): Promise<Responses.NewsfeedGetBannedResponse>
     }
     /**
      * Returns a list of comments in the current user's newsfeed.
@@ -3275,11 +3325,11 @@ export interface APIMethods {
      */
     "newsfeed.getLists": {
         (
-            params: Params.NewsfeedGetListsParams,
-        ): Promise<Responses.NewsfeedGetListsResponse>
-        (
-            params: Params.NewsfeedGetListsParams,
+            params: Params.NewsfeedGetListsParams & { extended: 1 | true },
         ): Promise<Responses.NewsfeedGetListsExtendedResponse>
+        (
+            params?: Params.NewsfeedGetListsParams,
+        ): Promise<Responses.NewsfeedGetListsResponse>
     }
     /**
      * Returns a list of posts on user walls in which the current user is mentioned.
@@ -3333,17 +3383,17 @@ export interface APIMethods {
      */
     "newsfeed.search": {
         (
-            params: Params.NewsfeedSearchParams,
-        ): Promise<Responses.NewsfeedSearchResponse>
+            params: Params.NewsfeedSearchParams & { extended: 1 | true },
+        ): Promise<
+            | Responses.NewsfeedSearchExtendedResponse
+            | Responses.NewsfeedSearchExtendedStrictResponse
+        >
         (
-            params: Params.NewsfeedSearchParams,
-        ): Promise<Responses.NewsfeedSearchStrictResponse>
-        (
-            params: Params.NewsfeedSearchParams,
-        ): Promise<Responses.NewsfeedSearchExtendedResponse>
-        (
-            params: Params.NewsfeedSearchParams,
-        ): Promise<Responses.NewsfeedSearchExtendedStrictResponse>
+            params?: Params.NewsfeedSearchParams,
+        ): Promise<
+            | Responses.NewsfeedSearchResponse
+            | Responses.NewsfeedSearchStrictResponse
+        >
     }
     /**
      * Returns a hidden item to the newsfeed.
@@ -3757,11 +3807,11 @@ export interface APIMethods {
      */
     "photos.getComments": {
         (
-            params: Params.PhotosGetCommentsParams,
-        ): Promise<Responses.PhotosGetCommentsResponse>
+            params: Params.PhotosGetCommentsParams & { extended: 1 | true },
+        ): Promise<Responses.PhotosGetCommentsExtendedResponse>
         (
             params: Params.PhotosGetCommentsParams,
-        ): Promise<Responses.PhotosGetCommentsExtendedResponse>
+        ): Promise<Responses.PhotosGetCommentsResponse>
     }
     /**
      * Returns the server address for market album photo upload.
@@ -4064,11 +4114,15 @@ export interface APIMethods {
      */
     "polls.getVoters": {
         (
-            params: Params.PollsGetVotersParams,
-        ): Promise<Responses.PollsGetVotersResponse>
+            params: Params.PollsGetVotersParams & {
+                fields: Required<
+                    Pick<Params.PollsGetVotersParams, "fields">
+                >["fields"]
+            },
+        ): Promise<Responses.PollsGetVotersFieldsResponse>
         (
             params: Params.PollsGetVotersParams,
-        ): Promise<Responses.PollsGetVotersFieldsResponse>
+        ): Promise<Responses.PollsGetVotersResponse>
     }
     /**
      *
@@ -4222,12 +4276,10 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/secure.setCounter)
      */
-    "secure.setCounter": {
-        (params: Params.SecureSetCounterParams): Promise<Objects.VKBaseBoolInt>
-        (
-            params: Params.SecureSetCounterParams,
-        ): Promise<Responses.SecureSetCounterArrayResponse>
-    }
+    "secure.setCounter": CallAPIWithOptionalParams<
+        Params.SecureSetCounterParams,
+        Objects.VKBaseBoolInt | Responses.SecureSetCounterArrayResponse
+    >
     /**
      * Returns statistics of a community or an application.
      *
@@ -4373,11 +4425,11 @@ export interface APIMethods {
      */
     "stories.getBanned": {
         (
-            params: Params.StoriesGetBannedParams,
-        ): Promise<Responses.StoriesGetBannedResponse>
-        (
-            params: Params.StoriesGetBannedParams,
+            params: Params.StoriesGetBannedParams & { extended: 1 | true },
         ): Promise<Responses.StoriesGetBannedExtendedResponse>
+        (
+            params?: Params.StoriesGetBannedParams,
+        ): Promise<Responses.StoriesGetBannedResponse>
     }
     /**
      * Returns story by its ID.
@@ -4536,11 +4588,15 @@ export interface APIMethods {
      */
     "users.getFollowers": {
         (
-            params: Params.UsersGetFollowersParams,
-        ): Promise<Responses.UsersGetFollowersResponse>
-        (
-            params: Params.UsersGetFollowersParams,
+            params: Params.UsersGetFollowersParams & {
+                fields: Required<
+                    Pick<Params.UsersGetFollowersParams, "fields">
+                >["fields"]
+            },
         ): Promise<Responses.UsersGetFollowersFieldsResponse>
+        (
+            params?: Params.UsersGetFollowersParams,
+        ): Promise<Responses.UsersGetFollowersResponse>
     }
     /**
      * Returns a list of IDs of users and communities followed by the user.
@@ -4549,11 +4605,11 @@ export interface APIMethods {
      */
     "users.getSubscriptions": {
         (
-            params: Params.UsersGetSubscriptionsParams,
-        ): Promise<Responses.UsersGetSubscriptionsResponse>
-        (
-            params: Params.UsersGetSubscriptionsParams,
+            params: Params.UsersGetSubscriptionsParams & { extended: 1 | true },
         ): Promise<Responses.UsersGetSubscriptionsExtendedResponse>
+        (
+            params?: Params.UsersGetSubscriptionsParams,
+        ): Promise<Responses.UsersGetSubscriptionsResponse>
     }
     /**
      * Reports (submits a complain about) a user.
@@ -4604,11 +4660,11 @@ export interface APIMethods {
      */
     "utils.getLinkStats": {
         (
-            params: Params.UtilsGetLinkStatsParams,
-        ): Promise<Objects.VKUtilsLinkStats>
+            params: Params.UtilsGetLinkStatsParams & { extended: 1 | true },
+        ): Promise<Objects.VKUtilsLinkStatsExtended>
         (
             params: Params.UtilsGetLinkStatsParams,
-        ): Promise<Objects.VKUtilsLinkStatsExtended>
+        ): Promise<Objects.VKUtilsLinkStats>
     }
     /**
      * Returns the current time of the VK server.
@@ -4654,14 +4710,10 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.addToAlbum)
      */
-    "video.addToAlbum": {
-        (
-            params: Params.VideoAddToAlbumParams,
-        ): Promise<Responses.BaseOkResponse>
-        (
-            params: Params.VideoAddToAlbumParams,
-        ): Promise<Responses.VideoChangeVideoAlbumsResponse>
-    }
+    "video.addToAlbum": CallAPI<
+        Params.VideoAddToAlbumParams,
+        Responses.BaseOkResponse | Responses.VideoChangeVideoAlbumsResponse
+    >
     /**
      * Adds a new comment on a video.
      *
@@ -4753,11 +4805,11 @@ export interface APIMethods {
      */
     "video.getAlbums": {
         (
-            params: Params.VideoGetAlbumsParams,
-        ): Promise<Responses.VideoGetAlbumsResponse>
-        (
-            params: Params.VideoGetAlbumsParams,
+            params: Params.VideoGetAlbumsParams & { extended: 1 | true },
         ): Promise<Responses.VideoGetAlbumsExtendedResponse>
+        (
+            params?: Params.VideoGetAlbumsParams,
+        ): Promise<Responses.VideoGetAlbumsResponse>
     }
     /**
      *
@@ -4766,11 +4818,11 @@ export interface APIMethods {
      */
     "video.getAlbumsByVideo": {
         (
-            params: Params.VideoGetAlbumsByVideoParams,
-        ): Promise<Responses.VideoGetAlbumsByVideoResponse>
+            params: Params.VideoGetAlbumsByVideoParams & { extended: 1 | true },
+        ): Promise<Responses.VideoGetAlbumsByVideoExtendedResponse>
         (
             params: Params.VideoGetAlbumsByVideoParams,
-        ): Promise<Responses.VideoGetAlbumsByVideoExtendedResponse>
+        ): Promise<Responses.VideoGetAlbumsByVideoResponse>
     }
     /**
      * Returns a list of comments on a video.
@@ -4779,11 +4831,11 @@ export interface APIMethods {
      */
     "video.getComments": {
         (
-            params: Params.VideoGetCommentsParams,
-        ): Promise<Responses.VideoGetCommentsResponse>
+            params: Params.VideoGetCommentsParams & { extended: 1 | true },
+        ): Promise<Responses.VideoGetCommentsExtendedResponse>
         (
             params: Params.VideoGetCommentsParams,
-        ): Promise<Responses.VideoGetCommentsExtendedResponse>
+        ): Promise<Responses.VideoGetCommentsResponse>
     }
     /**
      *
@@ -4823,14 +4875,10 @@ export interface APIMethods {
      *
      * [Documentation](https://dev.vk.com/method/video.removeFromAlbum)
      */
-    "video.removeFromAlbum": {
-        (
-            params: Params.VideoRemoveFromAlbumParams,
-        ): Promise<Responses.BaseOkResponse>
-        (
-            params: Params.VideoRemoveFromAlbumParams,
-        ): Promise<Responses.VideoChangeVideoAlbumsResponse>
-    }
+    "video.removeFromAlbum": CallAPI<
+        Params.VideoRemoveFromAlbumParams,
+        Responses.BaseOkResponse | Responses.VideoChangeVideoAlbumsResponse
+    >
     /**
      * Reorders the album in the list of user video albums.
      *
@@ -4916,11 +4964,11 @@ export interface APIMethods {
      */
     "video.search": {
         (
-            params: Params.VideoSearchParams,
-        ): Promise<Responses.VideoSearchResponse>
-        (
-            params: Params.VideoSearchParams,
+            params: Params.VideoSearchParams & { extended: 1 | true },
         ): Promise<Responses.VideoSearchExtendedResponse>
+        (
+            params?: Params.VideoSearchParams,
+        ): Promise<Responses.VideoSearchResponse>
     }
     /**
      *
@@ -5024,10 +5072,10 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/wall.get)
      */
     "wall.get": {
-        (params: Params.WallGetParams): Promise<Responses.WallGetResponse>
         (
-            params: Params.WallGetParams,
+            params: Params.WallGetParams & { extended: 1 | true },
         ): Promise<Responses.WallGetExtendedResponse>
+        (params?: Params.WallGetParams): Promise<Responses.WallGetResponse>
     }
     /**
      * Returns a list of posts from user or community walls by their IDs.
@@ -5036,11 +5084,11 @@ export interface APIMethods {
      */
     "wall.getById": {
         (
-            params: Params.WallGetByIdParams,
-        ): Promise<Responses.WallGetByIdResponse>
+            params: Params.WallGetByIdParams & { extended: 1 | true },
+        ): Promise<Responses.WallGetByIdExtendedResponse>
         (
             params: Params.WallGetByIdParams,
-        ): Promise<Responses.WallGetByIdExtendedResponse>
+        ): Promise<Responses.WallGetByIdResponse>
     }
     /**
      * Returns a comment on a post on a user wall or community wall.
@@ -5049,11 +5097,11 @@ export interface APIMethods {
      */
     "wall.getComment": {
         (
-            params: Params.WallGetCommentParams,
-        ): Promise<Responses.WallGetCommentResponse>
+            params: Params.WallGetCommentParams & { extended: 1 | true },
+        ): Promise<Responses.WallGetCommentExtendedResponse>
         (
             params: Params.WallGetCommentParams,
-        ): Promise<Responses.WallGetCommentExtendedResponse>
+        ): Promise<Responses.WallGetCommentResponse>
     }
     /**
      * Returns a list of comments on a post on a user wall or community wall.
@@ -5062,11 +5110,11 @@ export interface APIMethods {
      */
     "wall.getComments": {
         (
-            params: Params.WallGetCommentsParams,
-        ): Promise<Responses.WallGetCommentsResponse>
-        (
-            params: Params.WallGetCommentsParams,
+            params: Params.WallGetCommentsParams & { extended: 1 | true },
         ): Promise<Responses.WallGetCommentsExtendedResponse>
+        (
+            params?: Params.WallGetCommentsParams,
+        ): Promise<Responses.WallGetCommentsResponse>
     }
     /**
      * Returns information about reposts of a post on user wall or community wall.
@@ -5170,10 +5218,12 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/wall.search)
      */
     "wall.search": {
-        (params: Params.WallSearchParams): Promise<Responses.WallSearchResponse>
         (
-            params: Params.WallSearchParams,
+            params: Params.WallSearchParams & { extended: 1 | true },
         ): Promise<Responses.WallSearchExtendedResponse>
+        (
+            params?: Params.WallSearchParams,
+        ): Promise<Responses.WallSearchResponse>
     }
     /**
      * Unpins the post on wall.
