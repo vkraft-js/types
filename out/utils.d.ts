@@ -13,7 +13,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 03:53:01 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 04:14:29 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
@@ -40,3 +40,25 @@ export type APIMethodParams<APIMethod extends keyof APIMethods> = Parameters<
 export type APIMethodReturn<APIMethod extends keyof APIMethods> = Awaited<
     ReturnType<APIMethods[APIMethod]>
 >
+
+/**
+ * Nested proxy type for `api.users.get()` style access.
+ *
+ * Splits flat `APIMethods` keys like `"users.get"` into `{ users: { get: ... } }`.
+ *
+ * @example
+ * ```typescript
+ * const api = new Proxy({}, { ... }) as VKAPINested;
+ * await api.users.get({ user_ids: [1] });
+ * ```
+ */
+type ExtractCategory<T extends string> = T extends `${infer C}.${string}`
+    ? C
+    : never
+export type VKAPINested = {
+    [Cat in ExtractCategory<keyof APIMethods & string>]: {
+        [M in keyof APIMethods as M extends `${Cat}.${infer Method}`
+            ? Method
+            : never]: APIMethods[M]
+    }
+}

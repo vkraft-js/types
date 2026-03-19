@@ -31,53 +31,75 @@ type UsersGetParams = APIMethodParams<"users.get">;
 - `params` — exports parameter interfaces with `Params` postfix (e.g. `UsersGetParams`)
 - `responses` — exports response types (e.g. `UsersGetResponse`)
 - `errors` — exports `VKError`, `VKErrorCode`
-- `utils` — exports `APIMethodParams`, `APIMethodReturn`, `CallAPI` helpers
+- `utils` — exports `APIMethodParams`, `APIMethodReturn`, `VKAPINested`, `CallAPI` helpers
 
 ## Write your own type-safe VK API wrapper
 
+Use `VKAPINested` for a clean `api.users.get()` style:
+
 ```typescript
-import type {
-    APIMethods,
-    APIMethodParams,
-    APIMethodReturn,
-} from "@vkraft/types";
+import type { VKAPINested } from "@vkraft/types";
 
 const VK_API_URL = "https://api.vk.com/method";
 const TOKEN = process.env.VK_TOKEN!;
 const API_VERSION = "5.199";
 
+function createAPI(): VKAPINested {
+    return new Proxy({} as VKAPINested, {
+        get: (_target, category: string) =>
+            new Proxy(
+                {},
+                {
+                    get: (_t, method: string) => async (params?: Record<string, unknown>) => {
+                        const body = new URLSearchParams({
+                            ...Object.fromEntries(
+                                Object.entries(params ?? {}).map(([k, v]) => [k, String(v)]),
+                            ),
+                            access_token: TOKEN,
+                            v: API_VERSION,
+                        });
+
+                        const response = await fetch(
+                            `${VK_API_URL}/${category}.${method}`,
+                            { method: "POST", body },
+                        );
+
+                        const data = await response.json();
+                        if (data.error) {
+                            throw new Error(
+                                `VK API error ${data.error.error_code}: ${data.error.error_msg}`,
+                            );
+                        }
+
+                        return data.response;
+                    },
+                },
+            ),
+    });
+}
+
+const api = createAPI();
+
+// Fully typed — params and return type are inferred
+const users = await api.users.get({ user_ids: [1] });
+const wall = await api.wall.post({ message: "Hello from vkraft!" });
+```
+
+Or use the flat `APIMethods` directly if you prefer bracket access:
+
+```typescript
+import type { APIMethods, APIMethodParams, APIMethodReturn } from "@vkraft/types";
+
 const api = new Proxy({} as APIMethods, {
     get:
         <T extends keyof APIMethods>(_target: APIMethods, method: T) =>
         async (params: APIMethodParams<T>) => {
-            const body = new URLSearchParams({
-                ...Object.fromEntries(
-                    Object.entries(params ?? {}).map(([k, v]) => [k, String(v)]),
-                ),
-                access_token: TOKEN,
-                v: API_VERSION,
-            });
-
-            const response = await fetch(`${VK_API_URL}/${method}`, {
-                method: "POST",
-                body,
-            });
-
-            const data = await response.json();
-            if (data.error) {
-                throw new Error(
-                    `VK API error ${data.error.error_code}: ${data.error.error_msg}`,
-                );
-            }
-
+            // ... same fetch logic, using method directly as "users.get"
             return data.response as APIMethodReturn<T>;
         },
 });
 
-// Fully typed — params and return type are inferred
-const users = await api["users.get"]({
-    user_ids: [1],
-});
+await api["users.get"]({ user_ids: [1] });
 ```
 
 ## Generate types manually
