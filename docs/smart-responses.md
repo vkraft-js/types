@@ -94,3 +94,63 @@ For response variants that can't be mapped to parameters (rare), all variant typ
 ```typescript
 const result = await api.someMethod(params) as SpecificResponseType;
 ```
+
+## `WithFields<T, F>` — Narrow Object Types by Requested Fields
+
+VK API returns all properties on "full" objects (e.g., `VKUsersUserFull`), but only the ones matching your `fields` parameter are actually populated. Use `WithFields` to make exactly those properties required:
+
+```typescript
+import type { WithFields, VKUsersUserFull, VKUsersFields } from "@vkraft/types";
+
+// Only photo_100, sex, city become required — everything else stays optional
+type MyUser = WithFields<VKUsersUserFull, "photo_100" | "sex" | "city">;
+
+const user: MyUser = /* ... */;
+user.photo_100; // string (required — no undefined)
+user.sex;       // VKBaseSex (required)
+user.city;      // { id: number; title: string } (required)
+user.bdate;     // string | undefined (not requested — stays optional)
+```
+
+### How it works
+
+```typescript
+type WithFields<T, F extends string> =
+    Omit<T, F & keyof T> & Required<Pick<T, F & keyof T>>
+```
+
+1. `F & keyof T` — intersects requested field names with actual property names. Fields like `"education"` that don't match a property name are silently ignored (safe!)
+2. `Pick<T, ...>` + `Required` — makes matched properties required
+3. `Omit<T, ...> &` — merges back with the rest of the object (unchanged)
+
+### Coverage
+
+~87% of `fields` enum values directly match property names and work perfectly with `WithFields`. The remaining ~13% are **composite fields** that expand into multiple properties:
+
+| Field | Expands to |
+|---|---|
+| `contacts` | `mobile_phone`, `home_phone` |
+| `education` | `university`, `faculty`, `graduation`, `education_form`, `education_status` |
+| `connections` | `skype`, `facebook`, `twitter`, `livejournal` |
+
+For composite fields, `WithFields` safely ignores the mismatch — the expanded properties remain optional. You can include them explicitly if needed:
+
+```typescript
+type MyUser = WithFields<VKUsersUserFull,
+    | "education"            // ignored (composite), but doesn't break anything
+    | "university"           // ← this one actually makes it required
+    | "faculty"
+>;
+```
+
+### Usage with API calls
+
+```typescript
+const followers = await api.users.getFollowers({
+    user_id: 1,
+    fields: ["photo_100", "sex"],
+});
+
+// Narrow the response items:
+type Item = WithFields<(typeof followers)["items"][number], "photo_100" | "sex">;
+```

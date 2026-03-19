@@ -10,7 +10,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 12:32:27 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 13:04:11 using [types](https://github.com/vkraft/types) generator
  */
 
 export type * from "./methods"
@@ -21,4 +21,9 @@ export type * as VKObjects from "./objects"
 export type * from "./responses"
 export type * as VKResponses from "./responses"
 export type * from "./errors"
-export type { APIMethodParams, APIMethodReturn, VKAPINested } from "./utils"
+export type {
+    APIMethodParams,
+    APIMethodReturn,
+    VKAPINested,
+    WithFields,
+} from "./utils"
