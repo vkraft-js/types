@@ -3,11 +3,7 @@ import { CodeGenerator, TextEditor } from "../helpers";
 import { flattenAllOf } from "../schema/allof-merger";
 import { defNameToPascal, parseRef } from "../schema/resolver";
 import type { VKSchemaProperty } from "../schema/types";
-import {
-	Properties,
-	collectEnumAliases,
-	schemaToType,
-} from "./properties";
+import { Properties, collectEnumAliases, schemaToType } from "./properties";
 
 export class Objects {
 	static generateMany(
@@ -43,9 +39,7 @@ export class Objects {
 			if (def.enumNames && def.enumNames.length === def.enum.length) {
 				commentLines.push(
 					"",
-					...def.enum.map(
-						(val, i) => `- \`${val}\` — ${def.enumNames![i]}`,
-					),
+					...def.enum.map((val, i) => `- \`${val}\` — ${def.enumNames![i]}`),
 				);
 			}
 
@@ -131,15 +125,9 @@ export class Objects {
 
 		// ── Object with properties ──────────────────────────────────────────
 		if (def.properties) {
-			const reqSet = new Set(
-				Array.isArray(def.required) ? def.required : [],
-			);
+			const reqSet = new Set(Array.isArray(def.required) ? def.required : []);
 
-			const enumAliases = collectEnumAliases(
-				def.properties,
-				defName,
-				"object",
-			);
+			const enumAliases = collectEnumAliases(def.properties, defName, "object");
 
 			return [
 				...enumAliases,

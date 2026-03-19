@@ -15,9 +15,7 @@ export class APIMethods {
 				"This object is a map of VK API methods (functions map with input/output)",
 			),
 			"export interface APIMethods {",
-			...methods.flatMap((m) =>
-				APIMethods.generate(m, responses, allObjects),
-			),
+			...methods.flatMap((m) => APIMethods.generate(m, responses, allObjects)),
 			"}",
 		];
 	}
@@ -27,7 +25,9 @@ export class APIMethods {
 		responses: Map<string, VKSchemaProperty>,
 		allObjects: Map<string, VKSchemaProperty>,
 	): string[] {
-		const doc = `${method.description ?? ""}\n\n[Documentation](${VK_API_DOCS}/${method.name})`;
+		const doc = `${
+			method.description ?? ""
+		}\n\n[Documentation](${VK_API_DOCS}/${method.name})`;
 		const methodPascal = TextEditor.methodToPascalCase(method.name);
 		const hasParams = method.parameters && method.parameters.length > 0;
 
@@ -63,9 +63,7 @@ export class APIMethods {
 			}
 
 			const allOptional = method.parameters!.every((p) => !p.required);
-			const callType = allOptional
-				? "CallAPIWithOptionalParams"
-				: "CallAPI";
+			const callType = allOptional ? "CallAPIWithOptionalParams" : "CallAPI";
 
 			return [
 				...CodeGenerator.generateComment(doc),

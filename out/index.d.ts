@@ -1,21 +1,24 @@
 /**
  * @module
  *
- * This module re-export another modules (+ export params as TelegramParams/objects as TelegramObjects)
+ * This module re-exports all VK API type modules
  *
  * @example import
  * ```typescript
- * import { TelegramUser, SendMessageParams, APIMethods, APIMethodReturn } from "@gramio/types";
+ * import { VKUsersUserFull, APIMethods, APIMethodReturn } from "@vkraft/types";
  * ```
  *
- * Based on Bot API v9.5 (01.03.2026)
+ * Based on VK API v5.199
  *
- * Generated at 01.03.2026, 10:44:44 using [types](https://github.com/gramiojs/types) and [schema](https://github.com/gramiojs/schema-parser) generators
+ * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
  */
 
 export type * from "./methods"
 export type * from "./params"
-export type * as TelegramParams from "./params"
+export type * as VKParams from "./params"
 export type * from "./objects"
-export type * as TelegramObjects from "./objects"
+export type * as VKObjects from "./objects"
+export type * from "./responses"
+export type * as VKResponses from "./responses"
+export type * from "./errors"
 export type { APIMethodParams, APIMethodReturn } from "./utils"

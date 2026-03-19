@@ -5,17 +5,15 @@
  *
  * @example import utils
  * ```typescript
- * import { APIMethodParams, APIMethodReturn } from "@gramio/types/utils";
+ * import { APIMethodParams, APIMethodReturn } from "@vkraft/types/utils";
  *
- * type SendMessageReturn = APIMethodReturn<"sendMessage">;
- * //   ^? type SendMessageReturn = TelegramMessage"
- * type SendMessageParams = APIMethodParams<"sendMessage">;
- * //   ^? type SendMessageParams = SendMessageParams"
+ * type UsersGetReturn = APIMethodReturn<"users.get">;
+ * type UsersGetParams = APIMethodParams<"users.get">;
  * ```
  *
- * Based on Bot API v9.5 (01.03.2026)
+ * Based on VK API v5.199
  *
- * Generated at 01.03.2026, 10:44:44 using [types](https://github.com/gramiojs/types) and [schema](https://github.com/gramiojs/schema-parser) generators
+ * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
@@ -27,8 +25,7 @@ export type CallAPIWithOptionalParams<T, R> = (params?: T) => Promise<R>
 /**
  * @example
  * ```typescript
- * type SendMessageParams = APIMethodParams<"sendMessage">;
- * //   ^? type SendMessageParams = SendMessageParams"
+ * type UsersGetParams = APIMethodParams<"users.get">;
  * ```
  */
 export type APIMethodParams<APIMethod extends keyof APIMethods> = Parameters<
@@ -37,8 +34,7 @@ export type APIMethodParams<APIMethod extends keyof APIMethods> = Parameters<
 /**
  * @example
  * ```typescript
- * type SendMessageReturn = APIMethodReturn<"sendMessage">;
- * //   ^? type SendMessageReturn = TelegramMessage"
+ * type UsersGetReturn = APIMethodReturn<"users.get">;
  * ```
  */
 export type APIMethodReturn<APIMethod extends keyof APIMethods> = Awaited<

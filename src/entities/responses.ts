@@ -92,11 +92,7 @@ export class Responses {
 				"",
 				...CodeGenerator.generateComment(doc),
 				`export interface ${typeName} {`,
-				...Properties.convertMany(
-					flat.properties,
-					flat.required,
-					ctx,
-				).flat(),
+				...Properties.convertMany(flat.properties, flat.required, ctx).flat(),
 				"}",
 				"",
 			];
@@ -117,9 +113,7 @@ export class Responses {
 
 		// Object with properties
 		if (def.properties) {
-			const reqSet = new Set(
-				Array.isArray(def.required) ? def.required : [],
-			);
+			const reqSet = new Set(Array.isArray(def.required) ? def.required : []);
 
 			const enumAliases = collectEnumAliases(
 				def.properties,
@@ -178,10 +172,10 @@ export class Responses {
 		if (responseProp?.$ref) {
 			const parsed = parseRef(responseProp.$ref);
 			if (parsed.kind === "object") {
-				return "Objects.VK" + defNameToPascal(parsed.definitionName);
+				return `Objects.VK${defNameToPascal(parsed.definitionName)}`;
 			}
 		}
 
-		return "Responses." + typeName;
+		return `Responses.${typeName}`;
 	}
 }

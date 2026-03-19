@@ -70,10 +70,7 @@ export function flattenAllOf(
 	return result;
 }
 
-function collectRequired(
-	schema: VKSchemaProperty,
-	target: Set<string>,
-): void {
+function collectRequired(schema: VKSchemaProperty, target: Set<string>): void {
 	if (Array.isArray(schema.required)) {
 		for (const r of schema.required) target.add(r);
 	}

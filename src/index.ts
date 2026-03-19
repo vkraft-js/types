@@ -27,35 +27,30 @@ const files: IGeneratedFile[] = [
 	{
 		name: "objects.d.ts",
 		lines: [
-			header(
-				"This module contains VK API object types with the `VK` prefix",
-				[
-					"@example import object",
-					"```typescript",
-					`import { VKUsersUserFull } from "@vkraft/types/objects";`,
-					"```",
-				],
-			),
+			header("This module contains VK API object types with the `VK` prefix", [
+				"@example import object",
+				"```typescript",
+				`import { VKUsersUserFull } from "@vkraft/types/objects";`,
+				"```",
+			]),
 			Objects.generateMany(schema.objects, schema.objects),
 		],
 	},
 	{
 		name: "responses.d.ts",
 		lines: [
-			header(
-				"This module contains VK API response types",
-				[
-					"@example import response",
-					"```typescript",
-					`import { UsersGetResponse } from "@vkraft/types/responses";`,
-					"```",
-				],
+			header("This module contains VK API response types", [
+				"@example import response",
+				"```typescript",
+				`import { UsersGetResponse } from "@vkraft/types/responses";`,
+				"```",
+			]),
+			[`import type * as Objects from "./objects"`, ""],
+			Responses.generateMany(
+				schema.responses,
+				schema.responses,
+				schema.objects,
 			),
-			[
-				`import type * as Objects from "./objects"`,
-				"",
-			],
-			Responses.generateMany(schema.responses, schema.responses, schema.objects),
 		],
 	},
 	{
@@ -117,15 +112,12 @@ const files: IGeneratedFile[] = [
 	{
 		name: "index.d.ts",
 		lines: [
-			header(
-				"This module re-exports all VK API type modules",
-				[
-					"@example import",
-					"```typescript",
-					`import { VKUsersUserFull, APIMethods, APIMethodReturn } from "@vkraft/types";`,
-					"```",
-				],
-			),
+			header("This module re-exports all VK API type modules", [
+				"@example import",
+				"```typescript",
+				`import { VKUsersUserFull, APIMethods, APIMethodReturn } from "@vkraft/types";`,
+				"```",
+			]),
 			[`export type * from "./methods"`],
 			[`export type * from "./params"`],
 			[`export type * as VKParams from "./params"`],
@@ -180,17 +172,10 @@ if (!existsSync(OUTPUT_PATH)) await fs.mkdir(OUTPUT_PATH);
 
 for await (const file of files) {
 	console.log(`Writing ${file.name}...`);
-	const raw = file.lines.flat().join("\n");
-	try {
-		await fs.writeFile(
-			`${OUTPUT_PATH}/${file.name}`,
-			await prettier.format(raw, PRETTIER_OPTIONS),
-		);
-	} catch (err) {
-		// Write raw output for debugging
-		await fs.writeFile(`${OUTPUT_PATH}/${file.name}.raw.ts`, raw);
-		console.error(`Prettier failed for ${file.name}, wrote raw output. Error: ${(err as Error).message?.slice(0, 200)}`);
-	}
+	await fs.writeFile(
+		`${OUTPUT_PATH}/${file.name}`,
+		await prettier.format(file.lines.flat().join("\n"), PRETTIER_OPTIONS),
+	);
 }
 
 console.log("Done!");

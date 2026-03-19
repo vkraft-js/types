@@ -1,8941 +1,18392 @@
 /**
  * @module
  *
- * This module contains [Objects](https://core.telegram.org/bots/api#available-types) with the `Telegram` prefix
+ * This module contains VK API object types with the `VK` prefix
  *
  * @example import object
  * ```typescript
- * import { TelegramUser } from "@gramio/types/objects";
+ * import { VKUsersUserFull } from "@vkraft/types/objects";
  * ```
  *
- * Based on Bot API v9.5 (01.03.2026)
+ * Based on VK API v5.199
  *
- * Generated at 01.03.2026, 10:44:43 using [types](https://github.com/gramiojs/types) and [schema](https://github.com/gramiojs/schema-parser) generators
+ * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
  */
-
-import type { APIMethods } from "./methods"
-import type { APIMethodReturn } from "./utils"
 
 /**
- * This [object](https://core.telegram.org/bots/api#available-types) represents an incoming update.
- * At most **one** of the optional parameters can be present in any given update.
  *
- * [Documentation](https://core.telegram.org/bots/api/#update)
  */
-export interface TelegramUpdate {
+export interface VKAccountAccountCounters {
     /**
-     * The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This identifier becomes especially handy if you're using [webhooks](https://core.telegram.org/bots/api#setwebhook), since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
+     * New app requests number
      */
-    update_id: number
+    app_requests?: number
     /**
-     * *Optional*. New incoming message of any kind - text, photo, sticker, etc.
+     * New events number
      */
-    message?: TelegramMessage
+    events?: number
     /**
-     * *Optional*. New version of a message that is known to the bot and was edited. This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
+     * New faves number
      */
-    edited_message?: TelegramMessage
+    faves?: number
     /**
-     * *Optional*. New incoming channel post of any kind - text, photo, sticker, etc.
+     * New friends requests number
      */
-    channel_post?: TelegramMessage
+    friends?: number
     /**
-     * *Optional*. New version of a channel post that is known to the bot and was edited. This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
+     * New friends recommendations number
      */
-    edited_channel_post?: TelegramMessage
+    friends_recommendations?: number
     /**
-     * *Optional*. The bot was connected to or disconnected from a business account, or a user edited an existing connection with the bot
+     * New gifts number
      */
-    business_connection?: TelegramBusinessConnection
+    gifts?: number
     /**
-     * *Optional*. New message from a connected business account
+     * New groups number
      */
-    business_message?: TelegramMessage
+    groups?: number
     /**
-     * *Optional*. New version of a message from a connected business account
+     * New messages number. Will be removed when messages.getCounters is released.
      */
-    edited_business_message?: TelegramMessage
+    messages?: number
     /**
-     * *Optional*. Messages were deleted from a connected business account
+     * New memories number
      */
-    deleted_business_messages?: TelegramBusinessMessagesDeleted
+    memories?: number
     /**
-     * *Optional*. A reaction to a message was changed by a user. The bot must be an administrator in the chat and must explicitly specify `"message_reaction"` in the list of *allowed\_updates* to receive these updates. The update isn't received for reactions set by bots.
+     * New notes number
      */
-    message_reaction?: TelegramMessageReactionUpdated
+    notes?: number
     /**
-     * *Optional*. Reactions to a message with anonymous reactions were changed. The bot must be an administrator in the chat and must explicitly specify `"message_reaction_count"` in the list of *allowed\_updates* to receive these updates. The updates are grouped and can be sent with delay up to a few minutes.
+     * New notifications number
      */
-    message_reaction_count?: TelegramMessageReactionCountUpdated
+    notifications?: number
     /**
-     * *Optional*. New incoming [inline](https://core.telegram.org/bots/api#inline-mode) query
+     * New photo tags number
      */
-    inline_query?: TelegramInlineQuery
-    /**
-     * *Optional*. The result of an [inline](https://core.telegram.org/bots/api#inline-mode) query that was chosen by a user and sent to their chat partner. Please see our documentation on the [feedback collecting](https://core.telegram.org/bots/inline#collecting-feedback) for details on how to enable these updates for your bot.
-     */
-    chosen_inline_result?: TelegramChosenInlineResult
-    /**
-     * *Optional*. New incoming callback query
-     */
-    callback_query?: TelegramCallbackQuery
-    /**
-     * *Optional*. New incoming shipping query. Only for invoices with flexible price
-     */
-    shipping_query?: TelegramShippingQuery
-    /**
-     * *Optional*. New incoming pre-checkout query. Contains full information about checkout
-     */
-    pre_checkout_query?: TelegramPreCheckoutQuery
-    /**
-     * *Optional*. A user purchased paid media with a non-empty payload sent by the bot in a non-channel chat
-     */
-    purchased_paid_media?: TelegramPaidMediaPurchased
-    /**
-     * *Optional*. New poll state. Bots receive only updates about manually stopped polls and polls, which are sent by the bot
-     */
-    poll?: TelegramPoll
-    /**
-     * *Optional*. A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself.
-     */
-    poll_answer?: TelegramPollAnswer
-    /**
-     * *Optional*. The bot's chat member status was updated in a chat. For private chats, this update is received only when the bot is blocked or unblocked by the user.
-     */
-    my_chat_member?: TelegramChatMemberUpdated
-    /**
-     * *Optional*. A chat member's status was updated in a chat. The bot must be an administrator in the chat and must explicitly specify `"chat_member"` in the list of *allowed\_updates* to receive these updates.
-     */
-    chat_member?: TelegramChatMemberUpdated
-    /**
-     * *Optional*. A request to join the chat has been sent. The bot must have the *can\_invite\_users* administrator right in the chat to receive these updates.
-     */
-    chat_join_request?: TelegramChatJoinRequest
-    /**
-     * *Optional*. A chat boost was added or changed. The bot must be an administrator in the chat to receive these updates.
-     */
-    chat_boost?: TelegramChatBoostUpdated
-    /**
-     * *Optional*. A boost was removed from a chat. The bot must be an administrator in the chat to receive these updates.
-     */
-    removed_chat_boost?: TelegramChatBoostRemoved
+    photos?: number
 }
 
 /**
- * Describes the current status of a webhook.
  *
- * [Documentation](https://core.telegram.org/bots/api/#webhookinfo)
  */
-export interface TelegramWebhookInfo {
+export type VKAccountCountersFilter =
+    | "app_requests"
+    | "events"
+    | "friends"
+    | "friends_recommendations"
+    | "games"
+    | "gifts"
+    | "groups"
+    | "messages"
+    | "notes"
+    | "notifications"
+    | "photos"
+    | "faves"
+    | "memories"
+
+/**
+ *
+ */
+export interface VKAccountInfo {
     /**
-     * Webhook URL, may be empty if webhook is not set up
+     * Two factor authentication is enabled
      */
-    url: string
+    "2fa_required"?: VKBaseBoolInt
     /**
-     * *True*, if a custom certificate was provided for webhook certificate checks
+     * Information whether HTTPS-only is enabled
      */
-    has_custom_certificate: boolean
+    https_required?: VKBaseBoolInt
     /**
-     * Number of updates awaiting delivery
+     * Information whether user has been processed intro
      */
-    pending_update_count: number
+    intro?: number
     /**
-     * *Optional*. Currently used webhook IP address
+     * Language ID
      */
-    ip_address?: string
+    lang?: number
     /**
-     * *Optional*. Unix time for the most recent error that happened when trying to deliver an update via webhook
+     * Information whether wall comments should be hidden
      */
-    last_error_date?: number
+    no_wall_replies?: VKBaseBoolInt
     /**
-     * *Optional*. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook
+     * Information whether only owners posts should be shown
      */
-    last_error_message?: string
-    /**
-     * *Optional*. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters
-     */
-    last_synchronization_error_date?: number
-    /**
-     * *Optional*. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
-     */
-    max_connections?: number
-    /**
-     * *Optional*. A list of update types the bot is subscribed to. Defaults to all update types except *chat\_member*
-     */
-    allowed_updates?: Exclude<keyof TelegramUpdate, "update_id">[]
+    own_posts_default?: VKBaseBoolInt
 }
 
 /**
- * This object represents a Telegram user or bot.
  *
- * [Documentation](https://core.telegram.org/bots/api/#user)
  */
-export interface TelegramUser {
+export interface VKAccountNameRequest {
     /**
-     * Unique identifier for this user or bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    id: number
-    /**
-     * *True*, if this user is a bot
-     */
-    is_bot: boolean
-    /**
-     * User's or bot's first name
-     */
-    first_name: string
-    /**
-     * *Optional*. User's or bot's last name
-     */
-    last_name?: string
-    /**
-     * *Optional*. User's or bot's username
-     */
-    username?: string
-    /**
-     * *Optional*. [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag) of the user's language
-     */
-    language_code?: string
-    /**
-     * *Optional*. *True*, if this user is a Telegram Premium user
-     */
-    is_premium?: true
-    /**
-     * *Optional*. *True*, if this user added the bot to the attachment menu
-     */
-    added_to_attachment_menu?: true
-    /**
-     * *Optional*. *True*, if the bot can be invited to groups. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    can_join_groups?: boolean
-    /**
-     * *Optional*. *True*, if [privacy mode](https://core.telegram.org/bots/features#privacy-mode) is disabled for the bot. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    can_read_all_group_messages?: boolean
-    /**
-     * *Optional*. *True*, if the bot supports inline queries. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    supports_inline_queries?: boolean
-    /**
-     * *Optional*. *True*, if the bot can be connected to a Telegram Business account to receive its messages. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    can_connect_to_business?: boolean
-    /**
-     * *Optional*. *True*, if the bot has a main Web App. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    has_main_web_app?: boolean
-    /**
-     * *Optional*. *True*, if the bot has forum topic mode enabled in private chats. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    has_topics_enabled?: boolean
-    /**
-     * *Optional*. *True*, if the bot allows users to create and delete topics in private chats. Returned only in [getMe](https://core.telegram.org/bots/api#getme).
-     */
-    allows_users_to_create_topics?: boolean
-}
-
-export type TelegramChatType = "private" | "group" | "supergroup" | "channel"
-
-/**
- * This object represents a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chat)
- */
-export interface TelegramChat {
-    /**
-     * Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    id: number
-    /**
-     * Type of the chat, can be either “private”, “group”, “supergroup” or “channel”
-     */
-    type: TelegramChatType
-    /**
-     * *Optional*. Title, for supergroups, channels and group chats
-     */
-    title?: string
-    /**
-     * *Optional*. Username, for private chats, supergroups and channels if available
-     */
-    username?: string
-    /**
-     * *Optional*. First name of the other party in a private chat
+     * First name in request
      */
     first_name?: string
     /**
-     * *Optional*. Last name of the other party in a private chat
+     * Request ID needed to cancel the request
+     */
+    id?: number
+    /**
+     * Last name in request
      */
     last_name?: string
+    status?: VKAccountNameRequestStatus
     /**
-     * *Optional*. *True*, if the supergroup chat is a forum (has [topics](https://telegram.org/blog/topics-in-groups-collectible-usernames#topics-in-groups) enabled)
+     * Text to display to user
      */
-    is_forum?: true
+    lang?: string
     /**
-     * *Optional*. *True*, if the chat is the direct messages chat of a channel
+     * href for link in lang field
      */
-    is_direct_messages?: true
+    link_href?: string
+    /**
+     * label to display for link in lang field
+     */
+    link_label?: string
 }
 
-export type TelegramChatFullInfoType =
-    | "private"
-    | "group"
-    | "supergroup"
-    | "channel"
+/**
+ * Request status
+ */
+export type VKAccountNameRequestStatus =
+    | "success"
+    | "processing"
+    | "declined"
+    | "was_accepted"
+    | "was_declined"
+    | "declined_with_link"
+    | "response"
+    | "response_with_link"
+
+export type VKAccountOfferLinkType = "profile" | "group" | "app"
 
 /**
- * This object contains full information about a chat.
  *
- * [Documentation](https://core.telegram.org/bots/api/#chatfullinfo)
  */
-export interface TelegramChatFullInfo {
+export interface VKAccountOffer {
     /**
-     * Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    id: number
-    /**
-     * Type of the chat, can be either “private”, “group”, “supergroup” or “channel”
-     */
-    type: TelegramChatFullInfoType
-    /**
-     * *Optional*. Title, for supergroups, channels and group chats
-     */
-    title?: string
-    /**
-     * *Optional*. Username, for private chats, supergroups and channels if available
-     */
-    username?: string
-    /**
-     * *Optional*. First name of the other party in a private chat
-     */
-    first_name?: string
-    /**
-     * *Optional*. Last name of the other party in a private chat
-     */
-    last_name?: string
-    /**
-     * *Optional*. *True*, if the supergroup chat is a forum (has [topics](https://telegram.org/blog/topics-in-groups-collectible-usernames#topics-in-groups) enabled)
-     */
-    is_forum?: true
-    /**
-     * *Optional*. *True*, if the chat is the direct messages chat of a channel
-     */
-    is_direct_messages?: true
-    /**
-     * Identifier of the accent color for the chat name and backgrounds of the chat photo, reply header, and link preview. See [accent colors](https://core.telegram.org/bots/api#accent-colors) for more details.
-     */
-    accent_color_id: number
-    /**
-     * The maximum number of reactions that can be set on a message in the chat
-     */
-    max_reaction_count: number
-    /**
-     * *Optional*. Chat photo
-     */
-    photo?: TelegramChatPhoto
-    /**
-     * *Optional*. If non-empty, the list of all [active chat usernames](https://telegram.org/blog/topics-in-groups-collectible-usernames#collectible-usernames); for private chats, supergroups and channels
-     */
-    active_usernames?: string[]
-    /**
-     * *Optional*. For private chats, the date of birth of the user
-     */
-    birthdate?: TelegramBirthdate
-    /**
-     * *Optional*. For private chats with business accounts, the intro of the business
-     */
-    business_intro?: TelegramBusinessIntro
-    /**
-     * *Optional*. For private chats with business accounts, the location of the business
-     */
-    business_location?: TelegramBusinessLocation
-    /**
-     * *Optional*. For private chats with business accounts, the opening hours of the business
-     */
-    business_opening_hours?: TelegramBusinessOpeningHours
-    /**
-     * *Optional*. For private chats, the personal channel of the user
-     */
-    personal_chat?: TelegramChat
-    /**
-     * *Optional*. Information about the corresponding channel chat; for direct messages chats only
-     */
-    parent_chat?: TelegramChat
-    /**
-     * *Optional*. List of available reactions allowed in the chat. If omitted, then all [emoji reactions](https://core.telegram.org/bots/api#reactiontypeemoji) are allowed.
-     */
-    available_reactions?: TelegramReactionType[]
-    /**
-     * *Optional*. Custom emoji identifier of the emoji chosen by the chat for the reply header and link preview background
-     */
-    background_custom_emoji_id?: string
-    /**
-     * *Optional*. Identifier of the accent color for the chat's profile background. See [profile accent colors](https://core.telegram.org/bots/api#profile-accent-colors) for more details.
-     */
-    profile_accent_color_id?: number
-    /**
-     * *Optional*. Custom emoji identifier of the emoji chosen by the chat for its profile background
-     */
-    profile_background_custom_emoji_id?: string
-    /**
-     * *Optional*. Custom emoji identifier of the emoji status of the chat or the other party in a private chat
-     */
-    emoji_status_custom_emoji_id?: string
-    /**
-     * *Optional*. Expiration date of the emoji status of the chat or the other party in a private chat, in Unix time, if any
-     */
-    emoji_status_expiration_date?: number
-    /**
-     * *Optional*. Bio of the other party in a private chat
-     */
-    bio?: string
-    /**
-     * *Optional*. *True*, if privacy settings of the other party in the private chat allows to use `tg://user?id=<user_id>` links only in chats with the user
-     */
-    has_private_forwards?: true
-    /**
-     * *Optional*. *True*, if the privacy settings of the other party restrict sending voice and video note messages in the private chat
-     */
-    has_restricted_voice_and_video_messages?: true
-    /**
-     * *Optional*. *True*, if users need to join the supergroup before they can send messages
-     */
-    join_to_send_messages?: true
-    /**
-     * *Optional*. *True*, if all users directly joining the supergroup without using an invite link need to be approved by supergroup administrators
-     */
-    join_by_request?: true
-    /**
-     * *Optional*. Description, for groups, supergroups and channel chats
+     * Offer description
      */
     description?: string
     /**
-     * *Optional*. Primary invite link, for groups, supergroups and channel chats
+     * Offer ID
      */
-    invite_link?: string
+    id?: number
     /**
-     * *Optional*. The most recent pinned message (by sending date)
+     * URL of the preview image
      */
-    pinned_message?: TelegramMessage
+    img?: string
     /**
-     * *Optional*. Default chat member permissions, for groups and supergroups
+     * Instruction how to process the offer
      */
-    permissions?: TelegramChatPermissions
+    instruction?: string
     /**
-     * Information about types of gifts that are accepted by the chat or by the corresponding user for private chats
+     * Instruction how to process the offer (HTML format)
      */
-    accepted_gift_types: TelegramAcceptedGiftTypes
+    instruction_html?: string
     /**
-     * *Optional*. *True*, if paid media messages can be sent or forwarded to the channel chat. The field is available only for channel chats.
+     * Offer price
      */
-    can_send_paid_media?: true
+    price?: number
     /**
-     * *Optional*. For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds
+     * Offer short description
      */
-    slow_mode_delay?: number
+    short_description?: string
     /**
-     * *Optional*. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions
+     * Offer tag
      */
-    unrestrict_boost_count?: number
+    tag?: string
     /**
-     * *Optional*. The time after which all messages sent to the chat will be automatically deleted; in seconds
-     */
-    message_auto_delete_time?: number
-    /**
-     * *Optional*. *True*, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators.
-     */
-    has_aggressive_anti_spam_enabled?: true
-    /**
-     * *Optional*. *True*, if non-administrators can only get the list of bots and administrators in the chat
-     */
-    has_hidden_members?: true
-    /**
-     * *Optional*. *True*, if messages from the chat can't be forwarded to other chats
-     */
-    has_protected_content?: true
-    /**
-     * *Optional*. *True*, if new chat members will have access to old messages; available only to chat administrators
-     */
-    has_visible_history?: true
-    /**
-     * *Optional*. For supergroups, name of the group sticker set
-     */
-    sticker_set_name?: string
-    /**
-     * *Optional*. *True*, if the bot can change the group sticker set
-     */
-    can_set_sticker_set?: true
-    /**
-     * *Optional*. For supergroups, the name of the group's custom emoji sticker set. Custom emoji from this set can be used by all users and bots in the group.
-     */
-    custom_emoji_sticker_set_name?: string
-    /**
-     * *Optional*. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
-     */
-    linked_chat_id?: number
-    /**
-     * *Optional*. For supergroups, the location to which the supergroup is connected
-     */
-    location?: TelegramChatLocation
-    /**
-     * *Optional*. For private chats, the rating of the user if any
-     */
-    rating?: TelegramUserRating
-    /**
-     * *Optional*. For private chats, the first audio added to the profile of the user
-     */
-    first_profile_audio?: TelegramAudio
-    /**
-     * *Optional*. The color scheme based on a unique gift that must be used for the chat's name, message replies and link previews
-     */
-    unique_gift_colors?: TelegramUniqueGiftColors
-    /**
-     * *Optional*. The number of Telegram Stars a general user have to pay to send a message to the chat
-     */
-    paid_message_star_count?: number
-}
-
-/**
- * This object represents a message.
- *
- * [Documentation](https://core.telegram.org/bots/api/#message)
- */
-export interface TelegramMessage {
-    /**
-     * Unique message identifier inside this chat. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent
-     */
-    message_id: number
-    /**
-     * *Optional*. Unique identifier of a message thread or forum topic to which the message belongs; for supergroups and private chats only
-     */
-    message_thread_id?: number
-    /**
-     * *Optional*. Information about the direct messages chat topic that contains the message
-     */
-    direct_messages_topic?: TelegramDirectMessagesTopic
-    /**
-     * *Optional*. Sender of the message; may be empty for messages sent to channels. For backward compatibility, if the message was sent on behalf of a chat, the field contains a fake sender user in non-channel chats
-     */
-    from?: TelegramUser
-    /**
-     * *Optional*. Sender of the message when sent on behalf of a chat. For example, the supergroup itself for messages sent by its anonymous administrators or a linked channel for messages automatically forwarded to the channel's discussion group. For backward compatibility, if the message was sent on behalf of a chat, the field *from* contains a fake sender user in non-channel chats.
-     */
-    sender_chat?: TelegramChat
-    /**
-     * *Optional*. If the sender of the message boosted the chat, the number of boosts added by the user
-     */
-    sender_boost_count?: number
-    /**
-     * *Optional*. The bot that actually sent the message on behalf of the business account. Available only for outgoing messages sent on behalf of the connected business account.
-     */
-    sender_business_bot?: TelegramUser
-    /**
-     * *Optional*. Tag or custom title of the sender of the message; for supergroups only
-     */
-    sender_tag?: string
-    /**
-     * Date the message was sent in Unix time. It is always a positive number, representing a valid date.
-     */
-    date: number
-    /**
-     * *Optional*. Unique identifier of the business connection from which the message was received. If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
-     */
-    business_connection_id?: string
-    /**
-     * Chat the message belongs to
-     */
-    chat: TelegramChat
-    /**
-     * *Optional*. Information about the original message for forwarded messages
-     */
-    forward_origin?: TelegramMessageOrigin
-    /**
-     * *Optional*. *True*, if the message is sent to a topic in a forum supergroup or a private chat with the bot
-     */
-    is_topic_message?: true
-    /**
-     * *Optional*. *True*, if the message is a channel post that was automatically forwarded to the connected discussion group
-     */
-    is_automatic_forward?: true
-    /**
-     * *Optional*. For replies in the same chat and message thread, the original message. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain further *reply\_to\_message* fields even if it itself is a reply.
-     */
-    reply_to_message?: TelegramMessage
-    /**
-     * *Optional*. Information about the message that is being replied to, which may come from another chat or forum topic
-     */
-    external_reply?: TelegramExternalReplyInfo
-    /**
-     * *Optional*. For replies that quote part of the original message, the quoted part of the message
-     */
-    quote?: TelegramTextQuote
-    /**
-     * *Optional*. For replies to a story, the original story
-     */
-    reply_to_story?: TelegramStory
-    /**
-     * *Optional*. Identifier of the specific checklist task that is being replied to
-     */
-    reply_to_checklist_task_id?: number
-    /**
-     * *Optional*. Bot through which the message was sent
-     */
-    via_bot?: TelegramUser
-    /**
-     * *Optional*. Date the message was last edited in Unix time
-     */
-    edit_date?: number
-    /**
-     * *Optional*. *True*, if the message can't be forwarded
-     */
-    has_protected_content?: true
-    /**
-     * *Optional*. *True*, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message
-     */
-    is_from_offline?: true
-    /**
-     * *Optional*. *True*, if the message is a paid post. Note that such posts must not be deleted for 24 hours to receive the payment and can't be edited.
-     */
-    is_paid_post?: true
-    /**
-     * *Optional*. The unique identifier inside this chat of a media message group this message belongs to
-     */
-    media_group_id?: string
-    /**
-     * *Optional*. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator
-     */
-    author_signature?: string
-    /**
-     * *Optional*. The number of Telegram Stars that were paid by the sender of the message to send it
-     */
-    paid_star_count?: number
-    /**
-     * *Optional*. For text messages, the actual UTF-8 text of the message
-     */
-    text?: string
-    /**
-     * *Optional*. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text
-     */
-    entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Options used for link preview generation for the message, if it is a text message and link preview options were changed
-     */
-    link_preview_options?: TelegramLinkPreviewOptions
-    /**
-     * *Optional*. Information about suggested post parameters if the message is a suggested post in a channel direct messages chat. If the message is an approved or declined suggested post, then it can't be edited.
-     */
-    suggested_post_info?: TelegramSuggestedPostInfo
-    /**
-     * *Optional*. Unique identifier of the message effect added to the message
-     */
-    effect_id?: string
-    /**
-     * *Optional*. Message is an animation, information about the animation. For backward compatibility, when this field is set, the *document* field will also be set
-     */
-    animation?: TelegramAnimation
-    /**
-     * *Optional*. Message is an audio file, information about the file
-     */
-    audio?: TelegramAudio
-    /**
-     * *Optional*. Message is a general file, information about the file
-     */
-    document?: TelegramDocument
-    /**
-     * *Optional*. Message contains paid media; information about the paid media
-     */
-    paid_media?: TelegramPaidMediaInfo
-    /**
-     * *Optional*. Message is a photo, available sizes of the photo
-     */
-    photo?: TelegramPhotoSize[]
-    /**
-     * *Optional*. Message is a sticker, information about the sticker
-     */
-    sticker?: TelegramSticker
-    /**
-     * *Optional*. Message is a forwarded story
-     */
-    story?: TelegramStory
-    /**
-     * *Optional*. Message is a video, information about the video
-     */
-    video?: TelegramVideo
-    /**
-     * *Optional*. Message is a [video note](https://telegram.org/blog/video-messages-and-telescope), information about the video message
-     */
-    video_note?: TelegramVideoNote
-    /**
-     * *Optional*. Message is a voice message, information about the file
-     */
-    voice?: TelegramVoice
-    /**
-     * *Optional*. Caption for the animation, audio, document, paid media, photo, video or voice
-     */
-    caption?: string
-    /**
-     * *Optional*. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: true
-    /**
-     * *Optional*. *True*, if the message media is covered by a spoiler animation
-     */
-    has_media_spoiler?: true
-    /**
-     * *Optional*. Message is a checklist
-     */
-    checklist?: TelegramChecklist
-    /**
-     * *Optional*. Message is a shared contact, information about the contact
-     */
-    contact?: TelegramContact
-    /**
-     * *Optional*. Message is a dice with random value
-     */
-    dice?: TelegramDice
-    /**
-     * *Optional*. Message is a game, information about the game. [More about games »](https://core.telegram.org/bots/api#games)
-     */
-    game?: TelegramGame
-    /**
-     * *Optional*. Message is a native poll, information about the poll
-     */
-    poll?: TelegramPoll
-    /**
-     * *Optional*. Message is a venue, information about the venue. For backward compatibility, when this field is set, the *location* field will also be set
-     */
-    venue?: TelegramVenue
-    /**
-     * *Optional*. Message is a shared location, information about the location
-     */
-    location?: TelegramLocation
-    /**
-     * *Optional*. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
-     */
-    new_chat_members?: TelegramUser[]
-    /**
-     * *Optional*. A member was removed from the group, information about them (this member may be the bot itself)
-     */
-    left_chat_member?: TelegramUser
-    /**
-     * *Optional*. Service message: chat owner has left
-     */
-    chat_owner_left?: TelegramChatOwnerLeft
-    /**
-     * *Optional*. Service message: chat owner has changed
-     */
-    chat_owner_changed?: TelegramChatOwnerChanged
-    /**
-     * *Optional*. A chat title was changed to this value
-     */
-    new_chat_title?: string
-    /**
-     * *Optional*. A chat photo was change to this value
-     */
-    new_chat_photo?: TelegramPhotoSize[]
-    /**
-     * *Optional*. Service message: the chat photo was deleted
-     */
-    delete_chat_photo?: true
-    /**
-     * *Optional*. Service message: the group has been created
-     */
-    group_chat_created?: true
-    /**
-     * *Optional*. Service message: the supergroup has been created. This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created. It can only be found in reply\_to\_message if someone replies to a very first message in a directly created supergroup.
-     */
-    supergroup_chat_created?: true
-    /**
-     * *Optional*. Service message: the channel has been created. This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in reply\_to\_message if someone replies to a very first message in a channel.
-     */
-    channel_chat_created?: true
-    /**
-     * *Optional*. Service message: auto-delete timer settings changed in the chat
-     */
-    message_auto_delete_timer_changed?: TelegramMessageAutoDeleteTimerChanged
-    /**
-     * *Optional*. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    migrate_to_chat_id?: number
-    /**
-     * *Optional*. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    migrate_from_chat_id?: number
-    /**
-     * *Optional*. Specified message was pinned. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain further *reply\_to\_message* fields even if it itself is a reply.
-     */
-    pinned_message?: TelegramMaybeInaccessibleMessage
-    /**
-     * *Optional*. Message is an invoice for a [payment](https://core.telegram.org/bots/api#payments), information about the invoice. [More about payments »](https://core.telegram.org/bots/api#payments)
-     */
-    invoice?: TelegramInvoice
-    /**
-     * *Optional*. Message is a service message about a successful payment, information about the payment. [More about payments »](https://core.telegram.org/bots/api#payments)
-     */
-    successful_payment?: TelegramSuccessfulPayment
-    /**
-     * *Optional*. Message is a service message about a refunded payment, information about the payment. [More about payments »](https://core.telegram.org/bots/api#payments)
-     */
-    refunded_payment?: TelegramRefundedPayment
-    /**
-     * *Optional*. Service message: users were shared with the bot
-     */
-    users_shared?: TelegramUsersShared
-    /**
-     * *Optional*. Service message: a chat was shared with the bot
-     */
-    chat_shared?: TelegramChatShared
-    /**
-     * *Optional*. Service message: a regular gift was sent or received
-     */
-    gift?: TelegramGiftInfo
-    /**
-     * *Optional*. Service message: a unique gift was sent or received
-     */
-    unique_gift?: TelegramUniqueGiftInfo
-    /**
-     * *Optional*. Service message: upgrade of a gift was purchased after the gift was sent
-     */
-    gift_upgrade_sent?: TelegramGiftInfo
-    /**
-     * *Optional*. The domain name of the website on which the user has logged in. [More about Telegram Login »](https://core.telegram.org/widgets/login)
-     */
-    connected_website?: string
-    /**
-     * *Optional*. Service message: the user allowed the bot to write messages after adding it to the attachment or side menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method [requestWriteAccess](https://core.telegram.org/bots/webapps#initializing-mini-apps)
-     */
-    write_access_allowed?: TelegramWriteAccessAllowed
-    /**
-     * *Optional*. Telegram Passport data
-     */
-    passport_data?: TelegramPassportData
-    /**
-     * *Optional*. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
-     */
-    proximity_alert_triggered?: TelegramProximityAlertTriggered
-    /**
-     * *Optional*. Service message: user boosted the chat
-     */
-    boost_added?: TelegramChatBoostAdded
-    /**
-     * *Optional*. Service message: chat background set
-     */
-    chat_background_set?: TelegramChatBackground
-    /**
-     * *Optional*. Service message: some tasks in a checklist were marked as done or not done
-     */
-    checklist_tasks_done?: TelegramChecklistTasksDone
-    /**
-     * *Optional*. Service message: tasks were added to a checklist
-     */
-    checklist_tasks_added?: TelegramChecklistTasksAdded
-    /**
-     * *Optional*. Service message: the price for paid messages in the corresponding direct messages chat of a channel has changed
-     */
-    direct_message_price_changed?: TelegramDirectMessagePriceChanged
-    /**
-     * *Optional*. Service message: forum topic created
-     */
-    forum_topic_created?: TelegramForumTopicCreated
-    /**
-     * *Optional*. Service message: forum topic edited
-     */
-    forum_topic_edited?: TelegramForumTopicEdited
-    /**
-     * *Optional*. Service message: forum topic closed
-     */
-    forum_topic_closed?: TelegramForumTopicClosed
-    /**
-     * *Optional*. Service message: forum topic reopened
-     */
-    forum_topic_reopened?: TelegramForumTopicReopened
-    /**
-     * *Optional*. Service message: the 'General' forum topic hidden
-     */
-    general_forum_topic_hidden?: TelegramGeneralForumTopicHidden
-    /**
-     * *Optional*. Service message: the 'General' forum topic unhidden
-     */
-    general_forum_topic_unhidden?: TelegramGeneralForumTopicUnhidden
-    /**
-     * *Optional*. Service message: a scheduled giveaway was created
-     */
-    giveaway_created?: TelegramGiveawayCreated
-    /**
-     * *Optional*. The message is a scheduled giveaway message
-     */
-    giveaway?: TelegramGiveaway
-    /**
-     * *Optional*. A giveaway with public winners was completed
-     */
-    giveaway_winners?: TelegramGiveawayWinners
-    /**
-     * *Optional*. Service message: a giveaway without public winners was completed
-     */
-    giveaway_completed?: TelegramGiveawayCompleted
-    /**
-     * *Optional*. Service message: the price for paid messages has changed in the chat
-     */
-    paid_message_price_changed?: TelegramPaidMessagePriceChanged
-    /**
-     * *Optional*. Service message: a suggested post was approved
-     */
-    suggested_post_approved?: TelegramSuggestedPostApproved
-    /**
-     * *Optional*. Service message: approval of a suggested post has failed
-     */
-    suggested_post_approval_failed?: TelegramSuggestedPostApprovalFailed
-    /**
-     * *Optional*. Service message: a suggested post was declined
-     */
-    suggested_post_declined?: TelegramSuggestedPostDeclined
-    /**
-     * *Optional*. Service message: payment for a suggested post was received
-     */
-    suggested_post_paid?: TelegramSuggestedPostPaid
-    /**
-     * *Optional*. Service message: payment for a suggested post was refunded
-     */
-    suggested_post_refunded?: TelegramSuggestedPostRefunded
-    /**
-     * *Optional*. Service message: video chat scheduled
-     */
-    video_chat_scheduled?: TelegramVideoChatScheduled
-    /**
-     * *Optional*. Service message: video chat started
-     */
-    video_chat_started?: TelegramVideoChatStarted
-    /**
-     * *Optional*. Service message: video chat ended
-     */
-    video_chat_ended?: TelegramVideoChatEnded
-    /**
-     * *Optional*. Service message: new participants invited to a video chat
-     */
-    video_chat_participants_invited?: TelegramVideoChatParticipantsInvited
-    /**
-     * *Optional*. Service message: data sent by a Web App
-     */
-    web_app_data?: TelegramWebAppData
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message. `login_url` buttons are represented as ordinary `url` buttons.
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-}
-
-/**
- * This object represents a unique message identifier.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageid)
- */
-export interface TelegramMessageId {
-    /**
-     * Unique message identifier. In specific instances (e.g., message containing a video sent to a big chat), the server might automatically schedule a message instead of sending it immediately. In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent
-     */
-    message_id: number
-}
-
-/**
- * This object describes a message that was deleted or is otherwise inaccessible to the bot.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inaccessiblemessage)
- */
-export interface TelegramInaccessibleMessage {
-    /**
-     * Chat the message belonged to
-     */
-    chat: TelegramChat
-    /**
-     * Unique message identifier inside the chat
-     */
-    message_id: number
-    /**
-     * Always 0. The field can be used to differentiate regular and inaccessible messages.
-     */
-    date: number
-}
-
-/**
- * This object describes a message that can be inaccessible to the bot. It can be one of
- *
- * *   [Message](https://core.telegram.org/bots/api#message)
- * *   [InaccessibleMessage](https://core.telegram.org/bots/api#inaccessiblemessage)
- *
- * [Documentation](https://core.telegram.org/bots/api/#maybeinaccessiblemessage)
- */
-export type TelegramMaybeInaccessibleMessage =
-    | TelegramMessage
-    | TelegramInaccessibleMessage
-
-export type TelegramMessageEntityType =
-    | "mention"
-    | "hashtag"
-    | "cashtag"
-    | "bot_command"
-    | "url"
-    | "email"
-    | "phone_number"
-    | "bold"
-    | "italic"
-    | "underline"
-    | "strikethrough"
-    | "spoiler"
-    | "blockquote"
-    | "expandable_blockquote"
-    | "code"
-    | "pre"
-    | "text_link"
-    | "text_mention"
-    | "custom_emoji"
-    | "date_time"
-
-/**
- * This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageentity)
- */
-export interface TelegramMessageEntity {
-    /**
-     * Type of the entity. Currently, can be “mention” (`@username`), “hashtag” (`#hashtag` or `#hashtag@chatusername`), “cashtag” (`$USD` or `$USD@chatusername`), “bot\_command” (`/start@jobs_bot`), “url” (`https://telegram.org`), “email” (`do-not-reply@telegram.org`), “phone\_number” (`+1-212-555-0123`), “bold” (**bold text**), “italic” (*italic text*), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable\_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text\_link” (for clickable text URLs), “text\_mention” (for users [without usernames](https://telegram.org/blog/edit#new-mentions)), “custom\_emoji” (for inline custom emoji stickers), or “date\_time” (for formatted date and time)
-     */
-    type: TelegramMessageEntityType
-    /**
-     * Offset in [UTF-16 code units](https://core.telegram.org/api/entities#entity-length) to the start of the entity
-     */
-    offset: number
-    /**
-     * Length of the entity in [UTF-16 code units](https://core.telegram.org/api/entities#entity-length)
-     */
-    length: number
-    /**
-     * *Optional*. For “text\_link” only, URL that will be opened after user taps on the text
-     */
-    url?: string
-    /**
-     * *Optional*. For “text\_mention” only, the mentioned user
-     */
-    user?: TelegramUser
-    /**
-     * *Optional*. For “pre” only, the programming language of the entity text
-     */
-    language?: string
-    /**
-     * *Optional*. For “custom\_emoji” only, unique identifier of the custom emoji. Use [getCustomEmojiStickers](https://core.telegram.org/bots/api#getcustomemojistickers) to get full information about the sticker
-     */
-    custom_emoji_id?: string
-    /**
-     * *Optional*. For “date\_time” only, the Unix time associated with the entity
-     */
-    unix_time?: number
-    /**
-     * *Optional*. For “date\_time” only, the string that defines the formatting of the date and time. See [date-time entity formatting](https://core.telegram.org/bots/api#date-time-entity-formatting) for more details.
-     */
-    date_time_format?: string
-}
-
-/**
- * This object contains information about the quoted part of a message that is replied to by the given message.
- *
- * [Documentation](https://core.telegram.org/bots/api/#textquote)
- */
-export interface TelegramTextQuote {
-    /**
-     * Text of the quoted part of a message that is replied to by the given message
-     */
-    text: string
-    /**
-     * *Optional*. Special entities that appear in the quote. Currently, only *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom\_emoji* entities are kept in quotes.
-     */
-    entities?: TelegramMessageEntity[]
-    /**
-     * Approximate quote position in the original message in UTF-16 code units as specified by the sender
-     */
-    position: number
-    /**
-     * *Optional*. *True*, if the quote was chosen manually by the message sender. Otherwise, the quote was added automatically by the server.
-     */
-    is_manual?: true
-}
-
-/**
- * This object contains information about a message that is being replied to, which may come from another chat or forum topic.
- *
- * [Documentation](https://core.telegram.org/bots/api/#externalreplyinfo)
- */
-export interface TelegramExternalReplyInfo {
-    /**
-     * Origin of the message replied to by the given message
-     */
-    origin: TelegramMessageOrigin
-    /**
-     * *Optional*. Chat the original message belongs to. Available only if the chat is a supergroup or a channel.
-     */
-    chat?: TelegramChat
-    /**
-     * *Optional*. Unique message identifier inside the original chat. Available only if the original chat is a supergroup or a channel.
-     */
-    message_id?: number
-    /**
-     * *Optional*. Options used for link preview generation for the original message, if it is a text message
-     */
-    link_preview_options?: TelegramLinkPreviewOptions
-    /**
-     * *Optional*. Message is an animation, information about the animation
-     */
-    animation?: TelegramAnimation
-    /**
-     * *Optional*. Message is an audio file, information about the file
-     */
-    audio?: TelegramAudio
-    /**
-     * *Optional*. Message is a general file, information about the file
-     */
-    document?: TelegramDocument
-    /**
-     * *Optional*. Message contains paid media; information about the paid media
-     */
-    paid_media?: TelegramPaidMediaInfo
-    /**
-     * *Optional*. Message is a photo, available sizes of the photo
-     */
-    photo?: TelegramPhotoSize[]
-    /**
-     * *Optional*. Message is a sticker, information about the sticker
-     */
-    sticker?: TelegramSticker
-    /**
-     * *Optional*. Message is a forwarded story
-     */
-    story?: TelegramStory
-    /**
-     * *Optional*. Message is a video, information about the video
-     */
-    video?: TelegramVideo
-    /**
-     * *Optional*. Message is a [video note](https://telegram.org/blog/video-messages-and-telescope), information about the video message
-     */
-    video_note?: TelegramVideoNote
-    /**
-     * *Optional*. Message is a voice message, information about the file
-     */
-    voice?: TelegramVoice
-    /**
-     * *Optional*. *True*, if the message media is covered by a spoiler animation
-     */
-    has_media_spoiler?: true
-    /**
-     * *Optional*. Message is a checklist
-     */
-    checklist?: TelegramChecklist
-    /**
-     * *Optional*. Message is a shared contact, information about the contact
-     */
-    contact?: TelegramContact
-    /**
-     * *Optional*. Message is a dice with random value
-     */
-    dice?: TelegramDice
-    /**
-     * *Optional*. Message is a game, information about the game. [More about games »](https://core.telegram.org/bots/api#games)
-     */
-    game?: TelegramGame
-    /**
-     * *Optional*. Message is a scheduled giveaway, information about the giveaway
-     */
-    giveaway?: TelegramGiveaway
-    /**
-     * *Optional*. A giveaway with public winners was completed
-     */
-    giveaway_winners?: TelegramGiveawayWinners
-    /**
-     * *Optional*. Message is an invoice for a [payment](https://core.telegram.org/bots/api#payments), information about the invoice. [More about payments »](https://core.telegram.org/bots/api#payments)
-     */
-    invoice?: TelegramInvoice
-    /**
-     * *Optional*. Message is a shared location, information about the location
-     */
-    location?: TelegramLocation
-    /**
-     * *Optional*. Message is a native poll, information about the poll
-     */
-    poll?: TelegramPoll
-    /**
-     * *Optional*. Message is a venue, information about the venue
-     */
-    venue?: TelegramVenue
-}
-
-/**
- * Describes reply parameters for the message that is being sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#replyparameters)
- */
-export interface TelegramReplyParameters {
-    /**
-     * Identifier of the message that will be replied to in the current chat, or in the chat *chat\_id* if it is specified
-     */
-    message_id: number
-    /**
-     * *Optional*. If the message to be replied to is from a different chat, unique identifier for the chat or username of the channel (in the format `@channelusername`). Not supported for messages sent on behalf of a business account and messages from channel direct messages chats.
-     */
-    chat_id?: number | string
-    /**
-     * *Optional*. Pass *True* if the message should be sent even if the specified message to be replied to is not found. Always *False* for replies in another chat or forum topic. Always *True* for messages sent on behalf of a business account.
-     */
-    allow_sending_without_reply?: boolean
-    /**
-     * *Optional*. Quoted part of the message to be replied to; 0-1024 characters after entities parsing. The quote must be an exact substring of the message to be replied to, including *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom\_emoji* entities. The message will fail to send if the quote isn't found in the original message.
-     */
-    quote?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the quote. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    quote_parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. A JSON-serialized list of special entities that appear in the quote. It can be specified instead of *quote\_parse\_mode*.
-     */
-    quote_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Position of the quote in the original message in UTF-16 code units
-     */
-    quote_position?: number
-    /**
-     * *Optional*. Identifier of the specific checklist task to be replied to
-     */
-    checklist_task_id?: number
-}
-
-/**
- * This object describes the origin of a message. It can be one of
- *
- * *   [MessageOriginUser](https://core.telegram.org/bots/api#messageoriginuser)
- * *   [MessageOriginHiddenUser](https://core.telegram.org/bots/api#messageoriginhiddenuser)
- * *   [MessageOriginChat](https://core.telegram.org/bots/api#messageoriginchat)
- * *   [MessageOriginChannel](https://core.telegram.org/bots/api#messageoriginchannel)
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageorigin)
- */
-export type TelegramMessageOrigin =
-    | TelegramMessageOriginUser
-    | TelegramMessageOriginHiddenUser
-    | TelegramMessageOriginChat
-    | TelegramMessageOriginChannel
-
-/**
- * The message was originally sent by a known user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageoriginuser)
- */
-export interface TelegramMessageOriginUser {
-    /**
-     * Type of the message origin, always “user”
-     */
-    type: "user"
-    /**
-     * Date the message was sent originally in Unix time
-     */
-    date: number
-    /**
-     * User that sent the message originally
-     */
-    sender_user: TelegramUser
-}
-
-/**
- * The message was originally sent by an unknown user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageoriginhiddenuser)
- */
-export interface TelegramMessageOriginHiddenUser {
-    /**
-     * Type of the message origin, always “hidden\_user”
-     */
-    type: "hidden_user"
-    /**
-     * Date the message was sent originally in Unix time
-     */
-    date: number
-    /**
-     * Name of the user that sent the message originally
-     */
-    sender_user_name: string
-}
-
-/**
- * The message was originally sent on behalf of a chat to a group chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageoriginchat)
- */
-export interface TelegramMessageOriginChat {
-    /**
-     * Type of the message origin, always “chat”
-     */
-    type: "chat"
-    /**
-     * Date the message was sent originally in Unix time
-     */
-    date: number
-    /**
-     * Chat that sent the message originally
-     */
-    sender_chat: TelegramChat
-    /**
-     * *Optional*. For messages originally sent by an anonymous chat administrator, original message author signature
-     */
-    author_signature?: string
-}
-
-/**
- * The message was originally sent to a channel chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageoriginchannel)
- */
-export interface TelegramMessageOriginChannel {
-    /**
-     * Type of the message origin, always “channel”
-     */
-    type: "channel"
-    /**
-     * Date the message was sent originally in Unix time
-     */
-    date: number
-    /**
-     * Channel chat to which the message was originally sent
-     */
-    chat: TelegramChat
-    /**
-     * Unique message identifier inside the chat
-     */
-    message_id: number
-    /**
-     * *Optional*. Signature of the original post author
-     */
-    author_signature?: string
-}
-
-/**
- * This object represents one size of a photo or a [file](https://core.telegram.org/bots/api#document) / [sticker](https://core.telegram.org/bots/api#sticker) thumbnail.
- *
- * [Documentation](https://core.telegram.org/bots/api/#photosize)
- */
-export interface TelegramPhotoSize {
-    /**
-     * Identifier for this file, which can be used to download or reuse the file
-     */
-    file_id: string
-    /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * Photo width
-     */
-    width: number
-    /**
-     * Photo height
-     */
-    height: number
-    /**
-     * *Optional*. File size in bytes
-     */
-    file_size?: number
-}
-
-/**
- * This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
- *
- * [Documentation](https://core.telegram.org/bots/api/#animation)
- */
-export interface TelegramAnimation {
-    /**
-     * Identifier for this file, which can be used to download or reuse the file
-     */
-    file_id: string
-    /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * Video width as defined by the sender
-     */
-    width: number
-    /**
-     * Video height as defined by the sender
-     */
-    height: number
-    /**
-     * Duration of the video in seconds as defined by the sender
-     */
-    duration: number
-    /**
-     * *Optional*. Animation thumbnail as defined by the sender
-     */
-    thumbnail?: TelegramPhotoSize
-    /**
-     * *Optional*. Original animation filename as defined by the sender
-     */
-    file_name?: string
-    /**
-     * *Optional*. MIME type of the file as defined by the sender
-     */
-    mime_type?: string
-    /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-     */
-    file_size?: number
-}
-
-/**
- * This object represents an audio file to be treated as music by the Telegram clients.
- *
- * [Documentation](https://core.telegram.org/bots/api/#audio)
- */
-export interface TelegramAudio {
-    /**
-     * Identifier for this file, which can be used to download or reuse the file
-     */
-    file_id: string
-    /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * Duration of the audio in seconds as defined by the sender
-     */
-    duration: number
-    /**
-     * *Optional*. Performer of the audio as defined by the sender or by audio tags
-     */
-    performer?: string
-    /**
-     * *Optional*. Title of the audio as defined by the sender or by audio tags
+     * Offer title
      */
     title?: string
     /**
-     * *Optional*. Original filename as defined by the sender
+     * Currency amount
      */
-    file_name?: string
+    currency_amount?: number
     /**
-     * *Optional*. MIME type of the file as defined by the sender
+     * Link id
      */
-    mime_type?: string
+    link_id?: number
     /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
+     * Link type
      */
-    file_size?: number
-    /**
-     * *Optional*. Thumbnail of the album cover to which the music file belongs
-     */
-    thumbnail?: TelegramPhotoSize
+    link_type?: VKAccountOfferLinkType
 }
 
 /**
- * This object represents a general file (as opposed to [photos](https://core.telegram.org/bots/api#photosize), [voice messages](https://core.telegram.org/bots/api#voice) and [audio files](https://core.telegram.org/bots/api#audio)).
  *
- * [Documentation](https://core.telegram.org/bots/api/#document)
  */
-export interface TelegramDocument {
+export interface VKAccountPushConversations {
     /**
-     * Identifier for this file, which can be used to download or reuse the file
+     * Items count
      */
-    file_id: string
-    /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * *Optional*. Document thumbnail as defined by the sender
-     */
-    thumbnail?: TelegramPhotoSize
-    /**
-     * *Optional*. Original filename as defined by the sender
-     */
-    file_name?: string
-    /**
-     * *Optional*. MIME type of the file as defined by the sender
-     */
-    mime_type?: string
-    /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-     */
-    file_size?: number
+    count?: number
+    items?: VKAccountPushConversationsItem[]
 }
 
 /**
- * This object represents a story.
  *
- * [Documentation](https://core.telegram.org/bots/api/#story)
  */
-export interface TelegramStory {
+export interface VKAccountPushConversationsItem {
     /**
-     * Chat that posted the story
+     * Time until that notifications are disabled in seconds
      */
-    chat: TelegramChat
+    disabled_until: number
     /**
-     * Unique identifier for the story in the chat
+     * Peer ID
      */
-    id: number
-}
-
-export type TelegramVideoQualityCodec = "h264" | "h265" | "av01"
-
-/**
- * This object represents a video file of a specific quality.
- *
- * [Documentation](https://core.telegram.org/bots/api/#videoquality)
- */
-export interface TelegramVideoQuality {
+    peer_id: number
     /**
-     * Identifier for this file, which can be used to download or reuse the file
+     * Information whether the sound are enabled
      */
-    file_id: string
+    sound: VKBaseBoolInt
     /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     * Information whether the mentions are disabled
      */
-    file_unique_id: string
+    disabled_mentions?: VKBaseBoolInt
     /**
-     * Video width
+     * Information whether the mass mentions (like '@all', '@online') are disabled. Can be affected by 'disabled_mentions'
      */
-    width: number
-    /**
-     * Video height
-     */
-    height: number
-    /**
-     * Codec that was used to encode the video, for example, “h264”, “h265”, or “av01”
-     */
-    codec: TelegramVideoQualityCodec
-    /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-     */
-    file_size?: number
+    disabled_mass_mentions?: VKBaseBoolInt
 }
 
 /**
- * This object represents a video file.
  *
- * [Documentation](https://core.telegram.org/bots/api/#video)
  */
-export interface TelegramVideo {
-    /**
-     * Identifier for this file, which can be used to download or reuse the file
-     */
-    file_id: string
-    /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * Video width as defined by the sender
-     */
-    width: number
-    /**
-     * Video height as defined by the sender
-     */
-    height: number
-    /**
-     * Duration of the video in seconds as defined by the sender
-     */
-    duration: number
-    /**
-     * *Optional*. Video thumbnail
-     */
-    thumbnail?: TelegramPhotoSize
-    /**
-     * *Optional*. Available sizes of the cover of the video in the message
-     */
-    cover?: TelegramPhotoSize[]
-    /**
-     * *Optional*. Timestamp in seconds from which the video will play in the message
-     */
-    start_timestamp?: number
-    /**
-     * *Optional*. List of available qualities of the video
-     */
-    qualities?: TelegramVideoQuality[]
-    /**
-     * *Optional*. Original filename as defined by the sender
-     */
-    file_name?: string
-    /**
-     * *Optional*. MIME type of the file as defined by the sender
-     */
-    mime_type?: string
-    /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-     */
-    file_size?: number
+export interface VKAccountPushParams {
+    msg?: VKAccountPushParamsMode[]
+    chat?: VKAccountPushParamsMode[]
+    like?: VKAccountPushParamsSettings[]
+    repost?: VKAccountPushParamsSettings[]
+    comment?: VKAccountPushParamsSettings[]
+    mention?: VKAccountPushParamsSettings[]
+    reply?: VKAccountPushParamsOnoff[]
+    new_post?: VKAccountPushParamsOnoff[]
+    wall_post?: VKAccountPushParamsOnoff[]
+    wall_publish?: VKAccountPushParamsOnoff[]
+    friend?: VKAccountPushParamsOnoff[]
+    friend_found?: VKAccountPushParamsOnoff[]
+    friend_accepted?: VKAccountPushParamsOnoff[]
+    group_invite?: VKAccountPushParamsOnoff[]
+    group_accepted?: VKAccountPushParamsOnoff[]
+    birthday?: VKAccountPushParamsOnoff[]
+    event_soon?: VKAccountPushParamsOnoff[]
+    app_request?: VKAccountPushParamsOnoff[]
+    sdk_open?: VKAccountPushParamsOnoff[]
 }
 
 /**
- * This object represents a [video message](https://telegram.org/blog/video-messages-and-telescope) (available in Telegram apps as of [v.4.0](https://telegram.org/blog/video-messages-and-telescope)).
- *
- * [Documentation](https://core.telegram.org/bots/api/#videonote)
+ * Settings parameters
  */
-export interface TelegramVideoNote {
+export type VKAccountPushParamsMode = "on" | "off" | "no_sound" | "no_text"
+
+/**
+ * Settings parameters
+ */
+export type VKAccountPushParamsOnoff = "on" | "off" | "no_sound"
+
+/**
+ * Settings parameters
+ */
+export type VKAccountPushParamsSettings = "on" | "off" | "fr_of_fr" | "no_sound"
+
+/**
+ *
+ */
+export interface VKAccountPushSettings {
     /**
-     * Identifier for this file, which can be used to download or reuse the file
+     * Information whether notifications are disabled
      */
-    file_id: string
+    disabled?: VKBaseBoolInt
     /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     * Time until that notifications are disabled in Unixtime
      */
-    file_unique_id: string
-    /**
-     * Video width and height (diameter of the video message) as defined by the sender
-     */
-    length: number
-    /**
-     * Duration of the video in seconds as defined by the sender
-     */
-    duration: number
-    /**
-     * *Optional*. Video thumbnail
-     */
-    thumbnail?: TelegramPhotoSize
-    /**
-     * *Optional*. File size in bytes
-     */
-    file_size?: number
+    disabled_until?: number
+    settings?: VKAccountPushParams
+    conversations?: VKAccountPushConversations
 }
 
 /**
- * This object represents a voice note.
  *
- * [Documentation](https://core.telegram.org/bots/api/#voice)
  */
-export interface TelegramVoice {
+export interface VKAccountUserSettings {
     /**
-     * Identifier for this file, which can be used to download or reuse the file
+     * Returns if a profile is deleted or blocked
      */
-    file_id: string
+    deactivated?: string
     /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * Duration of the audio in seconds as defined by the sender
-     */
-    duration: number
-    /**
-     * *Optional*. MIME type of the file as defined by the sender
-     */
-    mime_type?: string
-    /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
-     */
-    file_size?: number
-}
-
-/**
- * Describes the paid media added to a message.
- *
- * [Documentation](https://core.telegram.org/bots/api/#paidmediainfo)
- */
-export interface TelegramPaidMediaInfo {
-    /**
-     * The number of Telegram Stars that must be paid to buy access to the media
-     */
-    star_count: number
-    /**
-     * Information about the paid media
-     */
-    paid_media: TelegramPaidMedia[]
-}
-
-/**
- * This object describes paid media. Currently, it can be one of
- *
- * *   [PaidMediaPreview](https://core.telegram.org/bots/api#paidmediapreview)
- * *   [PaidMediaPhoto](https://core.telegram.org/bots/api#paidmediaphoto)
- * *   [PaidMediaVideo](https://core.telegram.org/bots/api#paidmediavideo)
- *
- * [Documentation](https://core.telegram.org/bots/api/#paidmedia)
- */
-export type TelegramPaidMedia =
-    | TelegramPaidMediaPreview
-    | TelegramPaidMediaPhoto
-    | TelegramPaidMediaVideo
-
-/**
- * The paid media isn't available before the payment.
- *
- * [Documentation](https://core.telegram.org/bots/api/#paidmediapreview)
- */
-export interface TelegramPaidMediaPreview {
-    /**
-     * Type of the paid media, always “preview”
-     */
-    type: "preview"
-    /**
-     * *Optional*. Media width as defined by the sender
-     */
-    width?: number
-    /**
-     * *Optional*. Media height as defined by the sender
-     */
-    height?: number
-    /**
-     * *Optional*. Duration of the media in seconds as defined by the sender
-     */
-    duration?: number
-}
-
-/**
- * The paid media is a photo.
- *
- * [Documentation](https://core.telegram.org/bots/api/#paidmediaphoto)
- */
-export interface TelegramPaidMediaPhoto {
-    /**
-     * Type of the paid media, always “photo”
-     */
-    type: "photo"
-    /**
-     * The photo
-     */
-    photo: TelegramPhotoSize[]
-}
-
-/**
- * The paid media is a video.
- *
- * [Documentation](https://core.telegram.org/bots/api/#paidmediavideo)
- */
-export interface TelegramPaidMediaVideo {
-    /**
-     * Type of the paid media, always “video”
-     */
-    type: "video"
-    /**
-     * The video
-     */
-    video: TelegramVideo
-}
-
-/**
- * This object represents a phone contact.
- *
- * [Documentation](https://core.telegram.org/bots/api/#contact)
- */
-export interface TelegramContact {
-    /**
-     * Contact's phone number
-     */
-    phone_number: string
-    /**
-     * Contact's first name
-     */
-    first_name: string
-    /**
-     * *Optional*. Contact's last name
-     */
-    last_name?: string
-    /**
-     * *Optional*. Contact's user identifier in Telegram. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    user_id?: number
-    /**
-     * *Optional*. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard)
-     */
-    vcard?: string
-}
-
-/**
- * This object represents an animated emoji that displays a random value.
- *
- * [Documentation](https://core.telegram.org/bots/api/#dice)
- */
-export interface TelegramDice {
-    /**
-     * Emoji on which the dice throw animation is based
-     */
-    emoji: string
-    /**
-     * Value of the dice, 1-6 for “![🎲](https://telegram.org/img/emoji/40/F09F8EB2.png)”, “![🎯](https://telegram.org/img/emoji/40/F09F8EAF.png)” and “![🎳](https://telegram.org/img/emoji/40/F09F8EB3.png)” base emoji, 1-5 for “![🏀](https://telegram.org/img/emoji/40/F09F8F80.png)” and “![⚽](https://telegram.org/img/emoji/40/E29ABD.png)” base emoji, 1-64 for “![🎰](https://telegram.org/img/emoji/40/F09F8EB0.png)” base emoji
-     */
-    value: number
-}
-
-/**
- * This object contains information about one answer option in a poll.
- *
- * [Documentation](https://core.telegram.org/bots/api/#polloption)
- */
-export interface TelegramPollOption {
-    /**
-     * Option text, 1-100 characters
-     */
-    text: string
-    /**
-     * *Optional*. Special entities that appear in the option *text*. Currently, only custom emoji entities are allowed in poll option texts
-     */
-    text_entities?: TelegramMessageEntity[]
-    /**
-     * Number of users that voted for this option
-     */
-    voter_count: number
-}
-
-/**
- * This object contains information about one answer option in a poll to be sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputpolloption)
- */
-export interface TelegramInputPollOption {
-    /**
-     * Option text, 1-100 characters
-     */
-    text: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details. Currently, only custom emoji entities are allowed
-     */
-    text_parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. A JSON-serialized list of special entities that appear in the poll option text. It can be specified instead of *text\_parse\_mode*
-     */
-    text_entities?: TelegramMessageEntity[]
-}
-
-/**
- * This object represents an answer of a user in a non-anonymous poll.
- *
- * [Documentation](https://core.telegram.org/bots/api/#pollanswer)
- */
-export interface TelegramPollAnswer {
-    /**
-     * Unique poll identifier
-     */
-    poll_id: string
-    /**
-     * *Optional*. The chat that changed the answer to the poll, if the voter is anonymous
-     */
-    voter_chat?: TelegramChat
-    /**
-     * *Optional*. The user that changed the answer to the poll, if the voter isn't anonymous
-     */
-    user?: TelegramUser
-    /**
-     * 0-based identifiers of chosen answer options. May be empty if the vote was retracted.
-     */
-    option_ids: number[]
-}
-
-export type TelegramPollType = "regular" | "quiz"
-
-/**
- * This object contains information about a poll.
- *
- * [Documentation](https://core.telegram.org/bots/api/#poll)
- */
-export interface TelegramPoll {
-    /**
-     * Unique poll identifier
-     */
-    id: string
-    /**
-     * Poll question, 1-300 characters
-     */
-    question: string
-    /**
-     * *Optional*. Special entities that appear in the *question*. Currently, only custom emoji entities are allowed in poll questions
-     */
-    question_entities?: TelegramMessageEntity[]
-    /**
-     * List of poll options
-     */
-    options: TelegramPollOption[]
-    /**
-     * Total number of users that voted in the poll
-     */
-    total_voter_count: number
-    /**
-     * *True*, if the poll is closed
-     */
-    is_closed: boolean
-    /**
-     * *True*, if the poll is anonymous
-     */
-    is_anonymous: boolean
-    /**
-     * Poll type, currently can be “regular” or “quiz”
-     */
-    type: TelegramPollType
-    /**
-     * *True*, if the poll allows multiple answers
-     */
-    allows_multiple_answers: boolean
-    /**
-     * *Optional*. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot.
-     */
-    correct_option_id?: number
-    /**
-     * *Optional*. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters
-     */
-    explanation?: string
-    /**
-     * *Optional*. Special entities like usernames, URLs, bot commands, etc. that appear in the *explanation*
-     */
-    explanation_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Amount of time in seconds the poll will be active after creation
-     */
-    open_period?: number
-    /**
-     * *Optional*. Point in time (Unix timestamp) when the poll will be automatically closed
-     */
-    close_date?: number
-}
-
-/**
- * Describes a task in a checklist.
- *
- * [Documentation](https://core.telegram.org/bots/api/#checklisttask)
- */
-export interface TelegramChecklistTask {
-    /**
-     * Unique identifier of the task
-     */
-    id: number
-    /**
-     * Text of the task
-     */
-    text: string
-    /**
-     * *Optional*. Special entities that appear in the task text
-     */
-    text_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. User that completed the task; omitted if the task wasn't completed by a user
-     */
-    completed_by_user?: TelegramUser
-    /**
-     * *Optional*. Chat that completed the task; omitted if the task wasn't completed by a chat
-     */
-    completed_by_chat?: TelegramChat
-    /**
-     * *Optional*. Point in time (Unix timestamp) when the task was completed; 0 if the task wasn't completed
-     */
-    completion_date?: number
-}
-
-/**
- * Describes a checklist.
- *
- * [Documentation](https://core.telegram.org/bots/api/#checklist)
- */
-export interface TelegramChecklist {
-    /**
-     * Title of the checklist
-     */
-    title: string
-    /**
-     * *Optional*. Special entities that appear in the checklist title
-     */
-    title_entities?: TelegramMessageEntity[]
-    /**
-     * List of tasks in the checklist
-     */
-    tasks: TelegramChecklistTask[]
-    /**
-     * *Optional*. *True*, if users other than the creator of the list can add tasks to the list
-     */
-    others_can_add_tasks?: true
-    /**
-     * *Optional*. *True*, if users other than the creator of the list can mark tasks as done or not done
-     */
-    others_can_mark_tasks_as_done?: true
-}
-
-/**
- * Describes a task to add to a checklist.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputchecklisttask)
- */
-export interface TelegramInputChecklistTask {
-    /**
-     * Unique identifier of the task; must be positive and unique among all task identifiers currently present in the checklist
-     */
-    id: number
-    /**
-     * Text of the task; 1-100 characters after entities parsing
-     */
-    text: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the text, which can be specified instead of parse\_mode. Currently, only *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom\_emoji* entities are allowed.
-     */
-    text_entities?: TelegramMessageEntity[]
-}
-
-/**
- * Describes a checklist to create.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputchecklist)
- */
-export interface TelegramInputChecklist {
-    /**
-     * Title of the checklist; 1-255 characters after entities parsing
-     */
-    title: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the title. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the title, which can be specified instead of parse\_mode. Currently, only *bold*, *italic*, *underline*, *strikethrough*, *spoiler*, and *custom\_emoji* entities are allowed.
-     */
-    title_entities?: TelegramMessageEntity[]
-    /**
-     * List of 1-30 tasks in the checklist
-     */
-    tasks: TelegramInputChecklistTask[]
-    /**
-     * *Optional*. Pass *True* if other users can add tasks to the checklist
-     */
-    others_can_add_tasks?: boolean
-    /**
-     * *Optional*. Pass *True* if other users can mark tasks as done or not done in the checklist
-     */
-    others_can_mark_tasks_as_done?: boolean
-}
-
-/**
- * Describes a service message about checklist tasks marked as done or not done.
- *
- * [Documentation](https://core.telegram.org/bots/api/#checklisttasksdone)
- */
-export interface TelegramChecklistTasksDone {
-    /**
-     * *Optional*. Message containing the checklist whose tasks were marked as done or not done. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
-     */
-    checklist_message?: TelegramMessage
-    /**
-     * *Optional*. Identifiers of the tasks that were marked as done
-     */
-    marked_as_done_task_ids?: number[]
-    /**
-     * *Optional*. Identifiers of the tasks that were marked as not done
-     */
-    marked_as_not_done_task_ids?: number[]
-}
-
-/**
- * Describes a service message about tasks added to a checklist.
- *
- * [Documentation](https://core.telegram.org/bots/api/#checklisttasksadded)
- */
-export interface TelegramChecklistTasksAdded {
-    /**
-     * *Optional*. Message containing the checklist to which the tasks were added. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
-     */
-    checklist_message?: TelegramMessage
-    /**
-     * List of tasks added to the checklist
-     */
-    tasks: TelegramChecklistTask[]
-}
-
-/**
- * This object represents a point on the map.
- *
- * [Documentation](https://core.telegram.org/bots/api/#location)
- */
-export interface TelegramLocation {
-    /**
-     * Latitude as defined by the sender
-     */
-    latitude: number
-    /**
-     * Longitude as defined by the sender
-     */
-    longitude: number
-    /**
-     * *Optional*. The radius of uncertainty for the location, measured in meters; 0-1500
-     */
-    horizontal_accuracy?: number
-    /**
-     * *Optional*. Time relative to the message sending date, during which the location can be updated; in seconds. For active live locations only.
-     */
-    live_period?: number
-    /**
-     * *Optional*. The direction in which user is moving, in degrees; 1-360. For active live locations only.
-     */
-    heading?: number
-    /**
-     * *Optional*. The maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only.
-     */
-    proximity_alert_radius?: number
-}
-
-/**
- * This object represents a venue.
- *
- * [Documentation](https://core.telegram.org/bots/api/#venue)
- */
-export interface TelegramVenue {
-    /**
-     * Venue location. Can't be a live location
-     */
-    location: TelegramLocation
-    /**
-     * Name of the venue
-     */
-    title: string
-    /**
-     * Address of the venue
-     */
-    address: string
-    /**
-     * *Optional*. Foursquare identifier of the venue
-     */
-    foursquare_id?: string
-    /**
-     * *Optional*. Foursquare type of the venue. (For example, “arts\_entertainment/default”, “arts\_entertainment/aquarium” or “food/icecream”.)
-     */
-    foursquare_type?: string
-    /**
-     * *Optional*. Google Places identifier of the venue
-     */
-    google_place_id?: string
-    /**
-     * *Optional*. Google Places type of the venue. (See [supported types](https://developers.google.com/places/web-service/supported_types).)
-     */
-    google_place_type?: string
-}
-
-/**
- * Describes data sent from a [Web App](https://core.telegram.org/bots/webapps) to the bot.
- *
- * [Documentation](https://core.telegram.org/bots/api/#webappdata)
- */
-export interface TelegramWebAppData {
-    /**
-     * The data. Be aware that a bad client can send arbitrary data in this field.
-     */
-    data: string
-    /**
-     * Text of the *web\_app* keyboard button from which the Web App was opened. Be aware that a bad client can send arbitrary data in this field.
-     */
-    button_text: string
-}
-
-/**
- * This object represents the content of a service message, sent whenever a user in the chat triggers a proximity alert set by another user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#proximityalerttriggered)
- */
-export interface TelegramProximityAlertTriggered {
-    /**
-     * User that triggered the alert
-     */
-    traveler: TelegramUser
-    /**
-     * User that set the alert
-     */
-    watcher: TelegramUser
-    /**
-     * The distance between the users
-     */
-    distance: number
-}
-
-/**
- * This object represents a service message about a change in auto-delete timer settings.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messageautodeletetimerchanged)
- */
-export interface TelegramMessageAutoDeleteTimerChanged {
-    /**
-     * New auto-delete time for messages in the chat; in seconds
-     */
-    message_auto_delete_time: number
-}
-
-/**
- * This object represents a service message about a user boosting a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostadded)
- */
-export interface TelegramChatBoostAdded {
-    /**
-     * Number of boosts added by the user
-     */
-    boost_count: number
-}
-
-/**
- * This object describes the way a background is filled based on the selected colors. Currently, it can be one of
- *
- * *   [BackgroundFillSolid](https://core.telegram.org/bots/api#backgroundfillsolid)
- * *   [BackgroundFillGradient](https://core.telegram.org/bots/api#backgroundfillgradient)
- * *   [BackgroundFillFreeformGradient](https://core.telegram.org/bots/api#backgroundfillfreeformgradient)
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundfill)
- */
-export type TelegramBackgroundFill =
-    | TelegramBackgroundFillSolid
-    | TelegramBackgroundFillGradient
-    | TelegramBackgroundFillFreeformGradient
-
-/**
- * The background is filled using the selected color.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundfillsolid)
- */
-export interface TelegramBackgroundFillSolid {
-    /**
-     * Type of the background fill, always “solid”
-     */
-    type: "solid"
-    /**
-     * The color of the background fill in the RGB24 format
-     */
-    color: number
-}
-
-/**
- * The background is a gradient fill.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundfillgradient)
- */
-export interface TelegramBackgroundFillGradient {
-    /**
-     * Type of the background fill, always “gradient”
-     */
-    type: "gradient"
-    /**
-     * Top color of the gradient in the RGB24 format
-     */
-    top_color: number
-    /**
-     * Bottom color of the gradient in the RGB24 format
-     */
-    bottom_color: number
-    /**
-     * Clockwise rotation angle of the background fill in degrees; 0-359
-     */
-    rotation_angle: number
-}
-
-/**
- * The background is a freeform gradient that rotates after every message in the chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundfillfreeformgradient)
- */
-export interface TelegramBackgroundFillFreeformGradient {
-    /**
-     * Type of the background fill, always “freeform\_gradient”
-     */
-    type: "freeform_gradient"
-    /**
-     * A list of the 3 or 4 base colors that are used to generate the freeform gradient in the RGB24 format
-     */
-    colors: number[]
-}
-
-/**
- * This object describes the type of a background. Currently, it can be one of
- *
- * *   [BackgroundTypeFill](https://core.telegram.org/bots/api#backgroundtypefill)
- * *   [BackgroundTypeWallpaper](https://core.telegram.org/bots/api#backgroundtypewallpaper)
- * *   [BackgroundTypePattern](https://core.telegram.org/bots/api#backgroundtypepattern)
- * *   [BackgroundTypeChatTheme](https://core.telegram.org/bots/api#backgroundtypechattheme)
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundtype)
- */
-export type TelegramBackgroundType =
-    | TelegramBackgroundTypeFill
-    | TelegramBackgroundTypeWallpaper
-    | TelegramBackgroundTypePattern
-    | TelegramBackgroundTypeChatTheme
-
-/**
- * The background is automatically filled based on the selected colors.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundtypefill)
- */
-export interface TelegramBackgroundTypeFill {
-    /**
-     * Type of the background, always “fill”
-     */
-    type: "fill"
-    /**
-     * The background fill
-     */
-    fill: TelegramBackgroundFill
-    /**
-     * Dimming of the background in dark themes, as a percentage; 0-100
-     */
-    dark_theme_dimming: number
-}
-
-/**
- * The background is a wallpaper in the JPEG format.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundtypewallpaper)
- */
-export interface TelegramBackgroundTypeWallpaper {
-    /**
-     * Type of the background, always “wallpaper”
-     */
-    type: "wallpaper"
-    /**
-     * Document with the wallpaper
-     */
-    document: TelegramDocument
-    /**
-     * Dimming of the background in dark themes, as a percentage; 0-100
-     */
-    dark_theme_dimming: number
-    /**
-     * *Optional*. *True*, if the wallpaper is downscaled to fit in a 450x450 square and then box-blurred with radius 12
-     */
-    is_blurred?: true
-    /**
-     * *Optional*. *True*, if the background moves slightly when the device is tilted
-     */
-    is_moving?: true
-}
-
-/**
- * The background is a .PNG or .TGV (gzipped subset of SVG with MIME type “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundtypepattern)
- */
-export interface TelegramBackgroundTypePattern {
-    /**
-     * Type of the background, always “pattern”
-     */
-    type: "pattern"
-    /**
-     * Document with the pattern
-     */
-    document: TelegramDocument
-    /**
-     * The background fill that is combined with the pattern
-     */
-    fill: TelegramBackgroundFill
-    /**
-     * Intensity of the pattern when it is shown above the filled background; 0-100
-     */
-    intensity: number
-    /**
-     * *Optional*. *True*, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
-     */
-    is_inverted?: true
-    /**
-     * *Optional*. *True*, if the background moves slightly when the device is tilted
-     */
-    is_moving?: true
-}
-
-/**
- * The background is taken directly from a built-in chat theme.
- *
- * [Documentation](https://core.telegram.org/bots/api/#backgroundtypechattheme)
- */
-export interface TelegramBackgroundTypeChatTheme {
-    /**
-     * Type of the background, always “chat\_theme”
-     */
-    type: "chat_theme"
-    /**
-     * Name of the chat theme, which is usually an emoji
-     */
-    theme_name: string
-}
-
-/**
- * This object represents a chat background.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatbackground)
- */
-export interface TelegramChatBackground {
-    /**
-     * Type of the background
-     */
-    type: TelegramBackgroundType
-}
-
-/**
- * This object represents a service message about a new forum topic created in the chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#forumtopiccreated)
- */
-export interface TelegramForumTopicCreated {
-    /**
-     * Name of the topic
-     */
-    name: string
-    /**
-     * Color of the topic icon in RGB format
-     */
-    icon_color: number
-    /**
-     * *Optional*. Unique identifier of the custom emoji shown as the topic icon
-     */
-    icon_custom_emoji_id?: string
-    /**
-     * *Optional*. *True*, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
-     */
-    is_name_implicit?: true
-}
-
-/**
- * This object represents a service message about a forum topic closed in the chat. Currently holds no information.
- *
- * [Documentation](https://core.telegram.org/bots/api/#forumtopicclosed)
- */
-export interface TelegramForumTopicClosed {}
-
-/**
- * This object represents a service message about an edited forum topic.
- *
- * [Documentation](https://core.telegram.org/bots/api/#forumtopicedited)
- */
-export interface TelegramForumTopicEdited {
-    /**
-     * *Optional*. New name of the topic, if it was edited
-     */
-    name?: string
-    /**
-     * *Optional*. New identifier of the custom emoji shown as the topic icon, if it was edited; an empty string if the icon was removed
-     */
-    icon_custom_emoji_id?: string
-}
-
-/**
- * This object represents a service message about a forum topic reopened in the chat. Currently holds no information.
- *
- * [Documentation](https://core.telegram.org/bots/api/#forumtopicreopened)
- */
-export interface TelegramForumTopicReopened {}
-
-/**
- * This object represents a service message about General forum topic hidden in the chat. Currently holds no information.
- *
- * [Documentation](https://core.telegram.org/bots/api/#generalforumtopichidden)
- */
-export interface TelegramGeneralForumTopicHidden {}
-
-/**
- * This object represents a service message about General forum topic unhidden in the chat. Currently holds no information.
- *
- * [Documentation](https://core.telegram.org/bots/api/#generalforumtopicunhidden)
- */
-export interface TelegramGeneralForumTopicUnhidden {}
-
-/**
- * This object contains information about a user that was shared with the bot using a [KeyboardButtonRequestUsers](https://core.telegram.org/bots/api#keyboardbuttonrequestusers) button.
- *
- * [Documentation](https://core.telegram.org/bots/api/#shareduser)
- */
-export interface TelegramSharedUser {
-    /**
-     * Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so 64-bit integers or double-precision float types are safe for storing these identifiers. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means.
-     */
-    user_id: number
-    /**
-     * *Optional*. First name of the user, if the name was requested by the bot
+     * User first name
      */
     first_name?: string
     /**
-     * *Optional*. Last name of the user, if the name was requested by the bot
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
      */
     last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    connections?: VKUsersUserConnections
     /**
-     * *Optional*. Username of the user, if the username was requested by the bot
+     * User's date of birth
      */
-    username?: string
+    bdate?: string
     /**
-     * *Optional*. Available sizes of the chat photo, if the photo was requested by the bot
+     * Information whether user's birthdate are hidden
      */
-    photo?: TelegramPhotoSize[]
+    bdate_visibility?: number
+    city?: VKBaseCity
+    /**
+     * User's hometown
+     */
+    home_town: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    name_request?: VKAccountNameRequest
+    personal?: VKUsersPersonal
+    /**
+     * User phone number with some hidden digits
+     */
+    phone?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    /**
+     * Information whether relation status is pending
+     */
+    relation_pending?: VKBaseBoolInt
+    relation_requests?: VKUsersUserMin[]
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * User status
+     */
+    status: string
+    status_audio?: VKAudioAudio
+    interests?: VKAccountUserSettingsInterests
+    languages?: string[]
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * flag about service account
+     */
+    is_service_account?: boolean
 }
 
 /**
- * This object contains information about the users whose identifiers were shared with the bot using a [KeyboardButtonRequestUsers](https://core.telegram.org/bots/api#keyboardbuttonrequestusers) button.
  *
- * [Documentation](https://core.telegram.org/bots/api/#usersshared)
  */
-export interface TelegramUsersShared {
-    /**
-     * Identifier of the request
-     */
-    request_id: number
-    /**
-     * Information about users shared with the bot.
-     */
-    users: TelegramSharedUser[]
+export interface VKAccountUserSettingsInterest {
+    title: string
+    value: string
 }
 
 /**
- * This object contains information about a chat that was shared with the bot using a [KeyboardButtonRequestChat](https://core.telegram.org/bots/api#keyboardbuttonrequestchat) button.
  *
- * [Documentation](https://core.telegram.org/bots/api/#chatshared)
  */
-export interface TelegramChatShared {
-    /**
-     * Identifier of the request
-     */
-    request_id: number
-    /**
-     * Identifier of the shared chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the chat and could be unable to use this identifier, unless the chat is already known to the bot by some other means.
-     */
-    chat_id: number
-    /**
-     * *Optional*. Title of the chat, if the title was requested by the bot.
-     */
-    title?: string
-    /**
-     * *Optional*. Username of the chat, if the username was requested by the bot and available.
-     */
-    username?: string
-    /**
-     * *Optional*. Available sizes of the chat photo, if the photo was requested by the bot
-     */
-    photo?: TelegramPhotoSize[]
+export interface VKAccountUserSettingsInterests {
+    activities?: VKAccountUserSettingsInterest
+    interests?: VKAccountUserSettingsInterest
+    music?: VKAccountUserSettingsInterest
+    tv?: VKAccountUserSettingsInterest
+    movies?: VKAccountUserSettingsInterest
+    books?: VKAccountUserSettingsInterest
+    games?: VKAccountUserSettingsInterest
+    quotes?: VKAccountUserSettingsInterest
+    about?: VKAccountUserSettingsInterest
 }
 
 /**
- * This object represents a service message about a user allowing a bot to write messages after adding it to the attachment menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method [requestWriteAccess](https://core.telegram.org/bots/webapps#initializing-mini-apps).
  *
- * [Documentation](https://core.telegram.org/bots/api/#writeaccessallowed)
  */
-export interface TelegramWriteAccessAllowed {
+export type VKAddressFields =
+    | "id"
+    | "title"
+    | "address"
+    | "additional_address"
+    | "country_id"
+    | "city_id"
+    | "city"
+    | "metro_station_id"
+    | "metro_station"
+    | "latitude"
+    | "longitude"
+    | "distance"
+    | "work_info_status"
+    | "timetable"
+    | "phone"
+    | "time_offset"
+
+/**
+ * Current user's role
+ */
+export type VKAdsAccessRole = "admin" | "manager" | "reports"
+
+/**
+ * Current user's role
+ */
+export type VKAdsAccessRolePublic = "manager" | "reports"
+
+/**
+ *
+ */
+export interface VKAdsAccesses {
     /**
-     * *Optional*. *True*, if the access was granted after the user accepted an explicit request from a Web App sent by the method [requestWriteAccess](https://core.telegram.org/bots/webapps#initializing-mini-apps)
+     * Client ID
      */
-    from_request?: boolean
-    /**
-     * *Optional*. Name of the Web App, if the access was granted when the Web App was launched from a link
-     */
-    web_app_name?: string
-    /**
-     * *Optional*. *True*, if the access was granted when the bot was added to the attachment or side menu
-     */
-    from_attachment_menu?: boolean
+    client_id?: string
+    role?: VKAdsAccessRole
 }
 
 /**
- * This object represents a service message about a video chat scheduled in the chat.
  *
- * [Documentation](https://core.telegram.org/bots/api/#videochatscheduled)
  */
-export interface TelegramVideoChatScheduled {
+export interface VKAdsAccount {
+    access_role: VKAdsAccessRole
     /**
-     * Point in time (Unix timestamp) when the video chat is supposed to be started by a chat administrator
+     * Account ID
      */
-    start_date: number
+    account_id: number
+    /**
+     * Information whether account is active
+     */
+    account_status: VKBaseBoolInt
+    account_type: VKAdsAccountType
+    /**
+     * Account name
+     */
+    account_name: string
+    /**
+     * Can user view account budget
+     */
+    can_view_budget: boolean
 }
 
 /**
- * This object represents a service message about a video chat started in the chat. Currently holds no information.
- *
- * [Documentation](https://core.telegram.org/bots/api/#videochatstarted)
+ * Account type
  */
-export interface TelegramVideoChatStarted {}
+export type VKAdsAccountType = "general" | "agency"
 
 /**
- * This object represents a service message about a video chat ended in the chat.
  *
- * [Documentation](https://core.telegram.org/bots/api/#videochatended)
  */
-export interface TelegramVideoChatEnded {
+export interface VKAdsAd {
     /**
-     * Video chat duration in seconds
+     * Ad format
      */
-    duration: number
+    ad_format: number
+    /**
+     * Ad platform
+     */
+    ad_platform: number | string
+    /**
+     * Total limit
+     */
+    all_limit: string
+    approved: VKAdsAdApproved
+    /**
+     * Campaign ID
+     */
+    campaign_id: number
+    /**
+     * Category ID
+     */
+    category1_id?: number
+    /**
+     * Additional category ID
+     */
+    category2_id?: number
+    cost_type: VKAdsAdCostType
+    /**
+     * Cost of a click, kopecks
+     */
+    cpc?: string
+    /**
+     * Cost of 1000 impressions, kopecks
+     */
+    cpm?: string
+    /**
+     * Cost of an action, kopecks
+     */
+    cpa?: string
+    /**
+     * Cost of 1000 impressions optimized, kopecks
+     */
+    ocpm?: string
+    /**
+     * Autobidding
+     */
+    autobidding?: VKBaseBoolInt
+    /**
+     * Max cost of target actions for autobidding, kopecks
+     */
+    autobidding_max_cost?: string
+    /**
+     * Information whether disclaimer is enabled
+     */
+    disclaimer_medical?: VKBaseBoolInt
+    /**
+     * Information whether disclaimer is enabled
+     */
+    disclaimer_specialist?: VKBaseBoolInt
+    /**
+     * Information whether disclaimer is enabled
+     */
+    disclaimer_supplements?: VKBaseBoolInt
+    /**
+     * Information whether disclaimer is enabled
+     */
+    disclaimer_credits?: VKBaseBoolInt
+    /**
+     * Ad ID
+     */
+    id: number
+    /**
+     * Impressions limit
+     */
+    impressions_limit?: number
+    /**
+     * Impressions limit period
+     */
+    impressions_limit_period?: number
+    /**
+     * Information whether impressions are limited
+     */
+    impressions_limited?: VKBaseBoolInt
+    /**
+     * Ad title
+     */
+    name: string
+    status: VKAdsAdStatus
+    /**
+     * Information whether the ad is a video
+     */
+    video?: VKBaseBoolInt
+    /**
+     * Day limit
+     */
+    day_limit?: string
+    /**
+     * Goal type
+     */
+    goal_type?: number
+    /**
+     * User goal type
+     */
+    user_goal_type?: number
+    /**
+     * Age restriction
+     */
+    age_restriction?: number
+    /**
+     * Conversion pixel id
+     */
+    conversion_pixel_id?: number
+    /**
+     * Conversion event id
+     */
+    conversion_event_id?: number
+    /**
+     * Create time
+     */
+    create_time?: number
+    /**
+     * Update time
+     */
+    update_time?: number
+    /**
+     * Start time
+     */
+    start_time?: number
+    /**
+     * Stop time
+     */
+    stop_time?: number
+    /**
+     * Publisher platform auto
+     */
+    publisher_platforms_auto?: VKBaseBoolInt
+    /**
+     * Publisher platforms
+     */
+    publisher_platforms?: string
+    /**
+     * Link url
+     */
+    link_url?: string
+    /**
+     * Link owner id
+     */
+    link_owner_id?: number
+    /**
+     * Link id
+     */
+    link_id?: number
+    /**
+     * Has campaign budget optimization
+     */
+    has_campaign_budget_optimization?: boolean
+    /**
+     * Events retargeting groups
+     */
+    events_retargeting_groups?: VKAdsEventsRetargetingGroup[]
+    /**
+     * Weekly schedule hours
+     */
+    weekly_schedule_hours?: string[]
+    /**
+     * Weekly schedule use holidays
+     */
+    weekly_schedule_use_holidays?: number
+    /**
+     * Ad platform no ad network
+     */
+    ad_platform_no_ad_network?: number
+    /**
+     * Ad platform no wall
+     */
+    ad_platform_no_wall?: number
+    /**
+     * Disclaimer finance
+     */
+    disclaimer_finance?: number
+    /**
+     * Disclaimer finance name
+     */
+    disclaimer_finance_name?: string
+    /**
+     * Disclaimer finance license no
+     */
+    disclaimer_finance_license_no?: string
+    /**
+     * is promo
+     */
+    is_promo?: boolean
+    /**
+     * Suggested criteria
+     */
+    suggested_criteria?: number
+    /**
+     * Link type
+     */
+    link_type?: number
 }
 
 /**
- * This object represents a service message about new members invited to a video chat.
+ * Review status
  *
- * [Documentation](https://core.telegram.org/bots/api/#videochatparticipantsinvited)
+ * - `0` — not moderated
+ * - `1` — pending moderation
+ * - `2` — approved
+ * - `3` — rejected
  */
-export interface TelegramVideoChatParticipantsInvited {
+export type VKAdsAdApproved = 0 | 1 | 2 | 3
+
+/**
+ * Cost type
+ *
+ * - `0` — per clicks
+ * - `1` — per impressions
+ * - `2` — per actions
+ * - `3` — per impressions optimized
+ */
+export type VKAdsAdCostType = 0 | 1 | 2 | 3
+
+/**
+ *
+ */
+export interface VKAdsAdLayout {
     /**
-     * New members that were invited to the video chat
+     * Ad format
      */
-    users: TelegramUser[]
+    ad_format: number
+    /**
+     * Campaign ID
+     */
+    campaign_id: number
+    cost_type: VKAdsAdCostType
+    /**
+     * Ad description
+     */
+    description: string
+    /**
+     * Ad ID
+     */
+    id: number
+    /**
+     * Image URL
+     */
+    image_src: string
+    /**
+     * URL of the preview image in double size
+     */
+    image_src_2x?: string
+    /**
+     * Domain of advertised object
+     */
+    link_domain?: string
+    /**
+     * URL of advertised object
+     */
+    link_url: string
+    /**
+     * Type of advertised object
+     */
+    link_type: number
+    /**
+     * link to preview an ad as it is shown on the website
+     */
+    preview_link?: string
+    /**
+     * Ad title
+     */
+    title: string
+    /**
+     * Information whether the ad is a video
+     */
+    video?: VKBaseBoolInt
+    /**
+     * Social
+     */
+    social?: boolean
+    /**
+     * Okved
+     */
+    okved?: string
+    /**
+     * Age restriction
+     */
+    age_restriction?: number
+    /**
+     * Goal type
+     */
+    goal_type?: number
+    /**
+     * Link title
+     */
+    link_title?: string
+    /**
+     * Link button
+     */
+    link_button?: string
+    /**
+     * Repeat video
+     */
+    repeat_video?: number
+    /**
+     * Video source 240p
+     */
+    video_src_240?: string
+    /**
+     * Video source 360p
+     */
+    video_src_360?: string
+    /**
+     * Video source 480p
+     */
+    video_src_480?: string
+    /**
+     * Video source 720p
+     */
+    video_src_720?: string
+    /**
+     * Video source 1080p
+     */
+    video_src_1080?: string
+    /**
+     * Video source 1440p
+     */
+    video_src_1440?: string
+    /**
+     * Video source 2160p
+     */
+    video_src_2160?: string
+    /**
+     * Video image source
+     */
+    video_image_src?: string
+    /**
+     * Video image source 2x
+     */
+    video_image_src_2x?: string
+    /**
+     * Video duration
+     */
+    video_duration?: number
+    /**
+     * Icon source
+     */
+    icon_src?: string
+    /**
+     * Icon source 2x
+     */
+    icon_src_2x?: string
+    post?: VKAdsPost
+    stories_data?: VKAdsStories
+    clips_list?: VKAdsClipItem[]
 }
 
 /**
- * Describes a service message about a change in the price of paid messages within a chat.
+ * Ad atatus
  *
- * [Documentation](https://core.telegram.org/bots/api/#paidmessagepricechanged)
+ * - `0` — stopped
+ * - `1` — started
+ * - `2` — deleted
  */
-export interface TelegramPaidMessagePriceChanged {
+export type VKAdsAdStatus = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKAdsCampaign {
     /**
-     * The new number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
+     * Amount of active ads in campaign
      */
-    paid_message_star_count: number
+    ads_count?: number
+    /**
+     * Campaign's total limit, rubles
+     */
+    all_limit: string
+    /**
+     * Campaign create time, as Unixtime
+     */
+    create_time?: number
+    /**
+     * Campaign goal type
+     */
+    goal_type?: number
+    /**
+     * Campaign user goal type
+     */
+    user_goal_type?: number
+    /**
+     * Shows if Campaign Budget Optimization is on
+     */
+    is_cbo_enabled?: boolean
+    /**
+     * Campaign's day limit, rubles
+     */
+    day_limit: string
+    /**
+     * Campaign ID
+     */
+    id: number
+    /**
+     * Campaign title
+     */
+    name: string
+    /**
+     * Campaign start time, as Unixtime
+     */
+    start_time: number
+    status: VKAdsCampaignStatus
+    /**
+     * Campaign stop time, as Unixtime
+     */
+    stop_time: number
+    type: VKAdsCampaignType
+    /**
+     * Campaign update time, as Unixtime
+     */
+    update_time?: number
+    /**
+     * Limit of views per user per campaign
+     */
+    views_limit?: number
 }
 
 /**
- * Describes a service message about a change in the price of direct messages sent to a channel chat.
+ * Campaign status
  *
- * [Documentation](https://core.telegram.org/bots/api/#directmessagepricechanged)
+ * - `0` — stopped
+ * - `1` — started
+ * - `2` — deleted
  */
-export interface TelegramDirectMessagePriceChanged {
+export type VKAdsCampaignStatus = 0 | 1 | 2
+
+/**
+ * Campaign type
+ */
+export type VKAdsCampaignType =
+    | "normal"
+    | "vk_apps_managed"
+    | "mobile_apps"
+    | "promoted_posts"
+    | "adaptive_ads"
+    | "stories"
+
+/**
+ *
+ */
+export interface VKAdsCategory {
     /**
-     * *True*, if direct messages are enabled for the channel chat; false otherwise
+     * Category ID
      */
-    are_direct_messages_enabled: boolean
+    id: number
     /**
-     * *Optional*. The new number of Telegram Stars that must be paid by users for each direct message sent to the channel. Does not apply to users who have been exempted by administrators. Defaults to 0.
+     * Category name
      */
-    direct_message_star_count?: number
+    name: string
+    subcategories?: VKAdsCategory[]
 }
 
 /**
- * Describes a service message about the approval of a suggested post.
  *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostapproved)
  */
-export interface TelegramSuggestedPostApproved {
+export interface VKAdsClient {
     /**
-     * *Optional*. Message containing the suggested post. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
+     * Client's total limit, rubles
      */
-    suggested_post_message?: TelegramMessage
+    all_limit: string
     /**
-     * *Optional*. Amount paid for the post
+     * Client's day limit, rubles
      */
-    price?: TelegramSuggestedPostPrice
+    day_limit: string
     /**
-     * Date when the post will be published
+     * Client ID
      */
-    send_date: number
+    id: number
+    /**
+     * Client name
+     */
+    name: string
+    /**
+     * Ord data
+     */
+    ord_data?: VKAdsOrdData
 }
 
 /**
- * Describes a service message about the failed approval of a suggested post. Currently, only caused by insufficient user funds at the time of approval.
  *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostapprovalfailed)
  */
-export interface TelegramSuggestedPostApprovalFailed {
+export interface VKAdsClipItem {
     /**
-     * *Optional*. Message containing the suggested post whose approval has failed. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
+     * Video id
      */
-    suggested_post_message?: TelegramMessage
+    video_id?: number
     /**
-     * Expected price of the post
+     * Preview url
      */
-    price: TelegramSuggestedPostPrice
+    preview_url?: string
+    link?: VKAdsClipItemLink
 }
 
 /**
- * Describes a service message about the rejection of a suggested post.
- *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostdeclined)
+ * Link
  */
-export interface TelegramSuggestedPostDeclined {
+export interface VKAdsClipItemLink {
     /**
-     * *Optional*. Message containing the suggested post. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
+     * Text
      */
-    suggested_post_message?: TelegramMessage
+    text?: string
     /**
-     * *Optional*. Comment with which the post was declined
+     * Key
+     */
+    key?: string
+    /**
+     * Url
+     */
+    url?: string
+}
+
+/**
+ *
+ */
+export interface VKAdsCreateAdStatus {
+    /**
+     * Ad ID
+     */
+    id: number
+    /**
+     * Stealth Post ID
+     */
+    post_id?: number
+    /**
+     * Error code
+     */
+    error_code?: number
+    /**
+     * Error description
+     */
+    error_desc?: string
+}
+
+/**
+ *
+ */
+export interface VKAdsCreateCampaignStatus {
+    /**
+     * Campaign ID
+     */
+    id: number
+    /**
+     * Error code
+     */
+    error_code?: number
+    /**
+     * Error description
+     */
+    error_desc?: string
+}
+
+/**
+ *
+ */
+export interface VKAdsCreateClientsStatus {
+    /**
+     * Client ID
+     */
+    id: number
+    /**
+     * Error code
+     */
+    error_code?: number
+    /**
+     * Error description
+     */
+    error_desc?: string
+}
+
+/**
+ *
+ */
+export interface VKAdsCriteria {
+    /**
+     * Age from
+     */
+    age_from?: string
+    /**
+     * Age to
+     */
+    age_to?: string
+    /**
+     * Apps IDs
+     */
+    apps?: string
+    /**
+     * Apps IDs to except
+     */
+    apps_not?: string
+    /**
+     * Days to birthday
+     */
+    birthday?: string
+    /**
+     * Cities IDs
+     */
+    cities?: string
+    /**
+     * Cities IDs to except
+     */
+    cities_not?: string
+    /**
+     * Districts IDs
+     */
+    districts?: string
+    /**
+     * Communities IDs
+     */
+    groups?: string
+    /**
+     * Interests categories IDs
+     */
+    interest_categories?: string
+    /**
+     * Interests
+     */
+    interests?: string
+    /**
+     * Information whether the user has proceeded VK payments before
+     */
+    paying?: string
+    /**
+     * Positions IDs
+     */
+    positions?: string
+    /**
+     * Religions IDs
+     */
+    religions?: string
+    /**
+     * Retargeting groups ids
+     */
+    retargeting_groups?: string
+    /**
+     * Retargeting groups NOT ids
+     */
+    retargeting_groups_not?: string
+    /**
+     * School graduation year from
+     */
+    school_from?: string
+    /**
+     * School graduation year to
+     */
+    school_to?: string
+    /**
+     * Schools IDs
+     */
+    schools?: string
+    sex?: VKAdsCriteriaSex
+    /**
+     * Stations IDs
+     */
+    stations?: string
+    /**
+     * Relationship statuses
+     */
+    statuses?: string
+    /**
+     * Streets IDs
+     */
+    streets?: string
+    /**
+     * Travellers
+     */
+    travellers?: string
+    /**
+     * AB test
+     */
+    ab_test?: string
+    /**
+     * University graduation year from
+     */
+    uni_from?: string
+    /**
+     * University graduation year to
+     */
+    uni_to?: string
+    /**
+     * Browsers
+     */
+    user_browsers?: string
+    /**
+     * Devices
+     */
+    user_devices?: string
+    /**
+     * Operating systems
+     */
+    user_os?: string
+    /**
+     * Suggested criteria
+     */
+    suggested_criteria?: string
+    /**
+     * Group not
+     */
+    groups_not?: string
+    /**
+     * Price list audience type
+     */
+    price_list_audience_type?: string
+    /**
+     * Count
+     */
+    count?: string
+    /**
+     * Group active formula
+     */
+    groups_active_formula?: string
+    /**
+     * Interest categories formula
+     */
+    interest_categories_formula?: string
+    /**
+     * Groups formula
+     */
+    groups_formula?: string
+    /**
+     * Groups active
+     */
+    groups_active?: string
+    /**
+     * Group types
+     */
+    group_types?: string
+    /**
+     * Key phrases
+     */
+    key_phrases?: string
+    /**
+     * Key phrases days
+     */
+    key_phrases_days?: string
+    /**
+     * Geo near
+     */
+    geo_near?: string
+    /**
+     * Geo point type
+     */
+    geo_point_type?: string
+    /**
+     * Price list id
+     */
+    price_list_id?: string
+    /**
+     * Groups recommended ids
+     */
+    groups_recommended?: string
+    /**
+     * Groups active recommended ids
+     */
+    groups_active_recommended?: string
+    /**
+     * Music artists formula
+     */
+    music_artists_formula?: string
+    /**
+     * Price list retargeting formula
+     */
+    price_list_retargeting_formula?: string
+    /**
+     * Tags
+     */
+    tags?: string
+    /**
+     * Browsers
+     */
+    browsers?: string
+    /**
+     * Mobile os min version
+     */
+    mobile_os_min_version?: string
+    /**
+     * Mobile apps events formula
+     */
+    mobile_apps_events_formula?: string
+    /**
+     * Mobile os max version
+     */
+    mobile_os_max_version?: string
+    /**
+     * operators
+     */
+    operators?: string
+    /**
+     * wifi_only
+     */
+    wifi_only?: string
+    /**
+     * mobile_manufacturers
+     */
+    mobile_manufacturers?: string
+}
+
+/**
+ * Sex
+ *
+ * - `0` — any
+ * - `1` — male
+ * - `2` — female
+ */
+export type VKAdsCriteriaSex = "0" | "1" | "2"
+
+/**
+ *
+ */
+export interface VKAdsDemoStats {
+    /**
+     * Object ID
+     */
+    id?: number
+    stats?: VKAdsDemostatsFormat[]
+    type?: VKAdsObjectType
+}
+
+/**
+ *
+ */
+export interface VKAdsDemographicStatsPeriodItemBase {
+    /**
+     * Clicks rate
+     */
+    clicks_rate?: number
+    /**
+     * Impressions rate
+     */
+    impressions_rate?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsDemostatsFormat {
+    age?: VKAdsStatsAge[]
+    cities?: VKAdsStatsCities[]
+    /**
+     * Day as YYYY-MM-DD
+     */
+    day?: string
+    day_from?: string
+    day_to?: string
+    /**
+     * Month as YYYY-MM
+     */
+    month?: string
+    /**
+     * 1 if period=overall
+     */
+    overall?: number
+    sex?: VKAdsStatsSex[]
+    sex_age?: VKAdsStatsSexAge[]
+}
+
+/**
+ *
+ */
+export interface VKAdsEventsRetargetingGroup {
+    id?: number
+    value?: number[]
+}
+
+/**
+ *
+ */
+export interface VKAdsFloodStats {
+    /**
+     * Requests left
+     */
+    left: number
+    /**
+     * Time to refresh in seconds
+     */
+    refresh: number
+    /**
+     * Used requests per user
+     */
+    stats_by_user?: VKAdsFloodStatsByUserItem[]
+}
+
+/**
+ *
+ */
+export interface VKAdsFloodStatsByUserItem {
+    /**
+     * User ID
+     */
+    user_id: number
+    /**
+     * Used requests
+     */
+    requests_count: number
+}
+
+/**
+ *
+ */
+export interface VKAdsLinkStatus {
+    /**
+     * Reject reason
+     */
+    description?: string
+    /**
+     * URL
+     */
+    redirect_url?: string
+    /**
+     * Link status
+     */
+    status: string
+}
+
+export type VKAdsLookalikeRequestStatus =
+    | "search_in_progress"
+    | "search_failed"
+    | "search_done"
+    | "save_in_progress"
+    | "save_failed"
+    | "save_done"
+export type VKAdsLookalikeRequestSourceType = "retargeting_group"
+
+/**
+ *
+ */
+export interface VKAdsLookalikeRequest {
+    /**
+     * Lookalike request ID
+     */
+    id: number
+    /**
+     * Lookalike request create time, as Unixtime
+     */
+    create_time: number
+    /**
+     * Lookalike request update time, as Unixtime
+     */
+    update_time: number
+    /**
+     * Time by which lookalike request would be deleted, as Unixtime
+     */
+    scheduled_delete_time?: number
+    /**
+     * Lookalike request status
+     */
+    status: VKAdsLookalikeRequestStatus
+    /**
+     * Lookalike request source type
+     */
+    source_type: VKAdsLookalikeRequestSourceType
+    /**
+     * Retargeting group id, which was used as lookalike seed
+     */
+    source_retargeting_group_id?: number
+    /**
+     * Lookalike request seed name (retargeting group name)
+     */
+    source_name?: string
+    /**
+     * Lookalike request seed audience size
+     */
+    audience_count?: number
+    save_audience_levels?: VKAdsLookalikeRequestSaveAudienceLevel[]
+}
+
+/**
+ *
+ */
+export interface VKAdsLookalikeRequestSaveAudienceLevel {
+    /**
+     * Save audience level id, which is used in save audience queries
+     */
+    level?: number
+    /**
+     * Saved audience audience size for according level
+     */
+    audience_count?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsMobileStatItem {
+    key?: string
+    value?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsMusician {
+    /**
+     * Targeting music artist ID
+     */
+    id: number
+    /**
+     * Music artist ID as in VKMusic
+     */
+    original_id: string
+    /**
+     * Music artist name
+     */
+    name: string
+    /**
+     * Music artist photo
+     */
+    avatar?: string
+}
+
+/**
+ * Object type
+ */
+export type VKAdsObjectType = "ad" | "campaign" | "client" | "office"
+
+/**
+ *
+ */
+export type VKAdsOrdClientType =
+    | "person"
+    | "individual"
+    | "legal"
+    | "foreign"
+    | "unknown"
+
+/**
+ *
+ */
+export interface VKAdsOrdData {
+    client_type: VKAdsOrdClientType
+    client_name: string
+    inn?: string
+    phone: string
+    agency_phone?: string
+    subagent?: VKAdsOrdSubagent
+    contract_number: string
+    contract_date: string
+    contract_type: string
+    contract_object: string
+    with_vat: boolean
+}
+
+/**
+ *
+ */
+export interface VKAdsOrdSubagent {
+    type: VKAdsOrdClientType
+    name: string
+    inn?: string
+    phone: string
+}
+
+/**
+ *
+ */
+export interface VKAdsPost {
+    /**
+     * Post id
+     */
+    id?: number
+    /**
+     * From id
+     */
+    from_id?: number
+    /**
+     * Owner id
+     */
+    owner_id?: number
+    /**
+     * Date
+     */
+    date?: number
+    /**
+     * Edited date
+     */
+    edited?: number
+    /**
+     * Is pinned
+     */
+    is_pinned?: number
+    /**
+     * Marked as ads
+     */
+    marked_as_ads?: number
+    ads_easy_promote?: VKAdsPostEasyPromote
+    donut?: VKAdsPostDonut
+    comments?: VKAdsPostComments
+    copyright?: VKWallPostCopyright
+    /**
+     * Short text rate
+     */
+    short_text_rate?: number
+    /**
+     * Type
+     */
+    type?: string
+    /**
+     * Is favorite
+     */
+    is_favorite?: boolean
+    likes?: VKAdsPostLikes
+    views?: VKAdsPostViews
+    /**
+     * Post type
+     */
+    post_type?: string
+    reposts?: VKAdsPostReposts
+    /**
+     * Text
+     */
+    text?: string
+    /**
+     * Is promoted post stealth
+     */
+    is_promoted_post_stealth?: boolean
+    /**
+     * Hash
+     */
+    hash?: string
+    owner?: VKAdsPostOwner
+    attachments?: VKWallWallpostAttachment[]
+    /**
+     * Created by
+     */
+    created_by?: number
+    /**
+     * Carousel offset
+     */
+    carousel_offset?: number
+    /**
+     * Can edit
+     */
+    can_edit?: number
+    /**
+     * Can delete
+     */
+    can_delete?: number
+    /**
+     * Can pin
+     */
+    can_pin?: number
+}
+
+/**
+ * Comments
+ */
+export interface VKAdsPostComments {
+    /**
+     * Count
+     */
+    count?: number
+}
+
+/**
+ * Donut
+ */
+export interface VKAdsPostDonut {
+    /**
+     * Is donut
+     */
+    is_donut?: boolean
+}
+
+/**
+ * Ads easy promote
+ */
+export interface VKAdsPostEasyPromote {
+    /**
+     * Type
+     */
+    type?: number
+    /**
+     * Text
+     */
+    text?: string
+    /**
+     * Label text
+     */
+    label_text?: string
+    /**
+     * Button text
+     */
+    button_text?: string
+    /**
+     * Is ad not easy
+     */
+    is_ad_not_easy?: boolean
+    /**
+     * Ad id
+     */
+    ad_id?: number
+    /**
+     * Top union id
+     */
+    top_union_id?: number
+}
+
+/**
+ * Likes
+ */
+export interface VKAdsPostLikes {
+    /**
+     * Can like
+     */
+    can_like?: number
+    /**
+     * Count
+     */
+    count?: number
+    /**
+     * User likes
+     */
+    user_likes?: number
+}
+
+/**
+ * Owner
+ */
+export interface VKAdsPostOwner {
+    /**
+     * Owner id
+     */
+    id?: number
+    /**
+     * Name
+     */
+    name?: string
+    /**
+     * Photo url
+     */
+    photo?: string
+    /**
+     * Profile url
+     */
+    url?: string
+}
+
+/**
+ * Reposts
+ */
+export interface VKAdsPostReposts {
+    /**
+     * Count
+     */
+    count?: number
+    /**
+     * Wall count
+     */
+    wall_count?: number
+    /**
+     * Mail count
+     */
+    mail_count?: number
+}
+
+/**
+ * Views
+ */
+export interface VKAdsPostViews {
+    /**
+     * Count
+     */
+    count?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsPromotedPostReach {
+    /**
+     * Hides amount
+     */
+    hide: number
+    /**
+     * Object ID from 'ids' parameter
+     */
+    id: number
+    /**
+     * Community joins
+     */
+    join_group: number
+    /**
+     * Link clicks
+     */
+    links: number
+    /**
+     * Subscribers reach
+     */
+    reach_subscribers: number
+    /**
+     * Total reach
+     */
+    reach_total: number
+    /**
+     * Reports amount
+     */
+    report: number
+    /**
+     * Community clicks
+     */
+    to_group: number
+    /**
+     * 'Unsubscribe' events amount
+     */
+    unsubscribe: number
+    /**
+     * Video views for 100 percent
+     */
+    video_views_100p?: number
+    /**
+     * Video views for 25 percent
+     */
+    video_views_25p?: number
+    /**
+     * Video views for 3 seconds
+     */
+    video_views_3s?: number
+    /**
+     * Video views for 10 seconds
+     */
+    video_views_10s?: number
+    /**
+     * Video views for 50 percent
+     */
+    video_views_50p?: number
+    /**
+     * Video views for 75 percent
+     */
+    video_views_75p?: number
+    /**
+     * Video starts
+     */
+    video_views_start?: number
+    /**
+     * Pretty cards clicks
+     */
+    pretty_cards_clicks?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsRejectReason {
+    /**
+     * Comment text
      */
     comment?: string
-}
-
-export type TelegramSuggestedPostPaidCurrency = "XTR" | "TON"
-
-/**
- * Describes a service message about a successful payment for a suggested post.
- *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostpaid)
- */
-export interface TelegramSuggestedPostPaid {
-    /**
-     * *Optional*. Message containing the suggested post. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
-     */
-    suggested_post_message?: TelegramMessage
-    /**
-     * Currency in which the payment was made. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins
-     */
-    currency: TelegramSuggestedPostPaidCurrency
-    /**
-     * *Optional*. The amount of the currency that was received by the channel in nanotoncoins; for payments in toncoins only
-     */
-    amount?: number
-    /**
-     * *Optional*. The amount of Telegram Stars that was received by the channel; for payments in Telegram Stars only
-     */
-    star_amount?: TelegramStarAmount
-}
-
-export type TelegramSuggestedPostRefundedReason =
-    | "post_deleted"
-    | "24"
-    | "payment_refunded"
-
-/**
- * Describes a service message about a payment refund for a suggested post.
- *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostrefunded)
- */
-export interface TelegramSuggestedPostRefunded {
-    /**
-     * *Optional*. Message containing the suggested post. Note that the [Message](https://core.telegram.org/bots/api#message) object in this field will not contain the *reply\_to\_message* field even if it itself is a reply.
-     */
-    suggested_post_message?: TelegramMessage
-    /**
-     * Reason for the refund. Currently, one of “post\_deleted” if the post was deleted within 24 hours of being posted or removed from scheduled messages without being posted, or “payment\_refunded” if the payer refunded their payment.
-     */
-    reason: TelegramSuggestedPostRefundedReason
+    rules?: VKAdsRules[]
 }
 
 /**
- * This object represents a service message about the creation of a scheduled giveaway.
  *
- * [Documentation](https://core.telegram.org/bots/api/#giveawaycreated)
  */
-export interface TelegramGiveawayCreated {
+export interface VKAdsRules {
     /**
-     * *Optional*. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
+     * Help url
      */
-    prize_star_count?: number
+    help_url?: string | boolean
+    /**
+     * Label
+     */
+    help_label?: string
+    /**
+     * Content Html
+     */
+    content_html?: string
+    /**
+     * Help chat
+     */
+    help_chat?: boolean
+}
+
+export type VKAdsStatisticClickActionType =
+    | "load"
+    | "impression"
+    | "click_deeplink"
+    | "click"
+    | "click_post_owner"
+    | "click_post_link"
+    | "click_pretty_card"
+    | "like_post"
+    | "share_post"
+    | "video_start"
+    | "video_pause"
+    | "video_resume"
+    | "video_play_3s"
+    | "video_play_10s"
+    | "video_play_25"
+    | "video_play_50"
+    | "video_play_75"
+    | "video_play_95"
+    | "video_play_100"
+    | "video_volume_on"
+    | "video_volume_off"
+    | "video_fullscreen_on"
+    | "video_fullscreen_off"
+    | "hide"
+
+/**
+ *
+ */
+export interface VKAdsStatisticClickAction {
+    type?: VKAdsStatisticClickActionType
+    url?: string
 }
 
 /**
- * This object represents a message about a scheduled giveaway.
  *
- * [Documentation](https://core.telegram.org/bots/api/#giveaway)
  */
-export interface TelegramGiveaway {
+export interface VKAdsStats {
     /**
-     * The list of chats which the user must join to participate in the giveaway
+     * Object ID
      */
-    chats: TelegramChat[]
-    /**
-     * Point in time (Unix timestamp) when winners of the giveaway will be selected
-     */
-    winners_selection_date: number
-    /**
-     * The number of users which are supposed to be selected as winners of the giveaway
-     */
-    winner_count: number
-    /**
-     * *Optional*. *True*, if only users who join the chats after the giveaway started should be eligible to win
-     */
-    only_new_members?: true
-    /**
-     * *Optional*. *True*, if the list of giveaway winners will be visible to everyone
-     */
-    has_public_winners?: true
-    /**
-     * *Optional*. Description of additional giveaway prize
-     */
-    prize_description?: string
-    /**
-     * *Optional*. A list of two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes indicating the countries from which eligible users for the giveaway must come. If empty, then all users can participate in the giveaway. Users with a phone number that was bought on Fragment can always participate in giveaways.
-     */
-    country_codes?: string[]
-    /**
-     * *Optional*. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
-     */
-    prize_star_count?: number
-    /**
-     * *Optional*. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only
-     */
-    premium_subscription_month_count?: number
+    id?: number
+    stats?: VKAdsStatsFormat[]
+    type?: VKAdsObjectType
+    views_times?: VKAdsStatsViewsTimes
 }
 
 /**
- * This object represents a message about the completion of a giveaway with public winners.
  *
- * [Documentation](https://core.telegram.org/bots/api/#giveawaywinners)
  */
-export interface TelegramGiveawayWinners {
+export interface VKAdsStatsAge {
     /**
-     * The chat that created the giveaway
+     * Age interval
      */
-    chat: TelegramChat
+    value?: string
     /**
-     * Identifier of the message with the giveaway in the chat
+     * Clicks rate
      */
-    giveaway_message_id: number
+    clicks_rate?: number
     /**
-     * Point in time (Unix timestamp) when winners of the giveaway were selected
+     * Impressions rate
      */
-    winners_selection_date: number
-    /**
-     * Total number of winners in the giveaway
-     */
-    winner_count: number
-    /**
-     * List of up to 100 winners of the giveaway
-     */
-    winners: TelegramUser[]
-    /**
-     * *Optional*. The number of other chats the user had to join in order to be eligible for the giveaway
-     */
-    additional_chat_count?: number
-    /**
-     * *Optional*. The number of Telegram Stars that were split between giveaway winners; for Telegram Star giveaways only
-     */
-    prize_star_count?: number
-    /**
-     * *Optional*. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only
-     */
-    premium_subscription_month_count?: number
-    /**
-     * *Optional*. Number of undistributed prizes
-     */
-    unclaimed_prize_count?: number
-    /**
-     * *Optional*. *True*, if only users who had joined the chats after the giveaway started were eligible to win
-     */
-    only_new_members?: true
-    /**
-     * *Optional*. *True*, if the giveaway was canceled because the payment for it was refunded
-     */
-    was_refunded?: true
-    /**
-     * *Optional*. Description of additional giveaway prize
-     */
-    prize_description?: string
+    impressions_rate?: number
 }
 
 /**
- * This object represents a service message about the completion of a giveaway without public winners.
  *
- * [Documentation](https://core.telegram.org/bots/api/#giveawaycompleted)
  */
-export interface TelegramGiveawayCompleted {
+export interface VKAdsStatsCities {
     /**
-     * Number of winners in the giveaway
+     * City name
      */
-    winner_count: number
+    name?: string
     /**
-     * *Optional*. Number of undistributed prizes
+     * City ID
      */
-    unclaimed_prize_count?: number
+    value?: number | string
     /**
-     * *Optional*. Message with the giveaway that was completed, if it wasn't deleted
+     * Clicks rate
      */
-    giveaway_message?: TelegramMessage
+    clicks_rate?: number
     /**
-     * *Optional*. *True*, if the giveaway is a Telegram Star giveaway. Otherwise, currently, the giveaway is a Telegram Premium giveaway.
+     * Impressions rate
      */
-    is_star_giveaway?: true
+    impressions_rate?: number
 }
 
 /**
- * Describes the options used for link preview generation.
  *
- * [Documentation](https://core.telegram.org/bots/api/#linkpreviewoptions)
  */
-export interface TelegramLinkPreviewOptions {
+export interface VKAdsStatsFormat {
     /**
-     * *Optional*. *True*, if the link preview is disabled
+     * Clicks number
      */
-    is_disabled?: boolean
+    clicks?: number
     /**
-     * *Optional*. URL to use for the link preview. If empty, then the first URL found in the message text will be used
+     * External clicks number
+     */
+    link_external_clicks?: number
+    /**
+     * Day as YYYY-MM-DD
+     */
+    day?: string
+    /**
+     * Impressions number
+     */
+    impressions?: number
+    /**
+     * Events number
+     */
+    join_rate?: number
+    /**
+     * Month as YYYY-MM
+     */
+    month?: string
+    /**
+     * Year as YYYY
+     */
+    year?: number
+    /**
+     * 1 if period=overall
+     */
+    overall?: number
+    /**
+     * Reach
+     */
+    reach?: number
+    /**
+     * Spent funds
+     */
+    spent?: string
+    /**
+     * Video plays unique started count
+     */
+    video_plays_unique_started?: number
+    /**
+     * Video plays unique 3 seconds count
+     */
+    video_plays_unique_3_seconds?: number
+    /**
+     * Video plays unique 10 seconds count
+     */
+    video_plays_unique_10_seconds?: number
+    /**
+     * Video plays unique 25 percents count
+     */
+    video_plays_unique_25_percents?: number
+    /**
+     * Video plays unique 50 percents count
+     */
+    video_plays_unique_50_percents?: number
+    /**
+     * Video plays unique 75 percents count
+     */
+    video_plays_unique_75_percents?: number
+    /**
+     * Video plays unique 100 percents count
+     */
+    video_plays_unique_100_percents?: number
+    /**
+     * Effective cost per click
+     */
+    effective_cost_per_click?: string
+    /**
+     * Effective cost per mille
+     */
+    effective_cost_per_mille?: string
+    /**
+     * Effective cpf
+     */
+    effective_cpf?: string
+    /**
+     * Effective cost per message
+     */
+    effective_cost_per_message?: string
+    /**
+     * Message sends count
+     */
+    message_sends?: number
+    /**
+     * Message sends by anu user
+     */
+    message_sends_by_any_user?: number
+    /**
+     * Conversions external
+     */
+    conversions_external?: number
+    /**
+     * Conversions count
+     */
+    conversion_count?: number
+    /**
+     * Conversions CR
+     */
+    conversion_cr?: string
+    /**
+     * Day from
+     */
+    day_from?: string
+    /**
+     * Day to
+     */
+    day_to?: string
+    /**
+     * Ctr
+     */
+    ctr?: string
+    /**
+     * Unique views count
+     */
+    uniq_views_count?: number
+    /**
+     * Mobile app stat
+     */
+    mobile_app_stat?: VKAdsMobileStatItem[]
+}
+
+/**
+ *
+ */
+export interface VKAdsStatsSex {
+    value?: VKAdsStatsSexValue
+    /**
+     * Clicks rate
+     */
+    clicks_rate?: number
+    /**
+     * Impressions rate
+     */
+    impressions_rate?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsStatsSexAge {
+    /**
+     * Sex and age interval
+     */
+    value?: string
+    /**
+     * Clicks rate
+     */
+    clicks_rate?: number
+    /**
+     * Impressions rate
+     */
+    impressions_rate?: number
+}
+
+/**
+ * Sex
+ *
+ * - `f` — female
+ * - `m` — male
+ */
+export type VKAdsStatsSexValue = "f" | "m"
+
+/**
+ *
+ */
+export interface VKAdsStatsViewsTimes {
+    views_ads_times_1?: number
+    views_ads_times_2?: number
+    views_ads_times_3?: number
+    views_ads_times_4?: number
+    views_ads_times_5?: string
+    views_ads_times_6?: number
+    views_ads_times_7?: number
+    views_ads_times_8?: number
+    views_ads_times_9?: number
+    views_ads_times_10?: number
+    views_ads_times_11_plus?: number
+}
+
+/**
+ *
+ */
+export interface VKAdsStories {
+    stories?: VKAdsStoryItem[]
+    owner?: VKAdsStoriesOwner
+    /**
+     * Stories disclaimers text
+     */
+    stories_disclaimers_text?: string
+}
+
+/**
+ *
+ */
+export interface VKAdsStoriesOwner {
+    /**
+     * Owner id
+     */
+    id?: number | boolean
+    /**
+     * Href
+     */
+    href?: string
+    /**
+     * Name
+     */
+    name?: string
+    /**
+     * Photo
+     */
+    photo?: string
+    /**
+     * Verify
+     */
+    verify?: string
+    /**
+     * Gender
+     */
+    gender?: string
+    /**
+     * Name get
+     */
+    name_get?: string
+    /**
+     * First name
+     */
+    firstName?: string
+    /**
+     * First name gen
+     */
+    first_name_gen?: string
+    /**
+     * First name ins
+     */
+    first_name_ins?: string
+    /**
+     * Can follow
+     */
+    can_follow?: boolean
+}
+
+/**
+ *
+ */
+export interface VKAdsStoryItem {
+    /**
+     * Story id
+     */
+    id?: number
+    /**
+     * Owner id
+     */
+    owner_id?: number
+    /**
+     * Story raw id
+     */
+    raw_id?: string
+    /**
+     * Date
+     */
+    date?: string
+    /**
+     * Time
+     */
+    time?: number
+    /**
+     * Type
+     */
+    type?: string
+    /**
+     * Is unread
+     */
+    unread?: boolean
+    /**
+     * Can like
+     */
+    canLike?: boolean
+    /**
+     * Can comment
+     */
+    can_comment?: boolean
+    /**
+     * Can share
+     */
+    can_share?: boolean
+    /**
+     * Can remove
+     */
+    can_remove?: boolean
+    /**
+     * Can manage
+     */
+    can_manage?: boolean
+    /**
+     * Can ask
+     */
+    can_ask?: boolean
+    /**
+     * Can ask anonymous
+     */
+    can_ask_anonymous?: boolean
+    /**
+     * Is profile question
+     */
+    isProfileQuestion?: boolean
+    stats?: VKAdsStoryItemStats
+    link?: VKAdsStoryItemLink
+    /**
+     * Photo url
+     */
+    photo_url?: string
+    /**
+     * Preview url
+     */
+    preview_url?: string
+    /**
+     * Track code
+     */
+    track_code?: string
+    /**
+     * Is part of narrative
+     */
+    isPartOfNarrative?: boolean
+    /**
+     * Is ads
+     */
+    isAds?: boolean
+    /**
+     * Video url
+     */
+    video_url?: string
+    /**
+     * First frame
+     */
+    first_frame?: string
+    /**
+     * Small preview
+     */
+    small_preview?: string
+    /**
+     * Is liked
+     */
+    isLiked?: boolean
+}
+
+/**
+ *
+ */
+export interface VKAdsStoryItemLink {
+    /**
+     * Key
+     */
+    key?: string
+    /**
+     * Text
+     */
+    text?: string
+    /**
+     * Url
      */
     url?: string
     /**
-     * *Optional*. *True*, if the media in the link preview is supposed to be shrunk; ignored if the URL isn't explicitly specified or media size change isn't supported for the preview
+     * Raw url
      */
-    prefer_small_media?: boolean
-    /**
-     * *Optional*. *True*, if the media in the link preview is supposed to be enlarged; ignored if the URL isn't explicitly specified or media size change isn't supported for the preview
-     */
-    prefer_large_media?: boolean
-    /**
-     * *Optional*. *True*, if the link preview must be shown above the message text; otherwise, the link preview will be shown below the message text
-     */
-    show_above_text?: boolean
-}
-
-export type TelegramSuggestedPostPriceCurrency = "XTR" | "TON"
-
-/**
- * Describes the price of a suggested post.
- *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostprice)
- */
-export interface TelegramSuggestedPostPrice {
-    /**
-     * Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for toncoins
-     */
-    currency: TelegramSuggestedPostPriceCurrency
-    /**
-     * The amount of the currency that will be paid for the post in the *smallest units* of the currency, i.e. Telegram Stars or nanotoncoins. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanotoncoins must be between 10000000 and 10000000000000.
-     */
-    amount: number
-}
-
-export type TelegramSuggestedPostInfoState = "pending" | "approved" | "declined"
-
-/**
- * Contains information about a suggested post.
- *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostinfo)
- */
-export interface TelegramSuggestedPostInfo {
-    /**
-     * State of the suggested post. Currently, it can be one of “pending”, “approved”, “declined”.
-     */
-    state: TelegramSuggestedPostInfoState
-    /**
-     * *Optional*. Proposed price of the post. If the field is omitted, then the post is unpaid.
-     */
-    price?: TelegramSuggestedPostPrice
-    /**
-     * *Optional*. Proposed send date of the post. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user or administrator who approves it.
-     */
-    send_date?: number
+    raw_url?: string
 }
 
 /**
- * Contains parameters of a post that is being suggested by the bot.
  *
- * [Documentation](https://core.telegram.org/bots/api/#suggestedpostparameters)
  */
-export interface TelegramSuggestedPostParameters {
-    /**
-     * *Optional*. Proposed price for the post. If the field is omitted, then the post is unpaid.
-     */
-    price?: TelegramSuggestedPostPrice
-    /**
-     * *Optional*. Proposed send date of the post. If specified, then the date must be between 300 second and 2678400 seconds (30 days) in the future. If the field is omitted, then the post can be published at any time within 30 days at the sole discretion of the user who approves it.
-     */
-    send_date?: number
+export interface VKAdsStoryItemStats {
+    follow?: VKAdsStoryItemStatsFollow
+    url_view?: VKAdsStoryItemStatsUrlView
 }
 
 /**
- * Describes a topic of a direct messages chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#directmessagestopic)
+ * Follow event stats
  */
-export interface TelegramDirectMessagesTopic {
+export interface VKAdsStoryItemStatsFollow {
     /**
-     * Unique identifier of the topic. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
+     * Event type
      */
-    topic_id: number
+    event_type?: string
     /**
-     * *Optional*. Information about the user that created the topic. Currently, it is always present
+     * Event hash
      */
-    user?: TelegramUser
+    rhash?: string
 }
 
 /**
- * This object represent a user's profile pictures.
- *
- * [Documentation](https://core.telegram.org/bots/api/#userprofilephotos)
+ * Url view event stats
  */
-export interface TelegramUserProfilePhotos {
+export interface VKAdsStoryItemStatsUrlView {
     /**
-     * Total number of profile pictures the target user has
+     * Event type
      */
-    total_count: number
+    event_type?: string
     /**
-     * Requested profile pictures (in up to 4 sizes each)
+     * Event hash
      */
-    photos: TelegramPhotoSize[][]
+    rhash?: string
 }
 
 /**
- * This object represents the audios displayed on a user's profile.
  *
- * [Documentation](https://core.telegram.org/bots/api/#userprofileaudios)
  */
-export interface TelegramUserProfileAudios {
+export interface VKAdsTargSettings {
     /**
-     * Total number of profile audios for the target user
+     * Ad ID
      */
-    total_count: number
+    id?: string
     /**
-     * Requested profile audios
+     * Campaign ID
      */
-    audios: TelegramAudio[]
+    campaign_id?: string
+    /**
+     * Age from
+     */
+    age_from?: string
+    /**
+     * Age to
+     */
+    age_to?: string
+    /**
+     * Apps IDs
+     */
+    apps?: string
+    /**
+     * Apps IDs to except
+     */
+    apps_not?: string
+    /**
+     * Days to birthday
+     */
+    birthday?: string
+    /**
+     * Cities IDs
+     */
+    cities?: string
+    /**
+     * Cities IDs to except
+     */
+    cities_not?: string
+    /**
+     * Districts IDs
+     */
+    districts?: string
+    /**
+     * Communities IDs
+     */
+    groups?: string
+    /**
+     * Interests categories IDs
+     */
+    interest_categories?: string
+    /**
+     * Interests
+     */
+    interests?: string
+    /**
+     * Information whether the user has proceeded VK payments before
+     */
+    paying?: string
+    /**
+     * Positions IDs
+     */
+    positions?: string
+    /**
+     * Religions IDs
+     */
+    religions?: string
+    /**
+     * Retargeting groups ids
+     */
+    retargeting_groups?: string
+    /**
+     * Retargeting groups NOT ids
+     */
+    retargeting_groups_not?: string
+    /**
+     * School graduation year from
+     */
+    school_from?: string
+    /**
+     * School graduation year to
+     */
+    school_to?: string
+    /**
+     * Schools IDs
+     */
+    schools?: string
+    sex?: VKAdsCriteriaSex
+    /**
+     * Stations IDs
+     */
+    stations?: string
+    /**
+     * Relationship statuses
+     */
+    statuses?: string
+    /**
+     * Streets IDs
+     */
+    streets?: string
+    /**
+     * Travellers
+     */
+    travellers?: string
+    /**
+     * AB test
+     */
+    ab_test?: string
+    /**
+     * University graduation year from
+     */
+    uni_from?: string
+    /**
+     * University graduation year to
+     */
+    uni_to?: string
+    /**
+     * Browsers
+     */
+    user_browsers?: string
+    /**
+     * Devices
+     */
+    user_devices?: string
+    /**
+     * Operating systems
+     */
+    user_os?: string
+    /**
+     * Suggested criteria
+     */
+    suggested_criteria?: string
+    /**
+     * Group not
+     */
+    groups_not?: string
+    /**
+     * Price list audience type
+     */
+    price_list_audience_type?: string
+    /**
+     * Count
+     */
+    count?: string
+    /**
+     * Group active formula
+     */
+    groups_active_formula?: string
+    /**
+     * Interest categories formula
+     */
+    interest_categories_formula?: string
+    /**
+     * Groups formula
+     */
+    groups_formula?: string
+    /**
+     * Groups active
+     */
+    groups_active?: string
+    /**
+     * Group types
+     */
+    group_types?: string
+    /**
+     * Key phrases
+     */
+    key_phrases?: string
+    /**
+     * Key phrases days
+     */
+    key_phrases_days?: string
+    /**
+     * Geo near
+     */
+    geo_near?: string
+    /**
+     * Geo point type
+     */
+    geo_point_type?: string
+    /**
+     * Price list id
+     */
+    price_list_id?: string
+    /**
+     * Groups recommended ids
+     */
+    groups_recommended?: string
+    /**
+     * Groups active recommended ids
+     */
+    groups_active_recommended?: string
+    /**
+     * Music artists formula
+     */
+    music_artists_formula?: string
+    /**
+     * Price list retargeting formula
+     */
+    price_list_retargeting_formula?: string
+    /**
+     * Tags
+     */
+    tags?: string
+    /**
+     * Browsers
+     */
+    browsers?: string
+    /**
+     * Mobile os min version
+     */
+    mobile_os_min_version?: string
+    /**
+     * Mobile apps events formula
+     */
+    mobile_apps_events_formula?: string
+    /**
+     * Mobile os max version
+     */
+    mobile_os_max_version?: string
+    /**
+     * operators
+     */
+    operators?: string
+    /**
+     * wifi_only
+     */
+    wifi_only?: string
+    /**
+     * mobile_manufacturers
+     */
+    mobile_manufacturers?: string
 }
 
 /**
- * This object represents a file ready to be downloaded. The file can be downloaded via the link `https://api.telegram.org/file/bot<token>/<file_path>`. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling [getFile](https://core.telegram.org/bots/api#getfile).
  *
- * > The maximum file size to download is 20 MB
- *
- * [Documentation](https://core.telegram.org/bots/api/#file)
  */
-export interface TelegramFile {
+export interface VKAdsTargStats {
     /**
-     * Identifier for this file, which can be used to download or reuse the file
+     * Audience
      */
-    file_id: string
+    audience_count: number
     /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     * Recommended CPC value for 50% reach (old format)
      */
-    file_unique_id: string
+    recommended_cpc?: string
     /**
-     * *Optional*. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
+     * Recommended CPM value for 50% reach (old format)
      */
-    file_size?: number
+    recommended_cpm?: string
     /**
-     * *Optional*. File path. Use `https://api.telegram.org/file/bot<token>/<file_path>` to get the file.
+     * Recommended CPC value for 50% reach
      */
-    file_path?: string
+    recommended_cpc_50?: string
+    /**
+     * Recommended CPM value for 50% reach
+     */
+    recommended_cpm_50?: string
+    /**
+     * Recommended CPC value for 70% reach
+     */
+    recommended_cpc_70?: string
+    /**
+     * Recommended CPM value for 70% reach
+     */
+    recommended_cpm_70?: string
+    /**
+     * Recommended CPC value for 90% reach
+     */
+    recommended_cpc_90?: string
+    /**
+     * Recommended CPM value for 90% reach
+     */
+    recommended_cpm_90?: string
+    /**
+     * Total alive audience
+     */
+    total_alive_audience?: number
 }
 
 /**
- * Describes a [Web App](https://core.telegram.org/bots/webapps).
  *
- * [Documentation](https://core.telegram.org/bots/api/#webappinfo)
  */
-export interface TelegramWebAppInfo {
+export interface VKAdsTargSuggestions {
     /**
-     * An HTTPS URL of a Web App to be opened with additional data as specified in [Initializing Web Apps](https://core.telegram.org/bots/webapps#initializing-mini-apps)
+     * Object ID
      */
-    url: string
+    id?: number
+    /**
+     * Object name
+     */
+    name?: string
+    /**
+     * Object type
+     */
+    type?: string
+    /**
+     * Parent
+     */
+    parent?: string
 }
 
 /**
- * This object represents a [custom keyboard](https://core.telegram.org/bots/features#keyboards) with reply options (see [Introduction to bots](https://core.telegram.org/bots/features#keyboards) for details and examples). Not supported in channels and for messages sent on behalf of a Telegram Business account.
  *
- * [Documentation](https://core.telegram.org/bots/api/#replykeyboardmarkup)
  */
-export interface TelegramReplyKeyboardMarkup {
+export interface VKAdsTargSuggestionsCities {
     /**
-     * Array of button rows, each represented by an Array of [KeyboardButton](https://core.telegram.org/bots/api#keyboardbutton) objects
+     * Object ID
      */
-    keyboard: TelegramKeyboardButton[][]
+    id?: number
     /**
-     * *Optional*. Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to *false*, in which case the custom keyboard can be hidden and opened with a keyboard icon.
+     * Object name
      */
-    is_persistent?: boolean
+    name?: string
     /**
-     * *Optional*. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to *false*, in which case the custom keyboard is always of the same height as the app's standard keyboard.
+     * Parent object
      */
-    resize_keyboard?: boolean
-    /**
-     * *Optional*. Requests clients to hide the keyboard as soon as it's been used. The keyboard will still be available, but clients will automatically display the usual letter-keyboard in the chat - the user can press a special button in the input field to see the custom keyboard again. Defaults to *false*.
-     */
-    one_time_keyboard?: boolean
-    /**
-     * *Optional*. The placeholder to be shown in the input field when the keyboard is active; 1-64 characters
-     */
-    input_field_placeholder?: string
-    /**
-     * *Optional*. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the *text* of the [Message](https://core.telegram.org/bots/api#message) object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
-     *
-     * *Example:* A user requests to change the bot's language, bot replies to the request with a keyboard to select the new language. Other users in the group don't see the keyboard.
-     */
-    selective?: boolean
-}
-
-export type TelegramKeyboardButtonStyle = "danger" | "success" | "primary"
-
-/**
- * This object represents one button of the reply keyboard. At most one of the fields other than *text*, *icon\_custom\_emoji\_id*, and *style* must be used to specify the type of the button. For simple text buttons, *String* can be used instead of this object to specify the button text.
- *
- * [Documentation](https://core.telegram.org/bots/api/#keyboardbutton)
- */
-export interface TelegramKeyboardButton {
-    /**
-     * Text of the button. If none of the fields other than *text*, *icon\_custom\_emoji\_id*, and *style* are used, it will be sent as a message when the button is pressed
-     */
-    text: string
-    /**
-     * *Optional*. Unique identifier of the custom emoji shown before the text of the button. Can only be used by bots that purchased additional usernames on [Fragment](https://fragment.com) or in the messages directly sent by the bot to private, group and supergroup chats if the owner of the bot has a Telegram Premium subscription.
-     */
-    icon_custom_emoji_id?: string
-    /**
-     * *Optional*. Style of the button. Must be one of “danger” (red), “success” (green) or “primary” (blue). If omitted, then an app-specific style is used.
-     */
-    style?: TelegramKeyboardButtonStyle
-    /**
-     * *Optional*. If specified, pressing the button will open a list of suitable users. Identifiers of selected users will be sent to the bot in a “users\_shared” service message. Available in private chats only.
-     */
-    request_users?: TelegramKeyboardButtonRequestUsers
-    /**
-     * *Optional*. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a “chat\_shared” service message. Available in private chats only.
-     */
-    request_chat?: TelegramKeyboardButtonRequestChat
-    /**
-     * *Optional*. If *True*, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only.
-     */
-    request_contact?: boolean
-    /**
-     * *Optional*. If *True*, the user's current location will be sent when the button is pressed. Available in private chats only.
-     */
-    request_location?: boolean
-    /**
-     * *Optional*. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only.
-     */
-    request_poll?: TelegramKeyboardButtonPollType
-    /**
-     * *Optional*. If specified, the described [Web App](https://core.telegram.org/bots/webapps) will be launched when the button is pressed. The Web App will be able to send a “web\_app\_data” service message. Available in private chats only.
-     */
-    web_app?: TelegramWebAppInfo
+    parent?: string
 }
 
 /**
- * This object defines the criteria used to request suitable users. Information about the selected users will be shared with the bot when the corresponding button is pressed. [More about requesting users »](https://core.telegram.org/bots/features#chat-and-user-selection)
  *
- * [Documentation](https://core.telegram.org/bots/api/#keyboardbuttonrequestusers)
  */
-export interface TelegramKeyboardButtonRequestUsers {
+export interface VKAdsTargSuggestionsRegions {
     /**
-     * Signed 32-bit identifier of the request that will be received back in the [UsersShared](https://core.telegram.org/bots/api#usersshared) object. Must be unique within the message
+     * Object ID
      */
-    request_id: number
+    id?: number
     /**
-     * *Optional*. Pass *True* to request bots, pass *False* to request regular users. If not specified, no additional restrictions are applied.
+     * Object name
      */
-    user_is_bot?: boolean
+    name?: string
     /**
-     * *Optional*. Pass *True* to request premium users, pass *False* to request non-premium users. If not specified, no additional restrictions are applied.
-     */
-    user_is_premium?: boolean
-    /**
-     * *Optional*. The maximum number of users to be selected; 1-10. Defaults to 1.
-     */
-    max_quantity?: number
-    /**
-     * *Optional*. Pass *True* to request the users' first and last names
-     */
-    request_name?: boolean
-    /**
-     * *Optional*. Pass *True* to request the users' usernames
-     */
-    request_username?: boolean
-    /**
-     * *Optional*. Pass *True* to request the users' photos
-     */
-    request_photo?: boolean
-}
-
-/**
- * This object defines the criteria used to request a suitable chat. Information about the selected chat will be shared with the bot when the corresponding button is pressed. The bot will be granted requested rights in the chat if appropriate. [More about requesting chats »](https://core.telegram.org/bots/features#chat-and-user-selection).
- *
- * [Documentation](https://core.telegram.org/bots/api/#keyboardbuttonrequestchat)
- */
-export interface TelegramKeyboardButtonRequestChat {
-    /**
-     * Signed 32-bit identifier of the request, which will be received back in the [ChatShared](https://core.telegram.org/bots/api#chatshared) object. Must be unique within the message
-     */
-    request_id: number
-    /**
-     * Pass *True* to request a channel chat, pass *False* to request a group or a supergroup chat.
-     */
-    chat_is_channel: boolean
-    /**
-     * *Optional*. Pass *True* to request a forum supergroup, pass *False* to request a non-forum chat. If not specified, no additional restrictions are applied.
-     */
-    chat_is_forum?: boolean
-    /**
-     * *Optional*. Pass *True* to request a supergroup or a channel with a username, pass *False* to request a chat without a username. If not specified, no additional restrictions are applied.
-     */
-    chat_has_username?: boolean
-    /**
-     * *Optional*. Pass *True* to request a chat owned by the user. Otherwise, no additional restrictions are applied.
-     */
-    chat_is_created?: boolean
-    /**
-     * *Optional*. A JSON-serialized object listing the required administrator rights of the user in the chat. The rights must be a superset of *bot\_administrator\_rights*. If not specified, no additional restrictions are applied.
-     */
-    user_administrator_rights?: TelegramChatAdministratorRights
-    /**
-     * *Optional*. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of *user\_administrator\_rights*. If not specified, no additional restrictions are applied.
-     */
-    bot_administrator_rights?: TelegramChatAdministratorRights
-    /**
-     * *Optional*. Pass *True* to request a chat with the bot as a member. Otherwise, no additional restrictions are applied.
-     */
-    bot_is_member?: boolean
-    /**
-     * *Optional*. Pass *True* to request the chat's title
-     */
-    request_title?: boolean
-    /**
-     * *Optional*. Pass *True* to request the chat's username
-     */
-    request_username?: boolean
-    /**
-     * *Optional*. Pass *True* to request the chat's photo
-     */
-    request_photo?: boolean
-}
-
-/**
- * This object represents type of a poll, which is allowed to be created and sent when the corresponding button is pressed.
- *
- * [Documentation](https://core.telegram.org/bots/api/#keyboardbuttonpolltype)
- */
-export interface TelegramKeyboardButtonPollType {
-    /**
-     * *Optional*. If *quiz* is passed, the user will be allowed to create only polls in the quiz mode. If *regular* is passed, only regular polls will be allowed. Otherwise, the user will be allowed to create a poll of any type.
+     * Object type
      */
     type?: string
 }
 
 /**
- * Upon receiving a message with this object, Telegram clients will remove the current custom keyboard and display the default letter-keyboard. By default, custom keyboards are displayed until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are hidden immediately after the user presses a button (see [ReplyKeyboardMarkup](https://core.telegram.org/bots/api#replykeyboardmarkup)). Not supported in channels and for messages sent on behalf of a Telegram Business account.
  *
- * [Documentation](https://core.telegram.org/bots/api/#replykeyboardremove)
  */
-export interface TelegramReplyKeyboardRemove {
+export interface VKAdsTargSuggestionsSchools {
     /**
-     * Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; if you want to hide the keyboard from sight but keep it accessible, use *one\_time\_keyboard* in [ReplyKeyboardMarkup](https://core.telegram.org/bots/api#replykeyboardmarkup))
+     * Full school title
      */
-    remove_keyboard: true
+    desc?: string
     /**
-     * *Optional*. Use this parameter if you want to remove the keyboard for specific users only. Targets: 1) users that are @mentioned in the *text* of the [Message](https://core.telegram.org/bots/api#message) object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
-     *
-     * *Example:* A user votes in a poll, bot returns confirmation message in reply to the vote and removes the keyboard for that user, while still showing the keyboard with poll options to users who haven't voted yet.
+     * School ID
      */
-    selective?: boolean
-}
-
-/**
- * This object represents an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) that appears right next to the message it belongs to.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinekeyboardmarkup)
- */
-export interface TelegramInlineKeyboardMarkup {
+    id?: number
     /**
-     * Array of button rows, each represented by an Array of [InlineKeyboardButton](https://core.telegram.org/bots/api#inlinekeyboardbutton) objects
-     */
-    inline_keyboard: TelegramInlineKeyboardButton[][]
-}
-
-export type TelegramInlineKeyboardButtonStyle = "danger" | "success" | "primary"
-
-/**
- * This object represents one button of an inline keyboard. Exactly one of the fields other than *text*, *icon\_custom\_emoji\_id*, and *style* must be used to specify the type of the button.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinekeyboardbutton)
- */
-export interface TelegramInlineKeyboardButton {
-    /**
-     * Label text on the button
-     */
-    text: string
-    /**
-     * *Optional*. Unique identifier of the custom emoji shown before the text of the button. Can only be used by bots that purchased additional usernames on [Fragment](https://fragment.com) or in the messages directly sent by the bot to private, group and supergroup chats if the owner of the bot has a Telegram Premium subscription.
-     */
-    icon_custom_emoji_id?: string
-    /**
-     * *Optional*. Style of the button. Must be one of “danger” (red), “success” (green) or “primary” (blue). If omitted, then an app-specific style is used.
-     */
-    style?: TelegramInlineKeyboardButtonStyle
-    /**
-     * *Optional*. HTTP or tg:// URL to be opened when the button is pressed. Links `tg://user?id=<user_id>` can be used to mention a user by their identifier without using a username, if this is allowed by their privacy settings.
-     */
-    url?: string
-    /**
-     * *Optional*. Data to be sent in a [callback query](https://core.telegram.org/bots/api#callbackquery) to the bot when the button is pressed, 1-64 bytes
-     */
-    callback_data?: string
-    /**
-     * *Optional*. Description of the [Web App](https://core.telegram.org/bots/webapps) that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method [answerWebAppQuery](https://core.telegram.org/bots/api#answerwebappquery). Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a Telegram Business account.
-     */
-    web_app?: TelegramWebAppInfo
-    /**
-     * *Optional*. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the [Telegram Login Widget](https://core.telegram.org/widgets/login).
-     */
-    login_url?: TelegramLoginUrl
-    /**
-     * *Optional*. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent in channel direct messages chats and on behalf of a Telegram Business account.
-     */
-    switch_inline_query?: string
-    /**
-     * *Optional*. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted.
-     *
-     * This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. Not supported in channels and for messages sent in channel direct messages chats and on behalf of a Telegram Business account.
-     */
-    switch_inline_query_current_chat?: string
-    /**
-     * *Optional*. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent in channel direct messages chats and on behalf of a Telegram Business account.
-     */
-    switch_inline_query_chosen_chat?: TelegramSwitchInlineQueryChosenChat
-    /**
-     * *Optional*. Description of the button that copies the specified text to the clipboard.
-     */
-    copy_text?: TelegramCopyTextButton
-    /**
-     * *Optional*. Description of the game that will be launched when the user presses the button.
-     *
-     * **NOTE:** This type of button **must** always be the first button in the first row.
-     */
-    callback_game?: TelegramCallbackGame
-    /**
-     * *Optional*. Specify *True*, to send a [Pay button](https://core.telegram.org/bots/api#payments). Substrings “![⭐](https://telegram.org/img/emoji/40/E2AD90.png)” and “XTR” in the buttons's text will be replaced with a Telegram Star icon.
-     *
-     * **NOTE:** This type of button **must** always be the first button in the first row and can only be used in invoice messages.
-     */
-    pay?: boolean
-}
-
-/**
- * This object represents a parameter of the inline keyboard button used to automatically authorize a user. Serves as a great replacement for the [Telegram Login Widget](https://core.telegram.org/widgets/login) when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:
- *
- * [![TITLE](https://core.telegram.org/file/811140909/1631/20k1Z53eiyY.23995/c541e89b74253623d9)](https://core.telegram.org/file/811140015/1734/8VZFkwWXalM.97872/6127fa62d8a0bf2b3c)
- *
- * Telegram apps support these buttons as of [version 5.7](https://telegram.org/blog/privacy-discussions-web-bots#meet-seamless-web-bots).
- *
- * > Sample bot: [@discussbot](https://t.me/discussbot)
- *
- * [Documentation](https://core.telegram.org/bots/api/#loginurl)
- */
-export interface TelegramLoginUrl {
-    /**
-     * An HTTPS URL to be opened with user authorization data added to the query string when the button is pressed. If the user refuses to provide authorization data, the original URL without information about the user will be opened. The data added is the same as described in [Receiving authorization data](https://core.telegram.org/widgets/login#receiving-authorization-data).
-     *
-     * **NOTE:** You **must** always check the hash of the received data to verify the authentication and the integrity of the data as described in [Checking authorization](https://core.telegram.org/widgets/login#checking-authorization).
-     */
-    url: string
-    /**
-     * *Optional*. New text of the button in forwarded messages.
-     */
-    forward_text?: string
-    /**
-     * *Optional*. Username of a bot, which will be used for user authorization. See [Setting up a bot](https://core.telegram.org/widgets/login#setting-up-a-bot) for more details. If not specified, the current bot's username will be assumed. The *url*'s domain must be the same as the domain linked with the bot. See [Linking your domain to the bot](https://core.telegram.org/widgets/login#linking-your-domain-to-the-bot) for more details.
-     */
-    bot_username?: string
-    /**
-     * *Optional*. Pass *True* to request the permission for your bot to send messages to the user.
-     */
-    request_write_access?: boolean
-}
-
-/**
- * This object represents an inline button that switches the current user to inline mode in a chosen chat, with an optional default inline query.
- *
- * [Documentation](https://core.telegram.org/bots/api/#switchinlinequerychosenchat)
- */
-export interface TelegramSwitchInlineQueryChosenChat {
-    /**
-     * *Optional*. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted
-     */
-    query?: string
-    /**
-     * *Optional*. *True*, if private chats with users can be chosen
-     */
-    allow_user_chats?: boolean
-    /**
-     * *Optional*. *True*, if private chats with bots can be chosen
-     */
-    allow_bot_chats?: boolean
-    /**
-     * *Optional*. *True*, if group and supergroup chats can be chosen
-     */
-    allow_group_chats?: boolean
-    /**
-     * *Optional*. *True*, if channel chats can be chosen
-     */
-    allow_channel_chats?: boolean
-}
-
-/**
- * This object represents an inline keyboard button that copies specified text to the clipboard.
- *
- * [Documentation](https://core.telegram.org/bots/api/#copytextbutton)
- */
-export interface TelegramCopyTextButton {
-    /**
-     * The text to be copied to the clipboard; 1-256 characters
-     */
-    text: string
-}
-
-/**
- * This object represents an incoming callback query from a callback button in an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards). If the button that originated the query was attached to a message sent by the bot, the field *message* will be present. If the button was attached to a message sent via the bot (in [inline mode](https://core.telegram.org/bots/api#inline-mode)), the field *inline\_message\_id* will be present. Exactly one of the fields *data* or *game\_short\_name* will be present.
- *
- * [Documentation](https://core.telegram.org/bots/api/#callbackquery)
- */
-export interface TelegramCallbackQuery {
-    /**
-     * Unique identifier for this query
-     */
-    id: string
-    /**
-     * Sender
-     */
-    from: TelegramUser
-    /**
-     * *Optional*. Message sent by the bot with the callback button that originated the query
-     */
-    message?: TelegramMaybeInaccessibleMessage
-    /**
-     * *Optional*. Identifier of the message sent via the bot in inline mode, that originated the query.
-     */
-    inline_message_id?: string
-    /**
-     * Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in [games](https://core.telegram.org/bots/api#games).
-     */
-    chat_instance: string
-    /**
-     * *Optional*. Data associated with the callback button. Be aware that the message originated the query can contain no callback buttons with this data.
-     */
-    data?: string
-    /**
-     * *Optional*. Short name of a [Game](https://core.telegram.org/bots/api#games) to be returned, serves as the unique identifier for the game
-     */
-    game_short_name?: string
-}
-
-/**
- * Upon receiving a message with this object, Telegram clients will display a reply interface to the user (act as if the user has selected the bot's message and tapped 'Reply'). This can be extremely useful if you want to create user-friendly step-by-step interfaces without having to sacrifice [privacy mode](https://core.telegram.org/bots/features#privacy-mode). Not supported in channels and for messages sent on behalf of a Telegram Business account.
- *
- * [Documentation](https://core.telegram.org/bots/api/#forcereply)
- */
-export interface TelegramForceReply {
-    /**
-     * Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'
-     */
-    force_reply: true
-    /**
-     * *Optional*. The placeholder to be shown in the input field when the reply is active; 1-64 characters
-     */
-    input_field_placeholder?: string
-    /**
-     * *Optional*. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the *text* of the [Message](https://core.telegram.org/bots/api#message) object; 2) if the bot's message is a reply to a message in the same chat and forum topic, sender of the original message.
-     */
-    selective?: boolean
-}
-
-/**
- * This object represents a chat photo.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatphoto)
- */
-export interface TelegramChatPhoto {
-    /**
-     * File identifier of small (160x160) chat photo. This file\_id can be used only for photo download and only for as long as the photo is not changed.
-     */
-    small_file_id: string
-    /**
-     * Unique file identifier of small (160x160) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    small_file_unique_id: string
-    /**
-     * File identifier of big (640x640) chat photo. This file\_id can be used only for photo download and only for as long as the photo is not changed.
-     */
-    big_file_id: string
-    /**
-     * Unique file identifier of big (640x640) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    big_file_unique_id: string
-}
-
-/**
- * Represents an invite link for a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatinvitelink)
- */
-export interface TelegramChatInviteLink {
-    /**
-     * The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”.
-     */
-    invite_link: string
-    /**
-     * Creator of the link
-     */
-    creator: TelegramUser
-    /**
-     * *True*, if users joining the chat via the link need to be approved by chat administrators
-     */
-    creates_join_request: boolean
-    /**
-     * *True*, if the link is primary
-     */
-    is_primary: boolean
-    /**
-     * *True*, if the link is revoked
-     */
-    is_revoked: boolean
-    /**
-     * *Optional*. Invite link name
+     * School title
      */
     name?: string
     /**
-     * *Optional*. Point in time (Unix timestamp) when the link will expire or has been expired
+     * City name
      */
-    expire_date?: number
-    /**
-     * *Optional*. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
-     */
-    member_limit?: number
-    /**
-     * *Optional*. Number of pending join requests created using this link
-     */
-    pending_join_request_count?: number
-    /**
-     * *Optional*. The number of seconds the subscription will be active for before the next payment
-     */
-    subscription_period?: number
-    /**
-     * *Optional*. The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat using the link
-     */
-    subscription_price?: number
+    parent?: string
+    type?: VKAdsTargSuggestionsSchoolsType
 }
 
 /**
- * Represents the rights of an administrator in a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatadministratorrights)
+ * School type
  */
-export interface TelegramChatAdministratorRights {
+export type VKAdsTargSuggestionsSchoolsType =
+    | "school"
+    | "university"
+    | "faculty"
+    | "chair"
+
+/**
+ *
+ */
+export interface VKAdsTargetGroup {
     /**
-     * *True*, if the user's presence in the chat is hidden
+     * Group ID
      */
-    is_anonymous: boolean
+    id?: number
     /**
-     * *True*, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other administrator privilege.
+     * Group name
      */
-    can_manage_chat: boolean
+    name?: string
     /**
-     * *True*, if the administrator can delete messages of other users
+     * Is audience
      */
-    can_delete_messages: boolean
+    is_audience?: boolean
     /**
-     * *True*, if the administrator can manage video chats
+     * Is shared
      */
-    can_manage_video_chats: boolean
+    is_shared?: boolean
     /**
-     * *True*, if the administrator can restrict, ban or unban chat members, or access supergroup statistics
+     * File source
      */
-    can_restrict_members: boolean
+    file_source?: boolean
     /**
-     * *True*, if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by the user)
+     * API source
      */
-    can_promote_members: boolean
+    api_source?: boolean
     /**
-     * *True*, if the user is allowed to change the chat title, photo and other settings
+     * File source
      */
-    can_change_info: boolean
+    lookalike_source?: boolean
     /**
-     * *True*, if the user is allowed to invite new users to the chat
+     * Audience
      */
-    can_invite_users: boolean
+    audience_count?: number
     /**
-     * *True*, if the administrator can post stories to the chat
+     * Site domain
      */
-    can_post_stories: boolean
+    domain?: string
     /**
-     * *True*, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
+     * Number of days for user to be in group
      */
-    can_edit_stories: boolean
+    lifetime?: number
     /**
-     * *True*, if the administrator can delete stories posted by other users
+     * Pixel code
      */
-    can_delete_stories: boolean
+    pixel?: string
     /**
-     * *Optional*. *True*, if the administrator can post messages in the channel, approve suggested posts, or access channel statistics; for channels only
+     * Target Pixel id
      */
-    can_post_messages?: boolean
+    target_pixel_id?: number
     /**
-     * *Optional*. *True*, if the administrator can edit messages of other users and can pin messages; for channels only
+     * Target Pixel rules
      */
-    can_edit_messages?: boolean
+    target_pixel_rules?: VKAdsTargetGroupTargetPixelRule[]
     /**
-     * *Optional*. *True*, if the user is allowed to pin messages; for groups and supergroups only
+     * Last updated
      */
-    can_pin_messages?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
-     */
-    can_manage_topics?: boolean
-    /**
-     * *Optional*. *True*, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
-     */
-    can_manage_direct_messages?: boolean
-    /**
-     * *Optional*. *True*, if the administrator can edit the tags of regular members; for groups and supergroups only. If omitted defaults to the value of can\_pin\_messages.
-     */
-    can_manage_tags?: boolean
+    last_updated?: number
 }
 
 /**
- * This object represents changes in the status of a chat member.
  *
- * [Documentation](https://core.telegram.org/bots/api/#chatmemberupdated)
  */
-export interface TelegramChatMemberUpdated {
-    /**
-     * Chat the user belongs to
-     */
-    chat: TelegramChat
-    /**
-     * Performer of the action, which resulted in the change
-     */
-    from: TelegramUser
-    /**
-     * Date the change was done in Unix time
-     */
-    date: number
-    /**
-     * Previous information about the chat member
-     */
-    old_chat_member: TelegramChatMember
-    /**
-     * New information about the chat member
-     */
-    new_chat_member: TelegramChatMember
-    /**
-     * *Optional*. Chat invite link, which was used by the user to join the chat; for joining by invite link events only.
-     */
-    invite_link?: TelegramChatInviteLink
-    /**
-     * *Optional*. *True*, if the user joined the chat after sending a direct join request without using an invite link and being approved by an administrator
-     */
-    via_join_request?: boolean
-    /**
-     * *Optional*. *True*, if the user joined the chat via a chat folder invite link
-     */
-    via_chat_folder_invite_link?: boolean
+export interface VKAdsTargetGroupTargetPixelRule {
+    url_full_match?: string
+    event_full_match?: string
+    url_substrings_match?: string[]
+    event_substrings_match?: string[]
+    url_regex_match?: string
+    event_regex_match?: string
 }
 
 /**
- * This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported:
  *
- * *   [ChatMemberOwner](https://core.telegram.org/bots/api#chatmemberowner)
- * *   [ChatMemberAdministrator](https://core.telegram.org/bots/api#chatmemberadministrator)
- * *   [ChatMemberMember](https://core.telegram.org/bots/api#chatmembermember)
- * *   [ChatMemberRestricted](https://core.telegram.org/bots/api#chatmemberrestricted)
- * *   [ChatMemberLeft](https://core.telegram.org/bots/api#chatmemberleft)
- * *   [ChatMemberBanned](https://core.telegram.org/bots/api#chatmemberbanned)
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmember)
  */
-export type TelegramChatMember =
-    | TelegramChatMemberOwner
-    | TelegramChatMemberAdministrator
-    | TelegramChatMemberMember
-    | TelegramChatMemberRestricted
-    | TelegramChatMemberLeft
-    | TelegramChatMemberBanned
-
-/**
- * Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that owns the chat and has all administrator privileges.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmemberowner)
- */
-export interface TelegramChatMemberOwner {
-    /**
-     * The member's status in the chat, always “creator”
-     */
-    status: "creator"
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-    /**
-     * *True*, if the user's presence in the chat is hidden
-     */
-    is_anonymous: boolean
-    /**
-     * *Optional*. Custom title for this user
-     */
-    custom_title?: string
-}
-
-/**
- * Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that has some additional privileges.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmemberadministrator)
- */
-export interface TelegramChatMemberAdministrator {
-    /**
-     * The member's status in the chat, always “administrator”
-     */
-    status: "administrator"
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-    /**
-     * *True*, if the bot is allowed to edit administrator privileges of that user
-     */
-    can_be_edited: boolean
-    /**
-     * *True*, if the user's presence in the chat is hidden
-     */
-    is_anonymous: boolean
-    /**
-     * *True*, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other administrator privilege.
-     */
-    can_manage_chat: boolean
-    /**
-     * *True*, if the administrator can delete messages of other users
-     */
-    can_delete_messages: boolean
-    /**
-     * *True*, if the administrator can manage video chats
-     */
-    can_manage_video_chats: boolean
-    /**
-     * *True*, if the administrator can restrict, ban or unban chat members, or access supergroup statistics
-     */
-    can_restrict_members: boolean
-    /**
-     * *True*, if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by the user)
-     */
-    can_promote_members: boolean
-    /**
-     * *True*, if the user is allowed to change the chat title, photo and other settings
-     */
-    can_change_info: boolean
-    /**
-     * *True*, if the user is allowed to invite new users to the chat
-     */
-    can_invite_users: boolean
-    /**
-     * *True*, if the administrator can post stories to the chat
-     */
-    can_post_stories: boolean
-    /**
-     * *True*, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
-     */
-    can_edit_stories: boolean
-    /**
-     * *True*, if the administrator can delete stories posted by other users
-     */
-    can_delete_stories: boolean
-    /**
-     * *Optional*. *True*, if the administrator can post messages in the channel, approve suggested posts, or access channel statistics; for channels only
-     */
-    can_post_messages?: boolean
-    /**
-     * *Optional*. *True*, if the administrator can edit messages of other users and can pin messages; for channels only
-     */
-    can_edit_messages?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to pin messages; for groups and supergroups only
-     */
-    can_pin_messages?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
-     */
-    can_manage_topics?: boolean
-    /**
-     * *Optional*. *True*, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
-     */
-    can_manage_direct_messages?: boolean
-    /**
-     * *Optional*. *True*, if the administrator can edit the tags of regular members; for groups and supergroups only. If omitted defaults to the value of can\_pin\_messages.
-     */
-    can_manage_tags?: boolean
-    /**
-     * *Optional*. Custom title for this user
-     */
-    custom_title?: string
-}
-
-/**
- * Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that has no additional privileges or restrictions.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmembermember)
- */
-export interface TelegramChatMemberMember {
-    /**
-     * The member's status in the chat, always “member”
-     */
-    status: "member"
-    /**
-     * *Optional*. Tag of the member
-     */
-    tag?: string
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-    /**
-     * *Optional*. Date when the user's subscription will expire; Unix time
-     */
-    until_date?: number
-}
-
-/**
- * Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that is under certain restrictions in the chat. Supergroups only.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmemberrestricted)
- */
-export interface TelegramChatMemberRestricted {
-    /**
-     * The member's status in the chat, always “restricted”
-     */
-    status: "restricted"
-    /**
-     * *Optional*. Tag of the member
-     */
-    tag?: string
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-    /**
-     * *True*, if the user is a member of the chat at the moment of the request
-     */
-    is_member: boolean
-    /**
-     * *True*, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
-     */
-    can_send_messages: boolean
-    /**
-     * *True*, if the user is allowed to send audios
-     */
-    can_send_audios: boolean
-    /**
-     * *True*, if the user is allowed to send documents
-     */
-    can_send_documents: boolean
-    /**
-     * *True*, if the user is allowed to send photos
-     */
-    can_send_photos: boolean
-    /**
-     * *True*, if the user is allowed to send videos
-     */
-    can_send_videos: boolean
-    /**
-     * *True*, if the user is allowed to send video notes
-     */
-    can_send_video_notes: boolean
-    /**
-     * *True*, if the user is allowed to send voice notes
-     */
-    can_send_voice_notes: boolean
-    /**
-     * *True*, if the user is allowed to send polls and checklists
-     */
-    can_send_polls: boolean
-    /**
-     * *True*, if the user is allowed to send animations, games, stickers and use inline bots
-     */
-    can_send_other_messages: boolean
-    /**
-     * *True*, if the user is allowed to add web page previews to their messages
-     */
-    can_add_web_page_previews: boolean
-    /**
-     * *True*, if the user is allowed to edit their own tag
-     */
-    can_edit_tag: boolean
-    /**
-     * *True*, if the user is allowed to change the chat title, photo and other settings
-     */
-    can_change_info: boolean
-    /**
-     * *True*, if the user is allowed to invite new users to the chat
-     */
-    can_invite_users: boolean
-    /**
-     * *True*, if the user is allowed to pin messages
-     */
-    can_pin_messages: boolean
-    /**
-     * *True*, if the user is allowed to create forum topics
-     */
-    can_manage_topics: boolean
-    /**
-     * Date when restrictions will be lifted for this user; Unix time. If 0, then the user is restricted forever
-     */
-    until_date: number
-}
-
-/**
- * Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that isn't currently a member of the chat, but may join it themselves.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmemberleft)
- */
-export interface TelegramChatMemberLeft {
-    /**
-     * The member's status in the chat, always “left”
-     */
-    status: "left"
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-}
-
-/**
- * Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that was banned in the chat and can't return to the chat or view chat messages.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatmemberbanned)
- */
-export interface TelegramChatMemberBanned {
-    /**
-     * The member's status in the chat, always “kicked”
-     */
-    status: "kicked"
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-    /**
-     * Date when restrictions will be lifted for this user; Unix time. If 0, then the user is banned forever
-     */
-    until_date: number
-}
-
-/**
- * Represents a join request sent to a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatjoinrequest)
- */
-export interface TelegramChatJoinRequest {
-    /**
-     * Chat to which the request was sent
-     */
-    chat: TelegramChat
-    /**
-     * User that sent the join request
-     */
-    from: TelegramUser
-    /**
-     * Identifier of a private chat with the user who sent the join request. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot can use this identifier for 5 minutes to send messages until the join request is processed, assuming no other administrator contacted the user.
-     */
-    user_chat_id: number
-    /**
-     * Date the request was sent in Unix time
-     */
-    date: number
-    /**
-     * *Optional*. Bio of the user.
-     */
-    bio?: string
-    /**
-     * *Optional*. Chat invite link that was used by the user to send the join request
-     */
-    invite_link?: TelegramChatInviteLink
-}
-
-/**
- * Describes actions that a non-administrator user is allowed to take in a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatpermissions)
- */
-export interface TelegramChatPermissions {
-    /**
-     * *Optional*. *True*, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
-     */
-    can_send_messages?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send audios
-     */
-    can_send_audios?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send documents
-     */
-    can_send_documents?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send photos
-     */
-    can_send_photos?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send videos
-     */
-    can_send_videos?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send video notes
-     */
-    can_send_video_notes?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send voice notes
-     */
-    can_send_voice_notes?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send polls and checklists
-     */
-    can_send_polls?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to send animations, games, stickers and use inline bots
-     */
-    can_send_other_messages?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to add web page previews to their messages
-     */
-    can_add_web_page_previews?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to edit their own tag
-     */
-    can_edit_tag?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups
-     */
-    can_change_info?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to invite new users to the chat
-     */
-    can_invite_users?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to pin messages. Ignored in public supergroups
-     */
-    can_pin_messages?: boolean
-    /**
-     * *Optional*. *True*, if the user is allowed to create forum topics. If omitted defaults to the value of can\_pin\_messages
-     */
-    can_manage_topics?: boolean
-}
-
-/**
- * Describes the birthdate of a user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#birthdate)
- */
-export interface TelegramBirthdate {
-    /**
-     * Day of the user's birth; 1-31
-     */
-    day: number
-    /**
-     * Month of the user's birth; 1-12
-     */
-    month: number
-    /**
-     * *Optional*. Year of the user's birth
-     */
-    year?: number
-}
-
-/**
- * Contains information about the start page settings of a Telegram Business account.
- *
- * [Documentation](https://core.telegram.org/bots/api/#businessintro)
- */
-export interface TelegramBusinessIntro {
-    /**
-     * *Optional*. Title text of the business intro
-     */
-    title?: string
-    /**
-     * *Optional*. Message text of the business intro
-     */
-    message?: string
-    /**
-     * *Optional*. Sticker of the business intro
-     */
-    sticker?: TelegramSticker
-}
-
-/**
- * Contains information about the location of a Telegram Business account.
- *
- * [Documentation](https://core.telegram.org/bots/api/#businesslocation)
- */
-export interface TelegramBusinessLocation {
-    /**
-     * Address of the business
-     */
-    address: string
-    /**
-     * *Optional*. Location of the business
-     */
-    location?: TelegramLocation
-}
-
-/**
- * Describes an interval of time during which a business is open.
- *
- * [Documentation](https://core.telegram.org/bots/api/#businessopeninghoursinterval)
- */
-export interface TelegramBusinessOpeningHoursInterval {
-    /**
-     * The minute's sequence number in a week, starting on Monday, marking the start of the time interval during which the business is open; 0 - 7 \* 24 \* 60
-     */
-    opening_minute: number
-    /**
-     * The minute's sequence number in a week, starting on Monday, marking the end of the time interval during which the business is open; 0 - 8 \* 24 \* 60
-     */
-    closing_minute: number
-}
-
-/**
- * Describes the opening hours of a business.
- *
- * [Documentation](https://core.telegram.org/bots/api/#businessopeninghours)
- */
-export interface TelegramBusinessOpeningHours {
-    /**
-     * Unique name of the time zone for which the opening hours are defined
-     */
-    time_zone_name: string
-    /**
-     * List of time intervals describing business opening hours
-     */
-    opening_hours: TelegramBusinessOpeningHoursInterval[]
-}
-
-/**
- * This object describes the rating of a user based on their Telegram Star spendings.
- *
- * [Documentation](https://core.telegram.org/bots/api/#userrating)
- */
-export interface TelegramUserRating {
-    /**
-     * Current level of the user, indicating their reliability when purchasing digital goods and services. A higher level suggests a more trustworthy customer; a negative level is likely reason for concern.
-     */
-    level: number
-    /**
-     * Numerical value of the user's rating; the higher the rating, the better
-     */
-    rating: number
-    /**
-     * The rating value required to get the current level
-     */
-    current_level_rating: number
-    /**
-     * *Optional*. The rating value required to get to the next level; omitted if the maximum level was reached
-     */
-    next_level_rating?: number
-}
-
-/**
- * Describes the position of a clickable area within a story.
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareaposition)
- */
-export interface TelegramStoryAreaPosition {
-    /**
-     * The abscissa of the area's center, as a percentage of the media width
-     */
-    x_percentage: number
-    /**
-     * The ordinate of the area's center, as a percentage of the media height
-     */
-    y_percentage: number
-    /**
-     * The width of the area's rectangle, as a percentage of the media width
-     */
-    width_percentage: number
-    /**
-     * The height of the area's rectangle, as a percentage of the media height
-     */
-    height_percentage: number
-    /**
-     * The clockwise rotation angle of the rectangle, in degrees; 0-360
-     */
-    rotation_angle: number
-    /**
-     * The radius of the rectangle corner rounding, as a percentage of the media width
-     */
-    corner_radius_percentage: number
-}
-
-/**
- * Describes the physical address of a location.
- *
- * [Documentation](https://core.telegram.org/bots/api/#locationaddress)
- */
-export interface TelegramLocationAddress {
-    /**
-     * The two-letter ISO 3166-1 alpha-2 country code of the country where the location is located
-     */
-    country_code: string
-    /**
-     * *Optional*. State of the location
-     */
-    state?: string
-    /**
-     * *Optional*. City of the location
-     */
-    city?: string
-    /**
-     * *Optional*. Street address of the location
-     */
-    street?: string
-}
-
-/**
- * Describes the type of a clickable area on a story. Currently, it can be one of
- *
- * *   [StoryAreaTypeLocation](https://core.telegram.org/bots/api#storyareatypelocation)
- * *   [StoryAreaTypeSuggestedReaction](https://core.telegram.org/bots/api#storyareatypesuggestedreaction)
- * *   [StoryAreaTypeLink](https://core.telegram.org/bots/api#storyareatypelink)
- * *   [StoryAreaTypeWeather](https://core.telegram.org/bots/api#storyareatypeweather)
- * *   [StoryAreaTypeUniqueGift](https://core.telegram.org/bots/api#storyareatypeuniquegift)
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareatype)
- */
-export type TelegramStoryAreaType =
-    | TelegramStoryAreaTypeLocation
-    | TelegramStoryAreaTypeSuggestedReaction
-    | TelegramStoryAreaTypeLink
-    | TelegramStoryAreaTypeWeather
-    | TelegramStoryAreaTypeUniqueGift
-
-/**
- * Describes a story area pointing to a location. Currently, a story can have up to 10 location areas.
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareatypelocation)
- */
-export interface TelegramStoryAreaTypeLocation {
-    /**
-     * Type of the area, always “location”
-     */
-    type: "location"
-    /**
-     * Location latitude in degrees
-     */
-    latitude: number
-    /**
-     * Location longitude in degrees
-     */
-    longitude: number
-    /**
-     * *Optional*. Address of the location
-     */
-    address?: TelegramLocationAddress
-}
-
-/**
- * Describes a story area pointing to a suggested reaction. Currently, a story can have up to 5 suggested reaction areas.
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareatypesuggestedreaction)
- */
-export interface TelegramStoryAreaTypeSuggestedReaction {
-    /**
-     * Type of the area, always “suggested\_reaction”
-     */
-    type: "suggested_reaction"
-    /**
-     * Type of the reaction
-     */
-    reaction_type: TelegramReactionType
-    /**
-     * *Optional*. Pass *True* if the reaction area has a dark background
-     */
-    is_dark?: boolean
-    /**
-     * *Optional*. Pass *True* if reaction area corner is flipped
-     */
-    is_flipped?: boolean
-}
-
-/**
- * Describes a story area pointing to an HTTP or tg:// link. Currently, a story can have up to 3 link areas.
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareatypelink)
- */
-export interface TelegramStoryAreaTypeLink {
-    /**
-     * Type of the area, always “link”
-     */
-    type: "link"
-    /**
-     * HTTP or tg:// URL to be opened when the area is clicked
-     */
-    url: string
-}
-
-/**
- * Describes a story area containing weather information. Currently, a story can have up to 3 weather areas.
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareatypeweather)
- */
-export interface TelegramStoryAreaTypeWeather {
-    /**
-     * Type of the area, always “weather”
-     */
-    type: "weather"
-    /**
-     * Temperature, in degree Celsius
-     */
-    temperature: number
-    /**
-     * Emoji representing the weather
-     */
-    emoji: string
-    /**
-     * A color of the area background in the ARGB format
-     */
-    background_color: number
-}
-
-/**
- * Describes a story area pointing to a unique gift. Currently, a story can have at most 1 unique gift area.
- *
- * [Documentation](https://core.telegram.org/bots/api/#storyareatypeuniquegift)
- */
-export interface TelegramStoryAreaTypeUniqueGift {
-    /**
-     * Type of the area, always “unique\_gift”
-     */
-    type: "unique_gift"
-    /**
-     * Unique name of the gift
-     */
+export interface VKAdsTargetPixelInfo {
+    target_pixel_id: number
     name: string
+    domain: string
+    category_id: number
+    last_updated: number
+    pixel: string
 }
 
 /**
- * Describes a clickable area on a story media.
  *
- * [Documentation](https://core.telegram.org/bots/api/#storyarea)
  */
-export interface TelegramStoryArea {
-    /**
-     * Position of the area
-     */
-    position: TelegramStoryAreaPosition
-    /**
-     * Type of the area
-     */
-    type: TelegramStoryAreaType
+export interface VKAdsUpdateOfficeUsersResult {
+    user_id: number
+    is_success: boolean
+    error?: VKBaseError
 }
 
 /**
- * Represents a location to which a chat is connected.
  *
- * [Documentation](https://core.telegram.org/bots/api/#chatlocation)
  */
-export interface TelegramChatLocation {
+export interface VKAdsUpdateAdsStatus {
     /**
-     * The location to which the supergroup is connected. Can't be a live location.
+     * Ad ID
      */
-    location: TelegramLocation
+    id: number
     /**
-     * Location address; 1-64 characters, as defined by the chat owner
+     * Error code
      */
-    address: string
+    error_code?: number
+    /**
+     * Error description
+     */
+    error_desc?: string
 }
 
 /**
- * This object describes the type of a reaction. Currently, it can be one of
  *
- * *   [ReactionTypeEmoji](https://core.telegram.org/bots/api#reactiontypeemoji)
- * *   [ReactionTypeCustomEmoji](https://core.telegram.org/bots/api#reactiontypecustomemoji)
- * *   [ReactionTypePaid](https://core.telegram.org/bots/api#reactiontypepaid)
- *
- * [Documentation](https://core.telegram.org/bots/api/#reactiontype)
  */
-export type TelegramReactionType =
-    | TelegramReactionTypeEmoji
-    | TelegramReactionTypeCustomEmoji
-    | TelegramReactionTypePaid
-
-export type TelegramReactionTypeEmojiEmoji =
-    | "❤"
-    | "👍"
-    | "👎"
-    | "🔥"
-    | "🥰"
-    | "👏"
-    | "😁"
-    | "🤔"
-    | "🤯"
-    | "😱"
-    | "🤬"
-    | "😢"
-    | "🎉"
-    | "🤩"
-    | "🤮"
-    | "💩"
-    | "🙏"
-    | "👌"
-    | "🕊"
-    | "🤡"
-    | "🥱"
-    | "🥴"
-    | "😍"
-    | "🐳"
-    | "❤‍🔥"
-    | "🌚"
-    | "🌭"
-    | "💯"
-    | "🤣"
-    | "⚡"
-    | "🍌"
-    | "🏆"
-    | "💔"
-    | "🤨"
-    | "😐"
-    | "🍓"
-    | "🍾"
-    | "💋"
-    | "🖕"
-    | "😈"
-    | "😴"
-    | "😭"
-    | "🤓"
-    | "👻"
-    | "👨‍💻"
-    | "👀"
-    | "🎃"
-    | "🙈"
-    | "😇"
-    | "😨"
-    | "🤝"
-    | "✍"
-    | "🤗"
-    | "🫡"
-    | "🎅"
-    | "🎄"
-    | "☃"
-    | "💅"
-    | "🤪"
-    | "🗿"
-    | "🆒"
-    | "💘"
-    | "🙉"
-    | "🦄"
-    | "😘"
-    | "💊"
-    | "🙊"
-    | "😎"
-    | "👾"
-    | "🤷‍♂"
-    | "🤷"
-    | "🤷‍♀"
-    | "😡"
-
-/**
- * The reaction is based on an emoji.
- *
- * [Documentation](https://core.telegram.org/bots/api/#reactiontypeemoji)
- */
-export interface TelegramReactionTypeEmoji {
+export interface VKAdsUpdateClientsStatus {
     /**
-     * Type of the reaction, always “emoji”
+     * Client ID
      */
-    type: "emoji"
+    id: number
     /**
-     * Reaction emoji. Currently, it can be one of "![❤](https://telegram.org/img/emoji/40/E29DA4.png)", "![👍](https://telegram.org/img/emoji/40/F09F918D.png)", "![👎](https://telegram.org/img/emoji/40/F09F918E.png)", "![🔥](https://telegram.org/img/emoji/40/F09F94A5.png)", "![🥰](https://telegram.org/img/emoji/40/F09FA5B0.png)", "![👏](https://telegram.org/img/emoji/40/F09F918F.png)", "![😁](https://telegram.org/img/emoji/40/F09F9881.png)", "![🤔](https://telegram.org/img/emoji/40/F09FA494.png)", "![🤯](https://telegram.org/img/emoji/40/F09FA4AF.png)", "![😱](https://telegram.org/img/emoji/40/F09F98B1.png)", "![🤬](https://telegram.org/img/emoji/40/F09FA4AC.png)", "![😢](https://telegram.org/img/emoji/40/F09F98A2.png)", "![🎉](https://telegram.org/img/emoji/40/F09F8E89.png)", "![🤩](https://telegram.org/img/emoji/40/F09FA4A9.png)", "![🤮](https://telegram.org/img/emoji/40/F09FA4AE.png)", "![💩](https://telegram.org/img/emoji/40/F09F92A9.png)", "![🙏](https://telegram.org/img/emoji/40/F09F998F.png)", "![👌](https://telegram.org/img/emoji/40/F09F918C.png)", "![🕊](https://telegram.org/img/emoji/40/F09F958A.png)", "![🤡](https://telegram.org/img/emoji/40/F09FA4A1.png)", "![🥱](https://telegram.org/img/emoji/40/F09FA5B1.png)", "![🥴](https://telegram.org/img/emoji/40/F09FA5B4.png)", "![😍](https://telegram.org/img/emoji/40/F09F988D.png)", "![🐳](https://telegram.org/img/emoji/40/F09F90B3.png)", "![❤‍🔥](https://telegram.org/img/emoji/40/E29DA4E2808DF09F94A5.png)", "![🌚](https://telegram.org/img/emoji/40/F09F8C9A.png)", "![🌭](https://telegram.org/img/emoji/40/F09F8CAD.png)", "![💯](https://telegram.org/img/emoji/40/F09F92AF.png)", "![🤣](https://telegram.org/img/emoji/40/F09FA4A3.png)", "![⚡](https://telegram.org/img/emoji/40/E29AA1.png)", "![🍌](https://telegram.org/img/emoji/40/F09F8D8C.png)", "![🏆](https://telegram.org/img/emoji/40/F09F8F86.png)", "![💔](https://telegram.org/img/emoji/40/F09F9294.png)", "![🤨](https://telegram.org/img/emoji/40/F09FA4A8.png)", "![😐](https://telegram.org/img/emoji/40/F09F9890.png)", "![🍓](https://telegram.org/img/emoji/40/F09F8D93.png)", "![🍾](https://telegram.org/img/emoji/40/F09F8DBE.png)", "![💋](https://telegram.org/img/emoji/40/F09F928B.png)", "![🖕](https://telegram.org/img/emoji/40/F09F9695.png)", "![😈](https://telegram.org/img/emoji/40/F09F9888.png)", "![😴](https://telegram.org/img/emoji/40/F09F98B4.png)", "![😭](https://telegram.org/img/emoji/40/F09F98AD.png)", "![🤓](https://telegram.org/img/emoji/40/F09FA493.png)", "![👻](https://telegram.org/img/emoji/40/F09F91BB.png)", "![👨‍💻](https://telegram.org/img/emoji/40/F09F91A8E2808DF09F92BB.png)", "![👀](https://telegram.org/img/emoji/40/F09F9180.png)", "![🎃](https://telegram.org/img/emoji/40/F09F8E83.png)", "![🙈](https://telegram.org/img/emoji/40/F09F9988.png)", "![😇](https://telegram.org/img/emoji/40/F09F9887.png)", "![😨](https://telegram.org/img/emoji/40/F09F98A8.png)", "![🤝](https://telegram.org/img/emoji/40/F09FA49D.png)", "![✍](https://telegram.org/img/emoji/40/E29C8D.png)", "![🤗](https://telegram.org/img/emoji/40/F09FA497.png)", "![🫡](https://telegram.org/img/emoji/40/F09FABA1.png)", "![🎅](https://telegram.org/img/emoji/40/F09F8E85.png)", "![🎄](https://telegram.org/img/emoji/40/F09F8E84.png)", "![☃](https://telegram.org/img/emoji/40/E29883.png)", "![💅](https://telegram.org/img/emoji/40/F09F9285.png)", "![🤪](https://telegram.org/img/emoji/40/F09FA4AA.png)", "![🗿](https://telegram.org/img/emoji/40/F09F97BF.png)", "![🆒](https://telegram.org/img/emoji/40/F09F8692.png)", "![💘](https://telegram.org/img/emoji/40/F09F9298.png)", "![🙉](https://telegram.org/img/emoji/40/F09F9989.png)", "![🦄](https://telegram.org/img/emoji/40/F09FA684.png)", "![😘](https://telegram.org/img/emoji/40/F09F9898.png)", "![💊](https://telegram.org/img/emoji/40/F09F928A.png)", "![🙊](https://telegram.org/img/emoji/40/F09F998A.png)", "![😎](https://telegram.org/img/emoji/40/F09F988E.png)", "![👾](https://telegram.org/img/emoji/40/F09F91BE.png)", "![🤷‍♂](https://telegram.org/img/emoji/40/F09FA4B7E2808DE29982.png)", "![🤷](https://telegram.org/img/emoji/40/F09FA4B7.png)", "![🤷‍♀](https://telegram.org/img/emoji/40/F09FA4B7E2808DE29980.png)", "![😡](https://telegram.org/img/emoji/40/F09F98A1.png)"
+     * Error code
      */
-    emoji: TelegramReactionTypeEmojiEmoji
+    error_code?: number
+    /**
+     * Error description
+     */
+    error_desc?: string
 }
 
 /**
- * The reaction is based on a custom emoji.
  *
- * [Documentation](https://core.telegram.org/bots/api/#reactiontypecustomemoji)
  */
-export interface TelegramReactionTypeCustomEmoji {
-    /**
-     * Type of the reaction, always “custom\_emoji”
-     */
-    type: "custom_emoji"
-    /**
-     * Custom emoji identifier
-     */
-    custom_emoji_id: string
+export interface VKAdsUserSpecification {
+    user_id: number
+    role: VKAdsAccessRolePublic
+    grant_access_to_all_clients?: boolean
+    client_ids?: number[]
+    view_budget?: boolean
 }
 
 /**
- * The reaction is paid.
  *
- * [Documentation](https://core.telegram.org/bots/api/#reactiontypepaid)
  */
-export interface TelegramReactionTypePaid {
-    /**
-     * Type of the reaction, always “paid”
-     */
-    type: "paid"
+export interface VKAdsUserSpecificationCutted {
+    user_id: number
+    role: VKAdsAccessRolePublic
+    client_id?: number
+    view_budget?: boolean
 }
 
 /**
- * Represents a reaction added to a message along with the number of times it was added.
  *
- * [Documentation](https://core.telegram.org/bots/api/#reactioncount)
  */
-export interface TelegramReactionCount {
+export interface VKAdsUsers {
+    accesses: VKAdsAccesses[]
     /**
-     * Type of the reaction
-     */
-    type: TelegramReactionType
-    /**
-     * Number of times the reaction was added
-     */
-    total_count: number
-}
-
-/**
- * This object represents a change of a reaction on a message performed by a user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messagereactionupdated)
- */
-export interface TelegramMessageReactionUpdated {
-    /**
-     * The chat containing the message the user reacted to
-     */
-    chat: TelegramChat
-    /**
-     * Unique identifier of the message inside the chat
-     */
-    message_id: number
-    /**
-     * *Optional*. The user that changed the reaction, if the user isn't anonymous
-     */
-    user?: TelegramUser
-    /**
-     * *Optional*. The chat on behalf of which the reaction was changed, if the user is anonymous
-     */
-    actor_chat?: TelegramChat
-    /**
-     * Date of the change in Unix time
-     */
-    date: number
-    /**
-     * Previous list of reaction types that were set by the user
-     */
-    old_reaction: TelegramReactionType[]
-    /**
-     * New list of reaction types that have been set by the user
-     */
-    new_reaction: TelegramReactionType[]
-}
-
-/**
- * This object represents reaction changes on a message with anonymous reactions.
- *
- * [Documentation](https://core.telegram.org/bots/api/#messagereactioncountupdated)
- */
-export interface TelegramMessageReactionCountUpdated {
-    /**
-     * The chat containing the message
-     */
-    chat: TelegramChat
-    /**
-     * Unique message identifier inside the chat
-     */
-    message_id: number
-    /**
-     * Date of the change in Unix time
-     */
-    date: number
-    /**
-     * List of reactions that are present on the message
-     */
-    reactions: TelegramReactionCount[]
-}
-
-/**
- * This object represents a forum topic.
- *
- * [Documentation](https://core.telegram.org/bots/api/#forumtopic)
- */
-export interface TelegramForumTopic {
-    /**
-     * Unique identifier of the forum topic
-     */
-    message_thread_id: number
-    /**
-     * Name of the topic
-     */
-    name: string
-    /**
-     * Color of the topic icon in RGB format
-     */
-    icon_color: number
-    /**
-     * *Optional*. Unique identifier of the custom emoji shown as the topic icon
-     */
-    icon_custom_emoji_id?: string
-    /**
-     * *Optional*. *True*, if the name of the topic wasn't specified explicitly by its creator and likely needs to be changed by the bot
-     */
-    is_name_implicit?: true
-}
-
-/**
- * This object describes the background of a gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#giftbackground)
- */
-export interface TelegramGiftBackground {
-    /**
-     * Center color of the background in RGB format
-     */
-    center_color: number
-    /**
-     * Edge color of the background in RGB format
-     */
-    edge_color: number
-    /**
-     * Text color of the background in RGB format
-     */
-    text_color: number
-}
-
-/**
- * This object represents a gift that can be sent by the bot.
- *
- * [Documentation](https://core.telegram.org/bots/api/#gift)
- */
-export interface TelegramGift {
-    /**
-     * Unique identifier of the gift
-     */
-    id: string
-    /**
-     * The sticker that represents the gift
-     */
-    sticker: TelegramSticker
-    /**
-     * The number of Telegram Stars that must be paid to send the sticker
-     */
-    star_count: number
-    /**
-     * *Optional*. The number of Telegram Stars that must be paid to upgrade the gift to a unique one
-     */
-    upgrade_star_count?: number
-    /**
-     * *Optional*. *True*, if the gift can only be purchased by Telegram Premium subscribers
-     */
-    is_premium?: true
-    /**
-     * *Optional*. *True*, if the gift can be used (after being upgraded) to customize a user's appearance
-     */
-    has_colors?: true
-    /**
-     * *Optional*. The total number of gifts of this type that can be sent by all users; for limited gifts only
-     */
-    total_count?: number
-    /**
-     * *Optional*. The number of remaining gifts of this type that can be sent by all users; for limited gifts only
-     */
-    remaining_count?: number
-    /**
-     * *Optional*. The total number of gifts of this type that can be sent by the bot; for limited gifts only
-     */
-    personal_total_count?: number
-    /**
-     * *Optional*. The number of remaining gifts of this type that can be sent by the bot; for limited gifts only
-     */
-    personal_remaining_count?: number
-    /**
-     * *Optional*. Background of the gift
-     */
-    background?: TelegramGiftBackground
-    /**
-     * *Optional*. The total number of different unique gifts that can be obtained by upgrading the gift
-     */
-    unique_gift_variant_count?: number
-    /**
-     * *Optional*. Information about the chat that published the gift
-     */
-    publisher_chat?: TelegramChat
-}
-
-/**
- * This object represent a list of gifts.
- *
- * [Documentation](https://core.telegram.org/bots/api/#gifts)
- */
-export interface TelegramGifts {
-    /**
-     * The list of gifts
-     */
-    gifts: TelegramGift[]
-}
-
-export type TelegramUniqueGiftModelRarity =
-    | "uncommon"
-    | "rare"
-    | "epic"
-    | "legendary"
-
-/**
- * This object describes the model of a unique gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegiftmodel)
- */
-export interface TelegramUniqueGiftModel {
-    /**
-     * Name of the model
-     */
-    name: string
-    /**
-     * The sticker that represents the unique gift
-     */
-    sticker: TelegramSticker
-    /**
-     * The number of unique gifts that receive this model for every 1000 gift upgrades. Always 0 for crafted gifts.
-     */
-    rarity_per_mille: number
-    /**
-     * *Optional*. Rarity of the model if it is a crafted model. Currently, can be “uncommon”, “rare”, “epic”, or “legendary”.
-     */
-    rarity?: TelegramUniqueGiftModelRarity
-}
-
-/**
- * This object describes the symbol shown on the pattern of a unique gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegiftsymbol)
- */
-export interface TelegramUniqueGiftSymbol {
-    /**
-     * Name of the symbol
-     */
-    name: string
-    /**
-     * The sticker that represents the unique gift
-     */
-    sticker: TelegramSticker
-    /**
-     * The number of unique gifts that receive this model for every 1000 gifts upgraded
-     */
-    rarity_per_mille: number
-}
-
-/**
- * This object describes the colors of the backdrop of a unique gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegiftbackdropcolors)
- */
-export interface TelegramUniqueGiftBackdropColors {
-    /**
-     * The color in the center of the backdrop in RGB format
-     */
-    center_color: number
-    /**
-     * The color on the edges of the backdrop in RGB format
-     */
-    edge_color: number
-    /**
-     * The color to be applied to the symbol in RGB format
-     */
-    symbol_color: number
-    /**
-     * The color for the text on the backdrop in RGB format
-     */
-    text_color: number
-}
-
-/**
- * This object describes the backdrop of a unique gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegiftbackdrop)
- */
-export interface TelegramUniqueGiftBackdrop {
-    /**
-     * Name of the backdrop
-     */
-    name: string
-    /**
-     * Colors of the backdrop
-     */
-    colors: TelegramUniqueGiftBackdropColors
-    /**
-     * The number of unique gifts that receive this backdrop for every 1000 gifts upgraded
-     */
-    rarity_per_mille: number
-}
-
-/**
- * This object contains information about the color scheme for a user's name, message replies and link previews based on a unique gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegiftcolors)
- */
-export interface TelegramUniqueGiftColors {
-    /**
-     * Custom emoji identifier of the unique gift's model
-     */
-    model_custom_emoji_id: string
-    /**
-     * Custom emoji identifier of the unique gift's symbol
-     */
-    symbol_custom_emoji_id: string
-    /**
-     * Main color used in light themes; RGB format
-     */
-    light_theme_main_color: number
-    /**
-     * List of 1-3 additional colors used in light themes; RGB format
-     */
-    light_theme_other_colors: number[]
-    /**
-     * Main color used in dark themes; RGB format
-     */
-    dark_theme_main_color: number
-    /**
-     * List of 1-3 additional colors used in dark themes; RGB format
-     */
-    dark_theme_other_colors: number[]
-}
-
-/**
- * This object describes a unique gift that was upgraded from a regular gift.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegift)
- */
-export interface TelegramUniqueGift {
-    /**
-     * Identifier of the regular gift from which the gift was upgraded
-     */
-    gift_id: string
-    /**
-     * Human-readable name of the regular gift from which this unique gift was upgraded
-     */
-    base_name: string
-    /**
-     * Unique name of the gift. This name can be used in `https://t.me/nft/...` links and story areas
-     */
-    name: string
-    /**
-     * Unique number of the upgraded gift among gifts upgraded from the same regular gift
-     */
-    number: number
-    /**
-     * Model of the gift
-     */
-    model: TelegramUniqueGiftModel
-    /**
-     * Symbol of the gift
-     */
-    symbol: TelegramUniqueGiftSymbol
-    /**
-     * Backdrop of the gift
-     */
-    backdrop: TelegramUniqueGiftBackdrop
-    /**
-     * *Optional*. *True*, if the original regular gift was exclusively purchaseable by Telegram Premium subscribers
-     */
-    is_premium?: true
-    /**
-     * *Optional*. *True*, if the gift was used to craft another gift and isn't available anymore
-     */
-    is_burned?: true
-    /**
-     * *Optional*. *True*, if the gift is assigned from the TON blockchain and can't be resold or transferred in Telegram
-     */
-    is_from_blockchain?: true
-    /**
-     * *Optional*. The color scheme that can be used by the gift's owner for the chat's name, replies to messages and link previews; for business account gifts and gifts that are currently on sale only
-     */
-    colors?: TelegramUniqueGiftColors
-    /**
-     * *Optional*. Information about the chat that published the gift
-     */
-    publisher_chat?: TelegramChat
-}
-
-/**
- * Describes a service message about a regular gift that was sent or received.
- *
- * [Documentation](https://core.telegram.org/bots/api/#giftinfo)
- */
-export interface TelegramGiftInfo {
-    /**
-     * Information about the gift
-     */
-    gift: TelegramGift
-    /**
-     * *Optional*. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts
-     */
-    owned_gift_id?: string
-    /**
-     * *Optional*. Number of Telegram Stars that can be claimed by the receiver by converting the gift; omitted if conversion to Telegram Stars is impossible
-     */
-    convert_star_count?: number
-    /**
-     * *Optional*. Number of Telegram Stars that were prepaid for the ability to upgrade the gift
-     */
-    prepaid_upgrade_star_count?: number
-    /**
-     * *Optional*. *True*, if the gift's upgrade was purchased after the gift was sent
-     */
-    is_upgrade_separate?: true
-    /**
-     * *Optional*. *True*, if the gift can be upgraded to a unique gift
-     */
-    can_be_upgraded?: true
-    /**
-     * *Optional*. Text of the message that was added to the gift
-     */
-    text?: string
-    /**
-     * *Optional*. Special entities that appear in the text
-     */
-    entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. *True*, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
-     */
-    is_private?: true
-    /**
-     * *Optional*. Unique number reserved for this gift when upgraded. See the *number* field in [UniqueGift](https://core.telegram.org/bots/api#uniquegift)
-     */
-    unique_gift_number?: number
-}
-
-export type TelegramUniqueGiftInfoOrigin =
-    | "upgrade"
-    | "transfer"
-    | "resale"
-    | "gifted_upgrade"
-    | "offer"
-export type TelegramUniqueGiftInfoLastResaleCurrency = "XTR" | "TON"
-
-/**
- * Describes a service message about a unique gift that was sent or received.
- *
- * [Documentation](https://core.telegram.org/bots/api/#uniquegiftinfo)
- */
-export interface TelegramUniqueGiftInfo {
-    /**
-     * Information about the gift
-     */
-    gift: TelegramUniqueGift
-    /**
-     * Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, “resale” for gifts bought from other users, “gifted\_upgrade” for upgrades purchased after the gift was sent, or “offer” for gifts bought or sold through gift purchase offers
-     */
-    origin: TelegramUniqueGiftInfoOrigin
-    /**
-     * *Optional*. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for toncoins.
-     */
-    last_resale_currency?: TelegramUniqueGiftInfoLastResaleCurrency
-    /**
-     * *Optional*. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanotoncoins
-     */
-    last_resale_amount?: number
-    /**
-     * *Optional*. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts
-     */
-    owned_gift_id?: string
-    /**
-     * *Optional*. Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift
-     */
-    transfer_star_count?: number
-    /**
-     * *Optional*. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now
-     */
-    next_transfer_date?: number
-}
-
-/**
- * This object describes a gift received and owned by a user or a chat. Currently, it can be one of
- *
- * *   [OwnedGiftRegular](https://core.telegram.org/bots/api#ownedgiftregular)
- * *   [OwnedGiftUnique](https://core.telegram.org/bots/api#ownedgiftunique)
- *
- * [Documentation](https://core.telegram.org/bots/api/#ownedgift)
- */
-export type TelegramOwnedGift =
-    | TelegramOwnedGiftRegular
-    | TelegramOwnedGiftUnique
-
-/**
- * Describes a regular gift owned by a user or a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#ownedgiftregular)
- */
-export interface TelegramOwnedGiftRegular {
-    /**
-     * Type of the gift, always “regular”
-     */
-    type: "regular"
-    /**
-     * Information about the regular gift
-     */
-    gift: TelegramGift
-    /**
-     * *Optional*. Unique identifier of the gift for the bot; for gifts received on behalf of business accounts only
-     */
-    owned_gift_id?: string
-    /**
-     * *Optional*. Sender of the gift if it is a known user
-     */
-    sender_user?: TelegramUser
-    /**
-     * Date the gift was sent in Unix time
-     */
-    send_date: number
-    /**
-     * *Optional*. Text of the message that was added to the gift
-     */
-    text?: string
-    /**
-     * *Optional*. Special entities that appear in the text
-     */
-    entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. *True*, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
-     */
-    is_private?: true
-    /**
-     * *Optional*. *True*, if the gift is displayed on the account's profile page; for gifts received on behalf of business accounts only
-     */
-    is_saved?: true
-    /**
-     * *Optional*. *True*, if the gift can be upgraded to a unique gift; for gifts received on behalf of business accounts only
-     */
-    can_be_upgraded?: true
-    /**
-     * *Optional*. *True*, if the gift was refunded and isn't available anymore
-     */
-    was_refunded?: true
-    /**
-     * *Optional*. Number of Telegram Stars that can be claimed by the receiver instead of the gift; omitted if the gift cannot be converted to Telegram Stars; for gifts received on behalf of business accounts only
-     */
-    convert_star_count?: number
-    /**
-     * *Optional*. Number of Telegram Stars that were paid for the ability to upgrade the gift
-     */
-    prepaid_upgrade_star_count?: number
-    /**
-     * *Optional*. *True*, if the gift's upgrade was purchased after the gift was sent; for gifts received on behalf of business accounts only
-     */
-    is_upgrade_separate?: true
-    /**
-     * *Optional*. Unique number reserved for this gift when upgraded. See the *number* field in [UniqueGift](https://core.telegram.org/bots/api#uniquegift)
-     */
-    unique_gift_number?: number
-}
-
-/**
- * Describes a unique gift received and owned by a user or a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#ownedgiftunique)
- */
-export interface TelegramOwnedGiftUnique {
-    /**
-     * Type of the gift, always “unique”
-     */
-    type: "unique"
-    /**
-     * Information about the unique gift
-     */
-    gift: TelegramUniqueGift
-    /**
-     * *Optional*. Unique identifier of the received gift for the bot; for gifts received on behalf of business accounts only
-     */
-    owned_gift_id?: string
-    /**
-     * *Optional*. Sender of the gift if it is a known user
-     */
-    sender_user?: TelegramUser
-    /**
-     * Date the gift was sent in Unix time
-     */
-    send_date: number
-    /**
-     * *Optional*. *True*, if the gift is displayed on the account's profile page; for gifts received on behalf of business accounts only
-     */
-    is_saved?: true
-    /**
-     * *Optional*. *True*, if the gift can be transferred to another owner; for gifts received on behalf of business accounts only
-     */
-    can_be_transferred?: true
-    /**
-     * *Optional*. Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift
-     */
-    transfer_star_count?: number
-    /**
-     * *Optional*. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now
-     */
-    next_transfer_date?: number
-}
-
-/**
- * Contains the list of gifts received and owned by a user or a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#ownedgifts)
- */
-export interface TelegramOwnedGifts {
-    /**
-     * The total number of gifts owned by the user or the chat
-     */
-    total_count: number
-    /**
-     * The list of gifts
-     */
-    gifts: TelegramOwnedGift[]
-    /**
-     * *Optional*. Offset for the next request. If empty, then there are no more results
-     */
-    next_offset?: string
-}
-
-/**
- * This object describes the types of gifts that can be gifted to a user or a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#acceptedgifttypes)
- */
-export interface TelegramAcceptedGiftTypes {
-    /**
-     * *True*, if unlimited regular gifts are accepted
-     */
-    unlimited_gifts: boolean
-    /**
-     * *True*, if limited regular gifts are accepted
-     */
-    limited_gifts: boolean
-    /**
-     * *True*, if unique gifts or gifts that can be upgraded to unique for free are accepted
-     */
-    unique_gifts: boolean
-    /**
-     * *True*, if a Telegram Premium subscription is accepted
-     */
-    premium_subscription: boolean
-    /**
-     * *True*, if transfers of unique gifts from channels are accepted
-     */
-    gifts_from_channels: boolean
-}
-
-/**
- * Describes an amount of Telegram Stars.
- *
- * [Documentation](https://core.telegram.org/bots/api/#staramount)
- */
-export interface TelegramStarAmount {
-    /**
-     * Integer amount of Telegram Stars, rounded to 0; can be negative
-     */
-    amount: number
-    /**
-     * *Optional*. The number of 1/1000000000 shares of Telegram Stars; from -999999999 to 999999999; can be negative if and only if *amount* is non-positive
-     */
-    nanostar_amount?: number
-}
-
-/**
- * This object represents a bot command.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommand)
- */
-export interface TelegramBotCommand {
-    /**
-     * Text of the command; 1-32 characters. Can contain only lowercase English letters, digits and underscores.
-     */
-    command: string
-    /**
-     * Description of the command; 1-256 characters.
-     */
-    description: string
-}
-
-/**
- * This object represents the scope to which bot commands are applied. Currently, the following 7 scopes are supported:
- *
- * *   [BotCommandScopeDefault](https://core.telegram.org/bots/api#botcommandscopedefault)
- * *   [BotCommandScopeAllPrivateChats](https://core.telegram.org/bots/api#botcommandscopeallprivatechats)
- * *   [BotCommandScopeAllGroupChats](https://core.telegram.org/bots/api#botcommandscopeallgroupchats)
- * *   [BotCommandScopeAllChatAdministrators](https://core.telegram.org/bots/api#botcommandscopeallchatadministrators)
- * *   [BotCommandScopeChat](https://core.telegram.org/bots/api#botcommandscopechat)
- * *   [BotCommandScopeChatAdministrators](https://core.telegram.org/bots/api#botcommandscopechatadministrators)
- * *   [BotCommandScopeChatMember](https://core.telegram.org/bots/api#botcommandscopechatmember)
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscope)
- */
-export type TelegramBotCommandScope =
-    | TelegramBotCommandScopeDefault
-    | TelegramBotCommandScopeAllPrivateChats
-    | TelegramBotCommandScopeAllGroupChats
-    | TelegramBotCommandScopeAllChatAdministrators
-    | TelegramBotCommandScopeChat
-    | TelegramBotCommandScopeChatAdministrators
-    | TelegramBotCommandScopeChatMember
-
-/**
- * Represents the default [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands. Default commands are used if no commands with a [narrower scope](https://core.telegram.org/bots/api#determining-list-of-commands) are specified for the user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopedefault)
- */
-export interface TelegramBotCommandScopeDefault {
-    /**
-     * Scope type, must be *default*
-     */
-    type: "default"
-}
-
-/**
- * Represents the [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands, covering all private chats.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopeallprivatechats)
- */
-export interface TelegramBotCommandScopeAllPrivateChats {
-    /**
-     * Scope type, must be *all\_private\_chats*
-     */
-    type: "all_private_chats"
-}
-
-/**
- * Represents the [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands, covering all group and supergroup chats.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopeallgroupchats)
- */
-export interface TelegramBotCommandScopeAllGroupChats {
-    /**
-     * Scope type, must be *all\_group\_chats*
-     */
-    type: "all_group_chats"
-}
-
-/**
- * Represents the [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands, covering all group and supergroup chat administrators.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopeallchatadministrators)
- */
-export interface TelegramBotCommandScopeAllChatAdministrators {
-    /**
-     * Scope type, must be *all\_chat\_administrators*
-     */
-    type: "all_chat_administrators"
-}
-
-/**
- * Represents the [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands, covering a specific chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopechat)
- */
-export interface TelegramBotCommandScopeChat {
-    /**
-     * Scope type, must be *chat*
-     */
-    type: "chat"
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`). Channel direct messages chats and channel chats aren't supported.
-     */
-    chat_id: number | string
-}
-
-/**
- * Represents the [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands, covering all administrators of a specific group or supergroup chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopechatadministrators)
- */
-export interface TelegramBotCommandScopeChatAdministrators {
-    /**
-     * Scope type, must be *chat\_administrators*
-     */
-    type: "chat_administrators"
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`). Channel direct messages chats and channel chats aren't supported.
-     */
-    chat_id: number | string
-}
-
-/**
- * Represents the [scope](https://core.telegram.org/bots/api#botcommandscope) of bot commands, covering a specific member of a group or supergroup chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botcommandscopechatmember)
- */
-export interface TelegramBotCommandScopeChatMember {
-    /**
-     * Scope type, must be *chat\_member*
-     */
-    type: "chat_member"
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`). Channel direct messages chats and channel chats aren't supported.
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
+     * User ID
      */
     user_id: number
 }
 
 /**
- * This object represents the bot's name.
  *
- * [Documentation](https://core.telegram.org/bots/api/#botname)
  */
-export interface TelegramBotName {
+export interface VKAppWidgetsPhoto {
     /**
-     * The bot's name
-     */
-    name: string
-}
-
-/**
- * This object represents the bot's description.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botdescription)
- */
-export interface TelegramBotDescription {
-    /**
-     * The bot's description
-     */
-    description: string
-}
-
-/**
- * This object represents the bot's short description.
- *
- * [Documentation](https://core.telegram.org/bots/api/#botshortdescription)
- */
-export interface TelegramBotShortDescription {
-    /**
-     * The bot's short description
-     */
-    short_description: string
-}
-
-/**
- * This object describes the bot's menu button in a private chat. It should be one of
- *
- * *   [MenuButtonCommands](https://core.telegram.org/bots/api#menubuttoncommands)
- * *   [MenuButtonWebApp](https://core.telegram.org/bots/api#menubuttonwebapp)
- * *   [MenuButtonDefault](https://core.telegram.org/bots/api#menubuttondefault)
- *
- * [Documentation](https://core.telegram.org/bots/api/#menubutton)
- */
-export type TelegramMenuButton =
-    | TelegramMenuButtonCommands
-    | TelegramMenuButtonWebApp
-    | TelegramMenuButtonDefault
-
-/**
- * Represents a menu button, which opens the bot's list of commands.
- *
- * [Documentation](https://core.telegram.org/bots/api/#menubuttoncommands)
- */
-export interface TelegramMenuButtonCommands {
-    /**
-     * Type of the button, must be *commands*
-     */
-    type: "commands"
-}
-
-/**
- * Represents a menu button, which launches a [Web App](https://core.telegram.org/bots/webapps).
- *
- * [Documentation](https://core.telegram.org/bots/api/#menubuttonwebapp)
- */
-export interface TelegramMenuButtonWebApp {
-    /**
-     * Type of the button, must be *web\_app*
-     */
-    type: "web_app"
-    /**
-     * Text on the button
-     */
-    text: string
-    /**
-     * Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method [answerWebAppQuery](https://core.telegram.org/bots/api#answerwebappquery). Alternatively, a `t.me` link to a Web App of the bot can be specified in the object instead of the Web App's URL, in which case the Web App will be opened as if the user pressed the link.
-     */
-    web_app: TelegramWebAppInfo
-}
-
-/**
- * Describes that no specific value for the menu button was set.
- *
- * [Documentation](https://core.telegram.org/bots/api/#menubuttondefault)
- */
-export interface TelegramMenuButtonDefault {
-    /**
-     * Type of the button, must be *default*
-     */
-    type: "default"
-}
-
-/**
- * This object describes the source of a chat boost. It can be one of
- *
- * *   [ChatBoostSourcePremium](https://core.telegram.org/bots/api#chatboostsourcepremium)
- * *   [ChatBoostSourceGiftCode](https://core.telegram.org/bots/api#chatboostsourcegiftcode)
- * *   [ChatBoostSourceGiveaway](https://core.telegram.org/bots/api#chatboostsourcegiveaway)
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostsource)
- */
-export type TelegramChatBoostSource =
-    | TelegramChatBoostSourcePremium
-    | TelegramChatBoostSourceGiftCode
-    | TelegramChatBoostSourceGiveaway
-
-/**
- * The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium subscription to another user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostsourcepremium)
- */
-export interface TelegramChatBoostSourcePremium {
-    /**
-     * Source of the boost, always “premium”
-     */
-    source: "premium"
-    /**
-     * User that boosted the chat
-     */
-    user: TelegramUser
-}
-
-/**
- * The boost was obtained by the creation of Telegram Premium gift codes to boost a chat. Each such code boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostsourcegiftcode)
- */
-export interface TelegramChatBoostSourceGiftCode {
-    /**
-     * Source of the boost, always “gift\_code”
-     */
-    source: "gift_code"
-    /**
-     * User for which the gift code was created
-     */
-    user: TelegramUser
-}
-
-/**
- * The boost was obtained by the creation of a Telegram Premium or a Telegram Star giveaway. This boosts the chat 4 times for the duration of the corresponding Telegram Premium subscription for Telegram Premium giveaways and *prize\_star\_count* / 500 times for one year for Telegram Star giveaways.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostsourcegiveaway)
- */
-export interface TelegramChatBoostSourceGiveaway {
-    /**
-     * Source of the boost, always “giveaway”
-     */
-    source: "giveaway"
-    /**
-     * Identifier of a message in the chat with the giveaway; the message could have been deleted already. May be 0 if the message isn't sent yet.
-     */
-    giveaway_message_id: number
-    /**
-     * *Optional*. User that won the prize in the giveaway if any; for Telegram Premium giveaways only
-     */
-    user?: TelegramUser
-    /**
-     * *Optional*. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only
-     */
-    prize_star_count?: number
-    /**
-     * *Optional*. *True*, if the giveaway was completed, but there was no user to win the prize
-     */
-    is_unclaimed?: true
-}
-
-/**
- * This object contains information about a chat boost.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboost)
- */
-export interface TelegramChatBoost {
-    /**
-     * Unique identifier of the boost
-     */
-    boost_id: string
-    /**
-     * Point in time (Unix timestamp) when the chat was boosted
-     */
-    add_date: number
-    /**
-     * Point in time (Unix timestamp) when the boost will automatically expire, unless the booster's Telegram Premium subscription is prolonged
-     */
-    expiration_date: number
-    /**
-     * Source of the added boost
-     */
-    source: TelegramChatBoostSource
-}
-
-/**
- * This object represents a boost added to a chat or changed.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostupdated)
- */
-export interface TelegramChatBoostUpdated {
-    /**
-     * Chat which was boosted
-     */
-    chat: TelegramChat
-    /**
-     * Information about the chat boost
-     */
-    boost: TelegramChatBoost
-}
-
-/**
- * This object represents a boost removed from a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatboostremoved)
- */
-export interface TelegramChatBoostRemoved {
-    /**
-     * Chat which was boosted
-     */
-    chat: TelegramChat
-    /**
-     * Unique identifier of the boost
-     */
-    boost_id: string
-    /**
-     * Point in time (Unix timestamp) when the boost was removed
-     */
-    remove_date: number
-    /**
-     * Source of the removed boost
-     */
-    source: TelegramChatBoostSource
-}
-
-/**
- * Describes a service message about the chat owner leaving the chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatownerleft)
- */
-export interface TelegramChatOwnerLeft {
-    /**
-     * *Optional*. The user which will be the new owner of the chat if the previous owner does not return to the chat
-     */
-    new_owner?: TelegramUser
-}
-
-/**
- * Describes a service message about an ownership change in the chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#chatownerchanged)
- */
-export interface TelegramChatOwnerChanged {
-    /**
-     * The new owner of the chat
-     */
-    new_owner: TelegramUser
-}
-
-/**
- * This object represents a list of boosts added to a chat by a user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#userchatboosts)
- */
-export interface TelegramUserChatBoosts {
-    /**
-     * The list of boosts added to the chat by the user
-     */
-    boosts: TelegramChatBoost[]
-}
-
-/**
- * Represents the rights of a business bot.
- *
- * [Documentation](https://core.telegram.org/bots/api/#businessbotrights)
- */
-export interface TelegramBusinessBotRights {
-    /**
-     * *Optional*. *True*, if the bot can send and edit messages in the private chats that had incoming messages in the last 24 hours
-     */
-    can_reply?: true
-    /**
-     * *Optional*. *True*, if the bot can mark incoming private messages as read
-     */
-    can_read_messages?: true
-    /**
-     * *Optional*. *True*, if the bot can delete messages sent by the bot
-     */
-    can_delete_sent_messages?: true
-    /**
-     * *Optional*. *True*, if the bot can delete all private messages in managed chats
-     */
-    can_delete_all_messages?: true
-    /**
-     * *Optional*. *True*, if the bot can edit the first and last name of the business account
-     */
-    can_edit_name?: true
-    /**
-     * *Optional*. *True*, if the bot can edit the bio of the business account
-     */
-    can_edit_bio?: true
-    /**
-     * *Optional*. *True*, if the bot can edit the profile photo of the business account
-     */
-    can_edit_profile_photo?: true
-    /**
-     * *Optional*. *True*, if the bot can edit the username of the business account
-     */
-    can_edit_username?: true
-    /**
-     * *Optional*. *True*, if the bot can change the privacy settings pertaining to gifts for the business account
-     */
-    can_change_gift_settings?: true
-    /**
-     * *Optional*. *True*, if the bot can view gifts and the amount of Telegram Stars owned by the business account
-     */
-    can_view_gifts_and_stars?: true
-    /**
-     * *Optional*. *True*, if the bot can convert regular gifts owned by the business account to Telegram Stars
-     */
-    can_convert_gifts_to_stars?: true
-    /**
-     * *Optional*. *True*, if the bot can transfer and upgrade gifts owned by the business account
-     */
-    can_transfer_and_upgrade_gifts?: true
-    /**
-     * *Optional*. *True*, if the bot can transfer Telegram Stars received by the business account to its own account, or use them to upgrade and transfer gifts
-     */
-    can_transfer_stars?: true
-    /**
-     * *Optional*. *True*, if the bot can post, edit and delete stories on behalf of the business account
-     */
-    can_manage_stories?: true
-}
-
-/**
- * Describes the connection of the bot with a business account.
- *
- * [Documentation](https://core.telegram.org/bots/api/#businessconnection)
- */
-export interface TelegramBusinessConnection {
-    /**
-     * Unique identifier of the business connection
+     * Image ID
      */
     id: string
-    /**
-     * Business account user that created the business connection
-     */
-    user: TelegramUser
-    /**
-     * Identifier of a private chat with the user who created the business connection. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
-     */
-    user_chat_id: number
-    /**
-     * Date the connection was established in Unix time
-     */
-    date: number
-    /**
-     * *Optional*. Rights of the business bot
-     */
-    rights?: TelegramBusinessBotRights
-    /**
-     * *True*, if the connection is active
-     */
-    is_enabled: boolean
+    images: VKBaseImage[]
 }
 
 /**
- * This object is received when messages are deleted from a connected business account.
  *
- * [Documentation](https://core.telegram.org/bots/api/#businessmessagesdeleted)
  */
-export interface TelegramBusinessMessagesDeleted {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Information about a chat in the business account. The bot may not have access to the chat or the corresponding user.
-     */
-    chat: TelegramChat
-    /**
-     * The list of identifiers of deleted messages in the chat of the business account
-     */
-    message_ids: number[]
+export interface VKAppWidgetsPhotos {
+    count?: number
+    items?: VKAppWidgetsPhoto[]
 }
 
 /**
- * Describes why a request was unsuccessful.
  *
- * [Documentation](https://core.telegram.org/bots/api/#responseparameters)
  */
-export interface TelegramResponseParameters {
+export interface VKAppsApp {
+    type: VKAppsAppType
     /**
-     * *Optional*. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
+     * Application ID
      */
-    migrate_to_chat_id?: number
+    id: number
     /**
-     * *Optional*. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated
-     */
-    retry_after?: number
-}
-
-/**
- * This object represents the content of a media message to be sent. It should be one of
- *
- * *   [InputMediaAnimation](https://core.telegram.org/bots/api#inputmediaanimation)
- * *   [InputMediaDocument](https://core.telegram.org/bots/api#inputmediadocument)
- * *   [InputMediaAudio](https://core.telegram.org/bots/api#inputmediaaudio)
- * *   [InputMediaPhoto](https://core.telegram.org/bots/api#inputmediaphoto)
- * *   [InputMediaVideo](https://core.telegram.org/bots/api#inputmediavideo)
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmedia)
- */
-export type TelegramInputMedia =
-    | TelegramInputMediaAnimation
-    | TelegramInputMediaDocument
-    | TelegramInputMediaAudio
-    | TelegramInputMediaPhoto
-    | TelegramInputMediaVideo
-
-/**
- * Represents a photo to be sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmediaphoto)
- */
-export interface TelegramInputMediaPhoto {
-    /**
-     * Type of the result, must be *photo*
-     */
-    type: "photo"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-    /**
-     * *Optional*. Caption of the photo to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the photo caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. Pass *True* if the photo needs to be covered with a spoiler animation
-     */
-    has_spoiler?: boolean
-}
-
-/**
- * Represents a video to be sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmediavideo)
- */
-export interface TelegramInputMediaVideo {
-    /**
-     * Type of the result, must be *video*
-     */
-    type: "video"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-    /**
-     * *Optional*. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: TelegramInputFile | string
-    /**
-     * *Optional*. Cover for the video in the message. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    cover?: TelegramInputFile | string
-    /**
-     * *Optional*. Start timestamp for the video in the message
-     */
-    start_timestamp?: number
-    /**
-     * *Optional*. Caption of the video to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the video caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. Video width
-     */
-    width?: number
-    /**
-     * *Optional*. Video height
-     */
-    height?: number
-    /**
-     * *Optional*. Video duration in seconds
-     */
-    duration?: number
-    /**
-     * *Optional*. Pass *True* if the uploaded video is suitable for streaming
-     */
-    supports_streaming?: boolean
-    /**
-     * *Optional*. Pass *True* if the video needs to be covered with a spoiler animation
-     */
-    has_spoiler?: boolean
-}
-
-/**
- * Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmediaanimation)
- */
-export interface TelegramInputMediaAnimation {
-    /**
-     * Type of the result, must be *animation*
-     */
-    type: "animation"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-    /**
-     * *Optional*. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: TelegramInputFile | string
-    /**
-     * *Optional*. Caption of the animation to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the animation caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. Animation width
-     */
-    width?: number
-    /**
-     * *Optional*. Animation height
-     */
-    height?: number
-    /**
-     * *Optional*. Animation duration in seconds
-     */
-    duration?: number
-    /**
-     * *Optional*. Pass *True* if the animation needs to be covered with a spoiler animation
-     */
-    has_spoiler?: boolean
-}
-
-/**
- * Represents an audio file to be treated as music to be sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmediaaudio)
- */
-export interface TelegramInputMediaAudio {
-    /**
-     * Type of the result, must be *audio*
-     */
-    type: "audio"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-    /**
-     * *Optional*. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: TelegramInputFile | string
-    /**
-     * *Optional*. Caption of the audio to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the audio caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Duration of the audio in seconds
-     */
-    duration?: number
-    /**
-     * *Optional*. Performer of the audio
-     */
-    performer?: string
-    /**
-     * *Optional*. Title of the audio
-     */
-    title?: string
-}
-
-/**
- * Represents a general file to be sent.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmediadocument)
- */
-export interface TelegramInputMediaDocument {
-    /**
-     * Type of the result, must be *document*
-     */
-    type: "document"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-    /**
-     * *Optional*. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: TelegramInputFile | string
-    /**
-     * *Optional*. Caption of the document to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the document caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always *True*, if the document is sent as part of an album.
-     */
-    disable_content_type_detection?: boolean
-}
-
-/**
- * This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputfile)
- */
-export type TelegramInputFile = Blob
-
-/**
- * This object describes the paid media to be sent. Currently, it can be one of
- *
- * *   [InputPaidMediaPhoto](https://core.telegram.org/bots/api#inputpaidmediaphoto)
- * *   [InputPaidMediaVideo](https://core.telegram.org/bots/api#inputpaidmediavideo)
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputpaidmedia)
- */
-export type TelegramInputPaidMedia =
-    | TelegramInputPaidMediaPhoto
-    | TelegramInputPaidMediaVideo
-
-/**
- * The paid media to send is a photo.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputpaidmediaphoto)
- */
-export interface TelegramInputPaidMediaPhoto {
-    /**
-     * Type of the media, must be *photo*
-     */
-    type: "photo"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-}
-
-/**
- * The paid media to send is a video.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputpaidmediavideo)
- */
-export interface TelegramInputPaidMediaVideo {
-    /**
-     * Type of the media, must be *video*
-     */
-    type: "video"
-    /**
-     * File to send. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    media: TelegramInputFile | string
-    /**
-     * *Optional*. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: TelegramInputFile | string
-    /**
-     * *Optional*. Cover for the video in the message. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    cover?: TelegramInputFile | string
-    /**
-     * *Optional*. Start timestamp for the video in the message
-     */
-    start_timestamp?: number
-    /**
-     * *Optional*. Video width
-     */
-    width?: number
-    /**
-     * *Optional*. Video height
-     */
-    height?: number
-    /**
-     * *Optional*. Video duration in seconds
-     */
-    duration?: number
-    /**
-     * *Optional*. Pass *True* if the uploaded video is suitable for streaming
-     */
-    supports_streaming?: boolean
-}
-
-/**
- * This object describes a profile photo to set. Currently, it can be one of
- *
- * *   [InputProfilePhotoStatic](https://core.telegram.org/bots/api#inputprofilephotostatic)
- * *   [InputProfilePhotoAnimated](https://core.telegram.org/bots/api#inputprofilephotoanimated)
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputprofilephoto)
- */
-export type TelegramInputProfilePhoto =
-    | TelegramInputProfilePhotoStatic
-    | TelegramInputProfilePhotoAnimated
-
-/**
- * A static profile photo in the .JPG format.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputprofilephotostatic)
- */
-export interface TelegramInputProfilePhotoStatic {
-    /**
-     * Type of the profile photo, must be *static*
-     */
-    type: "static"
-    /**
-     * The static profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the photo was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    photo: TelegramInputFile | string
-}
-
-/**
- * An animated profile photo in the MPEG4 format.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputprofilephotoanimated)
- */
-export interface TelegramInputProfilePhotoAnimated {
-    /**
-     * Type of the profile photo, must be *animated*
-     */
-    type: "animated"
-    /**
-     * The animated profile photo. Profile photos can't be reused and can only be uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the photo was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    animation: TelegramInputFile | string
-    /**
-     * *Optional*. Timestamp in seconds of the frame that will be used as the static profile photo. Defaults to 0.0.
-     */
-    main_frame_timestamp?: number
-}
-
-/**
- * This object describes the content of a story to post. Currently, it can be one of
- *
- * *   [InputStoryContentPhoto](https://core.telegram.org/bots/api#inputstorycontentphoto)
- * *   [InputStoryContentVideo](https://core.telegram.org/bots/api#inputstorycontentvideo)
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputstorycontent)
- */
-export type TelegramInputStoryContent =
-    | TelegramInputStoryContentPhoto
-    | TelegramInputStoryContentVideo
-
-/**
- * Describes a photo to post as a story.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputstorycontentphoto)
- */
-export interface TelegramInputStoryContentPhoto {
-    /**
-     * Type of the content, must be *photo*
-     */
-    type: "photo"
-    /**
-     * The photo to post as a story. The photo must be of the size 1080x1920 and must not exceed 10 MB. The photo can't be reused and can only be uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the photo was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    photo: TelegramInputFile | string
-}
-
-/**
- * Describes a video to post as a story.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputstorycontentvideo)
- */
-export interface TelegramInputStoryContentVideo {
-    /**
-     * Type of the content, must be *video*
-     */
-    type: "video"
-    /**
-     * The video to post as a story. The video must be of the size 720x1280, streamable, encoded with H.265 codec, with key frames added each second in the MPEG4 format, and must not exceed 30 MB. The video can't be reused and can only be uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the video was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    video: TelegramInputFile | string
-    /**
-     * *Optional*. Precise duration of the video in seconds; 0-60
-     */
-    duration?: number
-    /**
-     * *Optional*. Timestamp in seconds of the frame that will be used as the static cover for the story. Defaults to 0.0.
-     */
-    cover_frame_timestamp?: number
-    /**
-     * *Optional*. Pass *True* if the video has no sound
-     */
-    is_animation?: boolean
-}
-
-export type TelegramStickerType = "regular" | "mask" | "custom_emoji"
-
-/**
- * This object represents a sticker.
- *
- * [Documentation](https://core.telegram.org/bots/api/#sticker)
- */
-export interface TelegramSticker {
-    /**
-     * Identifier for this file, which can be used to download or reuse the file
-     */
-    file_id: string
-    /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
-     */
-    file_unique_id: string
-    /**
-     * Type of the sticker, currently one of “regular”, “mask”, “custom\_emoji”. The type of the sticker is independent from its format, which is determined by the fields *is\_animated* and *is\_video*.
-     */
-    type: TelegramStickerType
-    /**
-     * Sticker width
-     */
-    width: number
-    /**
-     * Sticker height
-     */
-    height: number
-    /**
-     * *True*, if the sticker is [animated](https://telegram.org/blog/animated-stickers)
-     */
-    is_animated: boolean
-    /**
-     * *True*, if the sticker is a [video sticker](https://telegram.org/blog/video-stickers-better-reactions)
-     */
-    is_video: boolean
-    /**
-     * *Optional*. Sticker thumbnail in the .WEBP or .JPG format
-     */
-    thumbnail?: TelegramPhotoSize
-    /**
-     * *Optional*. Emoji associated with the sticker
-     */
-    emoji?: string
-    /**
-     * *Optional*. Name of the sticker set to which the sticker belongs
-     */
-    set_name?: string
-    /**
-     * *Optional*. For premium regular stickers, premium animation for the sticker
-     */
-    premium_animation?: TelegramFile
-    /**
-     * *Optional*. For mask stickers, the position where the mask should be placed
-     */
-    mask_position?: TelegramMaskPosition
-    /**
-     * *Optional*. For custom emoji stickers, unique identifier of the custom emoji
-     */
-    custom_emoji_id?: string
-    /**
-     * *Optional*. *True*, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
-     */
-    needs_repainting?: true
-    /**
-     * *Optional*. File size in bytes
-     */
-    file_size?: number
-}
-
-export type TelegramStickerSetStickerType = "regular" | "mask" | "custom_emoji"
-
-/**
- * This object represents a sticker set.
- *
- * [Documentation](https://core.telegram.org/bots/api/#stickerset)
- */
-export interface TelegramStickerSet {
-    /**
-     * Sticker set name
-     */
-    name: string
-    /**
-     * Sticker set title
+     * Application title
      */
     title: string
     /**
-     * Type of stickers in the set, currently one of “regular”, “mask”, “custom\_emoji”
+     * Application author's ID
      */
-    sticker_type: TelegramStickerSetStickerType
+    author_owner_id?: number
     /**
-     * List of all set stickers
+     * Is application installed
      */
-    stickers: TelegramSticker[]
+    is_installed?: boolean
     /**
-     * *Optional*. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
+     * URL of the app icon with 139 px in width
      */
-    thumbnail?: TelegramPhotoSize
-}
-
-export type TelegramMaskPositionPoint = "forehead" | "eyes" | "mouth" | "chin"
-
-/**
- * This object describes the position on faces where a mask should be placed by default.
- *
- * [Documentation](https://core.telegram.org/bots/api/#maskposition)
- */
-export interface TelegramMaskPosition {
+    icon_139?: string
     /**
-     * The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
+     * URL of the app icon with 150 px in width
      */
-    point: TelegramMaskPositionPoint
+    icon_150?: string
     /**
-     * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.
+     * URL of the app icon with 278 px in width
      */
-    x_shift: number
+    icon_278?: string
     /**
-     * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position.
+     * URL of the app icon with 576 px in width
      */
-    y_shift: number
+    icon_576?: string
     /**
-     * Mask scaling coefficient. For example, 2.0 means double size.
+     * Hex color code without hash sign
      */
-    scale: number
-}
-
-export type TelegramInputStickerFormat = "static" | "animated" | "video"
-
-/**
- * This object describes a sticker to be added to a sticker set.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputsticker)
- */
-export interface TelegramInputSticker {
+    background_loader_color?: string
     /**
-     * The added sticker. Pass a *file\_id* as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new file using multipart/form-data under <file\_attach\_name> name. Animated and video stickers can't be uploaded via HTTP URL. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
+     * SVG data
      */
-    sticker: TelegramInputFile | string
+    loader_icon?: string
     /**
-     * Format of the added sticker, must be one of “static” for a **.WEBP** or **.PNG** image, “animated” for a **.TGS** animation, “video” for a **.WEBM** video
+     * URL of the app icon with 75 px in width
      */
-    format: TelegramInputStickerFormat
+    icon_75?: string
     /**
-     * List of 1-20 emoji associated with the sticker
+     * Screen orientation
      */
-    emoji_list: string[]
+    screen_orientation?: number
     /**
-     * *Optional*. Position where the mask should be placed on faces. For “mask” stickers only.
+     * Application author's URL
      */
-    mask_position?: TelegramMaskPosition
+    author_url?: string
     /**
-     * *Optional*. List of 0-20 search keywords for the sticker with total length of up to 64 characters. For “regular” and “custom\_emoji” stickers only.
+     * URL of the app banner with 1120 px in width
      */
-    keywords?: string[]
-}
-
-export type TelegramInlineQueryChatType =
-    | "sender"
-    | "private"
-    | "group"
-    | "supergroup"
-    | "channel"
-
-/**
- * This object represents an incoming inline query. When the user sends an empty query, your bot could return some default or trending results.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequery)
- */
-export interface TelegramInlineQuery {
+    banner_1120?: string
     /**
-     * Unique identifier for this query
+     * URL of the app banner with 560 px in width
      */
-    id: string
+    banner_560?: string
     /**
-     * Sender
+     * URL of the app icon with 16 px in width
      */
-    from: TelegramUser
+    icon_16?: string
     /**
-     * Text of the query (up to 256 characters)
+     * Is new flag
      */
-    query: string
+    is_new?: VKBaseBoolInt
     /**
-     * Offset of the results to be returned, can be controlled by the bot
+     * Is push enabled
      */
-    offset: string
+    push_enabled?: VKBaseBoolInt
+    friends?: number[]
     /**
-     * *Optional*. Type of the chat from which the inline query was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”. The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat
+     * Catalog position
      */
-    chat_type?: TelegramInlineQueryChatType
+    catalog_position?: number
     /**
-     * *Optional*. Sender location, only for bots that request user location
+     * Application description
      */
-    location?: TelegramLocation
-}
-
-/**
- * This object represents a button to be shown above inline query results. You **must** use exactly one of the optional fields.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultsbutton)
- */
-export interface TelegramInlineQueryResultsButton {
+    description?: string
     /**
-     * Label text on the button
+     * Genre name
      */
-    text: string
+    genre?: string
     /**
-     * *Optional*. Description of the [Web App](https://core.telegram.org/bots/webapps) that will be launched when the user presses the button. The Web App will be able to switch back to the inline mode using the method [switchInlineQuery](https://core.telegram.org/bots/webapps#initializing-mini-apps) inside the Web App.
+     * Genre ID
      */
-    web_app?: TelegramWebAppInfo
+    genre_id?: number
     /**
-     * *Optional*. [Deep-linking](https://core.telegram.org/bots/features#deep-linking) parameter for the /start message sent to the bot when a user presses the button. 1-64 characters, only `A-Z`, `a-z`, `0-9`, `_` and `-` are allowed.
-     *
-     * *Example:* An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer a [*switch\_inline*](https://core.telegram.org/bots/api#inlinekeyboardmarkup) button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
+     * Information whether the application is multilanguage
      */
-    start_parameter?: string
+    international?: boolean
+    /**
+     * Information whether application is in mobile catalog
+     */
+    is_in_catalog?: number
+    leaderboard_type?: VKAppsAppLeaderboardType
+    /**
+     * Members number
+     */
+    members_count?: number
+    /**
+     * Application ID in store
+     */
+    platform_id?: string
+    /**
+     * Date when the application has been published in Unixtime
+     */
+    published_date?: number
+    /**
+     * Screen name
+     */
+    screen_name?: string
+    /**
+     * Application section name
+     */
+    section?: string
 }
 
 /**
- * This object represents one result of an inline query. Telegram clients currently support results of the following 20 types:
- *
- * *   [InlineQueryResultCachedAudio](https://core.telegram.org/bots/api#inlinequeryresultcachedaudio)
- * *   [InlineQueryResultCachedDocument](https://core.telegram.org/bots/api#inlinequeryresultcacheddocument)
- * *   [InlineQueryResultCachedGif](https://core.telegram.org/bots/api#inlinequeryresultcachedgif)
- * *   [InlineQueryResultCachedMpeg4Gif](https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif)
- * *   [InlineQueryResultCachedPhoto](https://core.telegram.org/bots/api#inlinequeryresultcachedphoto)
- * *   [InlineQueryResultCachedSticker](https://core.telegram.org/bots/api#inlinequeryresultcachedsticker)
- * *   [InlineQueryResultCachedVideo](https://core.telegram.org/bots/api#inlinequeryresultcachedvideo)
- * *   [InlineQueryResultCachedVoice](https://core.telegram.org/bots/api#inlinequeryresultcachedvoice)
- * *   [InlineQueryResultArticle](https://core.telegram.org/bots/api#inlinequeryresultarticle)
- * *   [InlineQueryResultAudio](https://core.telegram.org/bots/api#inlinequeryresultaudio)
- * *   [InlineQueryResultContact](https://core.telegram.org/bots/api#inlinequeryresultcontact)
- * *   [InlineQueryResultGame](https://core.telegram.org/bots/api#inlinequeryresultgame)
- * *   [InlineQueryResultDocument](https://core.telegram.org/bots/api#inlinequeryresultdocument)
- * *   [InlineQueryResultGif](https://core.telegram.org/bots/api#inlinequeryresultgif)
- * *   [InlineQueryResultLocation](https://core.telegram.org/bots/api#inlinequeryresultlocation)
- * *   [InlineQueryResultMpeg4Gif](https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif)
- * *   [InlineQueryResultPhoto](https://core.telegram.org/bots/api#inlinequeryresultphoto)
- * *   [InlineQueryResultVenue](https://core.telegram.org/bots/api#inlinequeryresultvenue)
- * *   [InlineQueryResultVideo](https://core.telegram.org/bots/api#inlinequeryresultvideo)
- * *   [InlineQueryResultVoice](https://core.telegram.org/bots/api#inlinequeryresultvoice)
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresult)
+ * App fields available for response
  */
-export type TelegramInlineQueryResult =
-    | TelegramInlineQueryResultCachedAudio
-    | TelegramInlineQueryResultCachedDocument
-    | TelegramInlineQueryResultCachedGif
-    | TelegramInlineQueryResultCachedMpeg4Gif
-    | TelegramInlineQueryResultCachedPhoto
-    | TelegramInlineQueryResultCachedSticker
-    | TelegramInlineQueryResultCachedVideo
-    | TelegramInlineQueryResultCachedVoice
-    | TelegramInlineQueryResultArticle
-    | TelegramInlineQueryResultAudio
-    | TelegramInlineQueryResultContact
-    | TelegramInlineQueryResultGame
-    | TelegramInlineQueryResultDocument
-    | TelegramInlineQueryResultGif
-    | TelegramInlineQueryResultLocation
-    | TelegramInlineQueryResultMpeg4Gif
-    | TelegramInlineQueryResultPhoto
-    | TelegramInlineQueryResultVenue
-    | TelegramInlineQueryResultVideo
-    | TelegramInlineQueryResultVoice
+export type VKAppsAppFields =
+    | "author_group"
+    | "author_id"
+    | "author_url"
+    | "banner_1120"
+    | "banner_560"
+    | "banner_186"
+    | "banner_896"
+    | "icon_16"
+    | "icon_25"
+    | "icon_50"
+    | "icon_100"
+    | "icon_200"
+    | "icon_128"
+    | "icon_256"
+    | "is_new"
+    | "new"
+    | "is_html5_app"
+    | "push_enabled"
+    | "catalog_banner"
+    | "friends"
+    | "catalog_position"
+    | "description"
+    | "genre"
+    | "genre_id"
+    | "international"
+    | "is_in_catalog"
+    | "installed"
+    | "leaderboard_type"
+    | "members_count"
+    | "platform_id"
+    | "published_date"
+    | "screen_name"
+    | "section"
+    | "type"
+    | "id"
+    | "title"
+    | "author_owner_id"
+    | "is_installed"
+    | "icon_139"
+    | "icon_150"
+    | "icon_278"
+    | "icon_576"
+    | "background_loader_color"
+    | "loader_icon"
+    | "icon_75"
+    | "open_in_external_browser"
+    | "ad_config"
+    | "screen_orientation"
 
 /**
- * Represents a link to an article or web page.
+ * Leaderboard type
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultarticle)
+ * - `0` — not supported
+ * - `1` — levels
+ * - `2` — points
  */
-export interface TelegramInlineQueryResultArticle {
+export type VKAppsAppLeaderboardType = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKAppsAppMin {
+    type: VKAppsAppType
     /**
-     * Type of the result, must be *article*
+     * Application ID
      */
-    type: "article"
+    id: number
     /**
-     * Unique identifier for this result, 1-64 Bytes
-     */
-    id: string
-    /**
-     * Title of the result
+     * Application title
      */
     title: string
     /**
-     * Content of the message to be sent
+     * Application author's ID
      */
-    input_message_content: TelegramInputMessageContent
+    author_owner_id?: number
     /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
+     * Is application installed
      */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
+    is_installed?: boolean
     /**
-     * *Optional*. URL of the result
+     * URL of the app icon with 139 px in width
      */
-    url?: string
+    icon_139?: string
     /**
-     * *Optional*. Short description of the result
+     * URL of the app icon with 150 px in width
      */
-    description?: string
+    icon_150?: string
     /**
-     * *Optional*. Url of the thumbnail for the result
+     * URL of the app icon with 278 px in width
      */
-    thumbnail_url?: string
+    icon_278?: string
     /**
-     * *Optional*. Thumbnail width
+     * URL of the app icon with 576 px in width
      */
-    thumbnail_width?: number
+    icon_576?: string
     /**
-     * *Optional*. Thumbnail height
+     * Hex color code without hash sign
      */
-    thumbnail_height?: number
+    background_loader_color?: string
+    /**
+     * SVG data
+     */
+    loader_icon?: string
+    /**
+     * URL of the app icon with 75 px in width
+     */
+    icon_75?: string
+    /**
+     * Screen orientation
+     */
+    screen_orientation?: number
 }
 
 /**
- * Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the photo.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultphoto)
+ * Application type
  */
-export interface TelegramInlineQueryResultPhoto {
+export type VKAppsAppType =
+    | "app"
+    | "game"
+    | "site"
+    | "standalone"
+    | "vk_app"
+    | "community_app"
+    | "html5_game"
+    | "mini_app"
+
+/**
+ *
+ */
+export interface VKAppsCatalogList {
     /**
-     * Type of the result, must be *photo*
+     * Total number
      */
-    type: "photo"
+    count: number
+    items: VKAppsApp[]
+    profiles?: VKUsersUserMin[]
+}
+
+export type VKAppsCustomSnippetVkRef = "snippet_im" | "snippet_post"
+export type VKAppsCustomSnippetButton =
+    | "buy"
+    | "buy_ticket"
+    | "contact"
+    | "create"
+    | "enroll"
+    | "fill"
+    | "go"
+    | "open"
+    | "play"
+
+/**
+ *
+ */
+export interface VKAppsCustomSnippet {
+    vk_ref?: VKAppsCustomSnippetVkRef[]
+    group_id?: number[]
+    hash?: string[]
+    snippet_id?: number
+    title?: string
+    description?: string
+    expired_at?: number
+    image_url?: string
+    small_image_url?: string
+    button?: VKAppsCustomSnippetButton
+}
+
+/**
+ *
+ */
+export interface VKAppsLeaderboard {
     /**
-     * Unique identifier for this result, 1-64 bytes
+     * Level
      */
-    id: string
+    level?: number
     /**
-     * A valid URL of the photo. Photo must be in **JPEG** format. Photo size must not exceed 5MB
+     * Points number
      */
-    photo_url: string
+    points?: number
     /**
-     * URL of the thumbnail for the photo
+     * Score number
      */
-    thumbnail_url: string
+    score?: number
     /**
-     * *Optional*. Width of the photo
+     * User ID
      */
-    photo_width?: number
+    user_id: number
+}
+
+export type VKAppsScopeName =
+    | "friends"
+    | "photos"
+    | "video"
+    | "pages"
+    | "status"
+    | "notes"
+    | "wall"
+    | "docs"
+    | "groups"
+    | "stats"
+    | "market"
+    | "stories"
+    | "app_widget"
+    | "messages"
+    | "manage"
+    | "notify"
+    | "audio"
+    | "support"
+    | "menu"
+    | "wallmenu"
+    | "ads"
+    | "offline"
+    | "notifications"
+    | "email"
+    | "adsweb"
+    | "leads"
+    | "group_messages"
+    | "exchange"
+    | "phone"
+
+/**
+ * Scope description
+ */
+export interface VKAppsScope {
     /**
-     * *Optional*. Height of the photo
+     * Scope name
      */
-    photo_height?: number
+    name: VKAppsScopeName
     /**
-     * *Optional*. Title for the result
+     * Scope title
      */
     title?: string
-    /**
-     * *Optional*. Short description of the result
-     */
-    description?: string
-    /**
-     * *Optional*. Caption of the photo to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the photo caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the photo
-     */
-    input_message_content?: TelegramInputMessageContent
 }
 
-export type TelegramInlineQueryResultGifThumbnailMimeType =
-    | "image/jpeg"
-    | "image/gif"
-    | "video/mp4"
+export type VKAppsTestingGroupPlatforms = "mobile" | "web" | "mvk"
 
 /**
- * Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the animation.
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultgif)
  */
-export interface TelegramInlineQueryResultGif {
-    /**
-     * Type of the result, must be *gif*
-     */
-    type: "gif"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid URL for the GIF file
-     */
-    gif_url: string
-    /**
-     * *Optional*. Width of the GIF
-     */
-    gif_width?: number
-    /**
-     * *Optional*. Height of the GIF
-     */
-    gif_height?: number
-    /**
-     * *Optional*. Duration of the GIF in seconds
-     */
-    gif_duration?: number
-    /**
-     * URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-     */
-    thumbnail_url: string
-    /**
-     * *Optional*. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-     */
-    thumbnail_mime_type?: TelegramInlineQueryResultGifThumbnailMimeType
-    /**
-     * *Optional*. Title for the result
-     */
-    title?: string
-    /**
-     * *Optional*. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the GIF animation
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-export type TelegramInlineQueryResultMpeg4GifThumbnailMimeType =
-    | "image/jpeg"
-    | "image/gif"
-    | "video/mp4"
-
-/**
- * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound). By default, this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the animation.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultmpeg4gif)
- */
-export interface TelegramInlineQueryResultMpeg4Gif {
-    /**
-     * Type of the result, must be *mpeg4\_gif*
-     */
-    type: "mpeg4_gif"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid URL for the MPEG4 file
-     */
-    mpeg4_url: string
-    /**
-     * *Optional*. Video width
-     */
-    mpeg4_width?: number
-    /**
-     * *Optional*. Video height
-     */
-    mpeg4_height?: number
-    /**
-     * *Optional*. Video duration in seconds
-     */
-    mpeg4_duration?: number
-    /**
-     * URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
-     */
-    thumbnail_url: string
-    /**
-     * *Optional*. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”
-     */
-    thumbnail_mime_type?: TelegramInlineQueryResultMpeg4GifThumbnailMimeType
-    /**
-     * *Optional*. Title for the result
-     */
-    title?: string
-    /**
-     * *Optional*. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the video animation
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-export type TelegramInlineQueryResultVideoMimeType = "text/html" | "video/mp4"
-
-/**
- * Represents a link to a page containing an embedded video player or a video file. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the video.
- *
- * > If an InlineQueryResultVideo message contains an embedded video (e.g., YouTube), you **must** replace its content using *input\_message\_content*.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultvideo)
- */
-export interface TelegramInlineQueryResultVideo {
-    /**
-     * Type of the result, must be *video*
-     */
-    type: "video"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid URL for the embedded video player or video file
-     */
-    video_url: string
-    /**
-     * MIME type of the content of the video URL, “text/html” or “video/mp4”
-     */
-    mime_type: TelegramInlineQueryResultVideoMimeType
-    /**
-     * URL of the thumbnail (JPEG only) for the video
-     */
-    thumbnail_url: string
-    /**
-     * Title for the result
-     */
-    title: string
-    /**
-     * *Optional*. Caption of the video to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the video caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. Video width
-     */
-    video_width?: number
-    /**
-     * *Optional*. Video height
-     */
-    video_height?: number
-    /**
-     * *Optional*. Video duration in seconds
-     */
-    video_duration?: number
-    /**
-     * *Optional*. Short description of the result
-     */
-    description?: string
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the video. This field is **required** if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).
-     */
-    input_message_content?: TelegramInputMessageContent
+export interface VKAppsTestingGroup {
+    user_ids: number[]
+    group_id: number
+    name?: string
+    webview?: string
+    platforms?: VKAppsTestingGroupPlatforms[]
 }
 
 /**
- * Represents a link to an MP3 audio file. By default, this audio file will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the audio.
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultaudio)
  */
-export interface TelegramInlineQueryResultAudio {
+export interface VKAudioAudio {
     /**
-     * Type of the result, must be *audio*
+     * Access key for the audio
      */
-    type: "audio"
+    access_key?: string
     /**
-     * Unique identifier for this result, 1-64 bytes
+     * Artist name
      */
-    id: string
+    artist: string
     /**
-     * A valid URL for the audio file
+     * Audio ID
      */
-    audio_url: string
+    id: number
+    /**
+     * Audio owner's ID
+     */
+    owner_id: number
     /**
      * Title
      */
     title: string
     /**
-     * *Optional*. Caption, 0-1024 characters after entities parsing
+     * URL of mp3 file
      */
-    caption?: string | { toString(): string }
+    url?: string
     /**
-     * *Optional*. Mode for parsing entities in the audio caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
+     * Duration in seconds
      */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
+    duration: number
     /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
+     * Stream duration in seconds
      */
-    caption_entities?: TelegramMessageEntity[]
+    stream_duration?: number
     /**
-     * *Optional*. Performer
+     * Date when uploaded
+     */
+    date?: number
+    /**
+     * Album ID
+     */
+    album_id?: number
+    /**
+     * Performer name
      */
     performer?: string
     /**
-     * *Optional*. Audio duration in seconds
+     * Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов
      */
-    audio_duration?: number
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the audio
-     */
-    input_message_content?: TelegramInputMessageContent
+    file_size?: number
 }
 
 /**
- * Represents a link to a voice recording in an .OGG container encoded with OPUS. By default, this voice recording will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the the voice message.
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultvoice)
+ *
+ * - `0` — no
+ * - `1` — yes
  */
-export interface TelegramInlineQueryResultVoice {
-    /**
-     * Type of the result, must be *voice*
-     */
-    type: "voice"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid URL for the voice recording
-     */
-    voice_url: string
-    /**
-     * Recording title
-     */
-    title: string
-    /**
-     * *Optional*. Caption, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the voice message caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Recording duration in seconds
-     */
-    voice_duration?: number
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the voice recording
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-export type TelegramInlineQueryResultDocumentMimeType =
-    | "application/pdf"
-    | "application/zip"
+export type VKBaseBoolInt = 0 | 1
 
 /**
- * Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the file. Currently, only **.PDF** and **.ZIP** files can be sent using this method.
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultdocument)
  */
-export interface TelegramInlineQueryResultDocument {
+export interface VKBaseCity {
     /**
-     * Type of the result, must be *document*
+     * City ID
      */
-    type: "document"
+    id: number
     /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * Title for the result
+     * City title
      */
     title: string
+}
+
+/**
+ *
+ */
+export interface VKBaseCommentsInfo {
     /**
-     * *Optional*. Caption of the document to be sent, 0-1024 characters after entities parsing
+     * Information whether current user can comment the post
      */
-    caption?: string | { toString(): string }
+    can_post?: VKBaseBoolInt
+    can_open?: VKBaseBoolInt
+    can_close?: VKBaseBoolInt
     /**
-     * *Optional*. Mode for parsing entities in the document caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
+     * Information whether current user can view the comments
      */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
+    can_view?: VKBaseBoolInt
     /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
+     * Comments number
      */
-    caption_entities?: TelegramMessageEntity[]
+    count?: number
     /**
-     * A valid URL for the file
+     * Information whether groups can comment the post
      */
-    document_url: string
+    groups_can_post?: boolean
+    donut?: VKWallWallpostCommentsDonut
+    list?: VKWallWallComment[]
+}
+
+/**
+ *
+ */
+export interface VKBaseCountry {
     /**
-     * MIME type of the content of the file, either “application/pdf” or “application/zip”
+     * Country ID
      */
-    mime_type: TelegramInlineQueryResultDocumentMimeType
+    id: number
     /**
-     * *Optional*. Short description of the result
+     * Country title
+     */
+    title: string
+}
+
+/**
+ *
+ */
+export interface VKBaseCropPhoto {
+    photo: VKPhotosPhoto
+    crop: VKBaseCropPhotoCrop
+    rect: VKBaseCropPhotoRect
+}
+
+/**
+ *
+ */
+export interface VKBaseCropPhotoCrop {
+    /**
+     * Coordinate X of the left upper corner
+     */
+    x: number
+    /**
+     * Coordinate Y of the left upper corner
+     */
+    y: number
+    /**
+     * Coordinate X of the right lower corner
+     */
+    x2: number
+    /**
+     * Coordinate Y of the right lower corner
+     */
+    y2: number
+}
+
+/**
+ *
+ */
+export interface VKBaseCropPhotoRect {
+    /**
+     * Coordinate X of the left upper corner
+     */
+    x: number
+    /**
+     * Coordinate Y of the left upper corner
+     */
+    y: number
+    /**
+     * Coordinate X of the right lower corner
+     */
+    x2: number
+    /**
+     * Coordinate Y of the right lower corner
+     */
+    y2: number
+}
+
+export type VKBaseErrorInnerType = "base_error"
+
+/**
+ *
+ */
+export interface VKBaseError {
+    inner_type: VKBaseErrorInnerType
+    /**
+     * Error code
+     */
+    error_code: number
+    /**
+     * Error subcode
+     */
+    error_subcode?: number
+    /**
+     * Error message
+     */
+    error_msg?: string
+    /**
+     * Localized error message
+     */
+    error_text?: string
+    request_params?: VKBaseRequestParam[]
+}
+
+/**
+ *
+ */
+export interface VKBaseGeo {
+    coordinates?: VKBaseGeoCoordinates
+    place?: VKBasePlace
+    /**
+     * Information whether a map is showed
+     */
+    showmap?: number
+    /**
+     * Place type
+     */
+    type?: string
+}
+
+/**
+ *
+ */
+export interface VKBaseGeoCoordinates {
+    latitude: number
+    longitude: number
+}
+
+/**
+ *
+ */
+export interface VKBaseGradientPoint {
+    /**
+     * Hex color code without #
+     */
+    color: string
+    /**
+     * Point position
+     */
+    position: number
+}
+
+export type VKBaseImageTheme = "light" | "dark"
+
+/**
+ *
+ */
+export interface VKBaseImage {
+    id?: string
+    /**
+     * Image url
+     */
+    url: string
+    /**
+     * Image width
+     */
+    width: number
+    /**
+     * Image height
+     */
+    height: number
+    theme?: VKBaseImageTheme
+}
+
+/**
+ *
+ *
+ * - `ru` — russian
+ * - `ua` — ukrainian
+ * - `be` — belarusian
+ * - `en` — english
+ * - `es` — spanish
+ * - `fi` — finnish
+ * - `de` — german
+ * - `it` — italian
+ */
+export type VKBaseLang = "ru" | "ua" | "be" | "en" | "es" | "fi" | "de" | "it"
+
+/**
+ *
+ */
+export interface VKBaseLikes {
+    /**
+     * Likes number
+     */
+    count?: number
+    /**
+     * Information whether current user likes the photo
+     */
+    user_likes?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKBaseLikesInfo {
+    /**
+     * Information whether current user can like the post
+     */
+    can_like: VKBaseBoolInt
+    /**
+     * Information whether current user can repost
+     */
+    can_publish?: VKBaseBoolInt
+    /**
+     * Whether user can like comment as author
+     */
+    can_like_as_author?: VKBaseBoolInt
+    /**
+     * Whether current owner of the group can like the reply
+     */
+    can_like_by_group?: VKBaseBoolInt
+    /**
+     * Likes number
+     */
+    count: number
+    /**
+     * Information whether current uer has liked the post
+     */
+    user_likes: VKBaseBoolInt
+    /**
+     * Information whether post author liked the reply
+     */
+    author_liked?: boolean
+    /**
+     * Information whether group liked the reply
+     */
+    group_liked?: boolean
+    /**
+     * Remove repost feature for post
+     */
+    repost_disabled?: boolean
+}
+
+/**
+ *
+ */
+export interface VKBaseLink {
+    application?: VKBaseLinkApplication
+    button?: VKBaseLinkButton
+    /**
+     * Link caption
+     */
+    caption?: string
+    /**
+     * Link description
      */
     description?: string
     /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
+     * Link ID
      */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
+    id?: string
+    is_favorite?: boolean
+    photo?: VKPhotosPhoto
     /**
-     * *Optional*. Content of the message to be sent instead of the file
+     * String ID of the page with article preview
      */
-    input_message_content?: TelegramInputMessageContent
+    preview_page?: string
     /**
-     * *Optional*. URL of the thumbnail (JPEG only) for the file
+     * URL of the page with article preview
      */
-    thumbnail_url?: string
+    preview_url?: string
+    rating?: VKBaseLinkRating
     /**
-     * *Optional*. Thumbnail width
-     */
-    thumbnail_width?: number
-    /**
-     * *Optional*. Thumbnail height
-     */
-    thumbnail_height?: number
-}
-
-/**
- * Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the location.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultlocation)
- */
-export interface TelegramInlineQueryResultLocation {
-    /**
-     * Type of the result, must be *location*
-     */
-    type: "location"
-    /**
-     * Unique identifier for this result, 1-64 Bytes
-     */
-    id: string
-    /**
-     * Location latitude in degrees
-     */
-    latitude: number
-    /**
-     * Location longitude in degrees
-     */
-    longitude: number
-    /**
-     * Location title
-     */
-    title: string
-    /**
-     * *Optional*. The radius of uncertainty for the location, measured in meters; 0-1500
-     */
-    horizontal_accuracy?: number
-    /**
-     * *Optional*. Period in seconds during which the location can be updated, should be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.
-     */
-    live_period?: number
-    /**
-     * *Optional*. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
-     */
-    heading?: number
-    /**
-     * *Optional*. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-     */
-    proximity_alert_radius?: number
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the location
-     */
-    input_message_content?: TelegramInputMessageContent
-    /**
-     * *Optional*. Url of the thumbnail for the result
-     */
-    thumbnail_url?: string
-    /**
-     * *Optional*. Thumbnail width
-     */
-    thumbnail_width?: number
-    /**
-     * *Optional*. Thumbnail height
-     */
-    thumbnail_height?: number
-}
-
-/**
- * Represents a venue. By default, the venue will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the venue.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultvenue)
- */
-export interface TelegramInlineQueryResultVenue {
-    /**
-     * Type of the result, must be *venue*
-     */
-    type: "venue"
-    /**
-     * Unique identifier for this result, 1-64 Bytes
-     */
-    id: string
-    /**
-     * Latitude of the venue location in degrees
-     */
-    latitude: number
-    /**
-     * Longitude of the venue location in degrees
-     */
-    longitude: number
-    /**
-     * Title of the venue
-     */
-    title: string
-    /**
-     * Address of the venue
-     */
-    address: string
-    /**
-     * *Optional*. Foursquare identifier of the venue if known
-     */
-    foursquare_id?: string
-    /**
-     * *Optional*. Foursquare type of the venue, if known. (For example, “arts\_entertainment/default”, “arts\_entertainment/aquarium” or “food/icecream”.)
-     */
-    foursquare_type?: string
-    /**
-     * *Optional*. Google Places identifier of the venue
-     */
-    google_place_id?: string
-    /**
-     * *Optional*. Google Places type of the venue. (See [supported types](https://developers.google.com/places/web-service/supported_types).)
-     */
-    google_place_type?: string
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the venue
-     */
-    input_message_content?: TelegramInputMessageContent
-    /**
-     * *Optional*. Url of the thumbnail for the result
-     */
-    thumbnail_url?: string
-    /**
-     * *Optional*. Thumbnail width
-     */
-    thumbnail_width?: number
-    /**
-     * *Optional*. Thumbnail height
-     */
-    thumbnail_height?: number
-}
-
-/**
- * Represents a contact with a phone number. By default, this contact will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the contact.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcontact)
- */
-export interface TelegramInlineQueryResultContact {
-    /**
-     * Type of the result, must be *contact*
-     */
-    type: "contact"
-    /**
-     * Unique identifier for this result, 1-64 Bytes
-     */
-    id: string
-    /**
-     * Contact's phone number
-     */
-    phone_number: string
-    /**
-     * Contact's first name
-     */
-    first_name: string
-    /**
-     * *Optional*. Contact's last name
-     */
-    last_name?: string
-    /**
-     * *Optional*. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard), 0-2048 bytes
-     */
-    vcard?: string
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the contact
-     */
-    input_message_content?: TelegramInputMessageContent
-    /**
-     * *Optional*. Url of the thumbnail for the result
-     */
-    thumbnail_url?: string
-    /**
-     * *Optional*. Thumbnail width
-     */
-    thumbnail_width?: number
-    /**
-     * *Optional*. Thumbnail height
-     */
-    thumbnail_height?: number
-}
-
-/**
- * Represents a [Game](https://core.telegram.org/bots/api#games).
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultgame)
- */
-export interface TelegramInlineQueryResultGame {
-    /**
-     * Type of the result, must be *game*
-     */
-    type: "game"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * Short name of the game
-     */
-    game_short_name: string
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-}
-
-/**
- * Represents a link to a photo stored on the Telegram servers. By default, this photo will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the photo.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedphoto)
- */
-export interface TelegramInlineQueryResultCachedPhoto {
-    /**
-     * Type of the result, must be *photo*
-     */
-    type: "photo"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier of the photo
-     */
-    photo_file_id: string
-    /**
-     * *Optional*. Title for the result
+     * Link title
      */
     title?: string
     /**
-     * *Optional*. Short description of the result
+     * Link URL
      */
-    description?: string
+    url: string
+    target_object?: VKLinkTargetObject
     /**
-     * *Optional*. Caption of the photo to be sent, 0-1024 characters after entities parsing
+     * Information whether the current link is external
      */
-    caption?: string | { toString(): string }
+    is_external?: boolean
     /**
-     * *Optional*. Mode for parsing entities in the photo caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
+     * Video from link
      */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the photo
-     */
-    input_message_content?: TelegramInputMessageContent
+    video?: VKVideoVideoFull
+    text?: string
+    product?: VKBaseLinkProduct
 }
 
 /**
- * Represents a link to an animated GIF file stored on the Telegram servers. By default, this animated GIF file will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with specified content instead of the animation.
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedgif)
  */
-export interface TelegramInlineQueryResultCachedGif {
+export interface VKBaseLinkApplication {
     /**
-     * Type of the result, must be *gif*
+     * Application Id
      */
-    type: "gif"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier for the GIF file
-     */
-    gif_file_id: string
-    /**
-     * *Optional*. Title for the result
-     */
-    title?: string
-    /**
-     * *Optional*. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the GIF animation
-     */
-    input_message_content?: TelegramInputMessageContent
+    app_id?: number
+    store?: VKBaseLinkApplicationStore
 }
 
 /**
- * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers. By default, this animated MPEG-4 file will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the animation.
  *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedmpeg4gif)
  */
-export interface TelegramInlineQueryResultCachedMpeg4Gif {
+export interface VKBaseLinkApplicationStore {
     /**
-     * Type of the result, must be *mpeg4\_gif*
+     * Store Id
      */
-    type: "mpeg4_gif"
+    id?: number
     /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier for the MPEG4 file
-     */
-    mpeg4_file_id: string
-    /**
-     * *Optional*. Title for the result
-     */
-    title?: string
-    /**
-     * *Optional*. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the video animation
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-/**
- * Represents a link to a sticker stored on the Telegram servers. By default, this sticker will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the sticker.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedsticker)
- */
-export interface TelegramInlineQueryResultCachedSticker {
-    /**
-     * Type of the result, must be *sticker*
-     */
-    type: "sticker"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier of the sticker
-     */
-    sticker_file_id: string
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the sticker
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-/**
- * Represents a link to a file stored on the Telegram servers. By default, this file will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the file.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcacheddocument)
- */
-export interface TelegramInlineQueryResultCachedDocument {
-    /**
-     * Type of the result, must be *document*
-     */
-    type: "document"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * Title for the result
-     */
-    title: string
-    /**
-     * A valid file identifier for the file
-     */
-    document_file_id: string
-    /**
-     * *Optional*. Short description of the result
-     */
-    description?: string
-    /**
-     * *Optional*. Caption of the document to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the document caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the file
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-/**
- * Represents a link to a video file stored on the Telegram servers. By default, this video file will be sent by the user with an optional caption. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the video.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedvideo)
- */
-export interface TelegramInlineQueryResultCachedVideo {
-    /**
-     * Type of the result, must be *video*
-     */
-    type: "video"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier for the video file
-     */
-    video_file_id: string
-    /**
-     * Title for the result
-     */
-    title: string
-    /**
-     * *Optional*. Short description of the result
-     */
-    description?: string
-    /**
-     * *Optional*. Caption of the video to be sent, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the video caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the video
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-/**
- * Represents a link to a voice message stored on the Telegram servers. By default, this voice message will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the voice message.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedvoice)
- */
-export interface TelegramInlineQueryResultCachedVoice {
-    /**
-     * Type of the result, must be *voice*
-     */
-    type: "voice"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier for the voice message
-     */
-    voice_file_id: string
-    /**
-     * Voice message title
-     */
-    title: string
-    /**
-     * *Optional*. Caption, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the voice message caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the voice message
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-/**
- * Represents a link to an MP3 audio file stored on the Telegram servers. By default, this audio file will be sent by the user. Alternatively, you can use *input\_message\_content* to send a message with the specified content instead of the audio.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inlinequeryresultcachedaudio)
- */
-export interface TelegramInlineQueryResultCachedAudio {
-    /**
-     * Type of the result, must be *audio*
-     */
-    type: "audio"
-    /**
-     * Unique identifier for this result, 1-64 bytes
-     */
-    id: string
-    /**
-     * A valid file identifier for the audio file
-     */
-    audio_file_id: string
-    /**
-     * *Optional*. Caption, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * *Optional*. Mode for parsing entities in the audio caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. [Inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) attached to the message
-     */
-    reply_markup?:
-        | TelegramInlineKeyboardMarkup
-        | { toJSON(): TelegramInlineKeyboardMarkup }
-    /**
-     * *Optional*. Content of the message to be sent instead of the audio
-     */
-    input_message_content?: TelegramInputMessageContent
-}
-
-/**
- * This object represents the content of a message to be sent as a result of an inline query. Telegram clients currently support the following 5 types:
- *
- * *   [InputTextMessageContent](https://core.telegram.org/bots/api#inputtextmessagecontent)
- * *   [InputLocationMessageContent](https://core.telegram.org/bots/api#inputlocationmessagecontent)
- * *   [InputVenueMessageContent](https://core.telegram.org/bots/api#inputvenuemessagecontent)
- * *   [InputContactMessageContent](https://core.telegram.org/bots/api#inputcontactmessagecontent)
- * *   [InputInvoiceMessageContent](https://core.telegram.org/bots/api#inputinvoicemessagecontent)
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputmessagecontent)
- */
-export type TelegramInputMessageContent =
-    | TelegramInputTextMessageContent
-    | TelegramInputLocationMessageContent
-    | TelegramInputVenueMessageContent
-    | TelegramInputContactMessageContent
-    | TelegramInputInvoiceMessageContent
-
-/**
- * Represents the [content](https://core.telegram.org/bots/api#inputmessagecontent) of a text message to be sent as the result of an inline query.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputtextmessagecontent)
- */
-export interface TelegramInputTextMessageContent {
-    /**
-     * Text of the message to be sent, 1-4096 characters
-     */
-    message_text: string
-    /**
-     * *Optional*. Mode for parsing entities in the message text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * *Optional*. List of special entities that appear in message text, which can be specified instead of *parse\_mode*
-     */
-    entities?: TelegramMessageEntity[]
-    /**
-     * *Optional*. Link preview generation options for the message
-     */
-    link_preview_options?: TelegramLinkPreviewOptions
-}
-
-/**
- * Represents the [content](https://core.telegram.org/bots/api#inputmessagecontent) of a location message to be sent as the result of an inline query.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputlocationmessagecontent)
- */
-export interface TelegramInputLocationMessageContent {
-    /**
-     * Latitude of the location in degrees
-     */
-    latitude: number
-    /**
-     * Longitude of the location in degrees
-     */
-    longitude: number
-    /**
-     * *Optional*. The radius of uncertainty for the location, measured in meters; 0-1500
-     */
-    horizontal_accuracy?: number
-    /**
-     * *Optional*. Period in seconds during which the location can be updated, should be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.
-     */
-    live_period?: number
-    /**
-     * *Optional*. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
-     */
-    heading?: number
-    /**
-     * *Optional*. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-     */
-    proximity_alert_radius?: number
-}
-
-/**
- * Represents the [content](https://core.telegram.org/bots/api#inputmessagecontent) of a venue message to be sent as the result of an inline query.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputvenuemessagecontent)
- */
-export interface TelegramInputVenueMessageContent {
-    /**
-     * Latitude of the venue in degrees
-     */
-    latitude: number
-    /**
-     * Longitude of the venue in degrees
-     */
-    longitude: number
-    /**
-     * Name of the venue
-     */
-    title: string
-    /**
-     * Address of the venue
-     */
-    address: string
-    /**
-     * *Optional*. Foursquare identifier of the venue, if known
-     */
-    foursquare_id?: string
-    /**
-     * *Optional*. Foursquare type of the venue, if known. (For example, “arts\_entertainment/default”, “arts\_entertainment/aquarium” or “food/icecream”.)
-     */
-    foursquare_type?: string
-    /**
-     * *Optional*. Google Places identifier of the venue
-     */
-    google_place_id?: string
-    /**
-     * *Optional*. Google Places type of the venue. (See [supported types](https://developers.google.com/places/web-service/supported_types).)
-     */
-    google_place_type?: string
-}
-
-/**
- * Represents the [content](https://core.telegram.org/bots/api#inputmessagecontent) of a contact message to be sent as the result of an inline query.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputcontactmessagecontent)
- */
-export interface TelegramInputContactMessageContent {
-    /**
-     * Contact's phone number
-     */
-    phone_number: string
-    /**
-     * Contact's first name
-     */
-    first_name: string
-    /**
-     * *Optional*. Contact's last name
-     */
-    last_name?: string
-    /**
-     * *Optional*. Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard), 0-2048 bytes
-     */
-    vcard?: string
-}
-
-/**
- * Represents the [content](https://core.telegram.org/bots/api#inputmessagecontent) of an invoice message to be sent as the result of an inline query.
- *
- * [Documentation](https://core.telegram.org/bots/api/#inputinvoicemessagecontent)
- */
-export interface TelegramInputInvoiceMessageContent {
-    /**
-     * Product name, 1-32 characters
-     */
-    title: string
-    /**
-     * Product description, 1-255 characters
-     */
-    description: string
-    /**
-     * Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes.
-     */
-    payload: string
-    /**
-     * *Optional*. Payment provider token, obtained via [@BotFather](https://t.me/botfather). Pass an empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    provider_token?: string
-    /**
-     * Three-letter ISO 4217 currency code, see [more on currencies](https://core.telegram.org/bots/payments#supported-currencies). Pass “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    currency: TelegramCurrencies
-    /**
-     * Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    prices: TelegramLabeledPrice[]
-    /**
-     * *Optional*. The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of `US$ 1.45` pass `max_tip_amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0. Not supported for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    max_tip_amount?: number
-    /**
-     * *Optional*. A JSON-serialized array of suggested amounts of tip in the *smallest units* of the currency (integer, **not** float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed *max\_tip\_amount*.
-     */
-    suggested_tip_amounts?: number[]
-    /**
-     * *Optional*. A JSON-serialized object for data about the invoice, which will be shared with the payment provider. A detailed description of the required fields should be provided by the payment provider.
-     */
-    provider_data?: string
-    /**
-     * *Optional*. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.
-     */
-    photo_url?: string
-    /**
-     * *Optional*. Photo size in bytes
-     */
-    photo_size?: number
-    /**
-     * *Optional*. Photo width
-     */
-    photo_width?: number
-    /**
-     * *Optional*. Photo height
-     */
-    photo_height?: number
-    /**
-     * *Optional*. Pass *True* if you require the user's full name to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_name?: boolean
-    /**
-     * *Optional*. Pass *True* if you require the user's phone number to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_phone_number?: boolean
-    /**
-     * *Optional*. Pass *True* if you require the user's email address to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_email?: boolean
-    /**
-     * *Optional*. Pass *True* if you require the user's shipping address to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_shipping_address?: boolean
-    /**
-     * *Optional*. Pass *True* if the user's phone number should be sent to the provider. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    send_phone_number_to_provider?: boolean
-    /**
-     * *Optional*. Pass *True* if the user's email address should be sent to the provider. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    send_email_to_provider?: boolean
-    /**
-     * *Optional*. Pass *True* if the final price depends on the shipping method. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    is_flexible?: boolean
-}
-
-/**
- * Represents a [result](https://core.telegram.org/bots/api#inlinequeryresult) of an inline query that was chosen by the user and sent to their chat partner.
- *
- * [Documentation](https://core.telegram.org/bots/api/#choseninlineresult)
- */
-export interface TelegramChosenInlineResult {
-    /**
-     * The unique identifier for the result that was chosen
-     */
-    result_id: string
-    /**
-     * The user that chose the result
-     */
-    from: TelegramUser
-    /**
-     * *Optional*. Sender location, only for bots that require user location
-     */
-    location?: TelegramLocation
-    /**
-     * *Optional*. Identifier of the sent inline message. Available only if there is an [inline keyboard](https://core.telegram.org/bots/api#inlinekeyboardmarkup) attached to the message. Will be also received in [callback queries](https://core.telegram.org/bots/api#callbackquery) and can be used to [edit](https://core.telegram.org/bots/api#updating-messages) the message.
-     */
-    inline_message_id?: string
-    /**
-     * The query that was used to obtain the result
-     */
-    query: string
-}
-
-/**
- * Describes an inline message sent by a [Web App](https://core.telegram.org/bots/webapps) on behalf of a user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#sentwebappmessage)
- */
-export interface TelegramSentWebAppMessage {
-    /**
-     * *Optional*. Identifier of the sent inline message. Available only if there is an [inline keyboard](https://core.telegram.org/bots/api#inlinekeyboardmarkup) attached to the message.
-     */
-    inline_message_id?: string
-}
-
-/**
- * Describes an inline message to be sent by a user of a Mini App.
- *
- * [Documentation](https://core.telegram.org/bots/api/#preparedinlinemessage)
- */
-export interface TelegramPreparedInlineMessage {
-    /**
-     * Unique identifier of the prepared message
-     */
-    id: string
-    /**
-     * Expiration date of the prepared message, in Unix time. Expired prepared messages can no longer be used
-     */
-    expiration_date: number
-}
-
-/**
- * This object represents a portion of the price for goods or services.
- *
- * [Documentation](https://core.telegram.org/bots/api/#labeledprice)
- */
-export interface TelegramLabeledPrice {
-    /**
-     * Portion label
-     */
-    label: string
-    /**
-     * Price of the product in the *smallest units* of the [currency](https://core.telegram.org/bots/payments#supported-currencies) (integer, **not** float/double). For example, for a price of `US$ 1.45` pass `amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
-     */
-    amount: number
-}
-
-/**
- * This object contains basic information about an invoice.
- *
- * [Documentation](https://core.telegram.org/bots/api/#invoice)
- */
-export interface TelegramInvoice {
-    /**
-     * Product name
-     */
-    title: string
-    /**
-     * Product description
-     */
-    description: string
-    /**
-     * Unique bot deep-linking parameter that can be used to generate this invoice
-     */
-    start_parameter: string
-    /**
-     * Three-letter ISO 4217 [currency](https://core.telegram.org/bots/payments#supported-currencies) code, or “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90)
-     */
-    currency: TelegramCurrencies
-    /**
-     * Total price in the *smallest units* of the currency (integer, **not** float/double). For example, for a price of `US$ 1.45` pass `amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
-     */
-    total_amount: number
-}
-
-/**
- * This object represents a shipping address.
- *
- * [Documentation](https://core.telegram.org/bots/api/#shippingaddress)
- */
-export interface TelegramShippingAddress {
-    /**
-     * Two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code
-     */
-    country_code: string
-    /**
-     * State, if applicable
-     */
-    state: string
-    /**
-     * City
-     */
-    city: string
-    /**
-     * First line for the address
-     */
-    street_line1: string
-    /**
-     * Second line for the address
-     */
-    street_line2: string
-    /**
-     * Address post code
-     */
-    post_code: string
-}
-
-/**
- * This object represents information about an order.
- *
- * [Documentation](https://core.telegram.org/bots/api/#orderinfo)
- */
-export interface TelegramOrderInfo {
-    /**
-     * *Optional*. User name
+     * Store name
      */
     name?: string
-    /**
-     * *Optional*. User's phone number
-     */
-    phone_number?: string
-    /**
-     * *Optional*. User email
-     */
-    email?: string
-    /**
-     * *Optional*. User shipping address
-     */
-    shipping_address?: TelegramShippingAddress
 }
 
 /**
- * This object represents one shipping option.
  *
- * [Documentation](https://core.telegram.org/bots/api/#shippingoption)
  */
-export interface TelegramShippingOption {
+export interface VKBaseLinkButton {
     /**
-     * Shipping option identifier
+     * Button action
      */
-    id: string
+    action?: VKBaseLinkButtonAction
     /**
-     * Option title
+     * Button title
+     */
+    title?: string
+    /**
+     * Target block id
+     */
+    block_id?: string
+    /**
+     * Target section id
+     */
+    section_id?: string
+    /**
+     * artist id
+     */
+    artist_id?: string
+    /**
+     * curator id
+     */
+    curator_id?: number
+    /**
+     * Video album id
+     */
+    album_id?: number
+    /**
+     * Owner id
+     */
+    owner_id?: number
+    /**
+     * Button icon name, e.g. 'phone' or 'gift'
+     */
+    icon?: string
+    style?: VKBaseLinkButtonStyle
+    audio_id?: number
+    hashtag?: string
+}
+
+/**
+ *
+ */
+export interface VKBaseLinkButtonAction {
+    type: VKBaseLinkButtonActionType
+    /**
+     * Action URL
+     */
+    url?: string
+    consume_reason?: string
+}
+
+/**
+ * Action type
+ */
+export type VKBaseLinkButtonActionType =
+    | "open_url"
+    | "market_clear_recent_queries"
+    | "close_web_app"
+    | "add_playlist"
+    | "open_search_tab"
+    | "open_search_filters"
+    | "reset_search_filters"
+    | "import_contacts"
+    | "add_friends"
+    | "onboarding"
+    | "show_filters"
+
+/**
+ * Button style
+ *
+ * - `updates` — updates
+ * - `default` — default
+ * - `primary` — primary
+ * - `secondary` — secondary
+ * - `negative` — negative
+ * - `tertiary` — tertiary
+ * - `float_bottom` — float_bottom
+ * - `cell_button_centered_icon` — cell_button_centered_icon
+ * - `borderless_with_icon` — borderless_with_icon
+ * - `gray` — gray
+ * - `flat` — flat
+ * - `outline_with_chevron` — outline_with_chevron
+ * - `inline` — inline
+ * - `modal` — modal
+ * - `right_button` — right_button
+ * - `after_toolbar` — after_toolbar
+ */
+export type VKBaseLinkButtonStyle =
+    | "updates"
+    | "default"
+    | "primary"
+    | "secondary"
+    | "negative"
+    | "tertiary"
+    | "float_bottom"
+    | "cell_button_centered_icon"
+    | "borderless_with_icon"
+    | "gray"
+    | "flat"
+    | "outline_with_chevron"
+    | "inline"
+    | "modal"
+    | "right_button"
+    | "after_toolbar"
+
+/**
+ *
+ */
+export interface VKBaseLinkNoProduct {
+    application?: VKBaseLinkApplication
+    button?: VKBaseLinkButton
+    /**
+     * Link caption
+     */
+    caption?: string
+    /**
+     * Link description
+     */
+    description?: string
+    /**
+     * Link ID
+     */
+    id?: string
+    is_favorite?: boolean
+    photo?: VKPhotosPhoto
+    /**
+     * String ID of the page with article preview
+     */
+    preview_page?: string
+    /**
+     * URL of the page with article preview
+     */
+    preview_url?: string
+    rating?: VKBaseLinkRating
+    /**
+     * Link title
+     */
+    title?: string
+    /**
+     * Link URL
+     */
+    url: string
+    target_object?: VKLinkTargetObject
+    /**
+     * Information whether the current link is external
+     */
+    is_external?: boolean
+    /**
+     * Video from link
+     */
+    video?: VKVideoVideoFull
+}
+
+export type VKBaseLinkProductType = "product"
+
+/**
+ *
+ */
+export interface VKBaseLinkProduct {
+    price: VKMarketPrice
+    merchant?: string
+    category?: VKBaseLinkProductCategory
+    geo?: VKBaseGeoCoordinates
+    distance?: number
+    city?: string
+    status?: VKBaseLinkProductStatus
+    orders_count?: number
+    type?: VKBaseLinkProductType
+}
+
+/**
+ *
+ */
+export type VKBaseLinkProductCategory = string | VKMarketMarketCategoryNested
+
+/**
+ * Status representation
+ */
+export type VKBaseLinkProductStatus =
+    | "active"
+    | "blocked"
+    | "sold"
+    | "deleted"
+    | "archived"
+
+export type VKBaseLinkRatingType = "rating"
+
+/**
+ *
+ */
+export interface VKBaseLinkRating {
+    /**
+     * Count of reviews
+     */
+    reviews_count?: number
+    /**
+     * Count of stars
+     */
+    stars?: number
+    type?: VKBaseLinkRatingType
+}
+
+/**
+ *
+ */
+export interface VKBaseMessageError {
+    /**
+     * Error code
+     */
+    code?: number
+    /**
+     * Error message
+     */
+    description?: string
+}
+
+/**
+ *
+ *
+ * - `Nom` — nominative
+ * - `Gen` — genitive
+ * - `Dat` — dative
+ * - `Acc` — accusative
+ * - `Ins` — instrumental
+ * - `Abl` — prepositional
+ */
+export type VKBaseNameCase = "Nom" | "Gen" | "Dat" | "Acc" | "Ins" | "Abl"
+
+/**
+ *
+ */
+export interface VKBaseObject {
+    /**
+     * Object ID
+     */
+    id: number
+    /**
+     * Object title
      */
     title: string
-    /**
-     * List of price portions
-     */
-    prices: TelegramLabeledPrice[]
 }
 
 /**
- * This object contains basic information about a successful payment. Note that if the buyer initiates a chargeback with the relevant payment provider following this transaction, the funds may be debited from your balance. This is outside of Telegram's control.
  *
- * [Documentation](https://core.telegram.org/bots/api/#successfulpayment)
  */
-export interface TelegramSuccessfulPayment {
+export interface VKBaseObjectCount {
     /**
-     * Three-letter ISO 4217 [currency](https://core.telegram.org/bots/payments#supported-currencies) code, or “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90)
+     * Items count
      */
-    currency: TelegramCurrencies
-    /**
-     * Total price in the *smallest units* of the currency (integer, **not** float/double). For example, for a price of `US$ 1.45` pass `amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
-     */
-    total_amount: number
-    /**
-     * Bot-specified invoice payload
-     */
-    invoice_payload: string
-    /**
-     * *Optional*. Expiration date of the subscription, in Unix time; for recurring payments only
-     */
-    subscription_expiration_date?: number
-    /**
-     * *Optional*. *True*, if the payment is a recurring payment for a subscription
-     */
-    is_recurring?: true
-    /**
-     * *Optional*. *True*, if the payment is the first payment for a subscription
-     */
-    is_first_recurring?: true
-    /**
-     * *Optional*. Identifier of the shipping option chosen by the user
-     */
-    shipping_option_id?: string
-    /**
-     * *Optional*. Order information provided by the user
-     */
-    order_info?: TelegramOrderInfo
-    /**
-     * Telegram payment identifier
-     */
-    telegram_payment_charge_id: string
-    /**
-     * Provider payment identifier
-     */
-    provider_payment_charge_id: string
+    count?: number
 }
 
 /**
- * This object contains basic information about a refunded payment.
  *
- * [Documentation](https://core.telegram.org/bots/api/#refundedpayment)
  */
-export interface TelegramRefundedPayment {
+export interface VKBaseObjectWithName {
     /**
-     * Three-letter ISO 4217 [currency](https://core.telegram.org/bots/payments#supported-currencies) code, or “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90). Currently, always “XTR”
+     * Object ID
      */
-    currency: TelegramCurrencies
+    id: number
     /**
-     * Total refunded price in the *smallest units* of the currency (integer, **not** float/double). For example, for a price of `US$ 1.45`, `total_amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
+     * Object name
      */
-    total_amount: number
-    /**
-     * Bot-specified invoice payload
-     */
-    invoice_payload: string
-    /**
-     * Telegram payment identifier
-     */
-    telegram_payment_charge_id: string
-    /**
-     * *Optional*. Provider payment identifier
-     */
-    provider_payment_charge_id?: string
+    name: string
 }
 
 /**
- * This object contains information about an incoming shipping query.
  *
- * [Documentation](https://core.telegram.org/bots/api/#shippingquery)
  */
-export interface TelegramShippingQuery {
+export interface VKBaseOwnerCover {
     /**
-     * Unique query identifier
+     * Information whether cover is enabled
      */
-    id: string
-    /**
-     * User who sent the query
-     */
-    from: TelegramUser
-    /**
-     * Bot-specified invoice payload
-     */
-    invoice_payload: string
-    /**
-     * User specified shipping address
-     */
-    shipping_address: TelegramShippingAddress
+    enabled: VKBaseBoolInt
+    images?: VKBaseImage[]
+    crop_params?: VKBaseOwnerCoverCropParams
+    original_image?: VKBaseImage
+    photo_id?: number
 }
 
 /**
- * This object contains information about an incoming pre-checkout query.
  *
- * [Documentation](https://core.telegram.org/bots/api/#precheckoutquery)
  */
-export interface TelegramPreCheckoutQuery {
-    /**
-     * Unique query identifier
-     */
-    id: string
-    /**
-     * User who sent the query
-     */
-    from: TelegramUser
-    /**
-     * Three-letter ISO 4217 [currency](https://core.telegram.org/bots/payments#supported-currencies) code, or “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90)
-     */
-    currency: TelegramCurrencies
-    /**
-     * Total price in the *smallest units* of the currency (integer, **not** float/double). For example, for a price of `US$ 1.45` pass `amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
-     */
-    total_amount: number
-    /**
-     * Bot-specified invoice payload
-     */
-    invoice_payload: string
-    /**
-     * *Optional*. Identifier of the shipping option chosen by the user
-     */
-    shipping_option_id?: string
-    /**
-     * *Optional*. Order information provided by the user
-     */
-    order_info?: TelegramOrderInfo
+export interface VKBaseOwnerCoverCropParams {
+    x?: number
+    y?: number
+    width?: number
+    height?: number
 }
 
 /**
- * This object contains information about a paid media purchase.
  *
- * [Documentation](https://core.telegram.org/bots/api/#paidmediapurchased)
  */
-export interface TelegramPaidMediaPurchased {
+export interface VKBasePlace {
     /**
-     * User who purchased the media
+     * Place address
      */
-    from: TelegramUser
+    address?: string
     /**
-     * Bot-specified paid media payload
+     * Checkins number
      */
-    paid_media_payload: string
+    checkins?: number
+    /**
+     * City name
+     */
+    city?: string
+    /**
+     * Date of the place creation in Unixtime
+     */
+    created?: number
+    /**
+     * URL of the place's icon
+     */
+    icon?: string
+    /**
+     * Place ID
+     */
+    id?: number
+    /**
+     * Place latitude
+     */
+    latitude?: number
+    /**
+     * Place longitude
+     */
+    longitude?: number
+    /**
+     * Place title
+     */
+    title?: string
+    /**
+     * Place type
+     */
+    type?: string
 }
 
 /**
- * This object describes the state of a revenue withdrawal operation. Currently, it can be one of
  *
- * *   [RevenueWithdrawalStatePending](https://core.telegram.org/bots/api#revenuewithdrawalstatepending)
- * *   [RevenueWithdrawalStateSucceeded](https://core.telegram.org/bots/api#revenuewithdrawalstatesucceeded)
- * *   [RevenueWithdrawalStateFailed](https://core.telegram.org/bots/api#revenuewithdrawalstatefailed)
  *
- * [Documentation](https://core.telegram.org/bots/api/#revenuewithdrawalstate)
+ * - `1` — Property exists
  */
-export type TelegramRevenueWithdrawalState =
-    | TelegramRevenueWithdrawalStatePending
-    | TelegramRevenueWithdrawalStateSucceeded
-    | TelegramRevenueWithdrawalStateFailed
+export type VKBasePropertyExists = 1
 
 /**
- * The withdrawal is in progress.
- *
- * [Documentation](https://core.telegram.org/bots/api/#revenuewithdrawalstatepending)
+ * Count of views
  */
-export interface TelegramRevenueWithdrawalStatePending {
+export interface VKBaseRepostsInfo {
     /**
-     * Type of the state, always “pending”
+     * Total reposts counter. Sum of wall and mail reposts counters
      */
-    type: "pending"
+    count: number
+    /**
+     * Wall reposts counter
+     */
+    wall_count?: number
+    /**
+     * Mail reposts counter
+     */
+    mail_count?: number
+    /**
+     * Information whether current user has reposted the post
+     */
+    user_reposted?: VKBaseBoolInt
 }
 
 /**
- * The withdrawal succeeded.
  *
- * [Documentation](https://core.telegram.org/bots/api/#revenuewithdrawalstatesucceeded)
  */
-export interface TelegramRevenueWithdrawalStateSucceeded {
+export interface VKBaseRequestParam {
     /**
-     * Type of the state, always “succeeded”
+     * Parameter name
      */
-    type: "succeeded"
+    key: string
     /**
-     * Date the withdrawal was completed in Unix time
+     * Parameter value
+     */
+    value: string
+}
+
+/**
+ *
+ *
+ * - `0` — unknown
+ * - `1` — female
+ * - `2` — male
+ */
+export type VKBaseSex = 0 | 1 | 2
+
+/**
+ *
+ */
+export type VKBaseSticker = VKBaseStickerNew
+
+export type VKBaseStickerAnimationType = "light" | "dark"
+
+/**
+ *
+ */
+export interface VKBaseStickerAnimation {
+    /**
+     * Type of animation script
+     */
+    type?: VKBaseStickerAnimationType
+    /**
+     * URL of animation script
+     */
+    url?: string
+}
+
+export type VKBaseStickerNewInnerType = "base_sticker_new"
+
+/**
+ *
+ */
+export interface VKBaseStickerNew {
+    inner_type: VKBaseStickerNewInnerType
+    /**
+     * Sticker ID
+     */
+    sticker_id?: number
+    /**
+     * Pack ID
+     */
+    product_id?: number
+    images?: VKBaseImage[]
+    images_with_background?: VKBaseImage[]
+    /**
+     * URL of sticker animation script
+     */
+    animation_url?: string
+    /**
+     * Array of sticker animation script objects
+     */
+    animations?: VKBaseStickerAnimation[]
+    /**
+     * Information whether the sticker is allowed
+     */
+    is_allowed?: boolean
+}
+
+/**
+ *
+ */
+export interface VKBaseUploadServer {
+    /**
+     * Upload URL
+     */
+    upload_url: string
+}
+
+/**
+ *
+ */
+export type VKBaseUserGroupFields =
+    | "about"
+    | "action_button"
+    | "activities"
+    | "activity"
+    | "addresses"
+    | "admin_level"
+    | "age_limits"
+    | "author_id"
+    | "ban_info"
+    | "bdate"
+    | "blacklisted"
+    | "blacklisted_by_me"
+    | "books"
+    | "can_ban"
+    | "can_create_topic"
+    | "can_message"
+    | "can_post"
+    | "can_see_all_posts"
+    | "can_see_audio"
+    | "can_send_friend_request"
+    | "can_upload_video"
+    | "can_write_private_message"
+    | "career"
+    | "city"
+    | "common_count"
+    | "connections"
+    | "contacts"
+    | "counters"
+    | "cover"
+    | "crop_photo"
+    | "deactivated"
+    | "description"
+    | "domain"
+    | "education"
+    | "exports"
+    | "finish_date"
+    | "fixed_post"
+    | "followers_count"
+    | "friend_status"
+    | "games"
+    | "has_market_app"
+    | "has_mobile"
+    | "has_photo"
+    | "home_town"
+    | "id"
+    | "interests"
+    | "is_admin"
+    | "is_closed"
+    | "is_favorite"
+    | "is_friend"
+    | "is_best_friend"
+    | "is_hidden_from_feed"
+    | "is_member"
+    | "is_messages_blocked"
+    | "can_send_notify"
+    | "is_subscribed"
+    | "last_seen"
+    | "links"
+    | "lists"
+    | "maiden_name"
+    | "main_album_id"
+    | "main_section"
+    | "market"
+    | "member_status"
+    | "members_count"
+    | "military"
+    | "movies"
+    | "music"
+    | "name"
+    | "nickname"
+    | "occupation"
+    | "online"
+    | "online_status"
+    | "personal"
+    | "phone"
+    | "photo_100"
+    | "photo_200"
+    | "photo_200_orig"
+    | "photo_400_orig"
+    | "photo_50"
+    | "photo_id"
+    | "photo_max"
+    | "photo_max_orig"
+    | "photo_avg_color"
+    | "quotes"
+    | "relation"
+    | "relatives"
+    | "schools"
+    | "screen_name"
+    | "sex"
+    | "site"
+    | "start_date"
+    | "status"
+    | "timezone"
+    | "trending"
+    | "tv"
+    | "type"
+    | "universities"
+    | "verified"
+    | "wall_comments"
+    | "wiki_page"
+    | "first_name"
+    | "first_name_acc"
+    | "first_name_dat"
+    | "first_name_gen"
+    | "last_name"
+    | "last_name_acc"
+    | "last_name_dat"
+    | "last_name_gen"
+    | "can_subscribe_stories"
+    | "is_subscribed_stories"
+    | "vk_admin_status"
+    | "can_upload_story"
+    | "clips_count"
+    | "image_status"
+    | "is_nft"
+    | "is_nft_photo"
+    | "is_verified"
+    | "url"
+
+/**
+ *
+ */
+export interface VKBaseUserId {
+    /**
+     * User ID
+     */
+    user_id?: number
+}
+
+/**
+ * Sort type
+ *
+ * - `1` — desc_updated
+ * - `2` — desc_created
+ * - `-1` — asc_updated
+ * - `-2` — asc_created
+ */
+export type VKBoardDefaultOrder = 1 | 2 | -1 | -2
+
+/**
+ *
+ */
+export interface VKBoardTopic {
+    /**
+     * Comments number
+     */
+    comments?: number
+    /**
+     * Date when the topic has been created in Unixtime
+     */
+    created?: number
+    /**
+     * Creator ID
+     */
+    created_by?: number
+    /**
+     * Topic ID
+     */
+    id?: number
+    /**
+     * Information whether the topic is closed
+     */
+    is_closed?: VKBaseBoolInt
+    /**
+     * Information whether the topic is fixed
+     */
+    is_fixed?: VKBaseBoolInt
+    /**
+     * Topic title
+     */
+    title?: string
+    /**
+     * Date when the topic has been updated in Unixtime
+     */
+    updated?: number
+    /**
+     * ID of user who updated the topic
+     */
+    updated_by?: number
+    /**
+     * First comment text
+     */
+    first_comment?: string
+    /**
+     * Last comment text
+     */
+    last_comment?: string
+}
+
+/**
+ *
+ */
+export interface VKBoardTopicComment {
+    attachments?: VKWallCommentAttachment[]
+    /**
+     * Date when the comment has been added in Unixtime
      */
     date: number
     /**
-     * An HTTPS URL that can be used to see transaction details
+     * Author ID
      */
+    from_id: number
+    /**
+     * Comment ID
+     */
+    id: number
+    /**
+     * Real position of the comment
+     */
+    real_offset?: number
+    /**
+     * Comment text
+     */
+    text: string
+    /**
+     * Information whether current user can edit the comment
+     */
+    can_edit?: VKBaseBoolInt
+    likes?: VKBaseLikesInfo
+}
+
+/**
+ *
+ */
+export interface VKBugtrackerAddCompanyGroupsMembersError {
+    group_id: number
+    user_id: number
+}
+
+export type VKBugtrackerAttachmentType = "photo" | "doc"
+
+/**
+ *
+ */
+export interface VKBugtrackerAttachment {
+    doc?: VKDocsDoc
+    photo?: VKPhotosPhoto
+    type: VKBugtrackerAttachmentType
+}
+
+/**
+ * - `1` — need_correction_long_time
+ * - `2` — ready_for_testing_long_time
+ */
+export type VKBugtrackerBugreportStatusAutoUpdateReason = 1 | 2
+
+/**
+ *
+ */
+export interface VKBugtrackerBugreport {
+    id: number
+    original_id?: number
+    clones_count?: number
+    title: string
+    owner_id: number
+    created: number
+    updated: number
+    description?: string
+    state_actual?: string
+    state_supposed?: string
+    phone?: string
+    comments_count?: number
+    can_remove?: boolean
+    can_change_status?: boolean
+    can_bookmark?: boolean
+    is_bookmarked?: boolean
+    can_edit?: boolean
+    can_export_to_trackers?: boolean
+    can_export_to_csv?: boolean
+    can_add_moder_comment?: boolean
+    can_add_hidden_comment?: boolean
+    can_view_history?: boolean
+    is_deleted?: boolean
+    can_restore?: boolean
+    is_vulnerability?: boolean
+    is_severity_by_moderator?: boolean
+    hidden_docs?: boolean
+    is_confidential?: boolean
+    private_comment?: string
+    can_change_product?: boolean
+    company_id: number
+    tournament_score?: number
+    moderator_user_id?: number
+    moderated?: number
+    screen_reader?: number
+    status_auto_update_ts?: number
+    status_auto_update_reason?: VKBugtrackerBugreportStatusAutoUpdateReason
+    product_has_wishes?: boolean
+}
+
+/**
+ *
+ */
+export interface VKBugtrackerBugreportSubscribeState {
+    can_set_subscribe: boolean
+    is_subscribed?: boolean
+    set_subscribe_hash?: string
+}
+
+/**
+ *
+ */
+export interface VKBugtrackerComment {
+    bugreport_id: number
+    comment_id: number
+    created: number
+    text: string
+    meta_text?: string
+    from_id?: number
+    author_name?: string
+    author_photo?: string
+    can_edit?: boolean
+    can_remove?: boolean
+    is_hidden?: boolean
+    attachments?: VKBugtrackerAttachment[]
+    is_unread?: boolean
+    author?: VKBugtrackerCommentAuthor
+    is_attachments_hidden?: boolean
+}
+
+/**
+ *
+ */
+export interface VKBugtrackerCommentAuthor {
+    author_id?: number
+    name?: string
+    photo?: string
+    moder_name?: string
+    moder_number?: number
+    link?: string
+}
+
+/**
+ *
+ */
+export interface VKBugtrackerCompanyMember {
+    user_id: number
+    company_id: number
+    role: number
+    role_name: string
+    ts: number
+    groups_count: number
+    products_count: number
+    reporter_url: string
+    groups?: number[]
+    products?: VKBugtrackerCompanyMemberProduct[]
+}
+
+/**
+ *
+ */
+export interface VKBugtrackerCompanyMemberProduct {
+    id: number
+    title?: string
+    photo_url?: string
+    access: number
+    status: number
+    licence_status_text?: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackAppPayload {
+    user_id: number
+    app_id: number
+    payload: string
+}
+
+/**
+ *
+ */
+export type VKCallbackAudioNew = VKAudioAudio
+
+/**
+ *
+ */
+export interface VKCallbackBase {
+    type: VKCallbackType
+    group_id: number
+    /**
+     * Unique event id. If it passed twice or more - you should ignore it.
+     */
+    event_id: string
+    /**
+     * API object version
+     */
+    v: string
+    secret?: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackBoardPostDelete {
+    topic_owner_id: number
+    topic_id: number
+    id: number
+    deleter_id?: number
+}
+
+/**
+ *
+ */
+export type VKCallbackBoardPostEdit = VKBoardTopicComment
+
+/**
+ *
+ */
+export type VKCallbackBoardPostNew = VKBoardTopicComment
+
+/**
+ *
+ */
+export type VKCallbackBoardPostRestore = VKBoardTopicComment
+
+/**
+ *
+ */
+export interface VKCallbackConfirmation {
+    type: VKCallbackType
+    group_id: number
+    /**
+     * Unique event id. If it passed twice or more - you should ignore it.
+     */
+    event_id: string
+    /**
+     * API object version
+     */
+    v: string
+    secret?: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutMoneyWithdraw {
+    amount: number
+    amount_without_fee: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutMoneyWithdrawError {
+    reason: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutSubscriptionCancelled {
+    user_id?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutSubscriptionCreate {
+    user_id?: number
+    amount: number
+    amount_without_fee: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutSubscriptionExpired {
+    user_id?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutSubscriptionPriceChanged {
+    user_id?: number
+    amount_old: number
+    amount_new: number
+    amount_diff?: number
+    amount_diff_without_fee?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackDonutSubscriptionProlonged {
+    user_id?: number
+    amount: number
+    amount_without_fee: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackForeignMessage {
+    attachments?: VKMessagesMessageAttachment[]
+    /**
+     * Conversation message ID
+     */
+    conversation_message_id: number
+    /**
+     * Date when the message was created
+     */
+    date: number
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    fwd_messages?: VKCallbackForeignMessage[]
+    geo?: VKBaseGeo
+    /**
+     * Message ID
+     */
+    id?: number
+    /**
+     * Peer ID
+     */
+    peer_id?: number
+    reply_message?: VKCallbackForeignMessage
+    /**
+     * Message text
+     */
+    text: string
+    /**
+     * Date when the message has been updated in Unixtime
+     */
+    update_time?: number
+    /**
+     * Was the audio message inside already listened by you
+     */
+    was_listened?: boolean
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    is_cropped?: boolean
+}
+
+/**
+ * Forwarded messages
+ */
+export interface VKCallbackFwdMessages {}
+
+/**
+ *
+ */
+export interface VKCallbackGroupChangePhoto {
+    user_id: number
+    photo: VKPhotosPhoto
+}
+
+/**
+ *
+ */
+export interface VKCallbackGroupChangeSettings {
+    user_id: number
+    changes?: VKCallbackGroupSettingsChanges
+}
+
+/**
+ *
+ */
+export interface VKCallbackGroupJoin {
+    user_id: number
+    join_type: VKCallbackGroupJoinType
+}
+
+/**
+ *
+ */
+export type VKCallbackGroupJoinType =
+    | "join"
+    | "unsure"
+    | "accepted"
+    | "approved"
+    | "request"
+
+/**
+ *
+ */
+export interface VKCallbackGroupLeave {
+    user_id?: number
+    self?: VKBaseBoolInt
+}
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ */
+export type VKCallbackGroupMarket = 0 | 1
+
+/**
+ *
+ *
+ * - `0` — none
+ * - `1` — moderator
+ * - `2` — editor
+ * - `3` — administrator
+ */
+export type VKCallbackGroupOfficerRole = 0 | 1 | 2 | 3
+
+/**
+ *
+ */
+export interface VKCallbackGroupOfficersEdit {
+    admin_id: number
+    user_id: number
+    level_old: VKCallbackGroupOfficerRole
+    level_new: VKCallbackGroupOfficerRole
+}
+
+/**
+ *
+ */
+export interface VKCallbackGroupSettingsChanges {
+    title?: VKCallbackGroupSettingsChangesStringValues
+    screen_name?: VKCallbackGroupSettingsChangesStringValues
+    event_start_date?: VKCallbackGroupSettingsChangesIntegerValues
+    event_finish_date?: VKCallbackGroupSettingsChangesIntegerValues
+    event_group_id?: VKCallbackGroupSettingsChangesIntegerValues
+    donations?: VKCallbackGroupSettingsChangesIntegerValues
+    wall?: VKCallbackGroupSettingsChangesIntegerValues
+    replies?: VKCallbackGroupSettingsChangesIntegerValues
+    topics?: VKCallbackGroupSettingsChangesIntegerValues
+    photos?: VKCallbackGroupSettingsChangesIntegerValues
+    docs?: VKCallbackGroupSettingsChangesIntegerValues
+    messages?: VKCallbackGroupSettingsChangesIntegerValues
+    market?: VKCallbackGroupSettingsChangesIntegerValues
+    market_wiki?: VKCallbackGroupSettingsChangesIntegerValues
+    board?: VKCallbackGroupSettingsChangesIntegerValues
+    links?: VKCallbackGroupSettingsChangesIntegerValues
+    audio?: VKCallbackGroupSettingsChangesIntegerValues
+    video?: VKCallbackGroupSettingsChangesIntegerValues
+    can_post_topics?: VKCallbackGroupSettingsChangesIntegerValues
+    can_post_albums?: VKCallbackGroupSettingsChangesIntegerValues
+    can_post_video?: VKCallbackGroupSettingsChangesIntegerValues
+    disable_market_comments?: VKCallbackGroupSettingsChangesIntegerValues
+    status_default?: VKCallbackGroupSettingsChangesIntegerValues
+    access?: VKCallbackGroupSettingsChangesIntegerValues
+    email?: VKCallbackGroupSettingsChangesStringValues
+    country_id?: VKCallbackGroupSettingsChangesIntegerValues
+    city_id?: VKCallbackGroupSettingsChangesIntegerValues
+    address?: VKCallbackGroupSettingsChangesStringValues
+    description?: VKCallbackGroupSettingsChangesStringValues
+    website?: VKCallbackGroupSettingsChangesStringValues
+    phone?: VKCallbackGroupSettingsChangesStringValues
+    age_limits?: VKCallbackGroupSettingsChangesIntegerValues
+    category_v2?: VKCallbackGroupSettingsChangesIntegerValues
+    public_category?: VKCallbackGroupSettingsChangesIntegerValues
+    public_subcategory?: VKCallbackGroupSettingsChangesIntegerValues
+}
+
+/**
+ *
+ */
+export interface VKCallbackGroupSettingsChangesIntegerValues {
+    old_value?: number
+    new_value?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackGroupSettingsChangesStringValues {
+    old_value?: string
+    new_value?: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackInfoForBots {
+    button_actions?: VKMessagesTemplateActionTypeNames[]
+    /**
+     * client has support keyboard
+     */
+    keyboard?: boolean
+    /**
+     * client has support inline keyboard
+     */
+    inline_keyboard?: boolean
+    /**
+     * client has support carousel
+     */
+    carousel?: boolean
+    /**
+     * client or user language id
+     */
+    lang_id?: number
+}
+
+export type VKCallbackLikeAddRemoveObjectType =
+    | "video"
+    | "photo"
+    | "post"
+    | "comment"
+    | "note"
+    | "topic_comment"
+    | "photo_comment"
+    | "video_comment"
+    | "market"
+    | "market_comment"
+
+/**
+ *
+ */
+export interface VKCallbackLikeAddRemove {
+    liker_id: number
+    object_type: VKCallbackLikeAddRemoveObjectType
+    object_owner_id: number
+    object_id: number
+    post_id: number
+    thread_reply_id?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackMarketComment {
+    id: number
+    from_id: number
+    date: number
+    text?: string
+    market_owner_id?: number
+    photo_id?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackMarketCommentDelete {
+    owner_id: number
+    id: number
+    user_id: number
+    item_id: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackMessage {
+    action?: VKMessagesActionOneOf
+    /**
+     * Only for messages from community. Contains user ID of community admin, who sent this message.
+     */
+    admin_author_id?: number
+    attachments?: VKMessagesMessageAttachment[]
+    /**
+     * Unique auto-incremented number for all messages with this peer
+     */
+    conversation_message_id: number
+    /**
+     * Date when the message has been sent in Unixtime
+     */
+    date: number
+    /**
+     * Is it an deleted message
+     */
+    deleted?: VKBaseBoolInt
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    fwd_messages?: VKCallbackFwdMessages
+    geo?: VKBaseGeo
+    /**
+     * Message ID
+     */
+    id: number
+    /**
+     * this message is cropped for bot
+     */
+    is_cropped?: boolean
+    keyboard?: VKMessagesKeyboard
+    payload?: string
+    /**
+     * Message text
+     */
+    text: string
+    /**
+     * Date when the message has been updated in Unixtime
+     */
+    update_time?: number
+    /**
+     * Is silent message, push without sound
+     */
+    is_silent?: boolean
+    /**
+     * Is message unavailable for some reason, including its id equals 0
+     */
+    is_unavailable?: boolean
+    version: number
+    /**
+     * Information whether the message is outcoming
+     */
+    out: VKBaseBoolInt
+    /**
+     * Peer ID
+     */
+    peer_id: number
+    /**
+     * ID used for sending messages. It returned only for outgoing messages
+     */
+    random_id?: number
+    ref?: string
+    ref_source?: string
+    /**
+     * Is it an important message
+     */
+    important?: boolean
+    is_hidden?: boolean
+    /**
+     * Members number
+     */
+    members_count?: number
+    reply_message?: VKCallbackForeignMessage
+    /**
+     * Reaction id set on message
+     */
+    reaction_id?: number
+    /**
+     * Actual reactions counters on this message
+     */
+    reactions?: VKMessagesReactionCounterResponseItem[]
+    /**
+     * Last reaction id set on this message
+     */
+    last_reaction_id?: number
+    /**
+     * Is message pinned in its conversation
+     */
+    is_pinned?: boolean
+    /**
+     * Was the audio message inside already listened by you
+     */
+    was_listened?: boolean
+    /**
+     * Date when the message has been pinned in Unixtime
+     */
+    pinned_at?: number
+    influence_score?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackMessageAllow {
+    user_id: number
+    key: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackMessageDeny {
+    user_id: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackMessageEvent {
+    user_id: number
+    peer_id: number
+    event_id: string
+    payload: string
+    conversation_message_id?: number
+}
+
+/**
+ *
+ */
+export type VKCallbackMessageNew = VKCallbackMessageObject
+
+/**
+ *
+ */
+export interface VKCallbackMessageObject {
+    client_info?: VKCallbackInfoForBots
+    message?: VKCallbackMessage
+}
+
+/**
+ *
+ */
+export interface VKCallbackMessageReactionEvent {
+    reacted_id: number
+    peer_id: number
+    cmid: number
+    reaction_id?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackMessageRead {
+    from_id: number
+    peer_id: number
+    read_message_id: number
+    conversation_message_id: number
+}
+
+export type VKCallbackMessageTypingStateState =
+    | "message_typing_state"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+
+/**
+ *
+ */
+export interface VKCallbackMessageTypingState {
+    from_id: number
+    to_id: number
+    state: VKCallbackMessageTypingStateState
+}
+
+/**
+ *
+ */
+export interface VKCallbackPhotoComment {
+    /**
+     * Comment ID
+     */
+    id: number
+    /**
+     * Author ID
+     */
+    from_id: number
+    can_edit?: VKBaseBoolInt
+    post_id?: number
+    owner_id?: number
+    parents_stack?: number[]
+    photo_id?: number
+    video_id?: number
+    /**
+     * Date when the comment has been added in Unixtime
+     */
+    date: number
+    /**
+     * Comment text
+     */
+    text: string
+    attachments?: VKWallWallpostAttachment[]
+    donut?: VKWallWallCommentDonut
+    likes?: VKBaseLikesInfo
+    /**
+     * Real position of the comment
+     */
+    real_offset?: number
+    /**
+     * Replied user ID
+     */
+    reply_to_user?: number
+    /**
+     * Replied comment ID
+     */
+    reply_to_comment?: number
+    thread?: VKCommentThread
+    /**
+     * Whether post is by author of the post or not
+     */
+    is_from_post_author?: boolean
+    deleted?: boolean
+    /**
+     * Photo ID
+     */
+    pid?: number
+    photo_owner_id: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackPhotoCommentDelete {
+    id: number
+    owner_id: number
+    user_id: number
+    photo_id: number
+    deleter_id: number
+}
+
+/**
+ *
+ */
+export type VKCallbackPhotoNew = VKPhotosPhoto
+
+/**
+ *
+ */
+export interface VKCallbackPollVoteNew {
+    owner_id: number
+    poll_id: number
+    option_id: number
+    user_id: number
+}
+
+/**
+ *
+ */
+export type VKCallbackType =
+    | "audio_new"
+    | "board_post_new"
+    | "board_post_edit"
+    | "board_post_restore"
+    | "board_post_delete"
+    | "confirmation"
+    | "group_leave"
+    | "group_join"
+    | "group_change_photo"
+    | "group_change_settings"
+    | "group_officers_edit"
+    | "lead_forms_new"
+    | "market_comment_new"
+    | "market_comment_delete"
+    | "market_comment_edit"
+    | "market_comment_restore"
+    | "market_order_new"
+    | "market_order_edit"
+    | "message_new"
+    | "message_reply"
+    | "message_edit"
+    | "message_allow"
+    | "message_deny"
+    | "message_read"
+    | "message_typing_state"
+    | "messages_edit"
+    | "message_reaction_event"
+    | "photo_new"
+    | "photo_comment_new"
+    | "photo_comment_delete"
+    | "photo_comment_edit"
+    | "photo_comment_restore"
+    | "poll_vote_new"
+    | "user_block"
+    | "user_unblock"
+    | "video_new"
+    | "video_comment_new"
+    | "video_comment_delete"
+    | "video_comment_edit"
+    | "video_comment_restore"
+    | "wall_post_new"
+    | "wall_reply_new"
+    | "wall_reply_edit"
+    | "wall_reply_delete"
+    | "wall_reply_restore"
+    | "wall_repost"
+    | "wall_schedule_post_new"
+    | "wall_schedule_post_delete"
+
+/**
+ *
+ */
+export interface VKCallbackUserBlock {
+    admin_id: number
+    user_id: number
+    unblock_date: number
+    reason: number
+    comment?: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackUserUnblock {
+    admin_id: number
+    user_id: number
+    by_end_date: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackVideoComment {
+    /**
+     * Comment ID
+     */
+    id: number
+    /**
+     * Author ID
+     */
+    from_id: number
+    can_edit?: VKBaseBoolInt
+    post_id?: number
+    owner_id?: number
+    parents_stack?: number[]
+    photo_id?: number
+    video_id?: number
+    /**
+     * Date when the comment has been added in Unixtime
+     */
+    date: number
+    /**
+     * Comment text
+     */
+    text: string
+    attachments?: VKWallWallpostAttachment[]
+    donut?: VKWallWallCommentDonut
+    likes?: VKBaseLikesInfo
+    /**
+     * Real position of the comment
+     */
+    real_offset?: number
+    /**
+     * Replied user ID
+     */
+    reply_to_user?: number
+    /**
+     * Replied comment ID
+     */
+    reply_to_comment?: number
+    thread?: VKCommentThread
+    /**
+     * Whether post is by author of the post or not
+     */
+    is_from_post_author?: boolean
+    deleted?: boolean
+    /**
+     * Photo ID
+     */
+    pid?: number
+    video_owner_id?: number
+}
+
+/**
+ *
+ */
+export interface VKCallbackVideoCommentDelete {
+    id: number
+    owner_id: number
+    deleter_id: number
+    video_id: number
+}
+
+/**
+ *
+ */
+export type VKCallbackVideoNew = VKAudioAudio
+
+/**
+ *
+ */
+export interface VKCallbackVkpayTransaction {
+    amount: number
+    from_id: number
+    description: string
+    date: number
+    payload?: string
+}
+
+/**
+ *
+ */
+export interface VKCallbackWallCommentDelete {
+    owner_id: number
+    id: number
+    user_id: number
+    post_id: number
+}
+
+/**
+ *
+ */
+export type VKCallbackWallPostNew = VKWallWallpost
+
+/**
+ *
+ */
+export type VKCallbackWallReplyEdit = VKWallWallComment
+
+/**
+ *
+ */
+export type VKCallbackWallReplyNew = VKWallWallComment
+
+/**
+ *
+ */
+export type VKCallbackWallReplyRestore = VKWallWallComment
+
+/**
+ *
+ */
+export type VKCallbackWallRepost = VKWallWallpost
+
+/**
+ *
+ */
+export interface VKCallsCall {
+    /**
+     * Call duration
+     */
+    duration?: number
+    /**
+     * Caller initiator
+     */
+    initiator_id: number
+    /**
+     * Caller receiver
+     */
+    receiver_id: number
+    state: VKCallsEndState
+    /**
+     * Timestamp for call
+     */
+    time: number
+    /**
+     * Was this call initiated as video call
+     */
+    video?: boolean
+    participants?: VKCallsParticipants
+}
+
+/**
+ * State in which call ended up
+ */
+export type VKCallsEndState =
+    | "canceled_by_initiator"
+    | "canceled_by_receiver"
+    | "reached"
+
+/**
+ *
+ */
+export interface VKCallsParticipants {
+    list?: number[]
+    /**
+     * Participants count
+     */
+    count?: number
+}
+
+/**
+ * These credentials may be used to join a call without knowing a VK Join Link
+ */
+export interface VKCallsShortCredentials {
+    /**
+     * Short numeric ID of a call
+     */
+    id: string
+    /**
+     * Password that can be used to join a call by short numeric ID
+     */
+    password: string
+    /**
+     * Link without a password
+     */
+    link_without_password: string
+    /**
+     * Link with a password
+     */
+    link_with_password: string
+}
+
+/**
+ *
+ */
+export interface VKCommentThread {
+    /**
+     * Comments number
+     */
+    count: number
+    items?: VKWallWallComment[]
+    /**
+     * Information whether current user can comment the post
+     */
+    can_post?: boolean
+    /**
+     * Information whether recommended to display reply button
+     */
+    show_reply_button?: boolean
+    /**
+     * Information whether groups can comment the post
+     */
+    groups_can_post?: boolean
+    /**
+     * Information whether author commented the thread
+     */
+    author_replied?: boolean
+}
+
+/**
+ *
+ */
+export interface VKDatabaseCitiesFields {}
+
+/**
+ *
+ */
+export interface VKDatabaseCity {
+    /**
+     * Object ID
+     */
+    id: number
+    /**
+     * Object title
+     */
+    title: string
+    /**
+     * Area title
+     */
+    area?: string
+    /**
+     * Region title
+     */
+    region?: string
+    /**
+     * Information whether the city is included in important cities list
+     */
+    important?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export type VKDatabaseCityById = VKBaseObject
+
+/**
+ *
+ */
+export interface VKDatabaseFaculty {
+    /**
+     * Faculty ID
+     */
+    id?: number
+    /**
+     * Faculty title
+     */
+    title?: string
+}
+
+/**
+ *
+ */
+export interface VKDatabaseLanguageFull {
+    /**
+     * Language ID
+     */
+    id: number
+    /**
+     * Language native name
+     */
+    native_name: string
+}
+
+/**
+ *
+ */
+export interface VKDatabaseRegion {
+    /**
+     * Region ID
+     */
+    id?: number
+    /**
+     * Region title
+     */
+    title?: string
+}
+
+/**
+ *
+ */
+export interface VKDatabaseSchool {
+    /**
+     * School ID
+     */
+    id?: number
+    /**
+     * School title
+     */
+    title?: string
+}
+
+/**
+ *
+ */
+export type VKDatabaseSchoolClass = VKBaseObject
+
+/**
+ *
+ */
+export interface VKDatabaseStation {
+    /**
+     * City ID
+     */
+    city_id?: number
+    /**
+     * Hex color code without #
+     */
+    color?: string
+    /**
+     * Station ID
+     */
+    id: number
+    /**
+     * Station name
+     */
+    name: string
+}
+
+/**
+ *
+ */
+export interface VKDatabaseUniversity {
+    /**
+     * University ID
+     */
+    id?: number
+    /**
+     * University title
+     */
+    title?: string
+}
+
+/**
+ *
+ */
+export interface VKDocsDoc {
+    /**
+     * Document ID
+     */
+    id: number
+    /**
+     * Document owner ID
+     */
+    owner_id: number
+    /**
+     * Document title
+     */
+    title: string
+    /**
+     * File size in bites
+     */
+    size: number
+    /**
+     * File extension
+     */
+    ext: string
+    /**
+     * File URL
+     */
+    url?: string
+    /**
+     * Date when file has been uploaded in Unixtime
+     */
+    date: number
+    /**
+     * Document type
+     */
+    type: number
+    preview?: VKDocsDocPreview
+    is_licensed?: VKBaseBoolInt
+    /**
+     * Access key for the document
+     */
+    access_key?: string
+    /**
+     * Document tags
+     */
+    tags?: string[]
+}
+
+/**
+ * Doc attachment type
+ */
+export type VKDocsDocAttachmentType = "doc" | "graffiti" | "audio_message"
+
+/**
+ *
+ */
+export interface VKDocsDocPreview {
+    audio_msg?: VKDocsDocPreviewAudioMsg
+    graffiti?: VKDocsDocPreviewGraffiti
+    photo?: VKDocsDocPreviewPhoto
+    video?: VKDocsDocPreviewVideo
+}
+
+/**
+ *
+ */
+export interface VKDocsDocPreviewAudioMsg {
+    /**
+     * Audio message duration in seconds
+     */
+    duration: number
+    /**
+     * MP3 file URL
+     */
+    link_mp3: string
+    /**
+     * OGG file URL
+     */
+    link_ogg: string
+    waveform: number[]
+}
+
+/**
+ *
+ */
+export interface VKDocsDocPreviewGraffiti {
+    /**
+     * Graffiti file URL
+     */
+    src: string
+    /**
+     * Graffiti width
+     */
+    width: number
+    /**
+     * Graffiti height
+     */
+    height: number
+}
+
+/**
+ *
+ */
+export interface VKDocsDocPreviewPhoto {
+    sizes?: VKDocsDocPreviewPhotoSizes[]
+}
+
+/**
+ *
+ */
+export interface VKDocsDocPreviewPhotoSizes {
+    /**
+     * URL of the image
+     */
+    src: string
+    /**
+     * Width in px
+     */
+    width: number
+    /**
+     * Height in px
+     */
+    height: number
+    type: VKPhotosPhotoSizesType
+}
+
+/**
+ *
+ */
+export interface VKDocsDocPreviewVideo {
+    /**
+     * Video URL
+     */
+    src: string
+    /**
+     * Video's width in pixels
+     */
+    width: number
+    /**
+     * Video's height in pixels
+     */
+    height: number
+    /**
+     * Video file size in bites
+     */
+    file_size: number
+}
+
+/**
+ *
+ */
+export interface VKDocsDocTypes {
+    /**
+     * Doc type ID
+     */
+    id: number
+    /**
+     * Doc type title
+     */
+    name: string
+    /**
+     * Number of docs
+     */
+    count: number
+}
+
+export type VKDonutDonatorSubscriptionInfoStatus = "active" | "expiring"
+
+/**
+ * Info about user VK Donut subscription
+ */
+export interface VKDonutDonatorSubscriptionInfo {
+    owner_id: number
+    next_payment_date: number
+    amount: number
+    status: VKDonutDonatorSubscriptionInfoStatus
+}
+
+/**
+ *
+ */
+export interface VKEventsEventAttach {
+    /**
+     * address of event
+     */
+    address?: string
+    /**
+     * text of attach
+     */
+    button_text: string
+    /**
+     * array of friends ids
+     */
+    friends: number[]
+    /**
+     * event ID
+     */
+    id: number
+    /**
+     * is favorite
+     */
+    is_favorite: boolean
+    /**
+     * Current user's member status
+     */
+    member_status?: VKGroupsGroupFullMemberStatus
+    /**
+     * text of attach
+     */
+    text: string
+    /**
+     * event start time
+     */
+    time?: number
+}
+
+/**
+ *
+ */
+export interface VKFaveBookmark {
+    /**
+     * Timestamp, when this item was bookmarked
+     */
+    added_date: number
+    link?: VKBaseLink
+    post?: VKWallWallpostFull
+    product?: VKMarketMarketItemFull
+    /**
+     * Has user seen this item
+     */
+    seen: boolean
+    tags: VKFaveTag[]
+    /**
+     * Item type
+     */
+    type: VKFaveBookmarkType
+    video?: VKVideoVideoFull
+}
+
+/**
+ *
+ */
+export type VKFaveBookmarkType =
+    | "post"
+    | "video"
+    | "product"
+    | "article"
+    | "link"
+    | "clip"
+    | "game"
+    | "mini_app"
+
+/**
+ *
+ */
+export interface VKFavePage {
+    /**
+     * Some info about user or group
+     */
+    description: string
+    group?: VKGroupsGroupFull
+    tags: VKFaveTag[]
+    /**
+     * Item type
+     */
+    type: VKFavePageType
+    /**
+     * Timestamp, when this page was bookmarked
+     */
+    updated_date?: number
+    user?: VKUsersUserFull
+}
+
+/**
+ *
+ */
+export type VKFavePageType = "user" | "group" | "hints"
+
+/**
+ *
+ */
+export interface VKFaveTag {
+    /**
+     * Tag id
+     */
+    id?: number
+    /**
+     * Tag name
+     */
+    name?: string
+}
+
+/**
+ *
+ */
+export interface VKFriendsFriendExtendedStatus {
+    friend_status: VKFriendsFriendStatusStatus
+    /**
+     * MD5 hash for the result validation
+     */
+    sign?: string
+    /**
+     * User ID
+     */
+    user_id: number
+    /**
+     * Is friend request from other user unread
+     */
+    is_request_unread?: boolean
+}
+
+/**
+ *
+ */
+export interface VKFriendsFriendStatus {
+    friend_status: VKFriendsFriendStatusStatus
+    /**
+     * MD5 hash for the result validation
+     */
+    sign?: string
+    /**
+     * User ID
+     */
+    user_id: number
+}
+
+/**
+ * Friend status with the user
+ *
+ * - `0` — not a friend
+ * - `1` — outcoming request
+ * - `2` — incoming request
+ * - `3` — is friend
+ */
+export type VKFriendsFriendStatusStatus = 0 | 1 | 2 | 3
+
+/**
+ *
+ */
+export interface VKFriendsFriendsList {
+    /**
+     * List ID
+     */
+    id: number
+    /**
+     * List title
+     */
+    name: string
+}
+
+/**
+ *
+ */
+export interface VKFriendsMutualFriend {
+    /**
+     * Total mutual friends number
+     */
+    common_count?: number
+    common_friends?: number[]
+    /**
+     * User ID
+     */
+    id?: number
+}
+
+/**
+ *
+ */
+export interface VKFriendsOnlineUsers {
+    online: number[]
+    /**
+     * Total online friends number
+     */
+    total_count?: number
+}
+
+/**
+ *
+ */
+export interface VKFriendsOnlineUsersWithMobile {
+    online: number[]
+    online_mobile: number[]
+    /**
+     * Total online friends number
+     */
+    total_count?: number
+}
+
+/**
+ *
+ */
+export interface VKFriendsRequestsMutual {
+    /**
+     * Total mutual friends number
+     */
+    count?: number
+    users?: number[]
+}
+
+export type VKFriendsRequestsXtrMessageWallDefault = "owner" | "all"
+
+/**
+ *
+ */
+export interface VKFriendsRequestsXtrMessage {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+    /**
+     * User's first name in nominative case
+     */
+    first_name_nom?: string
+    /**
+     * User's first name in genitive case
+     */
+    first_name_gen?: string
+    /**
+     * User's first name in dative case
+     */
+    first_name_dat?: string
+    /**
+     * User's first name in accusative case
+     */
+    first_name_acc?: string
+    /**
+     * User's first name in instrumental case
+     */
+    first_name_ins?: string
+    /**
+     * User's first name in prepositional case
+     */
+    first_name_abl?: string
+    /**
+     * User's last name in nominative case
+     */
+    last_name_nom?: string
+    /**
+     * User's last name in genitive case
+     */
+    last_name_gen?: string
+    /**
+     * User's last name in dative case
+     */
+    last_name_dat?: string
+    /**
+     * User's last name in accusative case
+     */
+    last_name_acc?: string
+    /**
+     * User's last name in instrumental case
+     */
+    last_name_ins?: string
+    /**
+     * User's last name in prepositional case
+     */
+    last_name_abl?: string
+    /**
+     * User nickname
+     */
+    nickname?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    /**
+     * User contact name
+     */
+    contact_name?: string
+    /**
+     * Domain name of the user's page
+     */
+    domain?: string
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    city?: VKBaseCity
+    /**
+     * User's timezone
+     */
+    timezone?: number
+    owner_state?: VKOwnerState
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the user with maximum width
+     */
+    photo_max?: string
+    /**
+     * URL of user's photo with 200 pixels in width
+     */
+    photo_200_orig?: string
+    /**
+     * URL of user's photo with 400 pixels in width
+     */
+    photo_400_orig?: string
+    /**
+     * URL of user's photo of maximum size
+     */
+    photo_max_orig?: string
+    /**
+     * ID of the user's main photo
+     */
+    photo_id?: string
+    /**
+     * Information whether the user has main photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Information whether the user specified his phone number
+     */
+    has_mobile?: VKBaseBoolInt
+    /**
+     * Information whether the user is a friend of current user
+     */
+    is_friend?: VKBaseBoolInt
+    /**
+     * Information whether the user is a best friend of current user
+     */
+    is_best_friend?: boolean
+    /**
+     * Information whether current user can comment wall posts
+     */
+    wall_comments?: VKBaseBoolInt
+    /**
+     * Information whether current user can post on the user's wall
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can see other users' audio on the wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the user's audio
+     */
+    can_see_audio?: VKBaseBoolInt
+    type?: VKUsersUserType
+    email?: string
+    skype?: string
+    facebook?: string
+    facebook_name?: string
+    twitter?: string
+    livejournal?: string
+    instagram?: string
+    test?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    is_service?: boolean
+    service_description?: string
+    photo_rec?: string | boolean
+    photo_medium?: string | boolean
+    photo_medium_rec?: string | boolean
+    photo?: string
+    photo_big?: string
+    photo_400?: string
+    photo_max_size?: VKPhotosPhoto
+    language?: string
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    wall_default?: VKFriendsRequestsXtrMessageWallDefault
+    /**
+     * Information whether current user can call
+     */
+    can_call?: boolean
+    /**
+     * Information whether group can call user
+     */
+    can_call_from_group?: boolean
+    /**
+     * Information whether user/group can invite user as voicerooms speakr
+     */
+    can_invite_as_voicerooms_speaker?: boolean
+    /**
+     * Information whether current user can see the user's wishes
+     */
+    can_see_wishes?: boolean
+    /**
+     * Information whether current user can see the user's gifts
+     */
+    can_see_gifts?: VKBaseBoolInt
+    interests?: string
+    books?: string
+    tv?: string
+    quotes?: string
+    about?: string
+    games?: string
+    movies?: string
+    activities?: string
+    music?: string
+    /**
+     * Information whether current user can write private message
+     */
+    can_write_private_message?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a friend request
+     */
+    can_send_friend_request?: VKBaseBoolInt
+    /**
+     * Information whether current user can be invited to the community
+     */
+    can_be_invited_group?: boolean
+    /**
+     * User's mobile phone number
+     */
+    mobile_phone?: string
+    /**
+     * User's additional phone number
+     */
+    home_phone?: string
+    /**
+     * User's website
+     */
+    site?: string
+    status_audio?: VKAudioAudio
+    /**
+     * User's status
+     */
+    status?: string
+    /**
+     * User's status
+     */
+    activity?: string
+    status_app?: VKAppsAppMin
+    last_seen?: VKUsersLastSeen
+    exports?: VKUsersExports
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Number of user's followers and friends
+     */
+    followers_count?: number
+    /**
+     * User level in live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of user's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of user's clips
+     */
+    clips_count?: number
+    /**
+     * Information whether current user is in the requested user's blacklist.
+     */
+    blacklisted?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in current user's blacklist
+     */
+    blacklisted_by_me?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in faves of current user
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Number of common friends with current user
+     */
+    common_count?: number
+    occupation?: VKUsersOccupation
+    career?: VKUsersCareer[]
+    military?: VKUsersMilitary[]
+    /**
+     * University ID
+     */
+    university?: number
+    /**
+     * University name
+     */
+    university_name?: string
+    university_group_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * User's education status
+     */
+    education_status?: string
+    /**
+     * User hometown
+     */
+    home_town?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    personal?: VKUsersPersonal
+    universities?: VKUsersUniversity[]
+    schools?: VKUsersSchool[]
+    relatives?: VKUsersRelative[]
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    counters?: VKUsersUserCounters
+    access_key?: string
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether the user can be baned (added to black list) by me
+     */
+    can_ban?: boolean
+    hash?: string
+    /**
+     * Access to user profile is restricted for search engines
+     */
+    is_no_index?: boolean
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    is_message_request?: boolean
+    descriptions?: string[]
+    lists?: number[]
+    /**
+     * User ID
+     */
+    user_id: number
+    /**
+     * ID of the user by whom friend has been suggested
+     */
+    from?: string
+    track_code?: string
+    /**
+     * Message sent with a request
+     */
+    message?: string
+    /**
+     * Request timestamp
+     */
+    timestamp?: number
+}
+
+export type VKFriendsRequestsXtrMutualWallDefault = "owner" | "all"
+
+/**
+ *
+ */
+export interface VKFriendsRequestsXtrMutual {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+    /**
+     * User's first name in nominative case
+     */
+    first_name_nom?: string
+    /**
+     * User's first name in genitive case
+     */
+    first_name_gen?: string
+    /**
+     * User's first name in dative case
+     */
+    first_name_dat?: string
+    /**
+     * User's first name in accusative case
+     */
+    first_name_acc?: string
+    /**
+     * User's first name in instrumental case
+     */
+    first_name_ins?: string
+    /**
+     * User's first name in prepositional case
+     */
+    first_name_abl?: string
+    /**
+     * User's last name in nominative case
+     */
+    last_name_nom?: string
+    /**
+     * User's last name in genitive case
+     */
+    last_name_gen?: string
+    /**
+     * User's last name in dative case
+     */
+    last_name_dat?: string
+    /**
+     * User's last name in accusative case
+     */
+    last_name_acc?: string
+    /**
+     * User's last name in instrumental case
+     */
+    last_name_ins?: string
+    /**
+     * User's last name in prepositional case
+     */
+    last_name_abl?: string
+    /**
+     * User nickname
+     */
+    nickname?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    /**
+     * User contact name
+     */
+    contact_name?: string
+    /**
+     * Domain name of the user's page
+     */
+    domain?: string
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    city?: VKBaseCity
+    /**
+     * User's timezone
+     */
+    timezone?: number
+    owner_state?: VKOwnerState
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the user with maximum width
+     */
+    photo_max?: string
+    /**
+     * URL of user's photo with 200 pixels in width
+     */
+    photo_200_orig?: string
+    /**
+     * URL of user's photo with 400 pixels in width
+     */
+    photo_400_orig?: string
+    /**
+     * URL of user's photo of maximum size
+     */
+    photo_max_orig?: string
+    /**
+     * ID of the user's main photo
+     */
+    photo_id?: string
+    /**
+     * Information whether the user has main photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Information whether the user specified his phone number
+     */
+    has_mobile?: VKBaseBoolInt
+    /**
+     * Information whether the user is a friend of current user
+     */
+    is_friend?: VKBaseBoolInt
+    /**
+     * Information whether the user is a best friend of current user
+     */
+    is_best_friend?: boolean
+    /**
+     * Information whether current user can comment wall posts
+     */
+    wall_comments?: VKBaseBoolInt
+    /**
+     * Information whether current user can post on the user's wall
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can see other users' audio on the wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the user's audio
+     */
+    can_see_audio?: VKBaseBoolInt
+    type?: VKUsersUserType
+    email?: string
+    skype?: string
+    facebook?: string
+    facebook_name?: string
+    twitter?: string
+    livejournal?: string
+    instagram?: string
+    test?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    is_service?: boolean
+    service_description?: string
+    photo_rec?: string | boolean
+    photo_medium?: string | boolean
+    photo_medium_rec?: string | boolean
+    photo?: string
+    photo_big?: string
+    photo_400?: string
+    photo_max_size?: VKPhotosPhoto
+    language?: string
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    wall_default?: VKFriendsRequestsXtrMutualWallDefault
+    /**
+     * Information whether current user can call
+     */
+    can_call?: boolean
+    /**
+     * Information whether group can call user
+     */
+    can_call_from_group?: boolean
+    /**
+     * Information whether user/group can invite user as voicerooms speakr
+     */
+    can_invite_as_voicerooms_speaker?: boolean
+    /**
+     * Information whether current user can see the user's wishes
+     */
+    can_see_wishes?: boolean
+    /**
+     * Information whether current user can see the user's gifts
+     */
+    can_see_gifts?: VKBaseBoolInt
+    interests?: string
+    books?: string
+    tv?: string
+    quotes?: string
+    about?: string
+    games?: string
+    movies?: string
+    activities?: string
+    music?: string
+    /**
+     * Information whether current user can write private message
+     */
+    can_write_private_message?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a friend request
+     */
+    can_send_friend_request?: VKBaseBoolInt
+    /**
+     * Information whether current user can be invited to the community
+     */
+    can_be_invited_group?: boolean
+    /**
+     * User's mobile phone number
+     */
+    mobile_phone?: string
+    /**
+     * User's additional phone number
+     */
+    home_phone?: string
+    /**
+     * User's website
+     */
+    site?: string
+    status_audio?: VKAudioAudio
+    /**
+     * User's status
+     */
+    status?: string
+    /**
+     * User's status
+     */
+    activity?: string
+    status_app?: VKAppsAppMin
+    last_seen?: VKUsersLastSeen
+    exports?: VKUsersExports
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Number of user's followers and friends
+     */
+    followers_count?: number
+    /**
+     * User level in live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of user's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of user's clips
+     */
+    clips_count?: number
+    /**
+     * Information whether current user is in the requested user's blacklist.
+     */
+    blacklisted?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in current user's blacklist
+     */
+    blacklisted_by_me?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in faves of current user
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Number of common friends with current user
+     */
+    common_count?: number
+    occupation?: VKUsersOccupation
+    career?: VKUsersCareer[]
+    military?: VKUsersMilitary[]
+    /**
+     * University ID
+     */
+    university?: number
+    /**
+     * University name
+     */
+    university_name?: string
+    university_group_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * User's education status
+     */
+    education_status?: string
+    /**
+     * User hometown
+     */
+    home_town?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    personal?: VKUsersPersonal
+    universities?: VKUsersUniversity[]
+    schools?: VKUsersSchool[]
+    relatives?: VKUsersRelative[]
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    counters?: VKUsersUserCounters
+    access_key?: string
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether the user can be baned (added to black list) by me
+     */
+    can_ban?: boolean
+    hash?: string
+    /**
+     * Access to user profile is restricted for search engines
+     */
+    is_no_index?: boolean
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    is_message_request?: boolean
+    descriptions?: string[]
+    lists?: number[]
+    /**
+     * User ID
+     */
+    user_id: number
+    /**
+     * ID of the user by whom friend has been suggested
+     */
+    from?: string
+    track_code?: string
+    /**
+     * Message sent with a request
+     */
+    message?: string
+    /**
+     * Request timestamp
+     */
+    timestamp?: number
+}
+
+/**
+ *
+ */
+export interface VKGiftsGift {
+    /**
+     * Date when gist has been sent in Unixtime
+     */
+    date?: number
+    /**
+     * Gift sender ID
+     */
+    from_id?: number
+    gift?: VKGiftsLayout
+    /**
+     * Hash
+     */
+    gift_hash?: string
+    /**
+     * Gift ID
+     */
+    id?: number
+    /**
+     * Comment text
+     */
+    message?: string
+    privacy?: VKGiftsGiftPrivacy
+}
+
+/**
+ * Gift privacy
+ *
+ * - `0` — name and message for all
+ * - `1` — name for all
+ * - `2` — name and message for recipient only
+ */
+export type VKGiftsGiftPrivacy = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKGiftsLayout {
+    /**
+     * Gift ID
+     */
+    id: number
+    /**
+     * URL of the preview image with 512 px in width
+     */
+    thumb_512?: string
+    /**
+     * URL of the preview image with 256 px in width
+     */
+    thumb_256?: string
+    /**
+     * URL of the preview image with 48 px in width
+     */
+    thumb_48?: string
+    /**
+     * URL of the preview image with 96 px in width
+     */
+    thumb_96?: string
+    /**
+     * ID of the sticker pack, if the gift is representing one
+     */
+    stickers_product_id?: number
+    /**
+     * Information whether gift represents a stickers style
+     */
+    is_stickers_style?: boolean
+    /**
+     * ID of the build of constructor gift
+     */
+    build_id?: string
+    /**
+     * Keywords used for search
+     */
+    keywords?: string
+}
+
+/**
+ *
+ */
+export interface VKGroupsAddress {
+    /**
+     * Additional address to the place (6 floor, left door)
+     */
+    additional_address?: string
+    /**
+     * String address to the place (Nevsky, 28)
+     */
+    address?: string
+    /**
+     * City id of address
+     */
+    city_id?: number
+    /**
+     * City for address
+     */
+    city?: VKDatabaseCityById
+    /**
+     * Metro for address
+     */
+    metro_station?: VKDatabaseStation
+    /**
+     * Country for address
+     */
+    country?: VKBaseCountry
+    /**
+     * Distance from the point
+     */
+    distance?: number
+    /**
+     * Address id
+     */
+    id: number
+    /**
+     * Address latitude
+     */
+    latitude?: number
+    /**
+     * Address longitude
+     */
+    longitude?: number
+    /**
+     * Metro id of address
+     */
+    metro_station_id?: number
+    /**
+     * Address phone
+     */
+    phone?: string
+    /**
+     * Time offset int minutes from utc time
+     */
+    time_offset?: number
+    /**
+     * Week timetable for the address
+     */
+    timetable?: VKGroupsAddressTimetable
+    /**
+     * Title of the place (Zinger, etc)
+     */
+    title?: string
+    /**
+     * Status of information about timetable
+     */
+    work_info_status?: VKGroupsAddressWorkInfoStatus
+    place_id?: number
+}
+
+/**
+ * Timetable for a week
+ */
+export interface VKGroupsAddressTimetable {
+    /**
+     * Timetable for friday
+     */
+    fri?: VKGroupsAddressTimetableDay
+    /**
+     * Timetable for monday
+     */
+    mon?: VKGroupsAddressTimetableDay
+    /**
+     * Timetable for saturday
+     */
+    sat?: VKGroupsAddressTimetableDay
+    /**
+     * Timetable for sunday
+     */
+    sun?: VKGroupsAddressTimetableDay
+    /**
+     * Timetable for thursday
+     */
+    thu?: VKGroupsAddressTimetableDay
+    /**
+     * Timetable for tuesday
+     */
+    tue?: VKGroupsAddressTimetableDay
+    /**
+     * Timetable for wednesday
+     */
+    wed?: VKGroupsAddressTimetableDay
+}
+
+/**
+ * Timetable for one day
+ */
+export interface VKGroupsAddressTimetableDay {
+    /**
+     * Close time of the break in minutes
+     */
+    break_close_time?: number
+    /**
+     * Start time of the break in minutes
+     */
+    break_open_time?: number
+    /**
+     * Close time in minutes
+     */
+    close_time: number
+    /**
+     * Open time in minutes
+     */
+    open_time: number
+}
+
+/**
+ * Status of information about timetable
+ */
+export type VKGroupsAddressWorkInfoStatus =
+    | "no_information"
+    | "temporarily_closed"
+    | "always_opened"
+    | "timetable"
+    | "forever_closed"
+
+/**
+ *
+ */
+export interface VKGroupsAddressesInfo {
+    /**
+     * Information whether addresses is enabled
+     */
+    is_enabled: boolean
+    /**
+     * Main address id for group
+     */
+    main_address_id?: number
+    /**
+     * Main address
+     */
+    main_address?: VKGroupsAddress
+    /**
+     * Count of addresses
+     */
+    count?: number
+}
+
+/**
+ *
+ */
+export interface VKGroupsBanInfo {
+    /**
+     * Administrator ID
+     */
+    admin_id?: number
+    /**
+     * Comment for a ban
+     */
+    comment?: string
+    /**
+     * Show comment for user
+     */
+    comment_visible?: boolean
+    is_closed?: boolean
+    /**
+     * Date when user has been added to blacklist in Unixtime
+     */
+    date?: number
+    /**
+     * Date when user will be removed from blacklist in Unixtime
+     */
+    end_date?: number
+    reason?: VKGroupsBanInfoReason
+}
+
+/**
+ * Ban reason
+ *
+ * - `0` — other
+ * - `1` — spam
+ * - `2` — verbal abuse
+ * - `3` — strong language
+ * - `4` — flood
+ */
+export type VKGroupsBanInfoReason = 0 | 1 | 2 | 3 | 4
+
+export type VKGroupsCallbackServerStatus =
+    | "unconfigured"
+    | "failed"
+    | "wait"
+    | "ok"
+
+/**
+ *
+ */
+export interface VKGroupsCallbackServer {
+    id: number
+    title: string
+    creator_id: number
+    url: string
+    secret_key: string
+    status: VKGroupsCallbackServerStatus
+}
+
+/**
+ *
+ */
+export interface VKGroupsCallbackSettings {
+    /**
+     * API version used for the events
+     */
+    api_version?: string
+    events?: VKGroupsLongPollEvents
+}
+
+/**
+ *
+ */
+export interface VKGroupsContactsItem {
+    /**
+     * User ID
+     */
+    user_id?: number
+    /**
+     * Contact description
+     */
+    desc?: string
+    /**
+     * Contact phone
+     */
+    phone?: string
+    /**
+     * Contact email
+     */
+    email?: string
+}
+
+/**
+ *
+ */
+export interface VKGroupsCountersGroup {
+    /**
+     * Addresses number
+     */
+    addresses?: number
+    /**
+     * Photo albums number
+     */
+    albums?: number
+    /**
+     * Audios number
+     */
+    audios?: number
+    /**
+     * Audio playlists number
+     */
+    audio_playlists?: number
+    /**
+     * Docs number
+     */
+    docs?: number
+    /**
+     * Market items number
+     */
+    market?: number
+    /**
+     * Photos number
+     */
+    photos?: number
+    /**
+     * Topics number
+     */
+    topics?: number
+    /**
+     * Videos number
+     */
+    videos?: number
+    /**
+     * Playlists number
+     */
+    video_playlists?: number
+    /**
+     * Market services number
+     */
+    market_services?: number
+    /**
+     * Podcasts number
+     */
+    podcasts?: number
+    /**
+     * Articles number
+     */
+    articles?: number
+    /**
+     * Narratives number
+     */
+    narratives?: number
+    /**
+     * Clips number
+     */
+    clips?: number
+    /**
+     * Clips followers number
+     */
+    clips_followers?: number
+    /**
+     * Videos followers number
+     */
+    videos_followers?: number
+    /**
+     * Clips views number
+     */
+    clips_views?: number
+    /**
+     * Clips likes number
+     */
+    clips_likes?: number
+}
+
+/**
+ *
+ */
+export type VKGroupsFields =
+    | "id"
+    | "name"
+    | "screen_name"
+    | "is_closed"
+    | "type"
+    | "is_admin"
+    | "admin_level"
+    | "is_member"
+    | "is_advertiser"
+    | "start_date"
+    | "finish_date"
+    | "deactivated"
+    | "photo_50"
+    | "photo_100"
+    | "photo_200"
+    | "photo_200_orig"
+    | "photo_400"
+    | "photo_400_orig"
+    | "photo_max"
+    | "photo_max_orig"
+    | "est_date"
+    | "public_date_label"
+    | "photo_max_size"
+    | "is_video_live_notifications_blocked"
+    | "video_live"
+    | "market"
+    | "member_status"
+    | "is_adult"
+    | "is_hidden_from_feed"
+    | "is_favorite"
+    | "is_subscribed"
+    | "city"
+    | "verified"
+    | "description"
+    | "wiki_page"
+    | "members_count"
+    | "members_count_text"
+    | "requests_count"
+    | "video_live_level"
+    | "video_live_count"
+    | "clips_count"
+    | "textlives_count"
+    | "counters"
+    | "cover"
+    | "can_post"
+    | "can_suggest"
+    | "can_upload_story"
+    | "can_upload_doc"
+    | "can_upload_video"
+    | "can_upload_clip"
+    | "can_see_all_posts"
+    | "can_create_topic"
+    | "activity"
+    | "fixed_post"
+    | "has_photo"
+    | "crop_photo"
+    | "status"
+    | "status_audio"
+    | "main_album_id"
+    | "links"
+    | "contacts"
+    | "wall"
+    | "site"
+    | "main_section"
+    | "secondary_section"
+    | "trending"
+    | "can_message"
+    | "is_messages_blocked"
+    | "can_send_notify"
+    | "online_status"
+    | "invited_by"
+    | "age_limits"
+    | "ban_info"
+    | "has_market_app"
+    | "using_vkpay_market_app"
+    | "has_group_channel"
+    | "addresses"
+    | "messages"
+    | "business_rating"
+    | "is_subscribed_podcasts"
+    | "can_subscribe_podcasts"
+    | "can_subscribe_posts"
+    | "live_covers"
+    | "stories_archive_count"
+    | "has_unseen_stories"
+    | "category"
+    | "category0"
+    | "category1"
+    | "rating"
+    | "is_market_market_link_attachment_enabled"
+    | "is_market_message_to_bc_attachment_enabled"
+    | "unread_count"
+    | "videos_count"
+
+/**
+ *
+ */
+export type VKGroupsFilter =
+    | "admin"
+    | "editor"
+    | "moder"
+    | "advertiser"
+    | "groups"
+    | "publics"
+    | "events"
+    | "has_addresses"
+
+/**
+ *
+ */
+export interface VKGroupsGroup {
+    /**
+     * Community ID
+     */
+    id: number
+    /**
+     * Community name
+     */
+    name?: string
+    /**
+     * Domain of the community page
+     */
+    screen_name?: string
+    is_closed?: VKGroupsGroupIsClosed
+    type?: VKGroupsGroupType
+    /**
+     * Information whether current user is administrator
+     */
+    is_admin?: VKBaseBoolInt
+    admin_level?: VKGroupsGroupAdminLevel
+    /**
+     * Information whether current user is member
+     */
+    is_member?: VKBaseBoolInt
+    /**
+     * Information whether current user is advertiser
+     */
+    is_advertiser?: VKBaseBoolInt
+    /**
+     * Start date in Unixtime format
+     */
+    start_date?: number
+    /**
+     * Finish date in Unixtime format
+     */
+    finish_date?: number
+    /**
+     * Information whether community is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether community is banned
+     */
+    deactivated?: string
+    /**
+     * URL of square photo of the community with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the community with 100 pixels in width
+     */
+    photo_100?: string
+    /**
+     * URL of square photo of the community with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the community with 200 pixels in width original
+     */
+    photo_200_orig?: string
+    /**
+     * URL of square photo of the community with 400 pixels in width
+     */
+    photo_400?: string
+    /**
+     * URL of square photo of the community with 400 pixels in width original
+     */
+    photo_400_orig?: string
+    /**
+     * URL of square photo of the community with max pixels in width
+     */
+    photo_max?: string
+    /**
+     * URL of square photo of the community with max pixels in width original
+     */
+    photo_max_orig?: string
+    /**
+     * Established date
+     */
+    est_date?: string
+    /**
+     * Public date label
+     */
+    public_date_label?: string
+    photo_max_size?: VKGroupsPhotoSize
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+}
+
+/**
+ *
+ *
+ * - `0` — open
+ * - `1` — closed
+ * - `2` — private
+ */
+export type VKGroupsGroupAccess = 0 | 1 | 2
+
+/**
+ * Level of current user's credentials as manager
+ *
+ * - `1` — moderator
+ * - `2` — editor
+ * - `3` — administrator
+ */
+export type VKGroupsGroupAdminLevel = 1 | 2 | 3
+
+/**
+ *
+ *
+ * - `1` — unlimited
+ * - `2` — 16 plus
+ * - `3` — 18 plus
+ */
+export type VKGroupsGroupAgeLimits = 1 | 2 | 3
+
+/**
+ *
+ */
+export interface VKGroupsGroupAttach {
+    /**
+     * group ID
+     */
+    id: number
+    /**
+     * text of attach
+     */
+    text: string
+    /**
+     * activity or category of group
+     */
+    status: string
+    /**
+     * size of group
+     */
+    size: number
+    /**
+     * is favorite
+     */
+    is_favorite: boolean
+}
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ */
+export type VKGroupsGroupAudio = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKGroupsGroupBanInfo {
+    /**
+     * Ban comment
+     */
+    comment?: string
+    /**
+     * End date of ban in Unixtime
+     */
+    end_date?: number
+    reason?: VKGroupsBanInfoReason
+}
+
+/**
+ *
+ */
+export interface VKGroupsGroupCategory {
+    /**
+     * Category ID
+     */
+    id: number
+    /**
+     * Category name
+     */
+    name: string
+    subcategories?: VKGroupsGroupSubcategory[]
+}
+
+/**
+ *
+ */
+export interface VKGroupsGroupCategoryFull {
+    /**
+     * Category ID
+     */
+    id: number
+    /**
+     * Category name
+     */
+    name: string
+    /**
+     * Pages number
+     */
+    page_count: number
+    page_previews: VKGroupsGroup[]
+    subcategories?: VKGroupsGroupCategory[]
+}
+
+/**
+ *
+ */
+export interface VKGroupsGroupCategoryType {
+    id: number
+    name: string
+}
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ */
+export type VKGroupsGroupDocs = 0 | 1 | 2
+
+/**
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ * - `3` — restricted
+ */
+export type VKGroupsGroupFullWall = 0 | 1 | 2 | 3
+export type VKGroupsGroupFullVideoNotificationsStatus =
+    | "none"
+    | "all"
+    | "preferred"
+
+/**
+ *
+ */
+export interface VKGroupsGroupFull {
+    /**
+     * Community ID
+     */
+    id: number
+    /**
+     * Community name
+     */
+    name?: string
+    /**
+     * Domain of the community page
+     */
+    screen_name?: string
+    is_closed?: VKGroupsGroupIsClosed
+    type?: VKGroupsGroupType
+    /**
+     * Information whether current user is administrator
+     */
+    is_admin?: VKBaseBoolInt
+    admin_level?: VKGroupsGroupAdminLevel
+    /**
+     * Information whether current user is member
+     */
+    is_member?: VKBaseBoolInt
+    /**
+     * Information whether current user is advertiser
+     */
+    is_advertiser?: VKBaseBoolInt
+    /**
+     * Start date in Unixtime format
+     */
+    start_date?: number
+    /**
+     * Finish date in Unixtime format
+     */
+    finish_date?: number
+    /**
+     * Information whether community is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether community is banned
+     */
+    deactivated?: string
+    /**
+     * URL of square photo of the community with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the community with 100 pixels in width
+     */
+    photo_100?: string
+    /**
+     * URL of square photo of the community with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the community with 200 pixels in width original
+     */
+    photo_200_orig?: string
+    /**
+     * URL of square photo of the community with 400 pixels in width
+     */
+    photo_400?: string
+    /**
+     * URL of square photo of the community with 400 pixels in width original
+     */
+    photo_400_orig?: string
+    /**
+     * URL of square photo of the community with max pixels in width
+     */
+    photo_max?: string
+    /**
+     * URL of square photo of the community with max pixels in width original
+     */
+    photo_max_orig?: string
+    /**
+     * Established date
+     */
+    est_date?: string
+    /**
+     * Public date label
+     */
+    public_date_label?: string
+    photo_max_size?: VKGroupsPhotoSize
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    market?: VKGroupsMarketInfo
+    /**
+     * Information whether community has installed market app
+     */
+    has_market_app?: boolean
+    using_vkpay_market_app?: boolean
+    /**
+     * Current user's member status
+     */
+    member_status?: VKGroupsGroupFullMemberStatus
+    /**
+     * Information whether community is adult
+     */
+    is_adult?: VKBaseBoolInt
+    /**
+     * Information whether community is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Information whether community is in faves
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether current user is subscribed
+     */
+    is_subscribed?: VKBaseBoolInt
+    city?: VKBaseObject
+    /**
+     * Community description
+     */
+    description?: string
+    /**
+     * Community's main wiki page title
+     */
+    wiki_page?: string
+    /**
+     * Community members number
+     */
+    members_count?: number
+    /**
+     * Info about number of users in group
+     */
+    members_count_text?: string
+    /**
+     * The number of incoming requests to the community
+     */
+    requests_count?: number
+    /**
+     * Community level live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of community's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of community's clips
+     */
+    clips_count?: number
+    counters?: VKGroupsCountersGroup
+    /**
+     * Textlives number
+     */
+    textlives_count?: number
+    cover?: VKBaseOwnerCover
+    video_cover?: VKBaseOwnerCover
+    /**
+     * Information whether current user can post on community's wall
+     */
+    can_post?: VKBaseBoolInt
+    can_suggest?: VKBaseBoolInt
+    /**
+     * Information whether current user can upload story
+     */
+    can_upload_story?: VKBaseBoolInt
+    /**
+     * Information whether current user can call to community
+     */
+    can_call_to_community?: boolean
+    /**
+     * Information whether current user can upload doc
+     */
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether current user can upload video
+     */
+    can_upload_video?: VKBaseBoolInt
+    /**
+     * Information whether current user can upload clip
+     */
+    can_upload_clip?: VKBaseBoolInt
+    /**
+     * Information whether current user can see all posts on community's wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can create topic
+     */
+    can_create_topic?: VKBaseBoolInt
+    /**
+     * Type of group, start date of event or category of public page
+     */
+    activity?: string
+    /**
+     * Fixed post ID
+     */
+    fixed_post?: number
+    /**
+     * Information whether community has photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Данные о точках, по которым вырезаны профильная и миниатюрная фотографии сообщества
+     */
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Community status
+     */
+    status?: string
+    status_audio?: VKAudioAudio
+    /**
+     * Community's main photo album ID
+     */
+    main_album_id?: number
+    links?: VKGroupsLinksItem[]
+    contacts?: VKGroupsContactsItem[]
+    /**
+     * Information about wall status in community
+     */
+    wall?: VKGroupsGroupFullWall
+    /**
+     * Community's website
+     */
+    site?: string
+    main_section?: VKGroupsGroupFullSection
+    secondary_section?: VKGroupsGroupFullSection
+    /**
+     * Information whether the community has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a message to community
+     */
+    can_message?: VKBaseBoolInt
+    /**
+     * Information whether community can send a message to current user
+     */
+    is_messages_blocked?: VKBaseBoolInt
+    /**
+     * Information whether community can send notifications by phone number to current user
+     */
+    can_send_notify?: VKBaseBoolInt
+    /**
+     * Status of replies in community messages
+     */
+    online_status?: VKGroupsOnlineStatus
+    /**
+     * Inviter ID
+     */
+    invited_by?: number
+    /**
+     * Information whether age limit
+     */
+    age_limits?: VKGroupsGroupFullAgeLimits
+    /**
+     * User ban info
+     */
+    ban_info?: VKGroupsGroupBanInfo
+    has_group_channel?: boolean
+    /**
+     * Info about addresses in groups
+     */
+    addresses?: VKGroupsAddressesInfo
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    /**
+     * Live covers state
+     */
+    live_covers?: VKGroupsLiveCovers
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    /**
+     * Information about the status of video notifications for the current user.
+     */
+    video_notifications_status?: VKGroupsGroupFullVideoNotificationsStatus
+    /**
+     * Community videos number
+     */
+    videos_count?: number
+}
+
+/**
+ *
+ *
+ * - `1` — no
+ * - `2` — over 16
+ * - `3` — over 18
+ */
+export type VKGroupsGroupFullAgeLimits = 1 | 2 | 3
+
+/**
+ *
+ *
+ * - `0` — not a member
+ * - `1` — member
+ * - `2` — not sure
+ * - `3` — declined
+ * - `4` — has sent a request
+ * - `5` — invited
+ */
+export type VKGroupsGroupFullMemberStatus = 0 | 1 | 2 | 3 | 4 | 5
+
+/**
+ * Main section of community
+ *
+ * - `0` — none
+ * - `1` — photos
+ * - `2` — topics
+ * - `3` — audios
+ * - `4` — videos
+ * - `5` — market
+ * - `6` — stories
+ * - `7` — apps
+ * - `8` — followers
+ * - `9` — links
+ * - `10` — events
+ * - `11` — places
+ * - `12` — contacts
+ * - `13` — app_btns
+ * - `14` — docs
+ * - `15` — event_counters
+ * - `16` — group_messages
+ * - `24` — albums
+ * - `26` — categories
+ * - `27` — admin_help
+ * - `31` — app_widget
+ * - `32` — public_help
+ * - `33` — hs_donation_app
+ * - `34` — hs_market_app
+ * - `35` — addresses
+ * - `36` — artist_page
+ * - `37` — podcast
+ * - `39` — articles
+ * - `40` — admin_tips
+ * - `41` — menu
+ * - `42` — fixed_post
+ * - `43` — chats
+ * - `44` — evergreen_notice
+ * - `45` — musicians
+ * - `46` — narratives
+ * - `47` — donut_donate
+ * - `48` — clips
+ * - `49` — market_cart
+ * - `50` — curators
+ * - `51` — market_services
+ * - `53` — classifieds
+ * - `54` — textlives
+ * - `55` — donut_for_dons
+ * - `57` — badges
+ * - `58` — chats_creation
+ * - `59` — stream_creation
+ * - `60` — rating
+ * - `61` — service_rating
+ * - `62` — recommended_tips_widget
+ */
+export type VKGroupsGroupFullSection =
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 24
+    | 26
+    | 27
+    | 31
+    | 32
+    | 33
+    | 34
+    | 35
+    | 36
+    | 37
+    | 39
+    | 40
+    | 41
+    | 42
+    | 43
+    | 44
+    | 45
+    | 46
+    | 47
+    | 48
+    | 49
+    | 50
+    | 51
+    | 53
+    | 54
+    | 55
+    | 57
+    | 58
+    | 59
+    | 60
+    | 61
+    | 62
+
+/**
+ * Information whether community is closed
+ *
+ * - `0` — open
+ * - `1` — closed
+ * - `2` — private
+ */
+export type VKGroupsGroupIsClosed = 0 | 1 | 2
+
+/**
+ *
+ *
+ * - `643` — russian rubles
+ * - `980` — ukrainian hryvnia
+ * - `398` — kazakh tenge
+ * - `978` — euro
+ * - `840` — us dollars
+ */
+export type VKGroupsGroupMarketCurrency = 643 | 980 | 398 | 978 | 840
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ */
+export type VKGroupsGroupPhotos = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKGroupsGroupPublicCategoryList {
+    id?: number
+    name?: string
+    subcategories?: VKGroupsGroupCategoryType[]
+}
+
+/**
+ *
+ */
+export type VKGroupsGroupRole =
+    | "moderator"
+    | "editor"
+    | "administrator"
+    | "advertiser"
+
+/**
+ *
+ */
+export interface VKGroupsGroupSubcategory {
+    /**
+     * Object ID
+     */
+    id: number
+    /**
+     * Object name
+     */
+    name: string
+    genders?: VKBaseObjectWithName[]
+}
+
+/**
+ *
+ *
+ * - `1` — auto
+ * - `2` — activity holidays
+ * - `3` — business
+ * - `4` — pets
+ * - `5` — health
+ * - `6` — dating and communication
+ * - `7` — games
+ * - `8` — it
+ * - `9` — cinema
+ * - `10` — beauty and fashion
+ * - `11` — cooking
+ * - `12` — art and culture
+ * - `13` — literature
+ * - `14` — mobile services and internet
+ * - `15` — music
+ * - `16` — science and technology
+ * - `17` — real estate
+ * - `18` — news and media
+ * - `19` — security
+ * - `20` — education
+ * - `21` — home and renovations
+ * - `22` — politics
+ * - `23` — food
+ * - `24` — industry
+ * - `25` — travel
+ * - `26` — work
+ * - `27` — entertainment
+ * - `28` — religion
+ * - `29` — family
+ * - `30` — sports
+ * - `31` — insurance
+ * - `32` — television
+ * - `33` — goods and services
+ * - `34` — hobbies
+ * - `35` — finance
+ * - `36` — photo
+ * - `37` — esoterics
+ * - `38` — electronics and appliances
+ * - `39` — erotic
+ * - `40` — humor
+ * - `41` — society_humanities
+ * - `42` — design and graphics
+ */
+export type VKGroupsGroupSubject =
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23
+    | 24
+    | 25
+    | 26
+    | 27
+    | 28
+    | 29
+    | 30
+    | 31
+    | 32
+    | 33
+    | 34
+    | 35
+    | 36
+    | 37
+    | 38
+    | 39
+    | 40
+    | 41
+    | 42
+
+/**
+ *
+ *
+ * - `0` — none
+ * - `1` — all
+ * - `2` — subscribers
+ */
+export type VKGroupsGroupSuggestedPrivacy = 0 | 1 | 2
+
+export type VKGroupsGroupTagColor =
+    | "454647"
+    | "45678f"
+    | "4bb34b"
+    | "5181b8"
+    | "539b9c"
+    | "5c9ce6"
+    | "63b9ba"
+    | "6bc76b"
+    | "76787a"
+    | "792ec0"
+    | "7a6c4f"
+    | "7ececf"
+    | "9e8d6b"
+    | "a162de"
+    | "aaaeb3"
+    | "bbaa84"
+    | "e64646"
+    | "ff5c5c"
+    | "ffa000"
+    | "ffc107"
+
+/**
+ *
+ */
+export interface VKGroupsGroupTag {
+    id: number
+    name: string
+    color: VKGroupsGroupTagColor
+    uses?: number
+}
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ */
+export type VKGroupsGroupTopics = 0 | 1 | 2
+
+/**
+ * Community type
+ */
+export type VKGroupsGroupType = "group" | "page" | "event"
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ */
+export type VKGroupsGroupVideo = 0 | 1 | 2
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ * - `3` — closed
+ */
+export type VKGroupsGroupWall = 0 | 1 | 2 | 3
+
+/**
+ *
+ *
+ * - `0` — disabled
+ * - `1` — open
+ * - `2` — limited
+ */
+export type VKGroupsGroupWiki = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKGroupsGroupsArray {
+    /**
+     * Communities number
+     */
+    count: number
+    items: number[]
+}
+
+/**
+ *
+ */
+export interface VKGroupsLinksItem {
+    /**
+     * Link title
+     */
+    name?: string
+    /**
+     * Link description
+     */
+    desc?: string
+    /**
+     * Information whether the link title can be edited
+     */
+    edit_title?: VKBaseBoolInt
+    /**
+     * Link ID
+     */
+    id?: number
+    /**
+     * URL of square image of the link with 100 pixels in width
+     */
+    photo_100?: string
+    /**
+     * URL of square image of the link with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * Link URL
+     */
+    url?: string
+    /**
+     * Information whether the image on processing
+     */
+    image_processing?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKGroupsLiveCovers {
+    /**
+     * Information whether live covers is enabled
+     */
+    is_enabled: boolean
+    /**
+     * Information whether live covers photo scaling is enabled
+     */
+    is_scalable?: boolean
+    story_ids?: string[]
+}
+
+/**
+ *
+ */
+export interface VKGroupsLongPollEvents {
+    audio_new: VKBaseBoolInt
+    board_post_delete: VKBaseBoolInt
+    board_post_edit: VKBaseBoolInt
+    board_post_new: VKBaseBoolInt
+    board_post_restore: VKBaseBoolInt
+    group_change_photo: VKBaseBoolInt
+    group_change_settings: VKBaseBoolInt
+    group_join: VKBaseBoolInt
+    group_leave: VKBaseBoolInt
+    group_officers_edit: VKBaseBoolInt
+    lead_forms_new?: VKBaseBoolInt
+    market_comment_delete: VKBaseBoolInt
+    market_comment_edit: VKBaseBoolInt
+    market_comment_new: VKBaseBoolInt
+    market_comment_restore: VKBaseBoolInt
+    market_order_new?: VKBaseBoolInt
+    market_order_edit?: VKBaseBoolInt
+    message_allow: VKBaseBoolInt
+    message_deny: VKBaseBoolInt
+    message_new: VKBaseBoolInt
+    message_read: VKBaseBoolInt
+    message_reply: VKBaseBoolInt
+    message_typing_state: VKBaseBoolInt
+    message_edit: VKBaseBoolInt
+    photo_comment_delete: VKBaseBoolInt
+    photo_comment_edit: VKBaseBoolInt
+    photo_comment_new: VKBaseBoolInt
+    photo_comment_restore: VKBaseBoolInt
+    photo_new: VKBaseBoolInt
+    poll_vote_new: VKBaseBoolInt
+    user_block: VKBaseBoolInt
+    user_unblock: VKBaseBoolInt
+    video_comment_delete: VKBaseBoolInt
+    video_comment_edit: VKBaseBoolInt
+    video_comment_new: VKBaseBoolInt
+    video_comment_restore: VKBaseBoolInt
+    video_new: VKBaseBoolInt
+    message_reaction_event: VKBaseBoolInt
+    wall_post_new: VKBaseBoolInt
+    wall_reply_delete: VKBaseBoolInt
+    wall_reply_edit: VKBaseBoolInt
+    wall_reply_new: VKBaseBoolInt
+    wall_reply_restore: VKBaseBoolInt
+    wall_repost: VKBaseBoolInt
+    wall_schedule_post_new: VKBaseBoolInt
+    wall_schedule_post_delete: VKBaseBoolInt
+    donut_subscription_create: VKBaseBoolInt
+    donut_subscription_prolonged: VKBaseBoolInt
+    donut_subscription_cancelled: VKBaseBoolInt
+    donut_subscription_expired: VKBaseBoolInt
+    donut_subscription_price_changed: VKBaseBoolInt
+    donut_money_withdraw: VKBaseBoolInt
+    donut_money_withdraw_error: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKGroupsLongPollServer {
+    /**
+     * Long Poll key
+     */
+    key: string
+    /**
+     * Long Poll server address
+     */
+    server: string
+    /**
+     * Number of the last event
+     */
+    ts: string
+}
+
+/**
+ *
+ */
+export interface VKGroupsLongPollSettings {
+    /**
+     * API version used for the events
+     */
+    api_version?: string
+    events: VKGroupsLongPollEvents
+    /**
+     * Shows whether Long Poll is enabled
+     */
+    is_enabled: boolean
+}
+
+/**
+ *
+ */
+export interface VKGroupsMarketInfo {
+    /**
+     * Market type
+     */
+    type?: string
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    currency?: VKMarketCurrency
+    /**
+     * Currency name
+     */
+    currency_text?: string
+    /**
+     * Information whether the market is enabled
+     */
+    enabled?: VKBaseBoolInt
+    /**
+     * Main market album ID
+     */
+    main_album_id?: number
+    /**
+     * Maximum price
+     */
+    price_max?: string
+    /**
+     * Minimum price
+     */
+    price_min?: string
+    min_order_price?: VKMarketPrice
+}
+
+/**
+ *
+ */
+export interface VKGroupsMarketProperties {
+    market?: VKGroupsMarketInfo
+    /**
+     * Information whether community has installed market app
+     */
+    has_market_app?: boolean
+    using_vkpay_market_app?: boolean
+}
+
+/**
+ * Declares state if market is enabled in group.
+ */
+export type VKGroupsMarketState = "none" | "basic" | "advanced"
+
+/**
+ *
+ */
+export interface VKGroupsMemberRole {
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * Allow the manager to accept community calls.
+     */
+    is_call_operator?: boolean
+    permissions?: VKGroupsMemberRolePermission[]
+    role?: VKGroupsMemberRoleStatus
+}
+
+/**
+ *
+ */
+export type VKGroupsMemberRolePermission = "ads"
+
+/**
+ * User's credentials as community admin
+ */
+export type VKGroupsMemberRoleStatus =
+    | "moderator"
+    | "editor"
+    | "administrator"
+    | "creator"
+    | "advertiser"
+
+/**
+ *
+ */
+export interface VKGroupsMemberStatus {
+    /**
+     * Information whether user is a member of the group
+     */
+    member: VKBaseBoolInt
+    /**
+     * User ID
+     */
+    user_id: number
+}
+
+/**
+ *
+ */
+export interface VKGroupsMemberStatusFull {
+    /**
+     * Information whether user can be invited
+     */
+    can_invite?: VKBaseBoolInt
+    /**
+     * Information whether user's invite to the group can be recalled
+     */
+    can_recall?: VKBaseBoolInt
+    /**
+     * Information whether user has been invited to the group
+     */
+    invitation?: VKBaseBoolInt
+    /**
+     * Information whether user is a member of the group
+     */
+    member: VKBaseBoolInt
+    /**
+     * Information whether user has send request to the group
+     */
+    request?: VKBaseBoolInt
+    /**
+     * User ID
+     */
+    user_id: number
+}
+
+/**
+ * Online status of group
+ */
+export interface VKGroupsOnlineStatus {
+    /**
+     * Estimated time of answer (for status = answer_mark)
+     */
+    minutes?: number
+    status: VKGroupsOnlineStatusType
+}
+
+/**
+ * Type of online status of group
+ */
+export type VKGroupsOnlineStatusType = "none" | "online" | "answer_mark"
+
+export type VKGroupsOwnerXtrBanInfoType = "group" | "profile"
+
+/**
+ *
+ */
+export interface VKGroupsOwnerXtrBanInfo {
+    ban_info?: VKGroupsBanInfo
+    /**
+     * Information about group if type = group
+     */
+    group?: VKGroupsGroup
+    /**
+     * Information about group if type = profile
+     */
+    profile?: VKUsersUser
+    type?: VKGroupsOwnerXtrBanInfoType
+}
+
+/**
+ *
+ */
+export interface VKGroupsPhotoSize {
+    /**
+     * Image height
+     */
+    height: number
+    /**
+     * Image width
+     */
+    width: number
+}
+
+/**
+ *
+ */
+export interface VKGroupsProfileItem {
+    /**
+     * User id
+     */
+    id: number
+    /**
+     * Url for user photo
+     */
+    photo_50: string
+    /**
+     * Url for user photo
+     */
+    photo_100: string
+    /**
+     * User first name
+     */
+    first_name: string
+    /**
+     * User last name
+     */
+    last_name?: string
+    /**
+     * Domain of the user page
+     */
+    screen_name?: string
+}
+
+/**
+ * User's credentials as community admin
+ */
+export type VKGroupsRoleOptions =
+    | "moderator"
+    | "editor"
+    | "administrator"
+    | "creator"
+
+/**
+ *
+ */
+export type VKGroupsSectionsListItem = VKBaseObject
+
+export type VKGroupsSettingsTwitterStatus = "loading" | "sync"
+
+/**
+ *
+ */
+export interface VKGroupsSettingsTwitter {
+    status: VKGroupsSettingsTwitterStatus
+    name?: string
+}
+
+/**
+ *
+ */
+export interface VKGroupsSubjectItem {
+    /**
+     * Subject ID
+     */
+    id: number
+    /**
+     * Subject title
+     */
+    name: string
+}
+
+/**
+ *
+ */
+export interface VKGroupsTokenPermissionSetting {
+    name: string
+    setting: number
+}
+
+export type VKGroupsUserXtrRoleWallDefault = "owner" | "all"
+
+/**
+ *
+ */
+export interface VKGroupsUserXtrRole {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+    /**
+     * User's first name in nominative case
+     */
+    first_name_nom?: string
+    /**
+     * User's first name in genitive case
+     */
+    first_name_gen?: string
+    /**
+     * User's first name in dative case
+     */
+    first_name_dat?: string
+    /**
+     * User's first name in accusative case
+     */
+    first_name_acc?: string
+    /**
+     * User's first name in instrumental case
+     */
+    first_name_ins?: string
+    /**
+     * User's first name in prepositional case
+     */
+    first_name_abl?: string
+    /**
+     * User's last name in nominative case
+     */
+    last_name_nom?: string
+    /**
+     * User's last name in genitive case
+     */
+    last_name_gen?: string
+    /**
+     * User's last name in dative case
+     */
+    last_name_dat?: string
+    /**
+     * User's last name in accusative case
+     */
+    last_name_acc?: string
+    /**
+     * User's last name in instrumental case
+     */
+    last_name_ins?: string
+    /**
+     * User's last name in prepositional case
+     */
+    last_name_abl?: string
+    /**
+     * User nickname
+     */
+    nickname?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    /**
+     * User contact name
+     */
+    contact_name?: string
+    /**
+     * Domain name of the user's page
+     */
+    domain?: string
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    city?: VKBaseCity
+    /**
+     * User's timezone
+     */
+    timezone?: number
+    owner_state?: VKOwnerState
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the user with maximum width
+     */
+    photo_max?: string
+    /**
+     * URL of user's photo with 200 pixels in width
+     */
+    photo_200_orig?: string
+    /**
+     * URL of user's photo with 400 pixels in width
+     */
+    photo_400_orig?: string
+    /**
+     * URL of user's photo of maximum size
+     */
+    photo_max_orig?: string
+    /**
+     * ID of the user's main photo
+     */
+    photo_id?: string
+    /**
+     * Information whether the user has main photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Information whether the user specified his phone number
+     */
+    has_mobile?: VKBaseBoolInt
+    /**
+     * Information whether the user is a friend of current user
+     */
+    is_friend?: VKBaseBoolInt
+    /**
+     * Information whether the user is a best friend of current user
+     */
+    is_best_friend?: boolean
+    /**
+     * Information whether current user can comment wall posts
+     */
+    wall_comments?: VKBaseBoolInt
+    /**
+     * Information whether current user can post on the user's wall
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can see other users' audio on the wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the user's audio
+     */
+    can_see_audio?: VKBaseBoolInt
+    type?: VKUsersUserType
+    email?: string
+    skype?: string
+    facebook?: string
+    facebook_name?: string
+    twitter?: string
+    livejournal?: string
+    instagram?: string
+    test?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    is_service?: boolean
+    service_description?: string
+    photo_rec?: string | boolean
+    photo_medium?: string | boolean
+    photo_medium_rec?: string | boolean
+    photo?: string
+    photo_big?: string
+    photo_400?: string
+    photo_max_size?: VKPhotosPhoto
+    language?: string
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    wall_default?: VKGroupsUserXtrRoleWallDefault
+    /**
+     * Information whether current user can call
+     */
+    can_call?: boolean
+    /**
+     * Information whether group can call user
+     */
+    can_call_from_group?: boolean
+    /**
+     * Information whether user/group can invite user as voicerooms speakr
+     */
+    can_invite_as_voicerooms_speaker?: boolean
+    /**
+     * Information whether current user can see the user's wishes
+     */
+    can_see_wishes?: boolean
+    /**
+     * Information whether current user can see the user's gifts
+     */
+    can_see_gifts?: VKBaseBoolInt
+    interests?: string
+    books?: string
+    tv?: string
+    quotes?: string
+    about?: string
+    games?: string
+    movies?: string
+    activities?: string
+    music?: string
+    /**
+     * Information whether current user can write private message
+     */
+    can_write_private_message?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a friend request
+     */
+    can_send_friend_request?: VKBaseBoolInt
+    /**
+     * Information whether current user can be invited to the community
+     */
+    can_be_invited_group?: boolean
+    /**
+     * User's mobile phone number
+     */
+    mobile_phone?: string
+    /**
+     * User's additional phone number
+     */
+    home_phone?: string
+    /**
+     * User's website
+     */
+    site?: string
+    status_audio?: VKAudioAudio
+    /**
+     * User's status
+     */
+    status?: string
+    /**
+     * User's status
+     */
+    activity?: string
+    status_app?: VKAppsAppMin
+    last_seen?: VKUsersLastSeen
+    exports?: VKUsersExports
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Number of user's followers and friends
+     */
+    followers_count?: number
+    /**
+     * User level in live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of user's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of user's clips
+     */
+    clips_count?: number
+    /**
+     * Information whether current user is in the requested user's blacklist.
+     */
+    blacklisted?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in current user's blacklist
+     */
+    blacklisted_by_me?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in faves of current user
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Number of common friends with current user
+     */
+    common_count?: number
+    occupation?: VKUsersOccupation
+    career?: VKUsersCareer[]
+    military?: VKUsersMilitary[]
+    /**
+     * University ID
+     */
+    university?: number
+    /**
+     * University name
+     */
+    university_name?: string
+    university_group_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * User's education status
+     */
+    education_status?: string
+    /**
+     * User hometown
+     */
+    home_town?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    personal?: VKUsersPersonal
+    universities?: VKUsersUniversity[]
+    schools?: VKUsersSchool[]
+    relatives?: VKUsersRelative[]
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    counters?: VKUsersUserCounters
+    access_key?: string
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether the user can be baned (added to black list) by me
+     */
+    can_ban?: boolean
+    hash?: string
+    /**
+     * Access to user profile is restricted for search engines
+     */
+    is_no_index?: boolean
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    is_message_request?: boolean
+    descriptions?: string[]
+    lists?: number[]
+    permissions?: VKGroupsMemberRolePermission[]
+    role?: VKGroupsRoleOptions
+}
+
+/**
+ *
+ */
+export interface VKLeadFormsAnswer {
+    key: string
+    answer: VKLeadFormsAnswerOneOf
+}
+
+/**
+ *
+ */
+export interface VKLeadFormsAnswerItem {
+    key?: string
+    value: string
+}
+
+/**
+ *
+ */
+export type VKLeadFormsAnswerOneOf =
+    | VKLeadFormsAnswerItem
+    | VKLeadFormsAnswerItem[]
+
+/**
+ *
+ */
+export interface VKLeadFormsForm {
+    form_id: number
+    group_id: number
+    photo?: string
+    name?: string
+    title?: string
+    description?: string
+    confirmation?: string
+    site_link_url?: string
+    policy_link_url?: string
+    questions?: VKLeadFormsQuestionItem[]
+    active?: VKBaseBoolInt
+    leads_count: number
+    pixel_code?: string
+    once_per_user?: number
+    notify_admins?: string
+    notify_emails?: string
     url: string
 }
 
 /**
- * The withdrawal failed and the transaction was refunded.
  *
- * [Documentation](https://core.telegram.org/bots/api/#revenuewithdrawalstatefailed)
  */
-export interface TelegramRevenueWithdrawalStateFailed {
-    /**
-     * Type of the state, always “failed”
-     */
-    type: "failed"
-}
-
-/**
- * Contains information about the affiliate that received a commission via this transaction.
- *
- * [Documentation](https://core.telegram.org/bots/api/#affiliateinfo)
- */
-export interface TelegramAffiliateInfo {
-    /**
-     * *Optional*. The bot or the user that received an affiliate commission if it was received by a bot or a user
-     */
-    affiliate_user?: TelegramUser
-    /**
-     * *Optional*. The chat that received an affiliate commission if it was received by a chat
-     */
-    affiliate_chat?: TelegramChat
-    /**
-     * The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the bot from referred users
-     */
-    commission_per_mille: number
-    /**
-     * Integer amount of Telegram Stars received by the affiliate from the transaction, rounded to 0; can be negative for refunds
-     */
-    amount: number
-    /**
-     * *Optional*. The number of 1/1000000000 shares of Telegram Stars received by the affiliate; from -999999999 to 999999999; can be negative for refunds
-     */
-    nanostar_amount?: number
-}
-
-/**
- * This object describes the source of a transaction, or its recipient for outgoing transactions. Currently, it can be one of
- *
- * *   [TransactionPartnerUser](https://core.telegram.org/bots/api#transactionpartneruser)
- * *   [TransactionPartnerChat](https://core.telegram.org/bots/api#transactionpartnerchat)
- * *   [TransactionPartnerAffiliateProgram](https://core.telegram.org/bots/api#transactionpartneraffiliateprogram)
- * *   [TransactionPartnerFragment](https://core.telegram.org/bots/api#transactionpartnerfragment)
- * *   [TransactionPartnerTelegramAds](https://core.telegram.org/bots/api#transactionpartnertelegramads)
- * *   [TransactionPartnerTelegramApi](https://core.telegram.org/bots/api#transactionpartnertelegramapi)
- * *   [TransactionPartnerOther](https://core.telegram.org/bots/api#transactionpartnerother)
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartner)
- */
-export type TelegramTransactionPartner =
-    | TelegramTransactionPartnerUser
-    | TelegramTransactionPartnerChat
-    | TelegramTransactionPartnerAffiliateProgram
-    | TelegramTransactionPartnerFragment
-    | TelegramTransactionPartnerTelegramAds
-    | TelegramTransactionPartnerTelegramApi
-    | TelegramTransactionPartnerOther
-
-export type TelegramTransactionPartnerUserTransactionType =
-    | "invoice_payment"
-    | "paid_media_payment"
-    | "gift_purchase"
-    | "premium_purchase"
-    | "business_account_transfer"
-
-/**
- * Describes a transaction with a user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartneruser)
- */
-export interface TelegramTransactionPartnerUser {
-    /**
-     * Type of the transaction partner, always “user”
-     */
-    type: "user"
-    /**
-     * Type of the transaction, currently one of “invoice\_payment” for payments via invoices, “paid\_media\_payment” for payments for paid media, “gift\_purchase” for gifts sent by the bot, “premium\_purchase” for Telegram Premium subscriptions gifted by the bot, “business\_account\_transfer” for direct transfers from managed business accounts
-     */
-    transaction_type: TelegramTransactionPartnerUserTransactionType
-    /**
-     * Information about the user
-     */
-    user: TelegramUser
-    /**
-     * *Optional*. Information about the affiliate that received a commission via this transaction. Can be available only for “invoice\_payment” and “paid\_media\_payment” transactions.
-     */
-    affiliate?: TelegramAffiliateInfo
-    /**
-     * *Optional*. Bot-specified invoice payload. Can be available only for “invoice\_payment” transactions.
-     */
-    invoice_payload?: string
-    /**
-     * *Optional*. The duration of the paid subscription. Can be available only for “invoice\_payment” transactions.
-     */
-    subscription_period?: number
-    /**
-     * *Optional*. Information about the paid media bought by the user; for “paid\_media\_payment” transactions only
-     */
-    paid_media?: TelegramPaidMedia[]
-    /**
-     * *Optional*. Bot-specified paid media payload. Can be available only for “paid\_media\_payment” transactions.
-     */
-    paid_media_payload?: string
-    /**
-     * *Optional*. The gift sent to the user by the bot; for “gift\_purchase” transactions only
-     */
-    gift?: TelegramGift
-    /**
-     * *Optional*. Number of months the gifted Telegram Premium subscription will be active for; for “premium\_purchase” transactions only
-     */
-    premium_subscription_duration?: number
-}
-
-/**
- * Describes a transaction with a chat.
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartnerchat)
- */
-export interface TelegramTransactionPartnerChat {
-    /**
-     * Type of the transaction partner, always “chat”
-     */
-    type: "chat"
-    /**
-     * Information about the chat
-     */
-    chat: TelegramChat
-    /**
-     * *Optional*. The gift sent to the chat by the bot
-     */
-    gift?: TelegramGift
-}
-
-/**
- * Describes the affiliate program that issued the affiliate commission received via this transaction.
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartneraffiliateprogram)
- */
-export interface TelegramTransactionPartnerAffiliateProgram {
-    /**
-     * Type of the transaction partner, always “affiliate\_program”
-     */
-    type: "affiliate_program"
-    /**
-     * *Optional*. Information about the bot that sponsored the affiliate program
-     */
-    sponsor_user?: TelegramUser
-    /**
-     * The number of Telegram Stars received by the bot for each 1000 Telegram Stars received by the affiliate program sponsor from referred users
-     */
-    commission_per_mille: number
-}
-
-/**
- * Describes a withdrawal transaction with Fragment.
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartnerfragment)
- */
-export interface TelegramTransactionPartnerFragment {
-    /**
-     * Type of the transaction partner, always “fragment”
-     */
-    type: "fragment"
-    /**
-     * *Optional*. State of the transaction if the transaction is outgoing
-     */
-    withdrawal_state?: TelegramRevenueWithdrawalState
-}
-
-/**
- * Describes a withdrawal transaction to the Telegram Ads platform.
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartnertelegramads)
- */
-export interface TelegramTransactionPartnerTelegramAds {
-    /**
-     * Type of the transaction partner, always “telegram\_ads”
-     */
-    type: "telegram_ads"
-}
-
-/**
- * Describes a transaction with payment for [paid broadcasting](https://core.telegram.org/bots/api#paid-broadcasts).
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartnertelegramapi)
- */
-export interface TelegramTransactionPartnerTelegramApi {
-    /**
-     * Type of the transaction partner, always “telegram\_api”
-     */
-    type: "telegram_api"
-    /**
-     * The number of successful requests that exceeded regular limits and were therefore billed
-     */
-    request_count: number
-}
-
-/**
- * Describes a transaction with an unknown source or recipient.
- *
- * [Documentation](https://core.telegram.org/bots/api/#transactionpartnerother)
- */
-export interface TelegramTransactionPartnerOther {
-    /**
-     * Type of the transaction partner, always “other”
-     */
-    type: "other"
-}
-
-/**
- * Describes a Telegram Star transaction. Note that if the buyer initiates a chargeback with the payment provider from whom they acquired Stars (e.g., Apple, Google) following this transaction, the refunded Stars will be deducted from the bot's balance. This is outside of Telegram's control.
- *
- * [Documentation](https://core.telegram.org/bots/api/#startransaction)
- */
-export interface TelegramStarTransaction {
-    /**
-     * Unique identifier of the transaction. Coincides with the identifier of the original transaction for refund transactions. Coincides with *SuccessfulPayment.telegram\_payment\_charge\_id* for successful incoming payments from users.
-     */
-    id: string
-    /**
-     * Integer amount of Telegram Stars transferred by the transaction
-     */
-    amount: number
-    /**
-     * *Optional*. The number of 1/1000000000 shares of Telegram Stars transferred by the transaction; from 0 to 999999999
-     */
-    nanostar_amount?: number
-    /**
-     * Date the transaction was created in Unix time
-     */
+export interface VKLeadFormsLead {
+    lead_id: number
+    user_id: number
     date: number
+    answers: VKLeadFormsAnswer[]
+    ad_id?: number
+}
+
+export type VKLeadFormsQuestionItemType =
+    | "input"
+    | "textarea"
+    | "radio"
+    | "checkbox"
+    | "select"
+
+/**
+ *
+ */
+export interface VKLeadFormsQuestionItem {
+    key: string
+    type: VKLeadFormsQuestionItemType
+    label?: string
     /**
-     * *Optional*. Source of an incoming transaction (e.g., a user purchasing goods or services, Fragment refunding a failed withdrawal). Only for incoming transactions
+     * Опции выбора для типов radio, checkbox, select
      */
-    source?: TelegramTransactionPartner
-    /**
-     * *Optional*. Receiver of an outgoing transaction (e.g., a user for a purchase refund, Fragment for a withdrawal). Only for outgoing transactions
-     */
-    receiver?: TelegramTransactionPartner
+    options?: VKLeadFormsQuestionItemOption[]
 }
 
 /**
- * Contains a list of Telegram Star transactions.
  *
- * [Documentation](https://core.telegram.org/bots/api/#startransactions)
  */
-export interface TelegramStarTransactions {
-    /**
-     * The list of transactions
-     */
-    transactions: TelegramStarTransaction[]
+export interface VKLeadFormsQuestionItemOption {
+    key?: string
+    label: string
 }
 
 /**
- * Describes Telegram Passport data shared with the bot by the user.
  *
- * [Documentation](https://core.telegram.org/bots/api/#passportdata)
  */
-export interface TelegramPassportData {
+export type VKLikesType =
+    | "post"
+    | "comment"
+    | "photo"
+    | "audio"
+    | "video"
+    | "note"
+    | "market"
+    | "photo_comment"
+    | "video_comment"
+    | "topic_comment"
+    | "market_comment"
+    | "sitepage"
+    | "textpost"
+    | "community_review"
+    | "story"
+    | "group_like"
+
+/**
+ *
+ */
+export interface VKLinkTargetObject {
     /**
-     * Array with information about documents and other Telegram Passport elements that was shared with the bot
+     * Object type
      */
-    data: TelegramEncryptedPassportElement[]
+    type?: string
     /**
-     * Encrypted credentials required to decrypt the data
+     * Owner ID
      */
-    credentials: TelegramEncryptedCredentials
+    owner_id?: number
+    /**
+     * Item ID
+     */
+    item_id?: number
 }
 
 /**
- * This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don't exceed 10MB.
  *
- * [Documentation](https://core.telegram.org/bots/api/#passportfile)
  */
-export interface TelegramPassportFile {
+export interface VKMarketCurrency {
     /**
-     * Identifier for this file, which can be used to download or reuse the file
+     * Currency ID
      */
-    file_id: string
+    id: number
     /**
-     * Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
+     * Currency sign
      */
-    file_unique_id: string
+    name: string
     /**
-     * File size in bytes
+     * Currency title
      */
-    file_size: number
-    /**
-     * Unix time when the file was uploaded
-     */
-    file_date: number
-}
-
-export type TelegramEncryptedPassportElementType =
-    | "personal_details"
-    | "passport"
-    | "driver_license"
-    | "identity_card"
-    | "internal_passport"
-    | "address"
-    | "utility_bill"
-    | "bank_statement"
-    | "rental_agreement"
-    | "passport_registration"
-    | "temporary_registration"
-    | "phone_number"
-    | "email"
-
-/**
- * Describes documents or other Telegram Passport elements shared with the bot by the user.
- *
- * [Documentation](https://core.telegram.org/bots/api/#encryptedpassportelement)
- */
-export interface TelegramEncryptedPassportElement {
-    /**
-     * Element type. One of “personal\_details”, “passport”, “driver\_license”, “identity\_card”, “internal\_passport”, “address”, “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration”, “temporary\_registration”, “phone\_number”, “email”.
-     */
-    type: TelegramEncryptedPassportElementType
-    /**
-     * *Optional*. Base64-encoded encrypted Telegram Passport element data provided by the user; available only for “personal\_details”, “passport”, “driver\_license”, “identity\_card”, “internal\_passport” and “address” types. Can be decrypted and verified using the accompanying [EncryptedCredentials](https://core.telegram.org/bots/api#encryptedcredentials).
-     */
-    data?: string
-    /**
-     * *Optional*. User's verified phone number; available only for “phone\_number” type
-     */
-    phone_number?: string
-    /**
-     * *Optional*. User's verified email address; available only for “email” type
-     */
-    email?: string
-    /**
-     * *Optional*. Array of encrypted files with documents provided by the user; available only for “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration” and “temporary\_registration” types. Files can be decrypted and verified using the accompanying [EncryptedCredentials](https://core.telegram.org/bots/api#encryptedcredentials).
-     */
-    files?: TelegramPassportFile[]
-    /**
-     * *Optional*. Encrypted file with the front side of the document, provided by the user; available only for “passport”, “driver\_license”, “identity\_card” and “internal\_passport”. The file can be decrypted and verified using the accompanying [EncryptedCredentials](https://core.telegram.org/bots/api#encryptedcredentials).
-     */
-    front_side?: TelegramPassportFile
-    /**
-     * *Optional*. Encrypted file with the reverse side of the document, provided by the user; available only for “driver\_license” and “identity\_card”. The file can be decrypted and verified using the accompanying [EncryptedCredentials](https://core.telegram.org/bots/api#encryptedcredentials).
-     */
-    reverse_side?: TelegramPassportFile
-    /**
-     * *Optional*. Encrypted file with the selfie of the user holding a document, provided by the user; available if requested for “passport”, “driver\_license”, “identity\_card” and “internal\_passport”. The file can be decrypted and verified using the accompanying [EncryptedCredentials](https://core.telegram.org/bots/api#encryptedcredentials).
-     */
-    selfie?: TelegramPassportFile
-    /**
-     * *Optional*. Array of encrypted files with translated versions of documents provided by the user; available if requested for “passport”, “driver\_license”, “identity\_card”, “internal\_passport”, “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration” and “temporary\_registration” types. Files can be decrypted and verified using the accompanying [EncryptedCredentials](https://core.telegram.org/bots/api#encryptedcredentials).
-     */
-    translation?: TelegramPassportFile[]
-    /**
-     * Base64-encoded element hash for using in [PassportElementErrorUnspecified](https://core.telegram.org/bots/api#passportelementerrorunspecified)
-     */
-    hash: string
+    title: string
 }
 
 /**
- * Describes data required for decrypting and authenticating [EncryptedPassportElement](https://core.telegram.org/bots/api#encryptedpassportelement). See the [Telegram Passport Documentation](https://core.telegram.org/passport#receiving-information) for a complete description of the data decryption and authentication processes.
  *
- * [Documentation](https://core.telegram.org/bots/api/#encryptedcredentials)
  */
-export interface TelegramEncryptedCredentials {
-    /**
-     * Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for [EncryptedPassportElement](https://core.telegram.org/bots/api#encryptedpassportelement) decryption and authentication
-     */
-    data: string
-    /**
-     * Base64-encoded data hash for data authentication
-     */
-    hash: string
-    /**
-     * Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption
-     */
-    secret: string
+export interface VKMarketGlobalSearchFilters {
+    city?: VKBaseCity
+    country?: VKBaseCountry
 }
 
 /**
- * This object represents an error in the Telegram Passport element which was submitted that should be resolved by the user. It should be one of:
- *
- * *   [PassportElementErrorDataField](https://core.telegram.org/bots/api#passportelementerrordatafield)
- * *   [PassportElementErrorFrontSide](https://core.telegram.org/bots/api#passportelementerrorfrontside)
- * *   [PassportElementErrorReverseSide](https://core.telegram.org/bots/api#passportelementerrorreverseside)
- * *   [PassportElementErrorSelfie](https://core.telegram.org/bots/api#passportelementerrorselfie)
- * *   [PassportElementErrorFile](https://core.telegram.org/bots/api#passportelementerrorfile)
- * *   [PassportElementErrorFiles](https://core.telegram.org/bots/api#passportelementerrorfiles)
- * *   [PassportElementErrorTranslationFile](https://core.telegram.org/bots/api#passportelementerrortranslationfile)
- * *   [PassportElementErrorTranslationFiles](https://core.telegram.org/bots/api#passportelementerrortranslationfiles)
- * *   [PassportElementErrorUnspecified](https://core.telegram.org/bots/api#passportelementerrorunspecified)
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerror)
+ * Information about the group where the item is placed
  */
-export type TelegramPassportElementError =
-    | TelegramPassportElementErrorDataField
-    | TelegramPassportElementErrorFrontSide
-    | TelegramPassportElementErrorReverseSide
-    | TelegramPassportElementErrorSelfie
-    | TelegramPassportElementErrorFile
-    | TelegramPassportElementErrorFiles
-    | TelegramPassportElementErrorTranslationFile
-    | TelegramPassportElementErrorTranslationFiles
-    | TelegramPassportElementErrorUnspecified
-
-export type TelegramPassportElementErrorDataFieldType =
-    | "personal_details"
-    | "passport"
-    | "driver_license"
-    | "identity_card"
-    | "internal_passport"
-    | "address"
-
-/**
- * Represents an issue in one of the data fields that was provided by the user. The error is considered resolved when the field's value changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrordatafield)
- */
-export interface TelegramPassportElementErrorDataField {
+export interface VKMarketItemOwnerInfo {
     /**
-     * Error source, must be *data*
+     * Avatar of the group
      */
-    source: "data"
+    avatar?: VKBaseImage[]
     /**
-     * The section of the user's Telegram Passport which has the error, one of “personal\_details”, “passport”, “driver\_license”, “identity\_card”, “internal\_passport”, “address”
+     * Name of the group
      */
-    type: TelegramPassportElementErrorDataFieldType
+    name?: string
     /**
-     * Name of the data field which has the error
+     * Category of the item or description of the group
      */
-    field_name: string
+    category?: string
     /**
-     * Base64-encoded data hash
+     * Link to the section of the group
      */
-    data_hash: string
+    category_url?: string
     /**
-     * Error message
+     * Is the group is VK corporated market
      */
-    message: string
-}
-
-export type TelegramPassportElementErrorFrontSideType =
-    | "passport"
-    | "driver_license"
-    | "identity_card"
-    | "internal_passport"
-
-/**
- * Represents an issue with the front side of a document. The error is considered resolved when the file with the front side of the document changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrorfrontside)
- */
-export interface TelegramPassportElementErrorFrontSide {
+    is_corporated_market?: boolean
     /**
-     * Error source, must be *front\_side*
+     * Type of the market group
      */
-    source: "front_side"
-    /**
-     * The section of the user's Telegram Passport which has the issue, one of “passport”, “driver\_license”, “identity\_card”, “internal\_passport”
-     */
-    type: TelegramPassportElementErrorFrontSideType
-    /**
-     * Base64-encoded hash of the file with the front side of the document
-     */
-    file_hash: string
-    /**
-     * Error message
-     */
-    message: string
-}
-
-export type TelegramPassportElementErrorReverseSideType =
-    | "driver_license"
-    | "identity_card"
-
-/**
- * Represents an issue with the reverse side of a document. The error is considered resolved when the file with reverse side of the document changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrorreverseside)
- */
-export interface TelegramPassportElementErrorReverseSide {
-    /**
-     * Error source, must be *reverse\_side*
-     */
-    source: "reverse_side"
-    /**
-     * The section of the user's Telegram Passport which has the issue, one of “driver\_license”, “identity\_card”
-     */
-    type: TelegramPassportElementErrorReverseSideType
-    /**
-     * Base64-encoded hash of the file with the reverse side of the document
-     */
-    file_hash: string
-    /**
-     * Error message
-     */
-    message: string
-}
-
-export type TelegramPassportElementErrorSelfieType =
-    | "passport"
-    | "driver_license"
-    | "identity_card"
-    | "internal_passport"
-
-/**
- * Represents an issue with the selfie with a document. The error is considered resolved when the file with the selfie changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrorselfie)
- */
-export interface TelegramPassportElementErrorSelfie {
-    /**
-     * Error source, must be *selfie*
-     */
-    source: "selfie"
-    /**
-     * The section of the user's Telegram Passport which has the issue, one of “passport”, “driver\_license”, “identity\_card”, “internal\_passport”
-     */
-    type: TelegramPassportElementErrorSelfieType
-    /**
-     * Base64-encoded hash of the file with the selfie
-     */
-    file_hash: string
-    /**
-     * Error message
-     */
-    message: string
-}
-
-export type TelegramPassportElementErrorFileType =
-    | "utility_bill"
-    | "bank_statement"
-    | "rental_agreement"
-    | "passport_registration"
-    | "temporary_registration"
-
-/**
- * Represents an issue with a document scan. The error is considered resolved when the file with the document scan changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrorfile)
- */
-export interface TelegramPassportElementErrorFile {
-    /**
-     * Error source, must be *file*
-     */
-    source: "file"
-    /**
-     * The section of the user's Telegram Passport which has the issue, one of “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration”, “temporary\_registration”
-     */
-    type: TelegramPassportElementErrorFileType
-    /**
-     * Base64-encoded file hash
-     */
-    file_hash: string
-    /**
-     * Error message
-     */
-    message: string
-}
-
-export type TelegramPassportElementErrorFilesType =
-    | "utility_bill"
-    | "bank_statement"
-    | "rental_agreement"
-    | "passport_registration"
-    | "temporary_registration"
-
-/**
- * Represents an issue with a list of scans. The error is considered resolved when the list of files containing the scans changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrorfiles)
- */
-export interface TelegramPassportElementErrorFiles {
-    /**
-     * Error source, must be *files*
-     */
-    source: "files"
-    /**
-     * The section of the user's Telegram Passport which has the issue, one of “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration”, “temporary\_registration”
-     */
-    type: TelegramPassportElementErrorFilesType
-    /**
-     * List of base64-encoded file hashes
-     */
-    file_hashes: string[]
-    /**
-     * Error message
-     */
-    message: string
-}
-
-export type TelegramPassportElementErrorTranslationFileType =
-    | "passport"
-    | "driver_license"
-    | "identity_card"
-    | "internal_passport"
-    | "utility_bill"
-    | "bank_statement"
-    | "rental_agreement"
-    | "passport_registration"
-    | "temporary_registration"
-
-/**
- * Represents an issue with one of the files that constitute the translation of a document. The error is considered resolved when the file changes.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrortranslationfile)
- */
-export interface TelegramPassportElementErrorTranslationFile {
-    /**
-     * Error source, must be *translation\_file*
-     */
-    source: "translation_file"
-    /**
-     * Type of element of the user's Telegram Passport which has the issue, one of “passport”, “driver\_license”, “identity\_card”, “internal\_passport”, “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration”, “temporary\_registration”
-     */
-    type: TelegramPassportElementErrorTranslationFileType
-    /**
-     * Base64-encoded file hash
-     */
-    file_hash: string
-    /**
-     * Error message
-     */
-    message: string
-}
-
-export type TelegramPassportElementErrorTranslationFilesType =
-    | "passport"
-    | "driver_license"
-    | "identity_card"
-    | "internal_passport"
-    | "utility_bill"
-    | "bank_statement"
-    | "rental_agreement"
-    | "passport_registration"
-    | "temporary_registration"
-
-/**
- * Represents an issue with the translated version of a document. The error is considered resolved when a file with the document translation change.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrortranslationfiles)
- */
-export interface TelegramPassportElementErrorTranslationFiles {
-    /**
-     * Error source, must be *translation\_files*
-     */
-    source: "translation_files"
-    /**
-     * Type of element of the user's Telegram Passport which has the issue, one of “passport”, “driver\_license”, “identity\_card”, “internal\_passport”, “utility\_bill”, “bank\_statement”, “rental\_agreement”, “passport\_registration”, “temporary\_registration”
-     */
-    type: TelegramPassportElementErrorTranslationFilesType
-    /**
-     * List of base64-encoded file hashes
-     */
-    file_hashes: string[]
-    /**
-     * Error message
-     */
-    message: string
+    market_type?: VKMarketOwnerType
 }
 
 /**
- * Represents an issue in an unspecified place. The error is considered resolved when new data is added.
- *
- * [Documentation](https://core.telegram.org/bots/api/#passportelementerrorunspecified)
+ * Information about promotion of the market item
  */
-export interface TelegramPassportElementErrorUnspecified {
+export interface VKMarketItemPromotionInfo {
     /**
-     * Error source, must be *unspecified*
+     * Can the item be promoted?
      */
-    source: "unspecified"
-    /**
-     * Type of element of the user's Telegram Passport which has the issue
-     */
-    type: string
-    /**
-     * Base64-encoded element hash
-     */
-    element_hash: string
-    /**
-     * Error message
-     */
-    message: string
+    is_available?: boolean
 }
 
 /**
- * This object represents a game. Use BotFather to create and edit games, their short names will act as unique identifiers.
- *
- * [Documentation](https://core.telegram.org/bots/api/#game)
+ * - `0` — market
+ * - `1` — market_services
  */
-export interface TelegramGame {
+export type VKMarketMarketAlbumType = 0 | 1
+
+/**
+ *
+ */
+export interface VKMarketMarketAlbum {
     /**
-     * Title of the game
+     * Market album ID
+     */
+    id: number
+    /**
+     * Market album owner's ID
+     */
+    owner_id: number
+    /**
+     * Market album title
      */
     title: string
     /**
-     * Description of the game
+     * Items number
+     */
+    count: number
+    /**
+     * Is album main for owner
+     */
+    is_main?: boolean
+    /**
+     * Is album hidden
+     */
+    is_hidden?: boolean
+    photo?: VKPhotosPhoto
+    /**
+     * Date when album has been updated last time in Unixtime
+     */
+    updated_time: number
+    /**
+     * Type of album
+     */
+    type?: VKMarketMarketAlbumType
+    /**
+     * Is album needed to be blurred (18+) or not
+     */
+    is_blur_enabled?: boolean
+}
+
+/**
+ *
+ */
+export type VKMarketMarketCategory = VKMarketMarketCategoryNested
+
+export type VKMarketMarketCategoryNestedInnerType =
+    "market_market_category_nested"
+
+/**
+ *
+ */
+export interface VKMarketMarketCategoryNested {
+    inner_type: VKMarketMarketCategoryNestedInnerType
+    /**
+     * Category ID
+     */
+    id: number
+    /**
+     * Category name
+     */
+    name: string
+    /**
+     * Is v2 category
+     */
+    is_v2?: boolean
+    parent?: VKMarketMarketCategoryNested
+}
+
+/**
+ *
+ */
+export interface VKMarketMarketCategoryTree {
+    /**
+     * Category ID
+     */
+    id: number
+    /**
+     * Category name
+     */
+    name: string
+    /**
+     * Icon name
+     */
+    icon_name?: string
+    children?: VKMarketMarketCategoryTree[]
+    view?: VKMarketMarketCategoryTreeView
+    /**
+     * SEO-friendly URL to page with category's items
+     */
+    url?: string
+    /**
+     * SEO-friendly variant of category's name
+     */
+    seo_name?: string
+    /**
+     * Title for category's page. Used for SEO
+     */
+    page_title?: string
+    /**
+     * Description for category's page. Used for SEO
+     */
+    page_description?: string
+}
+
+export type VKMarketMarketCategoryTreeViewType = "tab_root"
+
+/**
+ *
+ */
+export interface VKMarketMarketCategoryTreeView {
+    type?: VKMarketMarketCategoryTreeViewType
+    selected?: boolean
+    root_path?: string[]
+}
+
+/**
+ *
+ */
+export interface VKMarketMarketItem {
+    /**
+     * Access key for the market item
+     */
+    access_key?: string
+    availability: VKMarketMarketItemAvailability
+    /**
+     * Title for button for url
+     */
+    button_title?: string
+    category: VKMarketMarketCategory
+    category_v2?: VKMarketMarketCategory
+    /**
+     * Date when the item has been created in Unixtime
+     */
+    date?: number
+    /**
+     * Item description
      */
     description: string
+    external_id?: string
     /**
-     * Photo that will be displayed in the game message in chats.
+     * Item ID
      */
-    photo: TelegramPhotoSize[]
+    id: number
+    is_favorite?: boolean
     /**
-     * *Optional*. Brief description of the game or high scores included in the game message. Can be automatically edited to include current high scores for the game when the bot calls [setGameScore](https://core.telegram.org/bots/api#setgamescore), or manually edited using [editMessageText](https://core.telegram.org/bots/api#editmessagetext). 0-4096 characters.
+     * Item owner's ID
+     */
+    owner_id: number
+    is_owner?: boolean
+    is_adult?: boolean
+    price: VKMarketPrice
+    /**
+     * URL of the preview image
+     */
+    thumb_photo?: string
+    /**
+     * Item title
+     */
+    title: string
+    /**
+     * URL to item
+     */
+    url?: string
+    variants_grouping_id?: number
+    is_main_variant?: boolean
+    sku?: string
+    /**
+     * Inventory balances
+     */
+    stock_amount?: number
+    /**
+     * Attach for post id
+     */
+    post_id?: number
+    /**
+     * Attach for post owner id
+     */
+    post_owner_id?: number
+}
+
+/**
+ * Information whether the item is available
+ *
+ * - `0` — available
+ * - `1` — removed
+ * - `2` — unavailable
+ */
+export type VKMarketMarketItemAvailability = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKMarketMarketItemBasic {
+    /**
+     * Item ID
+     */
+    id: number
+    /**
+     * Item owner's ID
+     */
+    owner_id: number
+    /**
+     * Item title
+     */
+    title: string
+    price: VKMarketPrice
+    /**
+     * URL of the preview image
+     */
+    thumb_photo?: string
+    is_favorite?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMarketMarketItemBasicWithGroup {
+    /**
+     * Item ID
+     */
+    id: number
+    /**
+     * Item owner's ID
+     */
+    owner_id: number
+    /**
+     * Item title
+     */
+    title: string
+    price: VKMarketPrice
+    /**
+     * URL of the preview image
+     */
+    thumb_photo?: string
+    is_favorite?: boolean
+    is_group_verified?: boolean
+    group_name?: string
+    group_link?: string
+    is_owner?: boolean
+    is_adult?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMarketMarketItemFull {
+    /**
+     * Access key for the market item
+     */
+    access_key?: string
+    availability: VKMarketMarketItemAvailability
+    /**
+     * Title for button for url
+     */
+    button_title?: string
+    category: VKMarketMarketCategory
+    category_v2?: VKMarketMarketCategory
+    /**
+     * Date when the item has been created in Unixtime
+     */
+    date?: number
+    /**
+     * Item description
+     */
+    description: string
+    external_id?: string
+    /**
+     * Item ID
+     */
+    id: number
+    is_favorite?: boolean
+    /**
+     * Item owner's ID
+     */
+    owner_id: number
+    is_owner?: boolean
+    is_adult?: boolean
+    price: VKMarketPrice
+    /**
+     * URL of the preview image
+     */
+    thumb_photo?: string
+    /**
+     * Item title
+     */
+    title: string
+    /**
+     * URL to item
+     */
+    url?: string
+    variants_grouping_id?: number
+    is_main_variant?: boolean
+    sku?: string
+    /**
+     * Inventory balances
+     */
+    stock_amount?: number
+    /**
+     * Attach for post id
+     */
+    post_id?: number
+    /**
+     * Attach for post owner id
+     */
+    post_owner_id?: number
+    albums_ids?: number[]
+    photos?: VKPhotosPhoto[]
+    /**
+     * Information whether current use can comment the item
+     */
+    can_comment?: VKBaseBoolInt
+    /**
+     * Information about whether to show the comments tab
+     */
+    show_comments?: VKBaseBoolInt
+    /**
+     * Information whether current use can repost the item
+     */
+    can_repost?: VKBaseBoolInt
+    likes?: VKBaseLikes
+    reposts?: VKBaseRepostsInfo
+    /**
+     * Views number
+     */
+    views_count?: number
+    /**
+     * Object identifier in wishlist of viewer
+     */
+    wishlist_item_id?: number
+    /**
+     * Rating of product
+     */
+    rating?: number
+    /**
+     * Count of product orders
+     */
+    orders_count?: number
+    /**
+     * Information for cancel and revert order
+     */
+    cancel_info?: VKBaseLink
+    /**
+     * User agreement info
+     */
+    user_agreement_info?: string
+    /**
+     * Contains ad ID if it has
+     */
+    ad_id?: number
+    /**
+     * Information about the group where the item is placed
+     */
+    owner_info?: VKMarketItemOwnerInfo
+    /**
+     * Can the item be updated by current user?
+     */
+    can_edit?: boolean
+    /**
+     * Can item be deleted by current user?
+     */
+    can_delete?: boolean
+    /**
+     * Can item be restored by current user?
+     */
+    can_recover?: boolean
+    /**
+     * Can the item be converted from a product into a service?
+     */
+    can_show_convert_to_service?: boolean
+    /**
+     * Information about promotion of the item
+     */
+    promotion?: VKMarketItemPromotionInfo
+    /**
+     * The amount of the discount if VK Pay is used for payment
+     */
+    vk_pay_discount?: number
+}
+
+/**
+ *
+ */
+export interface VKMarketOrder {
+    id: number
+    group_id: number
+    user_id: number
+    display_order_id?: string
+    date: number
+    status: number
+    items_count: number
+    track_number?: string
+    track_link?: string
+    comment?: string
+    address?: string
+    merchant_comment?: string
+    weight?: number
+    total_price: VKMarketPrice
+    discount?: VKMarketPrice
+    /**
+     * Several order items for preview
+     */
+    preview_order_items?: VKMarketOrderItem[]
+    /**
+     * Information for cancel and revert order
+     */
+    cancel_info?: VKBaseLink
+    /**
+     * Seller comment for user
+     */
+    comment_for_user?: string
+    is_viewed_by_admin?: boolean
+    date_viewed?: number
+    /**
+     * Extended field. Can current viewer add review for at least one item in this order
+     */
+    can_add_review?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMarketOrderItem {
+    owner_id: number
+    item_id: number
+    price: VKMarketPrice
+    quantity: number
+    item: VKMarketMarketItem
+    title?: string
+    photo?: VKPhotosPhoto
+    variants?: string[]
+    /**
+     * Extended field. Can current viewer add review for this ordered item
+     */
+    can_add_review?: boolean
+}
+
+/**
+ * Type of the market group
+ */
+export type VKMarketOwnerType = "base" | "pro" | "disabled"
+
+/**
+ * - `0` — exact
+ * - `2` — range
+ * - `3` — by_agreement
+ */
+export type VKMarketPricePriceType = 0 | 2 | 3
+/**
+ * - `0` — item
+ * - `2` — hour
+ * - `3` — m3
+ * - `4` — m2
+ */
+export type VKMarketPricePriceUnit = 0 | 2 | 3 | 4
+
+/**
+ *
+ */
+export interface VKMarketPrice {
+    /**
+     * Amount
+     */
+    amount: string
+    /**
+     * Amount to for price_type=2
+     */
+    amount_to?: string
+    price_type?: VKMarketPricePriceType
+    price_unit?: VKMarketPricePriceUnit
+    currency: VKMarketCurrency
+    discount_rate?: number
+    old_amount?: string
+    /**
+     * Text
+     */
+    text: string
+    /**
+     * Textual representation of old price
+     */
+    old_amount_text?: string
+}
+
+export type VKMarketPropertyType = "text" | "color"
+
+/**
+ *
+ */
+export interface VKMarketProperty {
+    id: number
+    /**
+     * Property name
+     */
+    title: string
+    /**
+     * Property type
+     */
+    type?: VKMarketPropertyType
+    variants: VKMarketPropertyVariant[]
+}
+
+/**
+ *
+ */
+export interface VKMarketPropertyVariant {
+    id: number
+    /**
+     * Property name
+     */
+    title: string
+    /**
+     * Property value corresponding to property type
+     */
+    value?: string
+}
+
+/**
+ * Type of view. 1 - cards, 2 - rows
+ *
+ * - `1` — cards
+ * - `2` — rows
+ */
+export type VKMarketServicesViewType = 1 | 2
+
+/**
+ *
+ */
+export interface VKMarketUploadPhotoData {
+    /**
+     * Photo ID
+     */
+    photo_id: number
+    photo?: VKPhotosPhoto
+}
+
+/**
+ *
+ */
+export type VKMessagesActionOneOf = VKMessagesMessageAction
+
+/**
+ *
+ */
+export interface VKMessagesAudioMessage {
+    /**
+     * Access key for audio message
+     */
+    access_key?: string
+    transcript_error?: number
+    /**
+     * Audio message duration in seconds
+     */
+    duration: number
+    /**
+     * Audio message ID
+     */
+    id: number
+    /**
+     * MP3 file URL
+     */
+    link_mp3: string
+    /**
+     * OGG file URL
+     */
+    link_ogg: string
+    /**
+     * Audio message owner ID
+     */
+    owner_id: number
+    waveform: number[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesBaseMessage {
+    action?: VKMessagesActionOneOf
+    /**
+     * Only for messages from community. Contains user ID of community admin, who sent this message.
+     */
+    admin_author_id?: number
+    attachments?: VKMessagesMessageAttachment[]
+    /**
+     * Unique auto-incremented number for all messages with this peer
+     */
+    conversation_message_id: number
+    /**
+     * Date when the message has been sent in Unixtime
+     */
+    date: number
+    /**
+     * Is it an deleted message
+     */
+    deleted?: VKBaseBoolInt
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    fwd_messages?: VKMessagesFwdMessages
+    geo?: VKBaseGeo
+    /**
+     * Message ID
+     */
+    id: number
+    /**
+     * this message is cropped for bot
+     */
+    is_cropped?: boolean
+    keyboard?: VKMessagesKeyboard
+    payload?: string
+    /**
+     * Message text
+     */
+    text: string
+    /**
+     * Date when the message has been updated in Unixtime
+     */
+    update_time?: number
+    /**
+     * Is silent message, push without sound
+     */
+    is_silent?: boolean
+    /**
+     * Is message unavailable for some reason, including its id equals 0
+     */
+    is_unavailable?: boolean
+    version: number
+    /**
+     * Information whether the message is outcoming
+     */
+    out: VKBaseBoolInt
+    /**
+     * Peer ID
+     */
+    peer_id: number
+    /**
+     * ID used for sending messages. It returned only for outgoing messages
+     */
+    random_id?: number
+    ref?: string
+    ref_source?: string
+}
+
+/**
+ *
+ */
+export interface VKMessagesChat {
+    /**
+     * Chat creator ID
+     */
+    admin_id: number
+    /**
+     * Chat ID
+     */
+    id: number
+    /**
+     * Shows that user has been kicked from the chat
+     */
+    kicked?: VKBaseBoolInt
+    /**
+     * Shows that user has been left the chat
+     */
+    left?: VKBaseBoolInt
+    /**
+     * URL of the preview image with 100 px in width
+     */
+    photo_100?: string
+    /**
+     * URL of the preview image with 200 px in width
+     */
+    photo_200?: string
+    /**
+     * URL of the preview image with 50 px in width
+     */
+    photo_50?: string
+    push_settings?: VKMessagesChatPushSettings
+    /**
+     * Chat title
+     */
+    title?: string
+    /**
+     * Chat type
+     */
+    type: string
+    users: number[]
+    /**
+     * If provided photo is default
+     */
+    is_default_photo?: boolean
+    /**
+     * Count members in a chat
+     */
+    members_count: number
+    /**
+     * If chat is group channel
+     */
+    is_group_channel?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatFull {
+    /**
+     * Chat creator ID
+     */
+    admin_id: number
+    /**
+     * Chat ID
+     */
+    id: number
+    /**
+     * Shows that user has been kicked from the chat
+     */
+    kicked?: VKBaseBoolInt
+    /**
+     * Shows that user has been left the chat
+     */
+    left?: VKBaseBoolInt
+    /**
+     * URL of the preview image with 100 px in width
+     */
+    photo_100?: string
+    /**
+     * URL of the preview image with 200 px in width
+     */
+    photo_200?: string
+    /**
+     * URL of the preview image with 50 px in width
+     */
+    photo_50?: string
+    push_settings?: VKMessagesChatPushSettings
+    /**
+     * Chat title
+     */
+    title?: string
+    /**
+     * Chat type
+     */
+    type: string
+    users: VKMessagesUserXtrInvitedBy[]
+    /**
+     * If provided photo is default
+     */
+    is_default_photo?: boolean
+    /**
+     * Count members in a chat
+     */
+    members_count: number
+    /**
+     * If chat is group channel
+     */
+    is_group_channel?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatPreview {
+    admin_id: number
+    joined?: boolean
+    local_id?: number
+    members: number[]
+    members_count?: number
+    title: string
+    is_member?: boolean
+    photo?: VKMessagesChatSettingsPhoto
+    is_don?: boolean
+    is_nft?: boolean
+    is_group_channel?: boolean
+    button?: VKBaseLinkButton
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatPushSettings {
+    /**
+     * Time until that notifications are disabled
+     */
+    disabled_until?: number
+    /**
+     * Information whether the sound is on
+     */
+    sound?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatRestrictions {
+    /**
+     * Only admins can promote users to admins
+     */
+    admins_promote_users?: boolean
+    /**
+     * Only admins can change chat info
+     */
+    only_admins_edit_info?: boolean
+    /**
+     * Only admins can edit pinned message
+     */
+    only_admins_edit_pin?: boolean
+    /**
+     * Only admins can invite users to this chat
+     */
+    only_admins_invite?: boolean
+    /**
+     * Only admins can kick users from this chat
+     */
+    only_admins_kick?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatSettings {
+    members_count?: number
+    friends_count?: number
+    owner_id: number
+    /**
+     * Chat title
+     */
+    title: string
+    pinned_messages_count?: number
+    pinned_message?: VKMessagesPinnedMessage
+    state: VKMessagesChatSettingsState
+    photo?: VKMessagesChatSettingsPhoto
+    /**
+     * Ids of chat admins
+     */
+    admin_ids?: number[]
+    active_ids?: number[]
+    is_group_channel?: boolean
+    acl: VKMessagesChatSettingsAcl
+    permissions?: VKMessagesChatSettingsPermissions
+    is_disappearing?: boolean
+    theme?: string
+    disappearing_chat_link?: string
+    is_service?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatSettingsAcl {
+    /**
+     * Can you change photo, description and name
+     */
+    can_change_info: boolean
+    /**
+     * Can you change invite link for this chat
+     */
+    can_change_invite_link: boolean
+    /**
+     * Can you pin/unpin message for this chat
+     */
+    can_change_pin: boolean
+    /**
+     * Can you invite other peers in chat
+     */
+    can_invite: boolean
+    /**
+     * Can you promote simple users to chat admins
+     */
+    can_promote_users: boolean
+    /**
+     * Can you see invite link for this chat
+     */
+    can_see_invite_link: boolean
+    /**
+     * Can you moderate (delete) other users' messages
+     */
+    can_moderate: boolean
+    /**
+     * Can you copy chat
+     */
+    can_copy_chat: boolean
+    /**
+     * Can you init group call in the chat
+     */
+    can_call: boolean
+    /**
+     * Can you use mass mentions
+     */
+    can_use_mass_mentions: boolean
+    /**
+     * Can you change chat service type
+     */
+    can_change_service_type?: boolean
+}
+
+export type VKMessagesChatSettingsPermissionsInvite =
+    | "owner"
+    | "owner_and_admins"
+    | "all"
+export type VKMessagesChatSettingsPermissionsChangeInfo =
+    | "owner"
+    | "owner_and_admins"
+    | "all"
+export type VKMessagesChatSettingsPermissionsChangePin =
+    | "owner"
+    | "owner_and_admins"
+    | "all"
+export type VKMessagesChatSettingsPermissionsUseMassMentions =
+    | "owner"
+    | "owner_and_admins"
+    | "all"
+export type VKMessagesChatSettingsPermissionsSeeInviteLink =
+    | "owner"
+    | "owner_and_admins"
+    | "all"
+export type VKMessagesChatSettingsPermissionsCall =
+    | "owner"
+    | "owner_and_admins"
+    | "all"
+export type VKMessagesChatSettingsPermissionsChangeAdmins =
+    | "owner"
+    | "owner_and_admins"
+
+/**
+ *
+ */
+export interface VKMessagesChatSettingsPermissions {
+    /**
+     * Who can invite users to chat
+     */
+    invite?: VKMessagesChatSettingsPermissionsInvite
+    /**
+     * Who can change chat info
+     */
+    change_info?: VKMessagesChatSettingsPermissionsChangeInfo
+    /**
+     * Who can change pinned message
+     */
+    change_pin?: VKMessagesChatSettingsPermissionsChangePin
+    /**
+     * Who can use mass mentions
+     */
+    use_mass_mentions?: VKMessagesChatSettingsPermissionsUseMassMentions
+    /**
+     * Who can see invite link
+     */
+    see_invite_link?: VKMessagesChatSettingsPermissionsSeeInviteLink
+    /**
+     * Who can make calls
+     */
+    call?: VKMessagesChatSettingsPermissionsCall
+    /**
+     * Who can change admins
+     */
+    change_admins?: VKMessagesChatSettingsPermissionsChangeAdmins
+}
+
+/**
+ *
+ */
+export interface VKMessagesChatSettingsPhoto {
+    /**
+     * URL of the preview image with 50px in width
+     */
+    photo_50?: string
+    /**
+     * URL of the preview image with 100px in width
+     */
+    photo_100?: string
+    /**
+     * URL of the preview image with 200px in width
+     */
+    photo_200?: string
+    /**
+     * If provided photo is default
+     */
+    is_default_photo?: boolean
+    /**
+     * If provided photo is default call photo
+     */
+    is_default_call_photo?: boolean
+}
+
+/**
+ *
+ */
+export type VKMessagesChatSettingsState = "in" | "kicked" | "left" | "out"
+
+export type VKMessagesConversationSpecialServiceType = "business_notify"
+
+/**
+ *
+ */
+export interface VKMessagesConversation {
+    peer: VKMessagesConversationPeer
+    sort_id?: VKMessagesConversationSortId
+    /**
+     * ID of the last message in conversation
+     */
+    last_message_id: number
+    /**
+     * Conversation message ID of the last message in conversation
+     */
+    last_conversation_message_id: number
+    /**
+     * Last message user have read
+     */
+    in_read: number
+    /**
+     * Last outcoming message have been read by the opponent
+     */
+    out_read: number
+    /**
+     * Unread messages number
+     */
+    unread_count?: number
+    /**
+     * Is this conversation unread
+     */
+    is_marked_unread?: boolean
+    out_read_by?: VKMessagesOutReadBy
+    important?: boolean
+    unanswered?: boolean
+    special_service_type?: VKMessagesConversationSpecialServiceType
+    message_request_data?: VKMessagesMessageRequestData
+    /**
+     * Ids of messages with mentions
+     */
+    mentions?: number[]
+    current_keyboard?: VKMessagesKeyboard
+    push_settings?: VKMessagesPushSettings
+    can_write?: VKMessagesConversationCanWrite
+    chat_settings?: VKMessagesChatSettings
+    version: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesConversationCanWrite {
+    allowed: boolean
+    reason?: number
+    until?: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesConversationMember {
+    /**
+     * Is it possible for user to kick this member
+     */
+    can_kick?: boolean
+    /**
+     * Does this member have write permission
+     */
+    is_restricted_to_write?: boolean
+    invited_by?: number
+    is_admin?: boolean
+    is_owner?: boolean
+    is_message_request?: boolean
+    join_date?: number
+    /**
+     * Message request date
+     */
+    request_date?: number
+    member_id: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesConversationPeer {
+    id: number
+    local_id?: number
+    type: VKMessagesConversationPeerType
+}
+
+/**
+ * Peer type
+ */
+export type VKMessagesConversationPeerType = "chat" | "email" | "user" | "group"
+
+/**
+ *
+ */
+export interface VKMessagesConversationSortId {
+    /**
+     * Major id for sorting conversations
+     */
+    major_id: number
+    /**
+     * Minor id for sorting conversations
+     */
+    minor_id: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesConversationWithMessage {
+    conversation: VKMessagesConversation
+    last_message?: VKMessagesMessage
+}
+
+/**
+ *
+ */
+export interface VKMessagesDeleteFullResponseItem {
+    peer_id?: number
+    message_id?: number
+    conversation_message_id?: number
+    response?: VKBaseBoolInt
+    error?: VKBaseMessageError
+}
+
+/**
+ *
+ */
+export interface VKMessagesForeignMessage {
+    attachments?: VKMessagesMessageAttachment[]
+    /**
+     * Conversation message ID
+     */
+    conversation_message_id: number
+    /**
+     * Date when the message was created
+     */
+    date: number
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    fwd_messages?: VKMessagesForeignMessage[]
+    geo?: VKBaseGeo
+    /**
+     * Message ID
+     */
+    id?: number
+    /**
+     * Peer ID
+     */
+    peer_id?: number
+    reply_message?: VKMessagesForeignMessage
+    /**
+     * Message text
+     */
+    text: string
+    /**
+     * Date when the message has been updated in Unixtime
+     */
+    update_time?: number
+    /**
+     * Was the audio message inside already listened by you
+     */
+    was_listened?: boolean
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+}
+
+/**
+ *
+ */
+export interface VKMessagesForward {
+    /**
+     * Messages owner_id
+     */
+    owner_id?: number
+    /**
+     * Messages peer_id
+     */
+    peer_id?: number
+    conversation_message_ids?: number[]
+    cmids?: number[]
+    message_ids?: number[]
+    /**
+     * If you need to reply to a message
+     */
+    is_reply?: boolean
+}
+
+/**
+ * Forwarded messages
+ */
+export interface VKMessagesFwdMessages {}
+
+/**
+ *
+ */
+export interface VKMessagesGetConversationById {
+    /**
+     * Total number
+     */
+    count: number
+    items: VKMessagesConversation[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesGetConversationByIdExtended {
+    /**
+     * Total number
+     */
+    count: number
+    items: VKMessagesConversation[]
+    profiles?: VKUsersUserFull[]
+    groups?: VKGroupsGroupFull[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesGetConversationMembers {
+    items: VKMessagesConversationMember[]
+    /**
+     * Chat members count
+     */
+    count: number
+    chat_restrictions?: VKMessagesChatRestrictions
+    profiles?: VKUsersUserFull[]
+    groups?: VKGroupsGroupFull[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesGetInviteLinkByOwnerResponseItem {
+    owner_id: number
+    link?: string
+    error?: VKBaseMessageError
+}
+
+/**
+ *
+ */
+export interface VKMessagesGraffiti {
+    /**
+     * Access key for graffiti
+     */
+    access_key?: string
+    /**
+     * Graffiti ID
+     */
+    id: number
+    /**
+     * Graffiti owner ID
+     */
+    owner_id: number
+    /**
+     * Graffiti URL
+     */
+    url: string
+    /**
+     * Graffiti width
+     */
+    width: number
+    /**
+     * Graffiti height
+     */
+    height: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesHistoryAttachment {
+    attachment: VKMessagesHistoryMessageAttachment
+    /**
+     * Message sending time
+     */
+    date: number
+    /**
+     * Message ID
+     */
+    message_id: number
+    /**
+     * Message Exipire ttl
+     */
+    message_expire_ttl?: number
+    /**
+     * Conversation Message ID
+     */
+    cmid: number
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    /**
+     * Forward level (optional)
+     */
+    forward_level?: number
+    was_listened?: boolean
+    /**
+     * Attachment position in the Message
+     */
+    position?: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesHistoryMessageAttachment {
+    audio?: VKAudioAudio
+    audio_message?: VKMessagesAudioMessage
+    doc?: VKDocsDoc
+    graffiti?: VKMessagesGraffiti
+    market?: VKMarketMarketItem
+    photo?: VKPhotosPhoto
+    type: VKMessagesHistoryMessageAttachmentType
+}
+
+/**
+ * Attachments type
+ */
+export type VKMessagesHistoryMessageAttachmentType =
+    | "app_action"
+    | "audio"
+    | "doc"
+    | "link"
+    | "market"
+    | "photo"
+    | "video"
+    | "wall"
+    | "graffiti"
+    | "audio_message"
+
+/**
+ *
+ */
+export interface VKMessagesKeyboard {
+    /**
+     * Should this keyboard disappear on first use
+     */
+    one_time: boolean
+    buttons: VKMessagesKeyboardButton[][]
+    /**
+     * Community or bot, which set this keyboard
+     */
+    author_id?: number
+    inline?: boolean
+}
+
+export type VKMessagesKeyboardButtonColor =
+    | "default"
+    | "positive"
+    | "negative"
+    | "primary"
+
+/**
+ *
+ */
+export interface VKMessagesKeyboardButton {
+    action: VKMessagesKeyboardButtonPropertyAction
+    /**
+     * Button color
+     */
+    color?: VKMessagesKeyboardButtonColor
+}
+
+export type VKMessagesKeyboardButtonActionCallbackType = "callback"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionCallback {
+    /**
+     * Label for button
+     */
+    label: string
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    type: VKMessagesKeyboardButtonActionCallbackType
+}
+
+export type VKMessagesKeyboardButtonActionLocationType = "location"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionLocation {
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    type: VKMessagesKeyboardButtonActionLocationType
+}
+
+export type VKMessagesKeyboardButtonActionOpenAppType = "open_app"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionOpenApp {
+    /**
+     * Fragment value in app link like vk.com/app{app_id}_-654321#hash
+     */
+    app_id: number
+    /**
+     * Fragment value in app link like vk.com/app123456_-654321#{hash}
+     */
+    hash?: string
+    /**
+     * Label for button
+     */
+    label: string
+    /**
+     * Fragment value in app link like vk.com/app123456_{owner_id}#hash
+     */
+    owner_id: number
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    type: VKMessagesKeyboardButtonActionOpenAppType
+}
+
+export type VKMessagesKeyboardButtonActionOpenLinkType = "open_link"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionOpenLink {
+    /**
+     * Label for button
+     */
+    label: string
+    /**
+     * link for button
+     */
+    link: string
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    type: VKMessagesKeyboardButtonActionOpenLinkType
+}
+
+export type VKMessagesKeyboardButtonActionOpenPhotoType = "open_photo"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionOpenPhoto {
+    type: VKMessagesKeyboardButtonActionOpenPhotoType
+}
+
+export type VKMessagesKeyboardButtonActionTextType = "text"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionText {
+    /**
+     * Label for button
+     */
+    label: string
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    type: VKMessagesKeyboardButtonActionTextType
+}
+
+export type VKMessagesKeyboardButtonActionVkpayType = "vkpay"
+
+/**
+ * Description of the action, that should be performed on button click
+ */
+export interface VKMessagesKeyboardButtonActionVkpay {
+    /**
+     * Fragment value in app link like vk.com/app123456_-654321#{hash}
+     */
+    hash: string
+    /**
+     * Additional data sent along with message for developer convenience
+     */
+    payload?: string
+    type: VKMessagesKeyboardButtonActionVkpayType
+}
+
+/**
+ *
+ */
+export type VKMessagesKeyboardButtonPropertyAction =
+    | VKMessagesKeyboardButtonActionLocation
+    | VKMessagesKeyboardButtonActionOpenApp
+    | VKMessagesKeyboardButtonActionOpenLink
+    | VKMessagesKeyboardButtonActionOpenPhoto
+    | VKMessagesKeyboardButtonActionText
+    | VKMessagesKeyboardButtonActionCallback
+    | VKMessagesKeyboardButtonActionVkpay
+
+/**
+ *
+ */
+export interface VKMessagesLastActivity {
+    /**
+     * Information whether user is online
+     */
+    online: VKBaseBoolInt
+    /**
+     * Time when user was online in Unixtime
+     */
+    time: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesLongpollMessages {}
+
+/**
+ *
+ */
+export interface VKMessagesLongpollParams {
+    /**
+     * Server URL
+     */
+    server: string
+    /**
+     * Key
+     */
+    key: string
+    /**
+     * Timestamp
+     */
+    ts: number
+    /**
+     * Persistent timestamp
+     */
+    pts?: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesMessage {
+    action?: VKMessagesActionOneOf
+    /**
+     * Only for messages from community. Contains user ID of community admin, who sent this message.
+     */
+    admin_author_id?: number
+    attachments?: VKMessagesMessageAttachment[]
+    /**
+     * Unique auto-incremented number for all messages with this peer
+     */
+    conversation_message_id: number
+    /**
+     * Date when the message has been sent in Unixtime
+     */
+    date: number
+    /**
+     * Is it an deleted message
+     */
+    deleted?: VKBaseBoolInt
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    fwd_messages?: VKMessagesFwdMessages
+    geo?: VKBaseGeo
+    /**
+     * Message ID
+     */
+    id: number
+    /**
+     * this message is cropped for bot
+     */
+    is_cropped?: boolean
+    keyboard?: VKMessagesKeyboard
+    payload?: string
+    /**
+     * Message text
+     */
+    text: string
+    /**
+     * Date when the message has been updated in Unixtime
+     */
+    update_time?: number
+    /**
+     * Is silent message, push without sound
+     */
+    is_silent?: boolean
+    /**
+     * Is message unavailable for some reason, including its id equals 0
+     */
+    is_unavailable?: boolean
+    version: number
+    /**
+     * Information whether the message is outcoming
+     */
+    out: VKBaseBoolInt
+    /**
+     * Peer ID
+     */
+    peer_id: number
+    /**
+     * ID used for sending messages. It returned only for outgoing messages
+     */
+    random_id?: number
+    ref?: string
+    ref_source?: string
+    /**
+     * Is it an important message
+     */
+    important?: boolean
+    is_hidden?: boolean
+    /**
+     * Members number
+     */
+    members_count?: number
+    reply_message?: VKMessagesForeignMessage
+    /**
+     * Reaction id set on message
+     */
+    reaction_id?: number
+    /**
+     * Actual reactions counters on this message
+     */
+    reactions?: VKMessagesReactionCounterResponseItem[]
+    /**
+     * Last reaction id set on this message
+     */
+    last_reaction_id?: number
+    /**
+     * Is message pinned in its conversation
+     */
+    is_pinned?: boolean
+    /**
+     * Was the audio message inside already listened by you
+     */
+    was_listened?: boolean
+    /**
+     * Date when the message has been pinned in Unixtime
+     */
+    pinned_at?: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesMessageAction {
+    /**
+     * Message ID
+     */
+    conversation_message_id?: number
+    /**
+     * Email address for chat_invite_user or chat_kick_user actions
+     */
+    email?: string
+    /**
+     * User or email peer ID
+     */
+    member_id?: number
+    /**
+     * Message body of related message
+     */
+    message?: string
+    photo?: VKMessagesMessageActionPhoto
+    /**
+     * New chat title for chat_create and chat_title_update actions
+     */
+    text?: string
+    type: VKMessagesMessageActionStatus
+}
+
+/**
+ *
+ */
+export interface VKMessagesMessageActionPhoto {
+    /**
+     * URL of the preview image with 50px in width
+     */
+    photo_50: string
+    /**
+     * URL of the preview image with 100px in width
+     */
+    photo_100: string
+    /**
+     * URL of the preview image with 200px in width
+     */
+    photo_200: string
+}
+
+/**
+ * Action status
+ */
+export type VKMessagesMessageActionStatus =
+    | "chat_photo_update"
+    | "chat_photo_remove"
+    | "chat_create"
+    | "chat_title_update"
+    | "chat_invite_user"
+    | "chat_kick_user"
+    | "chat_pin_message"
+    | "chat_unpin_message"
+    | "chat_invite_user_by_link"
+    | "chat_invite_user_by_message_request"
+    | "chat_screenshot"
+
+/**
+ *
+ */
+export interface VKMessagesMessageAttachment {
+    audio?: VKAudioAudio
+    audio_message?: VKMessagesAudioMessage
+    call?: VKCallsCall
+    doc?: VKDocsDoc
+    gift?: VKGiftsLayout
+    graffiti?: VKMessagesGraffiti
+    market?: VKMarketMarketItem
+    market_market_album?: VKMarketMarketAlbum
+    photo?: VKPhotosPhoto
+    sticker?: VKBaseSticker
+    story?: VKStoriesStory
+    type: VKMessagesMessageAttachmentType
+    wall_reply?: VKWallWallComment
+    poll?: VKPollsPoll
+}
+
+/**
+ * Attachment type
+ */
+export type VKMessagesMessageAttachmentType =
+    | "photo"
+    | "audio"
+    | "video"
+    | "video_playlist"
+    | "doc"
+    | "link"
+    | "market"
+    | "gift"
+    | "sticker"
+    | "wall"
+    | "wall_reply"
+    | "article"
+    | "poll"
+    | "podcasts"
+    | "call"
+    | "graffiti"
+    | "audio_message"
+
+/**
+ *
+ */
+export interface VKMessagesMessageRequestData {
+    /**
+     * Status of message request
+     */
+    status?: string
+    /**
+     * Message request sender id
+     */
+    inviter_id?: number
+    /**
+     * Message request date
+     */
+    request_date?: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesMessagesArray {
+    count?: number
+    items?: VKMessagesMessage[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesOutReadBy {
+    count?: number
+    member_ids?: number[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesPinnedMessage {
+    attachments?: VKMessagesMessageAttachment[]
+    /**
+     * Unique auto-incremented number for all messages with this peer
+     */
+    conversation_message_id: number
+    /**
+     * Message ID
+     */
+    id: number
+    /**
+     * Date when the message has been sent in Unixtime
+     */
+    date: number
+    /**
+     * Message author's ID
+     */
+    from_id: number
+    /**
+     * Forwarded messages
+     */
+    fwd_messages?: VKMessagesForeignMessage[]
+    geo?: VKBaseGeo
+    /**
+     * Peer ID
+     */
+    peer_id: number
+    reply_message?: VKMessagesForeignMessage
+    /**
+     * Message text
+     */
+    text: string
+    keyboard?: VKMessagesKeyboard
+    /**
+     * Information whether the message is outcoming
+     */
+    out?: boolean
+    /**
+     * Is it an important message
+     */
+    important?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMessagesPushSettings {
+    /**
+     * Information whether push notifications are disabled forever
+     */
+    disabled_forever: boolean
+    /**
+     * Time until what notifications are disabled
+     */
+    disabled_until?: number
+    /**
+     * Information whether the sound is on
+     */
+    no_sound: boolean
+    /**
+     * Information whether the mentions are disabled
+     */
+    disabled_mentions?: boolean
+    /**
+     * Information whether the mass mentions (like '@all', '@online') are disabled
+     */
+    disabled_mass_mentions?: boolean
+}
+
+/**
+ *
+ */
+export interface VKMessagesReactionAssetItem {
+    reaction_id: number
+    /**
+     * Liks to reactions assets for each asset type
+     */
+    links: VKMessagesReactionAssetItemLinks
+}
+
+/**
+ *
+ */
+export interface VKMessagesReactionAssetItemLinks {
+    /**
+     * Big reaction animation json file
+     */
+    big_animation: string
+    /**
+     * Small reaction animation json file
+     */
+    small_animation: string
+    /**
+     * Reaction image file
+     */
+    static: string
+}
+
+/**
+ *
+ */
+export interface VKMessagesReactionCounterResponseItem {
+    reaction_id: number
+    count: number
+    user_ids: number[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesReactionCountersResponseItem {
+    cmid: number
+    counters: VKMessagesReactionCounterResponseItem[]
+}
+
+/**
+ *
+ */
+export interface VKMessagesReactionResponseItem {
+    user_id: number
+    reaction_id: number
+}
+
+/**
+ *
+ */
+export interface VKMessagesSendUserIdsResponseItem {
+    peer_id: number
+    message_id: number
+    conversation_message_id: number
+    error?: VKBaseMessageError
+}
+
+/**
+ * Template action type names
+ */
+export type VKMessagesTemplateActionTypeNames =
+    | "text"
+    | "start"
+    | "location"
+    | "vkpay"
+    | "open_app"
+    | "open_photo"
+    | "open_link"
+    | "callback"
+    | "intent_subscribe"
+    | "intent_unsubscribe"
+    | "open_modal_view"
+
+/**
+ * Object type
+ */
+export type VKMessagesUserTypeForXtrInvitedBy = "profile" | "group"
+
+export type VKMessagesUserXtrInvitedByWallDefault = "owner" | "all"
+
+/**
+ *
+ */
+export interface VKMessagesUserXtrInvitedBy {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+    /**
+     * User's first name in nominative case
+     */
+    first_name_nom?: string
+    /**
+     * User's first name in genitive case
+     */
+    first_name_gen?: string
+    /**
+     * User's first name in dative case
+     */
+    first_name_dat?: string
+    /**
+     * User's first name in accusative case
+     */
+    first_name_acc?: string
+    /**
+     * User's first name in instrumental case
+     */
+    first_name_ins?: string
+    /**
+     * User's first name in prepositional case
+     */
+    first_name_abl?: string
+    /**
+     * User's last name in nominative case
+     */
+    last_name_nom?: string
+    /**
+     * User's last name in genitive case
+     */
+    last_name_gen?: string
+    /**
+     * User's last name in dative case
+     */
+    last_name_dat?: string
+    /**
+     * User's last name in accusative case
+     */
+    last_name_acc?: string
+    /**
+     * User's last name in instrumental case
+     */
+    last_name_ins?: string
+    /**
+     * User's last name in prepositional case
+     */
+    last_name_abl?: string
+    /**
+     * User nickname
+     */
+    nickname?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    /**
+     * User contact name
+     */
+    contact_name?: string
+    /**
+     * Domain name of the user's page
+     */
+    domain?: string
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    city?: VKBaseCity
+    /**
+     * User's timezone
+     */
+    timezone?: number
+    owner_state?: VKOwnerState
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the user with maximum width
+     */
+    photo_max?: string
+    /**
+     * URL of user's photo with 200 pixels in width
+     */
+    photo_200_orig?: string
+    /**
+     * URL of user's photo with 400 pixels in width
+     */
+    photo_400_orig?: string
+    /**
+     * URL of user's photo of maximum size
+     */
+    photo_max_orig?: string
+    /**
+     * ID of the user's main photo
+     */
+    photo_id?: string
+    /**
+     * Information whether the user has main photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Information whether the user specified his phone number
+     */
+    has_mobile?: VKBaseBoolInt
+    /**
+     * Information whether the user is a friend of current user
+     */
+    is_friend?: VKBaseBoolInt
+    /**
+     * Information whether the user is a best friend of current user
+     */
+    is_best_friend?: boolean
+    /**
+     * Information whether current user can comment wall posts
+     */
+    wall_comments?: VKBaseBoolInt
+    /**
+     * Information whether current user can post on the user's wall
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can see other users' audio on the wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the user's audio
+     */
+    can_see_audio?: VKBaseBoolInt
+    type?: VKMessagesUserTypeForXtrInvitedBy
+    email?: string
+    skype?: string
+    facebook?: string
+    facebook_name?: string
+    twitter?: string
+    livejournal?: string
+    instagram?: string
+    test?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    is_service?: boolean
+    service_description?: string
+    photo_rec?: string | boolean
+    photo_medium?: string | boolean
+    photo_medium_rec?: string | boolean
+    photo?: string
+    photo_big?: string
+    photo_400?: string
+    photo_max_size?: VKPhotosPhoto
+    language?: string
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    wall_default?: VKMessagesUserXtrInvitedByWallDefault
+    /**
+     * Information whether current user can call
+     */
+    can_call?: boolean
+    /**
+     * Information whether group can call user
+     */
+    can_call_from_group?: boolean
+    /**
+     * Information whether user/group can invite user as voicerooms speakr
+     */
+    can_invite_as_voicerooms_speaker?: boolean
+    /**
+     * Information whether current user can see the user's wishes
+     */
+    can_see_wishes?: boolean
+    /**
+     * Information whether current user can see the user's gifts
+     */
+    can_see_gifts?: VKBaseBoolInt
+    interests?: string
+    books?: string
+    tv?: string
+    quotes?: string
+    about?: string
+    games?: string
+    movies?: string
+    activities?: string
+    music?: string
+    /**
+     * Information whether current user can write private message
+     */
+    can_write_private_message?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a friend request
+     */
+    can_send_friend_request?: VKBaseBoolInt
+    /**
+     * Information whether current user can be invited to the community
+     */
+    can_be_invited_group?: boolean
+    /**
+     * User's mobile phone number
+     */
+    mobile_phone?: string
+    /**
+     * User's additional phone number
+     */
+    home_phone?: string
+    /**
+     * User's website
+     */
+    site?: string
+    status_audio?: VKAudioAudio
+    /**
+     * User's status
+     */
+    status?: string
+    /**
+     * User's status
+     */
+    activity?: string
+    status_app?: VKAppsAppMin
+    last_seen?: VKUsersLastSeen
+    exports?: VKUsersExports
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Number of user's followers and friends
+     */
+    followers_count?: number
+    /**
+     * User level in live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of user's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of user's clips
+     */
+    clips_count?: number
+    /**
+     * Information whether current user is in the requested user's blacklist.
+     */
+    blacklisted?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in current user's blacklist
+     */
+    blacklisted_by_me?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in faves of current user
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Number of common friends with current user
+     */
+    common_count?: number
+    occupation?: VKUsersOccupation
+    career?: VKUsersCareer[]
+    military?: VKUsersMilitary[]
+    /**
+     * University ID
+     */
+    university?: number
+    /**
+     * University name
+     */
+    university_name?: string
+    university_group_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * User's education status
+     */
+    education_status?: string
+    /**
+     * User hometown
+     */
+    home_town?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    personal?: VKUsersPersonal
+    universities?: VKUsersUniversity[]
+    schools?: VKUsersSchool[]
+    relatives?: VKUsersRelative[]
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    counters?: VKUsersUserCounters
+    access_key?: string
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether the user can be baned (added to black list) by me
+     */
+    can_ban?: boolean
+    hash?: string
+    /**
+     * Access to user profile is restricted for search engines
+     */
+    is_no_index?: boolean
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    is_message_request?: boolean
+    descriptions?: string[]
+    lists?: number[]
+    /**
+     * ID of the inviter
+     */
+    invited_by?: number
+    /**
+     * Name of group
+     */
+    name?: string
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedCommentsBase {
+    /**
+     * Information whether current user can comment the post
+     */
+    can_post?: VKBaseBoolInt
+    can_open?: VKBaseBoolInt
+    can_close?: VKBaseBoolInt
+    /**
+     * Information whether current user can view the comments
+     */
+    can_view?: VKBaseBoolInt
+    /**
+     * Comments number
+     */
+    count?: number
+    /**
+     * Information whether groups can comment the post
+     */
+    groups_can_post?: boolean
+    donut?: VKWallWallpostCommentsDonut
+    list?: VKWallWallComment[]
+}
+
+/**
+ *
+ */
+export type VKNewsfeedCommentsFilters =
+    | "post"
+    | "photo"
+    | "video"
+    | "topic"
+    | "note"
+
+/**
+ *
+ */
+export type VKNewsfeedCommentsItem =
+    | VKNewsfeedCommentsItemTypeTopic
+    | VKNewsfeedCommentsItemTypePhoto
+    | VKNewsfeedCommentsItemTypeVideo
+    | VKNewsfeedCommentsItemTypeNotes
+    | VKNewsfeedCommentsItemTypePost
+    | VKNewsfeedCommentsItemTypeMarket
+
+/**
+ *
+ */
+export interface VKNewsfeedCommentsItemBase {
+    type: VKNewsfeedNewsfeedItemType
+    source_id?: number
+    date?: number
+    post_id?: number
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedCommentsItemTypeMarket {
+    /**
+     * Access key for the market item
+     */
+    access_key?: string
+    availability: VKMarketMarketItemAvailability
+    /**
+     * Title for button for url
+     */
+    button_title?: string
+    category: VKMarketMarketCategory
+    category_v2?: VKMarketMarketCategory
+    date?: number
+    /**
+     * Item description
+     */
+    description: string
+    external_id?: string
+    /**
+     * Item ID
+     */
+    id: number
+    is_favorite?: boolean
+    /**
+     * Item owner's ID
+     */
+    owner_id: number
+    is_owner?: boolean
+    is_adult?: boolean
+    price: VKMarketPrice
+    /**
+     * URL of the preview image
+     */
+    thumb_photo?: string
+    /**
+     * Item title
+     */
+    title: string
+    /**
+     * URL to item
+     */
+    url?: string
+    variants_grouping_id?: number
+    is_main_variant?: boolean
+    sku?: string
+    /**
+     * Inventory balances
+     */
+    stock_amount?: number
+    post_id?: number
+    /**
+     * Attach for post owner id
+     */
+    post_owner_id?: number
+    type: VKNewsfeedNewsfeedItemType
+    source_id?: number
+    comments?: VKNewsfeedCommentsBase
+    likes?: VKBaseLikes
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedCommentsItemTypeNotes {
+    type: VKNewsfeedNewsfeedItemType
+    source_id?: number
+    date?: number
+    post_id?: number
+    text?: string
+    comments?: VKNewsfeedCommentsBase
+    likes?: VKBaseLikes
+}
+
+export type VKNewsfeedCommentsItemTypePhotoVerticalAlign =
+    | "top"
+    | "middle"
+    | "bottom"
+
+/**
+ *
+ */
+export interface VKNewsfeedCommentsItemTypePhoto {
+    /**
+     * Access key for the photo
+     */
+    access_key?: string
+    /**
+     * Album ID
+     */
+    album_id: number
+    date: number
+    /**
+     * Original photo height
+     */
+    height?: number
+    /**
+     * Photo ID
+     */
+    id: number
+    images?: VKPhotosImage[]
+    /**
+     * Latitude
+     */
+    lat?: number
+    /**
+     * Longitude
+     */
+    long?: number
+    /**
+     * Photo owner's ID
+     */
+    owner_id: number
+    /**
+     * URL of image with 2560 px width
+     */
+    photo_256?: string
+    /**
+     * Thumb Hash
+     */
+    thumb_hash?: string
+    /**
+     * Information whether current user can comment the photo
+     */
+    can_comment?: VKBaseBoolInt
+    place?: string
+    post_id?: number
+    sizes?: VKPhotosPhotoSizes[]
+    square_crop?: string
+    /**
+     * Photo caption
      */
     text?: string
     /**
-     * *Optional*. Special entities that appear in *text*, such as usernames, URLs, bot commands, etc.
+     * ID of the user who have uploaded the photo
      */
-    text_entities?: TelegramMessageEntity[]
+    user_id?: number
     /**
-     * *Optional*. Animation that will be displayed in the game message in chats. Upload via [BotFather](https://t.me/botfather)
+     * Original photo width
      */
-    animation?: TelegramAnimation
+    width?: number
+    /**
+     * Whether photo has attached tag links
+     */
+    has_tags: boolean
+    likes?: VKBaseLikes
+    comments?: VKNewsfeedCommentsBase
+    reposts?: VKBaseRepostsInfo
+    tags?: VKBaseObjectCount
+    /**
+     * Returns if the photo is hidden above the wall
+     */
+    hidden?: VKBasePropertyExists
+    /**
+     * Real position of the photo
+     */
+    real_offset?: number
+    /**
+     * Sets vertical alignment of a photo
+     */
+    vertical_align?: VKNewsfeedCommentsItemTypePhotoVerticalAlign
+    type: VKNewsfeedNewsfeedItemType
+    source_id?: number
+}
+
+export type VKNewsfeedCommentsItemTypePostInnerType = "wall_wallpost"
+/**
+ * - `0` — empty_topic
+ * - `1` — art
+ * - `7` — it
+ * - `12` — games
+ * - `16` — music
+ * - `19` — photo
+ * - `21` — science_and_tech
+ * - `23` — sport
+ * - `25` — travel
+ * - `26` — tv_and_cinema
+ * - `32` — humor
+ * - `43` — fashion
+ */
+export type VKNewsfeedCommentsItemTypePostTopicId =
+    | 0
+    | 1
+    | 7
+    | 12
+    | 16
+    | 19
+    | 21
+    | 23
+    | 25
+    | 26
+    | 32
+    | 43
+
+/**
+ *
+ */
+export interface VKNewsfeedCommentsItemTypePost {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+    inner_type: VKNewsfeedCommentsItemTypePostInnerType
+    /**
+     * Access key to private object
+     */
+    access_key?: string
+    is_deleted?: boolean
+    deleted_reason?: string
+    deleted_details?: string
+    donut_miniapp_url?: string
+    attachments?: VKWallWallpostAttachment[]
+    /**
+     * Information about the source of the post
+     */
+    copyright?: VKWallPostCopyright
+    date?: number
+    /**
+     * Date of editing in Unixtime
+     */
+    edited?: number
+    from_id?: number
+    geo?: VKWallGeo
+    /**
+     * Post ID
+     */
+    id?: number
+    /**
+     * Is post archived, only for post owners
+     */
+    is_archived?: boolean
+    /**
+     * Information whether the post in favorites list
+     */
+    is_favorite?: boolean
+    /**
+     * Count of likes
+     */
+    likes?: VKBaseLikesInfo
+    /**
+     * Wall owner's ID
+     */
+    owner_id?: number
+    post_id?: number
+    /**
+     * If post type 'reply', contains original parent IDs stack
+     */
+    parents_stack?: number[]
+    post_source?: VKWallPostSource
+    post_type?: VKWallPostType
+    reposts?: VKBaseRepostsInfo
+    /**
+     * Post signer ID
+     */
+    signer_id?: number
+    /**
+     * Post text
+     */
+    text?: string
+    /**
+     * Count of views
+     */
+    views?: VKWallViews
+    copy_history?: VKWallWallpostFull[]
+    /**
+     * Information whether current user can edit the post
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Post creator ID (if post still can be edited)
+     */
+    created_by?: number
+    /**
+     * Information whether current user can delete the post
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Information whether current user can pin the post
+     */
+    can_pin?: VKBaseBoolInt
+    donut?: VKWallWallpostDonut
+    /**
+     * Information whether the post is pinned
+     */
+    is_pinned?: VKBaseBoolInt
+    comments?: VKNewsfeedCommentsBase
+    /**
+     * Information whether the post is marked as ads
+     */
+    marked_as_ads?: VKBaseBoolInt
+    /**
+     * Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
+     */
+    topic_id?: VKNewsfeedCommentsItemTypePostTopicId
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    /**
+     * Hash for sharing
+     */
+    hash?: string
+    type: VKNewsfeedNewsfeedItemType
+    feedback?: VKNewsfeedItemWallpostFeedback
+    to_id?: number
+    source_id?: number
 }
 
 /**
- * A placeholder, currently holds no information. Use [BotFather](https://t.me/botfather) to set up your game.
  *
- * [Documentation](https://core.telegram.org/bots/api/#callbackgame)
  */
-export interface TelegramCallbackGame {}
+export interface VKNewsfeedCommentsItemTypeTopic {
+    type: VKNewsfeedNewsfeedItemType
+    source_id?: number
+    date?: number
+    post_id?: number
+    text?: string
+    comments?: VKNewsfeedCommentsBase
+    likes?: VKBaseLikes
+}
+
+export type VKNewsfeedCommentsItemTypeVideoResponseType = "min" | "full"
+export type VKNewsfeedCommentsItemTypeVideoType =
+    | "video"
+    | "music_video"
+    | "movie"
+    | "live"
+    | "short_video"
 
 /**
- * This object represents one row of the high scores table for a game.
  *
- * [Documentation](https://core.telegram.org/bots/api/#gamehighscore)
  */
-export interface TelegramGameHighScore {
+export interface VKNewsfeedCommentsItemTypeVideo {
+    response_type?: VKNewsfeedCommentsItemTypeVideoResponseType
     /**
-     * Position in high score table for the game
+     * Video access key
      */
-    position: number
+    access_key?: string
     /**
-     * User
+     * Date when the video has been added in Unixtime
      */
-    user: TelegramUser
+    adding_date?: number
     /**
-     * Score
+     * Information whether current user can comment the video
      */
-    score: number
+    can_comment?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the video
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Information whether current user can delete the video
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Information whether current user can like the video
+     */
+    can_like?: VKBaseBoolInt
+    /**
+     * Information whether current user can repost the video
+     */
+    can_repost?: number
+    /**
+     * Information whether current user can subscribe to author of the video
+     */
+    can_subscribe?: VKBaseBoolInt
+    /**
+     * Information whether current user can promote the video
+     */
+    can_be_promoted?: VKBaseBoolInt
+    /**
+     * Information whether current user can add the video to favourites
+     */
+    can_add_to_faves?: VKBaseBoolInt
+    /**
+     * Information whether current user can add the video
+     */
+    can_add?: VKBaseBoolInt
+    /**
+     * Information whether current user can attach action button to the video
+     */
+    can_attach_link?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the video privacy
+     */
+    can_edit_privacy?: VKBaseBoolInt
+    /**
+     * 1 if video is private
+     */
+    is_private?: VKBaseBoolInt
+    comments?: VKNewsfeedCommentsBase
+    date?: number
+    /**
+     * Video description
+     */
+    description?: string
+    /**
+     * Video duration in seconds
+     */
+    duration?: number
+    image?: VKVideoVideoImage[]
+    first_frame?: VKVideoVideoImage[]
+    /**
+     * Video width
+     */
+    width?: number
+    /**
+     * Video height
+     */
+    height?: number
+    /**
+     * Video ID
+     */
+    id?: number
+    /**
+     * Video owner ID
+     */
+    owner_id?: number
+    /**
+     * Id of the user who uploaded the video if it was uploaded to a group by member
+     */
+    user_id?: number
+    /**
+     * Video title
+     */
+    title?: string
+    /**
+     * Whether video is added to bookmarks
+     */
+    is_favorite?: boolean
+    /**
+     * Video embed URL
+     */
+    player?: string
+    /**
+     * Returns if the video is processing
+     */
+    processing?: VKBasePropertyExists
+    /**
+     * 1 if  video is being converted
+     */
+    converting?: VKBaseBoolInt
+    /**
+     * 1 if video is added to user's albums
+     */
+    added?: VKBaseBoolInt
+    /**
+     * 1 if user is subscribed to author of the video
+     */
+    is_subscribed?: VKBaseBoolInt
+    track_code?: string
+    /**
+     * Information whether the video is repeated
+     */
+    repeat?: VKBasePropertyExists
+    type: VKNewsfeedCommentsItemTypeVideoType
+    /**
+     * Number of views
+     */
+    views?: number
+    /**
+     * If video is external, number of views on vk
+     */
+    local_views?: number
+    /**
+     * Restriction code
+     */
+    content_restricted?: number
+    /**
+     * Restriction text
+     */
+    content_restricted_message?: string
+    /**
+     * Live donations balance
+     */
+    balance?: number
+    /**
+     * 1 if the video is a live stream
+     */
+    live?: VKBasePropertyExists
+    /**
+     * 1 if the video is an upcoming stream
+     */
+    upcoming?: VKBasePropertyExists
+    /**
+     * Date in Unixtime when the live stream is scheduled to start by the author
+     */
+    live_start_time?: number
+    /**
+     * Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)
+     */
+    live_notify?: VKBaseBoolInt
+    /**
+     * Number of spectators of the stream
+     */
+    spectators?: number
+    /**
+     * External platform
+     */
+    platform?: string
+    likes?: VKBaseLikes
+    reposts?: VKBaseRepostsInfo
+    source_id?: number
+    post_id?: number
+    text?: string
 }
 
 /**
- * Telegram payments supported currencies. Source: [currencies.json](https://core.telegram.org/bots/payments/currencies.json). See also [supported currencies](https://core.telegram.org/bots/payments/#supported-currencies).
  *
- * [Documentation](https://core.telegram.org/bots/api/#currencies)
+ *
+ * - `wall` — post on the wall
+ * - `tag` — tag on a photo
+ * - `profilephoto` — profile photo
+ * - `video` — video
+ * - `photo` — photo
+ * - `audio` — audio
  */
-export type TelegramCurrencies =
-    | "AED"
-    | "AFN"
-    | "ALL"
-    | "AMD"
-    | "ARS"
-    | "AUD"
-    | "AZN"
-    | "BAM"
-    | "BDT"
-    | "BGN"
-    | "BHD"
-    | "BND"
-    | "BOB"
-    | "BRL"
-    | "BYN"
-    | "CAD"
-    | "CHF"
-    | "CLP"
-    | "CNY"
-    | "COP"
-    | "CRC"
-    | "CZK"
-    | "DKK"
-    | "DOP"
-    | "DZD"
-    | "EGP"
-    | "ETB"
-    | "EUR"
-    | "GBP"
-    | "GEL"
-    | "GHS"
-    | "GTQ"
-    | "HKD"
-    | "HNL"
-    | "HRK"
-    | "HUF"
-    | "IDR"
-    | "ILS"
-    | "INR"
-    | "IQD"
-    | "IRR"
-    | "ISK"
-    | "JMD"
-    | "JOD"
-    | "JPY"
-    | "KES"
-    | "KGS"
-    | "KRW"
-    | "KZT"
-    | "LBP"
-    | "LKR"
-    | "MAD"
-    | "MDL"
-    | "MMK"
-    | "MNT"
-    | "MOP"
-    | "MUR"
-    | "MVR"
-    | "MXN"
-    | "MYR"
-    | "MZN"
-    | "NGN"
-    | "NIO"
-    | "NOK"
-    | "NPR"
-    | "NZD"
-    | "PAB"
-    | "PEN"
-    | "PHP"
-    | "PKR"
-    | "PLN"
-    | "PYG"
-    | "QAR"
-    | "RON"
-    | "RSD"
-    | "RUB"
-    | "SAR"
-    | "SEK"
-    | "SGD"
-    | "SYP"
-    | "THB"
-    | "TJS"
-    | "TRY"
-    | "TTD"
-    | "TWD"
-    | "TZS"
-    | "UAH"
-    | "UGX"
-    | "USD"
-    | "UYU"
-    | "UZS"
-    | "VND"
-    | "YER"
-    | "ZAR"
-    | "XTR"
+export type VKNewsfeedIgnoreItemType =
+    | "wall"
+    | "tag"
+    | "profilephoto"
+    | "video"
+    | "photo"
+    | "audio"
 
 /**
- * If 'ok' equals True, the request was successful and the result of the query can be found in the 'result' field.
  *
- * [Documentation](https://core.telegram.org/bots/api/#making-requests)
  */
-export interface TelegramAPIResponseOk<
-    Methods extends keyof APIMethods = keyof APIMethods,
-> {
+export interface VKNewsfeedItemAudio {
+    type: VKNewsfeedNewsfeedItemType
     /**
-     * If 'ok' equals True, the request was successful
+     * Item source ID
      */
-    ok: true
+    source_id: number
     /**
-     * The result of the query. The actual type depends on the called method.
+     * Date when item has been added in Unixtime
      */
-    result: APIMethodReturn<Methods>
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    audio?: VKNewsfeedItemAudioAudio
+    /**
+     * Post ID
+     */
+    post_id?: number
 }
 
 /**
- * In case of an unsuccessful request, 'ok' equals false and the error is explained in the 'description'.
  *
- * [Documentation](https://core.telegram.org/bots/api/#making-requests)
  */
-export interface TelegramAPIResponseError {
+export interface VKNewsfeedItemAudioAudio {
     /**
-     * In case of an unsuccessful request, 'ok' equals false
+     * Audios number
      */
-    ok: false
+    count?: number
+    items?: VKAudioAudio[]
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemBase {
+    type: VKNewsfeedNewsfeedItemType
     /**
-     * A human-readable description of the result
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+}
+
+export type VKNewsfeedItemDigestTemplate = "list" | "grid" | "single"
+
+/**
+ *
+ */
+export interface VKNewsfeedItemDigest {
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    /**
+     * id of feed in digest
+     */
+    feed_id?: string
+    items?: VKNewsfeedItemDigestItem[]
+    main_post_ids?: string[]
+    /**
+     * type of digest
+     */
+    template?: VKNewsfeedItemDigestTemplate
+    header?: VKNewsfeedItemDigestHeader
+    footer?: VKNewsfeedItemDigestFooter
+}
+
+export type VKNewsfeedItemDigestButtonStyle = "primary"
+
+/**
+ *
+ */
+export interface VKNewsfeedItemDigestButton {
+    title: string
+    style?: VKNewsfeedItemDigestButtonStyle
+}
+
+export type VKNewsfeedItemDigestFooterStyle = "text" | "button"
+
+/**
+ *
+ */
+export interface VKNewsfeedItemDigestFooter {
+    style: VKNewsfeedItemDigestFooterStyle
+    /**
+     * text for invite to enable smart feed
+     */
+    text: string
+    button?: VKNewsfeedItemDigestButton
+    feed_id?: string
+}
+
+export type VKNewsfeedItemDigestFullItemInnerType =
+    "newsfeed_item_digest_full_item"
+export type VKNewsfeedItemDigestFullItemStyle =
+    | "default"
+    | "inversed"
+    | "spotlight"
+
+/**
+ *
+ */
+export interface VKNewsfeedItemDigestFullItem {
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    inner_type: VKNewsfeedItemDigestFullItemInnerType
+    text?: string
+    source_name?: string
+    attachment_index?: number
+    attachment?: VKWallWallpostAttachment
+    style?: VKNewsfeedItemDigestFullItemStyle
+    post: VKNewsfeedItemWallpost
+    /**
+     * Optional red badge for posts in digest block
+     */
+    badge_text?: string
+}
+
+export type VKNewsfeedItemDigestHeaderStyle = "singleline" | "multiline"
+
+/**
+ *
+ */
+export interface VKNewsfeedItemDigestHeader {
+    /**
+     * Title of the header
+     */
+    title: string
+    /**
+     * Subtitle of the header, when title have two strings
+     */
+    subtitle?: string
+    /**
+     * Optional field for red badge in Trends feed blocks
+     */
+    badge_text?: string
+    style: VKNewsfeedItemDigestHeaderStyle
+    button?: VKNewsfeedItemDigestButton
+}
+
+/**
+ *
+ */
+export type VKNewsfeedItemDigestItem = VKNewsfeedItemDigestFullItem
+
+/**
+ *
+ */
+export interface VKNewsfeedItemFriend {
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    friends?: VKNewsfeedItemFriendFriends
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemFriendFriends {
+    /**
+     * Number of friends has been added
+     */
+    count?: number
+    items?: VKBaseUserId[]
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemHolidayRecommendationsBlockHeader {
+    /**
+     * Title of the header
+     */
+    title?: string
+    /**
+     * Subtitle of the header
+     */
+    subtitle?: string
+    image?: VKBaseImage[]
+    action?: VKBaseLinkButtonAction
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPhoto {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    photos?: VKNewsfeedItemPhotoPhotos
+    /**
+     * Post ID
+     */
+    post_id?: number
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPhotoPhotos {
+    /**
+     * Photos number
+     */
+    count?: number
+    items?: VKPhotosPhoto[]
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPhotoTag {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    photo_tags?: VKNewsfeedItemPhotoTagPhotoTags
+    /**
+     * Post ID
+     */
+    post_id?: number
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPhotoTagPhotoTags {
+    /**
+     * Tags number
+     */
+    count?: number
+    items?: VKPhotosPhoto[]
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPromoButton {
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    text?: string
+    title?: string
+    action?: VKNewsfeedItemPromoButtonAction
+    images?: VKNewsfeedItemPromoButtonImage[]
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPromoButtonAction {
+    url?: string
+    type?: string
+    target?: string
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemPromoButtonImage {
+    width?: number
+    height?: number
+    url?: string
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemTopic {
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    comments?: VKBaseCommentsInfo
+    likes?: VKBaseLikesInfo
+    /**
+     * Topic post ID
+     */
+    post_id: number
+    /**
+     * Post text
+     */
+    text: string
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemVideo {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+    type: VKNewsfeedNewsfeedItemType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date when item has been added in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    video?: VKNewsfeedItemVideoVideo
+    /**
+     * Post ID
+     */
+    post_id?: number
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemVideoVideo {
+    /**
+     * Tags number
+     */
+    count?: number
+    items?: VKVideoVideoFull[]
+}
+
+export type VKNewsfeedItemWallpostInnerType = "wall_wallpost"
+/**
+ * - `0` — empty_topic
+ * - `1` — art
+ * - `7` — it
+ * - `12` — games
+ * - `16` — music
+ * - `19` — photo
+ * - `21` — science_and_tech
+ * - `23` — sport
+ * - `25` — travel
+ * - `26` — tv_and_cinema
+ * - `32` — humor
+ * - `43` — fashion
+ */
+export type VKNewsfeedItemWallpostTopicId =
+    | 0
+    | 1
+    | 7
+    | 12
+    | 16
+    | 19
+    | 21
+    | 23
+    | 25
+    | 26
+    | 32
+    | 43
+
+/**
+ *
+ */
+export interface VKNewsfeedItemWallpost {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+    type: VKWallPostType
+    /**
+     * Item source ID
+     */
+    source_id: number
+    /**
+     * Date of publishing in Unixtime
+     */
+    date: number
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    feedback?: VKNewsfeedItemWallpostFeedback
+    inner_type: VKNewsfeedItemWallpostInnerType
+    /**
+     * Access key to private object
+     */
+    access_key?: string
+    is_deleted?: boolean
+    deleted_reason?: string
+    deleted_details?: string
+    donut_miniapp_url?: string
+    attachments?: VKWallWallpostAttachment[]
+    /**
+     * Information about the source of the post
+     */
+    copyright?: VKWallPostCopyright
+    /**
+     * Date of editing in Unixtime
+     */
+    edited?: number
+    /**
+     * Post author ID
+     */
+    from_id?: number
+    geo?: VKWallGeo
+    /**
+     * Post ID
+     */
+    id?: number
+    /**
+     * Is post archived, only for post owners
+     */
+    is_archived?: boolean
+    /**
+     * Information whether the post in favorites list
+     */
+    is_favorite?: boolean
+    /**
+     * Count of likes
+     */
+    likes?: VKBaseLikesInfo
+    /**
+     * Wall owner's ID
+     */
+    owner_id?: number
+    /**
+     * If post type 'reply', contains original post ID
+     */
+    post_id?: number
+    /**
+     * If post type 'reply', contains original parent IDs stack
+     */
+    parents_stack?: number[]
+    post_source?: VKWallPostSource
+    post_type?: VKWallPostType
+    reposts?: VKBaseRepostsInfo
+    /**
+     * Post signer ID
+     */
+    signer_id?: number
+    /**
+     * Post text
+     */
+    text?: string
+    /**
+     * Count of views
+     */
+    views?: VKWallViews
+    copy_history?: VKWallWallpostFull[]
+    /**
+     * Information whether current user can edit the post
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Post creator ID (if post still can be edited)
+     */
+    created_by?: number
+    /**
+     * Information whether current user can delete the post
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Information whether current user can pin the post
+     */
+    can_pin?: VKBaseBoolInt
+    donut?: VKWallWallpostDonut
+    /**
+     * Information whether the post is pinned
+     */
+    is_pinned?: VKBaseBoolInt
+    comments?: VKBaseCommentsInfo
+    /**
+     * Information whether the post is marked as ads
+     */
+    marked_as_ads?: VKBaseBoolInt
+    /**
+     * Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
+     */
+    topic_id?: VKNewsfeedItemWallpostTopicId
+    /**
+     * Hash for sharing
+     */
+    hash?: string
+    to_id?: number
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemWallpostFeedback {
+    type: VKNewsfeedItemWallpostFeedbackType
+    question: string
+    answers?: VKNewsfeedItemWallpostFeedbackAnswer[]
+    stars_count?: number
+    descriptions?: string[]
+    gratitude?: string
+    track_code?: string
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedItemWallpostFeedbackAnswer {
+    title: string
+    id: string
+}
+
+/**
+ *
+ */
+export type VKNewsfeedItemWallpostFeedbackType = "buttons" | "stars"
+
+/**
+ *
+ */
+export interface VKNewsfeedList {
+    /**
+     * List ID
+     */
+    id: number
+    /**
+     * List title
+     */
+    title: string
+}
+
+/**
+ *
+ */
+export interface VKNewsfeedListFull {
+    /**
+     * List ID
+     */
+    id: number
+    /**
+     * List title
+     */
+    title: string
+    /**
+     * Information whether reposts hiding is enabled
+     */
+    no_reposts?: VKBaseBoolInt
+    source_ids?: number[]
+}
+
+/**
+ *
+ */
+export type VKNewsfeedNewsfeedItem =
+    | VKNewsfeedItemWallpost
+    | VKNewsfeedItemPhoto
+    | VKNewsfeedItemPhotoTag
+    | VKNewsfeedItemFriend
+    | VKNewsfeedItemAudio
+    | VKNewsfeedItemVideo
+    | VKNewsfeedItemTopic
+    | VKNewsfeedItemDigest
+    | VKNewsfeedItemPromoButton
+
+/**
+ * Item type
+ */
+export type VKNewsfeedNewsfeedItemType =
+    | "post"
+    | "photo"
+    | "photo_tag"
+    | "wall_photo"
+    | "friend"
+    | "audio"
+    | "video"
+    | "topic"
+    | "digest"
+    | "stories"
+    | "note"
+    | "audio_playlist"
+    | "clip"
+    | "clips_retention"
+
+/**
+ *
+ */
+export interface VKNotesNote {
+    read_comments?: number
+    /**
+     * Information whether current user can comment the note
+     */
+    can_comment?: VKBaseBoolInt
+    /**
+     * Comments number
+     */
+    comments: number
+    /**
+     * Date when the note has been created in Unixtime
+     */
+    date: number
+    /**
+     * Note ID
+     */
+    id: number
+    /**
+     * Note owner's ID
+     */
+    owner_id: number
+    /**
+     * Note text
+     */
+    text?: string
+    /**
+     * Note text in wiki format
+     */
+    text_wiki?: string
+    /**
+     * Note title
+     */
+    title: string
+    /**
+     * URL of the page with note preview
+     */
+    view_url: string
+    privacy_view?: string[]
+    privacy_comment?: string[]
+}
+
+/**
+ *
+ */
+export interface VKNotesNoteComment {
+    /**
+     * Date when the comment has beed added in Unixtime
+     */
+    date: number
+    /**
+     * Comment ID
+     */
+    id: number
+    /**
+     * Comment text
+     */
+    message: string
+    /**
+     * Note ID
+     */
+    nid: number
+    /**
+     * Note ID
+     */
+    oid: number
+    /**
+     * ID of replied comment
+     */
+    reply_to?: number
+    /**
+     * Comment author's ID
+     */
+    uid: number
+}
+
+/**
+ *
+ */
+export interface VKNotificationsFeedback {
+    attachments?: VKWallWallpostAttachment[]
+    /**
+     * Reply author's ID
+     */
+    from_id?: number
+    geo?: VKBaseGeo
+    /**
+     * Item ID
+     */
+    id?: number
+    likes?: VKBaseLikesInfo
+    /**
+     * Reply text
+     */
+    text?: string
+    /**
+     * Wall owner's ID
+     */
+    to_id?: number
+}
+
+export type VKNotificationsNotificationInnerType = "notifications_notification"
+
+/**
+ *
+ */
+export interface VKNotificationsNotification {
+    inner_type: VKNotificationsNotificationInnerType
+    /**
+     * Date when the event has been occurred
+     */
+    date?: number
+    feedback?: VKNotificationsFeedback
+    parent?: VKNotificationsNotification
+    reply?: VKNotificationsReply
+    /**
+     * Notification type
+     */
+    type?: string
+}
+
+/**
+ *
+ */
+export type VKNotificationsNotificationItem = VKNotificationsNotification
+
+/**
+ *
+ */
+export interface VKNotificationsReply {
+    /**
+     * Date when the reply has been created in Unixtime
+     */
+    date?: number
+    /**
+     * Reply ID
+     */
+    id?: number
+    /**
+     * Reply text
+     */
+    text?: number
+}
+
+/**
+ * - `1` — notifications disabled
+ * - `2` — flood control per hour
+ * - `3` — flood control per day
+ * - `4` — app is not installed
+ */
+export type VKNotificationsSendMessageErrorCode = 1 | 2 | 3 | 4
+
+/**
+ *
+ */
+export interface VKNotificationsSendMessageError {
+    /**
+     * Error code
+     */
+    code?: VKNotificationsSendMessageErrorCode
+    /**
+     * Error description
+     */
+    description?: string
+}
+
+/**
+ *
+ */
+export interface VKNotificationsSendMessageItem {
+    /**
+     * User ID
+     */
+    user_id?: number
+    /**
+     * Notification status
+     */
+    status?: boolean
+    error?: VKNotificationsSendMessageError
+}
+
+/**
+ *
+ */
+export interface VKOauthError {
+    /**
+     * Error type
+     */
+    error: string
+    /**
+     * Error description
+     */
+    error_description: string
+    /**
+     * URI for validation
+     */
+    redirect_uri?: string
+}
+
+/**
+ *
+ */
+export interface VKOrdersAmount {
+    amounts?: VKOrdersAmountItem[]
+    /**
+     * Currency name
+     */
+    currency?: string
+}
+
+/**
+ *
+ */
+export interface VKOrdersAmountItem {
+    /**
+     * Votes amount in user's currency
+     */
+    amount?: number
+    /**
+     * Amount description
+     */
+    description?: string
+    /**
+     * Votes number
+     */
+    votes?: string
+}
+
+export type VKOrdersOrderStatus =
+    | "created"
+    | "charged"
+    | "refunded"
+    | "chargeable"
+    | "cancelled"
+    | "declined"
+
+/**
+ *
+ */
+export interface VKOrdersOrder {
+    /**
+     * Amount
+     */
+    amount: string
+    /**
+     * App order ID
+     */
+    app_order_id: string
+    /**
+     * Cancel transaction ID
+     */
+    cancel_transaction_id?: string
+    /**
+     * Date of creation in Unixtime
+     */
+    date: string
+    /**
+     * Order ID
+     */
+    id: string
+    /**
+     * Order item
+     */
+    item: string
+    /**
+     * Receiver ID
+     */
+    receiver_id: string
+    /**
+     * Order status
+     */
+    status: VKOrdersOrderStatus
+    /**
+     * Transaction ID
+     */
+    transaction_id?: string
+    /**
+     * User ID
+     */
+    user_id: string
+}
+
+/**
+ *
+ */
+export interface VKOrdersSubscription {
+    /**
+     * Cancel reason
+     */
+    cancel_reason?: string
+    /**
+     * Date of creation in Unixtime
+     */
+    create_time: number
+    /**
+     * Subscription ID
+     */
+    id: number
+    /**
+     * Subscription order item
+     */
+    item_id: string
+    /**
+     * Date of next bill in Unixtime
+     */
+    next_bill_time?: number
+    /**
+     * Subscription expiration time in Unixtime
+     */
+    expire_time?: number
+    /**
+     * Pending cancel state
+     */
+    pending_cancel?: boolean
+    /**
+     * Subscription period
+     */
+    period: number
+    /**
+     * Date of last period start in Unixtime
+     */
+    period_start_time: number
+    /**
+     * Subscription price
+     */
+    price: number
+    /**
+     * Subscription name
+     */
+    title?: string
+    /**
+     * Subscription's application id
+     */
+    app_id?: number
+    /**
+     * Subscription's application name
+     */
+    application_name?: string
+    /**
+     * Item photo image url
+     */
+    photo_url?: string
+    /**
+     * Subscription status
+     */
+    status: string
+    /**
+     * Is test subscription
+     */
+    test_mode?: boolean
+    /**
+     * Date of trial expire in Unixtime
+     */
+    trial_expire_time?: number
+    /**
+     * Date of last change in Unixtime
+     */
+    update_time: number
+    /**
+     * Is game (not miniapp) subscription
+     */
+    is_game?: boolean
+}
+
+/**
+ * - `1` — banned
+ * - `2` — adult
+ * - `3` — hidden
+ * - `4` — deleted
+ * - `5` — blacklisted
+ */
+export type VKOwnerStateState = 1 | 2 | 3 | 4 | 5
+
+/**
+ *
+ */
+export interface VKOwnerState {
+    state?: VKOwnerStateState
+    /**
+     * wiki text to describe user state
+     */
+    description?: string
+}
+
+/**
+ *
+ *
+ * - `0` — community managers only
+ * - `1` — community members only
+ * - `2` — everyone
+ */
+export type VKPagesPrivacySettings = 0 | 1 | 2
+
+/**
+ *
+ */
+export interface VKPagesWikipage {
+    /**
+     * Page creator ID
+     */
+    creator_id?: number
+    /**
+     * Page creator name
+     */
+    creator_name?: string
+    /**
+     * Last editor ID
+     */
+    editor_id?: number
+    /**
+     * Last editor name
+     */
+    editor_name?: string
+    /**
+     * Community ID
+     */
+    group_id: number
+    /**
+     * Page ID
+     */
+    id: number
+    /**
+     * Page title
+     */
+    title: string
+    /**
+     * Views number
+     */
+    views: number
+    /**
+     * Edit settings of the page
+     */
+    who_can_edit: VKPagesPrivacySettings
+    /**
+     * View settings of the page
+     */
+    who_can_view: VKPagesPrivacySettings
+    created: number
+    edited: number
+}
+
+/**
+ *
+ */
+export interface VKPagesWikipageFull {
+    /**
+     * Date when the page has been created in Unixtime
+     */
+    created: number
+    /**
+     * Page creator ID
+     */
+    creator_id?: number
+    /**
+     * Information whether current user can edit the page
+     */
+    current_user_can_edit?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the page access settings
+     */
+    current_user_can_edit_access?: VKBaseBoolInt
+    /**
+     * Date when the page has been edited in Unixtime
+     */
+    edited: number
+    /**
+     * Last editor ID
+     */
+    editor_id?: number
+    /**
+     * Community ID
+     */
+    group_id: number
+    /**
+     * Page content, HTML
+     */
+    html?: string
+    /**
+     * Page ID
+     */
+    id: number
+    /**
+     * Page content, wiki
+     */
+    source?: string
+    /**
+     * Page title
+     */
+    title: string
+    /**
+     * URL of the page preview
+     */
+    view_url: string
+    /**
+     * Views number
+     */
+    views: number
+    /**
+     * Edit settings of the page
+     */
+    who_can_edit: VKPagesPrivacySettings
+    /**
+     * View settings of the page
+     */
+    who_can_view: VKPagesPrivacySettings
+    /**
+     * URL
+     */
+    url?: string
+    /**
+     * Parent
+     */
+    parent?: string
+    /**
+     * Parent2
+     */
+    parent2?: string
+    /**
+     * Owner ID
+     */
+    owner_id?: number
+}
+
+/**
+ *
+ */
+export interface VKPagesWikipageHistory {
+    /**
+     * Version ID
+     */
+    id: number
+    /**
+     * Page size in bytes
+     */
+    length: number
+    /**
+     * Date when the page has been edited in Unixtime
+     */
+    date: number
+    /**
+     * Last editor ID
+     */
+    editor_id: number
+    /**
+     * Last editor name
+     */
+    editor_name: string
+}
+
+/**
+ *
+ */
+export interface VKPhotosImage {
+    /**
+     * Height of the photo in px.
+     */
+    height?: number
+    type?: VKPhotosImageType
+    /**
+     * Photo URL.
+     */
+    url?: string
+    /**
+     * Width of the photo in px.
+     */
+    width?: number
+}
+
+/**
+ * Photo's type.
+ */
+export type VKPhotosImageType =
+    | "s"
+    | "m"
+    | "x"
+    | "l"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "y"
+    | "z"
+    | "w"
+    | "base"
+
+export type VKPhotosPhotoVerticalAlign = "top" | "middle" | "bottom"
+
+/**
+ *
+ */
+export interface VKPhotosPhoto {
+    /**
+     * Access key for the photo
+     */
+    access_key?: string
+    /**
+     * Album ID
+     */
+    album_id: number
+    /**
+     * Date when uploaded
+     */
+    date: number
+    /**
+     * Original photo height
+     */
+    height?: number
+    /**
+     * Photo ID
+     */
+    id: number
+    images?: VKPhotosImage[]
+    /**
+     * Latitude
+     */
+    lat?: number
+    /**
+     * Longitude
+     */
+    long?: number
+    /**
+     * Photo owner's ID
+     */
+    owner_id: number
+    /**
+     * URL of image with 2560 px width
+     */
+    photo_256?: string
+    /**
+     * Thumb Hash
+     */
+    thumb_hash?: string
+    /**
+     * Information whether current user can comment the photo
+     */
+    can_comment?: VKBaseBoolInt
+    place?: string
+    /**
+     * Post ID
+     */
+    post_id?: number
+    sizes?: VKPhotosPhotoSizes[]
+    square_crop?: string
+    /**
+     * Photo caption
+     */
+    text?: string
+    /**
+     * ID of the user who have uploaded the photo
+     */
+    user_id?: number
+    /**
+     * Original photo width
+     */
+    width?: number
+    /**
+     * Whether photo has attached tag links
+     */
+    has_tags: boolean
+    likes?: VKBaseLikes
+    comments?: VKBaseObjectCount
+    reposts?: VKBaseRepostsInfo
+    tags?: VKBaseObjectCount
+    /**
+     * Returns if the photo is hidden above the wall
+     */
+    hidden?: VKBasePropertyExists
+    /**
+     * Real position of the photo
+     */
+    real_offset?: number
+    /**
+     * Sets vertical alignment of a photo
+     */
+    vertical_align?: VKPhotosPhotoVerticalAlign
+}
+
+/**
+ *
+ */
+export interface VKPhotosPhotoAlbum {
+    /**
+     * Date when the album has been created in Unixtime
+     */
+    created: number
+    /**
+     * Photo album description
+     */
+    description?: string
+    /**
+     * Photo album ID
+     */
+    id: number
+    /**
+     * Album owner's ID
+     */
+    owner_id: number
+    /**
+     * Photos number
+     */
+    size: number
+    thumb?: VKPhotosPhoto
+    /**
+     * Photo album title
+     */
+    title: string
+    /**
+     * Date when the album has been updated last time in Unixtime
+     */
+    updated: number
+}
+
+/**
+ *
+ */
+export interface VKPhotosPhotoAlbumFull {
+    /**
+     * Information whether current user can upload photo to the album
+     */
+    can_upload?: VKBaseBoolInt
+    /**
+     * Information whether album comments are disabled
+     */
+    comments_disabled?: VKBaseBoolInt
+    /**
+     * Date when the album has been created in Unixtime, not set for system albums
+     */
+    created?: number
+    /**
+     * Photo album description
+     */
+    description?: string
+    /**
+     * album can delete
+     */
+    can_delete?: boolean
+    /**
+     * Photo album ID
+     */
+    id: number
+    /**
+     * album can be selected to feed
+     */
+    can_include_to_feed?: boolean
+    /**
+     * Need show privacy lock at album
+     */
+    is_locked?: boolean
+    /**
+     * Album owner's ID
+     */
+    owner_id: number
+    /**
+     * Photos number
+     */
+    size: number
+    sizes?: VKPhotosPhotoSizes[]
+    /**
+     * Thumb photo ID
+     */
+    thumb_id?: number
+    /**
+     * Information whether the album thumb is last photo
+     */
+    thumb_is_last?: VKBaseBoolInt
+    /**
+     * URL of the thumb image
+     */
+    thumb_src?: string
+    /**
+     * Photo album title
+     */
+    title: string
+    /**
+     * Date when the album has been updated last time in Unixtime, not set for system albums
+     */
+    updated?: number
+    /**
+     * Information whether only community administrators can upload photos
+     */
+    upload_by_admins_only?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKPhotosPhotoSizes {
+    /**
+     * Height in px
+     */
+    height: number
+    /**
+     * URL of the image
+     */
+    url?: string
+    /**
+     * URL of the image
+     */
+    src?: string
+    type: VKPhotosPhotoSizesType
+    /**
+     * Width in px
+     */
+    width: number
+}
+
+/**
+ * Size type
+ */
+export type VKPhotosPhotoSizesType =
+    | "t"
+    | "s"
+    | "m"
+    | "x"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "k"
+    | "l"
+    | "y"
+    | "z"
+    | "c"
+    | "w"
+    | "a"
+    | "b"
+    | "e"
+    | "i"
+    | "d"
+    | "j"
+    | "temp"
+    | "h"
+    | "g"
+    | "n"
+    | "f"
+    | "max"
+    | "base"
+    | "u"
+    | "v"
+    | "orig"
+
+/**
+ *
+ */
+export interface VKPhotosPhotoTag {
+    /**
+     * Date when tag has been added in Unixtime
+     */
+    date: number
+    /**
+     * Tag ID
+     */
+    id: number
+    /**
+     * ID of the tag creator
+     */
+    placer_id: number
+    /**
+     * Tag description
+     */
+    tagged_name: string
+    /**
+     * Tagged description.
+     */
+    description?: string
+    /**
+     * Tagged user ID
+     */
+    user_id: number
+    /**
+     * Information whether the tag is reviewed
+     */
+    viewed: VKBaseBoolInt
+    /**
+     * Coordinate X of the left upper corner
+     */
+    x: number
+    /**
+     * Coordinate X of the right lower corner
+     */
+    x2: number
+    /**
+     * Coordinate Y of the left upper corner
+     */
+    y: number
+    /**
+     * Coordinate Y of the right lower corner
+     */
+    y2: number
+}
+
+/**
+ *
+ */
+export interface VKPhotosPhotoUpload {
+    /**
+     * Album ID
+     */
+    album_id: number
+    /**
+     * URL to upload photo
+     */
+    upload_url: string
+    /**
+     * Fallback URL if upload_url returned error
+     */
+    fallback_upload_url?: string
+    /**
+     * User ID
+     */
+    user_id: number
+    /**
+     * Group ID
+     */
+    group_id?: number
+}
+
+/**
+ *
+ */
+export interface VKPhotosPhotoXtrTagInfo {
+    /**
+     * Access key for the photo
+     */
+    access_key?: string
+    /**
+     * Album ID
+     */
+    album_id: number
+    /**
+     * Date when uploaded
+     */
+    date: number
+    /**
+     * Original photo height
+     */
+    height?: number
+    /**
+     * Photo ID
+     */
+    id: number
+    /**
+     * Latitude
+     */
+    lat?: number
+    /**
+     * Longitude
+     */
+    long?: number
+    /**
+     * Photo owner's ID
+     */
+    owner_id: number
+    /**
+     * URL of image with 1280 px width
+     */
+    photo_1280?: string
+    /**
+     * URL of image with 130 px width
+     */
+    photo_130?: string
+    /**
+     * URL of image with 2560 px width
+     */
+    photo_2560?: string
+    /**
+     * URL of image with 604 px width
+     */
+    photo_604?: string
+    /**
+     * URL of image with 75 px width
+     */
+    photo_75?: string
+    /**
+     * URL of image with 807 px width
+     */
+    photo_807?: string
+    /**
+     * ID of the tag creator
+     */
+    placer_id?: number
+    /**
+     * Post ID
+     */
+    post_id?: number
+    sizes?: VKPhotosPhotoSizes[]
+    /**
+     * Date when tag has been added in Unixtime
+     */
+    tag_created?: number
+    /**
+     * Tag ID
+     */
+    tag_id?: number
+    /**
+     * Photo caption
+     */
+    text?: string
+    /**
+     * ID of the user who have uploaded the photo
+     */
+    user_id?: number
+    /**
+     * Original photo width
+     */
+    width?: number
+    /**
+     * Whether photo has attached tag links
+     */
+    has_tags?: boolean
+}
+
+/**
+ *
+ */
+export interface VKPhotosTagsSuggestionItem {
+    title?: string
+    caption?: string
+    type?: string
+    buttons?: VKPhotosTagsSuggestionItemButton[]
+    photo?: VKPhotosPhoto
+    tags?: VKPhotosPhotoTag[]
+    track_code?: string
+}
+
+export type VKPhotosTagsSuggestionItemButtonAction =
+    | "confirm"
+    | "decline"
+    | "show_tags"
+export type VKPhotosTagsSuggestionItemButtonStyle = "primary" | "secondary"
+
+/**
+ *
+ */
+export interface VKPhotosTagsSuggestionItemButton {
+    title?: string
+    action?: VKPhotosTagsSuggestionItemButtonAction
+    style?: VKPhotosTagsSuggestionItemButtonStyle
+}
+
+/**
+ *
+ */
+export interface VKPodcastCover {
+    sizes?: VKPhotosPhotoSizes[]
+}
+
+/**
+ *
+ */
+export interface VKPodcastExternalData {
+    /**
+     * Url of the podcast page
+     */
+    url?: string
+    /**
+     * Url of the podcasts owner community
+     */
+    owner_url?: string
+    /**
+     * Podcast title
+     */
+    title?: string
+    /**
+     * Name of the podcasts owner community
+     */
+    owner_name?: string
+    /**
+     * Podcast cover
+     */
+    cover?: VKPodcastCover
+}
+
+/**
+ *
+ */
+export interface VKPollsAnswer {
+    /**
+     * Answer ID
+     */
+    id: number
+    /**
+     * Answer rate in percents
+     */
+    rate: number
+    /**
+     * Answer text
+     */
+    text: string
+    /**
+     * Votes number
+     */
+    votes: number
+}
+
+export type VKPollsBackgroundType = "gradient" | "tile" | "color"
+
+/**
+ *
+ */
+export interface VKPollsBackground {
+    /**
+     * Gradient angle with 0 on positive X axis
+     */
+    angle?: number
+    /**
+     * Hex color code without #
+     */
+    color?: string
+    /**
+     * Original height of pattern tile
+     */
+    height?: number
+    id?: number
+    name?: string
+    /**
+     * Pattern tiles
+     */
+    images?: VKBaseImage[]
+    /**
+     * Gradient points
+     */
+    points?: VKBaseGradientPoint[]
+    type?: VKPollsBackgroundType
+    /**
+     * Original with of pattern tile
+     */
+    width?: number
+}
+
+/**
+ *
+ */
+export interface VKPollsFieldsVoters {
+    /**
+     * Answer ID
+     */
+    answer_id?: number
+    users?: VKPollsVotersFieldsUsers
+    /**
+     * Answer offset
+     */
+    answer_offset?: string
+}
+
+/**
+ *
+ */
+export interface VKPollsFriend {
+    id: number
+}
+
+/**
+ *
+ */
+export interface VKPollsPoll {
+    anonymous?: VKPollsPollAnonymous
+    friends?: VKPollsFriend[]
+    /**
+     * Information whether the poll with multiple choices
+     */
+    multiple: boolean
+    /**
+     * Current user's answer ID
+     */
+    answer_id?: number
+    end_date: number
+    /**
+     * Current user's answer IDs
+     */
+    answer_ids?: number[]
+    closed: boolean
+    is_board: boolean
+    can_edit: boolean
+    can_vote: boolean
+    can_report: boolean
+    can_share: boolean
+    embed_hash?: string
+    photo?: VKPollsBackground
+    answers: VKPollsAnswer[]
+    /**
+     * Date when poll has been created in Unixtime
+     */
+    created: number
+    /**
+     * Poll ID
+     */
+    id: number
+    /**
+     * Poll owner's ID
+     */
+    owner_id: number
+    /**
+     * Poll author's ID
+     */
+    author_id?: number
+    /**
+     * Poll question
+     */
+    question: string
+    background?: VKPollsBackground
+    /**
+     * Votes number
+     */
+    votes: number
+    disable_unvote: boolean
+}
+
+/**
+ * Information whether the field is anonymous
+ */
+export interface VKPollsPollAnonymous {}
+
+/**
+ *
+ */
+export interface VKPollsPollExtended {
+    anonymous?: VKPollsPollAnonymous
+    friends?: VKPollsFriend[]
+    /**
+     * Information whether the poll with multiple choices
+     */
+    multiple: boolean
+    /**
+     * Current user's answer ID
+     */
+    answer_id?: number
+    end_date: number
+    /**
+     * Current user's answer IDs
+     */
+    answer_ids?: number[]
+    closed: boolean
+    is_board: boolean
+    can_edit: boolean
+    can_vote: boolean
+    can_report: boolean
+    can_share: boolean
+    embed_hash?: string
+    photo?: VKPollsBackground
+    answers: VKPollsAnswer[]
+    /**
+     * Date when poll has been created in Unixtime
+     */
+    created: number
+    /**
+     * Poll ID
+     */
+    id: number
+    /**
+     * Poll owner's ID
+     */
+    owner_id: number
+    /**
+     * Poll author's ID
+     */
+    author_id?: number
+    /**
+     * Poll question
+     */
+    question: string
+    background?: VKPollsBackground
+    /**
+     * Votes number
+     */
+    votes: number
+    disable_unvote: boolean
+    profiles?: VKUsersUserFull[]
+}
+
+/**
+ *
+ */
+export interface VKPollsVoters {
+    /**
+     * Answer ID
+     */
+    answer_id?: number
+    users?: VKPollsVotersUsers
+    /**
+     * Answer offset
+     */
+    answer_offset?: string
+}
+
+/**
+ *
+ */
+export interface VKPollsVotersFieldsUsers {
+    /**
+     * Votes number
+     */
+    count?: number
+    items?: VKUsersUserFull[]
+}
+
+/**
+ *
+ */
+export interface VKPollsVotersUsers {
+    /**
+     * Votes number
+     */
+    count?: number
+    items?: number[]
+}
+
+/**
+ *
+ */
+export type VKPrettyCardsButtonOneOf = VKBaseLinkButton | string
+
+export type VKPrettyCardsPrettyCardInnerType = "prettyCards_prettyCard"
+
+/**
+ *
+ */
+export interface VKPrettyCardsPrettyCard {
+    inner_type: VKPrettyCardsPrettyCardInnerType
+    /**
+     * Button key
+     */
+    button?: VKPrettyCardsButtonOneOf
+    /**
+     * Button text in current language
+     */
+    button_text?: string
+    /**
+     * Card ID (long int returned as string)
+     */
+    card_id: string
+    images?: VKBaseImage[]
+    /**
+     * Link URL
+     */
+    link_url: string
+    /**
+     * Photo ID (format "<owner_id>_<media_id>")
+     */
+    photo: string
+    /**
+     * Price if set (decimal number returned as string)
+     */
+    price?: string
+    /**
+     * Old price if set (decimal number returned as string)
+     */
+    price_old?: string
+    /**
+     * Title
+     */
+    title: string
+}
+
+/**
+ *
+ */
+export type VKPrettyCardsPrettyCardOrError =
+    | VKPrettyCardsPrettyCard
+    | VKBaseError
+
+/**
+ *
+ */
+export interface VKSearchHint {
+    app?: VKAppsApp
+    /**
+     * Object description
      */
     description: string
     /**
-     * An Integer error code. Its contents are subject to change in the future.
+     * Information whether the object has been found globally
      */
-    error_code: number
-    /**
-     * Optional field which can help to automatically handle the error
-     */
-    parameters?: TelegramResponseParameters
+    global?: VKBaseBoolInt
+    group?: VKGroupsGroup
+    profile?: VKUsersUserMin
+    section?: VKSearchHintSection
+    type: VKSearchHintType
+    link?: VKBaseLink
 }
 
 /**
- * The response contains a JSON object, which always has a Boolean field 'ok'.
- *
- * [Documentation](https://core.telegram.org/bots/api/#making-requests)
+ * Section title
  */
-export type TelegramAPIResponse<
-    Methods extends keyof APIMethods = keyof APIMethods,
-> = TelegramAPIResponseOk<Methods> | TelegramAPIResponseError
+export type VKSearchHintSection =
+    | "groups"
+    | "events"
+    | "publics"
+    | "correspondents"
+    | "people"
+    | "friends"
+    | "mutual_friends"
+    | "promo"
+
+/**
+ * Object type
+ */
+export type VKSearchHintType =
+    | "group"
+    | "profile"
+    | "vk_app"
+    | "app"
+    | "html5_game"
+    | "link"
+
+/**
+ *
+ */
+export interface VKSecureGiveEventStickerItem {
+    user_id?: number
+    status?: string
+}
+
+/**
+ *
+ */
+export interface VKSecureLevel {
+    /**
+     * Level
+     */
+    level?: number
+    /**
+     * User ID
+     */
+    uid?: number
+}
+
+/**
+ *
+ */
+export interface VKSecureSetCounterItem {
+    /**
+     * User ID
+     */
+    id: number
+    result: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKSecureSmsNotification {
+    /**
+     * Application ID
+     */
+    app_id?: string
+    /**
+     * Date when message has been sent in Unixtime
+     */
+    date?: string
+    /**
+     * Notification ID
+     */
+    id?: string
+    /**
+     * Messsage text
+     */
+    message?: string
+    /**
+     * User ID
+     */
+    user_id?: string
+}
+
+/**
+ *
+ */
+export interface VKSecureTokenChecked {
+    /**
+     * Date when access_token has been generated in Unixtime
+     */
+    date?: number
+    /**
+     * Date when access_token will expire in Unixtime
+     */
+    expire?: number
+    /**
+     * Returns if successfully processed
+     */
+    success?: number
+    /**
+     * User ID
+     */
+    user_id?: number
+}
+
+/**
+ *
+ */
+export interface VKSecureTransaction {
+    /**
+     * Transaction date in Unixtime
+     */
+    date?: number
+    /**
+     * Transaction ID
+     */
+    id?: number
+    /**
+     * From ID
+     */
+    uid_from?: number
+    /**
+     * To ID
+     */
+    uid_to?: number
+    /**
+     * Votes number
+     */
+    votes?: number
+}
+
+/**
+ * Activity stats
+ */
+export interface VKStatsActivity {
+    /**
+     * Comments number
+     */
+    comments?: number
+    /**
+     * Reposts number
+     */
+    copies?: number
+    /**
+     * Hidden from news count
+     */
+    hidden?: number
+    /**
+     * Likes number
+     */
+    likes?: number
+    /**
+     * New subscribers count
+     */
+    subscribed?: number
+    /**
+     * Unsubscribed count
+     */
+    unsubscribed?: number
+}
+
+/**
+ *
+ */
+export interface VKStatsCity {
+    /**
+     * Visitors number
+     */
+    count?: number
+    /**
+     * City name
+     */
+    name?: string
+    /**
+     * City ID
+     */
+    value?: number
+}
+
+/**
+ *
+ */
+export interface VKStatsCountry {
+    /**
+     * Country code
+     */
+    code?: string
+    /**
+     * Visitors number
+     */
+    count?: number
+    /**
+     * Country name
+     */
+    name?: string
+    /**
+     * Country ID
+     */
+    value?: number
+}
+
+/**
+ *
+ */
+export interface VKStatsPeriod {
+    activity?: VKStatsActivity
+    period_from?: VKStatsPeriodFromOneOf
+    period_to?: VKStatsPeriodToOneOf
+    reach?: VKStatsReach
+    visitors?: VKStatsViews
+}
+
+/**
+ * Unix timestamp
+ */
+export interface VKStatsPeriodFromOneOf {}
+
+/**
+ * Unix timestamp
+ */
+export interface VKStatsPeriodToOneOf {}
+
+/**
+ * Reach stats
+ */
+export interface VKStatsReach {
+    age?: VKStatsSexAge[]
+    cities?: VKStatsCity[]
+    countries?: VKStatsCountry[]
+    /**
+     * Reach count from mobile devices
+     */
+    mobile_reach?: number
+    /**
+     * Reach count
+     */
+    reach?: number
+    /**
+     * Subscribers reach count
+     */
+    reach_subscribers?: number
+    sex?: VKStatsSexAge[]
+    sex_age?: VKStatsSexAge[]
+}
+
+/**
+ *
+ */
+export interface VKStatsSexAge {
+    /**
+     * Visitors number
+     */
+    count?: number
+    /**
+     * Sex/age value
+     */
+    value: string
+    reach?: number
+    reach_subscribers?: number
+    count_subscribers?: number
+}
+
+/**
+ * Views stats
+ */
+export interface VKStatsViews {
+    age?: VKStatsSexAge[]
+    cities?: VKStatsCity[]
+    countries?: VKStatsCountry[]
+    /**
+     * Number of views from mobile devices
+     */
+    mobile_views?: number
+    sex?: VKStatsSexAge[]
+    sex_age?: VKStatsSexAge[]
+    /**
+     * Views number
+     */
+    views?: number
+    /**
+     * Visitors number
+     */
+    visitors?: number
+}
+
+/**
+ *
+ */
+export interface VKStatsWallpostStat {
+    post_id?: number
+    /**
+     * Hidings number
+     */
+    hide?: number
+    /**
+     * People have joined the group
+     */
+    join_group?: number
+    /**
+     * Link clickthrough
+     */
+    links?: number
+    /**
+     * Subscribers reach
+     */
+    reach_subscribers?: number
+    reach_subscribers_count?: number
+    /**
+     * Total reach
+     */
+    reach_total?: number
+    reach_total_count?: number
+    reach_viral?: number
+    reach_ads?: number
+    /**
+     * Reports number
+     */
+    report?: number
+    /**
+     * Clickthrough to community
+     */
+    to_group?: number
+    /**
+     * Unsubscribed members
+     */
+    unsubscribe?: number
+    sex_age?: VKStatsSexAge[]
+}
+
+/**
+ *
+ */
+export interface VKStatusStatus {
+    /**
+     * Status text
+     */
+    text: string
+    audio?: VKAudioAudio
+}
+
+/**
+ *
+ */
+export interface VKStickersImageSet {
+    /**
+     * Base URL for images in set
+     */
+    base_url: string
+    /**
+     * Version number to be appended to the image URL
+     */
+    version?: number
+    images?: VKBaseImage[]
+}
+
+/**
+ *
+ */
+export interface VKStorageValue {
+    key: string
+    value: string
+}
+
+export type VKStoreProductType = "stickers"
+
+/**
+ *
+ */
+export interface VKStoreProduct {
+    /**
+     * Id of the product
+     */
+    id: number
+    /**
+     * Product type
+     */
+    type: VKStoreProductType
+    /**
+     * Information whether sticker product wasn't used after being purchased
+     */
+    is_new?: boolean
+    /**
+     * Product copyright information
+     */
+    copyright?: string
+    /**
+     * Id of the base pack (for sticker pack styles)
+     */
+    base_id?: number
+    /**
+     * Array of style ids available for the sticker pack
+     */
+    style_ids?: number[]
+    /**
+     * Information whether the product is purchased (1 - yes, 0 - no)
+     */
+    purchased?: VKBaseBoolInt
+    /**
+     * Information whether the product is active (1 - yes, 0 - no)
+     */
+    active?: VKBaseBoolInt
+    /**
+     * Information whether the product is promoted (1 - yes, 0 - no)
+     */
+    promoted?: VKBaseBoolInt
+    /**
+     * Date (Unix time) when the product was purchased
+     */
+    purchase_date?: number
+    /**
+     * Title of the product
+     */
+    title?: string
+    stickers?: VKBaseStickerNew[]
+    /**
+     * Array of style sticker ids (for sticker pack styles)
+     */
+    style_sticker_ids?: number[]
+    /**
+     * Array of icon images or icon set object of the product (for stickers product type)
+     */
+    icon?: VKStoreProductIcon
+    /**
+     * Array of preview images of the product (for stickers product type)
+     */
+    previews?: VKBaseImage[]
+    /**
+     * Information whether the product is an animated sticker pack (for stickers product type)
+     */
+    has_animation?: boolean
+    /**
+     * Subtitle of the product
+     */
+    subtitle?: string
+    payment_region?: string
+    /**
+     * Information whether sticker pack is a vmoji pack
+     */
+    is_vmoji?: boolean
+    title_lang_key?: string
+    description_lang_key?: string
+    url?: string
+    /**
+     * Information whether the product is a sticker pack with popup stickers (for stickers product type)
+     */
+    is_popup?: boolean
+}
+
+/**
+ *
+ */
+export type VKStoreProductIcon = VKStickersImageSet
+
+/**
+ *
+ */
+export interface VKStoreStickersKeyword {
+    words: string[]
+    user_stickers?: VKBaseStickerNew[]
+    promoted_stickers?: VKBaseStickerNew[]
+    stickers?: VKStoreStickersKeywordSticker[]
+}
+
+/**
+ *
+ */
+export interface VKStoreStickersKeywordSticker {
+    /**
+     * Pack id
+     */
+    pack_id: number
+    /**
+     * Sticker id
+     */
+    sticker_id: number
+}
+
+/**
+ *
+ */
+export interface VKStoriesClickableArea {
+    x: number
+    y: number
+}
+
+export type VKStoriesClickableStickerStyle =
+    | "transparent"
+    | "blue_gradient"
+    | "red_gradient"
+    | "underline"
+    | "blue"
+    | "green"
+    | "white"
+    | "question_reply"
+    | "light"
+    | "impressive"
+    | "dark"
+    | "accent_background"
+    | "accent_text"
+    | "dark_unique"
+    | "light_unique"
+    | "light_text"
+    | "dark_text"
+    | "black"
+    | "dark_without_bg"
+    | "light_without_bg"
+    | "rectangle"
+    | "circle"
+    | "poop"
+    | "heart"
+    | "star"
+    | "album"
+    | "horizontal"
+    | "equalizer"
+    | "header_meta"
+    | "preview"
+    | "miniature"
+    | "fullview"
+    | "cta"
+    | "sticker"
+    | "sticker_and_cta"
+    | "accent"
+export type VKStoriesClickableStickerType =
+    | "hashtag"
+    | "mention"
+    | "link"
+    | "question"
+    | "place"
+    | "market_item"
+    | "music"
+    | "story_reply"
+    | "owner"
+    | "post"
+    | "poll"
+    | "sticker"
+    | "app"
+    | "situational_theme"
+    | "playlist"
+    | "clip"
+    | "vk_video"
+    | "situational_template"
+    | "spoiler"
+    | "service_yc_item"
+export type VKStoriesClickableStickerSubtype =
+    | "market_item"
+    | "aliexpress_product"
+
+/**
+ *
+ */
+export interface VKStoriesClickableSticker {
+    clickable_area: VKStoriesClickableArea[]
+    /**
+     * Clickable sticker ID
+     */
+    id: number
+    hashtag?: string
+    link_object?: VKBaseLink
+    mention?: string
+    tooltip_text?: string
+    owner_id?: number
+    story_id?: number
+    clip_id?: number
+    video_id?: number
+    question?: string
+    question_button?: string
+    place_id?: number
+    market_item?: VKMarketMarketItem
+    audio?: VKAudioAudio
+    audio_start_time?: number
+    style?: VKStoriesClickableStickerStyle
+    type: VKStoriesClickableStickerType
+    subtype?: VKStoriesClickableStickerSubtype
+    post_owner_id?: number
+    post_id?: number
+    poll?: VKPollsPoll
+    /**
+     * Color, hex format
+     */
+    color?: string
+    /**
+     * Sticker ID
+     */
+    sticker_id?: number
+    /**
+     * Sticker pack ID
+     */
+    sticker_pack_id?: number
+    app?: VKAppsAppMin
+    /**
+     * Additional context for app sticker
+     */
+    app_context?: string
+    /**
+     * Whether current user has unread interaction with this app
+     */
+    has_new_interactions?: boolean
+    /**
+     * Whether current user allowed broadcast notify from this app
+     */
+    is_broadcast_notify_allowed?: boolean
+    situational_theme_id?: number
+    situational_app_url?: string
+}
+
+/**
+ *
+ */
+export interface VKStoriesClickableStickers {
+    clickable_stickers: VKStoriesClickableSticker[]
+    original_height: number
+    original_width: number
+}
+
+export type VKStoriesFeedItemType =
+    | "promo_stories"
+    | "stories"
+    | "live_active"
+    | "live_finished"
+    | "app_grouped_stories"
+    | "discover"
+
+/**
+ *
+ */
+export interface VKStoriesFeedItem {
+    /**
+     * Type of Feed Item
+     */
+    type: VKStoriesFeedItemType
+    id?: string
+    owner_id?: number
+    /**
+     * Author stories
+     */
+    stories?: VKStoriesStory[]
+    /**
+     * Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)
+     */
+    grouped?: VKStoriesFeedItem[]
+    /**
+     * App, which stories has been grouped (for type app_grouped_stories)
+     */
+    app?: VKAppsAppMin
+    /**
+     * Additional data for promo stories (for type promo_stories)
+     */
+    promo_data?: VKStoriesPromoBlock
+    track_code?: string
+    has_unseen?: boolean
+    name?: string
+}
+
+/**
+ * Additional data for promo stories
+ */
+export interface VKStoriesPromoBlock {
+    /**
+     * Promo story title
+     */
+    name: string
+    /**
+     * RL of square photo of the story with 50 pixels in width
+     */
+    photo_50: string
+    /**
+     * RL of square photo of the story with 100 pixels in width
+     */
+    photo_100: string
+    /**
+     * Hide animation for promo story
+     */
+    not_animated: boolean
+    /**
+     * Promo story from advice
+     */
+    is_advice: boolean
+}
+
+/**
+ *
+ */
+export interface VKStoriesReplies {
+    /**
+     * Replies number.
+     */
+    count: number
+    /**
+     * New replies number.
+     */
+    new?: number
+}
+
+/**
+ *
+ */
+export interface VKStoriesStory {
+    /**
+     * Access key for private object.
+     */
+    access_key?: string
+    /**
+     * Information whether current user can comment the story (0 - no, 1 - yes).
+     */
+    can_comment?: VKBaseBoolInt
+    /**
+     * Information whether current user can reply to the story (0 - no, 1 - yes).
+     */
+    can_reply?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the story (0 - no, 1 - yes).
+     */
+    can_see?: VKBaseBoolInt
+    /**
+     * Information whether current user can like the story.
+     */
+    can_like?: boolean
+    /**
+     * Information whether current user can share the story (0 - no, 1 - yes).
+     */
+    can_share?: VKBaseBoolInt
+    /**
+     * Information whether current user can hide the story (0 - no, 1 - yes).
+     */
+    can_hide?: VKBaseBoolInt
+    /**
+     * Date when story has been added in Unixtime.
+     */
+    date?: number
+    /**
+     * Story expiration time. Unixtime.
+     */
+    expires_at?: number
+    /**
+     * Story ID.
+     */
+    id: number
+    /**
+     * Information whether the story is deleted (false - no, true - yes).
+     */
+    is_deleted?: boolean
+    /**
+     * Information whether the story is expired (false - no, true - yes).
+     */
+    is_expired?: boolean
+    link?: VKStoriesStoryLink
+    /**
+     * Story owner's ID.
+     */
+    owner_id: number
+    parent_story?: VKStoriesStory
+    /**
+     * Access key for private object.
+     */
+    parent_story_access_key?: string
+    /**
+     * Parent story ID.
+     */
+    parent_story_id?: number
+    /**
+     * Parent story owner's ID.
+     */
+    parent_story_owner_id?: number
+    photo?: VKPhotosPhoto
+    /**
+     * url with blured preview image.
+     */
+    blurred_preview?: string
+    /**
+     * Replies counters to current story.
+     */
+    replies?: VKStoriesReplies
+    /**
+     * Information whether current user has seen the story or not (0 - no, 1 - yes).
+     */
+    seen?: VKBaseBoolInt
+    type?: VKStoriesStoryType
+    clickable_stickers?: VKStoriesClickableStickers
+    video?: VKVideoVideoFull
+    /**
+     * Views number.
+     */
+    views?: number
+    /**
+     * Information whether story has question sticker and current user can send question to the author
+     */
+    can_ask?: VKBaseBoolInt
+    /**
+     * Information whether story has question sticker and current user can send anonymous question to the author
+     */
+    can_ask_anonymous?: VKBaseBoolInt
+    narratives_count?: number
+    first_narrative_title?: string
+    first_narrative_id?: number
+    can_use_in_narrative?: boolean
+}
+
+/**
+ *
+ */
+export interface VKStoriesStoryLink {
+    /**
+     * Link text
+     */
+    text: string
+    /**
+     * Link URL
+     */
+    url: string
+    /**
+     * How to open url
+     */
+    link_url_target?: string
+}
+
+/**
+ *
+ */
+export interface VKStoriesStoryStats {
+    answer: VKStoriesStoryStatsStat
+    bans: VKStoriesStoryStatsStat
+    open_link: VKStoriesStoryStatsStat
+    replies: VKStoriesStoryStatsStat
+    shares: VKStoriesStoryStatsStat
+    subscribers: VKStoriesStoryStatsStat
+    views: VKStoriesStoryStatsStat
+    likes: VKStoriesStoryStatsStat
+}
+
+/**
+ *
+ */
+export interface VKStoriesStoryStatsStat {
+    /**
+     * Stat value
+     */
+    count?: number
+    state: VKStoriesStoryStatsState
+}
+
+/**
+ * Statistic state
+ */
+export type VKStoriesStoryStatsState = "on" | "off" | "hidden"
+
+/**
+ * Story type.
+ */
+export type VKStoriesStoryType =
+    | "photo"
+    | "video"
+    | "live_active"
+    | "live_finished"
+
+/**
+ *
+ */
+export type VKStoriesUploadLinkText =
+    | "to_store"
+    | "vote"
+    | "more"
+    | "book"
+    | "order"
+    | "enroll"
+    | "fill"
+    | "signup"
+    | "buy"
+    | "ticket"
+    | "write"
+    | "open"
+    | "learn_more"
+    | "view"
+    | "go_to"
+    | "contact"
+    | "watch"
+    | "play"
+    | "install"
+    | "read"
+    | "calendar"
+    | "market_online_booking"
+    | "market_link"
+    | "message_to_bc"
+
+/**
+ *
+ */
+export interface VKStoriesUploadResult {
+    upload_result?: string
+}
+
+/**
+ *
+ */
+export interface VKStoriesViewersItem {
+    /**
+     * user has like for this object
+     */
+    is_liked: boolean
+    /**
+     * user id
+     */
+    user_id: number
+    user?: VKUsersUserFull
+}
+
+export type VKStreamingStatsEventType = "post" | "comment" | "share"
+
+/**
+ *
+ */
+export interface VKStreamingStats {
+    /**
+     * Events type
+     */
+    event_type: VKStreamingStatsEventType
+    /**
+     * Statistics
+     */
+    stats: VKStreamingStatsPoint[]
+}
+
+/**
+ *
+ */
+export interface VKStreamingStatsPoint {
+    timestamp: number
+    value: number
+}
+
+/**
+ *
+ */
+export interface VKUsersCareer {
+    /**
+     * City ID
+     */
+    city_id?: number
+    /**
+     * City name
+     */
+    city_name?: string
+    /**
+     * Company name
+     */
+    company?: string
+    /**
+     * From year
+     */
+    from?: number
+    /**
+     * Community ID
+     */
+    group_id?: number
+    /**
+     * Career ID
+     */
+    id?: number
+    /**
+     * Position
+     */
+    position?: string
+    /**
+     * Till year
+     */
+    until?: number
+}
+
+/**
+ *
+ */
+export interface VKUsersExports {
+    facebook?: number
+    livejournal?: number
+    twitter?: number
+}
+
+/**
+ *
+ */
+export type VKUsersFields =
+    | "first_name_nom"
+    | "first_name_gen"
+    | "first_name_dat"
+    | "first_name_acc"
+    | "first_name_ins"
+    | "first_name_abl"
+    | "last_name_nom"
+    | "last_name_gen"
+    | "last_name_dat"
+    | "last_name_acc"
+    | "last_name_ins"
+    | "last_name_abl"
+    | "photo_id"
+    | "verified"
+    | "sex"
+    | "bdate"
+    | "bdate_visibility"
+    | "city"
+    | "home_town"
+    | "has_photo"
+    | "photo"
+    | "photo_rec"
+    | "photo_50"
+    | "photo_100"
+    | "photo_200_orig"
+    | "photo_200"
+    | "photo_400"
+    | "photo_400_orig"
+    | "photo_big"
+    | "photo_medium"
+    | "photo_medium_rec"
+    | "photo_max"
+    | "photo_max_orig"
+    | "photo_max_size"
+    | "third_party_buttons"
+    | "online"
+    | "lists"
+    | "domain"
+    | "has_mobile"
+    | "contacts"
+    | "language"
+    | "site"
+    | "education"
+    | "universities"
+    | "schools"
+    | "status"
+    | "last_seen"
+    | "followers_count"
+    | "counters"
+    | "common_count"
+    | "online_info"
+    | "occupation"
+    | "nickname"
+    | "relatives"
+    | "relation"
+    | "personal"
+    | "connections"
+    | "exports"
+    | "wall_comments"
+    | "wall_default"
+    | "activities"
+    | "activity"
+    | "interests"
+    | "music"
+    | "movies"
+    | "tv"
+    | "books"
+    | "is_no_index"
+    | "no_index"
+    | "games"
+    | "about"
+    | "quotes"
+    | "can_post"
+    | "can_see_all_posts"
+    | "can_see_audio"
+    | "can_see_gifts"
+    | "work"
+    | "places"
+    | "can_write_private_message"
+    | "can_send_friend_request"
+    | "can_upload_doc"
+    | "can_ban"
+    | "is_favorite"
+    | "is_hidden_from_feed"
+    | "timezone"
+    | "screen_name"
+    | "maiden_name"
+    | "crop_photo"
+    | "is_friend"
+    | "is_best_friend"
+    | "friend_status"
+    | "career"
+    | "military"
+    | "blacklisted"
+    | "blacklisted_by_me"
+    | "can_subscribe_posts"
+    | "descriptions"
+    | "trending"
+    | "mutual"
+    | "friendship_weeks"
+    | "can_invite_to_chats"
+    | "stories_archive_count"
+    | "has_unseen_stories"
+    | "video_live"
+    | "video_live_level"
+    | "video_live_count"
+    | "clips_count"
+    | "service_description"
+    | "can_see_wishes"
+    | "is_subscribed_podcasts"
+    | "can_subscribe_podcasts"
+    | "animated_avatar"
+    | "owner_state"
+    | "is_verified"
+    | "oauth_linked"
+    | "oauth_verification"
+    | "promotion_allowance"
+
+/**
+ *
+ */
+export interface VKUsersLastSeen {
+    /**
+     * Type of the platform that used for the last authorization
+     */
+    platform?: number
+    /**
+     * Last visit date (in Unix time)
+     */
+    time?: number
+}
+
+/**
+ *
+ */
+export interface VKUsersMilitary {
+    /**
+     * From year
+     */
+    from?: number
+    /**
+     * Military ID
+     */
+    id?: number
+    /**
+     * Unit name
+     */
+    unit: string
+    /**
+     * Unit ID
+     */
+    unit_id: number
+    /**
+     * Till year
+     */
+    until?: number
+}
+
+export type VKUsersOccupationType = "school" | "university" | "work"
+
+/**
+ *
+ */
+export interface VKUsersOccupation {
+    /**
+     * ID of school, university, company group
+     */
+    id?: number
+    /**
+     * Name of occupation
+     */
+    name?: string
+    /**
+     * Type of occupation
+     */
+    type?: VKUsersOccupationType
+    graduate_year?: number
+    city_id?: number
+}
+
+export type VKUsersOnlineInfoStatus =
+    | "recently"
+    | "last_week"
+    | "last_month"
+    | "long_ago"
+    | "not_show"
+
+/**
+ *
+ */
+export interface VKUsersOnlineInfo {
+    /**
+     * Whether you can see real online status of user or not
+     */
+    visible: boolean
+    /**
+     * Last time we saw user being active
+     */
+    last_seen?: number
+    /**
+     * Whether user is currently online or not
+     */
+    is_online?: boolean
+    /**
+     * Application id from which user is currently online or was last seen online
+     */
+    app_id?: number
+    /**
+     * Is user online from desktop app or mobile app
+     */
+    is_mobile?: boolean
+    /**
+     * In case user online is not visible, it indicates approximate timeframe of user online
+     */
+    status?: VKUsersOnlineInfoStatus
+}
+
+/**
+ *
+ */
+export interface VKUsersPersonal {
+    /**
+     * User's views on alcohol
+     */
+    alcohol?: number
+    /**
+     * User's inspired by
+     */
+    inspired_by?: string
+    langs?: string[]
+    /**
+     * User's languages with full info
+     */
+    langs_full?: VKDatabaseLanguageFull[]
+    /**
+     * User's personal priority in life
+     */
+    life_main?: number
+    /**
+     * User's personal priority in people
+     */
+    people_main?: number
+    /**
+     * User's political views
+     */
+    political?: number
+    /**
+     * User's religion
+     */
+    religion?: string
+    /**
+     * User's religion id
+     */
+    religion_id?: number
+    /**
+     * User's views on smoking
+     */
+    smoking?: number
+}
+
+export type VKUsersRelativeType =
+    | "parent"
+    | "child"
+    | "grandparent"
+    | "grandchild"
+    | "sibling"
+
+/**
+ *
+ */
+export interface VKUsersRelative {
+    /**
+     * Date of child birthday (format dd.mm.yyyy)
+     */
+    birth_date?: string
+    /**
+     * Relative ID
+     */
+    id?: number
+    /**
+     * Name of relative
+     */
+    name?: string
+    /**
+     * Relative type
+     */
+    type: VKUsersRelativeType
+}
+
+/**
+ *
+ */
+export interface VKUsersSchool {
+    /**
+     * City ID
+     */
+    city?: number
+    /**
+     * School class letter
+     */
+    class?: string
+    /**
+     * School class id
+     */
+    class_id?: number
+    /**
+     * School ID
+     */
+    id?: string
+    /**
+     * School name
+     */
+    name?: string
+    /**
+     * School type ID
+     */
+    type?: number
+    /**
+     * School type name
+     */
+    type_str?: string
+    /**
+     * Year the user started to study
+     */
+    year_from?: number
+    /**
+     * Graduation year
+     */
+    year_graduated?: number
+    /**
+     * Year the user finished to study
+     */
+    year_to?: number
+    speciality?: string
+}
+
+/**
+ *
+ */
+export type VKUsersSubscriptionsItem = VKUsersUserFull | VKGroupsGroupFull
+
+/**
+ *
+ */
+export interface VKUsersUniversity {
+    /**
+     * Chair ID
+     */
+    chair?: number
+    /**
+     * Chair name
+     */
+    chair_name?: string
+    /**
+     * City ID
+     */
+    city?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * Education form id
+     */
+    education_form_id?: number
+    /**
+     * Education status
+     */
+    education_status?: string
+    /**
+     * Education status id
+     */
+    education_status_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * University ID
+     */
+    id?: number
+    /**
+     * University name
+     */
+    name?: string
+    university_group_id?: number
+}
+
+/**
+ *
+ */
+export interface VKUsersUser {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+}
+
+/**
+ *
+ */
+export interface VKUsersUserConnections {
+    /**
+     * User's Skype nickname
+     */
+    skype: string
+    /**
+     * User's Facebook account
+     */
+    facebook: string
+    /**
+     * User's Facebook name
+     */
+    facebook_name?: string
+    /**
+     * User's Twitter account
+     */
+    twitter: string
+    /**
+     * User's Livejournal account
+     */
+    livejournal?: string
+    /**
+     * User's Instagram account
+     */
+    instagram: string
+}
+
+/**
+ *
+ */
+export interface VKUsersUserCounters {
+    /**
+     * Albums number
+     */
+    albums?: number
+    /**
+     * Badges number
+     */
+    badges?: number
+    /**
+     * Audios number
+     */
+    audios?: number
+    /**
+     * Followers number
+     */
+    followers?: number
+    /**
+     * Friends number
+     */
+    friends?: number
+    /**
+     * Gifts number
+     */
+    gifts?: number
+    /**
+     * Communities number
+     */
+    groups?: number
+    /**
+     * Notes number
+     */
+    notes?: number
+    /**
+     * Online friends number
+     */
+    online_friends?: number
+    /**
+     * Public pages number
+     */
+    pages?: number
+    /**
+     * Photos number
+     */
+    photos?: number
+    /**
+     * Subscriptions number
+     */
+    subscriptions?: number
+    /**
+     * Number of photos with user
+     */
+    user_photos?: number
+    /**
+     * Number of videos with user
+     */
+    user_videos?: number
+    /**
+     * Videos number
+     */
+    videos?: number
+    /**
+     * Playlists number
+     */
+    video_playlists?: number
+    new_photo_tags?: number
+    new_recognition_tags?: number
+    mutual_friends?: number
+    friends_followers?: number
+    posts?: number
+    articles?: number
+    wishes?: number
+    podcasts?: number
+    clips?: number
+    clips_followers?: number
+    /**
+     * Videos followers number
+     */
+    videos_followers?: number
+    clips_views?: number
+    clips_likes?: number
+}
+
+export type VKUsersUserFullWallDefault = "owner" | "all"
+
+/**
+ *
+ */
+export interface VKUsersUserFull {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+    /**
+     * User's first name in nominative case
+     */
+    first_name_nom?: string
+    /**
+     * User's first name in genitive case
+     */
+    first_name_gen?: string
+    /**
+     * User's first name in dative case
+     */
+    first_name_dat?: string
+    /**
+     * User's first name in accusative case
+     */
+    first_name_acc?: string
+    /**
+     * User's first name in instrumental case
+     */
+    first_name_ins?: string
+    /**
+     * User's first name in prepositional case
+     */
+    first_name_abl?: string
+    /**
+     * User's last name in nominative case
+     */
+    last_name_nom?: string
+    /**
+     * User's last name in genitive case
+     */
+    last_name_gen?: string
+    /**
+     * User's last name in dative case
+     */
+    last_name_dat?: string
+    /**
+     * User's last name in accusative case
+     */
+    last_name_acc?: string
+    /**
+     * User's last name in instrumental case
+     */
+    last_name_ins?: string
+    /**
+     * User's last name in prepositional case
+     */
+    last_name_abl?: string
+    /**
+     * User nickname
+     */
+    nickname?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    /**
+     * User contact name
+     */
+    contact_name?: string
+    /**
+     * Domain name of the user's page
+     */
+    domain?: string
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    city?: VKBaseCity
+    /**
+     * User's timezone
+     */
+    timezone?: number
+    owner_state?: VKOwnerState
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the user with maximum width
+     */
+    photo_max?: string
+    /**
+     * URL of user's photo with 200 pixels in width
+     */
+    photo_200_orig?: string
+    /**
+     * URL of user's photo with 400 pixels in width
+     */
+    photo_400_orig?: string
+    /**
+     * URL of user's photo of maximum size
+     */
+    photo_max_orig?: string
+    /**
+     * ID of the user's main photo
+     */
+    photo_id?: string
+    /**
+     * Information whether the user has main photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Information whether the user specified his phone number
+     */
+    has_mobile?: VKBaseBoolInt
+    /**
+     * Information whether the user is a friend of current user
+     */
+    is_friend?: VKBaseBoolInt
+    /**
+     * Information whether the user is a best friend of current user
+     */
+    is_best_friend?: boolean
+    /**
+     * Information whether current user can comment wall posts
+     */
+    wall_comments?: VKBaseBoolInt
+    /**
+     * Information whether current user can post on the user's wall
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can see other users' audio on the wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the user's audio
+     */
+    can_see_audio?: VKBaseBoolInt
+    type?: VKUsersUserType
+    email?: string
+    skype?: string
+    facebook?: string
+    facebook_name?: string
+    twitter?: string
+    livejournal?: string
+    instagram?: string
+    test?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    is_service?: boolean
+    service_description?: string
+    photo_rec?: string | boolean
+    photo_medium?: string | boolean
+    photo_medium_rec?: string | boolean
+    photo?: string
+    photo_big?: string
+    photo_400?: string
+    photo_max_size?: VKPhotosPhoto
+    language?: string
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    wall_default?: VKUsersUserFullWallDefault
+    /**
+     * Information whether current user can call
+     */
+    can_call?: boolean
+    /**
+     * Information whether group can call user
+     */
+    can_call_from_group?: boolean
+    /**
+     * Information whether user/group can invite user as voicerooms speakr
+     */
+    can_invite_as_voicerooms_speaker?: boolean
+    /**
+     * Information whether current user can see the user's wishes
+     */
+    can_see_wishes?: boolean
+    /**
+     * Information whether current user can see the user's gifts
+     */
+    can_see_gifts?: VKBaseBoolInt
+    interests?: string
+    books?: string
+    tv?: string
+    quotes?: string
+    about?: string
+    games?: string
+    movies?: string
+    activities?: string
+    music?: string
+    /**
+     * Information whether current user can write private message
+     */
+    can_write_private_message?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a friend request
+     */
+    can_send_friend_request?: VKBaseBoolInt
+    /**
+     * Information whether current user can be invited to the community
+     */
+    can_be_invited_group?: boolean
+    /**
+     * User's mobile phone number
+     */
+    mobile_phone?: string
+    /**
+     * User's additional phone number
+     */
+    home_phone?: string
+    /**
+     * User's website
+     */
+    site?: string
+    status_audio?: VKAudioAudio
+    /**
+     * User's status
+     */
+    status?: string
+    /**
+     * User's status
+     */
+    activity?: string
+    status_app?: VKAppsAppMin
+    last_seen?: VKUsersLastSeen
+    exports?: VKUsersExports
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Number of user's followers and friends
+     */
+    followers_count?: number
+    /**
+     * User level in live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of user's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of user's clips
+     */
+    clips_count?: number
+    /**
+     * Information whether current user is in the requested user's blacklist.
+     */
+    blacklisted?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in current user's blacklist
+     */
+    blacklisted_by_me?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in faves of current user
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Number of common friends with current user
+     */
+    common_count?: number
+    occupation?: VKUsersOccupation
+    career?: VKUsersCareer[]
+    military?: VKUsersMilitary[]
+    /**
+     * University ID
+     */
+    university?: number
+    /**
+     * University name
+     */
+    university_name?: string
+    university_group_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * User's education status
+     */
+    education_status?: string
+    /**
+     * User hometown
+     */
+    home_town?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    personal?: VKUsersPersonal
+    universities?: VKUsersUniversity[]
+    schools?: VKUsersSchool[]
+    relatives?: VKUsersRelative[]
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    counters?: VKUsersUserCounters
+    access_key?: string
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether the user can be baned (added to black list) by me
+     */
+    can_ban?: boolean
+    hash?: string
+    /**
+     * Access to user profile is restricted for search engines
+     */
+    is_no_index?: boolean
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    is_message_request?: boolean
+    descriptions?: string[]
+    lists?: number[]
+}
+
+/**
+ *
+ */
+export interface VKUsersUserMin {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+}
+
+/**
+ *
+ *
+ * - `0` — not specified
+ * - `1` — single
+ * - `2` — in a relationship
+ * - `3` — engaged
+ * - `4` — married
+ * - `5` — complicated
+ * - `6` — actively searching
+ * - `7` — in love
+ * - `8` — in a civil union
+ */
+export type VKUsersUserRelation = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+
+/**
+ *
+ */
+export interface VKUsersUserSettingsXtr {
+    connections?: VKUsersUserConnections
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    /**
+     * Information whether user's birthdate are hidden
+     */
+    bdate_visibility?: number
+    city?: VKBaseCity
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * User's hometown
+     */
+    home_town: string
+    /**
+     * User last name
+     */
+    last_name?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    name_request?: VKAccountNameRequest
+    personal?: VKUsersPersonal
+    /**
+     * User phone number with some hidden digits
+     */
+    phone?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    /**
+     * Information whether relation status is pending
+     */
+    relation_pending?: VKBaseBoolInt
+    relation_requests?: VKUsersUserMin[]
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * User status
+     */
+    status: string
+    status_audio?: VKAudioAudio
+    interests?: VKAccountUserSettingsInterests
+    languages?: string[]
+}
+
+/**
+ * Object type
+ */
+export type VKUsersUserType = "profile"
+
+export type VKUsersUserXtrTypeWallDefault = "owner" | "all"
+
+/**
+ *
+ */
+export interface VKUsersUserXtrType {
+    /**
+     * Returns if a profile is deleted or blocked
+     */
+    deactivated?: string
+    /**
+     * User first name
+     */
+    first_name?: string
+    /**
+     * Returns if a profile is hidden.
+     */
+    hidden?: number
+    /**
+     * User ID
+     */
+    id: number
+    /**
+     * User last name
+     */
+    last_name?: string
+    can_access_closed?: boolean
+    is_closed?: boolean
+    /**
+     * User sex
+     */
+    sex?: VKBaseSex
+    /**
+     * Domain name of the user's page
+     */
+    screen_name?: string
+    /**
+     * URL of square photo of the user with 50 pixels in width
+     */
+    photo_50?: string
+    /**
+     * URL of square photo of the user with 100 pixels in width
+     */
+    photo_100?: string
+    online_info?: VKUsersOnlineInfo
+    /**
+     * Information whether the user is online
+     */
+    online?: VKBaseBoolInt
+    /**
+     * Information whether the user is online in mobile site or application
+     */
+    online_mobile?: VKBaseBoolInt
+    /**
+     * Application ID
+     */
+    online_app?: number
+    /**
+     * Information whether the user is verified
+     */
+    verified?: VKBaseBoolInt
+    /**
+     * Information whether the user has a "fire" pictogram.
+     */
+    trending?: VKBaseBoolInt
+    friend_status?: VKFriendsFriendStatusStatus
+    mutual?: VKFriendsRequestsMutual
+    /**
+     * User's first name in nominative case
+     */
+    first_name_nom?: string
+    /**
+     * User's first name in genitive case
+     */
+    first_name_gen?: string
+    /**
+     * User's first name in dative case
+     */
+    first_name_dat?: string
+    /**
+     * User's first name in accusative case
+     */
+    first_name_acc?: string
+    /**
+     * User's first name in instrumental case
+     */
+    first_name_ins?: string
+    /**
+     * User's first name in prepositional case
+     */
+    first_name_abl?: string
+    /**
+     * User's last name in nominative case
+     */
+    last_name_nom?: string
+    /**
+     * User's last name in genitive case
+     */
+    last_name_gen?: string
+    /**
+     * User's last name in dative case
+     */
+    last_name_dat?: string
+    /**
+     * User's last name in accusative case
+     */
+    last_name_acc?: string
+    /**
+     * User's last name in instrumental case
+     */
+    last_name_ins?: string
+    /**
+     * User's last name in prepositional case
+     */
+    last_name_abl?: string
+    /**
+     * User nickname
+     */
+    nickname?: string
+    /**
+     * User maiden name
+     */
+    maiden_name?: string
+    /**
+     * User contact name
+     */
+    contact_name?: string
+    /**
+     * Domain name of the user's page
+     */
+    domain?: string
+    /**
+     * User's date of birth
+     */
+    bdate?: string
+    city?: VKBaseCity
+    /**
+     * User's timezone
+     */
+    timezone?: number
+    owner_state?: VKOwnerState
+    /**
+     * URL of square photo of the user with 200 pixels in width
+     */
+    photo_200?: string
+    /**
+     * URL of square photo of the user with maximum width
+     */
+    photo_max?: string
+    /**
+     * URL of user's photo with 200 pixels in width
+     */
+    photo_200_orig?: string
+    /**
+     * URL of user's photo with 400 pixels in width
+     */
+    photo_400_orig?: string
+    /**
+     * URL of user's photo of maximum size
+     */
+    photo_max_orig?: string
+    /**
+     * ID of the user's main photo
+     */
+    photo_id?: string
+    /**
+     * Information whether the user has main photo
+     */
+    has_photo?: VKBaseBoolInt
+    /**
+     * Information whether the user specified his phone number
+     */
+    has_mobile?: VKBaseBoolInt
+    /**
+     * Information whether the user is a friend of current user
+     */
+    is_friend?: VKBaseBoolInt
+    /**
+     * Information whether the user is a best friend of current user
+     */
+    is_best_friend?: boolean
+    /**
+     * Information whether current user can comment wall posts
+     */
+    wall_comments?: VKBaseBoolInt
+    /**
+     * Information whether current user can post on the user's wall
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can see other users' audio on the wall
+     */
+    can_see_all_posts?: VKBaseBoolInt
+    /**
+     * Information whether current user can see the user's audio
+     */
+    can_see_audio?: VKBaseBoolInt
+    type?: VKUsersUserType
+    email?: string
+    skype?: string
+    facebook?: string
+    facebook_name?: string
+    twitter?: string
+    livejournal?: string
+    instagram?: string
+    test?: VKBaseBoolInt
+    video_live?: VKVideoLiveInfo
+    is_video_live_notifications_blocked?: VKBaseBoolInt
+    is_service?: boolean
+    service_description?: string
+    photo_rec?: string | boolean
+    photo_medium?: string | boolean
+    photo_medium_rec?: string | boolean
+    photo?: string
+    photo_big?: string
+    photo_400?: string
+    photo_max_size?: VKPhotosPhoto
+    language?: string
+    stories_archive_count?: number
+    has_unseen_stories?: boolean
+    wall_default?: VKUsersUserXtrTypeWallDefault
+    /**
+     * Information whether current user can call
+     */
+    can_call?: boolean
+    /**
+     * Information whether group can call user
+     */
+    can_call_from_group?: boolean
+    /**
+     * Information whether user/group can invite user as voicerooms speakr
+     */
+    can_invite_as_voicerooms_speaker?: boolean
+    /**
+     * Information whether current user can see the user's wishes
+     */
+    can_see_wishes?: boolean
+    /**
+     * Information whether current user can see the user's gifts
+     */
+    can_see_gifts?: VKBaseBoolInt
+    interests?: string
+    books?: string
+    tv?: string
+    quotes?: string
+    about?: string
+    games?: string
+    movies?: string
+    activities?: string
+    music?: string
+    /**
+     * Information whether current user can write private message
+     */
+    can_write_private_message?: VKBaseBoolInt
+    /**
+     * Information whether current user can send a friend request
+     */
+    can_send_friend_request?: VKBaseBoolInt
+    /**
+     * Information whether current user can be invited to the community
+     */
+    can_be_invited_group?: boolean
+    /**
+     * User's mobile phone number
+     */
+    mobile_phone?: string
+    /**
+     * User's additional phone number
+     */
+    home_phone?: string
+    /**
+     * User's website
+     */
+    site?: string
+    status_audio?: VKAudioAudio
+    /**
+     * User's status
+     */
+    status?: string
+    /**
+     * User's status
+     */
+    activity?: string
+    status_app?: VKAppsAppMin
+    last_seen?: VKUsersLastSeen
+    exports?: VKUsersExports
+    crop_photo?: VKBaseCropPhoto
+    /**
+     * Number of user's followers and friends
+     */
+    followers_count?: number
+    /**
+     * User level in live streams achievements
+     */
+    video_live_level?: number
+    /**
+     * Number of user's live streams
+     */
+    video_live_count?: number
+    /**
+     * Number of user's clips
+     */
+    clips_count?: number
+    /**
+     * Information whether current user is in the requested user's blacklist.
+     */
+    blacklisted?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in current user's blacklist
+     */
+    blacklisted_by_me?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is in faves of current user
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Information whether the requested user is hidden from current user's newsfeed
+     */
+    is_hidden_from_feed?: VKBaseBoolInt
+    /**
+     * Number of common friends with current user
+     */
+    common_count?: number
+    occupation?: VKUsersOccupation
+    career?: VKUsersCareer[]
+    military?: VKUsersMilitary[]
+    /**
+     * University ID
+     */
+    university?: number
+    /**
+     * University name
+     */
+    university_name?: string
+    university_group_id?: number
+    /**
+     * Faculty ID
+     */
+    faculty?: number
+    /**
+     * Faculty name
+     */
+    faculty_name?: string
+    /**
+     * Graduation year
+     */
+    graduation?: number
+    /**
+     * Education form
+     */
+    education_form?: string
+    /**
+     * User's education status
+     */
+    education_status?: string
+    /**
+     * User hometown
+     */
+    home_town?: string
+    /**
+     * User relationship status
+     */
+    relation?: VKUsersUserRelation
+    relation_partner?: VKUsersUserMin
+    personal?: VKUsersPersonal
+    universities?: VKUsersUniversity[]
+    schools?: VKUsersSchool[]
+    relatives?: VKUsersRelative[]
+    /**
+     * Information whether current user is subscribed to podcasts
+     */
+    is_subscribed_podcasts?: boolean
+    /**
+     * Owner in whitelist or not
+     */
+    can_subscribe_podcasts?: boolean
+    /**
+     * Can subscribe to wall
+     */
+    can_subscribe_posts?: boolean
+    counters?: VKUsersUserCounters
+    access_key?: string
+    can_upload_doc?: VKBaseBoolInt
+    /**
+     * Information whether the user can be baned (added to black list) by me
+     */
+    can_ban?: boolean
+    hash?: string
+    /**
+     * Access to user profile is restricted for search engines
+     */
+    is_no_index?: boolean
+    /**
+     * Contact person ID
+     */
+    contact_id?: number
+    is_message_request?: boolean
+    descriptions?: string[]
+    lists?: number[]
+}
+
+/**
+ *
+ */
+export interface VKUsersUsersArray {
+    /**
+     * Users number
+     */
+    count: number
+    items: number[]
+}
+
+/**
+ *
+ */
+export interface VKUtilsDomainResolved {
+    /**
+     * Object ID
+     */
+    object_id?: number
+    /**
+     * Group ID
+     */
+    group_id?: number
+    type?: VKUtilsDomainResolvedType
+}
+
+/**
+ * Object type
+ */
+export type VKUtilsDomainResolvedType =
+    | "user"
+    | "group"
+    | "application"
+    | "event"
+    | "page"
+    | "vk_app"
+    | "community_application"
+
+/**
+ *
+ */
+export interface VKUtilsLastShortenedLink {
+    /**
+     * Access key for private stats
+     */
+    access_key?: string
+    /**
+     * Link key (characters after vk.cc/)
+     */
+    key?: string
+    /**
+     * Short link URL
+     */
+    short_url?: string
+    /**
+     * Creation time in Unixtime
+     */
+    timestamp?: number
+    /**
+     * Full URL
+     */
+    url?: string
+    /**
+     * Total views number
+     */
+    views?: number
+}
+
+/**
+ *
+ */
+export interface VKUtilsLinkChecked {
+    /**
+     * Link URL
+     */
+    link?: string
+    status?: VKUtilsLinkCheckedStatus
+}
+
+/**
+ * Link status
+ */
+export type VKUtilsLinkCheckedStatus = "not_banned" | "banned" | "processing"
+
+/**
+ *
+ */
+export interface VKUtilsLinkStats {
+    /**
+     * Link key (characters after vk.cc/)
+     */
+    key?: string
+    stats?: VKUtilsStats[]
+}
+
+/**
+ *
+ */
+export interface VKUtilsLinkStatsExtended {
+    /**
+     * Link key (characters after vk.cc/)
+     */
+    key?: string
+    stats?: VKUtilsStatsExtended[]
+}
+
+/**
+ *
+ */
+export interface VKUtilsShortLink {
+    /**
+     * Access key for private stats
+     */
+    access_key?: string
+    /**
+     * Link key (characters after vk.cc/)
+     */
+    key?: string
+    /**
+     * Short link URL
+     */
+    short_url?: string
+    /**
+     * Full URL
+     */
+    url?: string
+}
+
+/**
+ *
+ */
+export interface VKUtilsStats {
+    /**
+     * Start time
+     */
+    timestamp?: number
+    /**
+     * Total views number
+     */
+    views?: number
+}
+
+/**
+ *
+ */
+export interface VKUtilsStatsCity {
+    /**
+     * City ID
+     */
+    city_id?: number
+    /**
+     * Views number
+     */
+    views?: number
+}
+
+/**
+ *
+ */
+export interface VKUtilsStatsCountry {
+    /**
+     * Country ID
+     */
+    country_id?: number
+    /**
+     * Views number
+     */
+    views?: number
+}
+
+/**
+ *
+ */
+export interface VKUtilsStatsExtended {
+    cities?: VKUtilsStatsCity[]
+    countries?: VKUtilsStatsCountry[]
+    sex_age?: VKUtilsStatsSexAge[]
+    /**
+     * Start time
+     */
+    timestamp?: number
+    /**
+     * Total views number
+     */
+    views?: number
+}
+
+/**
+ *
+ */
+export interface VKUtilsStatsSexAge {
+    /**
+     * Age denotation
+     */
+    age_range?: string
+    /**
+     *  Views by female users
+     */
+    female?: number
+    /**
+     *  Views by male users
+     */
+    male?: number
+}
+
+/**
+ *
+ */
+export interface VKVideoEpisode {
+    /**
+     * Seconds from start of the video
+     */
+    time?: number
+    /**
+     * Description of episode
+     */
+    text?: string
+}
+
+/**
+ *
+ */
+export interface VKVideoLiveCategory {
+    id: number
+    label: string
+    sublist?: VKVideoLiveCategory[]
+}
+
+/**
+ *
+ */
+export interface VKVideoLiveInfo {
+    enabled: VKBaseBoolInt
+    is_notifications_blocked?: VKBaseBoolInt
+}
+
+/**
+ * Video live settings
+ */
+export interface VKVideoLiveSettings {
+    /**
+     * If user car rewind live or not
+     */
+    can_rewind?: VKBaseBoolInt
+    /**
+     * If live is endless or not
+     */
+    is_endless?: VKBaseBoolInt
+    /**
+     * Max possible time for rewind
+     */
+    max_duration?: number
+    /**
+     * If live in clips apps
+     */
+    is_clips_live?: VKBaseBoolInt
+}
+
+/**
+ *
+ *
+ * - `all` — all
+ * - `friends` — friends
+ * - `friends_of_friends` — friends of friends
+ * - `friends_of_friends_only` — friends of friends only
+ * - `only_me` — only me
+ */
+export type VKVideoPlaylistPrivacyCategory =
+    | "all"
+    | "friends"
+    | "friends_of_friends"
+    | "friends_of_friends_only"
+    | "only_me"
+
+/**
+ *
+ */
+export interface VKVideoSaveResult {
+    /**
+     * Video access key
+     */
+    access_key?: string
+    /**
+     * Video description
+     */
+    description?: string
+    /**
+     * Video owner ID
+     */
+    owner_id?: number
+    /**
+     * Video title
+     */
+    title?: string
+    /**
+     * URL for the video uploading
+     */
+    upload_url?: string
+    /**
+     * Video ID
+     */
+    video_id?: number
+}
+
+/**
+ *
+ */
+export interface VKVideoStreamInputParams {
+    url?: string
+    key?: string
+    okmp_url?: string
+    webrtc_url?: string
+}
+
+export type VKVideoVideoResponseType = "min" | "full"
+export type VKVideoVideoType =
+    | "interactive"
+    | "video"
+    | "music_video"
+    | "movie"
+    | "live"
+    | "short_video"
+    | "story"
+    | "video_message"
+
+/**
+ *
+ */
+export interface VKVideoVideo {
+    response_type?: VKVideoVideoResponseType
+    /**
+     * Video access key
+     */
+    access_key?: string
+    /**
+     * Date when the video has been added in Unixtime
+     */
+    adding_date?: number
+    /**
+     * Information whether current user can comment the video
+     */
+    can_comment?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the video
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Information whether current user can delete the video
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Information whether current user can like the video
+     */
+    can_like?: VKBaseBoolInt
+    /**
+     * Information whether current user can repost the video
+     */
+    can_repost?: number
+    /**
+     * Information whether current user can subscribe to author of the video
+     */
+    can_subscribe?: VKBaseBoolInt
+    /**
+     * Information whether current user can promote the video
+     */
+    can_be_promoted?: VKBaseBoolInt
+    /**
+     * Information whether current user can add the video to favourites
+     */
+    can_add_to_faves?: VKBaseBoolInt
+    /**
+     * Information whether current user can add the video
+     */
+    can_add?: VKBaseBoolInt
+    /**
+     * Information whether current user can attach action button to the video
+     */
+    can_attach_link?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the video privacy
+     */
+    can_edit_privacy?: VKBaseBoolInt
+    /**
+     * 1 if video is private
+     */
+    is_private?: VKBaseBoolInt
+    /**
+     * Number of comments
+     */
+    comments?: number
+    /**
+     * Date when video has been uploaded in Unixtime
+     */
+    date?: number
+    /**
+     * Video description
+     */
+    description?: string
+    /**
+     * Video duration in seconds
+     */
+    duration?: number
+    image?: VKVideoVideoImage[]
+    first_frame?: VKVideoVideoImage[]
+    /**
+     * Video width
+     */
+    width?: number
+    /**
+     * Video height
+     */
+    height?: number
+    /**
+     * Video ID
+     */
+    id?: number
+    /**
+     * Video owner ID
+     */
+    owner_id?: number
+    /**
+     * Id of the user who uploaded the video if it was uploaded to a group by member
+     */
+    user_id?: number
+    /**
+     * Video title
+     */
+    title?: string
+    /**
+     * Whether video is added to bookmarks
+     */
+    is_favorite?: boolean
+    /**
+     * Video embed URL
+     */
+    player?: string
+    /**
+     * Returns if the video is processing
+     */
+    processing?: VKBasePropertyExists
+    /**
+     * 1 if  video is being converted
+     */
+    converting?: VKBaseBoolInt
+    /**
+     * 1 if video is added to user's albums
+     */
+    added?: VKBaseBoolInt
+    /**
+     * 1 if user is subscribed to author of the video
+     */
+    is_subscribed?: VKBaseBoolInt
+    track_code?: string
+    /**
+     * Information whether the video is repeated
+     */
+    repeat?: VKBasePropertyExists
+    type?: VKVideoVideoType
+    /**
+     * Number of views
+     */
+    views?: number
+    /**
+     * If video is external, number of views on vk
+     */
+    local_views?: number
+    /**
+     * Restriction code
+     */
+    content_restricted?: number
+    /**
+     * Restriction text
+     */
+    content_restricted_message?: string
+    /**
+     * Live donations balance
+     */
+    balance?: number
+    /**
+     * 1 if the video is a live stream
+     */
+    live?: VKBasePropertyExists
+    /**
+     * 1 if the video is an upcoming stream
+     */
+    upcoming?: VKBasePropertyExists
+    /**
+     * Date in Unixtime when the live stream is scheduled to start by the author
+     */
+    live_start_time?: number
+    /**
+     * Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)
+     */
+    live_notify?: VKBaseBoolInt
+    /**
+     * Number of spectators of the stream
+     */
+    spectators?: number
+    /**
+     * External platform
+     */
+    platform?: string
+    likes?: VKBaseLikes
+    reposts?: VKBaseRepostsInfo
+}
+
+export type VKVideoVideoAlbumResponseType = "min" | "full"
+
+/**
+ *
+ */
+export interface VKVideoVideoAlbum {
+    /**
+     * Album ID
+     */
+    id: number
+    /**
+     * Album owner's ID
+     */
+    owner_id: number
+    /**
+     * Album title
+     */
+    title: string
+    /**
+     * Album trackcode
+     */
+    track_code?: string
+    response_type?: VKVideoVideoAlbumResponseType
+}
+
+export type VKVideoVideoAlbumFullResponseType = "min" | "full"
+
+/**
+ *
+ */
+export interface VKVideoVideoAlbumFull {
+    /**
+     * Album ID
+     */
+    id: number
+    /**
+     * Album owner's ID
+     */
+    owner_id: number
+    /**
+     * Album title
+     */
+    title: string
+    /**
+     * Album trackcode
+     */
+    track_code?: string
+    response_type?: VKVideoVideoAlbumFullResponseType
+    /**
+     * Total number of videos in album
+     */
+    count: number
+    /**
+     * Album cover image in different sizes
+     */
+    image?: VKVideoVideoImage[]
+    /**
+     * Need blur album thumb or not
+     */
+    image_blur?: VKBasePropertyExists
+    /**
+     * Information whether album is system
+     */
+    is_system?: VKBasePropertyExists
+    /**
+     * Date when the album has been updated last time in Unixtime
+     */
+    updated_time: number
+    /**
+     * Is user can edit playlist
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Is user can delete playlist
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Is user can upload video to playlist
+     */
+    can_upload?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKVideoVideoFiles {
+    /**
+     * URL of the external player
+     */
+    external?: string
+    /**
+     * URL of the mpeg4 file with 144p quality
+     */
+    mp4_144?: string
+    /**
+     * URL of the mpeg4 file with 240p quality
+     */
+    mp4_240?: string
+    /**
+     * URL of the mpeg4 file with 360p quality
+     */
+    mp4_360?: string
+    /**
+     * URL of the mpeg4 file with 480p quality
+     */
+    mp4_480?: string
+    /**
+     * URL of the mpeg4 file with 720p quality
+     */
+    mp4_720?: string
+    /**
+     * URL of the mpeg4 file with 1080p quality
+     */
+    mp4_1080?: string
+    /**
+     * URL of the mpeg4 file with 2K quality
+     */
+    mp4_1440?: string
+    /**
+     * URL of the mpeg4 file with 4K quality
+     */
+    mp4_2160?: string
+    /**
+     * URL of the flv file with 320p quality
+     */
+    flv_320?: string
+}
+
+export type VKVideoVideoFullResponseType = "min" | "full"
+export type VKVideoVideoFullType =
+    | "interactive"
+    | "video"
+    | "music_video"
+    | "movie"
+    | "live"
+    | "short_video"
+    | "story"
+    | "video_message"
+
+/**
+ *
+ */
+export interface VKVideoVideoFull {
+    response_type?: VKVideoVideoFullResponseType
+    /**
+     * Video access key
+     */
+    access_key?: string
+    /**
+     * Date when the video has been added in Unixtime
+     */
+    adding_date?: number
+    /**
+     * Information whether current user can comment the video
+     */
+    can_comment?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the video
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Information whether current user can delete the video
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Information whether current user can like the video
+     */
+    can_like?: VKBaseBoolInt
+    /**
+     * Information whether current user can repost the video
+     */
+    can_repost?: number
+    /**
+     * Information whether current user can subscribe to author of the video
+     */
+    can_subscribe?: VKBaseBoolInt
+    /**
+     * Information whether current user can promote the video
+     */
+    can_be_promoted?: VKBaseBoolInt
+    /**
+     * Information whether current user can add the video to favourites
+     */
+    can_add_to_faves?: VKBaseBoolInt
+    /**
+     * Information whether current user can add the video
+     */
+    can_add?: VKBaseBoolInt
+    /**
+     * Information whether current user can attach action button to the video
+     */
+    can_attach_link?: VKBaseBoolInt
+    /**
+     * Information whether current user can edit the video privacy
+     */
+    can_edit_privacy?: VKBaseBoolInt
+    /**
+     * 1 if video is private
+     */
+    is_private?: VKBaseBoolInt
+    /**
+     * Number of comments
+     */
+    comments?: number
+    /**
+     * Date when video has been uploaded in Unixtime
+     */
+    date?: number
+    /**
+     * Video description
+     */
+    description?: string
+    /**
+     * Video duration in seconds
+     */
+    duration?: number
+    image?: VKVideoVideoImage[]
+    first_frame?: VKVideoVideoImage[]
+    /**
+     * Video width
+     */
+    width?: number
+    /**
+     * Video height
+     */
+    height?: number
+    /**
+     * Video ID
+     */
+    id?: number
+    /**
+     * Video owner ID
+     */
+    owner_id?: number
+    /**
+     * Id of the user who uploaded the video if it was uploaded to a group by member
+     */
+    user_id?: number
+    /**
+     * Video title
+     */
+    title?: string
+    /**
+     * Whether video is added to bookmarks
+     */
+    is_favorite?: boolean
+    /**
+     * Video embed URL
+     */
+    player?: string
+    /**
+     * Returns if the video is processing
+     */
+    processing?: VKBasePropertyExists
+    /**
+     * 1 if  video is being converted
+     */
+    converting?: VKBaseBoolInt
+    /**
+     * 1 if video is added to user's albums
+     */
+    added?: VKBaseBoolInt
+    /**
+     * 1 if user is subscribed to author of the video
+     */
+    is_subscribed?: VKBaseBoolInt
+    track_code?: string
+    /**
+     * Information whether the video is repeated
+     */
+    repeat?: VKBasePropertyExists
+    type?: VKVideoVideoFullType
+    /**
+     * Number of views
+     */
+    views?: number
+    /**
+     * If video is external, number of views on vk
+     */
+    local_views?: number
+    /**
+     * Restriction code
+     */
+    content_restricted?: number
+    /**
+     * Restriction text
+     */
+    content_restricted_message?: string
+    /**
+     * Live donations balance
+     */
+    balance?: number
+    /**
+     * 1 if the video is a live stream
+     */
+    live?: VKBasePropertyExists
+    /**
+     * 1 if the video is an upcoming stream
+     */
+    upcoming?: VKBasePropertyExists
+    /**
+     * Date in Unixtime when the live stream is scheduled to start by the author
+     */
+    live_start_time?: number
+    /**
+     * Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)
+     */
+    live_notify?: VKBaseBoolInt
+    /**
+     * Number of spectators of the stream
+     */
+    spectators?: number
+    /**
+     * External platform
+     */
+    platform?: string
+    likes?: VKBaseLikes
+    reposts?: VKBaseRepostsInfo
+    files?: VKVideoVideoFiles
+    trailer?: VKVideoVideoFiles
+    /**
+     * List of video episodes with timecodes
+     */
+    episodes?: VKVideoEpisode[]
+    /**
+     * Settings for live stream
+     */
+    live_settings?: VKVideoLiveSettings
+}
+
+export type VKVideoVideoImageTheme = "light" | "dark"
+
+/**
+ *
+ */
+export interface VKVideoVideoImage {
+    id?: string
+    /**
+     * Image url
+     */
+    url: string
+    /**
+     * Image width
+     */
+    width: number
+    /**
+     * Image height
+     */
+    height: number
+    theme?: VKVideoVideoImageTheme
+    with_padding?: VKBasePropertyExists
+    size?: string
+}
+
+/**
+ *
+ */
+export interface VKWallAppPost {
+    /**
+     * Application ID
+     */
+    id?: number
+    /**
+     * Application name
+     */
+    name?: string
+    /**
+     * URL of the preview image with 130 px in width
+     */
+    photo_130?: string
+    /**
+     * URL of the preview image with 604 px in width
+     */
+    photo_604?: string
+}
+
+/**
+ *
+ */
+export interface VKWallAttachedNote {
+    /**
+     * Comments number
+     */
+    comments: number
+    /**
+     * Date when the note has been created in Unixtime
+     */
+    date: number
+    /**
+     * Note ID
+     */
+    id: number
+    /**
+     * Note owner's ID
+     */
+    owner_id: number
+    /**
+     * Read comments number
+     */
+    read_comments: number
+    /**
+     * Note title
+     */
+    title: string
+    /**
+     * Note text
+     */
+    text?: string
+    privacy_view?: string[]
+    privacy_comment?: string[]
+    can_comment?: number
+    /**
+     * Note wiki text
+     */
+    text_wiki?: string
+    /**
+     * URL of the page with note preview
+     */
+    view_url: string
+}
+
+/**
+ *
+ */
+export interface VKWallCarouselBase {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+}
+
+/**
+ *
+ */
+export interface VKWallCommentAttachment {
+    audio?: VKAudioAudio
+    doc?: VKDocsDoc
+    link?: VKBaseLink
+    market?: VKMarketMarketItem
+    market_market_album?: VKMarketMarketAlbum
+    note?: VKWallAttachedNote
+    page?: VKPagesWikipageFull
+    photo?: VKPhotosPhoto
+    sticker?: VKBaseSticker
+    type: VKWallCommentAttachmentType
+    video?: VKVideoVideo
+    graffiti?: VKWallGraffiti
+}
+
+/**
+ * Attachment type
+ */
+export type VKWallCommentAttachmentType =
+    | "photo"
+    | "audio"
+    | "audio_playlist"
+    | "video"
+    | "doc"
+    | "link"
+    | "note"
+    | "page"
+    | "market_market_album"
+    | "market"
+    | "sticker"
+    | "graffiti"
+
+export type VKWallGeoType = "place" | "point"
+
+/**
+ *
+ */
+export interface VKWallGeo {
+    /**
+     * Coordinates as string. <latitude> <longtitude>
+     */
+    coordinates?: string
+    /**
+     * Information whether a map is showed
+     */
+    showmap?: number
+    /**
+     * Place type
+     */
+    type?: VKWallGeoType
+}
+
+/**
+ * Filter to apply: 'owner' - posts by the wall owner, 'others' - posts by someone else, 'all' - posts by the wall owner and others (default), 'postponed' - timed posts (only available for calls with an 'access_token'), 'suggests' - suggested posts on a community wall
+ */
+export type VKWallGetFilter =
+    | "owner"
+    | "others"
+    | "all"
+    | "postponed"
+    | "suggests"
+    | "archived"
+    | "donut"
+
+/**
+ *
+ */
+export interface VKWallGraffiti {
+    /**
+     * Graffiti ID
+     */
+    id?: number
+    /**
+     * Graffiti owner's ID
+     */
+    owner_id?: number
+    /**
+     * URL of the preview image with 200 px in width
+     */
+    photo_200?: string
+    /**
+     * URL of the preview image with 586 px in width
+     */
+    photo_586?: string
+    /**
+     * Graffiti height
+     */
+    height?: number
+    /**
+     * Graffiti URL
+     */
+    url?: string
+    /**
+     * Graffiti width
+     */
+    width?: number
+    /**
+     * Access key for graffiti
+     */
+    access_key?: string
+}
+
+/**
+ *
+ */
+export interface VKWallPostCopyright {
+    id?: number
+    link: string
+    name: string
+    type: string
+}
+
+/**
+ *
+ */
+export interface VKWallPostSource {
+    /**
+     * Additional data
+     */
+    data?: string
+    /**
+     * Platform name
+     */
+    platform?: string
+    type?: VKWallPostSourceType
+    /**
+     * URL to an external site used to publish the post
+     */
+    url?: string
+    link?: VKBaseLink
+}
+
+/**
+ * Type of post source
+ */
+export type VKWallPostSourceType =
+    | "vk"
+    | "widget"
+    | "api"
+    | "rss"
+    | "sms"
+    | "mvk"
+
+/**
+ * Post type
+ */
+export type VKWallPostType =
+    | "post"
+    | "copy"
+    | "reply"
+    | "postpone"
+    | "suggest"
+    | "post_ads"
+    | "photo"
+    | "video"
+    | "clip"
+
+/**
+ *
+ */
+export interface VKWallPostedPhoto {
+    /**
+     * Photo ID
+     */
+    id?: number
+    /**
+     * Photo owner's ID
+     */
+    owner_id?: number
+    /**
+     * URL of the preview image with 130 px in width
+     */
+    photo_130?: string
+    /**
+     * URL of the preview image with 604 px in width
+     */
+    photo_604?: string
+}
+
+/**
+ *
+ */
+export interface VKWallViews {
+    /**
+     * Count
+     */
+    count?: number
+}
+
+/**
+ *
+ */
+export interface VKWallWallComment {
+    /**
+     * Comment ID
+     */
+    id: number
+    /**
+     * Author ID
+     */
+    from_id: number
+    can_edit?: VKBaseBoolInt
+    post_id?: number
+    owner_id?: number
+    parents_stack?: number[]
+    photo_id?: number
+    video_id?: number
+    /**
+     * Date when the comment has been added in Unixtime
+     */
+    date: number
+    /**
+     * Comment text
+     */
+    text: string
+    attachments?: VKWallWallpostAttachment[]
+    donut?: VKWallWallCommentDonut
+    likes?: VKBaseLikesInfo
+    /**
+     * Real position of the comment
+     */
+    real_offset?: number
+    /**
+     * Replied user ID
+     */
+    reply_to_user?: number
+    /**
+     * Replied comment ID
+     */
+    reply_to_comment?: number
+    thread?: VKCommentThread
+    /**
+     * Whether post is by author of the post or not
+     */
+    is_from_post_author?: boolean
+    deleted?: boolean
+    /**
+     * Photo ID
+     */
+    pid?: number
+}
+
+/**
+ *
+ */
+export interface VKWallWallCommentDonut {
+    /**
+     * Means commentator is donator
+     */
+    is_don?: boolean
+    placeholder?: VKWallWallCommentDonutPlaceholder
+}
+
+/**
+ *
+ */
+export interface VKWallWallCommentDonutPlaceholder {
+    text: string
+}
+
+/**
+ *
+ */
+export type VKWallWallItem = VKWallWallpostFull
+
+export type VKWallWallpostInnerType = "wall_wallpost"
+
+/**
+ *
+ */
+export interface VKWallWallpost {
+    inner_type: VKWallWallpostInnerType
+    /**
+     * Access key to private object
+     */
+    access_key?: string
+    is_deleted?: boolean
+    deleted_reason?: string
+    deleted_details?: string
+    donut_miniapp_url?: string
+    attachments?: VKWallWallpostAttachment[]
+    /**
+     * Information about the source of the post
+     */
+    copyright?: VKWallPostCopyright
+    /**
+     * Date of publishing in Unixtime
+     */
+    date?: number
+    /**
+     * Date of editing in Unixtime
+     */
+    edited?: number
+    /**
+     * Post author ID
+     */
+    from_id?: number
+    geo?: VKWallGeo
+    /**
+     * Post ID
+     */
+    id?: number
+    /**
+     * Is post archived, only for post owners
+     */
+    is_archived?: boolean
+    /**
+     * Information whether the post in favorites list
+     */
+    is_favorite?: boolean
+    /**
+     * Count of likes
+     */
+    likes?: VKBaseLikesInfo
+    /**
+     * Wall owner's ID
+     */
+    owner_id?: number
+    /**
+     * If post type 'reply', contains original post ID
+     */
+    post_id?: number
+    /**
+     * If post type 'reply', contains original parent IDs stack
+     */
+    parents_stack?: number[]
+    post_source?: VKWallPostSource
+    post_type?: VKWallPostType
+    reposts?: VKBaseRepostsInfo
+    /**
+     * Post signer ID
+     */
+    signer_id?: number
+    /**
+     * Post text
+     */
+    text?: string
+    /**
+     * Count of views
+     */
+    views?: VKWallViews
+}
+
+/**
+ *
+ */
+export interface VKWallWallpostAttachment {
+    /**
+     * Access key for the audio
+     */
+    access_key?: string
+    album?: VKPhotosPhotoAlbum
+    app?: VKWallAppPost
+    audio?: VKAudioAudio
+    doc?: VKDocsDoc
+    event?: VKEventsEventAttach
+    group?: VKGroupsGroupAttach
+    graffiti?: VKWallGraffiti
+    link?: VKBaseLink
+    market?: VKMarketMarketItem
+    market_album?: VKMarketMarketAlbum
+    note?: VKNotesNote
+    page?: VKPagesWikipageFull
+    photo?: VKPhotosPhoto
+    poll?: VKPollsPoll
+    posted_photo?: VKWallPostedPhoto
+    type: VKWallWallpostAttachmentType
+    video?: VKVideoVideoFull
+    clip?: VKVideoVideoFull
+    video_playlist?: VKVideoVideoAlbumFull
+}
+
+/**
+ * Attachment type
+ */
+export type VKWallWallpostAttachmentType =
+    | "photo"
+    | "photos_list"
+    | "posted_photo"
+    | "audio"
+    | "audio_playlist"
+    | "video"
+    | "clip"
+    | "video_playlist"
+    | "doc"
+    | "link"
+    | "graffiti"
+    | "note"
+    | "app"
+    | "poll"
+    | "page"
+    | "album"
+    | "market_album"
+    | "market"
+    | "event"
+    | "donut_link"
+    | "article"
+    | "textlive"
+    | "textpost"
+    | "textpost_publish"
+    | "situational_theme"
+    | "group"
+    | "sticker"
+    | "podcast"
+
+/**
+ *
+ */
+export interface VKWallWallpostCommentsDonut {
+    placeholder?: VKWallWallpostCommentsDonutPlaceholder
+}
+
+/**
+ * Info about paid comments feature
+ */
+export interface VKWallWallpostCommentsDonutPlaceholder {
+    text: string
+}
+
+export type VKWallWallpostDonutEditMode = "all" | "duration"
+
+/**
+ * Info about paid wall post
+ */
+export interface VKWallWallpostDonut {
+    /**
+     * Post only for dons
+     */
+    is_donut: boolean
+    /**
+     * Value of this field need to pass in wall.post/edit in donut_paid_duration
+     */
+    paid_duration?: number
+    /**
+     * If placeholder was respond, text and all attachments will be hidden
+     */
+    placeholder?: VKWallWallpostDonutPlaceholder
+    /**
+     * Says whether group admin can post free copy of this donut post
+     */
+    can_publish_free_copy?: boolean
+    /**
+     * Says what user can edit in post about donut properties
+     */
+    edit_mode?: VKWallWallpostDonutEditMode
+}
+
+/**
+ *
+ */
+export interface VKWallWallpostDonutPlaceholder {
+    text: string
+}
+
+export type VKWallWallpostFullInnerType = "wall_wallpost"
+/**
+ * - `0` — empty_topic
+ * - `1` — art
+ * - `7` — it
+ * - `12` — games
+ * - `16` — music
+ * - `19` — photo
+ * - `21` — science_and_tech
+ * - `23` — sport
+ * - `25` — travel
+ * - `26` — tv_and_cinema
+ * - `32` — humor
+ * - `43` — fashion
+ */
+export type VKWallWallpostFullTopicId =
+    | 0
+    | 1
+    | 7
+    | 12
+    | 16
+    | 19
+    | 21
+    | 23
+    | 25
+    | 26
+    | 32
+    | 43
+
+/**
+ *
+ */
+export interface VKWallWallpostFull {
+    /**
+     * Index of current carousel element
+     */
+    carousel_offset?: number
+    inner_type: VKWallWallpostFullInnerType
+    /**
+     * Access key to private object
+     */
+    access_key?: string
+    is_deleted?: boolean
+    deleted_reason?: string
+    deleted_details?: string
+    donut_miniapp_url?: string
+    attachments?: VKWallWallpostAttachment[]
+    /**
+     * Information about the source of the post
+     */
+    copyright?: VKWallPostCopyright
+    /**
+     * Date of publishing in Unixtime
+     */
+    date?: number
+    /**
+     * Date of editing in Unixtime
+     */
+    edited?: number
+    /**
+     * Post author ID
+     */
+    from_id?: number
+    geo?: VKWallGeo
+    /**
+     * Post ID
+     */
+    id?: number
+    /**
+     * Is post archived, only for post owners
+     */
+    is_archived?: boolean
+    /**
+     * Information whether the post in favorites list
+     */
+    is_favorite?: boolean
+    /**
+     * Count of likes
+     */
+    likes?: VKBaseLikesInfo
+    /**
+     * Wall owner's ID
+     */
+    owner_id?: number
+    /**
+     * If post type 'reply', contains original post ID
+     */
+    post_id?: number
+    /**
+     * If post type 'reply', contains original parent IDs stack
+     */
+    parents_stack?: number[]
+    post_source?: VKWallPostSource
+    post_type?: VKWallPostType
+    reposts?: VKBaseRepostsInfo
+    /**
+     * Post signer ID
+     */
+    signer_id?: number
+    /**
+     * Post text
+     */
+    text?: string
+    /**
+     * Count of views
+     */
+    views?: VKWallViews
+    copy_history?: VKWallWallpostFull[]
+    /**
+     * Information whether current user can edit the post
+     */
+    can_edit?: VKBaseBoolInt
+    /**
+     * Post creator ID (if post still can be edited)
+     */
+    created_by?: number
+    /**
+     * Information whether current user can delete the post
+     */
+    can_delete?: VKBaseBoolInt
+    /**
+     * Information whether current user can pin the post
+     */
+    can_pin?: VKBaseBoolInt
+    donut?: VKWallWallpostDonut
+    /**
+     * Information whether the post is pinned
+     */
+    is_pinned?: VKBaseBoolInt
+    comments?: VKBaseCommentsInfo
+    /**
+     * Information whether the post is marked as ads
+     */
+    marked_as_ads?: VKBaseBoolInt
+    /**
+     * Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
+     */
+    topic_id?: VKWallWallpostFullTopicId
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+    /**
+     * Hash for sharing
+     */
+    hash?: string
+    type?: VKWallPostType
+    feedback?: VKNewsfeedItemWallpostFeedback
+    to_id?: number
+}
+
+/**
+ *
+ */
+export interface VKWidgetsCommentMedia {
+    /**
+     * Media item ID
+     */
+    item_id?: number
+    /**
+     * Media owner's ID
+     */
+    owner_id?: number
+    /**
+     * URL of the preview image (type=photo only)
+     */
+    thumb_src?: string
+    type?: VKWidgetsCommentMediaType
+}
+
+/**
+ * Media type
+ */
+export type VKWidgetsCommentMediaType = "audio" | "photo" | "video"
+
+/**
+ *
+ */
+export interface VKWidgetsCommentReplies {
+    /**
+     * Information whether current user can comment the post
+     */
+    can_post?: VKBaseBoolInt
+    /**
+     * Comments number
+     */
+    count?: number
+    replies?: VKWidgetsCommentRepliesItem[]
+    /**
+     * Information whether groups can comment the post
+     */
+    groups_can_post?: VKBaseBoolInt
+    /**
+     * Information whether current user can view the comments
+     */
+    can_view?: VKBaseBoolInt
+}
+
+/**
+ *
+ */
+export interface VKWidgetsCommentRepliesItem {
+    /**
+     * Comment ID
+     */
+    cid?: number
+    /**
+     * Date when the comment has been added in Unixtime
+     */
+    date?: number
+    likes?: VKWidgetsWidgetLikes
+    /**
+     * Comment text
+     */
+    text?: string
+    /**
+     * User ID
+     */
+    uid?: number
+    user?: VKUsersUserFull
+}
+
+/**
+ *
+ */
+export interface VKWidgetsWidgetComment {
+    attachments?: VKWallCommentAttachment[]
+    /**
+     * Wall owner's ID
+     */
+    owner_id?: number
+    /**
+     * Information whether current user can delete the comment
+     */
+    can_delete?: VKBaseBoolInt
+    comments?: VKWidgetsCommentReplies
+    /**
+     * Date when the comment has been added in Unixtime
+     */
+    date: number
+    /**
+     * Comment author ID
+     */
+    from_id: number
+    /**
+     * Comment ID
+     */
+    id: number
+    likes?: VKBaseLikesInfo
+    media?: VKWidgetsCommentMedia
+    post_source?: VKWallPostSource
+    /**
+     * Post type
+     */
+    post_type: string
+    reposts?: VKBaseRepostsInfo
+    /**
+     * Comment text
+     */
+    text: string
+    /**
+     * Wall owner
+     */
+    to_id: number
+    user?: VKUsersUserFull
+    /**
+     * Information whether the post in favorites list
+     */
+    is_favorite?: VKBaseBoolInt
+    /**
+     * Preview length control parameter
+     */
+    short_text_rate?: number
+}
+
+/**
+ *
+ */
+export interface VKWidgetsWidgetLikes {
+    /**
+     * Likes number
+     */
+    count?: number
+}
+
+/**
+ *
+ */
+export interface VKWidgetsWidgetPage {
+    comments?: VKBaseObjectCount
+    /**
+     * Date when widgets on the page has been initialized firstly in Unixtime
+     */
+    date?: number
+    /**
+     * Page description
+     */
+    description?: string
+    /**
+     * Page ID
+     */
+    id?: number
+    likes?: VKBaseObjectCount
+    /**
+     * page_id parameter value
+     */
+    page_id?: string
+    /**
+     * URL of the preview image
+     */
+    photo?: string
+    /**
+     * Page title
+     */
+    title?: string
+    /**
+     * Page absolute URL
+     */
+    url?: string
+}

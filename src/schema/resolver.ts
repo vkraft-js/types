@@ -57,7 +57,7 @@ export function resolveRef(
  */
 export function refToTypeName(ref: string): string {
 	const { definitionName } = parseRef(ref);
-	return "VK" + defNameToPascal(definitionName);
+	return `VK${defNameToPascal(definitionName)}`;
 }
 
 /**

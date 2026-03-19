@@ -38,7 +38,11 @@ export function schemaToType(
 		if (parsed.kind === "response") {
 			return defNameToPascal(parsed.definitionName);
 		}
-		return objectsPrefix(ctx.objectType) + OBJECTS_PREFIX + defNameToPascal(parsed.definitionName);
+		return (
+			objectsPrefix(ctx.objectType) +
+			OBJECTS_PREFIX +
+			defNameToPascal(parsed.definitionName)
+		);
 	}
 
 	// allOf → flatten and emit inline object
@@ -48,9 +52,9 @@ export function schemaToType(
 		if (entries.length === 0) return "Record<string, unknown>";
 
 		const lines = entries.map(([key, val]) => {
-			const optional = !flat.required.has(key);
+			const optional = !flat.required.has(key) && val.required !== true;
 			const type = schemaToType(val, ctx, key);
-			return `${key}${optional ? "?" : ""}: ${type}`;
+			return `${safeKey(key)}${optional ? "?" : ""}: ${type}`;
 		});
 		return `{ ${lines.join("; ")} }`;
 	}
@@ -104,7 +108,7 @@ export function schemaToType(
 					const lines = Object.entries(prop.properties).map(([key, val]) => {
 						const optional = !reqSet.has(key) && val.required !== true;
 						const type = schemaToType(val, ctx, key);
-						return `${key}${optional ? "?" : ""}: ${type}`;
+						return `${safeKey(key)}${optional ? "?" : ""}: ${type}`;
 					});
 					return `{ ${lines.join("; ")} }`;
 				}
@@ -122,6 +126,11 @@ export function schemaToType(
 	}
 
 	return "unknown";
+}
+
+/** Quote a property key if it's not a valid JS identifier */
+function safeKey(key: string): string {
+	return /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(key) ? key : `"${key}"`;
 }
 
 // ─── Properties helper ────────────────────────────────────────────────────────
@@ -155,7 +164,7 @@ export class Properties {
 			lines.push(...CodeGenerator.generateComment(prop.description));
 		}
 
-		lines.push(`${key + (isRequired ? "" : "?")}: ${type}`);
+		lines.push(`${safeKey(key) + (isRequired ? "" : "?")}: ${type}`);
 		return lines;
 	}
 }
@@ -172,19 +181,30 @@ export function collectEnumAliases(
 	const lines: string[] = [];
 
 	for (const [key, prop] of Object.entries(properties)) {
-		if (!prop.enum) continue;
+		// Check for enum on the property itself OR on items (array of enums)
+		const enumSource = prop.enum
+			? prop
+			: prop.type === "array" && prop.items?.enum
+			  ? prop.items
+			  : null;
+
+		if (!enumSource?.enum) continue;
 
 		const typeName =
 			(objectType === "object" ? OBJECTS_PREFIX : "") +
 			TextEditor.snakeToPascalCase(ownerName) +
 			TextEditor.snakeToPascalCase(key);
 
-		const isNumeric = prop.type === "integer" || prop.type === "number";
+		const isNumeric =
+			enumSource.type === "integer" || enumSource.type === "number";
 
 		// Generate JSDoc with enumNames if available
-		if (prop.enumNames && prop.enumNames.length === prop.enum.length) {
-			const commentLines = prop.enum.map(
-				(val, i) => `- \`${val}\` — ${prop.enumNames![i]}`,
+		if (
+			enumSource.enumNames &&
+			enumSource.enumNames.length === enumSource.enum.length
+		) {
+			const commentLines = enumSource.enum.map(
+				(val, i) => `- \`${val}\` — ${enumSource.enumNames![i]}`,
 			);
 			lines.push(...CodeGenerator.generateComment(commentLines));
 		}
@@ -192,7 +212,7 @@ export function collectEnumAliases(
 		lines.push(
 			CodeGenerator.generateUnionType(
 				typeName,
-				prop.enum,
+				enumSource.enum,
 				isNumeric ? "number" : "string",
 			),
 		);

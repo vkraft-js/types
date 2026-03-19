@@ -1,120 +1,98 @@
-# Code-generated and Auto-published Telegram Bot API types
+# @vkraft/types
 
-<div align="center">
-
-[![Bot API](https://img.shields.io/badge/Bot%20API-9.0+-blue?logo=telegram&style=flat&labelColor=000&color=3b82f6)](https://core.telegram.org/bots/api)
-[![npm](https://img.shields.io/npm/v/@gramio/types?logo=npm&style=flat&labelColor=000&color=3b82f6)](https://www.npmjs.org/package/@gramio/types)
-[![npm downloads](https://img.shields.io/npm/dw/@gramio/types?logo=npm&style=flat&labelColor=000&color=3b82f6)](https://www.npmjs.org/package/@gramio/types)
-[![JSR](https://jsr.io/badges/@gramio/types)](https://jsr.io/@gramio/types)
-[![JSR Score](https://jsr.io/badges/@gramio/types/score)](https://jsr.io/@gramio/types)
-
-</div>
+Code-generated TypeScript types for the VK API.
 
 ### Versioning
 
-9.0.x types are for 9.0 Telegram Bot API
+5.199.x types are for VK API v5.199
 
-## Usage as an [NPM package](https://www.npmjs.com/package/@gramio/types)
+## Install
 
-```ts
-import type { APIMethods, APIMethodReturn } from "@gramio/types";
-
-type SendMessageReturn = Awaited<ReturnType<APIMethods["sendMessage"]>>;
-//   ^? type SendMessageReturn = TelegramMessage
-
-type GetMeReturn = APIMethodReturn<"getMe">;
-//   ^? type GetMeReturn = TelegramUser
+```bash
+npm install @vkraft/types
+# or
+bun add @vkraft/types
 ```
 
-Please see [API Types References](https://tsdocs.dev/docs/@gramio/types)
+## Usage
 
-### Auto-update package
+```ts
+import type { APIMethods, APIMethodReturn, APIMethodParams } from "@vkraft/types";
 
-This library is updated automatically to the latest version of the Telegram Bot API in case of changes thanks to CI CD!
-If the github action failed, there are no changes in the Bot API
+type UsersGetReturn = APIMethodReturn<"users.get">;
+type UsersGetParams = APIMethodParams<"users.get">;
+```
 
-## Imports (after `@gramio/`)
+## Imports
 
--   `index` - exports everything in the section
--   `methods` - exports `APIMethods` which describes the api functions
--   `objects` - exports objects with the `Telegram` prefix (for example [Update](https://core.telegram.org/bots/api/#update))
--   `params` - exports params that are used in `methods` with `Params` postfix
+- `index` — exports everything
+- `methods` — exports `APIMethods` interface (method signatures map)
+- `objects` — exports VK API objects with the `VK` prefix (e.g. `VKUsersUserFull`)
+- `params` — exports parameter interfaces with `Params` postfix (e.g. `UsersGetParams`)
+- `responses` — exports response types (e.g. `UsersGetResponse`)
+- `errors` — exports `VKError`, `VKErrorCode`
+- `utils` — exports `APIMethodParams`, `APIMethodReturn`, `CallAPI` helpers
 
-### Write you own type-safe Telegram Bot API wrapper
+## Write your own type-safe VK API wrapper
 
 ```typescript
 import type {
     APIMethods,
     APIMethodParams,
-    TelegramAPIResponse,
-} from "@gramio/types";
+    APIMethodReturn,
+} from "@vkraft/types";
 
-const TBA_BASE_URL = "https://api.telegram.org/bot";
-const TOKEN = "";
+const VK_API_URL = "https://api.vk.com/method";
+const TOKEN = process.env.VK_TOKEN!;
+const API_VERSION = "5.199";
 
 const api = new Proxy({} as APIMethods, {
     get:
         <T extends keyof APIMethods>(_target: APIMethods, method: T) =>
         async (params: APIMethodParams<T>) => {
-            const response = await fetch(`${TBA_BASE_URL}${TOKEN}/${method}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(params),
+            const body = new URLSearchParams({
+                ...Object.fromEntries(
+                    Object.entries(params ?? {}).map(([k, v]) => [k, String(v)]),
+                ),
+                access_token: TOKEN,
+                v: API_VERSION,
             });
 
-            const data = (await response.json()) as TelegramAPIResponse;
-            if (!data.ok) throw new Error(`Some error occurred in ${method}`);
+            const response = await fetch(`${VK_API_URL}/${method}`, {
+                method: "POST",
+                body,
+            });
 
-            return data.result;
+            const data = await response.json();
+            if (data.error) {
+                throw new Error(
+                    `VK API error ${data.error.error_code}: ${data.error.error_msg}`,
+                );
+            }
+
+            return data.response as APIMethodReturn<T>;
         },
 });
 
-api.sendMessage({
-    chat_id: 1,
-    text: "message",
+// Fully typed — params and return type are inferred
+const users = await api["users.get"]({
+    user_ids: [1],
 });
 ```
-
-#### Usage with [`@gramio/keyboards`](https://github.com/gramiojs/keyboards)
-
-```typescript
-import { Keyboard } from "@gramio/keyboards";
-
-// the code from the example above
-
-api.sendMessage({
-    chat_id: 1,
-    text: "message with keyboard",
-    reply_markup: new Keyboard().text("button text"),
-});
-```
-
-#### With File uploading support
-
-[Documentation](https://gramio.dev/files/usage-without-gramio.html#write-you-own-type-safe-tba-api-wrapper-with-file-uploading-support)
 
 ## Generate types manually
 
-Types are generated by fetching the live Telegram Bot API docs via [`@gramio/schema-parser`](https://github.com/gramiojs/schema-parser).
-
-1. Clone [this repo](https://github.com/gramiojs/types) and open it
+Types are generated by fetching the VK API schema from [VKCOM/vk-api-schema](https://github.com/VKCOM/vk-api-schema).
 
 ```bash
-git clone https://github.com/gramiojs/types.git
-```
-
-2. Install dependencies
-
-```bash
+git clone https://github.com/vkraft/types.git
+cd types
 bun install
-```
-
-3. Run types code-generation
-
-```bash
 bun generate
 ```
 
-4. Profit! Check out the types of Telegram Bot API in `out` folder!
+The generated `.d.ts` files will be in the `out/` folder.
+
+### Auto-update
+
+This package is auto-updated hourly via CI/CD. If the VK API schema version changes, a new release is published automatically.

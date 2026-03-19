@@ -1,4418 +1,11019 @@
 /**
  * @module
  *
- * This module contains params for [methods](https://core.telegram.org/bots/api#available-methods) with the `Params` postfix
+ * This module contains params for VK API methods with the `Params` postfix
  *
  * @example import params
  * ```typescript
- * import { SendMessageParams } from "@gramio/types/params";
+ * import { UsersGetParams } from "@vkraft/types/params";
  * ```
  *
- * Based on Bot API v9.5 (01.03.2026)
+ * Based on VK API v5.199
  *
- * Generated at 01.03.2026, 10:44:44 using [types](https://github.com/gramiojs/types) and [schema](https://github.com/gramiojs/schema-parser) generators
+ * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
 import type * as Objects from "./objects"
 
 /**
- * Params object for {@link APIMethods.getUpdates | getUpdates} method
+ * Params for {@link APIMethods["account.ban"] | account.ban} method
  */
-export interface GetUpdatesParams {
+export interface AccountBanParams {
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["account.changePassword"] | account.changePassword} method
+ */
+export interface AccountChangePasswordParams {
     /**
-     * Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as [getUpdates](https://core.telegram.org/bots/api#getupdates) is called with an *offset* higher than its *update\_id*. The negative offset can be specified to retrieve updates starting from *\-offset* update from the end of the updates queue. All previous updates will be forgotten.
+     * Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
+     */
+    restore_sid?: string
+    /**
+     * Hash received after a successful OAuth authorization with a code got by SMS. (If the password is changed right after the access was restored)
+     */
+    change_password_hash?: string
+    /**
+     * Current user password.
+     */
+    old_password?: string
+    /**
+     * New password that will be set as a current
+     */
+    new_password: string
+}
+
+/**
+ * Params for {@link APIMethods["account.getActiveOffers"] | account.getActiveOffers} method
+ */
+export interface AccountGetActiveOffersParams {
+    offset?: number
+    /**
+     * Number of results to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["account.getAppPermissions"] | account.getAppPermissions} method
+ */
+export interface AccountGetAppPermissionsParams {
+    /**
+     * User ID whose settings information shall be got. By default: current user.
+     */
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["account.getBanned"] | account.getBanned} method
+ */
+export interface AccountGetBannedParams {
+    /**
+     * Offset needed to return a specific subset of results.
      */
     offset?: number
     /**
-     * Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100.
+     * Number of results to return.
      */
-    limit?: number
+    count?: number
     /**
-     * Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling. Should be positive, short polling should be used for testing purposes only.
+     * Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
      */
-    timeout?: number
-    /**
-     * A JSON-serialized list of the update types you want your bot to receive. For example, specify `["message", "edited_channel_post", "callback_query"]` to only receive updates of these types. See [Update](https://core.telegram.org/bots/api#update) for a complete list of available update types. Specify an empty list to receive all update types except *chat\_member*, *message\_reaction*, and *message\_reaction\_count* (default). If not specified, the previous setting will be used.
-     *
-     * Please note that this parameter doesn't affect updates created before the call to getUpdates, so unwanted updates may be received for a short period of time.
-     */
-    allowed_updates?: Exclude<keyof Objects.TelegramUpdate, "update_id">[]
+    fields?: Objects.VKBaseUserGroupFields[]
 }
 
 /**
- * Params object for {@link APIMethods.setWebhook | setWebhook} method
+ * Params for {@link APIMethods["account.getCounters"] | account.getCounters} method
  */
-export interface SetWebhookParams {
+export interface AccountGetCountersParams {
     /**
-     * HTTPS URL to send updates to. Use an empty string to remove webhook integration
+     * Counters to be returned.
      */
-    url: string
+    filter?: Objects.VKAccountCountersFilter[]
+}
+
+export type AccountGetInfoFields =
+    | "country"
+    | "https_required"
+    | "own_posts_default"
+    | "no_wall_replies"
+    | "intro"
+    | "lang"
+    | "audio_autoplay"
+
+/**
+ * Params for {@link APIMethods["account.getInfo"] | account.getInfo} method
+ */
+export interface AccountGetInfoParams {
     /**
-     * Upload your public key certificate so that the root certificate in use can be checked. See our [self-signed guide](https://core.telegram.org/bots/self-signed) for details.
+     * Fields to return. Possible values: *'country' - user country,, *'https_required' - is "HTTPS only" option enabled,, *'own_posts_default' - is "Show my posts only" option is enabled,, *'no_wall_replies' - are wall replies disabled or not,, *'intro' - is intro passed by user or not,, *'lang' - user language. By default: all.
      */
-    certificate?: Objects.TelegramInputFile
-    /**
-     * The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS
-     */
-    ip_address?: string
-    /**
-     * The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Defaults to *40*. Use lower values to limit the load on your bot's server, and higher values to increase your bot's throughput.
-     */
-    max_connections?: number
-    /**
-     * A JSON-serialized list of the update types you want your bot to receive. For example, specify `["message", "edited_channel_post", "callback_query"]` to only receive updates of these types. See [Update](https://core.telegram.org/bots/api#update) for a complete list of available update types. Specify an empty list to receive all update types except *chat\_member*, *message\_reaction*, and *message\_reaction\_count* (default). If not specified, the previous setting will be used.
-     * Please note that this parameter doesn't affect updates created before the call to the setWebhook, so unwanted updates may be received for a short period of time.
-     */
-    allowed_updates?: Exclude<keyof Objects.TelegramUpdate, "update_id">[]
-    /**
-     * Pass *True* to drop all pending updates
-     */
-    drop_pending_updates?: boolean
-    /**
-     * A secret token to be sent in a header “X-Telegram-Bot-Api-Secret-Token” in every webhook request, 1-256 characters. Only characters `A-Z`, `a-z`, `0-9`, `_` and `-` are allowed. The header is useful to ensure that the request comes from a webhook set by you.
-     */
-    secret_token?: string
+    fields?: AccountGetInfoFields[]
 }
 
 /**
- * Params object for {@link APIMethods.deleteWebhook | deleteWebhook} method
+ * Params for {@link APIMethods["account.getPushSettings"] | account.getPushSettings} method
  */
-export interface DeleteWebhookParams {
+export interface AccountGetPushSettingsParams {
     /**
-     * Pass *True* to drop all pending updates
+     * Unique device ID.
      */
-    drop_pending_updates?: boolean
+    device_id?: string
 }
 
 /**
- * Params object for {@link APIMethods.sendMessage | sendMessage} method
+ * Params for {@link APIMethods["account.registerDevice"] | account.registerDevice} method
  */
-export interface SendMessageParams {
+export interface AccountRegisterDeviceParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
+     * Device token used to send notifications. (for mpns, the token shall be URL for sending of notifications)
      */
-    business_connection_id?: string
+    token: string
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * String name of device model.
      */
-    chat_id: number | string
+    device_model?: string
     /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
+     * Device year.
      */
-    message_thread_id?: number
+    device_year?: number
     /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
+     * Unique device ID.
      */
-    direct_messages_topic_id?: number
+    device_id: string
     /**
-     * Text of the message to be sent, 1-4096 characters after entities parsing
+     * String version of device operating system.
      */
-    text: string | { toString(): string }
+    system_version?: string
     /**
-     * Mode for parsing entities in the message text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
+     * Push settings in a [vk.com/dev/push_settings|special format].
      */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in message text, which can be specified instead of *parse\_mode*
-     */
-    entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Link preview generation options for the message
-     */
-    link_preview_options?: Objects.TelegramLinkPreviewOptions
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
+    settings?: string
+    sandbox?: boolean
+    pushes_granted?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.forwardMessage | forwardMessage} method
+ * - `0` — undefined
+ * - `1` — female
+ * - `2` — male
  */
-export interface ForwardMessageParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be forwarded; required if the message is forwarded to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Unique identifier for the chat where the original message was sent (or channel username in the format `@channelusername`)
-     */
-    from_chat_id: number | string
-    /**
-     * New start timestamp for the forwarded video in the message
-     */
-    video_start_timestamp?: number
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the forwarded message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; only available when forwarding to private chats
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Message identifier in the chat specified in *from\_chat\_id*
-     */
-    message_id: number
-}
+export type AccountSaveProfileInfoSex = 0 | 1 | 2
+/**
+ * - `0` — not specified
+ * - `1` — single
+ * - `2` — relationship
+ * - `3` — engaged
+ * - `4` — married
+ * - `5` — complicated
+ * - `6` — actively searching
+ * - `7` — in love
+ * - `8` — in a civil union
+ */
+export type AccountSaveProfileInfoRelation = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+/**
+ * - `0` — hide
+ * - `1` — show
+ * - `2` — hide year
+ */
+export type AccountSaveProfileInfoBdateVisibility = 0 | 1 | 2
 
 /**
- * Params object for {@link APIMethods.forwardMessages | forwardMessages} method
+ * Params for {@link APIMethods["account.saveProfileInfo"] | account.saveProfileInfo} method
  */
-export interface ForwardMessagesParams {
+export interface AccountSaveProfileInfoParams {
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * User first name.
      */
-    chat_id: number | string
+    first_name?: string
     /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the messages will be forwarded; required if the messages are forwarded to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Unique identifier for the chat where the original messages were sent (or channel username in the format `@channelusername`)
-     */
-    from_chat_id: number | string
-    /**
-     * A JSON-serialized list of 1-100 identifiers of messages in the chat *from\_chat\_id* to forward. The identifiers must be specified in a strictly increasing order.
-     */
-    message_ids: number[]
-    /**
-     * Sends the messages [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the forwarded messages from forwarding and saving
-     */
-    protect_content?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.copyMessage | copyMessage} method
- */
-export interface CopyMessageParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Unique identifier for the chat where the original message was sent (or channel username in the format `@channelusername`)
-     */
-    from_chat_id: number | string
-    /**
-     * Message identifier in the chat specified in *from\_chat\_id*
-     */
-    message_id: number
-    /**
-     * New start timestamp for the copied video in the message
-     */
-    video_start_timestamp?: number
-    /**
-     * New caption for media, 0-1024 characters after entities parsing. If not specified, the original caption is kept
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the new caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the new caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Pass *True*, if the caption must be shown above the message media. Ignored if a new caption isn't specified.
-     */
-    show_caption_above_media?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; only available when copying to private chats
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.copyMessages | copyMessages} method
- */
-export interface CopyMessagesParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Unique identifier for the chat where the original messages were sent (or channel username in the format `@channelusername`)
-     */
-    from_chat_id: number | string
-    /**
-     * A JSON-serialized list of 1-100 identifiers of messages in the chat *from\_chat\_id* to copy. The identifiers must be specified in a strictly increasing order.
-     */
-    message_ids: number[]
-    /**
-     * Sends the messages [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent messages from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to copy the messages without their captions
-     */
-    remove_caption?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.sendPhoto | sendPhoto} method
- */
-export interface SendPhotoParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Photo to send. Pass a file\_id as String to send a photo that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a photo from the Internet, or upload a new photo using multipart/form-data. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    photo: Objects.TelegramInputFile | string
-    /**
-     * Photo caption (may also be used when resending photos by *file\_id*), 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the photo caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * Pass *True* if the photo needs to be covered with a spoiler animation
-     */
-    has_spoiler?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendAudio | sendAudio} method
- */
-export interface SendAudioParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Audio file to send. Pass a file\_id as String to send an audio file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an audio file from the Internet, or upload a new one using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    audio: Objects.TelegramInputFile | string
-    /**
-     * Audio caption, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the audio caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Duration of the audio in seconds
-     */
-    duration?: number
-    /**
-     * Performer
-     */
-    performer?: string
-    /**
-     * Track name
-     */
-    title?: string
-    /**
-     * Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: Objects.TelegramInputFile | string
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendDocument | sendDocument} method
- */
-export interface SendDocumentParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * File to send. Pass a file\_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    document: Objects.TelegramInputFile | string
-    /**
-     * Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: Objects.TelegramInputFile | string
-    /**
-     * Document caption (may also be used when resending documents by *file\_id*), 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the document caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Disables automatic server-side content type detection for files uploaded using multipart/form-data
-     */
-    disable_content_type_detection?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendVideo | sendVideo} method
- */
-export interface SendVideoParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Video to send. Pass a file\_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    video: Objects.TelegramInputFile | string
-    /**
-     * Duration of sent video in seconds
-     */
-    duration?: number
-    /**
-     * Video width
-     */
-    width?: number
-    /**
-     * Video height
-     */
-    height?: number
-    /**
-     * Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: Objects.TelegramInputFile | string
-    /**
-     * Cover for the video in the message. Pass a file\_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file\_attach\_name>” to upload a new one using multipart/form-data under <file\_attach\_name> name. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    cover?: Objects.TelegramInputFile | string
-    /**
-     * Start timestamp for the video in the message
-     */
-    start_timestamp?: number
-    /**
-     * Video caption (may also be used when resending videos by *file\_id*), 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the video caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * Pass *True* if the video needs to be covered with a spoiler animation
-     */
-    has_spoiler?: boolean
-    /**
-     * Pass *True* if the uploaded video is suitable for streaming
-     */
-    supports_streaming?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendAnimation | sendAnimation} method
- */
-export interface SendAnimationParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Animation to send. Pass a file\_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    animation: Objects.TelegramInputFile | string
-    /**
-     * Duration of sent animation in seconds
-     */
-    duration?: number
-    /**
-     * Animation width
-     */
-    width?: number
-    /**
-     * Animation height
-     */
-    height?: number
-    /**
-     * Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: Objects.TelegramInputFile | string
-    /**
-     * Animation caption (may also be used when resending animation by *file\_id*), 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the animation caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * Pass *True* if the animation needs to be covered with a spoiler animation
-     */
-    has_spoiler?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendVoice | sendVoice} method
- */
-export interface SendVoiceParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Audio file to send. Pass a file\_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    voice: Objects.TelegramInputFile | string
-    /**
-     * Voice message caption, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the voice message caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Duration of the voice message in seconds
-     */
-    duration?: number
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendVideoNote | sendVideoNote} method
- */
-export interface SendVideoNoteParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Video note to send. Pass a file\_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files). Sending video notes by a URL is currently unsupported
-     */
-    video_note: Objects.TelegramInputFile | string
-    /**
-     * Duration of sent video in seconds
-     */
-    duration?: number
-    /**
-     * Video width and height, i.e. diameter of the video message
-     */
-    length?: number
-    /**
-     * Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file\_attach\_name>” if the thumbnail was uploaded using multipart/form-data under <file\_attach\_name>. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    thumbnail?: Objects.TelegramInputFile | string
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendPaidMedia | sendPaidMedia} method
- */
-export interface SendPaidMediaParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`). If the chat is a channel, all Telegram Star proceeds from this media will be credited to the chat's balance. Otherwise, they will be credited to the bot's balance.
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * The number of Telegram Stars that must be paid to buy access to the media; 1-25000
-     */
-    star_count: number
-    /**
-     * A JSON-serialized array describing the media to be sent; up to 10 items
-     */
-    media: Objects.TelegramInputPaidMedia[]
-    /**
-     * Bot-defined paid media payload, 0-128 bytes. This will not be displayed to the user, use it for your internal processes.
-     */
-    payload?: string
-    /**
-     * Media caption, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the media caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Pass *True*, if the caption must be shown above the message media
-     */
-    show_caption_above_media?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendMediaGroup | sendMediaGroup} method
- */
-export interface SendMediaGroupParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * A JSON-serialized array describing messages to be sent, must include 2-10 items
-     */
-    media: (
-        | Objects.TelegramInputMediaAudio
-        | Objects.TelegramInputMediaDocument
-        | Objects.TelegramInputMediaPhoto
-        | Objects.TelegramInputMediaVideo
-    )[]
-    /**
-     * Sends messages [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent messages from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-}
-
-/**
- * Params object for {@link APIMethods.sendLocation | sendLocation} method
- */
-export interface SendLocationParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Latitude of the location
-     */
-    latitude: number
-    /**
-     * Longitude of the location
-     */
-    longitude: number
-    /**
-     * The radius of uncertainty for the location, measured in meters; 0-1500
-     */
-    horizontal_accuracy?: number
-    /**
-     * Period in seconds during which the location will be updated (see [Live Locations](https://telegram.org/blog/live-locations), should be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.
-     */
-    live_period?: number
-    /**
-     * For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
-     */
-    heading?: number
-    /**
-     * For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-     */
-    proximity_alert_radius?: number
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendVenue | sendVenue} method
- */
-export interface SendVenueParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Latitude of the venue
-     */
-    latitude: number
-    /**
-     * Longitude of the venue
-     */
-    longitude: number
-    /**
-     * Name of the venue
-     */
-    title: string
-    /**
-     * Address of the venue
-     */
-    address: string
-    /**
-     * Foursquare identifier of the venue
-     */
-    foursquare_id?: string
-    /**
-     * Foursquare type of the venue, if known. (For example, “arts\_entertainment/default”, “arts\_entertainment/aquarium” or “food/icecream”.)
-     */
-    foursquare_type?: string
-    /**
-     * Google Places identifier of the venue
-     */
-    google_place_id?: string
-    /**
-     * Google Places type of the venue. (See [supported types](https://developers.google.com/places/web-service/supported_types).)
-     */
-    google_place_type?: string
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.sendContact | sendContact} method
- */
-export interface SendContactParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Contact's phone number
-     */
-    phone_number: string
-    /**
-     * Contact's first name
-     */
-    first_name: string
-    /**
-     * Contact's last name
+     * User last name.
      */
     last_name?: string
     /**
-     * Additional data about the contact in the form of a [vCard](https://en.wikipedia.org/wiki/VCard), 0-2048 bytes
+     * User maiden name (female only)
      */
-    vcard?: string
+    maiden_name?: string
     /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
+     * User screen name.
      */
-    disable_notification?: boolean
+    screen_name?: string
     /**
-     * Protects the contents of the sent message from forwarding and saving
+     * ID of the name change request to be canceled. If this parameter is sent, all the others are ignored.
      */
-    protect_content?: boolean
+    cancel_request_id?: number
     /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
+     * User sex. Possible values: , * '1' - female,, * '2' - male.
      */
-    allow_paid_broadcast?: boolean
+    sex?: AccountSaveProfileInfoSex
     /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
+     * User relationship status. Possible values: , * '1' - single,, * '2' - in a relationship,, * '3' - engaged,, * '4' - married,, * '5' - it's complicated,, * '6' - actively searching,, * '7' - in love,, * '0' - not specified.
      */
-    message_effect_id?: string
+    relation?: AccountSaveProfileInfoRelation
     /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
+     * ID of the relationship partner.
      */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
+    relation_partner_id?: number
     /**
-     * Description of the message to reply to
+     * User birth date, format: DD.MM.YYYY.
      */
-    reply_parameters?: Objects.TelegramReplyParameters
+    bdate?: string
     /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
+     * Birth date visibility. Returned values: , * '1' - show birth date,, * '2' - show only month and day,, * '0' - hide birth date.
      */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
+    bdate_visibility?: AccountSaveProfileInfoBdateVisibility
+    /**
+     * User home town.
+     */
+    home_town?: string
+    /**
+     * User country.
+     */
+    country_id?: number
+    /**
+     * User city.
+     */
+    city_id?: number
+    /**
+     * Status text.
+     */
+    status?: string
 }
 
-export type SendPollType = "quiz" | "regular"
+export type AccountSetInfoName =
+    | "audio_autoplay"
+    | "intro"
+    | "no_wall_replies"
+    | "own_posts_default"
 
 /**
- * Params object for {@link APIMethods.sendPoll | sendPoll} method
+ * Params for {@link APIMethods["account.setInfo"] | account.setInfo} method
  */
-export interface SendPollParams {
+export interface AccountSetInfoParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
+     * Setting name.
      */
-    business_connection_id?: string
+    name?: AccountSetInfoName
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`). Polls can't be sent to channel direct messages chats.
+     * Setting value.
      */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Poll question, 1-300 characters
-     */
-    question: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the question. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details. Currently, only custom emoji entities are allowed
-     */
-    question_parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the poll question. It can be specified instead of *question\_parse\_mode*
-     */
-    question_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * A JSON-serialized list of 2-12 answer options
-     */
-    options: Objects.TelegramInputPollOption[]
-    /**
-     * *True*, if the poll needs to be anonymous, defaults to *True*
-     */
-    is_anonymous?: boolean
-    /**
-     * Poll type, “quiz” or “regular”, defaults to “regular”
-     */
-    type?: SendPollType
-    /**
-     * *True*, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to *False*
-     */
-    allows_multiple_answers?: boolean
-    /**
-     * 0-based identifier of the correct answer option, required for polls in quiz mode
-     */
-    correct_option_id?: number
-    /**
-     * Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing
-     */
-    explanation?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the explanation. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    explanation_parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the poll explanation. It can be specified instead of *explanation\_parse\_mode*
-     */
-    explanation_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with *close\_date*.
-     */
-    open_period?: number
-    /**
-     * Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with *open\_period*.
-     */
-    close_date?: number
-    /**
-     * Pass *True* if the poll needs to be immediately closed. This can be useful for poll preview.
-     */
-    is_closed?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
+    value?: string
 }
 
 /**
- * Params object for {@link APIMethods.sendChecklist | sendChecklist} method
+ * Params for {@link APIMethods["account.setOnline"] | account.setOnline} method
  */
-export interface SendChecklistParams {
+export interface AccountSetOnlineParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
+     * '1' if videocalls are available for current device.
      */
-    business_connection_id: string
-    /**
-     * Unique identifier for the target chat
-     */
-    chat_id: number
-    /**
-     * A JSON-serialized object for the checklist to send
-     */
-    checklist: Objects.TelegramInputChecklist
-    /**
-     * Sends the message silently. Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object for description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards)
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-}
-
-export type SendDiceEmoji = "🎲" | "🎯" | "🏀" | "⚽" | "🎳" | "🎰"
-
-/**
- * Params object for {@link APIMethods.sendDice | sendDice} method
- */
-export interface SendDiceParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Emoji on which the dice throw animation is based. Currently, must be one of “![🎲](https://telegram.org/img/emoji/40/F09F8EB2.png)”, “![🎯](https://telegram.org/img/emoji/40/F09F8EAF.png)”, “![🏀](https://telegram.org/img/emoji/40/F09F8F80.png)”, “![⚽](https://telegram.org/img/emoji/40/E29ABD.png)”, “![🎳](https://telegram.org/img/emoji/40/F09F8EB3.png)”, or “![🎰](https://telegram.org/img/emoji/40/F09F8EB0.png)”. Dice can have values 1-6 for “![🎲](https://telegram.org/img/emoji/40/F09F8EB2.png)”, “![🎯](https://telegram.org/img/emoji/40/F09F8EAF.png)” and “![🎳](https://telegram.org/img/emoji/40/F09F8EB3.png)”, values 1-5 for “![🏀](https://telegram.org/img/emoji/40/F09F8F80.png)” and “![⚽](https://telegram.org/img/emoji/40/E29ABD.png)”, and values 1-64 for “![🎰](https://telegram.org/img/emoji/40/F09F8EB0.png)”. Defaults to “![🎲](https://telegram.org/img/emoji/40/F09F8EB2.png)”
-     */
-    emoji?: SendDiceEmoji
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
+    voip?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.sendMessageDraft | sendMessageDraft} method
+ * Params for {@link APIMethods["account.setPushSettings"] | account.setPushSettings} method
  */
-export interface SendMessageDraftParams {
+export interface AccountSetPushSettingsParams {
     /**
-     * Unique identifier for the target private chat
+     * Unique device ID.
      */
-    chat_id: number
+    device_id: string
     /**
-     * Unique identifier for the target message thread
+     * Push settings in a [vk.com/dev/push_settings|special format].
      */
-    message_thread_id?: number
+    settings?: string
     /**
-     * Unique identifier of the message draft; must be non-zero. Changes of drafts with the same identifier are animated
+     * Notification key.
      */
-    draft_id: number
+    key?: string
     /**
-     * Text of the message to be sent, 1-4096 characters after entities parsing
+     * New value for the key in a [vk.com/dev/push_settings|special format].
      */
-    text: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the message text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in message text, which can be specified instead of *parse\_mode*
-     */
-    entities?: Objects.TelegramMessageEntity[]
-}
-
-export type SendChatActionAction =
-    | "typing"
-    | "upload_photo"
-    | "record_video"
-    | "upload_video"
-    | "record_voice"
-    | "upload_voice"
-    | "upload_document"
-    | "choose_sticker"
-    | "find_location"
-    | "record_video_note"
-    | "upload_video_note"
-
-/**
- * Params object for {@link APIMethods.sendChatAction | sendChatAction} method
- */
-export interface SendChatActionParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the action will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`). Channel chats and channel direct messages chats aren't supported.
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread or topic of a forum; for supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Type of action to broadcast. Choose one, depending on what the user is about to receive: *typing* for [text messages](https://core.telegram.org/bots/api#sendmessage), *upload\_photo* for [photos](https://core.telegram.org/bots/api#sendphoto), *record\_video* or *upload\_video* for [videos](https://core.telegram.org/bots/api#sendvideo), *record\_voice* or *upload\_voice* for [voice notes](https://core.telegram.org/bots/api#sendvoice), *upload\_document* for [general files](https://core.telegram.org/bots/api#senddocument), *choose\_sticker* for [stickers](https://core.telegram.org/bots/api#sendsticker), *find\_location* for [location data](https://core.telegram.org/bots/api#sendlocation), *record\_video\_note* or *upload\_video\_note* for [video notes](https://core.telegram.org/bots/api#sendvideonote).
-     */
-    action: SendChatActionAction
+    value?: string[]
 }
 
 /**
- * Params object for {@link APIMethods.setMessageReaction | setMessageReaction} method
+ * Params for {@link APIMethods["account.setSilenceMode"] | account.setSilenceMode} method
  */
-export interface SetMessageReactionParams {
+export interface AccountSetSilenceModeParams {
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * Unique device ID.
      */
-    chat_id: number | string
+    device_id?: string
     /**
-     * Identifier of the target message. If the message belongs to a media group, the reaction is set to the first non-deleted message in the group instead.
+     * Time in seconds for what notifications should be disabled. '-1' to disable forever.
      */
-    message_id: number
+    time?: number
     /**
-     * A JSON-serialized list of reaction types to set on the message. Currently, as non-premium users, bots can set up to one reaction per message. A custom emoji reaction can be used if it is either already present on the message or explicitly allowed by chat administrators. Paid reactions can't be used by bots.
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
      */
-    reaction?: Objects.TelegramReactionType[]
+    peer_id?: number
     /**
-     * Pass *True* to set the reaction with a big animation
+     * '1' - to enable sound in this dialog, '0' - to disable sound. Only if 'peer_id' contains user or community ID.
      */
-    is_big?: boolean
+    sound?: number
 }
 
 /**
- * Params object for {@link APIMethods.getUserProfilePhotos | getUserProfilePhotos} method
+ * Params for {@link APIMethods["account.unban"] | account.unban} method
  */
-export interface GetUserProfilePhotosParams {
+export interface AccountUnbanParams {
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["account.unregisterDevice"] | account.unregisterDevice} method
+ */
+export interface AccountUnregisterDeviceParams {
     /**
-     * Unique identifier of the target user
+     * Unique device ID.
      */
-    user_id: number
+    device_id?: string
+    sandbox?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["ads.addOfficeUsers"] | ads.addOfficeUsers} method
+ */
+export interface AdsAddOfficeUsersParams {
     /**
-     * Sequential number of the first photo to be returned. By default, all photos are returned.
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.
+     */
+    data: string
+}
+
+export type AdsCheckLinkLinkType =
+    | "application"
+    | "community"
+    | "mobile_app"
+    | "post"
+    | "site"
+    | "user"
+    | "user_post"
+    | "video"
+
+/**
+ * Params for {@link APIMethods["ads.checkLink"] | ads.checkLink} method
+ */
+export interface AdsCheckLinkParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Object type: *'community' - community,, *'post' - community post,, *'application' - VK application,, *'video' - video,, *'site' - external site.
+     */
+    link_type: AdsCheckLinkLinkType
+    /**
+     * Object URL.
+     */
+    link_url: string
+    /**
+     * Campaign ID
+     */
+    campaign_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.createAds"] | ads.createAds} method
+ */
+export interface AdsCreateAdsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe created ads. Description of 'ad_specification' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.createCampaigns"] | ads.createCampaigns} method
+ */
+export interface AdsCreateCampaignsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe created campaigns. Description of 'campaign_specification' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.createClients"] | ads.createClients} method
+ */
+export interface AdsCreateClientsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe created campaigns. Description of 'client_specification' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.createLookalikeRequest"] | ads.createLookalikeRequest} method
+ */
+export interface AdsCreateLookalikeRequestParams {
+    account_id: number
+    client_id?: number
+    source_type: string
+    retargeting_group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.createTargetGroup"] | ads.createTargetGroup} method
+ */
+export interface AdsCreateTargetGroupParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'Only for advertising agencies.', ID of the client with the advertising account where the group will be created.
+     */
+    client_id?: number
+    /**
+     * Name of the target group - a string up to 64 characters long.
+     */
+    name: string
+    /**
+     * 'For groups with auditory created with pixel code only.', , Number of days after that users will be automatically removed from the group.
+     */
+    lifetime: number
+    target_pixel_id?: number
+    target_pixel_rules?: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.createTargetPixel"] | ads.createTargetPixel} method
+ */
+export interface AdsCreateTargetPixelParams {
+    account_id: number
+    client_id?: number
+    name: string
+    domain?: string
+    category_id: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.deleteAds"] | ads.deleteAds} method
+ */
+export interface AdsDeleteAdsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array with ad IDs.
+     */
+    ids: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.deleteCampaigns"] | ads.deleteCampaigns} method
+ */
+export interface AdsDeleteCampaignsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array with IDs of deleted campaigns.
+     */
+    ids: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.deleteClients"] | ads.deleteClients} method
+ */
+export interface AdsDeleteClientsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array with IDs of deleted clients.
+     */
+    ids: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.deleteTargetGroup"] | ads.deleteTargetGroup} method
+ */
+export interface AdsDeleteTargetGroupParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.
+     */
+    client_id?: number
+    /**
+     * Group ID.
+     */
+    target_group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.deleteTargetPixel"] | ads.deleteTargetPixel} method
+ */
+export interface AdsDeleteTargetPixelParams {
+    account_id: number
+    client_id?: number
+    target_pixel_id: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.getAds"] | ads.getAds} method
+ */
+export interface AdsGetAdsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'Available and required for advertising agencies.' ID of the client ads are retrieved from.
+     */
+    client_id?: number
+    /**
+     * Flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.
+     */
+    include_deleted?: boolean
+    /**
+     * Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1
+     */
+    only_deleted?: boolean
+    /**
+     * Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
+     */
+    campaign_ids?: string
+    /**
+     * Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
+     */
+    ad_ids?: string
+    /**
+     * Limit of number of returned ads. Used only if ad_ids parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.
+     */
+    limit?: number
+    /**
+     * Offset. Used in the same cases as 'limit' parameter.
+     */
+    offset?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.getAdsLayout"] | ads.getAdsLayout} method
+ */
+export interface AdsGetAdsLayoutParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'For advertising agencies.' ID of the client ads are retrieved from.
+     */
+    client_id?: number
+    /**
+     * Flag that specifies whether archived ads shall be shown. *0 - show only active ads,, *1 - show all ads.
+     */
+    include_deleted?: boolean
+    /**
+     * Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1
+     */
+    only_deleted?: boolean
+    /**
+     * Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
+     */
+    campaign_ids?: string
+    /**
+     * Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
+     */
+    ad_ids?: string
+    /**
+     * Limit of number of returned ads. Used only if 'ad_ids' parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.
+     */
+    limit?: number
+    /**
+     * Offset. Used in the same cases as 'limit' parameter.
+     */
+    offset?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.getAdsTargeting"] | ads.getAdsTargeting} method
+ */
+export interface AdsGetAdsTargetingParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'For advertising agencies.' ID of the client ads are retrieved from.
+     */
+    client_id?: number
+    /**
+     * flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.
+     */
+    include_deleted?: boolean
+    only_deleted?: boolean
+    /**
+     * Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
+     */
+    campaign_ids?: string
+    /**
+     * Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
+     */
+    ad_ids?: string
+    /**
+     * Limit of number of returned ads. Used only if 'ad_ids' parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.
+     */
+    limit?: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.getBudget"] | ads.getBudget} method
+ */
+export interface AdsGetBudgetParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+}
+
+export type AdsGetCampaignsFields = "ads_count"
+
+/**
+ * Params for {@link APIMethods["ads.getCampaigns"] | ads.getCampaigns} method
+ */
+export interface AdsGetCampaignsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'For advertising agencies'. ID of the client advertising campaigns are retrieved from.
+     */
+    client_id?: number
+    /**
+     * Flag that specifies whether archived ads shall be shown. *0 - show only active campaigns,, *1 - show all campaigns.
+     */
+    include_deleted?: boolean
+    /**
+     * Filter of advertising campaigns to show. Serialized JSON array with campaign IDs. Only campaigns that exist in 'campaign_ids' and belong to the specified advertising account will be shown. If the parameter is null, all campaigns will be shown.
+     */
+    campaign_ids?: string
+    fields?: AdsGetCampaignsFields[]
+}
+
+/**
+ * Params for {@link APIMethods["ads.getCategories"] | ads.getCategories} method
+ */
+export interface AdsGetCategoriesParams {
+    /**
+     * Language. The full list of supported languages is [vk.com/dev/api_requests|here].
+     */
+    lang?: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.getClients"] | ads.getClients} method
+ */
+export interface AdsGetClientsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+}
+
+export type AdsGetDemographicsIdsType = "ad" | "campaign"
+export type AdsGetDemographicsPeriod = "day" | "month" | "overall"
+
+/**
+ * Params for {@link APIMethods["ads.getDemographics"] | ads.getDemographics} method
+ */
+export interface AdsGetDemographicsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Type of requested objects listed in 'ids' parameter: *ad - ads,, *campaign - campaigns.
+     */
+    ids_type: AdsGetDemographicsIdsType
+    /**
+     * IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.
+     */
+    ids: string
+    /**
+     * Data grouping by dates: *day - statistics by days,, *month - statistics by months,, *overall - overall statistics. 'date_from' and 'date_to' parameters set temporary limits.
+     */
+    period: AdsGetDemographicsPeriod
+    /**
+     * Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - day it was created on,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - month it was created in,, *overall: 0.
+     */
+    date_from: string
+    /**
+     * Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - current day,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - current month,, *overall: 0.
+     */
+    date_to: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.getFloodStats"] | ads.getFloodStats} method
+ */
+export interface AdsGetFloodStatsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.getLookalikeRequests"] | ads.getLookalikeRequests} method
+ */
+export interface AdsGetLookalikeRequestsParams {
+    account_id: number
+    client_id?: number
+    requests_ids?: string
+    offset?: number
+    limit?: number
+    sort_by?: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.getMusicians"] | ads.getMusicians} method
+ */
+export interface AdsGetMusiciansParams {
+    artist_name: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.getMusiciansByIds"] | ads.getMusiciansByIds} method
+ */
+export interface AdsGetMusiciansByIdsParams {
+    ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["ads.getOfficeUsers"] | ads.getOfficeUsers} method
+ */
+export interface AdsGetOfficeUsersParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+}
+
+export type AdsGetPostsReachIdsType = "ad" | "campaign"
+
+/**
+ * Params for {@link APIMethods["ads.getPostsReach"] | ads.getPostsReach} method
+ */
+export interface AdsGetPostsReachParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Type of requested objects listed in 'ids' parameter: *ad - ads,, *campaign - campaigns.
+     */
+    ids_type: AdsGetPostsReachIdsType
+    /**
+     * IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 100 objects.
+     */
+    ids: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.getRejectionReason"] | ads.getRejectionReason} method
+ */
+export interface AdsGetRejectionReasonParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Ad ID.
+     */
+    ad_id: number
+}
+
+export type AdsGetStatisticsIdsType = "ad" | "campaign" | "client" | "office"
+export type AdsGetStatisticsPeriod =
+    | "day"
+    | "month"
+    | "overall"
+    | "week"
+    | "year"
+export type AdsGetStatisticsStatsFields = "views_times"
+
+/**
+ * Params for {@link APIMethods["ads.getStatistics"] | ads.getStatistics} method
+ */
+export interface AdsGetStatisticsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Type of requested objects listed in 'ids' parameter: *ad - ads,, *campaign - campaigns,, *client - clients,, *office - account.
+     */
+    ids_type: AdsGetStatisticsIdsType
+    /**
+     * IDs requested ads, campaigns, clients or account, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.
+     */
+    ids: string
+    /**
+     * Data grouping by dates: *day - statistics by days,, *month - statistics by months,, *overall - overall statistics. 'date_from' and 'date_to' parameters set temporary limits.
+     */
+    period: AdsGetStatisticsPeriod
+    /**
+     * Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - day it was created on,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - month it was created in,, *overall: 0.
+     */
+    date_from: string
+    /**
+     * Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - current day,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - current month,, *overall: 0.
+     */
+    date_to: string
+    /**
+     * Additional fields to add to statistics
+     */
+    stats_fields?: AdsGetStatisticsStatsFields[]
+}
+
+export type AdsGetSuggestionsSection =
+    | "browsers"
+    | "cities"
+    | "cities_regions"
+    | "countries"
+    | "districts"
+    | "group_types"
+    | "interest_categories"
+    | "interest_categories_v2"
+    | "interests"
+    | "operators"
+    | "positions"
+    | "price_lists"
+    | "regions"
+    | "religions"
+    | "schools"
+    | "stations"
+    | "streets"
+    | "user_browsers"
+    | "user_devices"
+    | "user_operating_systems"
+    | "user_os"
+
+/**
+ * Params for {@link APIMethods["ads.getSuggestions"] | ads.getSuggestions} method
+ */
+export interface AdsGetSuggestionsParams {
+    /**
+     * Section, suggestions are retrieved in. Available values: *countries - request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions - requested list of regions. 'country' parameter is required. *cities - requested list of cities. 'country' parameter is required. *districts - requested list of districts. 'cities' parameter is required. *stations - requested list of subway stations. 'cities' parameter is required. *streets - requested list of streets. 'cities' parameter is required. *schools - requested list of educational organizations. 'cities' parameter is required. *interests - requested list of interests. *positions - requested list of positions (professions). *group_types - requested list of group types. *religions - requested list of religious commitments. *browsers - requested list of browsers and mobile devices.
+     */
+    section: AdsGetSuggestionsSection
+    /**
+     * Objects IDs separated by commas. If the parameter is passed, 'q, country, cities' should not be passed.
+     */
+    ids?: string
+    /**
+     * Filter-line of the request (for countries, regions, cities, streets, schools, interests, positions).
+     */
+    q?: string
+    /**
+     * ID of the country objects are searched in.
+     */
+    country?: number
+    /**
+     * IDs of cities where objects are searched in, separated with a comma.
+     */
+    cities?: string
+    /**
+     * Language of the returned string values. Supported languages: *ru - Russian,, *ua - Ukrainian,, *en - English.
+     */
+    lang?: Objects.VKBaseLang
+}
+
+/**
+ * Params for {@link APIMethods["ads.getTargetGroups"] | ads.getTargetGroups} method
+ */
+export interface AdsGetTargetGroupsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'Only for advertising agencies.', ID of the client with the advertising account where the group will be created.
+     */
+    client_id?: number
+    /**
+     * '1' - to return pixel code.
+     */
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["ads.getTargetPixels"] | ads.getTargetPixels} method
+ */
+export interface AdsGetTargetPixelsParams {
+    account_id: number
+    client_id?: number
+}
+
+/**
+ * - `1` — image and text
+ * - `2` — big image
+ * - `4` — exclusive format
+ * - `7` — community square image
+ * - `10` — special app format
+ * - `6` — special community format
+ * - `9` — post in community
+ * - `11` — app board
+ */
+export type AdsGetTargetingStatsAdFormat = 1 | 2 | 4 | 7 | 10 | 6 | 9 | 11
+
+/**
+ * Params for {@link APIMethods["ads.getTargetingStats"] | ads.getTargetingStats} method
+ */
+export interface AdsGetTargetingStatsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    client_id?: number
+    /**
+     * Serialized JSON object that describes targeting parameters. Description of 'criteria' object see below.
+     */
+    criteria?: string
+    /**
+     * ID of an ad which targeting parameters shall be analyzed.
+     */
+    ad_id?: number
+    /**
+     * Ad format. Possible values: *'1' - image and text,, *'2' - big image,, *'3' - exclusive format,, *'4' - community, square image,, *'7' - special app format,, *'8' - special community format,, *'9' - post in community,, *'10' - app board.
+     */
+    ad_format?: AdsGetTargetingStatsAdFormat
+    /**
+     * Platforms to use for ad showing. Possible values: (for 'ad_format' = '1'), *'0' - VK and partner sites,, *'1' - VK only. (for 'ad_format' = '9'), *'all' - all platforms,, *'desktop' - desktop version,, *'mobile' - mobile version and apps.
+     */
+    ad_platform?: string
+    ad_platform_no_wall?: string
+    ad_platform_no_ad_network?: string
+    publisher_platforms?: string
+    /**
+     * URL for the advertised object.
+     */
+    link_url: string
+    /**
+     * Domain of the advertised object.
+     */
+    link_domain?: string
+    /**
+     * Additionally return recommended cpc and cpm to reach 5,10..95 percents of audience.
+     */
+    need_precise?: boolean
+    /**
+     * Impressions limit period in seconds, must be a multiple of 86400(day)
+     */
+    impressions_limit_period?: number
+}
+
+/**
+ * - `1` — image and text
+ * - `2` — big image
+ * - `4` — community, square image
+ * - `7` — special app format
+ * - `10` — exclusive format
+ * - `11` — adaptive
+ */
+export type AdsGetUploadURLAdFormat = 1 | 2 | 4 | 7 | 10 | 11
+
+/**
+ * Params for {@link APIMethods["ads.getUploadURL"] | ads.getUploadURL} method
+ */
+export interface AdsGetUploadURLParams {
+    /**
+     * Ad format: *1 - image and text,, *2 - big image,, *3 - exclusive format,, *4 - community, square image,, *7 - special app format.
+     */
+    ad_format: AdsGetUploadURLAdFormat
+    icon?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.importTargetContacts"] | ads.importTargetContacts} method
+ */
+export interface AdsImportTargetContactsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.
+     */
+    client_id?: number
+    /**
+     * Target group ID.
+     */
+    target_group_id: number
+    /**
+     * List of phone numbers, emails or user IDs separated with a comma.
+     */
+    contacts: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.removeOfficeUsers"] | ads.removeOfficeUsers} method
+ */
+export interface AdsRemoveOfficeUsersParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array with IDs of deleted managers.
+     */
+    ids: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.removeTargetContacts"] | ads.removeTargetContacts} method
+ */
+export interface AdsRemoveTargetContactsParams {
+    account_id: number
+    client_id?: number
+    target_group_id: number
+    contacts: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.saveLookalikeRequestResult"] | ads.saveLookalikeRequestResult} method
+ */
+export interface AdsSaveLookalikeRequestResultParams {
+    account_id: number
+    client_id?: number
+    request_id: number
+    level: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.shareTargetGroup"] | ads.shareTargetGroup} method
+ */
+export interface AdsShareTargetGroupParams {
+    account_id: number
+    client_id?: number
+    target_group_id: number
+    share_with_client_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["ads.updateAds"] | ads.updateAds} method
+ */
+export interface AdsUpdateAdsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe changes in ads. Description of 'ad_edit_specification' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.updateCampaigns"] | ads.updateCampaigns} method
+ */
+export interface AdsUpdateCampaignsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe changes in campaigns. Description of 'campaign_mod' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.updateClients"] | ads.updateClients} method
+ */
+export interface AdsUpdateClientsParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe changes in clients. Description of 'client_mod' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.updateOfficeUsers"] | ads.updateOfficeUsers} method
+ */
+export interface AdsUpdateOfficeUsersParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.
+     */
+    data: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.updateTargetGroup"] | ads.updateTargetGroup} method
+ */
+export interface AdsUpdateTargetGroupParams {
+    /**
+     * Advertising account ID.
+     */
+    account_id: number
+    /**
+     * 'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.
+     */
+    client_id?: number
+    /**
+     * Group ID.
+     */
+    target_group_id: number
+    /**
+     * New name of the target group - a string up to 64 characters long.
+     */
+    name: string
+    /**
+     * Domain of the site where user accounting code will be placed.
+     */
+    domain?: string
+    /**
+     * 'Only for the groups that get audience from sites with user accounting code.', Time in days when users added to a retarget group will be automatically excluded from it. '0' - automatic exclusion is off.
+     */
+    lifetime: number
+    target_pixel_id?: number
+    target_pixel_rules?: string
+}
+
+/**
+ * Params for {@link APIMethods["ads.updateTargetPixel"] | ads.updateTargetPixel} method
+ */
+export interface AdsUpdateTargetPixelParams {
+    account_id: number
+    client_id?: number
+    target_pixel_id: number
+    name: string
+    domain?: string
+    category_id: number
+}
+
+export type AppWidgetsGetAppImageUploadServerImageType =
+    | "160x160"
+    | "160x240"
+    | "24x24"
+    | "50x50"
+    | "510x128"
+
+/**
+ * Params for {@link APIMethods["appWidgets.getAppImageUploadServer"] | appWidgets.getAppImageUploadServer} method
+ */
+export interface AppWidgetsGetAppImageUploadServerParams {
+    image_type: AppWidgetsGetAppImageUploadServerImageType
+}
+
+export type AppWidgetsGetAppImagesImageType =
+    | "160x160"
+    | "160x240"
+    | "24x24"
+    | "50x50"
+    | "510x128"
+
+/**
+ * Params for {@link APIMethods["appWidgets.getAppImages"] | appWidgets.getAppImages} method
+ */
+export interface AppWidgetsGetAppImagesParams {
+    /**
+     * Offset needed to return a specific subset of images.
      */
     offset?: number
     /**
-     * Limits the number of photos to be retrieved. Values between 1-100 are accepted. Defaults to 100.
+     * Maximum count of results.
      */
-    limit?: number
+    count?: number
+    image_type?: AppWidgetsGetAppImagesImageType
 }
 
+export type AppWidgetsGetGroupImageUploadServerImageType =
+    | "160x160"
+    | "160x240"
+    | "24x24"
+    | "50x50"
+    | "510x128"
+
 /**
- * Params object for {@link APIMethods.getUserProfileAudios | getUserProfileAudios} method
+ * Params for {@link APIMethods["appWidgets.getGroupImageUploadServer"] | appWidgets.getGroupImageUploadServer} method
  */
-export interface GetUserProfileAudiosParams {
+export interface AppWidgetsGetGroupImageUploadServerParams {
+    image_type: AppWidgetsGetGroupImageUploadServerImageType
+}
+
+export type AppWidgetsGetGroupImagesImageType =
+    | "160x160"
+    | "160x240"
+    | "24x24"
+    | "50x50"
+    | "510x128"
+
+/**
+ * Params for {@link APIMethods["appWidgets.getGroupImages"] | appWidgets.getGroupImages} method
+ */
+export interface AppWidgetsGetGroupImagesParams {
     /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-    /**
-     * Sequential number of the first audio to be returned. By default, all audios are returned.
+     * Offset needed to return a specific subset of images.
      */
     offset?: number
     /**
-     * Limits the number of audios to be retrieved. Values between 1-100 are accepted. Defaults to 100.
+     * Maximum count of results.
      */
-    limit?: number
+    count?: number
+    image_type?: AppWidgetsGetGroupImagesImageType
 }
 
 /**
- * Params object for {@link APIMethods.setUserEmojiStatus | setUserEmojiStatus} method
+ * Params for {@link APIMethods["appWidgets.getImagesById"] | appWidgets.getImagesById} method
  */
-export interface SetUserEmojiStatusParams {
+export interface AppWidgetsGetImagesByIdParams {
     /**
-     * Unique identifier of the target user
+     * List of images IDs
      */
-    user_id: number
-    /**
-     * Custom emoji identifier of the emoji status to set. Pass an empty string to remove the status.
-     */
-    emoji_status_custom_emoji_id?: string
-    /**
-     * Expiration date of the emoji status, if any
-     */
-    emoji_status_expiration_date?: number
+    images: string[]
 }
 
 /**
- * Params object for {@link APIMethods.getFile | getFile} method
+ * Params for {@link APIMethods["appWidgets.saveAppImage"] | appWidgets.saveAppImage} method
  */
-export interface GetFileParams {
+export interface AppWidgetsSaveAppImageParams {
     /**
-     * File identifier to get information about
+     * Parameter returned when photo is uploaded to server
      */
-    file_id: string
+    hash: string
+    /**
+     * Parameter returned when photo is uploaded to server
+     */
+    image: string
 }
 
 /**
- * Params object for {@link APIMethods.banChatMember | banChatMember} method
+ * Params for {@link APIMethods["appWidgets.saveGroupImage"] | appWidgets.saveGroupImage} method
  */
-export interface BanChatMemberParams {
+export interface AppWidgetsSaveGroupImageParams {
     /**
-     * Unique identifier for the target group or username of the target supergroup or channel (in the format `@channelusername`)
+     * Parameter returned when photo is uploaded to server
      */
-    chat_id: number | string
+    hash: string
     /**
-     * Unique identifier of the target user
+     * Parameter returned when photo is uploaded to server
      */
-    user_id: number
-    /**
-     * Date when the user will be unbanned; Unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever. Applied for supergroups and channels only.
-     */
-    until_date?: number
-    /**
-     * Pass *True* to delete all messages from the chat for the user that is being removed. If *False*, the user will be able to see messages in the group that were sent before the user was removed. Always *True* for supergroups and channels.
-     */
-    revoke_messages?: boolean
+    image: string
 }
 
-/**
- * Params object for {@link APIMethods.unbanChatMember | unbanChatMember} method
- */
-export interface UnbanChatMemberParams {
-    /**
-     * Unique identifier for the target group or username of the target supergroup or channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-    /**
-     * Do nothing if the user is not banned
-     */
-    only_if_banned?: boolean
-}
+export type AppWidgetsUpdateType =
+    | "compact_list"
+    | "cover_list"
+    | "donation"
+    | "list"
+    | "match"
+    | "matches"
+    | "table"
+    | "text"
+    | "tiles"
 
 /**
- * Params object for {@link APIMethods.restrictChatMember | restrictChatMember} method
+ * Params for {@link APIMethods["appWidgets.update"] | appWidgets.update} method
  */
-export interface RestrictChatMemberParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-    /**
-     * A JSON-serialized object for new user permissions
-     */
-    permissions: Objects.TelegramChatPermissions
-    /**
-     * Pass *True* if chat permissions are set independently. Otherwise, the *can\_send\_other\_messages* and *can\_add\_web\_page\_previews* permissions will imply the *can\_send\_messages*, *can\_send\_audios*, *can\_send\_documents*, *can\_send\_photos*, *can\_send\_videos*, *can\_send\_video\_notes*, and *can\_send\_voice\_notes* permissions; the *can\_send\_polls* permission will imply the *can\_send\_messages* permission.
-     */
-    use_independent_chat_permissions?: boolean
-    /**
-     * Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
-     */
-    until_date?: number
+export interface AppWidgetsUpdateParams {
+    code: string
+    type: AppWidgetsUpdateType
 }
 
-/**
- * Params object for {@link APIMethods.promoteChatMember | promoteChatMember} method
- */
-export interface PromoteChatMemberParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-    /**
-     * Pass *True* if the administrator's presence in the chat is hidden
-     */
-    is_anonymous?: boolean
-    /**
-     * Pass *True* if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other administrator privilege.
-     */
-    can_manage_chat?: boolean
-    /**
-     * Pass *True* if the administrator can delete messages of other users
-     */
-    can_delete_messages?: boolean
-    /**
-     * Pass *True* if the administrator can manage video chats
-     */
-    can_manage_video_chats?: boolean
-    /**
-     * Pass *True* if the administrator can restrict, ban or unban chat members, or access supergroup statistics. For backward compatibility, defaults to *True* for promotions of channel administrators
-     */
-    can_restrict_members?: boolean
-    /**
-     * Pass *True* if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
-     */
-    can_promote_members?: boolean
-    /**
-     * Pass *True* if the administrator can change chat title, photo and other settings
-     */
-    can_change_info?: boolean
-    /**
-     * Pass *True* if the administrator can invite new users to the chat
-     */
-    can_invite_users?: boolean
-    /**
-     * Pass *True* if the administrator can post stories to the chat
-     */
-    can_post_stories?: boolean
-    /**
-     * Pass *True* if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
-     */
-    can_edit_stories?: boolean
-    /**
-     * Pass *True* if the administrator can delete stories posted by other users
-     */
-    can_delete_stories?: boolean
-    /**
-     * Pass *True* if the administrator can post messages in the channel, approve suggested posts, or access channel statistics; for channels only
-     */
-    can_post_messages?: boolean
-    /**
-     * Pass *True* if the administrator can edit messages of other users and can pin messages; for channels only
-     */
-    can_edit_messages?: boolean
-    /**
-     * Pass *True* if the administrator can pin messages; for supergroups only
-     */
-    can_pin_messages?: boolean
-    /**
-     * Pass *True* if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
-     */
-    can_manage_topics?: boolean
-    /**
-     * Pass *True* if the administrator can manage direct messages within the channel and decline suggested posts; for channels only
-     */
-    can_manage_direct_messages?: boolean
-    /**
-     * Pass *True* if the administrator can edit the tags of regular members; for groups and supergroups only
-     */
-    can_manage_tags?: boolean
-}
+export type AppsAddSnippetVkRef = "snippet_im" | "snippet_post"
+export type AppsAddSnippetButton =
+    | "buy"
+    | "buy_ticket"
+    | "contact"
+    | "create"
+    | "enroll"
+    | "fill"
+    | "go"
+    | "help"
+    | "open"
+    | "play"
 
 /**
- * Params object for {@link APIMethods.setChatAdministratorCustomTitle | setChatAdministratorCustomTitle} method
+ * Params for {@link APIMethods["apps.addSnippet"] | apps.addSnippet} method
  */
-export interface SetChatAdministratorCustomTitleParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-    /**
-     * New custom title for the administrator; 0-16 characters, emoji are not allowed
-     */
-    custom_title: string
-}
-
-/**
- * Params object for {@link APIMethods.setChatMemberTag | setChatMemberTag} method
- */
-export interface SetChatMemberTagParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-    /**
-     * New tag for the member; 0-16 characters, emoji are not allowed
-     */
-    tag?: string
-}
-
-/**
- * Params object for {@link APIMethods.banChatSenderChat | banChatSenderChat} method
- */
-export interface BanChatSenderChatParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target sender chat
-     */
-    sender_chat_id: number
-}
-
-/**
- * Params object for {@link APIMethods.unbanChatSenderChat | unbanChatSenderChat} method
- */
-export interface UnbanChatSenderChatParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target sender chat
-     */
-    sender_chat_id: number
-}
-
-/**
- * Params object for {@link APIMethods.setChatPermissions | setChatPermissions} method
- */
-export interface SetChatPermissionsParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * A JSON-serialized object for new default chat permissions
-     */
-    permissions: Objects.TelegramChatPermissions
-    /**
-     * Pass *True* if chat permissions are set independently. Otherwise, the *can\_send\_other\_messages* and *can\_add\_web\_page\_previews* permissions will imply the *can\_send\_messages*, *can\_send\_audios*, *can\_send\_documents*, *can\_send\_photos*, *can\_send\_videos*, *can\_send\_video\_notes*, and *can\_send\_voice\_notes* permissions; the *can\_send\_polls* permission will imply the *can\_send\_messages* permission.
-     */
-    use_independent_chat_permissions?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.exportChatInviteLink | exportChatInviteLink} method
- */
-export interface ExportChatInviteLinkParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.createChatInviteLink | createChatInviteLink} method
- */
-export interface CreateChatInviteLinkParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Invite link name; 0-32 characters
-     */
-    name?: string
-    /**
-     * Point in time (Unix timestamp) when the link will expire
-     */
-    expire_date?: number
-    /**
-     * The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
-     */
-    member_limit?: number
-    /**
-     * *True*, if users joining the chat via the link need to be approved by chat administrators. If *True*, *member\_limit* can't be specified
-     */
-    creates_join_request?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.editChatInviteLink | editChatInviteLink} method
- */
-export interface EditChatInviteLinkParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * The invite link to edit
-     */
-    invite_link: string
-    /**
-     * Invite link name; 0-32 characters
-     */
-    name?: string
-    /**
-     * Point in time (Unix timestamp) when the link will expire
-     */
-    expire_date?: number
-    /**
-     * The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
-     */
-    member_limit?: number
-    /**
-     * *True*, if users joining the chat via the link need to be approved by chat administrators. If *True*, *member\_limit* can't be specified
-     */
-    creates_join_request?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.createChatSubscriptionInviteLink | createChatSubscriptionInviteLink} method
- */
-export interface CreateChatSubscriptionInviteLinkParams {
-    /**
-     * Unique identifier for the target channel chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Invite link name; 0-32 characters
-     */
-    name?: string
-    /**
-     * The number of seconds the subscription will be active for before the next payment. Currently, it must always be 2592000 (30 days).
-     */
-    subscription_period: number
-    /**
-     * The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat; 1-10000
-     */
-    subscription_price: number
-}
-
-/**
- * Params object for {@link APIMethods.editChatSubscriptionInviteLink | editChatSubscriptionInviteLink} method
- */
-export interface EditChatSubscriptionInviteLinkParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * The invite link to edit
-     */
-    invite_link: string
-    /**
-     * Invite link name; 0-32 characters
-     */
-    name?: string
-}
-
-/**
- * Params object for {@link APIMethods.revokeChatInviteLink | revokeChatInviteLink} method
- */
-export interface RevokeChatInviteLinkParams {
-    /**
-     * Unique identifier of the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * The invite link to revoke
-     */
-    invite_link: string
-}
-
-/**
- * Params object for {@link APIMethods.approveChatJoinRequest | approveChatJoinRequest} method
- */
-export interface ApproveChatJoinRequestParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-}
-
-/**
- * Params object for {@link APIMethods.declineChatJoinRequest | declineChatJoinRequest} method
- */
-export interface DeclineChatJoinRequestParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-}
-
-/**
- * Params object for {@link APIMethods.setChatPhoto | setChatPhoto} method
- */
-export interface SetChatPhotoParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * New chat photo, uploaded using multipart/form-data
-     */
-    photo: Objects.TelegramInputFile
-}
-
-/**
- * Params object for {@link APIMethods.deleteChatPhoto | deleteChatPhoto} method
- */
-export interface DeleteChatPhotoParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.setChatTitle | setChatTitle} method
- */
-export interface SetChatTitleParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * New chat title, 1-128 characters
-     */
-    title: string
-}
-
-/**
- * Params object for {@link APIMethods.setChatDescription | setChatDescription} method
- */
-export interface SetChatDescriptionParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * New chat description, 0-255 characters
-     */
+export interface AppsAddSnippetParams {
+    vk_ref?: AppsAddSnippetVkRef[]
+    group_id?: number[]
+    hash?: string[]
+    snippet_id?: number
+    title?: string
     description?: string
+    image_url?: string
+    small_image_url?: string
+    button?: AppsAddSnippetButton
 }
 
 /**
- * Params object for {@link APIMethods.pinChatMessage | pinChatMessage} method
+ * Params for {@link APIMethods["apps.addUsersToTestingGroup"] | apps.addUsersToTestingGroup} method
  */
-export interface PinChatMessageParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message will be pinned
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Identifier of a message to pin
-     */
-    message_id: number
-    /**
-     * Pass *True* if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
-     */
-    disable_notification?: boolean
+export interface AppsAddUsersToTestingGroupParams {
+    user_ids: number[]
+    group_id: number
 }
 
 /**
- * Params object for {@link APIMethods.unpinChatMessage | unpinChatMessage} method
+ * Params for {@link APIMethods["apps.deleteSnippet"] | apps.deleteSnippet} method
  */
-export interface UnpinChatMessageParams {
+export interface AppsDeleteSnippetParams {
+    id?: number
+}
+
+export type AppsGetPlatform = "android" | "ios" | "web"
+
+/**
+ * Params for {@link APIMethods["apps.get"] | apps.get} method
+ */
+export interface AppsGetParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message will be unpinned
+     * Application ID
      */
-    business_connection_id?: string
+    app_id?: number
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * List of application ID
      */
-    chat_id: number | string
+    app_ids?: number[]
     /**
-     * Identifier of the message to unpin. Required if *business\_connection\_id* is specified. If not specified, the most recent pinned message (by sending date) will be unpinned.
+     * platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.com. By default: 'web'.
      */
-    message_id?: number
+    platform?: AppsGetPlatform
+    extended?: boolean
+    return_friends?: boolean
+    /**
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', (only if return_friends - 1)
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: 'nom' - nominative (default),, 'gen' - genitive,, 'dat' - dative,, 'acc' - accusative,, 'ins' - instrumental,, 'abl' - prepositional. (only if 'return_friends' = '1')
+     */
+    name_case?: Objects.VKBaseNameCase
+    /**
+     * List of app fields to return. Fields 'id', 'type' and 'title' will always be in response. Leave this field empty to get all fields
+     */
+    app_fields?: Objects.VKAppsAppFields[]
+}
+
+export type AppsGetCatalogSort =
+    | "create_date"
+    | "growth_rate"
+    | "popular"
+    | "popular_today"
+    | "popular_week"
+    | "visitors"
+export type AppsGetCatalogFilter =
+    | "favorite"
+    | "featured"
+    | "installed"
+    | "new"
+    | "recommended"
+
+/**
+ * Params for {@link APIMethods["apps.getCatalog"] | apps.getCatalog} method
+ */
+export interface AppsGetCatalogParams {
+    /**
+     * Sort order: 'popular_today' - popular for one day (default), 'visitors' - by visitors number , 'create_date' - by creation date, 'growth_rate' - by growth rate, 'popular_week' - popular for one week
+     */
+    sort?: AppsGetCatalogSort
+    /**
+     * Offset required to return a specific subset of apps.
+     */
+    offset?: number
+    /**
+     * Number of apps to return.
+     */
+    count?: number
+    platform?: string
+    /**
+     * '1' - to return additional fields 'screenshots', 'MAU', 'catalog_position', and 'international'. If set, 'count' must be less than or equal to '100'. '0' - not to return additional fields (default).
+     */
+    extended?: boolean
+    return_friends?: boolean
+    fields?: Objects.VKUsersFields[]
+    name_case?: Objects.VKBaseNameCase
+    /**
+     * Search query string.
+     */
+    q?: string
+    genre_id?: number
+    /**
+     * 'installed' - to return list of installed apps (only for mobile platform).
+     */
+    filter?: AppsGetCatalogFilter
+}
+
+export type AppsGetFriendsListType = "invite" | "request"
+
+/**
+ * Params for {@link APIMethods["apps.getFriendsList"] | apps.getFriendsList} method
+ */
+export interface AppsGetFriendsListParams {
+    extended?: boolean
+    /**
+     * List size.
+     */
+    count?: number
+    offset?: number
+    /**
+     * List type. Possible values: * 'invite' - available for invites (don't play the game),, * 'request' - available for request (play the game). By default: 'invite'.
+     */
+    type?: AppsGetFriendsListType
+    /**
+     * Additional profile fields, see [vk.com/dev/fields|description].
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Search query string (e.g., 'Vasya Babich').
+     */
+    query?: string
+}
+
+export type AppsGetLeaderboardType = "level" | "points" | "score"
+
+/**
+ * Params for {@link APIMethods["apps.getLeaderboard"] | apps.getLeaderboard} method
+ */
+export interface AppsGetLeaderboardParams {
+    /**
+     * Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().
+     */
+    type: AppsGetLeaderboardType
+    /**
+     * Rating type. Possible values: *'1' - global rating among all players,, *'0' - rating among user friends.
+     */
+    global?: boolean
+    /**
+     * 1 - to return additional info about users
+     */
+    extended?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.unpinAllChatMessages | unpinAllChatMessages} method
+ * Params for {@link APIMethods["apps.getMiniAppPolicies"] | apps.getMiniAppPolicies} method
  */
-export interface UnpinAllChatMessagesParams {
+export interface AppsGetMiniAppPoliciesParams {
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * Mini App ID
      */
-    chat_id: number | string
+    app_id: number
+}
+
+export type AppsGetScopesType = "group" | "user"
+
+/**
+ * Params for {@link APIMethods["apps.getScopes"] | apps.getScopes} method
+ */
+export interface AppsGetScopesParams {
+    type?: AppsGetScopesType
 }
 
 /**
- * Params object for {@link APIMethods.leaveChat | leaveChat} method
+ * Params for {@link APIMethods["apps.getScore"] | apps.getScore} method
  */
-export interface LeaveChatParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup or channel (in the format `@channelusername`). Channel direct messages chats aren't supported; leave the corresponding channel instead.
-     */
-    chat_id: number | string
+export interface AppsGetScoreParams {
+    user_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.getChat | getChat} method
+ * Params for {@link APIMethods["apps.getTestingGroups"] | apps.getTestingGroups} method
  */
-export interface GetChatParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup or channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
+export interface AppsGetTestingGroupsParams {
+    group_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.getChatAdministrators | getChatAdministrators} method
+ * Params for {@link APIMethods["apps.isNotificationsAllowed"] | apps.isNotificationsAllowed} method
  */
-export interface GetChatAdministratorsParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup or channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
+export interface AppsIsNotificationsAllowedParams {
+    user_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.getChatMemberCount | getChatMemberCount} method
+ * Params for {@link APIMethods["apps.promoHasActiveGift"] | apps.promoHasActiveGift} method
  */
-export interface GetChatMemberCountParams {
+export interface AppsPromoHasActiveGiftParams {
     /**
-     * Unique identifier for the target chat or username of the target supergroup or channel (in the format `@channelusername`)
+     * Id of game promo action
      */
-    chat_id: number | string
+    promo_id: number
+    user_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.getChatMember | getChatMember} method
+ * Params for {@link APIMethods["apps.promoUseGift"] | apps.promoUseGift} method
  */
-export interface GetChatMemberParams {
+export interface AppsPromoUseGiftParams {
     /**
-     * Unique identifier for the target chat or username of the target supergroup or channel (in the format `@channelusername`)
+     * Id of game promo action
      */
-    chat_id: number | string
+    promo_id: number
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["apps.removeTestingGroup"] | apps.removeTestingGroup} method
+ */
+export interface AppsRemoveTestingGroupParams {
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["apps.removeUsersFromTestingGroups"] | apps.removeUsersFromTestingGroups} method
+ */
+export interface AppsRemoveUsersFromTestingGroupsParams {
+    user_ids: number[]
+}
+
+export type AppsSendRequestType = "invite" | "request"
+
+/**
+ * Params for {@link APIMethods["apps.sendRequest"] | apps.sendRequest} method
+ */
+export interface AppsSendRequestParams {
     /**
-     * Unique identifier of the target user
+     * id of the user to send a request
      */
     user_id: number
-}
-
-/**
- * Params object for {@link APIMethods.setChatStickerSet | setChatStickerSet} method
- */
-export interface SetChatStickerSetParams {
     /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Name of the sticker set to be set as the group sticker set
-     */
-    sticker_set_name: string
-}
-
-/**
- * Params object for {@link APIMethods.deleteChatStickerSet | deleteChatStickerSet} method
- */
-export interface DeleteChatStickerSetParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-}
-
-export type CreateForumTopicIconColor =
-    | 7322096
-    | 16766590
-    | 13338331
-    | 9367192
-    | 16749490
-    | 16478047
-
-/**
- * Params object for {@link APIMethods.createForumTopic | createForumTopic} method
- */
-export interface CreateForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Topic name, 1-128 characters
-     */
-    name: string
-    /**
-     * Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F)
-     */
-    icon_color?: CreateForumTopicIconColor
-    /**
-     * Unique identifier of the custom emoji shown as the topic icon. Use [getForumTopicIconStickers](https://core.telegram.org/bots/api#getforumtopiciconstickers) to get all allowed custom emoji identifiers.
-     */
-    icon_custom_emoji_id?: string
-}
-
-/**
- * Params object for {@link APIMethods.editForumTopic | editForumTopic} method
- */
-export interface EditForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread of the forum topic
-     */
-    message_thread_id: number
-    /**
-     * New topic name, 0-128 characters. If not specified or empty, the current name of the topic will be kept
-     */
-    name?: string
-    /**
-     * New unique identifier of the custom emoji shown as the topic icon. Use [getForumTopicIconStickers](https://core.telegram.org/bots/api#getforumtopiciconstickers) to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept
-     */
-    icon_custom_emoji_id?: string
-}
-
-/**
- * Params object for {@link APIMethods.closeForumTopic | closeForumTopic} method
- */
-export interface CloseForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread of the forum topic
-     */
-    message_thread_id: number
-}
-
-/**
- * Params object for {@link APIMethods.reopenForumTopic | reopenForumTopic} method
- */
-export interface ReopenForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread of the forum topic
-     */
-    message_thread_id: number
-}
-
-/**
- * Params object for {@link APIMethods.deleteForumTopic | deleteForumTopic} method
- */
-export interface DeleteForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread of the forum topic
-     */
-    message_thread_id: number
-}
-
-/**
- * Params object for {@link APIMethods.unpinAllForumTopicMessages | unpinAllForumTopicMessages} method
- */
-export interface UnpinAllForumTopicMessagesParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread of the forum topic
-     */
-    message_thread_id: number
-}
-
-/**
- * Params object for {@link APIMethods.editGeneralForumTopic | editGeneralForumTopic} method
- */
-export interface EditGeneralForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-    /**
-     * New topic name, 1-128 characters
-     */
-    name: string
-}
-
-/**
- * Params object for {@link APIMethods.closeGeneralForumTopic | closeGeneralForumTopic} method
- */
-export interface CloseGeneralForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.reopenGeneralForumTopic | reopenGeneralForumTopic} method
- */
-export interface ReopenGeneralForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.hideGeneralForumTopic | hideGeneralForumTopic} method
- */
-export interface HideGeneralForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.unhideGeneralForumTopic | unhideGeneralForumTopic} method
- */
-export interface UnhideGeneralForumTopicParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.unpinAllGeneralForumTopicMessages | unpinAllGeneralForumTopicMessages} method
- */
-export interface UnpinAllGeneralForumTopicMessagesParams {
-    /**
-     * Unique identifier for the target chat or username of the target supergroup (in the format `@supergroupusername`)
-     */
-    chat_id: number | string
-}
-
-/**
- * Params object for {@link APIMethods.answerCallbackQuery | answerCallbackQuery} method
- */
-export interface AnswerCallbackQueryParams {
-    /**
-     * Unique identifier for the query to be answered
-     */
-    callback_query_id: string
-    /**
-     * Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
+     * request text
      */
     text?: string
     /**
-     * If *True*, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to *false*.
+     * request type. Values: 'invite' - if the request is sent to a user who does not have the app installed,, 'request' - if a user has already installed the app
      */
-    show_alert?: boolean
-    /**
-     * URL that will be opened by the user's client. If you have created a [Game](https://core.telegram.org/bots/api#game) and accepted the conditions via [@BotFather](https://t.me/botfather), specify the URL that opens your game - note that this will only work if the query comes from a [*callback\_game*](https://core.telegram.org/bots/api#inlinekeyboardbutton) button.
-     *
-     * Otherwise, you may use links like `t.me/your_bot?start=XXXX` that open your bot with a parameter.
-     */
-    url?: string
-    /**
-     * The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
-     */
-    cache_time?: number
-}
-
-/**
- * Params object for {@link APIMethods.getUserChatBoosts | getUserChatBoosts} method
- */
-export interface GetUserChatBoostsParams {
-    /**
-     * Unique identifier for the chat or username of the channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier of the target user
-     */
-    user_id: number
-}
-
-/**
- * Params object for {@link APIMethods.getBusinessConnection | getBusinessConnection} method
- */
-export interface GetBusinessConnectionParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-}
-
-/**
- * Params object for {@link APIMethods.setMyCommands | setMyCommands} method
- */
-export interface SetMyCommandsParams {
-    /**
-     * A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
-     */
-    commands: Objects.TelegramBotCommand[]
-    /**
-     * A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to [BotCommandScopeDefault](https://core.telegram.org/bots/api#botcommandscopedefault).
-     */
-    scope?: Objects.TelegramBotCommandScope
-    /**
-     * A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
-     */
-    language_code?: string
-}
-
-/**
- * Params object for {@link APIMethods.deleteMyCommands | deleteMyCommands} method
- */
-export interface DeleteMyCommandsParams {
-    /**
-     * A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to [BotCommandScopeDefault](https://core.telegram.org/bots/api#botcommandscopedefault).
-     */
-    scope?: Objects.TelegramBotCommandScope
-    /**
-     * A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
-     */
-    language_code?: string
-}
-
-/**
- * Params object for {@link APIMethods.getMyCommands | getMyCommands} method
- */
-export interface GetMyCommandsParams {
-    /**
-     * A JSON-serialized object, describing scope of users. Defaults to [BotCommandScopeDefault](https://core.telegram.org/bots/api#botcommandscopedefault).
-     */
-    scope?: Objects.TelegramBotCommandScope
-    /**
-     * A two-letter ISO 639-1 language code or an empty string
-     */
-    language_code?: string
-}
-
-/**
- * Params object for {@link APIMethods.setMyName | setMyName} method
- */
-export interface SetMyNameParams {
-    /**
-     * New bot name; 0-64 characters. Pass an empty string to remove the dedicated name for the given language.
-     */
+    type?: AppsSendRequestType
     name?: string
     /**
-     * A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose language there is no dedicated name.
+     * special string key to be sent with the request
      */
-    language_code?: string
+    key?: string
+    separate?: boolean
+}
+
+export type AppsUpdateMetaForTestingGroupPlatforms = "mobile" | "web" | "mvk"
+
+/**
+ * Params for {@link APIMethods["apps.updateMetaForTestingGroup"] | apps.updateMetaForTestingGroup} method
+ */
+export interface AppsUpdateMetaForTestingGroupParams {
+    group_id?: number
+    webview: string
+    name: string
+    platforms: AppsUpdateMetaForTestingGroupPlatforms[]
+    user_ids?: number[]
 }
 
 /**
- * Params object for {@link APIMethods.getMyName | getMyName} method
+ * Params for {@link APIMethods["auth.restore"] | auth.restore} method
  */
-export interface GetMyNameParams {
+export interface AuthRestoreParams {
     /**
-     * A two-letter ISO 639-1 language code or an empty string
+     * User phone number.
      */
-    language_code?: string
+    phone: string
+    /**
+     * User last name.
+     */
+    last_name: string
 }
 
 /**
- * Params object for {@link APIMethods.setMyDescription | setMyDescription} method
+ * Params for {@link APIMethods["board.addTopic"] | board.addTopic} method
  */
-export interface SetMyDescriptionParams {
+export interface BoardAddTopicParams {
     /**
-     * New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
+     * ID of the community that owns the discussion board.
      */
-    description?: string
+    group_id: number
     /**
-     * A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
+     * Topic title.
      */
-    language_code?: string
+    title: string
+    /**
+     * Text of the topic.
+     */
+    text?: string
+    /**
+     * For a community: '1' - to post the topic as by the community, '0' - to post the topic as by the user (default)
+     */
+    from_group?: boolean
+    /**
+     * List of media objects attached to the topic, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. Example: "photo100172_166443618,photo66748_265827614", , "NOTE: If you try to attach more than one reference, an error will be thrown.",
+     */
+    attachments?: string[]
 }
 
 /**
- * Params object for {@link APIMethods.getMyDescription | getMyDescription} method
+ * Params for {@link APIMethods["board.closeTopic"] | board.closeTopic} method
  */
-export interface GetMyDescriptionParams {
+export interface BoardCloseTopicParams {
     /**
-     * A two-letter ISO 639-1 language code or an empty string
+     * ID of the community that owns the discussion board.
      */
-    language_code?: string
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
 }
 
 /**
- * Params object for {@link APIMethods.setMyShortDescription | setMyShortDescription} method
+ * Params for {@link APIMethods["board.createComment"] | board.createComment} method
  */
-export interface SetMyShortDescriptionParams {
+export interface BoardCreateCommentParams {
     /**
-     * New short description for the bot; 0-120 characters. Pass an empty string to remove the dedicated short description for the given language.
+     * ID of the community that owns the discussion board.
      */
-    short_description?: string
+    group_id: number
     /**
-     * A two-letter ISO 639-1 language code. If empty, the short description will be applied to all users for whose language there is no dedicated short description.
+     * ID of the topic to be commented on.
      */
-    language_code?: string
+    topic_id: number
+    /**
+     * (Required if 'attachments' is not set.) Text of the comment.
+     */
+    message?: string
+    /**
+     * (Required if 'text' is not set.) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID.
+     */
+    attachments?: string[]
+    /**
+     * '1' - to post the comment as by the community, '0' - to post the comment as by the user (default)
+     */
+    from_group?: boolean
+    /**
+     * Sticker ID.
+     */
+    sticker_id?: number
+    /**
+     * Unique identifier to avoid repeated comments.
+     */
+    guid?: string
 }
 
 /**
- * Params object for {@link APIMethods.getMyShortDescription | getMyShortDescription} method
+ * Params for {@link APIMethods["board.deleteComment"] | board.deleteComment} method
  */
-export interface GetMyShortDescriptionParams {
+export interface BoardDeleteCommentParams {
     /**
-     * A two-letter ISO 639-1 language code or an empty string
+     * ID of the community that owns the discussion board.
      */
-    language_code?: string
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
 }
 
 /**
- * Params object for {@link APIMethods.setMyProfilePhoto | setMyProfilePhoto} method
+ * Params for {@link APIMethods["board.deleteTopic"] | board.deleteTopic} method
  */
-export interface SetMyProfilePhotoParams {
+export interface BoardDeleteTopicParams {
     /**
-     * The new profile photo to set
+     * ID of the community that owns the discussion board.
      */
-    photo: Objects.TelegramInputProfilePhoto
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
 }
 
 /**
- * Params object for {@link APIMethods.setChatMenuButton | setChatMenuButton} method
+ * Params for {@link APIMethods["board.editComment"] | board.editComment} method
  */
-export interface SetChatMenuButtonParams {
+export interface BoardEditCommentParams {
     /**
-     * Unique identifier for the target private chat. If not specified, default bot's menu button will be changed
+     * ID of the community that owns the discussion board.
      */
-    chat_id?: number
+    group_id: number
     /**
-     * A JSON-serialized object for the bot's new menu button. Defaults to [MenuButtonDefault](https://core.telegram.org/bots/api#menubuttondefault)
+     * Topic ID.
      */
-    menu_button?: Objects.TelegramMenuButton
+    topic_id: number
+    /**
+     * ID of the comment on the topic.
+     */
+    comment_id: number
+    /**
+     * (Required if 'attachments' is not set). New comment text.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. Example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
 }
 
 /**
- * Params object for {@link APIMethods.getChatMenuButton | getChatMenuButton} method
+ * Params for {@link APIMethods["board.editTopic"] | board.editTopic} method
  */
-export interface GetChatMenuButtonParams {
+export interface BoardEditTopicParams {
     /**
-     * Unique identifier for the target private chat. If not specified, default bot's menu button will be returned
+     * ID of the community that owns the discussion board.
      */
-    chat_id?: number
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
+    /**
+     * New title of the topic.
+     */
+    title: string
 }
 
 /**
- * Params object for {@link APIMethods.setMyDefaultAdministratorRights | setMyDefaultAdministratorRights} method
+ * Params for {@link APIMethods["board.fixTopic"] | board.fixTopic} method
  */
-export interface SetMyDefaultAdministratorRightsParams {
+export interface BoardFixTopicParams {
     /**
-     * A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared.
+     * ID of the community that owns the discussion board.
      */
-    rights?: Objects.TelegramChatAdministratorRights
+    group_id: number
     /**
-     * Pass *True* to change the default administrator rights of the bot in channels. Otherwise, the default administrator rights of the bot for groups and supergroups will be changed.
+     * Topic ID.
      */
-    for_channels?: boolean
+    topic_id: number
 }
 
 /**
- * Params object for {@link APIMethods.getMyDefaultAdministratorRights | getMyDefaultAdministratorRights} method
+ * - `asc` — chronological
+ * - `desc` — reverse chronological
  */
-export interface GetMyDefaultAdministratorRightsParams {
+export type BoardGetCommentsSort = "asc" | "desc"
+
+/**
+ * Params for {@link APIMethods["board.getComments"] | board.getComments} method
+ */
+export interface BoardGetCommentsParams {
     /**
-     * Pass *True* to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned.
+     * ID of the community that owns the discussion board.
      */
-    for_channels?: boolean
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
+    /**
+     * '1' - to return the 'likes' field, '0' - not to return the 'likes' field (default)
+     */
+    need_likes?: boolean
+    start_comment_id?: number
+    /**
+     * Offset needed to return a specific subset of comments.
+     */
+    offset?: number
+    /**
+     * Number of comments to return.
+     */
+    count?: number
+    /**
+     * '1' - to return information about users who posted comments, '0' - to return no additional fields (default)
+     */
+    extended?: boolean
+    /**
+     * Sort order: 'asc' - by creation date in chronological order, 'desc' - by creation date in reverse chronological order,
+     */
+    sort?: BoardGetCommentsSort
 }
 
 /**
- * Params object for {@link APIMethods.sendGift | sendGift} method
+ * - `1` — updated desc
+ * - `2` — created desc
+ * - `-1` — updated asc
+ * - `-2` — created asc
+ * - `0` — as by administrator
  */
-export interface SendGiftParams {
+export type BoardGetTopicsOrder = 1 | 2 | -1 | -2 | 0
+/**
+ * - `1` — first
+ * - `2` — last
+ * - `0` — none
+ */
+export type BoardGetTopicsPreview = 1 | 2 | 0
+
+/**
+ * Params for {@link APIMethods["board.getTopics"] | board.getTopics} method
+ */
+export interface BoardGetTopicsParams {
     /**
-     * Required if *chat\_id* is not specified. Unique identifier of the target user who will receive the gift.
+     * ID of the community that owns the discussion board.
+     */
+    group_id: number
+    /**
+     * IDs of topics to be returned (100 maximum). By default, all topics are returned. If this parameter is set, the 'order', 'offset', and 'count' parameters are ignored.
+     */
+    topic_ids?: number[]
+    /**
+     * Sort order: '1' - by date updated in reverse chronological order. '2' - by date created in reverse chronological order. '-1' - by date updated in chronological order. '-2' - by date created in chronological order. If no sort order is specified, topics are returned in the order specified by the group administrator. Pinned topics are returned first, regardless of the sorting.
+     */
+    order?: BoardGetTopicsOrder
+    /**
+     * Offset needed to return a specific subset of topics.
+     */
+    offset?: number
+    /**
+     * Number of topics to return.
+     */
+    count?: number
+    /**
+     * '1' - to return information about users who created topics or who posted there last, '0' - to return no additional fields (default)
+     */
+    extended?: boolean
+    /**
+     * '1' - to return the first comment in each topic,, '2' - to return the last comment in each topic,, '0' - to return no comments. By default: '0'.
+     */
+    preview?: BoardGetTopicsPreview
+    /**
+     * Number of characters after which to truncate the previewed comment. To preview the full comment, specify '0'.
+     */
+    preview_length?: number
+}
+
+/**
+ * Params for {@link APIMethods["board.openTopic"] | board.openTopic} method
+ */
+export interface BoardOpenTopicParams {
+    /**
+     * ID of the community that owns the discussion board.
+     */
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
+}
+
+/**
+ * Params for {@link APIMethods["board.restoreComment"] | board.restoreComment} method
+ */
+export interface BoardRestoreCommentParams {
+    /**
+     * ID of the community that owns the discussion board.
+     */
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["board.unfixTopic"] | board.unfixTopic} method
+ */
+export interface BoardUnfixTopicParams {
+    /**
+     * ID of the community that owns the discussion board.
+     */
+    group_id: number
+    /**
+     * Topic ID.
+     */
+    topic_id: number
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.addCompanyGroupsMembers"] | bugtracker.addCompanyGroupsMembers} method
+ */
+export interface BugtrackerAddCompanyGroupsMembersParams {
+    company_id: number
+    user_ids: number[]
+    company_group_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.addCompanyMembers"] | bugtracker.addCompanyMembers} method
+ */
+export interface BugtrackerAddCompanyMembersParams {
+    user_ids: number[]
+    company_id: number
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.changeBugreportStatus"] | bugtracker.changeBugreportStatus} method
+ */
+export interface BugtrackerChangeBugreportStatusParams {
+    bugreport_id: number
+    status?: number
+    comment?: string
+    from_statuses?: number[]
+    not_in_statuses?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.createComment"] | bugtracker.createComment} method
+ */
+export interface BugtrackerCreateCommentParams {
+    bugreport_id: number
+    text?: string
+    hidden?: boolean
+    hidden_attachments?: boolean
+    force?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.getBugreportById"] | bugtracker.getBugreportById} method
+ */
+export interface BugtrackerGetBugreportByIdParams {
+    bugreport_id: number
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.getCompanyGroupMembers"] | bugtracker.getCompanyGroupMembers} method
+ */
+export interface BugtrackerGetCompanyGroupMembersParams {
+    company_id: number
+    company_group_id: number
+    count?: number
+    offset?: number
+    filter_name?: string
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+export type BugtrackerGetCompanyMembersFilterRole = 0 | 1
+
+/**
+ * Params for {@link APIMethods["bugtracker.getCompanyMembers"] | bugtracker.getCompanyMembers} method
+ */
+export interface BugtrackerGetCompanyMembersParams {
+    company_id: number
+    count?: number
+    offset?: number
+    filter_name?: string
+    filter_role?: BugtrackerGetCompanyMembersFilterRole
+    filter_not_group?: number
+    filter_member_ids?: number[]
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+    extra?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.getDownloadVersionUrl"] | bugtracker.getDownloadVersionUrl} method
+ */
+export interface BugtrackerGetDownloadVersionUrlParams {
+    product_id: number
+    version_id: number
+    ttl?: number
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.getProductBuildUploadServer"] | bugtracker.getProductBuildUploadServer} method
+ */
+export interface BugtrackerGetProductBuildUploadServerParams {
+    product_id: number
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.removeCompanyGroupMember"] | bugtracker.removeCompanyGroupMember} method
+ */
+export interface BugtrackerRemoveCompanyGroupMemberParams {
+    company_id: number
+    user_id: number
+    company_group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.removeCompanyMember"] | bugtracker.removeCompanyMember} method
+ */
+export interface BugtrackerRemoveCompanyMemberParams {
+    user_id: number
+    company_id: number
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.saveProductVersion"] | bugtracker.saveProductVersion} method
+ */
+export interface BugtrackerSaveProductVersionParams {
+    product_id?: number
+    version_id?: number
+    title: string
+    release_notes?: string
+    visible?: boolean
+    set_rft?: boolean
+}
+
+export type BugtrackerSetCompanyMemberRoleRole = 0 | 1
+
+/**
+ * Params for {@link APIMethods["bugtracker.setCompanyMemberRole"] | bugtracker.setCompanyMemberRole} method
+ */
+export interface BugtrackerSetCompanyMemberRoleParams {
+    user_id: number
+    company_id: number
+    role: BugtrackerSetCompanyMemberRoleRole
+}
+
+/**
+ * Params for {@link APIMethods["bugtracker.setProductIsOver"] | bugtracker.setProductIsOver} method
+ */
+export interface BugtrackerSetProductIsOverParams {
+    product_id: number
+    is_over?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["calls.forceFinish"] | calls.forceFinish} method
+ */
+export interface CallsForceFinishParams {
+    call_id: string
+}
+
+/**
+ * Params for {@link APIMethods["calls.start"] | calls.start} method
+ */
+export interface CallsStartParams {
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getChairs"] | database.getChairs} method
+ */
+export interface DatabaseGetChairsParams {
+    /**
+     * id of the faculty to get chairs from
+     */
+    faculty_id: number
+    /**
+     * offset required to get a certain subset of chairs
+     */
+    offset?: number
+    /**
+     * amount of chairs to get
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getCities"] | database.getCities} method
+ */
+export interface DatabaseGetCitiesParams {
+    /**
+     * Region ID.
+     */
+    region_id?: number
+    /**
+     * Search query.
+     */
+    q?: string
+    /**
+     * '1' - to return all cities in the country, '0' - to return major cities in the country (default),
+     */
+    need_all?: boolean
+    /**
+     * Offset needed to return a specific subset of cities.
+     */
+    offset?: number
+    /**
+     * Number of cities to return.
+     */
+    count?: number
+    /**
+     * Cities fields to return. Sample values: 'fias_guid'
+     */
+    fields?: Objects.VKDatabaseCitiesFields[]
+}
+
+/**
+ * Params for {@link APIMethods["database.getCitiesById"] | database.getCitiesById} method
+ */
+export interface DatabaseGetCitiesByIdParams {
+    /**
+     * City IDs.
+     */
+    city_ids?: number[]
+    /**
+     * Cities fields to return. Sample values: 'fias_guid'
+     */
+    fields?: Objects.VKDatabaseCitiesFields[]
+}
+
+/**
+ * Params for {@link APIMethods["database.getCountries"] | database.getCountries} method
+ */
+export interface DatabaseGetCountriesParams {
+    /**
+     * '1' - to return a full list of all countries, '0' - to return a list of countries near the current user's country (default).
+     */
+    need_all?: boolean
+    /**
+     * Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
+     */
+    code?: string
+    /**
+     * Offset needed to return a specific subset of countries.
+     */
+    offset?: number
+    /**
+     * Number of countries to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getCountriesById"] | database.getCountriesById} method
+ */
+export interface DatabaseGetCountriesByIdParams {
+    /**
+     * Country IDs.
+     */
+    country_ids?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["database.getFaculties"] | database.getFaculties} method
+ */
+export interface DatabaseGetFacultiesParams {
+    /**
+     * University ID.
+     */
+    university_id: number
+    /**
+     * Offset needed to return a specific subset of faculties.
+     */
+    offset?: number
+    /**
+     * Number of faculties to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getMetroStations"] | database.getMetroStations} method
+ */
+export interface DatabaseGetMetroStationsParams {
+    city_id: number
+    offset?: number
+    count?: number
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["database.getMetroStationsById"] | database.getMetroStationsById} method
+ */
+export interface DatabaseGetMetroStationsByIdParams {
+    station_ids?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["database.getRegions"] | database.getRegions} method
+ */
+export interface DatabaseGetRegionsParams {
+    /**
+     * Search query.
+     */
+    q?: string
+    /**
+     * Offset needed to return specific subset of regions.
+     */
+    offset?: number
+    /**
+     * Number of regions to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getSchoolClasses"] | database.getSchoolClasses} method
+ */
+export interface DatabaseGetSchoolClassesParams {
+    /**
+     * Country ID.
+     */
+    country_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getSchools"] | database.getSchools} method
+ */
+export interface DatabaseGetSchoolsParams {
+    /**
+     * Search query.
+     */
+    q?: string
+    /**
+     * City ID.
+     */
+    city_id: number
+    /**
+     * Offset needed to return a specific subset of schools.
+     */
+    offset?: number
+    /**
+     * Number of schools to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["database.getUniversities"] | database.getUniversities} method
+ */
+export interface DatabaseGetUniversitiesParams {
+    /**
+     * Search query.
+     */
+    q?: string
+    /**
+     * City ID.
+     */
+    city_id?: number
+    /**
+     * Offset needed to return a specific subset of universities.
+     */
+    offset?: number
+    /**
+     * Number of universities to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.add"] | docs.add} method
+ */
+export interface DocsAddParams {
+    /**
+     * ID of the user or community that owns the document. Use a negative value to designate a community ID.
+     */
+    owner_id: number
+    /**
+     * Document ID.
+     */
+    doc_id: number
+    /**
+     * Access key. This parameter is required if 'access_key' was returned with the document's data.
+     */
+    access_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["docs.delete"] | docs.delete} method
+ */
+export interface DocsDeleteParams {
+    /**
+     * ID of the user or community that owns the document. Use a negative value to designate a community ID.
+     */
+    owner_id: number
+    /**
+     * Document ID.
+     */
+    doc_id: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.edit"] | docs.edit} method
+ */
+export interface DocsEditParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Document ID.
+     */
+    doc_id: number
+    /**
+     * Document title.
+     */
+    title: string
+    /**
+     * Document tags.
+     */
+    tags?: string[]
+}
+
+/**
+ * - `0` — all
+ * - `1` — text
+ * - `2` — archive
+ * - `3` — gif
+ * - `4` — image
+ * - `5` — audio
+ * - `6` — video
+ * - `7` — ebook
+ * - `8` — default
+ */
+export type DocsGetType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+
+/**
+ * Params for {@link APIMethods["docs.get"] | docs.get} method
+ */
+export interface DocsGetParams {
+    /**
+     * Number of documents to return. By default, all documents.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of documents.
+     */
+    offset?: number
+    type?: DocsGetType
+    /**
+     * ID of the user or community that owns the documents. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    return_tags?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["docs.getById"] | docs.getById} method
+ */
+export interface DocsGetByIdParams {
+    /**
+     * Document IDs. Example: , "66748_91488,66748_91455",
+     */
+    docs: string[]
+    return_tags?: boolean
+}
+
+export type DocsGetMessagesUploadServerType =
+    | "audio_message"
+    | "doc"
+    | "graffiti"
+
+/**
+ * Params for {@link APIMethods["docs.getMessagesUploadServer"] | docs.getMessagesUploadServer} method
+ */
+export interface DocsGetMessagesUploadServerParams {
+    /**
+     * Document type.
+     */
+    type?: DocsGetMessagesUploadServerType
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.getTypes"] | docs.getTypes} method
+ */
+export interface DocsGetTypesParams {
+    /**
+     * ID of the user or community that owns the documents. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.getUploadServer"] | docs.getUploadServer} method
+ */
+export interface DocsGetUploadServerParams {
+    /**
+     * Community ID (if the document will be uploaded to the community).
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.getWallUploadServer"] | docs.getWallUploadServer} method
+ */
+export interface DocsGetWallUploadServerParams {
+    /**
+     * Community ID (if the document will be uploaded to the community).
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.restore"] | docs.restore} method
+ */
+export interface DocsRestoreParams {
+    owner_id: number
+    doc_id: number
+}
+
+/**
+ * Params for {@link APIMethods["docs.save"] | docs.save} method
+ */
+export interface DocsSaveParams {
+    /**
+     * This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].
+     */
+    file: string
+    /**
+     * Document title.
+     */
+    title?: string
+    /**
+     * Document tags.
+     */
+    tags?: string
+    return_tags?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["docs.search"] | docs.search} method
+ */
+export interface DocsSearchParams {
+    /**
+     * Search query string.
+     */
+    q?: string
+    search_own?: boolean
+    /**
+     * Number of results to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    return_tags?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["donut.getFriends"] | donut.getFriends} method
+ */
+export interface DonutGetFriendsParams {
+    owner_id: number
+    offset?: number
+    count?: number
+    fields?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["donut.getSubscription"] | donut.getSubscription} method
+ */
+export interface DonutGetSubscriptionParams {
+    owner_id: number
+}
+
+/**
+ * Params for {@link APIMethods["donut.getSubscriptions"] | donut.getSubscriptions} method
+ */
+export interface DonutGetSubscriptionsParams {
+    fields?: Objects.VKBaseUserGroupFields[]
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["donut.isDon"] | donut.isDon} method
+ */
+export interface DonutIsDonParams {
+    owner_id: number
+}
+
+/**
+ * Params for {@link APIMethods["downloadedGames.getPaidStatus"] | downloadedGames.getPaidStatus} method
+ */
+export interface DownloadedGamesGetPaidStatusParams {
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.addArticle"] | fave.addArticle} method
+ */
+export interface FaveAddArticleParams {
+    url: string
+}
+
+/**
+ * Params for {@link APIMethods["fave.addLink"] | fave.addLink} method
+ */
+export interface FaveAddLinkParams {
+    /**
+     * Link URL.
+     */
+    link: string
+}
+
+/**
+ * Params for {@link APIMethods["fave.addPage"] | fave.addPage} method
+ */
+export interface FaveAddPageParams {
+    user_id?: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.addPost"] | fave.addPost} method
+ */
+export interface FaveAddPostParams {
+    owner_id: number
+    id: number
+    access_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["fave.addProduct"] | fave.addProduct} method
+ */
+export interface FaveAddProductParams {
+    owner_id: number
+    id: number
+    access_key?: string
+}
+
+export type FaveAddTagPosition = "back" | "front"
+
+/**
+ * Params for {@link APIMethods["fave.addTag"] | fave.addTag} method
+ */
+export interface FaveAddTagParams {
+    name?: string
+    position?: FaveAddTagPosition
+}
+
+/**
+ * Params for {@link APIMethods["fave.addVideo"] | fave.addVideo} method
+ */
+export interface FaveAddVideoParams {
+    owner_id: number
+    id: number
+    access_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["fave.editTag"] | fave.editTag} method
+ */
+export interface FaveEditTagParams {
+    id: number
+    name: string
+}
+
+export type FaveGetItemType =
+    | "article"
+    | "clip"
+    | "game"
+    | "link"
+    | "mini_app"
+    | "narrative"
+    | "page"
+    | "podcast"
+    | "post"
+    | "product"
+    | "video"
+    | "youla_product"
+
+/**
+ * Params for {@link APIMethods["fave.get"] | fave.get} method
+ */
+export interface FaveGetParams {
+    /**
+     * '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.
+     */
+    extended?: boolean
+    item_type?: FaveGetItemType
+    /**
+     * Tag ID.
+     */
+    tag_id?: number
+    /**
+     * Offset needed to return a specific subset of users.
+     */
+    offset?: number
+    /**
+     * Number of users to return.
+     */
+    count?: number
+    fields?: string
+    is_from_snackbar?: boolean
+}
+
+export type FaveGetPagesType = "groups" | "hints" | "users"
+
+/**
+ * Params for {@link APIMethods["fave.getPages"] | fave.getPages} method
+ */
+export interface FaveGetPagesParams {
+    offset?: number
+    count?: number
+    type?: FaveGetPagesType
+    fields?: Objects.VKBaseUserGroupFields[]
+    tag_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.removeArticle"] | fave.removeArticle} method
+ */
+export interface FaveRemoveArticleParams {
+    owner_id: number
+    article_id: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.removeLink"] | fave.removeLink} method
+ */
+export interface FaveRemoveLinkParams {
+    /**
+     * Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).
+     */
+    link_id?: string
+    /**
+     * Link URL
+     */
+    link?: string
+}
+
+/**
+ * Params for {@link APIMethods["fave.removePage"] | fave.removePage} method
+ */
+export interface FaveRemovePageParams {
+    user_id?: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.removePost"] | fave.removePost} method
+ */
+export interface FaveRemovePostParams {
+    owner_id: number
+    id: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.removeProduct"] | fave.removeProduct} method
+ */
+export interface FaveRemoveProductParams {
+    owner_id: number
+    id: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.removeTag"] | fave.removeTag} method
+ */
+export interface FaveRemoveTagParams {
+    id: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.removeVideo"] | fave.removeVideo} method
+ */
+export interface FaveRemoveVideoParams {
+    owner_id: number
+    id: number
+}
+
+/**
+ * Params for {@link APIMethods["fave.reorderTags"] | fave.reorderTags} method
+ */
+export interface FaveReorderTagsParams {
+    ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["fave.setPageTags"] | fave.setPageTags} method
+ */
+export interface FaveSetPageTagsParams {
+    user_id?: number
+    group_id?: number
+    tag_ids?: number[]
+}
+
+export type FaveSetTagsItemType =
+    | "article"
+    | "clip"
+    | "game"
+    | "link"
+    | "mini_app"
+    | "narrative"
+    | "page"
+    | "podcast"
+    | "post"
+    | "product"
+    | "video"
+    | "youla_product"
+
+/**
+ * Params for {@link APIMethods["fave.setTags"] | fave.setTags} method
+ */
+export interface FaveSetTagsParams {
+    item_type?: FaveSetTagsItemType
+    item_owner_id?: number
+    item_id?: number
+    tag_ids?: number[]
+    link_id?: string
+    link_url?: string
+}
+
+/**
+ * Params for {@link APIMethods["fave.trackPageInteraction"] | fave.trackPageInteraction} method
+ */
+export interface FaveTrackPageInteractionParams {
+    user_id?: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["friends.add"] | friends.add} method
+ */
+export interface FriendsAddParams {
+    /**
+     * ID of the user whose friend request will be approved or to whom a friend request will be sent.
      */
     user_id?: number
     /**
-     * Required if *user\_id* is not specified. Unique identifier for the chat or username of the channel (in the format `@channelusername`) that will receive the gift.
+     * Text of the message (up to 500 characters) for the friend request, if any.
      */
-    chat_id?: number | string
+    text?: string
     /**
-     * Identifier of the gift; limited gifts can't be sent to channel chats
+     * '1' to pass an incoming request to followers list.
      */
-    gift_id: string
-    /**
-     * Pass *True* to pay for the gift upgrade from the bot's balance, thereby making the upgrade free for the receiver
-     */
-    pay_for_upgrade?: boolean
-    /**
-     * Text that will be shown along with the gift; 0-128 characters
-     */
-    text?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom\_emoji” are ignored.
-     */
-    text_parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of *text\_parse\_mode*. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom\_emoji” are ignored.
-     */
-    text_entities?: Objects.TelegramMessageEntity[]
+    follow?: boolean
 }
 
-export type GiftPremiumSubscriptionMonthCount = 3 | 6 | 12
+/**
+ * Params for {@link APIMethods["friends.addList"] | friends.addList} method
+ */
+export interface FriendsAddListParams {
+    /**
+     * Name of the friend list.
+     */
+    name: string
+    /**
+     * IDs of users to be added to the friend list.
+     */
+    user_ids?: number[]
+}
 
 /**
- * Params object for {@link APIMethods.giftPremiumSubscription | giftPremiumSubscription} method
+ * Params for {@link APIMethods["friends.areFriends"] | friends.areFriends} method
  */
-export interface GiftPremiumSubscriptionParams {
+export interface FriendsAreFriendsParams {
     /**
-     * Unique identifier of the target user who will receive a Telegram Premium subscription
+     * IDs of the users whose friendship status to check.
+     */
+    user_ids: number[]
+    /**
+     * '1' - to return 'sign' field. 'sign' is md5("{id}_{user_id}_{friends_status}_{application_secret}"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.
+     */
+    need_sign?: boolean
+    /**
+     * Return friend request read_state field
+     */
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["friends.delete"] | friends.delete} method
+ */
+export interface FriendsDeleteParams {
+    /**
+     * ID of the user whose friend request is to be declined or who is to be deleted from the current user's friend list.
+     */
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["friends.deleteList"] | friends.deleteList} method
+ */
+export interface FriendsDeleteListParams {
+    /**
+     * ID of the friend list to delete.
+     */
+    list_id: number
+}
+
+/**
+ * Params for {@link APIMethods["friends.edit"] | friends.edit} method
+ */
+export interface FriendsEditParams {
+    /**
+     * ID of the user whose friend list is to be edited.
      */
     user_id: number
     /**
-     * Number of months the Telegram Premium subscription will be active for the user; must be one of 3, 6, or 12
+     * IDs of the friend lists to which to add the user.
      */
-    month_count: GiftPremiumSubscriptionMonthCount
-    /**
-     * Number of Telegram Stars to pay for the Telegram Premium subscription; must be 1000 for 3 months, 1500 for 6 months, and 2500 for 12 months
-     */
-    star_count: number
-    /**
-     * Text that will be shown along with the service message about the subscription; 0-128 characters
-     */
-    text?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom\_emoji” are ignored.
-     */
-    text_parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of *text\_parse\_mode*. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, and “custom\_emoji” are ignored.
-     */
-    text_entities?: Objects.TelegramMessageEntity[]
+    list_ids?: number[]
 }
 
 /**
- * Params object for {@link APIMethods.verifyUser | verifyUser} method
+ * Params for {@link APIMethods["friends.editList"] | friends.editList} method
  */
-export interface VerifyUserParams {
+export interface FriendsEditListParams {
     /**
-     * Unique identifier of the target user
+     * Name of the friend list.
      */
-    user_id: number
+    name?: string
     /**
-     * Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+     * Friend list ID.
      */
-    custom_description?: string
+    list_id: number
+    /**
+     * IDs of users in the friend list.
+     */
+    user_ids?: number[]
+    /**
+     * (Applies if 'user_ids' parameter is not set.), User IDs to add to the friend list.
+     */
+    add_user_ids?: number[]
+    /**
+     * (Applies if 'user_ids' parameter is not set.), User IDs to delete from the friend list.
+     */
+    delete_user_ids?: number[]
+}
+
+export type FriendsGetOrder = "hints" | "mobile" | "name" | "random" | "smart"
+
+/**
+ * Params for {@link APIMethods["friends.get"] | friends.get} method
+ */
+export interface FriendsGetParams {
+    /**
+     * User ID. By default, the current user ID.
+     */
+    user_id?: number
+    /**
+     * Sort order: , 'name' - by name (enabled only if the 'fields' parameter is used), 'hints' - by rating, similar to how friends are sorted in My friends section, , This parameter is available only for [vk.com/dev/standalone|desktop applications].
+     */
+    order?: FriendsGetOrder
+    /**
+     * ID of the friend list returned by the [vk.com/dev/friends.getLists|friends.getLists] method to be used as the source. This parameter is taken into account only when the uid parameter is set to the current user ID. This parameter is available only for [vk.com/dev/standalone|desktop applications].
+     */
+    list_id?: number
+    /**
+     * Number of friends to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of friends.
+     */
+    offset?: number
+    /**
+     * Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
+     */
+    fields?: Objects.VKUsersFields[]
+    ref?: string
 }
 
 /**
- * Params object for {@link APIMethods.verifyChat | verifyChat} method
+ * Params for {@link APIMethods["friends.getLists"] | friends.getLists} method
  */
-export interface VerifyChatParams {
+export interface FriendsGetListsParams {
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`). Channel direct messages chats can't be verified.
+     * User ID.
      */
-    chat_id: number | string
+    user_id?: number
     /**
-     * Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+     * '1' - to return system friend lists. By default: '0'.
      */
-    custom_description?: string
+    return_system?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.removeUserVerification | removeUserVerification} method
+ * Params for {@link APIMethods["friends.getMutual"] | friends.getMutual} method
  */
-export interface RemoveUserVerificationParams {
+export interface FriendsGetMutualParams {
     /**
-     * Unique identifier of the target user
+     * ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.
      */
-    user_id: number
+    source_uid?: number
+    /**
+     * ID of the user whose friends will be checked against the friends of the user specified in 'source_uid'.
+     */
+    target_uid?: number
+    /**
+     * IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.
+     */
+    target_uids?: number[]
+    /**
+     * Sort order: 'random' - random order
+     */
+    order?: string
+    /**
+     * Number of mutual friends to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of mutual friends.
+     */
+    offset?: number
+    /**
+     * Return mutual friends total count
+     */
+    need_common_count?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.removeChatVerification | removeChatVerification} method
+ * Params for {@link APIMethods["friends.getOnline"] | friends.getOnline} method
  */
-export interface RemoveChatVerificationParams {
+export interface FriendsGetOnlineParams {
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * User ID.
      */
-    chat_id: number | string
+    user_id?: number
+    /**
+     * Friend list ID. If this parameter is not set, information about all online friends is returned.
+     */
+    list_id?: number
+    /**
+     * '1' - to return an additional 'online_mobile' field, '0' - (default),
+     */
+    online_mobile?: boolean
+    /**
+     * Sort order: 'random' - random order
+     */
+    order?: string
+    /**
+     * Number of friends to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of friends.
+     */
+    offset?: number
 }
 
 /**
- * Params object for {@link APIMethods.readBusinessMessage | readBusinessMessage} method
+ * Params for {@link APIMethods["friends.getRecent"] | friends.getRecent} method
  */
-export interface ReadBusinessMessageParams {
+export interface FriendsGetRecentParams {
     /**
-     * Unique identifier of the business connection on behalf of which to read the message
+     * Number of recently added friends to return.
      */
-    business_connection_id: string
-    /**
-     * Unique identifier of the chat in which the message was received. The chat must have been active in the last 24 hours.
-     */
-    chat_id: number
-    /**
-     * Unique identifier of the message to mark as read
-     */
-    message_id: number
+    count?: number
 }
 
 /**
- * Params object for {@link APIMethods.deleteBusinessMessages | deleteBusinessMessages} method
+ * - `0` — date
+ * - `1` — mutual
+ * - `2` — rotate
  */
-export interface DeleteBusinessMessagesParams {
+export type FriendsGetRequestsSort = 0 | 1 | 2
+
+/**
+ * Params for {@link APIMethods["friends.getRequests"] | friends.getRequests} method
+ */
+export interface FriendsGetRequestsParams {
     /**
-     * Unique identifier of the business connection on behalf of which to delete the messages
+     * Offset needed to return a specific subset of friend requests.
      */
-    business_connection_id: string
+    offset?: number
     /**
-     * A JSON-serialized list of 1-100 identifiers of messages to delete. All messages must be from the same chat. See [deleteMessage](https://core.telegram.org/bots/api#deletemessage) for limitations on which messages can be deleted
+     * Number of friend requests to return (default 100, maximum 1000).
      */
-    message_ids: number[]
+    count?: number
+    /**
+     * '1' - to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends
+     */
+    extended?: boolean
+    /**
+     * '1' - to return a list of mutual friends (up to 20), if any
+     */
+    need_mutual?: boolean
+    /**
+     * '1' - to return outgoing requests, '0' - to return incoming requests (default)
+     */
+    out?: boolean
+    /**
+     * Sort order: '1' - by number of mutual friends, '0' - by date
+     */
+    sort?: FriendsGetRequestsSort
+    need_viewed?: boolean
+    /**
+     * '1' - to return a list of suggested friends, '0' - to return friend requests (default)
+     */
+    suggested?: boolean
+    ref?: string
+    fields?: Objects.VKUsersFields[]
+}
+
+export type FriendsGetSuggestionsFilter =
+    | "contacts"
+    | "mutual"
+    | "mutual_contacts"
+
+/**
+ * Params for {@link APIMethods["friends.getSuggestions"] | friends.getSuggestions} method
+ */
+export interface FriendsGetSuggestionsParams {
+    /**
+     * Types of potential friends to return: 'mutual' - users with many mutual friends , 'contacts' - users found with the [vk.com/dev/account.importContacts|account.importContacts] method , 'mutual_contacts' - users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method
+     */
+    filter?: FriendsGetSuggestionsFilter[]
+    /**
+     * Number of suggestions to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of suggestions.
+     */
+    offset?: number
+    /**
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: , 'nom' - nominative (default) , 'gen' - genitive , 'dat' - dative , 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
 }
 
 /**
- * Params object for {@link APIMethods.setBusinessAccountName | setBusinessAccountName} method
+ * Params for {@link APIMethods["friends.search"] | friends.search} method
  */
-export interface SetBusinessAccountNameParams {
+export interface FriendsSearchParams {
     /**
-     * Unique identifier of the business connection
+     * User ID.
      */
-    business_connection_id: string
+    user_id?: number
     /**
-     * The new value of the first name for the business account; 1-64 characters
+     * Search query string (e.g., 'Vasya Babich').
      */
-    first_name: string
+    q?: string
     /**
-     * The new value of the last name for the business account; 0-64 characters
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online',
      */
-    last_name?: string
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
+    /**
+     * Offset needed to return a specific subset of friends.
+     */
+    offset?: number
+    /**
+     * Number of friends to return.
+     */
+    count?: number
 }
 
 /**
- * Params object for {@link APIMethods.setBusinessAccountUsername | setBusinessAccountUsername} method
+ * Params for {@link APIMethods["gifts.get"] | gifts.get} method
  */
-export interface SetBusinessAccountUsernameParams {
+export interface GiftsGetParams {
     /**
-     * Unique identifier of the business connection
+     * User ID.
      */
-    business_connection_id: string
+    user_id?: number
     /**
-     * The new value of the username for the business account; 0-32 characters
+     * Number of gifts to return.
      */
-    username?: string
+    count?: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
 }
 
-/**
- * Params object for {@link APIMethods.setBusinessAccountBio | setBusinessAccountBio} method
- */
-export interface SetBusinessAccountBioParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * The new value of the bio for the business account; 0-140 characters
-     */
-    bio?: string
-}
+export type GroupsAddAddressWorkInfoStatus =
+    | "always_opened"
+    | "forever_closed"
+    | "no_information"
+    | "temporarily_closed"
+    | "timetable"
 
 /**
- * Params object for {@link APIMethods.setBusinessAccountProfilePhoto | setBusinessAccountProfilePhoto} method
+ * Params for {@link APIMethods["groups.addAddress"] | groups.addAddress} method
  */
-export interface SetBusinessAccountProfilePhotoParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * The new profile photo to set
-     */
-    photo: Objects.TelegramInputProfilePhoto
-    /**
-     * Pass *True* to set the public photo, which will be visible even if the main photo is hidden by the business account's privacy settings. An account can have only one public photo.
-     */
-    is_public?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.removeBusinessAccountProfilePhoto | removeBusinessAccountProfilePhoto} method
- */
-export interface RemoveBusinessAccountProfilePhotoParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Pass *True* to remove the public photo, which is visible even if the main photo is hidden by the business account's privacy settings. After the main photo is removed, the previous profile photo (if present) becomes the main photo.
-     */
-    is_public?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.setBusinessAccountGiftSettings | setBusinessAccountGiftSettings} method
- */
-export interface SetBusinessAccountGiftSettingsParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Pass *True*, if a button for sending a gift to the user or by the business account must always be shown in the input field
-     */
-    show_gift_button: boolean
-    /**
-     * Types of gifts accepted by the business account
-     */
-    accepted_gift_types: Objects.TelegramAcceptedGiftTypes
-}
-
-/**
- * Params object for {@link APIMethods.getBusinessAccountStarBalance | getBusinessAccountStarBalance} method
- */
-export interface GetBusinessAccountStarBalanceParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-}
-
-/**
- * Params object for {@link APIMethods.transferBusinessAccountStars | transferBusinessAccountStars} method
- */
-export interface TransferBusinessAccountStarsParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Number of Telegram Stars to transfer; 1-10000
-     */
-    star_count: number
-}
-
-/**
- * Params object for {@link APIMethods.getBusinessAccountGifts | getBusinessAccountGifts} method
- */
-export interface GetBusinessAccountGiftsParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Pass *True* to exclude gifts that aren't saved to the account's profile page
-     */
-    exclude_unsaved?: boolean
-    /**
-     * Pass *True* to exclude gifts that are saved to the account's profile page
-     */
-    exclude_saved?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased an unlimited number of times
-     */
-    exclude_unlimited?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased a limited number of times and can be upgraded to unique
-     */
-    exclude_limited_upgradable?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased a limited number of times and can't be upgraded to unique
-     */
-    exclude_limited_non_upgradable?: boolean
-    /**
-     * Pass *True* to exclude unique gifts
-     */
-    exclude_unique?: boolean
-    /**
-     * Pass *True* to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram
-     */
-    exclude_from_blockchain?: boolean
-    /**
-     * Pass *True* to sort results by gift price instead of send date. Sorting is applied before pagination.
-     */
-    sort_by_price?: boolean
-    /**
-     * Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-     */
-    offset?: string
-    /**
-     * The maximum number of gifts to be returned; 1-100. Defaults to 100
-     */
-    limit?: number
-}
-
-/**
- * Params object for {@link APIMethods.getUserGifts | getUserGifts} method
- */
-export interface GetUserGiftsParams {
-    /**
-     * Unique identifier of the user
-     */
-    user_id: number
-    /**
-     * Pass *True* to exclude gifts that can be purchased an unlimited number of times
-     */
-    exclude_unlimited?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased a limited number of times and can be upgraded to unique
-     */
-    exclude_limited_upgradable?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased a limited number of times and can't be upgraded to unique
-     */
-    exclude_limited_non_upgradable?: boolean
-    /**
-     * Pass *True* to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram
-     */
-    exclude_from_blockchain?: boolean
-    /**
-     * Pass *True* to exclude unique gifts
-     */
-    exclude_unique?: boolean
-    /**
-     * Pass *True* to sort results by gift price instead of send date. Sorting is applied before pagination.
-     */
-    sort_by_price?: boolean
-    /**
-     * Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
-     */
-    offset?: string
-    /**
-     * The maximum number of gifts to be returned; 1-100. Defaults to 100
-     */
-    limit?: number
-}
-
-/**
- * Params object for {@link APIMethods.getChatGifts | getChatGifts} method
- */
-export interface GetChatGiftsParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Pass *True* to exclude gifts that aren't saved to the chat's profile page. Always *True*, unless the bot has the *can\_post\_messages* administrator right in the channel.
-     */
-    exclude_unsaved?: boolean
-    /**
-     * Pass *True* to exclude gifts that are saved to the chat's profile page. Always *False*, unless the bot has the *can\_post\_messages* administrator right in the channel.
-     */
-    exclude_saved?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased an unlimited number of times
-     */
-    exclude_unlimited?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased a limited number of times and can be upgraded to unique
-     */
-    exclude_limited_upgradable?: boolean
-    /**
-     * Pass *True* to exclude gifts that can be purchased a limited number of times and can't be upgraded to unique
-     */
-    exclude_limited_non_upgradable?: boolean
-    /**
-     * Pass *True* to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram
-     */
-    exclude_from_blockchain?: boolean
-    /**
-     * Pass *True* to exclude unique gifts
-     */
-    exclude_unique?: boolean
-    /**
-     * Pass *True* to sort results by gift price instead of send date. Sorting is applied before pagination.
-     */
-    sort_by_price?: boolean
-    /**
-     * Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results
-     */
-    offset?: string
-    /**
-     * The maximum number of gifts to be returned; 1-100. Defaults to 100
-     */
-    limit?: number
-}
-
-/**
- * Params object for {@link APIMethods.convertGiftToStars | convertGiftToStars} method
- */
-export interface ConvertGiftToStarsParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier of the regular gift that should be converted to Telegram Stars
-     */
-    owned_gift_id: string
-}
-
-/**
- * Params object for {@link APIMethods.upgradeGift | upgradeGift} method
- */
-export interface UpgradeGiftParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier of the regular gift that should be upgraded to a unique one
-     */
-    owned_gift_id: string
-    /**
-     * Pass *True* to keep the original gift text, sender and receiver in the upgraded gift
-     */
-    keep_original_details?: boolean
-    /**
-     * The amount of Telegram Stars that will be paid for the upgrade from the business account balance. If `gift.prepaid_upgrade_star_count > 0`, then pass 0, otherwise, the *can\_transfer\_stars* business bot right is required and `gift.upgrade_star_count` must be passed.
-     */
-    star_count?: number
-}
-
-/**
- * Params object for {@link APIMethods.transferGift | transferGift} method
- */
-export interface TransferGiftParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier of the regular gift that should be transferred
-     */
-    owned_gift_id: string
-    /**
-     * Unique identifier of the chat which will own the gift. The chat must be active in the last 24 hours.
-     */
-    new_owner_chat_id: number
-    /**
-     * The amount of Telegram Stars that will be paid for the transfer from the business account balance. If positive, then the *can\_transfer\_stars* business bot right is required.
-     */
-    star_count?: number
-}
-
-export type PostStoryActivePeriod = 21600 | 43200 | 86400 | 172800
-
-/**
- * Params object for {@link APIMethods.postStory | postStory} method
- */
-export interface PostStoryParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Content of the story
-     */
-    content: Objects.TelegramInputStoryContent
-    /**
-     * Period after which the story is moved to the archive, in seconds; must be one of `6 * 3600`, `12 * 3600`, `86400`, or `2 * 86400`
-     */
-    active_period: PostStoryActivePeriod
-    /**
-     * Caption of the story, 0-2048 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the story caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * A JSON-serialized list of clickable areas to be shown on the story
-     */
-    areas?: Objects.TelegramStoryArea[]
-    /**
-     * Pass *True* to keep the story accessible after it expires
-     */
-    post_to_chat_page?: boolean
-    /**
-     * Pass *True* if the content of the story must be protected from forwarding and screenshotting
-     */
-    protect_content?: boolean
-}
-
-export type RepostStoryActivePeriod = 21600 | 43200 | 86400 | 172800
-
-/**
- * Params object for {@link APIMethods.repostStory | repostStory} method
- */
-export interface RepostStoryParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier of the chat which posted the story that should be reposted
-     */
-    from_chat_id: number
-    /**
-     * Unique identifier of the story that should be reposted
-     */
-    from_story_id: number
-    /**
-     * Period after which the story is moved to the archive, in seconds; must be one of `6 * 3600`, `12 * 3600`, `86400`, or `2 * 86400`
-     */
-    active_period: RepostStoryActivePeriod
-    /**
-     * Pass *True* to keep the story accessible after it expires
-     */
-    post_to_chat_page?: boolean
-    /**
-     * Pass *True* if the content of the story must be protected from forwarding and screenshotting
-     */
-    protect_content?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.editStory | editStory} method
- */
-export interface EditStoryParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier of the story to edit
-     */
-    story_id: number
-    /**
-     * Content of the story
-     */
-    content: Objects.TelegramInputStoryContent
-    /**
-     * Caption of the story, 0-2048 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the story caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * A JSON-serialized list of clickable areas to be shown on the story
-     */
-    areas?: Objects.TelegramStoryArea[]
-}
-
-/**
- * Params object for {@link APIMethods.deleteStory | deleteStory} method
- */
-export interface DeleteStoryParams {
-    /**
-     * Unique identifier of the business connection
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier of the story to delete
-     */
-    story_id: number
-}
-
-/**
- * Params object for {@link APIMethods.editMessageText | editMessageText} method
- */
-export interface EditMessageTextParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
-     */
-    business_connection_id?: string
-    /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id?: number | string
-    /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the message to edit
-     */
-    message_id?: number
-    /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
-     */
-    inline_message_id?: string
-    /**
-     * New text of the message, 1-4096 characters after entities parsing
-     */
-    text: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the message text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in message text, which can be specified instead of *parse\_mode*
-     */
-    entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Link preview generation options for the message
-     */
-    link_preview_options?: Objects.TelegramLinkPreviewOptions
-    /**
-     * A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-}
-
-/**
- * Params object for {@link APIMethods.editMessageCaption | editMessageCaption} method
- */
-export interface EditMessageCaptionParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
-     */
-    business_connection_id?: string
-    /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id?: number | string
-    /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the message to edit
-     */
-    message_id?: number
-    /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
-     */
-    inline_message_id?: string
-    /**
-     * New caption of the message, 0-1024 characters after entities parsing
-     */
-    caption?: string | { toString(): string }
-    /**
-     * Mode for parsing entities in the message caption. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
-     */
-    parse_mode?: "HTML" | "MarkdownV2" | "Markdown"
-    /**
-     * A JSON-serialized list of special entities that appear in the caption, which can be specified instead of *parse\_mode*
-     */
-    caption_entities?: Objects.TelegramMessageEntity[]
-    /**
-     * Pass *True*, if the caption must be shown above the message media. Supported only for animation, photo and video messages.
-     */
-    show_caption_above_media?: boolean
-    /**
-     * A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-}
-
-/**
- * Params object for {@link APIMethods.editMessageMedia | editMessageMedia} method
- */
-export interface EditMessageMediaParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
-     */
-    business_connection_id?: string
-    /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id?: number | string
-    /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the message to edit
-     */
-    message_id?: number
-    /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
-     */
-    inline_message_id?: string
-    /**
-     * A JSON-serialized object for a new media content of the message
-     */
-    media: Objects.TelegramInputMedia
-    /**
-     * A JSON-serialized object for a new [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-}
-
-/**
- * Params object for {@link APIMethods.editMessageLiveLocation | editMessageLiveLocation} method
- */
-export interface EditMessageLiveLocationParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
-     */
-    business_connection_id?: string
-    /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id?: number | string
-    /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the message to edit
-     */
-    message_id?: number
-    /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
-     */
-    inline_message_id?: string
-    /**
-     * Latitude of new location
-     */
+export interface GroupsAddAddressParams {
+    group_id: number
+    title: string
+    address: string
+    additional_address?: string
+    city_id: number
+    metro_id?: number
     latitude: number
-    /**
-     * Longitude of new location
-     */
     longitude: number
-    /**
-     * New period in seconds during which the location can be updated, starting from the message send date. If 0x7FFFFFFF is specified, then the location can be updated forever. Otherwise, the new value must not exceed the current *live\_period* by more than a day, and the live location expiration date must remain within the next 90 days. If not specified, then *live\_period* remains unchanged
-     */
-    live_period?: number
-    /**
-     * The radius of uncertainty for the location, measured in meters; 0-1500
-     */
-    horizontal_accuracy?: number
-    /**
-     * Direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
-     */
-    heading?: number
-    /**
-     * The maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-     */
-    proximity_alert_radius?: number
-    /**
-     * A JSON-serialized object for a new [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
+    phone?: string
+    work_info_status?: Objects.VKGroupsAddressWorkInfoStatus
+    timetable?: string
+    is_main_address?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.stopMessageLiveLocation | stopMessageLiveLocation} method
+ * Params for {@link APIMethods["groups.addCallbackServer"] | groups.addCallbackServer} method
  */
-export interface StopMessageLiveLocationParams {
+export interface GroupsAddCallbackServerParams {
+    group_id: number
+    url: string
+    title: string
+    secret_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.addLink"] | groups.addLink} method
+ */
+export interface GroupsAddLinkParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
+     * Community ID.
      */
-    business_connection_id?: string
+    group_id: number
     /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * Link URL.
      */
-    chat_id?: number | string
+    link: string
     /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the message with live location to stop
+     * Description text for the link.
+     */
+    text?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.approveRequest"] | groups.approveRequest} method
+ */
+export interface GroupsApproveRequestParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * User ID.
+     */
+    user_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.ban"] | groups.ban} method
+ */
+export interface GroupsBanParams {
+    group_id: number
+    owner_id?: number
+    end_date?: number
+    reason?: number
+    comment?: string
+    comment_visible?: boolean
+}
+
+export type GroupsCreateType = "event" | "group" | "public"
+/**
+ * - `0` — none
+ * - `1` — place or business
+ * - `2` — company or website
+ * - `3` — person or group
+ * - `4` — product or art
+ */
+export type GroupsCreateSubtype = 0 | 1 | 2 | 3 | 4
+
+/**
+ * Params for {@link APIMethods["groups.create"] | groups.create} method
+ */
+export interface GroupsCreateParams {
+    /**
+     * Community title.
+     */
+    title: string
+    /**
+     * Community description (ignored for 'type' = 'public').
+     */
+    description?: string
+    /**
+     * Community type. Possible values: *'group' - group,, *'event' - event,, *'public' - public page
+     */
+    type?: GroupsCreateType
+    /**
+     * Category ID (for 'type' = 'public' only).
+     */
+    public_category?: number
+    /**
+     * Public page subcategory ID.
+     */
+    public_subcategory?: number
+    /**
+     * Public page subtype. Possible values: *'1' - place or small business,, *'2' - company, organization or website,, *'3' - famous person or group of people,, *'4' - product or work of art.
+     */
+    subtype?: GroupsCreateSubtype
+}
+
+/**
+ * Params for {@link APIMethods["groups.deleteAddress"] | groups.deleteAddress} method
+ */
+export interface GroupsDeleteAddressParams {
+    group_id: number
+    address_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.deleteCallbackServer"] | groups.deleteCallbackServer} method
+ */
+export interface GroupsDeleteCallbackServerParams {
+    group_id: number
+    server_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.deleteLink"] | groups.deleteLink} method
+ */
+export interface GroupsDeleteLinkParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Link ID.
+     */
+    link_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.disableOnline"] | groups.disableOnline} method
+ */
+export interface GroupsDisableOnlineParams {
+    group_id: number
+}
+
+export type GroupsEditAgeLimits = 1 | 2 | 3
+
+/**
+ * Params for {@link APIMethods["groups.edit"] | groups.edit} method
+ */
+export interface GroupsEditParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Community title.
+     */
+    title?: string
+    /**
+     * Community description.
+     */
+    description?: string
+    /**
+     * Community screen name.
+     */
+    screen_name?: string
+    /**
+     * Community type. Possible values: *'0' - open,, *'1' - closed,, *'2' - private.
+     */
+    access?: Objects.VKGroupsGroupAccess
+    /**
+     * Website that will be displayed in the community information field.
+     */
+    website?: string
+    /**
+     * Community subject. Possible values: , *'1' - auto/moto,, *'2' - activity holidays,, *'3' - business,, *'4' - pets,, *'5' - health,, *'6' - dating and communication, , *'7' - games,, *'8' - IT (computers and software),, *'9' - cinema,, *'10' - beauty and fashion,, *'11' - cooking,, *'12' - art and culture,, *'13' - literature,, *'14' - mobile services and internet,, *'15' - music,, *'16' - science and technology,, *'17' - real estate,, *'18' - news and media,, *'19' - security,, *'20' - education,, *'21' - home and renovations,, *'22' - politics,, *'23' - food,, *'24' - industry,, *'25' - travel,, *'26' - work,, *'27' - entertainment,, *'28' - religion,, *'29' - family,, *'30' - sports,, *'31' - insurance,, *'32' - television,, *'33' - goods and services,, *'34' - hobbies,, *'35' - finance,, *'36' - photo,, *'37' - esoterics,, *'38' - electronics and appliances,, *'39' - erotic,, *'40' - humor,, *'41' - society, humanities,, *'42' - design and graphics.
+     */
+    subject?: Objects.VKGroupsGroupSubject
+    /**
+     * Organizer email (for events).
+     */
+    email?: string
+    /**
+     * Organizer phone number (for events).
+     */
+    phone?: string
+    /**
+     * RSS feed address for import (available only to communities with special permission. Contact vk.com/support to get it.
+     */
+    rss?: string
+    /**
+     * Event start date in Unixtime format.
+     */
+    event_start_date?: number
+    /**
+     * Event finish date in Unixtime format.
+     */
+    event_finish_date?: number
+    /**
+     * Organizer community ID (for events only).
+     */
+    event_group_id?: number
+    /**
+     * Public page category ID.
+     */
+    public_category?: number
+    /**
+     * Public page subcategory ID.
+     */
+    public_subcategory?: number
+    /**
+     * Founding date of a company or organization owning the community in "dd.mm.YYYY" format.
+     */
+    public_date?: string
+    /**
+     * Wall settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (groups and events only),, *'3' - closed (groups and events only).
+     */
+    wall?: Objects.VKGroupsGroupWall
+    /**
+     * Board topics settings. Possbile values: , *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+     */
+    topics?: Objects.VKGroupsGroupTopics
+    /**
+     * Photos settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+     */
+    photos?: Objects.VKGroupsGroupPhotos
+    /**
+     * Video settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+     */
+    video?: Objects.VKGroupsGroupVideo
+    /**
+     * Audio settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+     */
+    audio?: Objects.VKGroupsGroupAudio
+    /**
+     * Links settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    links?: boolean
+    /**
+     * Events settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    events?: boolean
+    /**
+     * Places settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    places?: boolean
+    /**
+     * Contacts settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    contacts?: boolean
+    /**
+     * Documents settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+     */
+    docs?: Objects.VKGroupsGroupDocs
+    /**
+     * Wiki pages settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+     */
+    wiki?: Objects.VKGroupsGroupWiki
+    /**
+     * Community messages. Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    messages?: boolean
+    articles?: boolean
+    addresses?: boolean
+    /**
+     * Community age limits. Possible values: *'1' - no limits,, *'2' - 16+,, *'3' - 18+.
+     */
+    age_limits?: Objects.VKGroupsGroupAgeLimits
+    /**
+     * Market settings. Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    market?: boolean
+    /**
+     * Buttons details, see market/objects.json#/definitions/market_custom_button
+     */
+    market_buttons?: string
+    /**
+     * market comments settings. Possible values: *'0' - disabled,, *'1' - enabled.
+     */
+    market_comments?: boolean
+    /**
+     * Market delivery countries.
+     */
+    market_country?: number[]
+    /**
+     * Market delivery cities (if only one country is specified).
+     */
+    market_city?: number[]
+    /**
+     * Market currency settings. Possbile values: , *'643' - Russian rubles,, *'980' - Ukrainian hryvnia,, *'398' - Kazakh tenge,, *'978' - Euro,, *'840' - US dollars
+     */
+    market_currency?: Objects.VKGroupsGroupMarketCurrency
+    /**
+     * Seller contact for market. Set '0' for community messages.
+     */
+    market_contact?: number
+    /**
+     * ID of a wiki page with market description.
+     */
+    market_wiki?: number
+    /**
+     * Obscene expressions filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.
+     */
+    obscene_filter?: boolean
+    /**
+     * Stopwords filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.
+     */
+    obscene_stopwords?: boolean
+    toxic_filter?: boolean
+    disable_replies_from_groups?: boolean
+    /**
+     * Keywords for stopwords filter.
+     */
+    obscene_words?: string[]
+    main_section?: number
+    secondary_section?: number
+    /**
+     * Country of the community.
+     */
+    country?: number
+    /**
+     * City of the community.
+     */
+    city?: number
+}
+
+export type GroupsEditAddressWorkInfoStatus =
+    | "always_opened"
+    | "forever_closed"
+    | "no_information"
+    | "temporarily_closed"
+    | "timetable"
+
+/**
+ * Params for {@link APIMethods["groups.editAddress"] | groups.editAddress} method
+ */
+export interface GroupsEditAddressParams {
+    group_id: number
+    address_id: number
+    title?: string
+    address?: string
+    additional_address?: string
+    city_id?: number
+    metro_id?: number
+    latitude?: number
+    longitude?: number
+    phone?: string
+    work_info_status?: Objects.VKGroupsAddressWorkInfoStatus
+    timetable?: string
+    is_main_address?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.editCallbackServer"] | groups.editCallbackServer} method
+ */
+export interface GroupsEditCallbackServerParams {
+    group_id: number
+    server_id: number
+    url: string
+    title: string
+    secret_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.editLink"] | groups.editLink} method
+ */
+export interface GroupsEditLinkParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Link ID.
+     */
+    link_id: number
+    /**
+     * New description text for the link.
+     */
+    text?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.editManager"] | groups.editManager} method
+ */
+export interface GroupsEditManagerParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * User ID.
+     */
+    user_id: number
+    /**
+     * Manager role. Possible values: *'moderator',, *'editor',, *'administrator',, *'advertiser'.
+     */
+    role?: Objects.VKGroupsGroupRole
+    /**
+     * '1' — allow the manager to accept community calls.
+     */
+    is_call_operator?: boolean
+    /**
+     * '1' - to show the manager in Contacts block of the community.
+     */
+    is_contact?: boolean
+    /**
+     * Position to show in Contacts block.
+     */
+    contact_position?: string
+    /**
+     * Contact phone.
+     */
+    contact_phone?: string
+    /**
+     * Contact e-mail.
+     */
+    contact_email?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.enableOnline"] | groups.enableOnline} method
+ */
+export interface GroupsEnableOnlineParams {
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.get"] | groups.get} method
+ */
+export interface GroupsGetParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
+     */
+    extended?: boolean
+    /**
+     * Types of communities to return: 'admin' - to return communities administered by the user , 'editor' - to return communities where the user is an administrator or editor, 'moder' - to return communities where the user is an administrator, editor, or moderator, 'groups' - to return only groups, 'publics' - to return only public pages, 'events' - to return only events
+     */
+    filter?: Objects.VKGroupsFilter[]
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKGroupsFields[]
+    /**
+     * Offset needed to return a specific subset of communities.
+     */
+    offset?: number
+    /**
+     * Number of communities to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.getAddresses"] | groups.getAddresses} method
+ */
+export interface GroupsGetAddressesParams {
+    /**
+     * ID or screen name of the community.
+     */
+    group_id: number
+    address_ids?: number[]
+    /**
+     * Latitude of  the user geo position.
+     */
+    latitude?: number
+    /**
+     * Longitude of the user geo position.
+     */
+    longitude?: number
+    /**
+     * Offset needed to return a specific subset of community addresses.
+     */
+    offset?: number
+    /**
+     * Number of community addresses to return.
+     */
+    count?: number
+    /**
+     * Address fields
+     */
+    fields?: Objects.VKAddressFields[]
+}
+
+/**
+ * Params for {@link APIMethods["groups.getBanned"] | groups.getBanned} method
+ */
+export interface GroupsGetBannedParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Offset needed to return a specific subset of users.
+     */
+    offset?: number
+    /**
+     * Number of users to return.
+     */
+    count?: number
+    fields?: Objects.VKBaseUserGroupFields[]
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.getById"] | groups.getById} method
+ */
+export interface GroupsGetByIdParams {
+    /**
+     * IDs or screen names of communities.
+     */
+    group_ids?: (number | string)[]
+    /**
+     * ID or screen name of the community.
+     */
+    group_id?: number | string
+    /**
+     * Group fields to return.
+     */
+    fields?: Objects.VKGroupsFields[]
+}
+
+/**
+ * Params for {@link APIMethods["groups.getCallbackConfirmationCode"] | groups.getCallbackConfirmationCode} method
+ */
+export interface GroupsGetCallbackConfirmationCodeParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.getCallbackServers"] | groups.getCallbackServers} method
+ */
+export interface GroupsGetCallbackServersParams {
+    group_id: number
+    server_ids?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["groups.getCallbackSettings"] | groups.getCallbackSettings} method
+ */
+export interface GroupsGetCallbackSettingsParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Server ID.
+     */
+    server_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.getCatalogInfo"] | groups.getCatalogInfo} method
+ */
+export interface GroupsGetCatalogInfoParams {
+    /**
+     * 1 - to return communities count and three communities for preview. By default: 0.
+     */
+    extended?: boolean
+    /**
+     * 1 - to return subcategories info. By default: 0.
+     */
+    subcategories?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.getInvitedUsers"] | groups.getInvitedUsers} method
+ */
+export interface GroupsGetInvitedUsersParams {
+    /**
+     * Group ID to return invited users for.
+     */
+    group_id: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * Number of results to return.
+     */
+    count?: number
+    /**
+     * List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname. Possible values: *'nom' - nominative (default),, *'gen' - genitive,, *'dat' - dative,, *'acc' - accusative, , *'ins' - instrumental,, *'abl' - prepositional.
+     */
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["groups.getInvites"] | groups.getInvites} method
+ */
+export interface GroupsGetInvitesParams {
+    /**
+     * Offset needed to return a specific subset of invitations.
+     */
+    offset?: number
+    /**
+     * Number of invitations to return.
+     */
+    count?: number
+    /**
+     * '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
+     */
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.getLongPollServer"] | groups.getLongPollServer} method
+ */
+export interface GroupsGetLongPollServerParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.getLongPollSettings"] | groups.getLongPollSettings} method
+ */
+export interface GroupsGetLongPollSettingsParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+}
+
+export type GroupsGetMembersSort =
+    | "id_asc"
+    | "id_desc"
+    | "time_asc"
+    | "time_desc"
+export type GroupsGetMembersFilter =
+    | "donut"
+    | "friends"
+    | "managers"
+    | "unsure"
+    | "unsure_friends"
+
+/**
+ * Params for {@link APIMethods["groups.getMembers"] | groups.getMembers} method
+ */
+export interface GroupsGetMembersParams {
+    /**
+     * ID or screen name of the community.
+     */
+    group_id?: number | string
+    /**
+     * Sort order. Available values: 'id_asc', 'id_desc', 'time_asc', 'time_desc'. 'time_asc' and 'time_desc' are availavle only if the method is called by the group's 'moderator'.
+     */
+    sort?: GroupsGetMembersSort
+    /**
+     * Offset needed to return a specific subset of community members.
+     */
+    offset?: number
+    /**
+     * Number of community members to return.
+     */
+    count?: number
+    /**
+     * List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
+     */
+    filter?: GroupsGetMembersFilter
+}
+
+/**
+ * Params for {@link APIMethods["groups.getOnlineStatus"] | groups.getOnlineStatus} method
+ */
+export interface GroupsGetOnlineStatusParams {
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.getRequests"] | groups.getRequests} method
+ */
+export interface GroupsGetRequestsParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * Number of results to return.
+     */
+    count?: number
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+}
+
+/**
+ * Params for {@link APIMethods["groups.getSettings"] | groups.getSettings} method
+ */
+export interface GroupsGetSettingsParams {
+    /**
+     * Community ID.
+     */
+    group_id: number | string
+}
+
+/**
+ * Params for {@link APIMethods["groups.getTagList"] | groups.getTagList} method
+ */
+export interface GroupsGetTagListParams {
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.invite"] | groups.invite} method
+ */
+export interface GroupsInviteParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * User IDs.
+     */
+    user_ids_list?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["groups.isMember"] | groups.isMember} method
+ */
+export interface GroupsIsMemberParams {
+    /**
+     * ID or screen name of the community.
+     */
+    group_id: number | string
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * User IDs.
+     */
+    user_ids?: number[]
+    /**
+     * '1' - to return an extended response with additional fields. By default: '0'.
+     */
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.join"] | groups.join} method
+ */
+export interface GroupsJoinParams {
+    /**
+     * ID or screen name of the community.
+     */
+    group_id: number
+    /**
+     * Optional parameter which is taken into account when 'gid' belongs to the event: '1' - Perhaps I will attend, '0' - I will be there for sure (default), ,
+     */
+    not_sure?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.leave"] | groups.leave} method
+ */
+export interface GroupsLeaveParams {
+    /**
+     * ID or screen name of the community.
+     */
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.removeUser"] | groups.removeUser} method
+ */
+export interface GroupsRemoveUserParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * User ID.
+     */
+    user_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.reorderLink"] | groups.reorderLink} method
+ */
+export interface GroupsReorderLinkParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Link ID.
+     */
+    link_id: number
+    /**
+     * ID of the link after which to place the link with 'link_id'.
+     */
+    after?: number
+}
+
+export type GroupsSearchType = "event" | "group" | "page"
+/**
+ * - `0` — default
+ * - `1` — growth
+ * - `2` — attendance
+ * - `3` — likes
+ * - `4` — comments
+ * - `5` — entries
+ * - `6` — members
+ */
+export type GroupsSearchSort = 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+/**
+ * Params for {@link APIMethods["groups.search"] | groups.search} method
+ */
+export interface GroupsSearchParams {
+    /**
+     * Search query string.
+     */
+    q: string
+    /**
+     * Community type. Possible values: 'group, page, event.'
+     */
+    type?: GroupsSearchType
+    /**
+     * Country ID.
+     */
+    country_id?: number
+    /**
+     * City ID. If this parameter is transmitted, country_id is ignored.
+     */
+    city_id?: number
+    /**
+     * '1' - to return only upcoming events. Works with the 'type' = 'event' only.
+     */
+    future?: boolean
+    /**
+     * '1' - to return communities with enabled market only.
+     */
+    market?: boolean
+    /**
+     * Sort order. Possible values: *'0' - default sorting (similar the full version of the site),, *'1' - by growth speed,, *'2'- by the "day attendance/members number" ratio,, *'3' - by the "Likes number/members number" ratio,, *'4' - by the "comments number/members number" ratio,, *'5' - by the "boards entries number/members number" ratio.
+     */
+    sort?: GroupsSearchSort
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * Number of communities to return. "Note that you can not receive more than first thousand of results, regardless of 'count' and 'offset' values."
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.setCallbackSettings"] | groups.setCallbackSettings} method
+ */
+export interface GroupsSetCallbackSettingsParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Server ID.
+     */
+    server_id?: number
+    api_version?: string
+    /**
+     * A new incoming message has been received ('0' - disabled, '1' - enabled).
+     */
+    message_new?: boolean
+    /**
+     * A new outcoming message has been received ('0' - disabled, '1' - enabled).
+     */
+    message_reply?: boolean
+    /**
+     * Allowed messages notifications ('0' - disabled, '1' - enabled).
+     */
+    message_allow?: boolean
+    message_edit?: boolean
+    /**
+     * Denied messages notifications ('0' - disabled, '1' - enabled).
+     */
+    message_deny?: boolean
+    message_typing_state?: boolean
+    /**
+     * Messages read notifications ('0' - disabled, '1' - enabled).
+     */
+    message_read?: boolean
+    /**
+     * New photos notifications ('0' - disabled, '1' - enabled).
+     */
+    photo_new?: boolean
+    /**
+     * New audios notifications ('0' - disabled, '1' - enabled).
+     */
+    audio_new?: boolean
+    /**
+     * New videos notifications ('0' - disabled, '1' - enabled).
+     */
+    video_new?: boolean
+    /**
+     * New wall replies notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_new?: boolean
+    /**
+     * Wall replies edited notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_edit?: boolean
+    /**
+     * A wall comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_delete?: boolean
+    /**
+     * A wall comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_restore?: boolean
+    /**
+     * New wall posts notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_post_new?: boolean
+    /**
+     * New wall posts notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_repost?: boolean
+    /**
+     * Scheduled post added to time slot ('0' - disabled, '1' - enabled).
+     */
+    wall_schedule_post_new?: boolean
+    /**
+     * Scheduled post removed from time slot ('0' - disabled, '1' - enabled).
+     */
+    wall_schedule_post_delete?: boolean
+    /**
+     * New board posts notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_new?: boolean
+    /**
+     * Board posts edited notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_edit?: boolean
+    /**
+     * Board posts restored notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_restore?: boolean
+    /**
+     * Board posts deleted notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_delete?: boolean
+    /**
+     * New comment to photo notifications ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_new?: boolean
+    /**
+     * A photo comment has been edited ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_edit?: boolean
+    /**
+     * A photo comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_delete?: boolean
+    /**
+     * A photo comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_restore?: boolean
+    /**
+     * New comment to video notifications ('0' - disabled, '1' - enabled).
+     */
+    video_comment_new?: boolean
+    /**
+     * A video comment has been edited ('0' - disabled, '1' - enabled).
+     */
+    video_comment_edit?: boolean
+    /**
+     * A video comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    video_comment_delete?: boolean
+    /**
+     * A video comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    video_comment_restore?: boolean
+    /**
+     * New comment to market item notifications ('0' - disabled, '1' - enabled).
+     */
+    market_comment_new?: boolean
+    /**
+     * A market comment has been edited ('0' - disabled, '1' - enabled).
+     */
+    market_comment_edit?: boolean
+    /**
+     * A market comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    market_comment_delete?: boolean
+    /**
+     * A market comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    market_comment_restore?: boolean
+    market_order_new?: boolean
+    market_order_edit?: boolean
+    /**
+     * A vote in a public poll has been added ('0' - disabled, '1' - enabled).
+     */
+    poll_vote_new?: boolean
+    /**
+     * Joined community notifications ('0' - disabled, '1' - enabled).
+     */
+    group_join?: boolean
+    /**
+     * Left community notifications ('0' - disabled, '1' - enabled).
+     */
+    group_leave?: boolean
+    group_change_settings?: boolean
+    group_change_photo?: boolean
+    group_officers_edit?: boolean
+    /**
+     * User added to community blacklist
+     */
+    user_block?: boolean
+    /**
+     * User removed from community blacklist
+     */
+    user_unblock?: boolean
+    /**
+     * New form in lead forms
+     */
+    lead_forms_new?: boolean
+    like_add?: boolean
+    like_remove?: boolean
+    message_event?: boolean
+    message_reaction_event?: boolean
+    donut_subscription_create?: boolean
+    donut_subscription_prolonged?: boolean
+    donut_subscription_cancelled?: boolean
+    donut_subscription_price_changed?: boolean
+    donut_subscription_expired?: boolean
+    donut_money_withdraw?: boolean
+    donut_money_withdraw_error?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.setLongPollSettings"] | groups.setLongPollSettings} method
+ */
+export interface GroupsSetLongPollSettingsParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Sets whether Long Poll is enabled ('0' - disabled, '1' - enabled).
+     */
+    enabled?: boolean
+    api_version?: string
+    /**
+     * A new incoming message has been received ('0' - disabled, '1' - enabled).
+     */
+    message_new?: boolean
+    /**
+     * A new outcoming message has been received ('0' - disabled, '1' - enabled).
+     */
+    message_reply?: boolean
+    /**
+     * Allowed messages notifications ('0' - disabled, '1' - enabled).
+     */
+    message_allow?: boolean
+    /**
+     * Denied messages notifications ('0' - disabled, '1' - enabled).
+     */
+    message_deny?: boolean
+    /**
+     * A message has been edited ('0' - disabled, '1' - enabled).
+     */
+    message_edit?: boolean
+    message_typing_state?: boolean
+    /**
+     * Messages read notifications ('0' - disabled, '1' - enabled).
+     */
+    message_read?: boolean
+    /**
+     * New photos notifications ('0' - disabled, '1' - enabled).
+     */
+    photo_new?: boolean
+    /**
+     * New audios notifications ('0' - disabled, '1' - enabled).
+     */
+    audio_new?: boolean
+    /**
+     * New videos notifications ('0' - disabled, '1' - enabled).
+     */
+    video_new?: boolean
+    /**
+     * New wall replies notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_new?: boolean
+    /**
+     * Wall replies edited notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_edit?: boolean
+    /**
+     * A wall comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_delete?: boolean
+    /**
+     * A wall comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    wall_reply_restore?: boolean
+    /**
+     * New wall posts notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_post_new?: boolean
+    /**
+     * New wall posts notifications ('0' - disabled, '1' - enabled).
+     */
+    wall_repost?: boolean
+    /**
+     * New board posts notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_new?: boolean
+    /**
+     * Board posts edited notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_edit?: boolean
+    /**
+     * Board posts restored notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_restore?: boolean
+    /**
+     * Board posts deleted notifications ('0' - disabled, '1' - enabled).
+     */
+    board_post_delete?: boolean
+    /**
+     * New comment to photo notifications ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_new?: boolean
+    /**
+     * A photo comment has been edited ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_edit?: boolean
+    /**
+     * A photo comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_delete?: boolean
+    /**
+     * A photo comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    photo_comment_restore?: boolean
+    /**
+     * New comment to video notifications ('0' - disabled, '1' - enabled).
+     */
+    video_comment_new?: boolean
+    /**
+     * A video comment has been edited ('0' - disabled, '1' - enabled).
+     */
+    video_comment_edit?: boolean
+    /**
+     * A video comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    video_comment_delete?: boolean
+    /**
+     * A video comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    video_comment_restore?: boolean
+    /**
+     * New comment to market item notifications ('0' - disabled, '1' - enabled).
+     */
+    market_comment_new?: boolean
+    /**
+     * A market comment has been edited ('0' - disabled, '1' - enabled).
+     */
+    market_comment_edit?: boolean
+    /**
+     * A market comment has been deleted ('0' - disabled, '1' - enabled).
+     */
+    market_comment_delete?: boolean
+    /**
+     * A market comment has been restored ('0' - disabled, '1' - enabled).
+     */
+    market_comment_restore?: boolean
+    /**
+     * A vote in a public poll has been added ('0' - disabled, '1' - enabled).
+     */
+    poll_vote_new?: boolean
+    /**
+     * Joined community notifications ('0' - disabled, '1' - enabled).
+     */
+    group_join?: boolean
+    /**
+     * Left community notifications ('0' - disabled, '1' - enabled).
+     */
+    group_leave?: boolean
+    group_change_settings?: boolean
+    group_change_photo?: boolean
+    group_officers_edit?: boolean
+    /**
+     * User added to community blacklist
+     */
+    user_block?: boolean
+    /**
+     * User removed from community blacklist
+     */
+    user_unblock?: boolean
+    like_add?: boolean
+    like_remove?: boolean
+    message_event?: boolean
+    message_reaction_event?: boolean
+    donut_subscription_create?: boolean
+    donut_subscription_prolonged?: boolean
+    donut_subscription_cancelled?: boolean
+    donut_subscription_price_changed?: boolean
+    donut_subscription_expired?: boolean
+    donut_money_withdraw?: boolean
+    donut_money_withdraw_error?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.setSettings"] | groups.setSettings} method
+ */
+export interface GroupsSetSettingsParams {
+    group_id: number
+    messages?: boolean
+    /**
+     * By enabling bot abilities, you can send users messages with a customized keyboard attached as well as use other promotional abilities
+     */
+    bots_capabilities?: boolean
+    /**
+     * If this setting is enabled, users will see a Start button when they start a chat with your community for the first time
+     */
+    bots_start_button?: boolean
+    /**
+     * If this setting is enabled then users can add your community to a chat
+     */
+    bots_add_to_chat?: boolean
+    /**
+     * If this setting is enabled then online booking chatbot add in your community chats
+     */
+    bot_online_booking_enabled?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["groups.setUserNote"] | groups.setUserNote} method
+ */
+export interface GroupsSetUserNoteParams {
+    group_id: number
+    user_id: number
+    /**
+     * Note body
+     */
+    note?: string
+}
+
+export type GroupsTagAddTagColor =
+    | "454647"
+    | "45678f"
+    | "4bb34b"
+    | "5181b8"
+    | "539b9c"
+    | "5c9ce6"
+    | "63b9ba"
+    | "6bc76b"
+    | "76787a"
+    | "792ec0"
+    | "7a6c4f"
+    | "7ececf"
+    | "9e8d6b"
+    | "a162de"
+    | "aaaeb3"
+    | "bbaa84"
+    | "e64646"
+    | "ff5c5c"
+    | "ffa000"
+    | "ffc107"
+
+/**
+ * Params for {@link APIMethods["groups.tagAdd"] | groups.tagAdd} method
+ */
+export interface GroupsTagAddParams {
+    group_id: number
+    tag_name: string
+    tag_color?: GroupsTagAddTagColor
+}
+
+export type GroupsTagBindAct = "bind" | "unbind"
+
+/**
+ * Params for {@link APIMethods["groups.tagBind"] | groups.tagBind} method
+ */
+export interface GroupsTagBindParams {
+    group_id: number
+    tag_id: number
+    user_id: number
+    /**
+     * Describe the action
+     */
+    act: GroupsTagBindAct
+}
+
+/**
+ * Params for {@link APIMethods["groups.tagDelete"] | groups.tagDelete} method
+ */
+export interface GroupsTagDeleteParams {
+    group_id: number
+    tag_id: number
+}
+
+/**
+ * Params for {@link APIMethods["groups.tagUpdate"] | groups.tagUpdate} method
+ */
+export interface GroupsTagUpdateParams {
+    group_id: number
+    tag_id: number
+    tag_name: string
+}
+
+export type GroupsToggleMarketState = "advanced" | "basic" | "none"
+
+/**
+ * Params for {@link APIMethods["groups.toggleMarket"] | groups.toggleMarket} method
+ */
+export interface GroupsToggleMarketParams {
+    group_id: number
+    state: Objects.VKGroupsMarketState
+    ref?: string
+}
+
+/**
+ * Params for {@link APIMethods["groups.unban"] | groups.unban} method
+ */
+export interface GroupsUnbanParams {
+    group_id: number
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["leadForms.create"] | leadForms.create} method
+ */
+export interface LeadFormsCreateParams {
+    group_id: number
+    name: string
+    title: string
+    description: string
+    questions: string
+    policy_link_url: string
+    photo?: string
+    confirmation?: string
+    site_link_url?: string
+    active?: boolean
+    once_per_user?: boolean
+    pixel_code?: string
+    notify_admins?: number[]
+    notify_emails?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["leadForms.delete"] | leadForms.delete} method
+ */
+export interface LeadFormsDeleteParams {
+    group_id: number
+    form_id: number
+}
+
+/**
+ * Params for {@link APIMethods["leadForms.get"] | leadForms.get} method
+ */
+export interface LeadFormsGetParams {
+    group_id: number
+    form_id: number
+}
+
+/**
+ * Params for {@link APIMethods["leadForms.getLeads"] | leadForms.getLeads} method
+ */
+export interface LeadFormsGetLeadsParams {
+    group_id: number
+    form_id: number
+    limit?: number
+    next_page_token?: string
+}
+
+/**
+ * Params for {@link APIMethods["leadForms.list"] | leadForms.list} method
+ */
+export interface LeadFormsListParams {
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["leadForms.update"] | leadForms.update} method
+ */
+export interface LeadFormsUpdateParams {
+    group_id: number
+    form_id: number
+    name: string
+    title: string
+    description: string
+    questions: string
+    policy_link_url: string
+    photo?: string
+    confirmation?: string
+    site_link_url?: string
+    active?: boolean
+    once_per_user?: boolean
+    pixel_code?: string
+    notify_admins?: number[]
+    notify_emails?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["likes.add"] | likes.add} method
+ */
+export interface LikesAddParams {
+    /**
+     * Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed
+     */
+    type: Objects.VKLikesType
+    /**
+     * ID of the user or community that owns the object.
+     */
+    owner_id?: number
+    /**
+     * Object ID.
+     */
+    item_id: number
+    /**
+     * Access key required for an object owned by a private entity.
+     */
+    access_key?: string
+    /**
+     * Impersonate group
+     */
+    from_group?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["likes.delete"] | likes.delete} method
+ */
+export interface LikesDeleteParams {
+    /**
+     * Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed
+     */
+    type: Objects.VKLikesType
+    /**
+     * ID of the user or community that owns the object.
+     */
+    owner_id?: number
+    /**
+     * Object ID.
+     */
+    item_id: number
+    /**
+     * Access key required for an object owned by a private entity.
+     */
+    access_key?: string
+    /**
+     * Impersonate group
+     */
+    from_group?: boolean
+}
+
+export type LikesGetListFilter = "copies" | "likes"
+export type LikesGetListFriendsOnly = 0 | 1 | 2 | 3
+
+/**
+ * Params for {@link APIMethods["likes.getList"] | likes.getList} method
+ */
+export interface LikesGetListParams {
+    /**
+     * , Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed
+     */
+    type: Objects.VKLikesType
+    /**
+     * ID of the user, community, or application that owns the object. If the 'type' parameter is set as 'sitepage', the application ID is passed as 'owner_id'. Use negative value for a community id. If the 'type' parameter is not set, the 'owner_id' is assumed to be either the current user or the same application ID as if the 'type' parameter was set to 'sitepage'.
+     */
+    owner_id?: number
+    /**
+     * Object ID. If 'type' is set as 'sitepage', 'item_id' can include the 'page_id' parameter value used during initialization of the [vk.com/dev/Like|Like widget].
+     */
+    item_id?: number
+    /**
+     * URL of the page where the [vk.com/dev/Like|Like widget] is installed. Used instead of the 'item_id' parameter.
+     */
+    page_url?: string
+    /**
+     * Filters to apply: 'likes' - returns information about all users who liked the object (default), 'copies' - returns information only about users who told their friends about the object
+     */
+    filter?: LikesGetListFilter
+    /**
+     * Specifies which users are returned: '1' - to return only the current user's friends, '0' - to return all users (default)
+     */
+    friends_only?: LikesGetListFriendsOnly
+    /**
+     * Specifies whether extended information will be returned. '1' - to return extended information about users and communities from the 'Likes' list, '0' - to return no additional information (default)
+     */
+    extended?: boolean
+    /**
+     * Offset needed to select a specific subset of users.
+     */
+    offset?: number
+    /**
+     * Number of user IDs to return (maximum '1000'). Default is '100' if 'friends_only' is set to '0', otherwise, the default is '10' if 'friends_only' is set to '1'.
+     */
+    count?: number
+    skip_own?: boolean
+    fields?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["likes.isLiked"] | likes.isLiked} method
+ */
+export interface LikesIsLikedParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion
+     */
+    type: Objects.VKLikesType
+    /**
+     * ID of the user or community that owns the object.
+     */
+    owner_id?: number
+    /**
+     * Object ID.
+     */
+    item_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.add"] | market.add} method
+ */
+export interface MarketAddParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Item name.
+     */
+    name: string
+    /**
+     * Item description.
+     */
+    description: string
+    /**
+     * Item category ID.
+     */
+    category_id: number
+    /**
+     * Item price.
+     */
+    price?: number
+    old_price?: number
+    /**
+     * Item status ('1' - deleted, '0' - not deleted).
+     */
+    deleted?: boolean
+    /**
+     * Cover photo ID.
+     */
+    main_photo_id?: number
+    /**
+     * IDs of additional photos.
+     */
+    photo_ids?: number[]
+    /**
+     * IDs of additional videos.
+     */
+    video_ids?: number[]
+    /**
+     * Url for button in market item.
+     */
+    url?: string
+    /**
+     * IDs of properties variants.
+     */
+    variant_ids?: number[]
+    /**
+     * Is main in their group.
+     */
+    is_main_variant?: boolean
+    dimension_width?: number
+    dimension_height?: number
+    dimension_length?: number
+    weight?: number
+    sku?: string
+    stock_amount?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.addAlbum"] | market.addAlbum} method
+ */
+export interface MarketAddAlbumParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Collection title.
+     */
+    title: string
+    /**
+     * Cover photo ID.
+     */
+    photo_id?: number
+    /**
+     * Set as main ('1' - set, '0' - no).
+     */
+    main_album?: boolean
+    /**
+     * Set as hidden
+     */
+    is_hidden?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["market.addProperty"] | market.addProperty} method
+ */
+export interface MarketAddPropertyParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Property name.
+     */
+    title: string
+}
+
+/**
+ * Params for {@link APIMethods["market.addPropertyVariant"] | market.addPropertyVariant} method
+ */
+export interface MarketAddPropertyVariantParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Property id.
+     */
+    property_id: number
+    /**
+     * Variant name.
+     */
+    title: string
+}
+
+/**
+ * Params for {@link APIMethods["market.addToAlbum"] | market.addToAlbum} method
+ */
+export interface MarketAddToAlbumParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    item_ids: number[]
+    /**
+     * Collections IDs to add item to.
+     */
+    album_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["market.createComment"] | market.createComment} method
+ */
+export interface MarketCreateCommentParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+    /**
+     * Comment text (required if 'attachments' parameter is not specified)
+     */
+    message?: string
+    /**
+     * Comma-separated list of objects attached to a comment. The field is submitted the following way: , "'<owner_id>_<media_id>,<owner_id>_<media_id>'", , '' - media attachment type: "'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document", , '<owner_id>' - media owner id, '<media_id>' - media attachment id, , For example: "photo100172_166443618,photo66748_265827614",
+     */
+    attachments?: string[]
+    /**
+     * '1' - comment will be published on behalf of a community, '0' - on behalf of a user (by default).
+     */
+    from_group?: boolean
+    /**
+     * ID of a comment to reply with current comment to.
+     */
+    reply_to_comment?: number
+    /**
+     * Sticker ID.
+     */
+    sticker_id?: number
+    /**
+     * Random value to avoid resending one comment.
+     */
+    guid?: string
+}
+
+/**
+ * Params for {@link APIMethods["market.delete"] | market.delete} method
+ */
+export interface MarketDeleteParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.deleteAlbum"] | market.deleteAlbum} method
+ */
+export interface MarketDeleteAlbumParams {
+    /**
+     * ID of an collection owner community.
+     */
+    owner_id: number
+    /**
+     * Collection ID.
+     */
+    album_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.deleteComment"] | market.deleteComment} method
+ */
+export interface MarketDeleteCommentParams {
+    /**
+     * identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+     */
+    owner_id: number
+    /**
+     * comment id
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.deleteProperty"] | market.deleteProperty} method
+ */
+export interface MarketDeletePropertyParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Property id.
+     */
+    property_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.deletePropertyVariant"] | market.deletePropertyVariant} method
+ */
+export interface MarketDeletePropertyVariantParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Variant id.
+     */
+    variant_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.edit"] | market.edit} method
+ */
+export interface MarketEditParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+    /**
+     * Item name.
+     */
+    name?: string
+    /**
+     * Item description.
+     */
+    description?: string
+    /**
+     * Item category ID.
+     */
+    category_id?: number
+    /**
+     * Item price.
+     */
+    price?: number
+    old_price?: number
+    /**
+     * Item status ('1' - deleted, '0' - not deleted).
+     */
+    deleted?: boolean
+    /**
+     * Cover photo ID.
+     */
+    main_photo_id?: number
+    /**
+     * IDs of additional photos.
+     */
+    photo_ids?: number[]
+    /**
+     * IDs of additional videos.
+     */
+    video_ids?: number[]
+    /**
+     * Url for button in market item.
+     */
+    url?: string
+    /**
+     * IDs of properties variants.
+     */
+    variant_ids?: number[]
+    /**
+     * Is main in their group.
+     */
+    is_main_variant?: boolean
+    dimension_width?: number
+    dimension_height?: number
+    dimension_length?: number
+    weight?: number
+    sku?: string
+    stock_amount?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.editAlbum"] | market.editAlbum} method
+ */
+export interface MarketEditAlbumParams {
+    /**
+     * ID of an collection owner community.
+     */
+    owner_id: number
+    /**
+     * Collection ID.
+     */
+    album_id: number
+    /**
+     * Collection title.
+     */
+    title: string
+    /**
+     * Cover photo id
+     */
+    photo_id?: number
+    /**
+     * Set as main ('1' - set, '0' - no).
+     */
+    main_album?: boolean
+    /**
+     * Set as hidden
+     */
+    is_hidden?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["market.editComment"] | market.editComment} method
+ */
+export interface MarketEditCommentParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * New comment text (required if 'attachments' are not specified), , 2048 symbols maximum.
+     */
+    message?: string
+    /**
+     * Comma-separated list of objects attached to a comment. The field is submitted the following way: , "'<owner_id>_<media_id>,<owner_id>_<media_id>'", , '' - media attachment type: "'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document", , '<owner_id>' - media owner id, '<media_id>' - media attachment id, , For example: "photo100172_166443618,photo66748_265827614",
+     */
+    attachments?: string[]
+}
+
+export type MarketEditOrderPaymentStatus = "not_paid" | "paid" | "returned"
+
+/**
+ * Params for {@link APIMethods["market.editOrder"] | market.editOrder} method
+ */
+export interface MarketEditOrderParams {
+    user_id: number
+    order_id: number
+    merchant_comment?: string
+    status?: number
+    track_number?: string
+    payment_status?: MarketEditOrderPaymentStatus
+    delivery_price?: number
+    width?: number
+    length?: number
+    height?: number
+    weight?: number
+    comment_for_user?: string
+    receipt_link?: string
+}
+
+/**
+ * Params for {@link APIMethods["market.editProperty"] | market.editProperty} method
+ */
+export interface MarketEditPropertyParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Property id.
+     */
+    property_id: number
+    /**
+     * Property name
+     */
+    title: string
+}
+
+/**
+ * Params for {@link APIMethods["market.editPropertyVariant"] | market.editPropertyVariant} method
+ */
+export interface MarketEditPropertyVariantParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Variant id.
+     */
+    variant_id: number
+    /**
+     * Variant name.
+     */
+    title: string
+}
+
+/**
+ * Params for {@link APIMethods["market.filterCategories"] | market.filterCategories} method
+ */
+export interface MarketFilterCategoriesParams {
+    /**
+     * Category_id filter categories
+     */
+    category_id?: number
+    /**
+     * Query filter categories
+     */
+    query?: string
+    /**
+     * Number of results to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.get"] | market.get} method
+ */
+export interface MarketGetParams {
+    /**
+     * ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+     */
+    owner_id: number
+    album_id?: number
+    /**
+     * Number of items to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * '1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
+     */
+    extended?: boolean
+    /**
+     * Items update date from (format: yyyy-mm-dd)
+     */
+    date_from?: string
+    /**
+     * Items update date to (format: yyyy-mm-dd)
+     */
+    date_to?: string
+    /**
+     * Add variants to response if exist
+     */
+    need_variants?: boolean
+    /**
+     * Add disabled items to response
+     */
+    with_disabled?: boolean
+    fields?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["market.getAlbumById"] | market.getAlbumById} method
+ */
+export interface MarketGetAlbumByIdParams {
+    /**
+     * identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+     */
+    owner_id: number
+    /**
+     * collections identifiers to obtain data from
+     */
+    album_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["market.getAlbums"] | market.getAlbums} method
+ */
+export interface MarketGetAlbumsParams {
+    /**
+     * ID of an items owner community.
+     */
+    owner_id: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * Number of items to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.getById"] | market.getById} method
+ */
+export interface MarketGetByIdParams {
+    /**
+     * Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
+     */
+    item_ids: string[]
+    /**
+     * '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
+     */
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["market.getCategories"] | market.getCategories} method
+ */
+export interface MarketGetCategoriesParams {
+    /**
+     * Group Id.
+     */
+    group_id?: number
+    album_id?: number
+}
+
+/**
+ * - `asc` — old to new
+ * - `desc` — new to old
+ */
+export type MarketGetCommentsSort = "asc" | "desc"
+
+/**
+ * Params for {@link APIMethods["market.getComments"] | market.getComments} method
+ */
+export interface MarketGetCommentsParams {
+    /**
+     * ID of an item owner community
+     */
+    owner_id: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+    /**
+     * '1' - to return likes info.
+     */
+    need_likes?: boolean
+    /**
+     * ID of a comment to start a list from (details below).
+     */
+    start_comment_id?: number
+    offset?: number
+    /**
+     * Number of results to return.
+     */
+    count?: number
+    /**
+     * Sort order ('asc' - from old to new, 'desc' - from new to old)
+     */
+    sort?: MarketGetCommentsSort
+    /**
+     * '1' - comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.
+     */
+    extended?: boolean
+    /**
+     * List of additional profile fields to return. See the [vk.com/dev/fields|details]
+     */
+    fields?: Objects.VKUsersFields[]
+}
+
+/**
+ * Params for {@link APIMethods["market.getFavesForAttach"] | market.getFavesForAttach} method
+ */
+export interface MarketGetFavesForAttachParams {
+    /**
+     * Group which represents content
+     */
+    current_group_id?: number
+    public_only?: boolean
+    /**
+     * Offset needed to return a specific subset of users.
+     */
+    offset?: number
+    /**
+     * Number of users to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.getGroupOrders"] | market.getGroupOrders} method
+ */
+export interface MarketGetGroupOrdersParams {
+    /**
+     * ID or groups domain
+     */
+    group_id?: number | string
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.getOrderById"] | market.getOrderById} method
+ */
+export interface MarketGetOrderByIdParams {
+    user_id?: number
+    order_id: number
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["market.getOrderItems"] | market.getOrderItems} method
+ */
+export interface MarketGetOrderItemsParams {
+    user_id?: number
+    order_id: number
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.getOrders"] | market.getOrders} method
+ */
+export interface MarketGetOrdersParams {
+    offset?: number
+    count?: number
+    extended?: boolean
+    /**
+     * Orders status updated date from (format: yyyy-mm-dd)
+     */
+    date_from?: string
+    /**
+     * Orders status updated date to (format: yyyy-mm-dd)
+     */
+    date_to?: string
+}
+
+/**
+ * Params for {@link APIMethods["market.getProductPhotoUploadServer"] | market.getProductPhotoUploadServer} method
+ */
+export interface MarketGetProductPhotoUploadServerParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    bulk?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["market.getProperties"] | market.getProperties} method
+ */
+export interface MarketGetPropertiesParams {
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.groupItems"] | market.groupItems} method
+ */
+export interface MarketGroupItemsParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Item ids.
+     */
+    item_ids: number[]
+    /**
+     * Items group id.
+     */
+    item_group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.removeFromAlbum"] | market.removeFromAlbum} method
+ */
+export interface MarketRemoveFromAlbumParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+    /**
+     * Collections IDs to remove item from.
+     */
+    album_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["market.reorderAlbums"] | market.reorderAlbums} method
+ */
+export interface MarketReorderAlbumsParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Collection ID.
+     */
+    album_id: number
+    /**
+     * ID of a collection to place current collection before it.
+     */
+    before?: number
+    /**
+     * ID of a collection to place current collection after it.
+     */
+    after?: number
+}
+
+/**
+ * Params for {@link APIMethods["market.reorderItems"] | market.reorderItems} method
+ */
+export interface MarketReorderItemsParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * ID of a collection to reorder items in. Set 0 to reorder full items list.
+     */
+    album_id?: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+    /**
+     * ID of an item to place current item before it.
+     */
+    before?: number
+    /**
+     * ID of an item to place current item after it.
+     */
+    after?: number
+}
+
+/**
+ * - `0` — spam
+ * - `1` — child pornography
+ * - `2` — extremism
+ * - `3` — violence
+ * - `4` — drug propaganda
+ * - `5` — adult material
+ * - `6` — insult abuse
+ */
+export type MarketReportReason = 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+/**
+ * Params for {@link APIMethods["market.report"] | market.report} method
+ */
+export interface MarketReportParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Item ID.
+     */
+    item_id: number
+    /**
+     * Complaint reason. Possible values: *'0' - spam,, *'1' - child porn,, *'2' - extremism,, *'3' - violence,, *'4' - drugs propaganda,, *'5' - adult materials,, *'6' - insult.
+     */
+    reason?: MarketReportReason
+}
+
+/**
+ * - `0` — spam
+ * - `1` — child pornography
+ * - `2` — extremism
+ * - `3` — violence
+ * - `4` — drug propaganda
+ * - `5` — adult material
+ * - `6` — insult abuse
+ */
+export type MarketReportCommentReason = 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+/**
+ * Params for {@link APIMethods["market.reportComment"] | market.reportComment} method
+ */
+export interface MarketReportCommentParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * Complaint reason. Possible values: *'0' - spam,, *'1' - child porn,, *'2' - extremism,, *'3' - violence,, *'4' - drugs propaganda,, *'5' - adult materials,, *'6' - insult.
+     */
+    reason: MarketReportCommentReason
+}
+
+/**
+ * Params for {@link APIMethods["market.restore"] | market.restore} method
+ */
+export interface MarketRestoreParams {
+    /**
+     * ID of an item owner community.
+     */
+    owner_id: number
+    /**
+     * Deleted item ID.
+     */
+    item_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.restoreComment"] | market.restoreComment} method
+ */
+export interface MarketRestoreCommentParams {
+    /**
+     * identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+     */
+    owner_id: number
+    /**
+     * deleted comment id
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["market.saveProductPhoto"] | market.saveProductPhoto} method
+ */
+export interface MarketSaveProductPhotoParams {
+    /**
+     * Upload response
+     */
+    upload_response: string
+}
+
+/**
+ * Params for {@link APIMethods["market.saveProductPhotoBulk"] | market.saveProductPhotoBulk} method
+ */
+export interface MarketSaveProductPhotoBulkParams {
+    /**
+     * Upload response
+     */
+    upload_response: string
+}
+
+/**
+ * - `0` — default
+ * - `1` — date
+ * - `2` — price
+ * - `3` — relevance
+ */
+export type MarketSearchSort = 0 | 1 | 2 | 3
+/**
+ * - `0` — normal
+ * - `1` — reverse
+ */
+export type MarketSearchRev = 0 | 1
+
+/**
+ * Params for {@link APIMethods["market.search"] | market.search} method
+ */
+export interface MarketSearchParams {
+    /**
+     * ID of an items owner community.
+     */
+    owner_id: number
+    album_id?: number
+    /**
+     * Search query, for example "pink slippers".
+     */
+    q?: string
+    /**
+     * Minimum item price value.
+     */
+    price_from?: number
+    /**
+     * Maximum item price value.
+     */
+    price_to?: number
+    sort?: MarketSearchSort
+    /**
+     * '0' - do not use reverse order, '1' - use reverse order
+     */
+    rev?: MarketSearchRev
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * Number of items to return.
+     */
+    count?: number
+    /**
+     * '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
+     */
+    extended?: boolean
+    status?: number[]
+    /**
+     * Add variants to response if exist
+     */
+    need_variants?: boolean
+}
+
+/**
+ * - `1` — date
+ * - `2` — price
+ * - `3` — relevance
+ */
+export type MarketSearchItemsSortBy = 1 | 2 | 3
+export type MarketSearchItemsSortDirection = 0 | 1
+
+/**
+ * Params for {@link APIMethods["market.searchItems"] | market.searchItems} method
+ */
+export interface MarketSearchItemsParams {
+    q: string
+    offset?: number
+    count?: number
+    category_id?: number
+    price_from?: number
+    price_to?: number
+    sort_by?: MarketSearchItemsSortBy
+    sort_direction?: MarketSearchItemsSortDirection
+    country?: number
+    city?: number
+}
+
+/**
+ * - `1` — date
+ * - `2` — price
+ * - `3` — relevance
+ */
+export type MarketSearchItemsBasicSortBy = 1 | 2 | 3
+export type MarketSearchItemsBasicSortDirection = 0 | 1
+
+/**
+ * Params for {@link APIMethods["market.searchItemsBasic"] | market.searchItemsBasic} method
+ */
+export interface MarketSearchItemsBasicParams {
+    q: string
+    offset?: number
+    count?: number
+    category_id?: number
+    price_from?: number
+    price_to?: number
+    sort_by?: MarketSearchItemsBasicSortBy
+    sort_direction?: MarketSearchItemsBasicSortDirection
+    country?: number
+    city?: number
+    only_my_groups?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["market.ungroupItems"] | market.ungroupItems} method
+ */
+export interface MarketUngroupItemsParams {
+    /**
+     * Group id.
+     */
+    group_id: number
+    /**
+     * Items group id.
+     */
+    item_group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.addChatUser"] | messages.addChatUser} method
+ */
+export interface MessagesAddChatUserParams {
+    /**
+     * Chat ID.
+     */
+    chat_id: number
+    /**
+     * ID of the user to be added to the chat.
+     */
+    user_id?: number
+    visible_messages_count?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.addChatUsers"] | messages.addChatUsers} method
+ */
+export interface MessagesAddChatUsersParams {
+    chat_id?: number
+    visible_messages_count?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.allowMessagesFromGroup"] | messages.allowMessagesFromGroup} method
+ */
+export interface MessagesAllowMessagesFromGroupParams {
+    /**
+     * Group ID.
+     */
+    group_id: number
+    key?: string
+}
+
+/**
+ * Params for {@link APIMethods["messages.createChat"] | messages.createChat} method
+ */
+export interface MessagesCreateChatParams {
+    /**
+     * IDs of the users to be added to the chat.
+     */
+    user_ids?: number[]
+    /**
+     * Chat title.
+     */
+    title?: string
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.delete"] | messages.delete} method
+ */
+export interface MessagesDeleteParams {
+    /**
+     * Message IDs.
+     */
+    message_ids?: number[]
+    /**
+     * '1' - to mark message as spam.
+     */
+    spam?: boolean
+    /**
+     * Reason for spam
+     */
+    reason?: number
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+    /**
+     * '1' - delete message for for all.
+     */
+    delete_for_all?: boolean
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+    /**
+     * Conversation message IDs.
+     */
+    cmids?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["messages.deleteChatPhoto"] | messages.deleteChatPhoto} method
+ */
+export interface MessagesDeleteChatPhotoParams {
+    /**
+     * Chat ID.
+     */
+    chat_id: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.deleteConversation"] | messages.deleteConversation} method
+ */
+export interface MessagesDeleteConversationParams {
+    /**
+     * User ID. To clear a chat history use 'chat_id'
+     */
+    user_id?: number
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.deleteReaction"] | messages.deleteReaction} method
+ */
+export interface MessagesDeleteReactionParams {
+    peer_id: number
+    cmid: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.denyMessagesFromGroup"] | messages.denyMessagesFromGroup} method
+ */
+export interface MessagesDenyMessagesFromGroupParams {
+    /**
+     * Group ID.
+     */
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.edit"] | messages.edit} method
+ */
+export interface MessagesEditParams {
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id: number
+    /**
+     * (Required if 'attachments' is not set.) Text of the message.
+     */
+    message?: string
+    /**
+     * Geographical latitude of a check-in, in degrees (from -90 to 90).
+     */
+    lat?: number
+    /**
+     * Geographical longitude of a check-in, in degrees (from -180 to 180).
+     */
+    long?: number
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'wall' - wall post, '<owner_id>' - ID of the media attachment owner. '<media_id>' - media attachment ID. Example: "photo100172_166443618"
+     */
+    attachment?: string
+    /**
+     * '1' - to keep forwarded, messages.
+     */
+    keep_forward_messages?: boolean
+    /**
+     * '1' - to keep attached snippets.
+     */
+    keep_snippets?: boolean
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+    dont_parse_links?: boolean
+    disable_mentions?: boolean
+    message_id?: number
+    cmid?: number
+    template?: string
+    keyboard?: string
+}
+
+/**
+ * Params for {@link APIMethods["messages.editChat"] | messages.editChat} method
+ */
+export interface MessagesEditChatParams {
+    /**
+     * Chat ID.
+     */
+    chat_id: number
+    /**
+     * New title of the chat.
+     */
+    title?: string
+}
+
+/**
+ * Params for {@link APIMethods["messages.getByConversationMessageId"] | messages.getByConversationMessageId} method
+ */
+export interface MessagesGetByConversationMessageIdParams {
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id: number
+    /**
+     * Conversation message IDs.
+     */
+    conversation_message_ids: number[]
+    /**
+     * Information whether the response should be extended
+     */
+    extended?: boolean
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getById"] | messages.getById} method
+ */
+export interface MessagesGetByIdParams {
+    /**
+     * Message IDs.
+     */
+    message_ids?: number[]
+    /**
+     * Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
+     */
+    preview_length?: number
+    /**
+     * Information whether the response should be extended
+     */
+    extended?: boolean
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+    cmids?: number[]
+    peer_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getChat"] | messages.getChat} method
+ */
+export interface MessagesGetChatParams {
+    /**
+     * Chat ID.
+     */
+    chat_id?: number
+    /**
+     * Chat IDs.
+     */
+    chat_ids?: number[]
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["messages.getChatPreview"] | messages.getChatPreview} method
+ */
+export interface MessagesGetChatPreviewParams {
+    peer_id?: number
+    /**
+     * Invitation link.
+     */
+    link?: string
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+}
+
+/**
+ * Params for {@link APIMethods["messages.getConversationMembers"] | messages.getConversationMembers} method
+ */
+export interface MessagesGetConversationMembersParams {
+    /**
+     * Peer ID.
+     */
+    peer_id: number
+    offset?: number
+    count?: number
+    /**
+     * Extended flag
+     */
+    extended?: boolean
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+    member_ids?: number[]
+}
+
+export type MessagesGetConversationsFilter =
+    | "all"
+    | "archive"
+    | "important"
+    | "sorted_chats"
+    | "unanswered"
+    | "unread"
+
+/**
+ * Params for {@link APIMethods["messages.getConversations"] | messages.getConversations} method
+ */
+export interface MessagesGetConversationsParams {
+    /**
+     * Offset needed to return a specific subset of conversations.
+     */
+    offset?: number
+    /**
+     * Number of conversations to return.
+     */
+    count?: number
+    /**
+     * Filter to apply: 'all' - all conversations, 'unread' - conversations with unread messages, 'important' - conversations, marked as important (only for community messages), 'unanswered' - conversations, marked as unanswered (only for community messages)
+     */
+    filter?: MessagesGetConversationsFilter
+    /**
+     * '1' - return extra information about users and communities
+     */
+    extended?: boolean
+    /**
+     * ID of the message from what to return dialogs.
+     */
+    start_message_id?: number
+    /**
+     * Profile and communities fields to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getConversationsById"] | messages.getConversationsById} method
+ */
+export interface MessagesGetConversationsByIdParams {
+    /**
+     * Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_ids: number[]
+    /**
+     * Return extended properties
+     */
+    extended?: boolean
+    /**
+     * Profile and communities fields to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+/**
+ * - `1` — chronological
+ * - `0` — reverse chronological
+ */
+export type MessagesGetHistoryRev = 1 | 0
+
+/**
+ * Params for {@link APIMethods["messages.getHistory"] | messages.getHistory} method
+ */
+export interface MessagesGetHistoryParams {
+    /**
+     * Offset needed to return a specific subset of messages.
+     */
+    offset?: number
+    /**
+     * Number of messages to return.
+     */
+    count?: number
+    /**
+     * ID of the user whose message history you want to return.
+     */
+    user_id?: number
+    peer_id?: number
+    /**
+     * Starting message ID from which to return history.
+     */
+    start_message_id?: number
+    /**
+     * Sort order: '1' - return messages in chronological order. '0' - return messages in reverse chronological order.
+     */
+    rev?: MessagesGetHistoryRev
+    /**
+     * Information whether the response should be extended
+     */
+    extended?: boolean
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+export type MessagesGetHistoryAttachmentsAttachmentTypes =
+    | "app_action_games"
+    | "app_action_mini_apps"
+    | "audio"
+    | "audio_message"
+    | "clip"
+    | "doc"
+    | "graffiti"
+    | "link"
+    | "market"
+    | "photo"
+    | "share"
+    | "video"
+    | "wall"
+export type MessagesGetHistoryAttachmentsMediaType =
+    | "app_action_games"
+    | "app_action_mini_apps"
+    | "audio"
+    | "audio_message"
+    | "clip"
+    | "doc"
+    | "graffiti"
+    | "link"
+    | "market"
+    | "photo"
+    | "share"
+    | "video"
+    | "wall"
+
+/**
+ * Params for {@link APIMethods["messages.getHistoryAttachments"] | messages.getHistoryAttachments} method
+ */
+export interface MessagesGetHistoryAttachmentsParams {
+    attachment_types?: MessagesGetHistoryAttachmentsAttachmentTypes[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+    /**
+     * Peer ID. ", For group chat: '2000000000 + chat ID' , , For community: '-community ID'"
+     */
+    peer_id?: number
+    cmid?: number
+    attachment_position?: number
+    offset?: number
+    /**
+     * Number of objects to return.
+     */
+    count?: number
+    extended?: boolean
+    /**
+     * Additional profile [vk.com/dev/fields|fields] to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    max_forwards_level?: number
+    message_video?: boolean
+    /**
+     * Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'
+     */
+    media_type?: MessagesGetHistoryAttachmentsMediaType
+    /**
+     * Message ID to start return results from.
+     */
+    start_from?: string
+    preserve_order?: boolean
+    /**
+     * '1' - to return photo sizes in a
+     */
+    photo_sizes?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["messages.getImportantMessages"] | messages.getImportantMessages} method
+ */
+export interface MessagesGetImportantMessagesParams {
+    /**
+     * Amount of needed important messages.
+     */
+    count?: number
+    offset?: number
+    start_message_id?: number
+    /**
+     * Maximum length of messages body.
+     */
+    preview_length?: number
+    /**
+     * Actors fields to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+    /**
+     * Return extended properties
+     */
+    extended?: boolean
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+export type MessagesGetIntentUsersIntent =
+    | "confirmed_notification"
+    | "non_promo_newsletter"
+    | "promo_newsletter"
+
+/**
+ * Params for {@link APIMethods["messages.getIntentUsers"] | messages.getIntentUsers} method
+ */
+export interface MessagesGetIntentUsersParams {
+    intent: MessagesGetIntentUsersIntent
+    subscribe_id?: number
+    offset?: number
+    count?: number
+    extended?: boolean
+    name_case?: Objects.VKBaseNameCase
+    fields?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["messages.getInviteLink"] | messages.getInviteLink} method
+ */
+export interface MessagesGetInviteLinkParams {
+    /**
+     * Destination ID.
+     */
+    peer_id: number
+    /**
+     * 1 - to generate new link (revoke previous), 0 - to return previous link.
+     */
+    reset?: boolean
+    /**
+     * Group ID
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getLastActivity"] | messages.getLastActivity} method
+ */
+export interface MessagesGetLastActivityParams {
+    /**
+     * User ID.
+     */
+    user_id: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getLongPollHistory"] | messages.getLongPollHistory} method
+ */
+export interface MessagesGetLongPollHistoryParams {
+    /**
+     * Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+     */
+    ts?: number
+    /**
+     * Last value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+     */
+    pts?: number
+    /**
+     * Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
+     */
+    preview_length?: number
+    /**
+     * '1' - to return history with online users only.
+     */
+    onlines?: boolean
+    /**
+     * Additional profile [vk.com/dev/fields|fields] to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Maximum number of events to return.
+     */
+    events_limit?: number
+    /**
+     * Maximum number of messages to return.
+     */
+    msgs_limit?: number
+    /**
+     * Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4) are taken into account.
+     */
+    max_msg_id?: number
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+    lp_version?: number
+    last_n?: number
+    credentials?: boolean
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["messages.getLongPollServer"] | messages.getLongPollServer} method
+ */
+export interface MessagesGetLongPollServerParams {
+    /**
+     * '1' - to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+     */
+    need_pts?: boolean
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+    /**
+     * Long poll version
+     */
+    lp_version?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getMessagesReactions"] | messages.getMessagesReactions} method
+ */
+export interface MessagesGetMessagesReactionsParams {
+    peer_id: number
+    cmids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["messages.getReactedPeers"] | messages.getReactedPeers} method
+ */
+export interface MessagesGetReactedPeersParams {
+    peer_id: number
+    cmid: number
+    reaction_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.getReactionsAssets"] | messages.getReactionsAssets} method
+ */
+export interface MessagesGetReactionsAssetsParams {
+    client_version?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.isMessagesFromGroupAllowed"] | messages.isMessagesFromGroupAllowed} method
+ */
+export interface MessagesIsMessagesFromGroupAllowedParams {
+    /**
+     * Group ID.
+     */
+    group_id: number
+    /**
+     * User ID.
+     */
+    user_id: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.joinChatByInviteLink"] | messages.joinChatByInviteLink} method
+ */
+export interface MessagesJoinChatByInviteLinkParams {
+    /**
+     * Invitation link.
+     */
+    link: string
+}
+
+/**
+ * Params for {@link APIMethods["messages.markAsAnsweredConversation"] | messages.markAsAnsweredConversation} method
+ */
+export interface MessagesMarkAsAnsweredConversationParams {
+    /**
+     * ID of conversation to mark as important.
+     */
+    peer_id: number
+    /**
+     * '1' - to mark as answered, '0' - to remove the mark
+     */
+    answered?: boolean
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.markAsImportant"] | messages.markAsImportant} method
+ */
+export interface MessagesMarkAsImportantParams {
+    /**
+     * IDs of messages to mark as important.
+     */
+    message_ids?: number[]
+    /**
+     * '1' - to add a star (mark as important), '0' - to remove the star
+     */
+    important?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.markAsImportantConversation"] | messages.markAsImportantConversation} method
+ */
+export interface MessagesMarkAsImportantConversationParams {
+    /**
+     * ID of conversation to mark as important.
+     */
+    peer_id: number
+    /**
+     * '1' - to add a star (mark as important), '0' - to remove the star
+     */
+    important?: boolean
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.markAsRead"] | messages.markAsRead} method
+ */
+export interface MessagesMarkAsReadParams {
+    /**
+     * IDs of messages to mark as read.
+     */
+    message_ids?: number[]
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+    /**
+     * Message ID to start from.
+     */
+    start_message_id?: number
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+    mark_conversation_as_read?: boolean
+    up_to_cmid?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.markReactionsAsRead"] | messages.markReactionsAsRead} method
+ */
+export interface MessagesMarkReactionsAsReadParams {
+    peer_id: number
+    cmids?: number[]
+}
+
+export type MessagesMuteChatMentionsMentionStatus = "all" | "allOnline" | "none"
+
+/**
+ * Params for {@link APIMethods["messages.muteChatMentions"] | messages.muteChatMentions} method
+ */
+export interface MessagesMuteChatMentionsParams {
+    /**
+     * Chat id
+     */
+    peer_id: number
+    mention_status: MessagesMuteChatMentionsMentionStatus
+}
+
+/**
+ * Params for {@link APIMethods["messages.pin"] | messages.pin} method
+ */
+export interface MessagesPinParams {
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
+     */
+    peer_id: number
+    /**
+     * Message ID
      */
     message_id?: number
     /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
+     * Conversation message ID
      */
-    inline_message_id?: string
-    /**
-     * A JSON-serialized object for a new [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
+    cmid?: number
 }
 
 /**
- * Params object for {@link APIMethods.editMessageChecklist | editMessageChecklist} method
+ * Params for {@link APIMethods["messages.removeChatUser"] | messages.removeChatUser} method
  */
-export interface EditMessageChecklistParams {
+export interface MessagesRemoveChatUserParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id: string
-    /**
-     * Unique identifier for the target chat
+     * Chat ID.
      */
     chat_id: number
     /**
-     * Unique identifier for the target message
+     * ID of the user to be removed from the chat.
      */
-    message_id: number
-    /**
-     * A JSON-serialized object for the new checklist
-     */
-    checklist: Objects.TelegramInputChecklist
-    /**
-     * A JSON-serialized object for the new [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards) for the message
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
+    user_id?: number
+    member_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.editMessageReplyMarkup | editMessageReplyMarkup} method
+ * Params for {@link APIMethods["messages.restore"] | messages.restore} method
  */
-export interface EditMessageReplyMarkupParams {
+export interface MessagesRestoreParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
-     */
-    business_connection_id?: string
-    /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id?: number | string
-    /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the message to edit
+     * ID of a previously-deleted message to restore.
      */
     message_id?: number
     /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
+     * Group ID (for group messages with user access token)
      */
-    inline_message_id?: string
+    group_id?: number
+    cmid?: number
     /**
-     * A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
+     * Destination ID.
      */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
+    peer_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.stopPoll | stopPoll} method
+ * Params for {@link APIMethods["messages.search"] | messages.search} method
  */
-export interface StopPollParams {
+export interface MessagesSearchParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message to be edited was sent
+     * Search query string.
      */
-    business_connection_id?: string
+    q?: string
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
      */
-    chat_id: number | string
+    peer_id?: number
     /**
-     * Identifier of the original message with the poll
+     * Date to search message before in Unixtime.
      */
-    message_id: number
+    date?: number
     /**
-     * A JSON-serialized object for a new message [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards).
+     * Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
      */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
+    preview_length?: number
+    /**
+     * Offset needed to return a specific subset of messages.
+     */
+    offset?: number
+    /**
+     * Number of messages to return.
+     */
+    count?: number
+    extended?: boolean
+    fields?: string[]
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.approveSuggestedPost | approveSuggestedPost} method
+ * Params for {@link APIMethods["messages.searchConversations"] | messages.searchConversations} method
  */
-export interface ApproveSuggestedPostParams {
+export interface MessagesSearchConversationsParams {
     /**
-     * Unique identifier for the target direct messages chat
+     * Search query string.
+     */
+    q?: string
+    /**
+     * Maximum number of results.
+     */
+    count?: number
+    /**
+     * '1' - return extra information about users and communities
+     */
+    extended?: boolean
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Group ID (for group messages with user access token)
+     */
+    group_id?: number
+}
+
+export type MessagesSendIntent =
+    | "account_update"
+    | "bot_ad_invite"
+    | "bot_ad_promo"
+    | "confirmed_notification"
+    | "customer_support"
+    | "default"
+    | "finance_notification"
+    | "game_notification"
+    | "moderated_newsletter"
+    | "non_promo_newsletter"
+    | "promo_newsletter"
+    | "purchase_update"
+
+/**
+ * Params for {@link APIMethods["messages.send"] | messages.send} method
+ */
+export interface MessagesSendParams {
+    /**
+     * User ID (by default - current user).
+     */
+    user_id?: number
+    /**
+     * Unique identifier to avoid resending the message.
+     */
+    random_id?: number
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+    /**
+     * IDs of message recipients. (See peer_id)
+     */
+    peer_ids?: number[]
+    /**
+     * User's short address (for example, 'illarionov').
+     */
+    domain?: string
+    /**
+     * ID of conversation the message will relate to.
+     */
+    chat_id?: number
+    /**
+     * (Required if 'attachments' is not set.) Text of the message.
+     */
+    message?: string
+    /**
+     * Geographical latitude of a check-in, in degrees (from -90 to 90).
+     */
+    lat?: number
+    /**
+     * Geographical longitude of a check-in, in degrees (from -180 to 180).
+     */
+    long?: number
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'wall' - wall post, '<owner_id>' - ID of the media attachment owner. '<media_id>' - media attachment ID. Example: "photo100172_166443618"
+     */
+    attachment?: string
+    reply_to?: number
+    /**
+     * ID of forwarded messages, separated with a comma. Listed messages of the sender will be shown in the message body at the recipient's. Example: "123,431,544"
+     */
+    forward_messages?: number[]
+    /**
+     * JSON describing the forwarded message or reply
+     */
+    forward?: Objects.VKMessagesForward
+    /**
+     * Sticker id.
+     */
+    sticker_id?: number
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+    keyboard?: Objects.VKMessagesKeyboard
+    template?: string
+    payload?: string
+    /**
+     * JSON describing the content source in the message
+     */
+    content_source?: string
+    dont_parse_links?: boolean
+    disable_mentions?: boolean
+    intent?: MessagesSendIntent
+    subscribe_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.sendMessageEventAnswer"] | messages.sendMessageEventAnswer} method
+ */
+export interface MessagesSendMessageEventAnswerParams {
+    event_id: string
+    user_id: number
+    peer_id: number
+    event_data?: string
+}
+
+/**
+ * Params for {@link APIMethods["messages.sendReaction"] | messages.sendReaction} method
+ */
+export interface MessagesSendReactionParams {
+    peer_id: number
+    cmid: number
+    reaction_id: number
+}
+
+export type MessagesSetActivityType =
+    | "audiomessage"
+    | "file"
+    | "photo"
+    | "typing"
+    | "video"
+
+/**
+ * Params for {@link APIMethods["messages.setActivity"] | messages.setActivity} method
+ */
+export interface MessagesSetActivityParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * 'typing' - user has started to type.
+     */
+    type?: MessagesSetActivityType
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+    /**
+     * Group ID (for group messages with group access token)
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["messages.setChatPhoto"] | messages.setChatPhoto} method
+ */
+export interface MessagesSetChatPhotoParams {
+    /**
+     * Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
+     */
+    file: string
+}
+
+/**
+ * Params for {@link APIMethods["messages.unpin"] | messages.unpin} method
+ */
+export interface MessagesUnpinParams {
+    peer_id: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.addBan"] | newsfeed.addBan} method
+ */
+export interface NewsfeedAddBanParams {
+    user_ids?: number[]
+    group_ids?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.deleteBan"] | newsfeed.deleteBan} method
+ */
+export interface NewsfeedDeleteBanParams {
+    user_ids?: number[]
+    group_ids?: number[]
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.deleteList"] | newsfeed.deleteList} method
+ */
+export interface NewsfeedDeleteListParams {
+    list_id: number
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.get"] | newsfeed.get} method
+ */
+export interface NewsfeedGetParams {
+    /**
+     * Filters to apply: 'post' - new wall posts, 'photo' - new photos, 'photo_tag' - new photo tags, 'wall_photo' - new wall photos, 'friend' - new friends
+     */
+    filters?: Objects.VKNewsfeedNewsfeedItemType[]
+    /**
+     * '1' - to return news items from banned sources
+     */
+    return_banned?: boolean
+    /**
+     * Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
+     */
+    start_time?: number
+    /**
+     * Latest timestamp (in Unix time) of a news item to return. By default, the current time.
+     */
+    end_time?: number
+    /**
+     * Maximum number of photos to return. By default, '5'.
+     */
+    max_photos?: number
+    /**
+     * Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.
+     */
+    source_ids?: string
+    /**
+     * identifier required to get the next page of results. Value for this parameter is returned in 'next_from' field in a reply.
+     */
+    start_from?: string
+    /**
+     * Number of news items to return (default 50, maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.
+     */
+    count?: number
+    /**
+     * Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+    section?: string
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.getBanned"] | newsfeed.getBanned} method
+ */
+export interface NewsfeedGetBannedParams {
+    /**
+     * '1' - return extra information about users and communities
+     */
+    extended?: boolean
+    /**
+     * Profile fields to return.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.getComments"] | newsfeed.getComments} method
+ */
+export interface NewsfeedGetCommentsParams {
+    /**
+     * Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
+     */
+    count?: number
+    /**
+     * Filters to apply: 'post' - new comments on wall posts, 'photo' - new comments on photos, 'video' - new comments on videos, 'topic' - new comments on discussions, 'note' - new comments on notes,
+     */
+    filters?: Objects.VKNewsfeedCommentsFilters[]
+    /**
+     * Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter is set, the 'filters' parameter is optional.),
+     */
+    reposts?: string
+    /**
+     * Earliest timestamp (in Unix time) of a comment to return. By default, 24 hours ago.
+     */
+    start_time?: number
+    /**
+     * Latest timestamp (in Unix time) of a comment to return. By default, the current time.
+     */
+    end_time?: number
+    last_comments_count?: number
+    /**
+     * Identificator needed to return the next page with results. Value for this parameter returns in 'next_from' field.
+     */
+    start_from?: string
+    /**
+     * Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.getLists"] | newsfeed.getLists} method
+ */
+export interface NewsfeedGetListsParams {
+    /**
+     * numeric list identifiers.
+     */
+    list_ids?: number[]
+    /**
+     * Return additional list info
+     */
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.getMentions"] | newsfeed.getMentions} method
+ */
+export interface NewsfeedGetMentionsParams {
+    /**
+     * Owner ID.
+     */
+    owner_id?: number
+    /**
+     * Earliest timestamp (in Unix time) of a post to return. By default, 24 hours ago.
+     */
+    start_time?: number
+    /**
+     * Latest timestamp (in Unix time) of a post to return. By default, the current time.
+     */
+    end_time?: number
+    /**
+     * Offset needed to return a specific subset of posts.
+     */
+    offset?: number
+    /**
+     * Number of posts to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.getRecommended"] | newsfeed.getRecommended} method
+ */
+export interface NewsfeedGetRecommendedParams {
+    /**
+     * Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
+     */
+    start_time?: number
+    /**
+     * Latest timestamp (in Unix time) of a news item to return. By default, the current time.
+     */
+    end_time?: number
+    /**
+     * Maximum number of photos to return. By default, '5'.
+     */
+    max_photos?: number
+    /**
+     * 'new_from' value obtained in previous call.
+     */
+    start_from?: string
+    /**
+     * Number of news items to return.
+     */
+    count?: number
+    /**
+     * Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.getSuggestedSources"] | newsfeed.getSuggestedSources} method
+ */
+export interface NewsfeedGetSuggestedSourcesParams {
+    /**
+     * offset required to choose a particular subset of communities or users.
+     */
+    offset?: number
+    /**
+     * amount of communities or users to return.
+     */
+    count?: number
+    /**
+     * shuffle the returned list or not.
+     */
+    shuffle?: boolean
+    /**
+     * list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.ignoreItem"] | newsfeed.ignoreItem} method
+ */
+export interface NewsfeedIgnoreItemParams {
+    /**
+     * Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
+     */
+    type: Objects.VKNewsfeedIgnoreItemType
+    /**
+     * Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
+     */
+    owner_id?: number
+    /**
+     * Item identifier
+     */
+    item_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.saveList"] | newsfeed.saveList} method
+ */
+export interface NewsfeedSaveListParams {
+    /**
+     * numeric list identifier (if not sent, will be set automatically).
+     */
+    list_id?: number
+    /**
+     * list name.
+     */
+    title: string
+    /**
+     * users and communities identifiers to be added to the list. Community identifiers must be negative numbers.
+     */
+    source_ids: number[]
+    /**
+     * reposts display on and off ('1' is for off).
+     */
+    no_reposts?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.search"] | newsfeed.search} method
+ */
+export interface NewsfeedSearchParams {
+    /**
+     * Search query string (e.g., 'New Year').
+     */
+    q?: string
+    /**
+     * '1' - to return additional information about the user or community that placed the post.
+     */
+    extended?: boolean
+    /**
+     * Number of posts to return.
+     */
+    count?: number
+    /**
+     * Geographical latitude point (in degrees, -90 to 90) within which to search.
+     */
+    latitude?: number
+    /**
+     * Geographical longitude point (in degrees, -180 to 180) within which to search.
+     */
+    longitude?: number
+    /**
+     * Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
+     */
+    start_time?: number
+    /**
+     * Latest timestamp (in Unix time) of a news item to return. By default, the current time.
+     */
+    end_time?: number
+    start_from?: string
+    /**
+     * Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["newsfeed.unignoreItem"] | newsfeed.unignoreItem} method
+ */
+export interface NewsfeedUnignoreItemParams {
+    /**
+     * Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
+     */
+    type: Objects.VKNewsfeedIgnoreItemType
+    /**
+     * Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
+     */
+    owner_id?: number
+    /**
+     * Item identifier
+     */
+    item_id?: number
+    /**
+     * Track code of unignored item
+     */
+    track_code?: string
+}
+
+export type NewsfeedUnsubscribeType =
+    | "clip"
+    | "market"
+    | "note"
+    | "photo"
+    | "post"
+    | "topic"
+    | "video"
+
+/**
+ * Params for {@link APIMethods["newsfeed.unsubscribe"] | newsfeed.unsubscribe} method
+ */
+export interface NewsfeedUnsubscribeParams {
+    /**
+     * Type of object from which to unsubscribe: 'note' - note, 'photo' - photo, 'post' - post on user wall or community wall, 'topic' - topic, 'video' - video
+     */
+    type: NewsfeedUnsubscribeType
+    /**
+     * Object owner ID.
+     */
+    owner_id?: number
+    /**
+     * Object ID.
+     */
+    item_id: number
+}
+
+/**
+ * Params for {@link APIMethods["notes.add"] | notes.add} method
+ */
+export interface NotesAddParams {
+    /**
+     * Note title.
+     */
+    title: string
+    /**
+     * Note text.
+     */
+    text: string
+    privacy_view?: string[]
+    privacy_comment?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["notes.createComment"] | notes.createComment} method
+ */
+export interface NotesCreateCommentParams {
+    /**
+     * Note ID.
+     */
+    note_id: number
+    /**
+     * Note owner ID.
+     */
+    owner_id?: number
+    /**
+     * ID of the user to whom the reply is addressed (if the comment is a reply to another comment).
+     */
+    reply_to?: number
+    /**
+     * Comment text.
+     */
+    message: string
+    guid?: string
+}
+
+/**
+ * Params for {@link APIMethods["notes.delete"] | notes.delete} method
+ */
+export interface NotesDeleteParams {
+    /**
+     * Note ID.
+     */
+    note_id: number
+}
+
+/**
+ * Params for {@link APIMethods["notes.deleteComment"] | notes.deleteComment} method
+ */
+export interface NotesDeleteCommentParams {
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * Note owner ID.
+     */
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["notes.edit"] | notes.edit} method
+ */
+export interface NotesEditParams {
+    /**
+     * Note ID.
+     */
+    note_id: number
+    /**
+     * Note title.
+     */
+    title: string
+    /**
+     * Note text.
+     */
+    text: string
+    privacy_view?: string[]
+    privacy_comment?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["notes.editComment"] | notes.editComment} method
+ */
+export interface NotesEditCommentParams {
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * Note owner ID.
+     */
+    owner_id?: number
+    /**
+     * New comment text.
+     */
+    message: string
+}
+
+export type NotesGetSort = 0 | 1
+
+/**
+ * Params for {@link APIMethods["notes.get"] | notes.get} method
+ */
+export interface NotesGetParams {
+    /**
+     * Note IDs.
+     */
+    note_ids?: number[]
+    /**
+     * Note owner ID.
+     */
+    user_id?: number
+    offset?: number
+    /**
+     * Number of notes to return.
+     */
+    count?: number
+    sort?: NotesGetSort
+}
+
+/**
+ * Params for {@link APIMethods["notes.getById"] | notes.getById} method
+ */
+export interface NotesGetByIdParams {
+    /**
+     * Note ID.
+     */
+    note_id: number
+    /**
+     * Note owner ID.
+     */
+    owner_id?: number
+    need_wiki?: boolean
+}
+
+export type NotesGetCommentsSort = 0 | 1
+
+/**
+ * Params for {@link APIMethods["notes.getComments"] | notes.getComments} method
+ */
+export interface NotesGetCommentsParams {
+    /**
+     * Note ID.
+     */
+    note_id: number
+    /**
+     * Note owner ID.
+     */
+    owner_id?: number
+    sort?: NotesGetCommentsSort
+    offset?: number
+    /**
+     * Number of comments to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["notes.restoreComment"] | notes.restoreComment} method
+ */
+export interface NotesRestoreCommentParams {
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * Note owner ID.
+     */
+    owner_id?: number
+}
+
+export type NotificationsGetFilters =
+    | "wall"
+    | "mentions"
+    | "comments"
+    | "likes"
+    | "reposted"
+    | "followers"
+    | "friends"
+
+/**
+ * Params for {@link APIMethods["notifications.get"] | notifications.get} method
+ */
+export interface NotificationsGetParams {
+    /**
+     * Number of notifications to return.
+     */
+    count?: number
+    start_from?: string
+    /**
+     * Type of notifications to return: 'wall' - wall posts, 'mentions' - mentions in wall posts, comments, or topics, 'comments' - comments to wall posts, photos, and videos, 'likes' - likes, 'reposted' - wall posts that are copied from the current user's wall, 'followers' - new followers, 'friends' - accepted friend requests
+     */
+    filters?: NotificationsGetFilters[]
+    /**
+     * Earliest timestamp (in Unix time) of a notification to return. By default, 24 hours ago.
+     */
+    start_time?: number
+    /**
+     * Latest timestamp (in Unix time) of a notification to return. By default, the current time.
+     */
+    end_time?: number
+}
+
+export type NotificationsSendMessageSendingMode =
+    | "delayed"
+    | "delayed_push"
+    | "immediately"
+    | "without_push"
+
+/**
+ * Params for {@link APIMethods["notifications.sendMessage"] | notifications.sendMessage} method
+ */
+export interface NotificationsSendMessageParams {
+    user_ids: number[]
+    message: string
+    fragment?: string
+    group_id?: number
+    random_id?: number
+    /**
+     * Type of sending (delivering) notifications: 'immediately' - push and bell notifications will be delivered as soon as possible, 'delayed' - push and bell notifications will be delivered in the most comfortable time for the user, 'delayed_push' - only push notifications will be delivered in the most comfortable time, while the bell notifications will be delivered as soon as possible
+     */
+    sending_mode?: NotificationsSendMessageSendingMode
+}
+
+/**
+ * Params for {@link APIMethods["orders.cancelSubscription"] | orders.cancelSubscription} method
+ */
+export interface OrdersCancelSubscriptionParams {
+    user_id: number
+    subscription_id: number
+    pending_cancel?: boolean
+}
+
+export type OrdersChangeStateAction = "cancel" | "charge" | "refund"
+
+/**
+ * Params for {@link APIMethods["orders.changeState"] | orders.changeState} method
+ */
+export interface OrdersChangeStateParams {
+    /**
+     * order ID.
+     */
+    order_id: number
+    /**
+     * action to be done with the order. Available actions: *cancel - to cancel unconfirmed order. *charge - to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund - to cancel confirmed order.
+     */
+    action: OrdersChangeStateAction
+    /**
+     * internal ID of the order in the application.
+     */
+    app_order_id?: number
+    /**
+     * if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
+     */
+    test_mode?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["orders.get"] | orders.get} method
+ */
+export interface OrdersGetParams {
+    offset?: number
+    /**
+     * number of returned orders.
+     */
+    count?: number
+    /**
+     * if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
+     */
+    test_mode?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["orders.getAmount"] | orders.getAmount} method
+ */
+export interface OrdersGetAmountParams {
+    user_id: number
+    votes: string[]
+}
+
+/**
+ * Params for {@link APIMethods["orders.getById"] | orders.getById} method
+ */
+export interface OrdersGetByIdParams {
+    /**
+     * order ID.
+     */
+    order_id?: number
+    /**
+     * order IDs (when information about several orders is requested).
+     */
+    order_ids?: number[]
+    /**
+     * if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
+     */
+    test_mode?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["orders.getUserSubscriptionById"] | orders.getUserSubscriptionById} method
+ */
+export interface OrdersGetUserSubscriptionByIdParams {
+    user_id: number
+    subscription_id: number
+}
+
+/**
+ * Params for {@link APIMethods["orders.getUserSubscriptions"] | orders.getUserSubscriptions} method
+ */
+export interface OrdersGetUserSubscriptionsParams {
+    user_id: number
+}
+
+/**
+ * Params for {@link APIMethods["pages.clearCache"] | pages.clearCache} method
+ */
+export interface PagesClearCacheParams {
+    /**
+     * Address of the page where you need to refesh the cached version
+     */
+    url: string
+}
+
+/**
+ * Params for {@link APIMethods["pages.get"] | pages.get} method
+ */
+export interface PagesGetParams {
+    /**
+     * Page owner ID.
+     */
+    owner_id?: number
+    /**
+     * Wiki page ID.
+     */
+    page_id?: number
+    /**
+     * '1' - to return information about a global wiki page
+     */
+    global?: boolean
+    /**
+     * '1' - resulting wiki page is a preview for the attached link
+     */
+    site_preview?: boolean
+    /**
+     * Wiki page title.
+     */
+    title?: string
+    need_source?: boolean
+    /**
+     * '1' - to return the page as HTML,
+     */
+    need_html?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["pages.getHistory"] | pages.getHistory} method
+ */
+export interface PagesGetHistoryParams {
+    /**
+     * Wiki page ID.
+     */
+    page_id: number
+    /**
+     * ID of the community that owns the wiki page.
+     */
+    group_id?: number
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["pages.getTitles"] | pages.getTitles} method
+ */
+export interface PagesGetTitlesParams {
+    /**
+     * ID of the community that owns the wiki page.
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["pages.getVersion"] | pages.getVersion} method
+ */
+export interface PagesGetVersionParams {
+    version_id: number
+    /**
+     * ID of the community that owns the wiki page.
+     */
+    group_id?: number
+    user_id?: number
+    /**
+     * '1' - to return the page as HTML
+     */
+    need_html?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["pages.parseWiki"] | pages.parseWiki} method
+ */
+export interface PagesParseWikiParams {
+    /**
+     * Text of the wiki page.
+     */
+    text: string
+    /**
+     * ID of the group in the context of which this markup is interpreted.
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["pages.save"] | pages.save} method
+ */
+export interface PagesSaveParams {
+    /**
+     * Text of the wiki page in wiki-format.
+     */
+    text?: string
+    /**
+     * Wiki page ID. The 'title' parameter can be passed instead of 'pid'.
+     */
+    page_id?: number
+    /**
+     * ID of the community that owns the wiki page.
+     */
+    group_id?: number
+    /**
+     * User ID
+     */
+    user_id?: number
+    /**
+     * Wiki page title.
+     */
+    title?: string
+}
+
+/**
+ * - `0` — managers
+ * - `1` — members
+ * - `2` — all
+ */
+export type PagesSaveAccessView = 0 | 1 | 2
+/**
+ * - `0` — managers
+ * - `1` — members
+ * - `2` — all
+ */
+export type PagesSaveAccessEdit = 0 | 1 | 2
+
+/**
+ * Params for {@link APIMethods["pages.saveAccess"] | pages.saveAccess} method
+ */
+export interface PagesSaveAccessParams {
+    /**
+     * Wiki page ID.
+     */
+    page_id: number
+    /**
+     * ID of the community that owns the wiki page.
+     */
+    group_id?: number
+    user_id?: number
+    /**
+     * Who can view the wiki page: '1' - only community members, '2' - all users can view the page, '0' - only community managers
+     */
+    view?: PagesSaveAccessView
+    /**
+     * Who can edit the wiki page: '1' - only community members, '2' - all users can edit the page, '0' - only community managers
+     */
+    edit?: PagesSaveAccessEdit
+}
+
+/**
+ * Params for {@link APIMethods["photos.confirmTag"] | photos.confirmTag} method
+ */
+export interface PhotosConfirmTagParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: string
+    /**
+     * Tag ID.
+     */
+    tag_id: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.copy"] | photos.copy} method
+ */
+export interface PhotosCopyParams {
+    /**
+     * photo's owner ID
+     */
+    owner_id: number
+    /**
+     * photo ID
+     */
+    photo_id: number
+    /**
+     * for private photos
+     */
+    access_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.createAlbum"] | photos.createAlbum} method
+ */
+export interface PhotosCreateAlbumParams {
+    /**
+     * Album title.
+     */
+    title: string
+    /**
+     * ID of the community in which the album will be created.
+     */
+    group_id?: number
+    /**
+     * Album description.
+     */
+    description?: string
+    privacy_view?: string[]
+    privacy_comment?: string[]
+    upload_by_admins_only?: boolean
+    comments_disabled?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.createComment"] | photos.createComment} method
+ */
+export interface PhotosCreateCommentParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * Comment text.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - Media attachment owner ID. '<media_id>' - Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
+    /**
+     * '1' - to post a comment from the community
+     */
+    from_group?: boolean
+    reply_to_comment?: number
+    sticker_id?: number
+    access_key?: string
+    guid?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.delete"] | photos.delete} method
+ */
+export interface PhotosDeleteParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id?: number
+    photos?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["photos.deleteAlbum"] | photos.deleteAlbum} method
+ */
+export interface PhotosDeleteAlbumParams {
+    /**
+     * Album ID.
+     */
+    album_id: number
+    /**
+     * ID of the community that owns the album.
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.deleteComment"] | photos.deleteComment} method
+ */
+export interface PhotosDeleteCommentParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.edit"] | photos.edit} method
+ */
+export interface PhotosEditParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * New caption for the photo. If this parameter is not set, it is considered to be equal to an empty string.
+     */
+    caption?: string
+    latitude?: number
+    longitude?: number
+    place_str?: string
+    foursquare_id?: string
+    delete_place?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.editAlbum"] | photos.editAlbum} method
+ */
+export interface PhotosEditAlbumParams {
+    /**
+     * ID of the photo album to be edited.
+     */
+    album_id: number
+    /**
+     * New album title.
+     */
+    title?: string
+    /**
+     * New album description.
+     */
+    description?: string
+    /**
+     * ID of the user or community that owns the album.
+     */
+    owner_id?: number
+    privacy_view?: string[]
+    privacy_comment?: string[]
+    upload_by_admins_only?: boolean
+    comments_disabled?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.editComment"] | photos.editComment} method
+ */
+export interface PhotosEditCommentParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * New text of the comment.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - Media attachment owner ID. '<media_id>' - Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["photos.get"] | photos.get} method
+ */
+export interface PhotosGetParams {
+    /**
+     * ID of the user or community that owns the photos. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.
+     */
+    album_id?: string
+    /**
+     * Photo IDs.
+     */
+    photo_ids?: string[]
+    /**
+     * Sort order: '1' - reverse chronological, '0' - chronological
+     */
+    rev?: boolean
+    /**
+     * '1' - to return additional 'likes', 'comments', and 'tags' fields, '0' - (default)
+     */
+    extended?: boolean
+    /**
+     * Type of feed obtained in 'feed' field of the method.
+     */
+    feed_type?: string
+    /**
+     * unixtime, that can be obtained with [vk.com/dev/newsfeed.get|newsfeed.get] method in date field to get all photos uploaded by the user on a specific day, or photos the user has been tagged on. Also, 'uid' parameter of the user the event happened with shall be specified.
+     */
+    feed?: number
+    /**
+     * '1' - to return photo sizes in a [vk.com/dev/photo_sizes|special format]
+     */
+    photo_sizes?: boolean
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getAlbums"] | photos.getAlbums} method
+ */
+export interface PhotosGetAlbumsParams {
+    /**
+     * ID of the user or community that owns the albums.
+     */
+    owner_id?: number
+    /**
+     * Album IDs.
+     */
+    album_ids?: number[]
+    /**
+     * Offset needed to return a specific subset of albums.
+     */
+    offset?: number
+    /**
+     * Number of albums to return.
+     */
+    count?: number
+    /**
+     * '1' - to return system albums with negative IDs
+     */
+    need_system?: boolean
+    /**
+     * '1' - to return an additional 'thumb_src' field, '0' - (default)
+     */
+    need_covers?: boolean
+    /**
+     * '1' - to return photo sizes in a
+     */
+    photo_sizes?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.getAlbumsCount"] | photos.getAlbumsCount} method
+ */
+export interface PhotosGetAlbumsCountParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * Community ID.
+     */
+    group_id?: number
+    need_system?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.getAll"] | photos.getAll} method
+ */
+export interface PhotosGetAllParams {
+    /**
+     * ID of a user or community that owns the photos. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * '1' - to return detailed information about photos
+     */
+    extended?: boolean
+    /**
+     * Offset needed to return a specific subset of photos. By default, '0'.
+     */
+    offset?: number
+    /**
+     * Number of photos to return.
+     */
+    count?: number
+    /**
+     * '1' - to return image sizes in [vk.com/dev/photo_sizes|special format].
+     */
+    photo_sizes?: boolean
+    /**
+     * '1' - to return photos only from standard albums, '0' - to return all photos including those in service albums, e.g., 'My wall photos' (default)
+     */
+    no_service_albums?: boolean
+    /**
+     * '1' - to show information about photos being hidden from the block above the wall.
+     */
+    need_hidden?: boolean
+    /**
+     * '1' - not to return photos being hidden from the block above the wall. Works only with owner_id>0, no_service_albums is ignored.
+     */
+    skip_hidden?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.getAllComments"] | photos.getAllComments} method
+ */
+export interface PhotosGetAllCommentsParams {
+    /**
+     * ID of the user or community that owns the album(s).
+     */
+    owner_id?: number
+    /**
+     * Album ID. If the parameter is not set, comments on all of the user's albums will be returned.
+     */
+    album_id?: number
+    /**
+     * '1' - to return an additional 'likes' field, '0' - (default)
+     */
+    need_likes?: boolean
+    /**
+     * Offset needed to return a specific subset of comments. By default, '0'.
+     */
+    offset?: number
+    /**
+     * Number of comments to return. By default, '20'. Maximum value, '100'.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getById"] | photos.getById} method
+ */
+export interface PhotosGetByIdParams {
+    /**
+     * IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
+     */
+    photos: string[]
+    /**
+     * '1' - to return additional fields, '0' - (default)
+     */
+    extended?: boolean
+    /**
+     * '1' - to return photo sizes in a
+     */
+    photo_sizes?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.getChatUploadServer"] | photos.getChatUploadServer} method
+ */
+export interface PhotosGetChatUploadServerParams {
+    /**
+     * ID of the chat for which you want to upload a cover photo.
      */
     chat_id: number
+    crop_x?: number
+    crop_y?: number
     /**
-     * Identifier of a suggested post message to approve
+     * Width (in pixels) of the photo after cropping.
      */
-    message_id: number
-    /**
-     * Point in time (Unix timestamp) when the post is expected to be published; omit if the date has already been specified when the suggested post was created. If specified, then the date must be not more than 2678400 seconds (30 days) in the future
-     */
-    send_date?: number
+    crop_width?: number
 }
 
 /**
- * Params object for {@link APIMethods.declineSuggestedPost | declineSuggestedPost} method
+ * - `asc` — old first
+ * - `desc` — new first
  */
-export interface DeclineSuggestedPostParams {
+export type PhotosGetCommentsSort = "asc" | "desc"
+
+/**
+ * Params for {@link APIMethods["photos.getComments"] | photos.getComments} method
+ */
+export interface PhotosGetCommentsParams {
     /**
-     * Unique identifier for the target direct messages chat
+     * ID of the user or community that owns the photo.
      */
-    chat_id: number
+    owner_id?: number
     /**
-     * Identifier of a suggested post message to decline
+     * Photo ID.
      */
-    message_id: number
+    photo_id: number
     /**
-     * Comment for the creator of the suggested post; 0-128 characters
+     * '1' - to return an additional 'likes' field, '0' - (default)
+     */
+    need_likes?: boolean
+    start_comment_id?: number
+    /**
+     * Offset needed to return a specific subset of comments. By default, '0'.
+     */
+    offset?: number
+    /**
+     * Number of comments to return.
+     */
+    count?: number
+    /**
+     * Sort order: 'asc' - old first, 'desc' - new first
+     */
+    sort?: PhotosGetCommentsSort
+    access_key?: string
+    extended?: boolean
+    fields?: Objects.VKUsersFields[]
+}
+
+/**
+ * Params for {@link APIMethods["photos.getMarketAlbumUploadServer"] | photos.getMarketAlbumUploadServer} method
+ */
+export interface PhotosGetMarketAlbumUploadServerParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getMessagesUploadServer"] | photos.getMessagesUploadServer} method
+ */
+export interface PhotosGetMessagesUploadServerParams {
+    /**
+     * Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
+     */
+    peer_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getNewTags"] | photos.getNewTags} method
+ */
+export interface PhotosGetNewTagsParams {
+    /**
+     * Offset needed to return a specific subset of photos.
+     */
+    offset?: number
+    /**
+     * Number of photos to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getOwnerCoverPhotoUploadServer"] | photos.getOwnerCoverPhotoUploadServer} method
+ */
+export interface PhotosGetOwnerCoverPhotoUploadServerParams {
+    /**
+     * ID of community that owns the album (if the photo will be uploaded to a community album).
+     */
+    group_id?: number
+    /**
+     * X coordinate of the left-upper corner
+     */
+    crop_x?: number
+    /**
+     * Y coordinate of the left-upper corner
+     */
+    crop_y?: number
+    /**
+     * X coordinate of the right-bottom corner
+     */
+    crop_x2?: number
+    /**
+     * Y coordinate of the right-bottom corner
+     */
+    crop_y2?: number
+    is_video_cover?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.getOwnerPhotoUploadServer"] | photos.getOwnerPhotoUploadServer} method
+ */
+export interface PhotosGetOwnerPhotoUploadServerParams {
+    /**
+     * identifier of a community or current user. "Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, "
+     */
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getTags"] | photos.getTags} method
+ */
+export interface PhotosGetTagsParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    access_key?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.getUploadServer"] | photos.getUploadServer} method
+ */
+export interface PhotosGetUploadServerParams {
+    album_id?: number
+    /**
+     * ID of community that owns the album (if the photo will be uploaded to a community album).
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.getUserPhotos"] | photos.getUserPhotos} method
+ */
+export interface PhotosGetUserPhotosParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * Offset needed to return a specific subset of photos. By default, '0'.
+     */
+    offset?: number
+    /**
+     * Number of photos to return. Maximum value is 1000.
+     */
+    count?: number
+    /**
+     * '1' - to return an additional 'likes' field, '0' - (default)
+     */
+    extended?: boolean
+    /**
+     * Sort order: '1' - by date the tag was added in ascending order, '0' - by date the tag was added in descending order
+     */
+    sort?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.getWallUploadServer"] | photos.getWallUploadServer} method
+ */
+export interface PhotosGetWallUploadServerParams {
+    /**
+     * ID of community to whose wall the photo will be uploaded.
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.makeCover"] | photos.makeCover} method
+ */
+export interface PhotosMakeCoverParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * Album ID.
+     */
+    album_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.move"] | photos.move} method
+ */
+export interface PhotosMoveParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * ID of the album to which the photo will be moved.
+     */
+    target_album_id: number
+    photo_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["photos.putTag"] | photos.putTag} method
+ */
+export interface PhotosPutTagParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * ID of the user to be tagged.
+     */
+    user_id: number
+    /**
+     * Upper left-corner coordinate of the tagged area (as a percentage of the photo's width).
+     */
+    x?: number
+    /**
+     * Upper left-corner coordinate of the tagged area (as a percentage of the photo's height).
+     */
+    y?: number
+    /**
+     * Lower right-corner coordinate of the tagged area (as a percentage of the photo's width).
+     */
+    x2?: number
+    /**
+     * Lower right-corner coordinate of the tagged area (as a percentage of the photo's height).
+     */
+    y2?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.removeTag"] | photos.removeTag} method
+ */
+export interface PhotosRemoveTagParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * Tag ID.
+     */
+    tag_id: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.reorderAlbums"] | photos.reorderAlbums} method
+ */
+export interface PhotosReorderAlbumsParams {
+    /**
+     * ID of the user or community that owns the album.
+     */
+    owner_id?: number
+    /**
+     * Album ID.
+     */
+    album_id: number
+    /**
+     * ID of the album before which the album in question shall be placed.
+     */
+    before?: number
+    /**
+     * ID of the album after which the album in question shall be placed.
+     */
+    after?: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.reorderPhotos"] | photos.reorderPhotos} method
+ */
+export interface PhotosReorderPhotosParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * ID of the photo before which the photo in question shall be placed.
+     */
+    before?: number
+    /**
+     * ID of the photo after which the photo in question shall be placed.
+     */
+    after?: number
+}
+
+/**
+ * - `0` — spam
+ * - `1` — child pornography
+ * - `2` — extremism
+ * - `3` — violence
+ * - `4` — drug propaganda
+ * - `5` — adult material
+ * - `6` — insult abuse
+ * - `8` — suicide calls
+ */
+export type PhotosReportReason = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8
+
+/**
+ * Params for {@link APIMethods["photos.report"] | photos.report} method
+ */
+export interface PhotosReportParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+    /**
+     * Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse, '8' - suicide calls
+     */
+    reason?: PhotosReportReason
+}
+
+/**
+ * - `0` — spam
+ * - `1` — child pornography
+ * - `2` — extremism
+ * - `3` — violence
+ * - `4` — drug propaganda
+ * - `5` — adult material
+ * - `6` — insult abuse
+ */
+export type PhotosReportCommentReason = 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+/**
+ * Params for {@link APIMethods["photos.reportComment"] | photos.reportComment} method
+ */
+export interface PhotosReportCommentParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id: number
+    /**
+     * ID of the comment being reported.
+     */
+    comment_id: number
+    /**
+     * Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
+     */
+    reason?: PhotosReportCommentReason
+}
+
+/**
+ * Params for {@link APIMethods["photos.restore"] | photos.restore} method
+ */
+export interface PhotosRestoreParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * Photo ID.
+     */
+    photo_id: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.restoreComment"] | photos.restoreComment} method
+ */
+export interface PhotosRestoreCommentParams {
+    /**
+     * ID of the user or community that owns the photo.
+     */
+    owner_id?: number
+    /**
+     * ID of the deleted comment.
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["photos.save"] | photos.save} method
+ */
+export interface PhotosSaveParams {
+    /**
+     * ID of the album to save photos to.
+     */
+    album_id?: number
+    /**
+     * ID of the community to save photos to.
+     */
+    group_id?: number
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    server?: number
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    photos_list?: string
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    hash?: string
+    /**
+     * Geographical latitude, in degrees (from '-90' to '90').
+     */
+    latitude?: number
+    /**
+     * Geographical longitude, in degrees (from '-180' to '180').
+     */
+    longitude?: number
+    /**
+     * Text describing the photo. 2048 digits max.
+     */
+    caption?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.saveMarketAlbumPhoto"] | photos.saveMarketAlbumPhoto} method
+ */
+export interface PhotosSaveMarketAlbumPhotoParams {
+    /**
+     * Community ID.
+     */
+    group_id: number
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    photo: string
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    server: number
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    hash: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.saveMessagesPhoto"] | photos.saveMessagesPhoto} method
+ */
+export interface PhotosSaveMessagesPhotoParams {
+    /**
+     * Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].
+     */
+    photo: string
+    server?: number
+    hash?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.saveOwnerCoverPhoto"] | photos.saveOwnerCoverPhoto} method
+ */
+export interface PhotosSaveOwnerCoverPhotoParams {
+    crop_x?: number
+    crop_height?: number
+    crop_y?: number
+    crop_width?: number
+    response_json?: string
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    hash?: string
+    /**
+     * Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+     */
+    photo?: string
+    is_video_cover?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["photos.saveOwnerPhoto"] | photos.saveOwnerPhoto} method
+ */
+export interface PhotosSaveOwnerPhotoParams {
+    /**
+     * parameter returned after [vk.com/dev/upload_files|photo upload].
+     */
+    server?: string
+    /**
+     * parameter returned after [vk.com/dev/upload_files|photo upload].
+     */
+    hash?: string
+    /**
+     * parameter returned after [vk.com/dev/upload_files|photo upload].
+     */
+    photo?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.saveWallPhoto"] | photos.saveWallPhoto} method
+ */
+export interface PhotosSaveWallPhotoParams {
+    /**
+     * ID of the user on whose wall the photo will be saved.
+     */
+    user_id?: number
+    /**
+     * ID of community on whose wall the photo will be saved.
+     */
+    group_id?: number
+    /**
+     * Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].
+     */
+    photo: string
+    server?: number
+    hash?: string
+    /**
+     * Geographical latitude, in degrees (from '-90' to '90').
+     */
+    latitude?: number
+    /**
+     * Geographical longitude, in degrees (from '-180' to '180').
+     */
+    longitude?: number
+    /**
+     * Text describing the photo. 2048 digits max.
+     */
+    caption?: string
+}
+
+/**
+ * Params for {@link APIMethods["photos.search"] | photos.search} method
+ */
+export interface PhotosSearchParams {
+    /**
+     * Search query string.
+     */
+    q?: string
+    /**
+     * Geographical latitude, in degrees (from '-90' to '90').
+     */
+    lat?: number
+    /**
+     * Geographical longitude, in degrees (from '-180' to '180').
+     */
+    long?: number
+    start_time?: number
+    end_time?: number
+    /**
+     * Sort order:
+     */
+    sort?: number
+    /**
+     * Offset needed to return a specific subset of photos.
+     */
+    offset?: number
+    /**
+     * Number of photos to return.
+     */
+    count?: number
+    /**
+     * Radius of search in meters (works very approximately). Available values: '10', '100', '800', '6000', '50000'.
+     */
+    radius?: number
+}
+
+/**
+ * Params for {@link APIMethods["podcasts.searchPodcast"] | podcasts.searchPodcast} method
+ */
+export interface PodcastsSearchPodcastParams {
+    search_string: string
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["polls.addVote"] | polls.addVote} method
+ */
+export interface PollsAddVoteParams {
+    /**
+     * ID of the user or community that owns the poll. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Poll ID.
+     */
+    poll_id: number
+    answer_ids: number[]
+    is_board?: boolean
+}
+
+export type PollsCreateBackgroundId = "1" | "2" | "3" | "4" | "6" | "8" | "9"
+
+/**
+ * Params for {@link APIMethods["polls.create"] | polls.create} method
+ */
+export interface PollsCreateParams {
+    /**
+     * question text
+     */
+    question?: string
+    /**
+     * '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
+     */
+    is_anonymous?: boolean
+    is_multiple?: boolean
+    end_date?: number
+    /**
+     * If a poll will be added to a communty it is required to send a negative group identifier. Current user by default.
+     */
+    owner_id?: number
+    app_id?: number
+    /**
+     * available answers list, for example: " ["yes","no","maybe"]", There can be from 1 to 10 answers.
+     */
+    add_answers?: string
+    photo_id?: number
+    background_id?: PollsCreateBackgroundId
+    disable_unvote?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["polls.deleteVote"] | polls.deleteVote} method
+ */
+export interface PollsDeleteVoteParams {
+    /**
+     * ID of the user or community that owns the poll. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Poll ID.
+     */
+    poll_id: number
+    is_board?: boolean
+}
+
+export type PollsEditBackgroundId =
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "6"
+    | "8"
+    | "9"
+
+/**
+ * Params for {@link APIMethods["polls.edit"] | polls.edit} method
+ */
+export interface PollsEditParams {
+    /**
+     * poll owner id
+     */
+    owner_id?: number
+    /**
+     * edited poll's id
+     */
+    poll_id: number
+    /**
+     * new question text
+     */
+    question?: string
+    /**
+     * answers list, for example: , "["yes","no","maybe"]"
+     */
+    add_answers?: string
+    /**
+     * object containing answers that need to be edited,, key - answer id, value - new answer text. Example: {"382967099":"option1", "382967103":"option2"}"
+     */
+    edit_answers?: string
+    /**
+     * list of answer ids to be deleted. For example: "[382967099, 382967103]"
+     */
+    delete_answers?: string
+    end_date?: number
+    photo_id?: number
+    background_id?: PollsEditBackgroundId
+}
+
+/**
+ * Params for {@link APIMethods["polls.getById"] | polls.getById} method
+ */
+export interface PollsGetByIdParams {
+    /**
+     * ID of the user or community that owns the poll. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * '1' - poll is in a board, '0' - poll is on a wall. '0' by default.
+     */
+    is_board?: boolean
+    /**
+     * Poll ID.
+     */
+    poll_id: number
+    extended?: boolean
+    friends_count?: number
+    fields?: string[]
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["polls.getPhotoUploadServer"] | polls.getPhotoUploadServer} method
+ */
+export interface PollsGetPhotoUploadServerParams {
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["polls.getVoters"] | polls.getVoters} method
+ */
+export interface PollsGetVotersParams {
+    /**
+     * ID of the user or community that owns the poll. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Poll ID.
+     */
+    poll_id: number
+    /**
+     * Answer IDs.
+     */
+    answer_ids: number[]
+    is_board?: boolean
+    /**
+     * '1' - to return only current user's friends, '0' - to return all users (default),
+     */
+    friends_only?: boolean
+    /**
+     * Offset needed to return a specific subset of voters. '0' - (default)
+     */
+    offset?: number
+    /**
+     * Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' - (default)
+     */
+    count?: number
+    /**
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: , 'nom' - nominative (default) , 'gen' - genitive , 'dat' - dative , 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["polls.savePhoto"] | polls.savePhoto} method
+ */
+export interface PollsSavePhotoParams {
+    photo?: string
+    hash?: string
+}
+
+/**
+ * Params for {@link APIMethods["prettyCards.create"] | prettyCards.create} method
+ */
+export interface PrettyCardsCreateParams {
+    owner_id: number
+    photo: string
+    title: string
+    link: string
+    price?: string
+    price_old?: string
+    button?: string
+}
+
+/**
+ * Params for {@link APIMethods["prettyCards.delete"] | prettyCards.delete} method
+ */
+export interface PrettyCardsDeleteParams {
+    owner_id: number
+    card_id: number
+}
+
+/**
+ * Params for {@link APIMethods["prettyCards.edit"] | prettyCards.edit} method
+ */
+export interface PrettyCardsEditParams {
+    owner_id: number
+    card_id: number
+    photo?: string
+    title?: string
+    link?: string
+    price?: string
+    price_old?: string
+    button?: string
+}
+
+/**
+ * Params for {@link APIMethods["prettyCards.get"] | prettyCards.get} method
+ */
+export interface PrettyCardsGetParams {
+    owner_id: number
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["prettyCards.getById"] | prettyCards.getById} method
+ */
+export interface PrettyCardsGetByIdParams {
+    owner_id: number
+    card_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["search.getHints"] | search.getHints} method
+ */
+export interface SearchGetHintsParams {
+    /**
+     * Search query string.
+     */
+    q?: string
+    /**
+     * Offset for querying specific result subset
+     */
+    offset?: number
+    /**
+     * Maximum number of results to return.
+     */
+    limit?: number
+    filters?: string[]
+    fields?: string[]
+    search_global?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["secure.addAppEvent"] | secure.addAppEvent} method
+ */
+export interface SecureAddAppEventParams {
+    /**
+     * ID of a user to save the data
+     */
+    user_id?: number
+    /**
+     * there are 2 default activities: , * 1 - level. Works similar to ,, * 2 - points, saves points amount, Any other value is for saving completed missions
+     */
+    activity_id: number
+    /**
+     * depends on activity_id: * 1 - number, current level number,, * 2 - number, current user's points amount, , Any other value is ignored
+     */
+    value?: number
+}
+
+/**
+ * Params for {@link APIMethods["secure.checkToken"] | secure.checkToken} method
+ */
+export interface SecureCheckTokenParams {
+    /**
+     * client 'access_token'
+     */
+    token?: string
+    /**
+     * user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to transmit the 'ipv6' address. If not transmitted, the address will not be checked.
+     */
+    ip?: string
+}
+
+/**
+ * Params for {@link APIMethods["secure.getSMSHistory"] | secure.getSMSHistory} method
+ */
+export interface SecureGetSMSHistoryParams {
+    user_id?: number
+    /**
+     * filter by start date. It is set as UNIX-time.
+     */
+    date_from?: number
+    /**
+     * filter by end date. It is set as UNIX-time.
+     */
+    date_to?: number
+    /**
+     * number of returned posts. By default - 1000.
+     */
+    limit?: number
+}
+
+/**
+ * Params for {@link APIMethods["secure.getTransactionsHistory"] | secure.getTransactionsHistory} method
+ */
+export interface SecureGetTransactionsHistoryParams {
+    type?: number
+    uid_from?: number
+    uid_to?: number
+    date_from?: number
+    date_to?: number
+    limit?: number
+}
+
+/**
+ * Params for {@link APIMethods["secure.getUserLevel"] | secure.getUserLevel} method
+ */
+export interface SecureGetUserLevelParams {
+    user_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["secure.giveEventSticker"] | secure.giveEventSticker} method
+ */
+export interface SecureGiveEventStickerParams {
+    user_ids: number[]
+    achievement_id: number
+}
+
+/**
+ * Params for {@link APIMethods["secure.sendNotification"] | secure.sendNotification} method
+ */
+export interface SecureSendNotificationParams {
+    user_ids?: number[]
+    user_id?: number
+    /**
+     * notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).
+     */
+    message: string
+    notification_id?: number
+    promo_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["secure.sendSMSNotification"] | secure.sendSMSNotification} method
+ */
+export interface SecureSendSMSNotificationParams {
+    /**
+     * ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).
+     */
+    user_id: number
+    /**
+     * 'SMS' text to be sent in 'UTF-8' encoding. Only Latin letters and numbers are allowed. Maximum size is '160' characters.
+     */
+    message: string
+}
+
+/**
+ * Params for {@link APIMethods["secure.setCounter"] | secure.setCounter} method
+ */
+export interface SecureSetCounterParams {
+    counters?: string[]
+    user_id?: number
+    /**
+     * counter value.
+     */
+    counter?: number
+    increment?: boolean
+}
+
+export type StatsGetInterval = "all" | "day" | "month" | "week" | "year"
+
+/**
+ * Params for {@link APIMethods["stats.get"] | stats.get} method
+ */
+export interface StatsGetParams {
+    /**
+     * Community ID.
+     */
+    group_id?: number
+    /**
+     * Application ID.
+     */
+    app_id?: number
+    timestamp_from?: number
+    timestamp_to?: number
+    interval?: StatsGetInterval
+    intervals_count?: number
+    filters?: string[]
+    stats_groups?: string[]
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["stats.getPostReach"] | stats.getPostReach} method
+ */
+export interface StatsGetPostReachParams {
+    /**
+     * post owner community id. Specify with "-" sign.
+     */
+    owner_id: number
+    /**
+     * wall posts id
+     */
+    post_ids: number[]
+}
+
+export type StatsTrackVisitorType = "activity" | "close" | "open"
+
+/**
+ * Params for {@link APIMethods["stats.trackVisitor"] | stats.trackVisitor} method
+ */
+export interface StatsTrackVisitorParams {
+    type?: StatsTrackVisitorType
+}
+
+/**
+ * Params for {@link APIMethods["status.get"] | status.get} method
+ */
+export interface StatusGetParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    user_id?: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["status.set"] | status.set} method
+ */
+export interface StatusSetParams {
+    /**
+     * Text of the new status.
+     */
+    text?: string
+    /**
+     * Identifier of a community to set a status in. If left blank the status is set to current user.
+     */
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["storage.get"] | storage.get} method
+ */
+export interface StorageGetParams {
+    key?: string
+    keys?: string[]
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["storage.getKeys"] | storage.getKeys} method
+ */
+export interface StorageGetKeysParams {
+    /**
+     * user id, whose variables names are returned if they were requested with a server method.
+     */
+    user_id?: number
+    offset?: number
+    /**
+     * amount of variable names the info needs to be collected from.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["storage.set"] | storage.set} method
+ */
+export interface StorageSetParams {
+    key: string
+    value?: string
+    user_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["store.addStickersToFavorite"] | store.addStickersToFavorite} method
+ */
+export interface StoreAddStickersToFavoriteParams {
+    /**
+     * Sticker IDs to be added
+     */
+    sticker_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["store.getProducts"] | store.getProducts} method
+ */
+export interface StoreGetProductsParams {
+    type?: string
+    merchant?: string
+    section?: string
+    product_ids?: number[]
+    filters?: string[]
+    extended?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["store.getStickersKeywords"] | store.getStickersKeywords} method
+ */
+export interface StoreGetStickersKeywordsParams {
+    stickers_ids?: number[]
+    products_ids?: number[]
+    aliases?: boolean
+    all_products?: boolean
+    need_stickers?: boolean
+    vmoji_promo?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["store.removeStickersFromFavorite"] | store.removeStickersFromFavorite} method
+ */
+export interface StoreRemoveStickersFromFavoriteParams {
+    /**
+     * Sticker IDs to be removed
+     */
+    sticker_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.banOwner"] | stories.banOwner} method
+ */
+export interface StoriesBanOwnerParams {
+    /**
+     * List of sources IDs
+     */
+    owners_ids: number[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.delete"] | stories.delete} method
+ */
+export interface StoriesDeleteParams {
+    /**
+     * Story owner's ID. Current user id is used by default.
+     */
+    owner_id?: number
+    /**
+     * Story ID.
+     */
+    story_id?: number
+    stories?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.get"] | stories.get} method
+ */
+export interface StoriesGetParams {
+    /**
+     * Owner ID.
+     */
+    owner_id?: number
+    /**
+     * '1' - to return additional fields for users and communities. Default value is 0.
+     */
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.getBanned"] | stories.getBanned} method
+ */
+export interface StoriesGetBannedParams {
+    /**
+     * '1' - to return additional fields for users and communities. Default value is 0.
+     */
+    extended?: boolean
+    /**
+     * Additional fields to return
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.getById"] | stories.getById} method
+ */
+export interface StoriesGetByIdParams {
+    /**
+     * Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
+     */
+    stories: string[]
+    /**
+     * '1' - to return additional fields for users and communities. Default value is 0.
+     */
+    extended?: boolean
+    /**
+     * Additional fields to return
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.getPhotoUploadServer"] | stories.getPhotoUploadServer} method
+ */
+export interface StoriesGetPhotoUploadServerParams {
+    /**
+     * 1 - to add the story to friend's feed.
+     */
+    add_to_news?: boolean
+    /**
+     * List of users IDs who can see the story.
+     */
+    user_ids?: number[]
+    /**
+     * ID of the story to reply with the current.
+     */
+    reply_to_story?: string
+    /**
+     * Link text (for community's stories only).
+     */
+    link_text?: Objects.VKStoriesUploadLinkText
+    /**
+     * Link URL. Internal links on https://vk.com only.
+     */
+    link_url?: string
+    /**
+     * ID of the community to upload the story (should be verified or with the "fire" icon).
+     */
+    group_id?: number
+    clickable_stickers?: string
+}
+
+/**
+ * Params for {@link APIMethods["stories.getReplies"] | stories.getReplies} method
+ */
+export interface StoriesGetRepliesParams {
+    /**
+     * Story owner ID.
+     */
+    owner_id: number
+    /**
+     * Story ID.
+     */
+    story_id: number
+    /**
+     * Access key for the private object.
+     */
+    access_key?: string
+    /**
+     * '1' - to return additional fields for users and communities. Default value is 0.
+     */
+    extended?: boolean
+    /**
+     * Additional fields to return
+     */
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.getStats"] | stories.getStats} method
+ */
+export interface StoriesGetStatsParams {
+    /**
+     * Story owner ID.
+     */
+    owner_id: number
+    /**
+     * Story ID.
+     */
+    story_id: number
+}
+
+/**
+ * Params for {@link APIMethods["stories.getVideoUploadServer"] | stories.getVideoUploadServer} method
+ */
+export interface StoriesGetVideoUploadServerParams {
+    /**
+     * 1 - to add the story to friend's feed.
+     */
+    add_to_news?: boolean
+    /**
+     * List of users IDs who can see the story.
+     */
+    user_ids?: number[]
+    /**
+     * ID of the story to reply with the current.
+     */
+    reply_to_story?: string
+    /**
+     * Link text (for community's stories only).
+     */
+    link_text?: Objects.VKStoriesUploadLinkText
+    /**
+     * Link URL. Internal links on https://vk.com only.
+     */
+    link_url?: string
+    /**
+     * ID of the community to upload the story (should be verified or with the "fire" icon).
+     */
+    group_id?: number
+    clickable_stickers?: string
+}
+
+/**
+ * Params for {@link APIMethods["stories.getViewers"] | stories.getViewers} method
+ */
+export interface StoriesGetViewersParams {
+    /**
+     * Story owner ID.
+     */
+    owner_id?: number
+    /**
+     * Story ID.
+     */
+    story_id: number
+    /**
+     * Maximum number of results.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of results.
+     */
+    offset?: number
+    /**
+     * '1' - to return detailed information about photos
+     */
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.hideAllReplies"] | stories.hideAllReplies} method
+ */
+export interface StoriesHideAllRepliesParams {
+    /**
+     * ID of the user whose replies should be hidden.
+     */
+    owner_id: number
+    group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["stories.hideReply"] | stories.hideReply} method
+ */
+export interface StoriesHideReplyParams {
+    /**
+     * ID of the user whose replies should be hidden.
+     */
+    owner_id: number
+    /**
+     * Story ID.
+     */
+    story_id: number
+}
+
+/**
+ * Params for {@link APIMethods["stories.save"] | stories.save} method
+ */
+export interface StoriesSaveParams {
+    upload_results?: string[]
+    upload_results_json?: string
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.search"] | stories.search} method
+ */
+export interface StoriesSearchParams {
+    q?: string
+    place_id?: number
+    latitude?: number
+    longitude?: number
+    radius?: number
+    mentioned_id?: number
+    count?: number
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["stories.sendInteraction"] | stories.sendInteraction} method
+ */
+export interface StoriesSendInteractionParams {
+    access_key: string
+    message?: string
+    is_broadcast?: boolean
+    is_anonymous?: boolean
+    unseen_marker?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["stories.unbanOwner"] | stories.unbanOwner} method
+ */
+export interface StoriesUnbanOwnerParams {
+    /**
+     * List of hidden sources to show stories from.
+     */
+    owners_ids: number[]
+}
+
+export type StreamingGetStatsType = "prepared" | "received"
+export type StreamingGetStatsInterval = "1h" | "24h" | "5m"
+
+/**
+ * Params for {@link APIMethods["streaming.getStats"] | streaming.getStats} method
+ */
+export interface StreamingGetStatsParams {
+    type?: StreamingGetStatsType
+    interval?: StreamingGetStatsInterval
+    start_time?: number
+    end_time?: number
+}
+
+/**
+ * Params for {@link APIMethods["streaming.getStem"] | streaming.getStem} method
+ */
+export interface StreamingGetStemParams {
+    word: string
+}
+
+/**
+ * Params for {@link APIMethods["translations.translate"] | translations.translate} method
+ */
+export interface TranslationsTranslateParams {
+    texts: string[]
+    translation_language: string
+}
+
+/**
+ * Params for {@link APIMethods["users.get"] | users.get} method
+ */
+export interface UsersGetParams {
+    /**
+     * User IDs or screen names ('screen_name'). By default, current user ID.
+     */
+    user_ids?: (number | string)[]
+    /**
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
+    from_group_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["users.getFollowers"] | users.getFollowers} method
+ */
+export interface UsersGetFollowersParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * Offset needed to return a specific subset of followers.
+     */
+    offset?: number
+    /**
+     * Number of followers to return.
+     */
+    count?: number
+    /**
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+     */
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["users.getSubscriptions"] | users.getSubscriptions} method
+ */
+export interface UsersGetSubscriptionsParams {
+    /**
+     * User ID.
+     */
+    user_id?: number
+    /**
+     * '1' - to return a combined list of users and communities, '0' - to return separate lists of users and communities (default)
+     */
+    extended?: boolean
+    /**
+     * Offset needed to return a specific subset of subscriptions.
+     */
+    offset?: number
+    /**
+     * Number of users and communities to return.
+     */
+    count?: number
+    fields?: Objects.VKUsersFields[]
+}
+
+export type UsersReportType =
+    | "advertisement"
+    | "advertisment"
+    | "fraud"
+    | "insult"
+    | "porn"
+    | "spam"
+
+/**
+ * Params for {@link APIMethods["users.report"] | users.report} method
+ */
+export interface UsersReportParams {
+    /**
+     * ID of the user about whom a complaint is being made.
+     */
+    user_id: number
+    /**
+     * Type of complaint: 'porn' - pornography, 'spam' - spamming, 'insult' - abusive behavior, 'advertisement' - disruptive advertisements
+     */
+    type: UsersReportType
+    /**
+     * Comment describing the complaint.
      */
     comment?: string
 }
 
 /**
- * Params object for {@link APIMethods.deleteMessage | deleteMessage} method
+ * - `0` — by rating
+ * - `1` — by date registered
  */
-export interface DeleteMessageParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Identifier of the message to delete
-     */
-    message_id: number
-}
+export type UsersSearchSort = 0 | 1
+/**
+ * - `0` — any
+ * - `1` — female
+ * - `2` — male
+ */
+export type UsersSearchSex = 0 | 1 | 2
+/**
+ * - `0` — not specified
+ * - `1` — not married
+ * - `2` — relationship
+ * - `3` — engaged
+ * - `4` — married
+ * - `5` — complicated
+ * - `6` — actively searching
+ * - `7` — in love
+ * - `8` — civil union
+ */
+export type UsersSearchStatus = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 /**
- * Params object for {@link APIMethods.deleteMessages | deleteMessages} method
+ * Params for {@link APIMethods["users.search"] | users.search} method
  */
-export interface DeleteMessagesParams {
+export interface UsersSearchParams {
     /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+     * Search query string (e.g., 'Vasya Babich').
      */
-    chat_id: number | string
+    q?: string
     /**
-     * A JSON-serialized list of 1-100 identifiers of messages to delete. See [deleteMessage](https://core.telegram.org/bots/api#deletemessage) for limitations on which messages can be deleted
+     * Sort order: '1' - by date registered, '0' - by rating
      */
-    message_ids: number[]
-}
-
-/**
- * Params object for {@link APIMethods.sendSticker | sendSticker} method
- */
-export interface SendStickerParams {
+    sort?: UsersSearchSort
     /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
-     */
-    business_connection_id?: string
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Sticker to send. Pass a file\_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP, .TGS, or .WEBM sticker using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files). Video and animated stickers can't be sent via an HTTP URL.
-     */
-    sticker: Objects.TelegramInputFile | string
-    /**
-     * Emoji associated with the sticker; only for just uploaded stickers
-     */
-    emoji?: string
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardMarkup
-        | { toJSON(): Objects.TelegramReplyKeyboardMarkup }
-        | Objects.TelegramReplyKeyboardRemove
-        | { toJSON(): Objects.TelegramReplyKeyboardRemove }
-        | Objects.TelegramForceReply
-        | { toJSON(): Objects.TelegramForceReply }
-}
-
-/**
- * Params object for {@link APIMethods.getStickerSet | getStickerSet} method
- */
-export interface GetStickerSetParams {
-    /**
-     * Name of the sticker set
-     */
-    name: string
-}
-
-/**
- * Params object for {@link APIMethods.getCustomEmojiStickers | getCustomEmojiStickers} method
- */
-export interface GetCustomEmojiStickersParams {
-    /**
-     * A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
-     */
-    custom_emoji_ids: string[]
-}
-
-export type UploadStickerFileStickerFormat = "static" | "animated" | "video"
-
-/**
- * Params object for {@link APIMethods.uploadStickerFile | uploadStickerFile} method
- */
-export interface UploadStickerFileParams {
-    /**
-     * User identifier of sticker file owner
-     */
-    user_id: number
-    /**
-     * A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See [https://core.telegram.org/stickers](https://core.telegram.org/stickers) for technical requirements. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files)
-     */
-    sticker: Objects.TelegramInputFile
-    /**
-     * Format of the sticker, must be one of “static”, “animated”, “video”
-     */
-    sticker_format: UploadStickerFileStickerFormat
-}
-
-export type CreateNewStickerSetStickerType = "regular" | "mask" | "custom_emoji"
-
-/**
- * Params object for {@link APIMethods.createNewStickerSet | createNewStickerSet} method
- */
-export interface CreateNewStickerSetParams {
-    /**
-     * User identifier of created sticker set owner
-     */
-    user_id: number
-    /**
-     * Short name of sticker set, to be used in `t.me/addstickers/` URLs (e.g., *animals*). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in `"_by_<bot_username>"`. `<bot_username>` is case insensitive. 1-64 characters.
-     */
-    name: string
-    /**
-     * Sticker set title, 1-64 characters
-     */
-    title: string
-    /**
-     * A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
-     */
-    stickers: Objects.TelegramInputSticker[]
-    /**
-     * Type of stickers in the set, pass “regular”, “mask”, or “custom\_emoji”. By default, a regular sticker set is created.
-     */
-    sticker_type?: CreateNewStickerSetStickerType
-    /**
-     * Pass *True* if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
-     */
-    needs_repainting?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.addStickerToSet | addStickerToSet} method
- */
-export interface AddStickerToSetParams {
-    /**
-     * User identifier of sticker set owner
-     */
-    user_id: number
-    /**
-     * Sticker set name
-     */
-    name: string
-    /**
-     * A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
-     */
-    sticker: Objects.TelegramInputSticker
-}
-
-/**
- * Params object for {@link APIMethods.setStickerPositionInSet | setStickerPositionInSet} method
- */
-export interface SetStickerPositionInSetParams {
-    /**
-     * File identifier of the sticker
-     */
-    sticker: string
-    /**
-     * New sticker position in the set, zero-based
-     */
-    position: number
-}
-
-/**
- * Params object for {@link APIMethods.deleteStickerFromSet | deleteStickerFromSet} method
- */
-export interface DeleteStickerFromSetParams {
-    /**
-     * File identifier of the sticker
-     */
-    sticker: string
-}
-
-/**
- * Params object for {@link APIMethods.replaceStickerInSet | replaceStickerInSet} method
- */
-export interface ReplaceStickerInSetParams {
-    /**
-     * User identifier of the sticker set owner
-     */
-    user_id: number
-    /**
-     * Sticker set name
-     */
-    name: string
-    /**
-     * File identifier of the replaced sticker
-     */
-    old_sticker: string
-    /**
-     * A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set remains unchanged.
-     */
-    sticker: Objects.TelegramInputSticker
-}
-
-/**
- * Params object for {@link APIMethods.setStickerEmojiList | setStickerEmojiList} method
- */
-export interface SetStickerEmojiListParams {
-    /**
-     * File identifier of the sticker
-     */
-    sticker: string
-    /**
-     * A JSON-serialized list of 1-20 emoji associated with the sticker
-     */
-    emoji_list: string[]
-}
-
-/**
- * Params object for {@link APIMethods.setStickerKeywords | setStickerKeywords} method
- */
-export interface SetStickerKeywordsParams {
-    /**
-     * File identifier of the sticker
-     */
-    sticker: string
-    /**
-     * A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
-     */
-    keywords?: string[]
-}
-
-/**
- * Params object for {@link APIMethods.setStickerMaskPosition | setStickerMaskPosition} method
- */
-export interface SetStickerMaskPositionParams {
-    /**
-     * File identifier of the sticker
-     */
-    sticker: string
-    /**
-     * A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
-     */
-    mask_position?: Objects.TelegramMaskPosition
-}
-
-/**
- * Params object for {@link APIMethods.setStickerSetTitle | setStickerSetTitle} method
- */
-export interface SetStickerSetTitleParams {
-    /**
-     * Sticker set name
-     */
-    name: string
-    /**
-     * Sticker set title, 1-64 characters
-     */
-    title: string
-}
-
-export type SetStickerSetThumbnailFormat = "static" | "animated" | "video"
-
-/**
- * Params object for {@link APIMethods.setStickerSetThumbnail | setStickerSetThumbnail} method
- */
-export interface SetStickerSetThumbnailParams {
-    /**
-     * Sticker set name
-     */
-    name: string
-    /**
-     * User identifier of the sticker set owner
-     */
-    user_id: number
-    /**
-     * A **.WEBP** or **.PNG** image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a **.TGS** animation with a thumbnail up to 32 kilobytes in size (see [https://core.telegram.org/stickers#animation-requirements](https://core.telegram.org/stickers#animation-requirements) for animated sticker technical requirements), or a **.WEBM** video with the thumbnail up to 32 kilobytes in size; see [https://core.telegram.org/stickers#video-requirements](https://core.telegram.org/stickers#video-requirements) for video sticker technical requirements. Pass a *file\_id* as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files). Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail.
-     */
-    thumbnail?: Objects.TelegramInputFile | string
-    /**
-     * Format of the thumbnail, must be one of “static” for a **.WEBP** or **.PNG** image, “animated” for a **.TGS** animation, or “video” for a **.WEBM** video
-     */
-    format: SetStickerSetThumbnailFormat
-}
-
-/**
- * Params object for {@link APIMethods.setCustomEmojiStickerSetThumbnail | setCustomEmojiStickerSetThumbnail} method
- */
-export interface SetCustomEmojiStickerSetThumbnailParams {
-    /**
-     * Sticker set name
-     */
-    name: string
-    /**
-     * Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
-     */
-    custom_emoji_id?: string
-}
-
-/**
- * Params object for {@link APIMethods.deleteStickerSet | deleteStickerSet} method
- */
-export interface DeleteStickerSetParams {
-    /**
-     * Sticker set name
-     */
-    name: string
-}
-
-/**
- * Params object for {@link APIMethods.answerInlineQuery | answerInlineQuery} method
- */
-export interface AnswerInlineQueryParams {
-    /**
-     * Unique identifier for the answered query
-     */
-    inline_query_id: string
-    /**
-     * A JSON-serialized array of results for the inline query
-     */
-    results: Objects.TelegramInlineQueryResult[]
-    /**
-     * The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
-     */
-    cache_time?: number
-    /**
-     * Pass *True* if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query.
-     */
-    is_personal?: boolean
-    /**
-     * Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
-     */
-    next_offset?: string
-    /**
-     * A JSON-serialized object describing a button to be shown above inline query results
-     */
-    button?: Objects.TelegramInlineQueryResultsButton
-}
-
-/**
- * Params object for {@link APIMethods.answerWebAppQuery | answerWebAppQuery} method
- */
-export interface AnswerWebAppQueryParams {
-    /**
-     * Unique identifier for the query to be answered
-     */
-    web_app_query_id: string
-    /**
-     * A JSON-serialized object describing the message to be sent
-     */
-    result: Objects.TelegramInlineQueryResult
-}
-
-/**
- * Params object for {@link APIMethods.savePreparedInlineMessage | savePreparedInlineMessage} method
- */
-export interface SavePreparedInlineMessageParams {
-    /**
-     * Unique identifier of the target user that can use the prepared message
-     */
-    user_id: number
-    /**
-     * A JSON-serialized object describing the message to be sent
-     */
-    result: Objects.TelegramInlineQueryResult
-    /**
-     * Pass *True* if the message can be sent to private chats with users
-     */
-    allow_user_chats?: boolean
-    /**
-     * Pass *True* if the message can be sent to private chats with bots
-     */
-    allow_bot_chats?: boolean
-    /**
-     * Pass *True* if the message can be sent to group and supergroup chats
-     */
-    allow_group_chats?: boolean
-    /**
-     * Pass *True* if the message can be sent to channel chats
-     */
-    allow_channel_chats?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.sendInvoice | sendInvoice} method
- */
-export interface SendInvoiceParams {
-    /**
-     * Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
-     */
-    chat_id: number | string
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
-     */
-    direct_messages_topic_id?: number
-    /**
-     * Product name, 1-32 characters
-     */
-    title: string
-    /**
-     * Product description, 1-255 characters
-     */
-    description: string
-    /**
-     * Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes.
-     */
-    payload: string
-    /**
-     * Payment provider token, obtained via [@BotFather](https://t.me/botfather). Pass an empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    provider_token?: string
-    /**
-     * Three-letter ISO 4217 currency code, see [more on currencies](https://core.telegram.org/bots/payments#supported-currencies). Pass “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    currency: Objects.TelegramCurrencies
-    /**
-     * Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    prices: Objects.TelegramLabeledPrice[]
-    /**
-     * The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of `US$ 1.45` pass `max_tip_amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0. Not supported for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    max_tip_amount?: number
-    /**
-     * A JSON-serialized array of suggested amounts of tips in the *smallest units* of the currency (integer, **not** float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed *max\_tip\_amount*.
-     */
-    suggested_tip_amounts?: number[]
-    /**
-     * Unique deep-linking parameter. If left empty, **forwarded copies** of the sent message will have a *Pay* button, allowing multiple users to pay directly from the forwarded message, using the same invoice. If non-empty, forwarded copies of the sent message will have a *URL* button with a deep link to the bot (instead of a *Pay* button), with the value used as the start parameter
-     */
-    start_parameter?: string
-    /**
-     * JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
-     */
-    provider_data?: string
-    /**
-     * URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. People like it better when they see what they are paying for.
-     */
-    photo_url?: string
-    /**
-     * Photo size in bytes
-     */
-    photo_size?: number
-    /**
-     * Photo width
-     */
-    photo_width?: number
-    /**
-     * Photo height
-     */
-    photo_height?: number
-    /**
-     * Pass *True* if you require the user's full name to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_name?: boolean
-    /**
-     * Pass *True* if you require the user's phone number to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_phone_number?: boolean
-    /**
-     * Pass *True* if you require the user's email address to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_email?: boolean
-    /**
-     * Pass *True* if you require the user's shipping address to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_shipping_address?: boolean
-    /**
-     * Pass *True* if the user's phone number should be sent to the provider. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    send_phone_number_to_provider?: boolean
-    /**
-     * Pass *True* if the user's email address should be sent to the provider. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    send_email_to_provider?: boolean
-    /**
-     * Pass *True* if the final price depends on the shipping method. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    is_flexible?: boolean
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
-     */
-    suggested_post_parameters?: Objects.TelegramSuggestedPostParameters
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards). If empty, one 'Pay `total price`' button will be shown. If not empty, the first button must be a Pay button.
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
-}
-
-/**
- * Params object for {@link APIMethods.createInvoiceLink | createInvoiceLink} method
- */
-export interface CreateInvoiceLinkParams {
-    /**
-     * Unique identifier of the business connection on behalf of which the link will be created. For payments in [Telegram Stars](https://t.me/BotNews/90) only.
-     */
-    business_connection_id?: string
-    /**
-     * Product name, 1-32 characters
-     */
-    title: string
-    /**
-     * Product description, 1-255 characters
-     */
-    description: string
-    /**
-     * Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes.
-     */
-    payload: string
-    /**
-     * Payment provider token, obtained via [@BotFather](https://t.me/botfather). Pass an empty string for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    provider_token?: string
-    /**
-     * Three-letter ISO 4217 currency code, see [more on currencies](https://core.telegram.org/bots/payments#supported-currencies). Pass “XTR” for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    currency: Objects.TelegramCurrencies
-    /**
-     * Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    prices: Objects.TelegramLabeledPrice[]
-    /**
-     * The number of seconds the subscription will be active for before the next payment. The currency must be set to “XTR” (Telegram Stars) if the parameter is used. Currently, it must always be 2592000 (30 days) if specified. Any number of subscriptions can be active for a given bot at the same time, including multiple concurrent subscriptions from the same user. Subscription price must no exceed 10000 Telegram Stars.
-     */
-    subscription_period?: number
-    /**
-     * The maximum accepted amount for tips in the *smallest units* of the currency (integer, **not** float/double). For example, for a maximum tip of `US$ 1.45` pass `max_tip_amount = 145`. See the *exp* parameter in [currencies.json](https://core.telegram.org/bots/payments/currencies.json), it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0. Not supported for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    max_tip_amount?: number
-    /**
-     * A JSON-serialized array of suggested amounts of tips in the *smallest units* of the currency (integer, **not** float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed *max\_tip\_amount*.
-     */
-    suggested_tip_amounts?: number[]
-    /**
-     * JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
-     */
-    provider_data?: string
-    /**
-     * URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.
-     */
-    photo_url?: string
-    /**
-     * Photo size in bytes
-     */
-    photo_size?: number
-    /**
-     * Photo width
-     */
-    photo_width?: number
-    /**
-     * Photo height
-     */
-    photo_height?: number
-    /**
-     * Pass *True* if you require the user's full name to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_name?: boolean
-    /**
-     * Pass *True* if you require the user's phone number to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_phone_number?: boolean
-    /**
-     * Pass *True* if you require the user's email address to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_email?: boolean
-    /**
-     * Pass *True* if you require the user's shipping address to complete the order. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    need_shipping_address?: boolean
-    /**
-     * Pass *True* if the user's phone number should be sent to the provider. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    send_phone_number_to_provider?: boolean
-    /**
-     * Pass *True* if the user's email address should be sent to the provider. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    send_email_to_provider?: boolean
-    /**
-     * Pass *True* if the final price depends on the shipping method. Ignored for payments in [Telegram Stars](https://t.me/BotNews/90).
-     */
-    is_flexible?: boolean
-}
-
-/**
- * Params object for {@link APIMethods.answerShippingQuery | answerShippingQuery} method
- */
-export interface AnswerShippingQueryParams {
-    /**
-     * Unique identifier for the query to be answered
-     */
-    shipping_query_id: string
-    /**
-     * Pass *True* if delivery to the specified address is possible and *False* if there are any problems (for example, if delivery to the specified address is not possible)
-     */
-    ok: boolean
-    /**
-     * Required if *ok* is *True*. A JSON-serialized array of available shipping options.
-     */
-    shipping_options?: Objects.TelegramShippingOption[]
-    /**
-     * Required if *ok* is *False*. Error message in human readable form that explains why it is impossible to complete the order (e.g. “Sorry, delivery to your desired address is unavailable”). Telegram will display this message to the user.
-     */
-    error_message?: string
-}
-
-/**
- * Params object for {@link APIMethods.answerPreCheckoutQuery | answerPreCheckoutQuery} method
- */
-export interface AnswerPreCheckoutQueryParams {
-    /**
-     * Unique identifier for the query to be answered
-     */
-    pre_checkout_query_id: string
-    /**
-     * Specify *True* if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use *False* if there are any problems.
-     */
-    ok: boolean
-    /**
-     * Required if *ok* is *False*. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
-     */
-    error_message?: string
-}
-
-/**
- * Params object for {@link APIMethods.getStarTransactions | getStarTransactions} method
- */
-export interface GetStarTransactionsParams {
-    /**
-     * Number of transactions to skip in the response
+     * Offset needed to return a specific subset of users.
      */
     offset?: number
     /**
-     * The maximum number of transactions to be retrieved. Values between 1-100 are accepted. Defaults to 100.
+     * Number of users to return.
      */
-    limit?: number
+    count?: number
+    /**
+     * Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online',
+     */
+    fields?: Objects.VKUsersFields[]
+    /**
+     * City ID.
+     */
+    city?: number
+    /**
+     * City ID. Use parameter city instead
+     */
+    city_id?: number
+    /**
+     * Country ID.
+     */
+    country?: number
+    /**
+     * Country ID. Use parameter country instead
+     */
+    country_id?: number
+    /**
+     * City name in a string.
+     */
+    hometown?: string
+    /**
+     * ID of the country where the user graduated.
+     */
+    university_country?: number
+    /**
+     * ID of the institution of higher education.
+     */
+    university?: number
+    /**
+     * Year of graduation from an institution of higher education.
+     */
+    university_year?: number
+    /**
+     * Faculty ID.
+     */
+    university_faculty?: number
+    /**
+     * Chair ID.
+     */
+    university_chair?: number
+    /**
+     * '1' - female, '2' - male, '0' - any (default)
+     */
+    sex?: UsersSearchSex
+    /**
+     * Relationship status: '0' - Not specified, '1' - Not married, '2' - In a relationship, '3' - Engaged, '4' - Married, '5' - It's complicated, '6' - Actively searching, '7' - In love, '8' - In a civil union
+     */
+    status?: UsersSearchStatus
+    /**
+     * Minimum age.
+     */
+    age_from?: number
+    /**
+     * Maximum age.
+     */
+    age_to?: number
+    /**
+     * Day of birth.
+     */
+    birth_day?: number
+    /**
+     * Month of birth.
+     */
+    birth_month?: number
+    /**
+     * Year of birth.
+     */
+    birth_year?: number
+    /**
+     * '1' - online only, '0' - all users
+     */
+    online?: boolean
+    /**
+     * '1' - with photo only, '0' - all users
+     */
+    has_photo?: boolean
+    /**
+     * ID of the country where users finished school.
+     */
+    school_country?: number
+    /**
+     * ID of the city where users finished school.
+     */
+    school_city?: number
+    school_class?: number
+    /**
+     * ID of the school.
+     */
+    school?: number
+    /**
+     * School graduation year.
+     */
+    school_year?: number
+    /**
+     * Users' religious affiliation.
+     */
+    religion?: string
+    /**
+     * Name of the company where users work.
+     */
+    company?: string
+    /**
+     * Job position.
+     */
+    position?: string
+    /**
+     * ID of a community to search in communities.
+     */
+    group_id?: number
+    from_list?: string[]
+    screen_ref?: string
+    from_group_id?: number
 }
 
 /**
- * Params object for {@link APIMethods.refundStarPayment | refundStarPayment} method
+ * Params for {@link APIMethods["utils.checkLink"] | utils.checkLink} method
  */
-export interface RefundStarPaymentParams {
+export interface UtilsCheckLinkParams {
     /**
-     * Identifier of the user whose payment will be refunded
+     * Link to check (e.g., 'http://google.com').
      */
-    user_id: number
-    /**
-     * Telegram payment identifier
-     */
-    telegram_payment_charge_id: string
+    url: string
 }
 
 /**
- * Params object for {@link APIMethods.editUserStarSubscription | editUserStarSubscription} method
+ * Params for {@link APIMethods["utils.deleteFromLastShortened"] | utils.deleteFromLastShortened} method
  */
-export interface EditUserStarSubscriptionParams {
+export interface UtilsDeleteFromLastShortenedParams {
     /**
-     * Identifier of the user whose subscription will be edited
+     * Link key (characters after vk.cc/).
      */
-    user_id: number
-    /**
-     * Telegram payment identifier for the subscription
-     */
-    telegram_payment_charge_id: string
-    /**
-     * Pass *True* to cancel extension of the user subscription; the subscription must be active up to the end of the current subscription period. Pass *False* to allow the user to re-enable a subscription that was previously canceled by the bot.
-     */
-    is_canceled: boolean
+    key: string
 }
 
 /**
- * Params object for {@link APIMethods.setPassportDataErrors | setPassportDataErrors} method
+ * Params for {@link APIMethods["utils.getLastShortenedLinks"] | utils.getLastShortenedLinks} method
  */
-export interface SetPassportDataErrorsParams {
+export interface UtilsGetLastShortenedLinksParams {
     /**
-     * User identifier
+     * Number of links to return.
      */
-    user_id: number
+    count?: number
     /**
-     * A JSON-serialized array describing the errors
+     * Offset needed to return a specific subset of links.
      */
-    errors: Objects.TelegramPassportElementError[]
+    offset?: number
+}
+
+export type UtilsGetLinkStatsSource = "vk_cc" | "vk_link"
+export type UtilsGetLinkStatsInterval =
+    | "day"
+    | "forever"
+    | "hour"
+    | "month"
+    | "week"
+
+/**
+ * Params for {@link APIMethods["utils.getLinkStats"] | utils.getLinkStats} method
+ */
+export interface UtilsGetLinkStatsParams {
+    /**
+     * Link key (characters after vk.cc/).
+     */
+    key: string
+    /**
+     * Source of scope
+     */
+    source?: UtilsGetLinkStatsSource
+    /**
+     * Access key for private link stats.
+     */
+    access_key?: string
+    /**
+     * Interval.
+     */
+    interval?: UtilsGetLinkStatsInterval
+    /**
+     * Number of intervals to return.
+     */
+    intervals_count?: number
+    /**
+     * 1 - to return extended stats data (sex, age, geo). 0 - to return views number only.
+     */
+    extended?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.sendGame | sendGame} method
+ * Params for {@link APIMethods["utils.getShortLink"] | utils.getShortLink} method
  */
-export interface SendGameParams {
+export interface UtilsGetShortLinkParams {
     /**
-     * Unique identifier of the business connection on behalf of which the message will be sent
+     * URL to be shortened.
      */
-    business_connection_id?: string
+    url: string
     /**
-     * Unique identifier for the target chat. Games can't be sent to channel direct messages chats and channel chats.
+     * 1 - private stats, 0 - public stats.
      */
-    chat_id: number
-    /**
-     * Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
-     */
-    message_thread_id?: number
-    /**
-     * Short name of the game, serves as the unique identifier for the game. Set up your games via [@BotFather](https://t.me/botfather).
-     */
-    game_short_name: string
-    /**
-     * Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
-     */
-    disable_notification?: boolean
-    /**
-     * Protects the contents of the sent message from forwarding and saving
-     */
-    protect_content?: boolean
-    /**
-     * Pass *True* to allow up to 1000 messages per second, ignoring [broadcasting limits](https://core.telegram.org/bots/faq#how-can-i-message-all-of-my-bot-39s-subscribers-at-once) for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance
-     */
-    allow_paid_broadcast?: boolean
-    /**
-     * Unique identifier of the message effect to be added to the message; for private chats only
-     */
-    message_effect_id?: string
-    /**
-     * Description of the message to reply to
-     */
-    reply_parameters?: Objects.TelegramReplyParameters
-    /**
-     * A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards). If empty, one 'Play game\_title' button will be shown. If not empty, the first button must launch the game.
-     */
-    reply_markup?:
-        | Objects.TelegramInlineKeyboardMarkup
-        | { toJSON(): Objects.TelegramInlineKeyboardMarkup }
+    private?: boolean
 }
 
 /**
- * Params object for {@link APIMethods.setGameScore | setGameScore} method
+ * Params for {@link APIMethods["utils.resolveScreenName"] | utils.resolveScreenName} method
  */
-export interface SetGameScoreParams {
+export interface UtilsResolveScreenNameParams {
     /**
-     * User identifier
+     * Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.
      */
-    user_id: number
-    /**
-     * New score, must be non-negative
-     */
-    score: number
-    /**
-     * Pass *True* if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
-     */
-    force?: boolean
-    /**
-     * Pass *True* if the game message should not be automatically edited to include the current scoreboard
-     */
-    disable_edit_message?: boolean
-    /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat
-     */
-    chat_id?: number
-    /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the sent message
-     */
-    message_id?: number
-    /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
-     */
-    inline_message_id?: string
+    screen_name: string
 }
 
 /**
- * Params object for {@link APIMethods.getGameHighScores | getGameHighScores} method
+ * Params for {@link APIMethods["video.add"] | video.add} method
  */
-export interface GetGameHighScoresParams {
+export interface VideoAddParams {
     /**
-     * Target user id
+     * identifier of a user or community to add a video to. Use a negative value to designate a community ID.
      */
-    user_id: number
+    target_id?: number
     /**
-     * Required if *inline\_message\_id* is not specified. Unique identifier for the target chat
+     * Video ID.
      */
-    chat_id?: number
+    video_id: number
     /**
-     * Required if *inline\_message\_id* is not specified. Identifier of the sent message
+     * ID of the user or community that owns the video. Use a negative value to designate a community ID.
      */
-    message_id?: number
+    owner_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.addAlbum"] | video.addAlbum} method
+ */
+export interface VideoAddAlbumParams {
     /**
-     * Required if *chat\_id* and *message\_id* are not specified. Identifier of the inline message
+     * Community ID (if the album will be created in a community).
      */
-    inline_message_id?: string
+    group_id?: number
+    /**
+     * Album title.
+     */
+    title?: string
+    /**
+     * new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - "only me".
+     */
+    privacy?: Objects.VKVideoPlaylistPrivacyCategory[]
+}
+
+/**
+ * Params for {@link APIMethods["video.addToAlbum"] | video.addToAlbum} method
+ */
+export interface VideoAddToAlbumParams {
+    target_id?: number
+    album_id?: number
+    album_ids?: number[]
+    owner_id: number
+    video_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.createComment"] | video.createComment} method
+ */
+export interface VideoCreateCommentParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    /**
+     * Video ID.
+     */
+    video_id: number
+    /**
+     * New comment text.
+     */
+    message?: string
+    /**
+     * List of objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
+    /**
+     * '1' - to post the comment from a community name (only if 'owner_id'<0)
+     */
+    from_group?: boolean
+    reply_to_comment?: number
+    sticker_id?: number
+    guid?: string
+    track_code?: string
+}
+
+/**
+ * Params for {@link APIMethods["video.delete"] | video.delete} method
+ */
+export interface VideoDeleteParams {
+    /**
+     * Video ID.
+     */
+    video_id: number
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    target_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.deleteAlbum"] | video.deleteAlbum} method
+ */
+export interface VideoDeleteAlbumParams {
+    /**
+     * Community ID (if the album is owned by a community).
+     */
+    group_id?: number
+    /**
+     * Album ID.
+     */
+    album_id: number
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.deleteComment"] | video.deleteComment} method
+ */
+export interface VideoDeleteCommentParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    /**
+     * ID of the comment to be deleted.
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.deleteThread"] | video.deleteThread} method
+ */
+export interface VideoDeleteThreadParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id: number
+    /**
+     * ID of the main comment to be deleted as thread.
+     */
+    thread_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.edit"] | video.edit} method
+ */
+export interface VideoEditParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    /**
+     * Video ID.
+     */
+    video_id: number
+    /**
+     * New video title.
+     */
+    name?: string
+    /**
+     * New video description.
+     */
+    desc?: string
+    /**
+     * Privacy settings in a [vk.com/dev/privacy_setting|special format]. Privacy setting is available for videos uploaded to own profile by user.
+     */
+    privacy_view?: string[]
+    /**
+     * Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].
+     */
+    privacy_comment?: string[]
+    /**
+     * Disable comments for the group video.
+     */
+    no_comments?: boolean
+    /**
+     * '1' - to repeat the playback of the video, '0' - to play the video once,
+     */
+    repeat?: boolean
+    ord_info?: string
+}
+
+/**
+ * Params for {@link APIMethods["video.editAlbum"] | video.editAlbum} method
+ */
+export interface VideoEditAlbumParams {
+    /**
+     * Community ID (if the album edited is owned by a community).
+     */
+    group_id?: number
+    /**
+     * Album ID.
+     */
+    album_id: number
+    /**
+     * New album title.
+     */
+    title?: string
+    /**
+     * new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - "only me".
+     */
+    privacy?: Objects.VKVideoPlaylistPrivacyCategory[]
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.editComment"] | video.editComment} method
+ */
+export interface VideoEditCommentParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * New comment text.
+     */
+    message?: string
+    /**
+     * List of objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
+}
+
+export type VideoGetSortAlbum = 0 | 1
+
+/**
+ * Params for {@link APIMethods["video.get"] | video.get} method
+ */
+export interface VideoGetParams {
+    /**
+     * ID of the user or community that owns the video(s).
+     */
+    owner_id?: number
+    /**
+     * Video IDs, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", Use a negative value to designate a community ID. Example: "-4363_136089719,13245770_137352259"
+     */
+    videos?: string[]
+    /**
+     * ID of the album containing the video(s).
+     */
+    album_id?: number
+    /**
+     * Number of videos to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of videos.
+     */
+    offset?: number
+    /**
+     * '1' - to return an extended response with additional fields
+     */
+    extended?: boolean
+    fields?: string[]
+    /**
+     * Sort order: '0' - newest video first, '1' - oldest video first
+     */
+    sort_album?: VideoGetSortAlbum
+}
+
+/**
+ * Params for {@link APIMethods["video.getAlbumById"] | video.getAlbumById} method
+ */
+export interface VideoGetAlbumByIdParams {
+    /**
+     * identifier of a user or community to add a video to. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Album ID.
+     */
+    album_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.getAlbums"] | video.getAlbums} method
+ */
+export interface VideoGetAlbumsParams {
+    /**
+     * ID of the user or community that owns the video album(s).
+     */
+    owner_id?: number
+    /**
+     * Offset needed to return a specific subset of video albums.
+     */
+    offset?: number
+    /**
+     * Number of video albums to return.
+     */
+    count?: number
+    /**
+     * '1' - to return additional information about album privacy settings for the current user
+     */
+    extended?: boolean
+    need_system?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["video.getAlbumsByVideo"] | video.getAlbumsByVideo} method
+ */
+export interface VideoGetAlbumsByVideoParams {
+    target_id?: number
+    owner_id: number
+    video_id: number
+    extended?: boolean
+}
+
+/**
+ * - `asc` — oldest comment first
+ * - `desc` — newest comment first
+ * - `interest` — most interesting comments first
+ */
+export type VideoGetCommentsSort = "asc" | "desc" | "interest"
+
+/**
+ * Params for {@link APIMethods["video.getComments"] | video.getComments} method
+ */
+export interface VideoGetCommentsParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    /**
+     * Video ID.
+     */
+    video_id: number
+    /**
+     * '1' - to return an additional 'likes' field
+     */
+    need_likes?: boolean
+    start_comment_id?: number
+    /**
+     * Offset needed to return a specific subset of comments.
+     */
+    offset?: number
+    /**
+     * Number of comments to return.
+     */
+    count?: number
+    /**
+     * Sort order: 'asc' - oldest comment first, 'desc' - newest comment first
+     */
+    sort?: VideoGetCommentsSort
+    extended?: boolean
+    fields?: string[]
+    comment_id?: number
+    thread_items_count?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.getLongPollServer"] | video.getLongPollServer} method
+ */
+export interface VideoGetLongPollServerParams {
+    owner_id?: number
+    video_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.getOembed"] | video.getOembed} method
+ */
+export interface VideoGetOembedParams {
+    /**
+     * Link to video
+     */
+    url: string
+    /**
+     * Maximum width of player
+     */
+    maxwidth?: number
+    /**
+     * Maximum width of player
+     */
+    maxheight?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.getThumbUploadUrl"] | video.getThumbUploadUrl} method
+ */
+export interface VideoGetThumbUploadUrlParams {
+    owner_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.removeFromAlbum"] | video.removeFromAlbum} method
+ */
+export interface VideoRemoveFromAlbumParams {
+    target_id?: number
+    album_id?: number
+    album_ids?: number[]
+    owner_id: number
+    video_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.reorderAlbums"] | video.reorderAlbums} method
+ */
+export interface VideoReorderAlbumsParams {
+    /**
+     * ID of the user or community that owns the albums..
+     */
+    owner_id?: number
+    /**
+     * Album ID.
+     */
+    album_id: number
+    /**
+     * ID of the album before which the album in question shall be placed.
+     */
+    before?: number
+    /**
+     * ID of the album after which the album in question shall be placed.
+     */
+    after?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.reorderVideos"] | video.reorderVideos} method
+ */
+export interface VideoReorderVideosParams {
+    /**
+     * ID of the user or community that owns the album with videos.
+     */
+    target_id?: number
+    /**
+     * ID of the video album.
+     */
+    album_id?: number
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id: number
+    /**
+     * ID of the video.
+     */
+    video_id: number
+    /**
+     * ID of the user or community that owns the video before which the video in question shall be placed.
+     */
+    before_owner_id?: number
+    /**
+     * ID of the video before which the video in question shall be placed.
+     */
+    before_video_id?: number
+    /**
+     * ID of the user or community that owns the video after which the photo in question shall be placed.
+     */
+    after_owner_id?: number
+    /**
+     * ID of the video after which the photo in question shall be placed.
+     */
+    after_video_id?: number
+}
+
+export type VideoReportReason =
+    | 0
+    | 1
+    | 2
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 15
+    | 27
+    | 41
+    | 42
+    | 43
+    | 101
+
+/**
+ * Params for {@link APIMethods["video.report"] | video.report} method
+ */
+export interface VideoReportParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id: number
+    /**
+     * Video ID.
+     */
+    video_id: number
+    /**
+     * Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
+     */
+    reason?: VideoReportReason
+    /**
+     * Comment describing the complaint.
+     */
+    comment?: string
+    /**
+     * (If the video was found in search results.) Search query string.
+     */
+    search_query?: string
+}
+
+export type VideoReportCommentReason =
+    | 0
+    | 1
+    | 2
+    | 4
+    | 5
+    | 6
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 15
+    | 27
+    | 41
+    | 42
+    | 43
+    | 101
+
+/**
+ * Params for {@link APIMethods["video.reportComment"] | video.reportComment} method
+ */
+export interface VideoReportCommentParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id: number
+    /**
+     * ID of the comment being reported.
+     */
+    comment_id: number
+    /**
+     * Reason for the complaint: , 0 - spam , 1 - child pornography , 2 - extremism , 3 - violence , 4 - drug propaganda , 5 - adult material , 6 - insult, abuse
+     */
+    reason?: VideoReportCommentReason
+}
+
+/**
+ * Params for {@link APIMethods["video.restore"] | video.restore} method
+ */
+export interface VideoRestoreParams {
+    /**
+     * Video ID.
+     */
+    video_id: number
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.restoreComment"] | video.restoreComment} method
+ */
+export interface VideoRestoreCommentParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id?: number
+    /**
+     * ID of the deleted comment.
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.restoreThread"] | video.restoreThread} method
+ */
+export interface VideoRestoreThreadParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id: number
+    /**
+     * ID of the main comment to be deleted as thread.
+     */
+    thread_id: number
+}
+
+/**
+ * Params for {@link APIMethods["video.save"] | video.save} method
+ */
+export interface VideoSaveParams {
+    /**
+     * Name of the video.
+     */
+    name?: string
+    /**
+     * Description of the video.
+     */
+    description?: string
+    /**
+     * '1' - to designate the video as private (send it via a private message), the video will not appear on the user's video list and will not be available by ID for other users, '0' - not to designate the video as private
+     */
+    is_private?: boolean
+    /**
+     * '1' - to post the saved video on a user's wall, '0' - not to post the saved video on a user's wall
+     */
+    wallpost?: boolean
+    /**
+     * URL for embedding the video from an external website.
+     */
+    link?: string
+    /**
+     * ID of the community in which the video will be saved. By default, the current user's page.
+     */
+    group_id?: number
+    /**
+     * ID of the album to which the saved video will be added.
+     */
+    album_id?: number
+    privacy_view?: string[]
+    privacy_comment?: string[]
+    no_comments?: boolean
+    /**
+     * '1' - to repeat the playback of the video, '0' - to play the video once,
+     */
+    repeat?: boolean
+    compression?: boolean
+    ord_info?: string
+    auto_publish?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["video.saveUploadedThumb"] | video.saveUploadedThumb} method
+ */
+export interface VideoSaveUploadedThumbParams {
+    owner_id: number
+    thumb_json: string
+    thumb_size?: string
+    random_tag?: string
+    /**
+     * Video ID.
+     */
+    video_id?: number
+    /**
+     * If flag passed uploaded thumb will automatically set to passed video. Work only with video_id.
+     */
+    set_thumb?: boolean
+}
+
+/**
+ * - `1` — duration
+ * - `2` — relevance
+ * - `0` — date added
+ */
+export type VideoSearchSort = 1 | 2 | 0
+export type VideoSearchFilters = "long" | "short" | "vimeo" | "vk" | "youtube"
+
+/**
+ * Params for {@link APIMethods["video.search"] | video.search} method
+ */
+export interface VideoSearchParams {
+    /**
+     * Search query string (e.g., 'The Beatles').
+     */
+    q?: string
+    /**
+     * Sort order: '1' - by duration, '2' - by relevance, '0' - by date added
+     */
+    sort?: VideoSearchSort
+    /**
+     * If not null, only searches for high-definition videos.
+     */
+    hd?: number
+    /**
+     * '1' - to disable the Safe Search filter, '0' - to enable the Safe Search filter
+     */
+    adult?: boolean
+    live?: boolean
+    /**
+     * Filters to apply: 'youtube' - return YouTube videos only, 'vimeo' - return Vimeo videos only, 'vk' - return VK videos only, 'short' - return short videos only, 'long' - return long videos only
+     */
+    filters?: VideoSearchFilters[]
+    search_own?: boolean
+    /**
+     * Offset needed to return a specific subset of videos.
+     */
+    offset?: number
+    longer?: number
+    shorter?: number
+    /**
+     * Number of videos to return.
+     */
+    count?: number
+    extended?: boolean
+    owner_id?: number
+    fields?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["video.startStreaming"] | video.startStreaming} method
+ */
+export interface VideoStartStreamingParams {
+    video_id?: number
+    name?: string
+    description?: string
+    wallpost?: boolean
+    group_id?: number
+    privacy_view?: string[]
+    privacy_comment?: string[]
+    no_comments?: boolean
+    category_id?: number
+    publish?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["video.stopStreaming"] | video.stopStreaming} method
+ */
+export interface VideoStopStreamingParams {
+    group_id?: number
+    video_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["video.unpinComment"] | video.unpinComment} method
+ */
+export interface VideoUnpinCommentParams {
+    /**
+     * ID of the user or community that owns the video.
+     */
+    owner_id: number
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.checkCopyrightLink"] | wall.checkCopyrightLink} method
+ */
+export interface WallCheckCopyrightLinkParams {
+    link: string
+}
+
+/**
+ * Params for {@link APIMethods["wall.closeComments"] | wall.closeComments} method
+ */
+export interface WallCloseCommentsParams {
+    owner_id: number
+    post_id: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.createComment"] | wall.createComment} method
+ */
+export interface WallCreateCommentParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id: number
+    /**
+     * Group ID.
+     */
+    from_group?: number
+    /**
+     * (Required if 'attachments' is not set.) Text of the comment.
+     */
+    message?: string
+    /**
+     * ID of comment to reply.
+     */
+    reply_to_comment?: number
+    /**
+     * (Required if 'message' is not set.) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media ojbect: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. For example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
+    /**
+     * Sticker ID.
+     */
+    sticker_id?: number
+    /**
+     * Unique identifier to avoid repeated comments.
+     */
+    guid?: string
+}
+
+/**
+ * Params for {@link APIMethods["wall.delete"] | wall.delete} method
+ */
+export interface WallDeleteParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * ID of the post to be deleted.
+     */
+    post_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.deleteComment"] | wall.deleteComment} method
+ */
+export interface WallDeleteCommentParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+}
+
+/**
+ * - `0` — empty_topic
+ * - `1` — art
+ * - `7` — it
+ * - `12` — games
+ * - `16` — music
+ * - `19` — photo
+ * - `21` — science_and_tech
+ * - `23` — sport
+ * - `25` — travel
+ * - `26` — tv_and_cinema
+ * - `32` — humor
+ * - `43` — fashion
+ */
+export type WallEditTopicId =
+    | 0
+    | 1
+    | 7
+    | 12
+    | 16
+    | 19
+    | 21
+    | 23
+    | 25
+    | 26
+    | 32
+    | 43
+
+/**
+ * Params for {@link APIMethods["wall.edit"] | wall.edit} method
+ */
+export interface WallEditParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    post_id: number
+    friends_only?: boolean
+    /**
+     * (Required if 'attachments' is not set.) Text of the post.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error is thrown."
+     */
+    attachments?: string[]
+    services?: string
+    signed?: boolean
+    publish_date?: number
+    lat?: number
+    long?: number
+    place_id?: number
+    mark_as_ads?: boolean
+    close_comments?: boolean
+    donut_paid_duration?: number
+    poster_bkg_id?: number
+    poster_bkg_owner_id?: number
+    poster_bkg_access_hash?: string
+    copyright?: string
+    /**
+     * Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
+     */
+    topic_id?: WallEditTopicId
+}
+
+/**
+ * Params for {@link APIMethods["wall.editAdsStealth"] | wall.editAdsStealth} method
+ */
+export interface WallEditAdsStealthParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID. Used for publishing of scheduled and suggested posts.
+     */
+    post_id: number
+    /**
+     * (Required if 'attachments' is not set.) Text of the post.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
+     */
+    attachments?: string[]
+    /**
+     * Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)
+     */
+    signed?: boolean
+    /**
+     * Geographical latitude of a check-in, in degrees (from -90 to 90).
+     */
+    lat?: number
+    /**
+     * Geographical longitude of a check-in, in degrees (from -180 to 180).
+     */
+    long?: number
+    /**
+     * ID of the location where the user was tagged.
+     */
+    place_id?: number
+    /**
+     * Link button ID
+     */
+    link_button?: string
+    /**
+     * Link title
+     */
+    link_title?: string
+    /**
+     * Link image url
+     */
+    link_image?: string
+    /**
+     * Link video ID in format "<owner_id>_<media_id>"
+     */
+    link_video?: string
+}
+
+/**
+ * Params for {@link APIMethods["wall.editComment"] | wall.editComment} method
+ */
+export interface WallEditCommentParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * New comment text.
+     */
+    message?: string
+    /**
+     * List of objects attached to the comment, in the following format: , "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. For example: "photo100172_166443618,photo66748_265827614"
+     */
+    attachments?: string[]
+}
+
+/**
+ * Params for {@link APIMethods["wall.get"] | wall.get} method
+ */
+export interface WallGetParams {
+    /**
+     * User or community short address.
+     */
+    domain?: number | string
+    /**
+     * Offset needed to return a specific subset of posts.
+     */
+    offset?: number
+    /**
+     * Number of posts to return (maximum 100).
+     */
+    count?: number
+    filter?: Objects.VKWallGetFilter
+    /**
+     * '1' - to return 'wall', 'profiles', and 'groups' fields, '0' - to return no additional fields (default)
+     */
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["wall.getById"] | wall.getById} method
+ */
+export interface WallGetByIdParams {
+    /**
+     * User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
+     */
+    posts: string[]
+    /**
+     * '1' - to return user and community objects needed to display posts, '0' - no additional fields are returned (default)
+     */
+    extended?: boolean
+    /**
+     * Sets the number of parent elements to include in the array 'copy_history' that is returned if the post is a repost from another wall.
+     */
+    copy_history_depth?: number
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["wall.getComment"] | wall.getComment} method
+ */
+export interface WallGetCommentParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * - `asc` — chronological
+ * - `desc` — reverse chronological
+ * - `smart` — most interesting
+ */
+export type WallGetCommentsSort = "asc" | "desc" | "smart"
+
+/**
+ * Params for {@link APIMethods["wall.getComments"] | wall.getComments} method
+ */
+export interface WallGetCommentsParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id?: number
+    /**
+     * '1' - to return the 'likes' field, '0' - not to return the 'likes' field (default)
+     */
+    need_likes?: boolean
+    start_comment_id?: number
+    /**
+     * Offset needed to return a specific subset of comments.
+     */
+    offset?: number
+    /**
+     * Number of comments to return (maximum 100).
+     */
+    count?: number
+    /**
+     * Sort order: 'asc' - chronological, 'desc' - reverse chronological
+     */
+    sort?: WallGetCommentsSort
+    /**
+     * Number of characters at which to truncate comments when previewed. By default, '90'. Specify '0' if you do not want to truncate comments.
+     */
+    preview_length?: number
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+    /**
+     * Comment ID.
+     */
+    comment_id?: number
+    /**
+     * Count items in threads.
+     */
+    thread_items_count?: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.getReposts"] | wall.getReposts} method
+ */
+export interface WallGetRepostsParams {
+    /**
+     * User ID or community ID. By default, current user ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id?: number
+    /**
+     * Offset needed to return a specific subset of reposts.
+     */
+    offset?: number
+    /**
+     * Number of reposts to return.
+     */
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.openComments"] | wall.openComments} method
+ */
+export interface WallOpenCommentsParams {
+    owner_id: number
+    post_id: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.parseAttachedLink"] | wall.parseAttachedLink} method
+ */
+export interface WallParseAttachedLinkParams {
+    links: string
+    extended?: boolean
+    fields?: string[]
+    name_case?: Objects.VKBaseNameCase
+}
+
+/**
+ * Params for {@link APIMethods["wall.pin"] | wall.pin} method
+ */
+export interface WallPinParams {
+    /**
+     * ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.post"] | wall.post} method
+ */
+export interface WallPostParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * '1' - post will be available to friends only, '0' - post will be available to all users (default)
+     */
+    friends_only?: boolean
+    /**
+     * For a community: '1' - post will be published by the community, '0' - post will be published by the user (default)
+     */
+    from_group?: boolean
+    /**
+     * (Required if 'attachments' is not set.) Text of the post.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
+     */
+    attachments?: string[]
+    /**
+     * List of services or websites the update will be exported to, if the user has so requested. Sample values: 'twitter', 'facebook'.
+     */
+    services?: string
+    /**
+     * Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)
+     */
+    signed?: boolean
+    /**
+     * Publication date (in Unix time). If used, posting will be delayed until the set time.
+     */
+    publish_date?: number
+    /**
+     * Geographical latitude of a check-in, in degrees (from -90 to 90).
+     */
+    lat?: number
+    /**
+     * Geographical longitude of a check-in, in degrees (from -180 to 180).
+     */
+    long?: number
+    /**
+     * ID of the location where the user was tagged.
+     */
+    place_id?: number
+    /**
+     * Post ID. Used for publishing of scheduled and suggested posts.
+     */
+    post_id?: number
+    guid?: string
+    mark_as_ads?: boolean
+    link_title?: string
+    link_photo_id?: string
+    close_comments?: boolean
+    donut_paid_duration?: number
+    mute_notifications?: boolean
+    copyright?: string
+}
+
+/**
+ * Params for {@link APIMethods["wall.postAdsStealth"] | wall.postAdsStealth} method
+ */
+export interface WallPostAdsStealthParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id: number
+    /**
+     * (Required if 'attachments' is not set.) Text of the post.
+     */
+    message?: string
+    /**
+     * (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
+     */
+    attachments?: string[]
+    /**
+     * Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)
+     */
+    signed?: boolean
+    /**
+     * Geographical latitude of a check-in, in degrees (from -90 to 90).
+     */
+    lat?: number
+    /**
+     * Geographical longitude of a check-in, in degrees (from -180 to 180).
+     */
+    long?: number
+    /**
+     * ID of the location where the user was tagged.
+     */
+    place_id?: number
+    /**
+     * Unique identifier to avoid duplication the same post.
+     */
+    guid?: string
+    /**
+     * Link button ID
+     */
+    link_button?: string
+    /**
+     * Link title
+     */
+    link_title?: string
+    /**
+     * Link image url
+     */
+    link_image?: string
+    /**
+     * Link video ID in format "<owner_id>_<media_id>"
+     */
+    link_video?: string
+}
+
+/**
+ * - `0` — spam
+ * - `1` — child pornography
+ * - `2` — extremism
+ * - `3` — violence
+ * - `4` — drug propaganda
+ * - `5` — adult material
+ * - `6` — insult abuse
+ * - `8` — suicide calls
+ * - `11` — weapons selling
+ */
+export type WallReportCommentReason = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 11
+
+/**
+ * Params for {@link APIMethods["wall.reportComment"] | wall.reportComment} method
+ */
+export interface WallReportCommentParams {
+    /**
+     * ID of the user or community that owns the wall.
+     */
+    owner_id: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+    /**
+     * Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
+     */
+    reason: WallReportCommentReason
+}
+
+/**
+ * - `0` — spam
+ * - `1` — child pornography
+ * - `2` — extremism
+ * - `3` — violence
+ * - `4` — drug propaganda
+ * - `5` — adult material
+ * - `6` — insult abuse
+ * - `8` — suicide calls
+ * - `11` — weapons selling
+ */
+export type WallReportPostReason = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 11
+
+/**
+ * Params for {@link APIMethods["wall.reportPost"] | wall.reportPost} method
+ */
+export interface WallReportPostParams {
+    /**
+     * ID of the user or community that owns the wall.
+     */
+    owner_id: number
+    /**
+     * Post ID.
+     */
+    post_id: number
+    /**
+     * Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
+     */
+    reason: WallReportPostReason
+}
+
+/**
+ * Params for {@link APIMethods["wall.repost"] | wall.repost} method
+ */
+export interface WallRepostParams {
+    /**
+     * ID of the object to be reposted on the wall. Example: "wall66748_3675"
+     */
+    object: string
+    /**
+     * Comment to be added along with the reposted object.
+     */
+    message?: string
+    /**
+     * Target community ID when reposting to a community.
+     */
+    group_id?: number
+    mark_as_ads?: boolean
+    mute_notifications?: boolean
+}
+
+/**
+ * Params for {@link APIMethods["wall.restore"] | wall.restore} method
+ */
+export interface WallRestoreParams {
+    /**
+     * User ID or community ID from whose wall the post was deleted. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * ID of the post to be restored.
+     */
+    post_id?: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.restoreComment"] | wall.restoreComment} method
+ */
+export interface WallRestoreCommentParams {
+    /**
+     * User ID or community ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Comment ID.
+     */
+    comment_id: number
+}
+
+/**
+ * Params for {@link APIMethods["wall.search"] | wall.search} method
+ */
+export interface WallSearchParams {
+    /**
+     * user or community screen name.
+     */
+    domain?: number | string
+    /**
+     * search query string.
+     */
+    query?: string
+    /**
+     * '1' - returns only page owner's posts.
+     */
+    owners_only?: boolean
+    /**
+     * count of posts to return.
+     */
+    count?: number
+    /**
+     * Offset needed to return a specific subset of posts.
+     */
+    offset?: number
+    /**
+     * show extended post info.
+     */
+    extended?: boolean
+    fields?: Objects.VKBaseUserGroupFields[]
+}
+
+/**
+ * Params for {@link APIMethods["wall.unpin"] | wall.unpin} method
+ */
+export interface WallUnpinParams {
+    /**
+     * ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
+     */
+    owner_id?: number
+    /**
+     * Post ID.
+     */
+    post_id: number
+}
+
+/**
+ * Params for {@link APIMethods["widgets.getComments"] | widgets.getComments} method
+ */
+export interface WidgetsGetCommentsParams {
+    widget_api_id?: number
+    url?: string
+    page_id?: string
+    order?: string
+    fields?: Objects.VKUsersFields[]
+    offset?: number
+    count?: number
+}
+
+/**
+ * Params for {@link APIMethods["widgets.getPages"] | widgets.getPages} method
+ */
+export interface WidgetsGetPagesParams {
+    widget_api_id?: number
+    order?: string
+    period?: string
+    offset?: number
+    count?: number
 }

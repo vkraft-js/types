@@ -1,19 +1,18 @@
 /**
  * @module
  *
- * This module contains [API methods](https://core.telegram.org/bots/api#available-methods) types (functions map with input/output)
+ * This module contains VK API method types (functions map with input/output)
  *
  * @example import API methods map
  * ```typescript
- * import { APIMethods } from "@gramio/types/methods";
+ * import { APIMethods } from "@vkraft/types/methods";
  *
- * type SendMessageReturn = Awaited<ReturnType<APIMethods["sendMessage"]>>;
- * //   ^? type SendMessageReturn = TelegramMessage"
+ * type UsersGetReturn = Awaited<ReturnType<APIMethods["users.get"]>>;
  * ```
  *
- * Based on Bot API v9.5 (01.03.2026)
+ * Based on VK API v5.199
  *
- * Generated at 01.03.2026, 10:44:44 using [types](https://github.com/gramiojs/types) and [schema](https://github.com/gramiojs/schema-parser) generators
+ * Generated at 19.03.2026, 03:36:59 using [types](https://github.com/vkraft/types) generator
  */
 
 import type {
@@ -23,1195 +22,5181 @@ import type {
 } from "./utils"
 import type * as Params from "./params"
 import type * as Objects from "./objects"
+import type * as Responses from "./responses"
 
 /**
- * This object is a map of [API methods](https://core.telegram.org/bots/api#available-methods) types (functions map with input/output)
+ * This object is a map of VK API methods (functions map with input/output)
  */
 export interface APIMethods {
     /**
-     * Use this method to receive incoming updates using long polling ([wiki](https://en.wikipedia.org/wiki/Push_technology#Long_polling)). Returns an Array of [Update](https://core.telegram.org/bots/api#update) objects.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getupdates)
+     *
+     * [Documentation](https://dev.vk.com/method/account.ban)
      */
-    getUpdates: CallAPIWithOptionalParams<
-        Params.GetUpdatesParams,
-        Objects.TelegramUpdate[]
+    "account.ban": CallAPIWithOptionalParams<
+        Params.AccountBanParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to specify a URL and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized [Update](https://core.telegram.org/bots/api#update). In case of an unsuccessful request (a request with response [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) different from `2XY`), we will repeat the request and give up after a reasonable amount of attempts. Returns *True* on success.
+     * Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
      *
-     * If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter *secret\_token*. If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setwebhook)
+     * [Documentation](https://dev.vk.com/method/account.changePassword)
      */
-    setWebhook: CallAPI<Params.SetWebhookParams, true>
-    /**
-     * Use this method to remove webhook integration if you decide to switch back to [getUpdates](https://core.telegram.org/bots/api#getupdates). Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletewebhook)
-     */
-    deleteWebhook: CallAPIWithOptionalParams<Params.DeleteWebhookParams, true>
-    /**
-     * Use this method to get current webhook status. Requires no parameters. On success, returns a [WebhookInfo](https://core.telegram.org/bots/api#webhookinfo) object. If the bot is using [getUpdates](https://core.telegram.org/bots/api#getupdates), will return an object with the *url* field empty.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getwebhookinfo)
-     */
-    getWebhookInfo: CallAPIWithoutParams<Objects.TelegramWebhookInfo>
-    /**
-     * A simple method for testing your bot's authentication token. Requires no parameters. Returns basic information about the bot in form of a [User](https://core.telegram.org/bots/api#user) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getme)
-     */
-    getMe: CallAPIWithoutParams<Objects.TelegramUser>
-    /**
-     * Use this method to log out from the cloud Bot API server before launching the bot locally. You **must** log out the bot before running it locally, otherwise there is no guarantee that the bot will receive updates. After a successful call, you can immediately log in on a local server, but will not be able to log in back to the cloud Bot API server for 10 minutes. Returns *True* on success. Requires no parameters.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#logout)
-     */
-    logOut: CallAPIWithoutParams<true>
-    /**
-     * Use this method to close the bot instance before moving it from one local server to another. You need to delete the webhook before calling this method to ensure that the bot isn't launched again after server restart. The method will return error 429 in the first 10 minutes after the bot is launched. Returns *True* on success. Requires no parameters.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#close)
-     */
-    close: CallAPIWithoutParams<true>
-    /**
-     * Use this method to send text messages. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendmessage)
-     */
-    sendMessage: CallAPI<Params.SendMessageParams, Objects.TelegramMessage>
-    /**
-     * Use this method to forward messages of any kind. Service messages and messages with protected content can't be forwarded. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#forwardmessage)
-     */
-    forwardMessage: CallAPI<
-        Params.ForwardMessageParams,
-        Objects.TelegramMessage
+    "account.changePassword": CallAPI<
+        Params.AccountChangePasswordParams,
+        Responses.AccountChangePasswordResponse
     >
     /**
-     * Use this method to forward multiple messages of any kind. If some of the specified messages can't be found or forwarded, they are skipped. Service messages and messages with protected content can't be forwarded. Album grouping is kept for forwarded messages. On success, an array of [MessageId](https://core.telegram.org/bots/api#messageid) of the sent messages is returned.
+     * Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#forwardmessages)
+     * [Documentation](https://dev.vk.com/method/account.getActiveOffers)
      */
-    forwardMessages: CallAPI<
-        Params.ForwardMessagesParams,
-        Objects.TelegramMessageId[]
+    "account.getActiveOffers": CallAPIWithOptionalParams<
+        Params.AccountGetActiveOffersParams,
+        Responses.AccountGetActiveOffersResponse
     >
     /**
-     * Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [poll](https://core.telegram.org/bots/api#poll) can be copied only if the value of the field *correct\_option\_id* is known to the bot. The method is analogous to the method [forwardMessage](https://core.telegram.org/bots/api#forwardmessage), but the copied message doesn't have a link to the original message. Returns the [MessageId](https://core.telegram.org/bots/api#messageid) of the sent message on success.
+     * Gets settings of the user in this application.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#copymessage)
+     * [Documentation](https://dev.vk.com/method/account.getAppPermissions)
      */
-    copyMessage: CallAPI<Params.CopyMessageParams, Objects.TelegramMessageId>
-    /**
-     * Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz [poll](https://core.telegram.org/bots/api#poll) can be copied only if the value of the field *correct\_option\_id* is known to the bot. The method is analogous to the method [forwardMessages](https://core.telegram.org/bots/api#forwardmessages), but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an array of [MessageId](https://core.telegram.org/bots/api#messageid) of the sent messages is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#copymessages)
-     */
-    copyMessages: CallAPI<
-        Params.CopyMessagesParams,
-        Objects.TelegramMessageId[]
+    "account.getAppPermissions": CallAPIWithOptionalParams<
+        Params.AccountGetAppPermissionsParams,
+        Responses.AccountGetAppPermissionsResponse
     >
     /**
-     * Use this method to send photos. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
+     * Returns a user's blacklist.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#sendphoto)
+     * [Documentation](https://dev.vk.com/method/account.getBanned)
      */
-    sendPhoto: CallAPI<Params.SendPhotoParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .MP3 or .M4A format. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
-     *
-     * For sending voice messages, use the [sendVoice](https://core.telegram.org/bots/api#sendvoice) method instead.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendaudio)
-     */
-    sendAudio: CallAPI<Params.SendAudioParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send general files. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned. Bots can currently send files of any type of up to 50 MB in size, this limit may be changed in the future.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#senddocument)
-     */
-    sendDocument: CallAPI<Params.SendDocumentParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as [Document](https://core.telegram.org/bots/api#document)). On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned. Bots can currently send video files of up to 50 MB in size, this limit may be changed in the future.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendvideo)
-     */
-    sendVideo: CallAPI<Params.SendVideoParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendanimation)
-     */
-    sendAnimation: CallAPI<Params.SendAnimationParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .OGG file encoded with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as [Audio](https://core.telegram.org/bots/api#audio) or [Document](https://core.telegram.org/bots/api#document)). On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned. Bots can currently send voice messages of up to 50 MB in size, this limit may be changed in the future.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendvoice)
-     */
-    sendVoice: CallAPI<Params.SendVoiceParams, Objects.TelegramMessage>
-    /**
-     * As of [v.4.0](https://telegram.org/blog/video-messages-and-telescope), Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendvideonote)
-     */
-    sendVideoNote: CallAPI<Params.SendVideoNoteParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send paid media. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendpaidmedia)
-     */
-    sendPaidMedia: CallAPI<Params.SendPaidMediaParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send a group of photos, videos, documents or audios as an album. Documents and audio files can be only grouped in an album with messages of the same type. On success, an array of [Message](https://core.telegram.org/bots/api#message) objects that were sent is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendmediagroup)
-     */
-    sendMediaGroup: CallAPI<
-        Params.SendMediaGroupParams,
-        Objects.TelegramMessage[]
+    "account.getBanned": CallAPIWithOptionalParams<
+        Params.AccountGetBannedParams,
+        Responses.AccountGetBannedResponse
     >
     /**
-     * Use this method to send point on the map. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
+     * Returns non-null values of user counters.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#sendlocation)
+     * [Documentation](https://dev.vk.com/method/account.getCounters)
      */
-    sendLocation: CallAPI<Params.SendLocationParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send information about a venue. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendvenue)
-     */
-    sendVenue: CallAPI<Params.SendVenueParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send phone contacts. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendcontact)
-     */
-    sendContact: CallAPI<Params.SendContactParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send a native poll. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendpoll)
-     */
-    sendPoll: CallAPI<Params.SendPollParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send a checklist on behalf of a connected business account. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendchecklist)
-     */
-    sendChecklist: CallAPI<Params.SendChecklistParams, Objects.TelegramMessage>
-    /**
-     * Use this method to send an animated emoji that will display a random value. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#senddice)
-     */
-    sendDice: CallAPI<Params.SendDiceParams, Objects.TelegramMessage>
-    /**
-     * Use this method to stream a partial message to a user while the message is being generated. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendmessagedraft)
-     */
-    sendMessageDraft: CallAPI<Params.SendMessageDraftParams, true>
-    /**
-     * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status). Returns *True* on success.
-     *
-     * > Example: The [ImageBot](https://t.me/imagebot) needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use [sendChatAction](https://core.telegram.org/bots/api#sendchataction) with *action* = *upload\_photo*. The user will see a “sending photo” status for the bot.
-     *
-     * We only recommend using this method when a response from the bot will take a **noticeable** amount of time to arrive.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendchataction)
-     */
-    sendChatAction: CallAPI<Params.SendChatActionParams, true>
-    /**
-     * Use this method to change the chosen reactions on a message. Service messages of some types can't be reacted to. Automatically forwarded messages from a channel to its discussion group have the same available reactions as messages in the channel. Bots can't use paid reactions. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setmessagereaction)
-     */
-    setMessageReaction: CallAPI<Params.SetMessageReactionParams, true>
-    /**
-     * Use this method to get a list of profile pictures for a user. Returns a [UserProfilePhotos](https://core.telegram.org/bots/api#userprofilephotos) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getuserprofilephotos)
-     */
-    getUserProfilePhotos: CallAPI<
-        Params.GetUserProfilePhotosParams,
-        Objects.TelegramUserProfilePhotos
+    "account.getCounters": CallAPIWithOptionalParams<
+        Params.AccountGetCountersParams,
+        Objects.VKAccountAccountCounters
     >
     /**
-     * Use this method to get a list of profile audios for a user. Returns a [UserProfileAudios](https://core.telegram.org/bots/api#userprofileaudios) object.
+     * Returns current account info.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getuserprofileaudios)
+     * [Documentation](https://dev.vk.com/method/account.getInfo)
      */
-    getUserProfileAudios: CallAPI<
-        Params.GetUserProfileAudiosParams,
-        Objects.TelegramUserProfileAudios
+    "account.getInfo": CallAPIWithOptionalParams<
+        Params.AccountGetInfoParams,
+        Objects.VKAccountInfo
     >
     /**
-     * Changes the emoji status for a given user that previously allowed the bot to manage their emoji status via the Mini App method [requestEmojiStatusAccess](https://core.telegram.org/bots/webapps#initializing-mini-apps). Returns *True* on success.
+     * Returns the current account info.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setuseremojistatus)
+     * [Documentation](https://dev.vk.com/method/account.getProfileInfo)
      */
-    setUserEmojiStatus: CallAPI<Params.SetUserEmojiStatusParams, true>
+    "account.getProfileInfo": CallAPIWithoutParams<Objects.VKAccountUserSettings>
     /**
-     * Use this method to get basic information about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a [File](https://core.telegram.org/bots/api#file) object is returned. The file can then be downloaded via the link `https://api.telegram.org/file/bot<token>/<file_path>`, where `<file_path>` is taken from the response. It is guaranteed that the link will be valid for at least 1 hour. When the link expires, a new one can be requested by calling [getFile](https://core.telegram.org/bots/api#getfile) again.
+     * Gets settings of push notifications.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getfile)
+     * [Documentation](https://dev.vk.com/method/account.getPushSettings)
      */
-    getFile: CallAPI<Params.GetFileParams, Objects.TelegramFile>
-    /**
-     * Use this method to ban a user in a group, a supergroup or a channel. In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless [unbanned](https://core.telegram.org/bots/api#unbanchatmember) first. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#banchatmember)
-     */
-    banChatMember: CallAPI<Params.BanChatMemberParams, true>
-    /**
-     * Use this method to unban a previously banned user in a supergroup or channel. The user will **not** return to the group or channel automatically, but will be able to join via link, etc. The bot must be an administrator for this to work. By default, this method guarantees that after the call the user is not a member of the chat, but will be able to join it. So if the user is a member of the chat they will also be **removed** from the chat. If you don't want this, use the parameter *only\_if\_banned*. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unbanchatmember)
-     */
-    unbanChatMember: CallAPI<Params.UnbanChatMemberParams, true>
-    /**
-     * Use this method to restrict a user in a supergroup. The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights. Pass *True* for all permissions to lift restrictions from a user. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#restrictchatmember)
-     */
-    restrictChatMember: CallAPI<Params.RestrictChatMemberParams, true>
-    /**
-     * Use this method to promote or demote a user in a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Pass *False* for all boolean parameters to demote a user. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#promotechatmember)
-     */
-    promoteChatMember: CallAPI<Params.PromoteChatMemberParams, true>
-    /**
-     * Use this method to set a custom title for an administrator in a supergroup promoted by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatadministratorcustomtitle)
-     */
-    setChatAdministratorCustomTitle: CallAPI<
-        Params.SetChatAdministratorCustomTitleParams,
-        true
+    "account.getPushSettings": CallAPIWithOptionalParams<
+        Params.AccountGetPushSettingsParams,
+        Objects.VKAccountPushSettings
     >
     /**
-     * Use this method to set a tag for a regular member in a group or a supergroup. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_tags* administrator right. Returns *True* on success.
+     * Subscribes an iOS/Android/Windows Phone-based device to receive push notifications
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatmembertag)
+     * [Documentation](https://dev.vk.com/method/account.registerDevice)
      */
-    setChatMemberTag: CallAPI<Params.SetChatMemberTagParams, true>
-    /**
-     * Use this method to ban a channel chat in a supergroup or a channel. Until the chat is [unbanned](https://core.telegram.org/bots/api#unbanchatsenderchat), the owner of the banned chat won't be able to send messages on behalf of **any of their channels**. The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#banchatsenderchat)
-     */
-    banChatSenderChat: CallAPI<Params.BanChatSenderChatParams, true>
-    /**
-     * Use this method to unban a previously banned channel chat in a supergroup or channel. The bot must be an administrator for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unbanchatsenderchat)
-     */
-    unbanChatSenderChat: CallAPI<Params.UnbanChatSenderChatParams, true>
-    /**
-     * Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the *can\_restrict\_members* administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatpermissions)
-     */
-    setChatPermissions: CallAPI<Params.SetChatPermissionsParams, true>
-    /**
-     * Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the new invite link as *String* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#exportchatinvitelink)
-     */
-    exportChatInviteLink: CallAPI<Params.ExportChatInviteLinkParams, string>
-    /**
-     * Use this method to create an additional invite link for a chat. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. The link can be revoked using the method [revokeChatInviteLink](https://core.telegram.org/bots/api#revokechatinvitelink). Returns the new invite link as [ChatInviteLink](https://core.telegram.org/bots/api#chatinvitelink) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#createchatinvitelink)
-     */
-    createChatInviteLink: CallAPI<
-        Params.CreateChatInviteLinkParams,
-        Objects.TelegramChatInviteLink
+    "account.registerDevice": CallAPI<
+        Params.AccountRegisterDeviceParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to edit a non-primary invite link created by the bot. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the edited invite link as a [ChatInviteLink](https://core.telegram.org/bots/api#chatinvitelink) object.
+     * Edits current profile info.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editchatinvitelink)
+     * [Documentation](https://dev.vk.com/method/account.saveProfileInfo)
      */
-    editChatInviteLink: CallAPI<
-        Params.EditChatInviteLinkParams,
-        Objects.TelegramChatInviteLink
+    "account.saveProfileInfo": CallAPIWithOptionalParams<
+        Params.AccountSaveProfileInfoParams,
+        Responses.AccountSaveProfileInfoResponse
     >
     /**
-     * Use this method to create a [subscription invite link](https://telegram.org/blog/superchannels-star-reactions-subscriptions#star-subscriptions) for a channel chat. The bot must have the *can\_invite\_users* administrator rights. The link can be edited using the method [editChatSubscriptionInviteLink](https://core.telegram.org/bots/api#editchatsubscriptioninvitelink) or revoked using the method [revokeChatInviteLink](https://core.telegram.org/bots/api#revokechatinvitelink). Returns the new invite link as a [ChatInviteLink](https://core.telegram.org/bots/api#chatinvitelink) object.
+     * Allows to edit the current account info.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#createchatsubscriptioninvitelink)
+     * [Documentation](https://dev.vk.com/method/account.setInfo)
      */
-    createChatSubscriptionInviteLink: CallAPI<
-        Params.CreateChatSubscriptionInviteLinkParams,
-        Objects.TelegramChatInviteLink
+    "account.setInfo": CallAPIWithOptionalParams<
+        Params.AccountSetInfoParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to edit a subscription invite link created by the bot. The bot must have the *can\_invite\_users* administrator rights. Returns the edited invite link as a [ChatInviteLink](https://core.telegram.org/bots/api#chatinvitelink) object.
+     * Marks a current user as offline.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editchatsubscriptioninvitelink)
+     * [Documentation](https://dev.vk.com/method/account.setOffline)
      */
-    editChatSubscriptionInviteLink: CallAPI<
-        Params.EditChatSubscriptionInviteLinkParams,
-        Objects.TelegramChatInviteLink
+    "account.setOffline": CallAPIWithoutParams<Responses.BaseOkResponse>
+    /**
+     * Marks the current user as online for 15 minutes.
+     *
+     * [Documentation](https://dev.vk.com/method/account.setOnline)
+     */
+    "account.setOnline": CallAPIWithOptionalParams<
+        Params.AccountSetOnlineParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to revoke an invite link created by the bot. If the primary link is revoked, a new link is automatically generated. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns the revoked invite link as [ChatInviteLink](https://core.telegram.org/bots/api#chatinvitelink) object.
+     * Change push settings.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#revokechatinvitelink)
+     * [Documentation](https://dev.vk.com/method/account.setPushSettings)
      */
-    revokeChatInviteLink: CallAPI<
-        Params.RevokeChatInviteLinkParams,
-        Objects.TelegramChatInviteLink
+    "account.setPushSettings": CallAPI<
+        Params.AccountSetPushSettingsParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to approve a chat join request. The bot must be an administrator in the chat for this to work and must have the *can\_invite\_users* administrator right. Returns *True* on success.
+     * Mutes push notifications for the set period of time.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#approvechatjoinrequest)
+     * [Documentation](https://dev.vk.com/method/account.setSilenceMode)
      */
-    approveChatJoinRequest: CallAPI<Params.ApproveChatJoinRequestParams, true>
-    /**
-     * Use this method to decline a chat join request. The bot must be an administrator in the chat for this to work and must have the *can\_invite\_users* administrator right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#declinechatjoinrequest)
-     */
-    declineChatJoinRequest: CallAPI<Params.DeclineChatJoinRequestParams, true>
-    /**
-     * Use this method to set a new profile photo for the chat. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatphoto)
-     */
-    setChatPhoto: CallAPI<Params.SetChatPhotoParams, true>
-    /**
-     * Use this method to delete a chat photo. Photos can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletechatphoto)
-     */
-    deleteChatPhoto: CallAPI<Params.DeleteChatPhotoParams, true>
-    /**
-     * Use this method to change the title of a chat. Titles can't be changed for private chats. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setchattitle)
-     */
-    setChatTitle: CallAPI<Params.SetChatTitleParams, true>
-    /**
-     * Use this method to change the description of a group, a supergroup or a channel. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatdescription)
-     */
-    setChatDescription: CallAPI<Params.SetChatDescriptionParams, true>
-    /**
-     * Use this method to add a message to the list of pinned messages in a chat. In private chats and channel direct messages chats, all non-service messages can be pinned. Conversely, the bot must be an administrator with the 'can\_pin\_messages' right or the 'can\_edit\_messages' right to pin messages in groups and channels respectively. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#pinchatmessage)
-     */
-    pinChatMessage: CallAPI<Params.PinChatMessageParams, true>
-    /**
-     * Use this method to remove a message from the list of pinned messages in a chat. In private chats and channel direct messages chats, all messages can be unpinned. Conversely, the bot must be an administrator with the 'can\_pin\_messages' right or the 'can\_edit\_messages' right to unpin messages in groups and channels respectively. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unpinchatmessage)
-     */
-    unpinChatMessage: CallAPI<Params.UnpinChatMessageParams, true>
-    /**
-     * Use this method to clear the list of pinned messages in a chat. In private chats and channel direct messages chats, no additional rights are required to unpin all pinned messages. Conversely, the bot must be an administrator with the 'can\_pin\_messages' right or the 'can\_edit\_messages' right to unpin all pinned messages in groups and channels respectively. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unpinallchatmessages)
-     */
-    unpinAllChatMessages: CallAPI<Params.UnpinAllChatMessagesParams, true>
-    /**
-     * Use this method for your bot to leave a group, supergroup or channel. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#leavechat)
-     */
-    leaveChat: CallAPI<Params.LeaveChatParams, true>
-    /**
-     * Use this method to get up-to-date information about the chat. Returns a [ChatFullInfo](https://core.telegram.org/bots/api#chatfullinfo) object on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getchat)
-     */
-    getChat: CallAPI<Params.GetChatParams, Objects.TelegramChatFullInfo>
-    /**
-     * Use this method to get a list of administrators in a chat, which aren't bots. Returns an Array of [ChatMember](https://core.telegram.org/bots/api#chatmember) objects.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getchatadministrators)
-     */
-    getChatAdministrators: CallAPI<
-        Params.GetChatAdministratorsParams,
-        Objects.TelegramChatMember[]
+    "account.setSilenceMode": CallAPIWithOptionalParams<
+        Params.AccountSetSilenceModeParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to get the number of members in a chat. Returns *Int* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getchatmembercount)
-     */
-    getChatMemberCount: CallAPI<Params.GetChatMemberCountParams, number>
-    /**
-     * Use this method to get information about a member of a chat. The method is only guaranteed to work for other users if the bot is an administrator in the chat. Returns a [ChatMember](https://core.telegram.org/bots/api#chatmember) object on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getchatmember)
+     * [Documentation](https://dev.vk.com/method/account.unban)
      */
-    getChatMember: CallAPI<
-        Params.GetChatMemberParams,
-        Objects.TelegramChatMember
+    "account.unban": CallAPIWithOptionalParams<
+        Params.AccountUnbanParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to set a new group sticker set for a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field *can\_set\_sticker\_set* optionally returned in [getChat](https://core.telegram.org/bots/api#getchat) requests to check if the bot can use this method. Returns *True* on success.
+     * Unsubscribes a device from push notifications.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatstickerset)
+     * [Documentation](https://dev.vk.com/method/account.unregisterDevice)
      */
-    setChatStickerSet: CallAPI<Params.SetChatStickerSetParams, true>
-    /**
-     * Use this method to delete a group sticker set from a supergroup. The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights. Use the field *can\_set\_sticker\_set* optionally returned in [getChat](https://core.telegram.org/bots/api#getchat) requests to check if the bot can use this method. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletechatstickerset)
-     */
-    deleteChatStickerSet: CallAPI<Params.DeleteChatStickerSetParams, true>
-    /**
-     * Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. Requires no parameters. Returns an Array of [Sticker](https://core.telegram.org/bots/api#sticker) objects.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getforumtopiciconstickers)
-     */
-    getForumTopicIconStickers: CallAPIWithoutParams<Objects.TelegramSticker[]>
-    /**
-     * Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator right. Returns information about the created topic as a [ForumTopic](https://core.telegram.org/bots/api#forumtopic) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#createforumtopic)
-     */
-    createForumTopic: CallAPI<
-        Params.CreateForumTopicParams,
-        Objects.TelegramForumTopic
+    "account.unregisterDevice": CallAPIWithOptionalParams<
+        Params.AccountUnregisterDeviceParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Use this method to edit name and icon of a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
+     * Adds managers and/or supervisors to advertising account.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editforumtopic)
+     * [Documentation](https://dev.vk.com/method/ads.addOfficeUsers)
      */
-    editForumTopic: CallAPI<Params.EditForumTopicParams, true>
-    /**
-     * Use this method to close an open topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#closeforumtopic)
-     */
-    closeForumTopic: CallAPI<Params.CloseForumTopicParams, true>
-    /**
-     * Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights, unless it is the creator of the topic. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#reopenforumtopic)
-     */
-    reopenForumTopic: CallAPI<Params.ReopenForumTopicParams, true>
-    /**
-     * Use this method to delete a forum topic along with all its messages in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the *can\_delete\_messages* administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deleteforumtopic)
-     */
-    deleteForumTopic: CallAPI<Params.DeleteForumTopicParams, true>
-    /**
-     * Use this method to clear the list of pinned messages in a forum topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the *can\_pin\_messages* administrator right in the supergroup. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unpinallforumtopicmessages)
-     */
-    unpinAllForumTopicMessages: CallAPI<
-        Params.UnpinAllForumTopicMessagesParams,
-        true
+    "ads.addOfficeUsers": CallAPI<
+        Params.AdsAddOfficeUsersParams,
+        Responses.AdsAddOfficeUsersResponse
     >
     /**
-     * Use this method to edit the name of the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights. Returns *True* on success.
+     * Allows to check the ad link.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editgeneralforumtopic)
+     * [Documentation](https://dev.vk.com/method/ads.checkLink)
      */
-    editGeneralForumTopic: CallAPI<Params.EditGeneralForumTopicParams, true>
+    "ads.checkLink": CallAPI<Params.AdsCheckLinkParams, Objects.VKAdsLinkStatus>
     /**
-     * Use this method to close an open 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights. Returns *True* on success.
+     * Creates ads.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#closegeneralforumtopic)
+     * [Documentation](https://dev.vk.com/method/ads.createAds)
      */
-    closeGeneralForumTopic: CallAPI<Params.CloseGeneralForumTopicParams, true>
-    /**
-     * Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights. The topic will be automatically unhidden if it was hidden. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#reopengeneralforumtopic)
-     */
-    reopenGeneralForumTopic: CallAPI<Params.ReopenGeneralForumTopicParams, true>
-    /**
-     * Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights. The topic will be automatically closed if it was open. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#hidegeneralforumtopic)
-     */
-    hideGeneralForumTopic: CallAPI<Params.HideGeneralForumTopicParams, true>
-    /**
-     * Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must be an administrator in the chat for this to work and must have the *can\_manage\_topics* administrator rights. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unhidegeneralforumtopic)
-     */
-    unhideGeneralForumTopic: CallAPI<Params.UnhideGeneralForumTopicParams, true>
-    /**
-     * Use this method to clear the list of pinned messages in a General forum topic. The bot must be an administrator in the chat for this to work and must have the *can\_pin\_messages* administrator right in the supergroup. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#unpinallgeneralforumtopicmessages)
-     */
-    unpinAllGeneralForumTopicMessages: CallAPI<
-        Params.UnpinAllGeneralForumTopicMessagesParams,
-        true
+    "ads.createAds": CallAPI<
+        Params.AdsCreateAdsParams,
+        Responses.AdsCreateAdsResponse
     >
     /**
-     * Use this method to send answers to callback queries sent from [inline keyboards](https://core.telegram.org/bots/features#inline-keyboards). The answer will be displayed to the user as a notification at the top of the chat screen or as an alert. On success, *True* is returned.
+     * Creates advertising campaigns.
      *
-     * > Alternatively, the user can be redirected to the specified Game URL. For this option to work, you must first create a game for your bot via [@BotFather](https://t.me/botfather) and accept the terms. Otherwise, you may use links like `t.me/your_bot?start=XXXX` that open your bot with a parameter.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#answercallbackquery)
+     * [Documentation](https://dev.vk.com/method/ads.createCampaigns)
      */
-    answerCallbackQuery: CallAPI<Params.AnswerCallbackQueryParams, true>
-    /**
-     * Use this method to get the list of boosts added to a chat by a user. Requires administrator rights in the chat. Returns a [UserChatBoosts](https://core.telegram.org/bots/api#userchatboosts) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getuserchatboosts)
-     */
-    getUserChatBoosts: CallAPI<
-        Params.GetUserChatBoostsParams,
-        Objects.TelegramUserChatBoosts
+    "ads.createCampaigns": CallAPI<
+        Params.AdsCreateCampaignsParams,
+        Responses.AdsCreateCampaignsResponse
     >
     /**
-     * Use this method to get information about the connection of the bot with a business account. Returns a [BusinessConnection](https://core.telegram.org/bots/api#businessconnection) object on success.
+     * Creates clients of an advertising agency.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getbusinessconnection)
+     * [Documentation](https://dev.vk.com/method/ads.createClients)
      */
-    getBusinessConnection: CallAPI<
-        Params.GetBusinessConnectionParams,
-        Objects.TelegramBusinessConnection
+    "ads.createClients": CallAPI<
+        Params.AdsCreateClientsParams,
+        Responses.AdsCreateClientsResponse
     >
     /**
-     * Use this method to change the list of the bot's commands. See [this manual](https://core.telegram.org/bots/features#commands) for more details about bot commands. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setmycommands)
-     */
-    setMyCommands: CallAPI<Params.SetMyCommandsParams, true>
-    /**
-     * Use this method to delete the list of the bot's commands for the given scope and user language. After deletion, [higher level commands](https://core.telegram.org/bots/api#determining-list-of-commands) will be shown to affected users. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#deletemycommands)
+     * [Documentation](https://dev.vk.com/method/ads.createLookalikeRequest)
      */
-    deleteMyCommands: CallAPIWithOptionalParams<
-        Params.DeleteMyCommandsParams,
-        true
+    "ads.createLookalikeRequest": CallAPI<
+        Params.AdsCreateLookalikeRequestParams,
+        Responses.AdsCreateLookalikeRequestResponse
     >
     /**
-     * Use this method to get the current list of the bot's commands for the given scope and user language. Returns an Array of [BotCommand](https://core.telegram.org/bots/api#botcommand) objects. If commands aren't set, an empty list is returned.
+     * Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getmycommands)
+     * [Documentation](https://dev.vk.com/method/ads.createTargetGroup)
      */
-    getMyCommands: CallAPIWithOptionalParams<
-        Params.GetMyCommandsParams,
-        Objects.TelegramBotCommand[]
+    "ads.createTargetGroup": CallAPI<
+        Params.AdsCreateTargetGroupParams,
+        Responses.AdsCreateTargetGroupResponse
     >
     /**
-     * Use this method to change the bot's name. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setmyname)
-     */
-    setMyName: CallAPIWithOptionalParams<Params.SetMyNameParams, true>
-    /**
-     * Use this method to get the current bot name for the given user language. Returns [BotName](https://core.telegram.org/bots/api#botname) on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getmyname)
+     * [Documentation](https://dev.vk.com/method/ads.createTargetPixel)
      */
-    getMyName: CallAPIWithOptionalParams<
-        Params.GetMyNameParams,
-        Objects.TelegramBotName
+    "ads.createTargetPixel": CallAPI<
+        Params.AdsCreateTargetPixelParams,
+        Responses.AdsCreateTargetPixelResponse
     >
     /**
-     * Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty. Returns *True* on success.
+     * Archives ads.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setmydescription)
+     * [Documentation](https://dev.vk.com/method/ads.deleteAds)
      */
-    setMyDescription: CallAPIWithOptionalParams<
-        Params.SetMyDescriptionParams,
-        true
+    "ads.deleteAds": CallAPI<
+        Params.AdsDeleteAdsParams,
+        Responses.AdsDeleteAdsResponse
     >
     /**
-     * Use this method to get the current bot description for the given user language. Returns [BotDescription](https://core.telegram.org/bots/api#botdescription) on success.
+     * Archives advertising campaigns.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getmydescription)
+     * [Documentation](https://dev.vk.com/method/ads.deleteCampaigns)
      */
-    getMyDescription: CallAPIWithOptionalParams<
-        Params.GetMyDescriptionParams,
-        Objects.TelegramBotDescription
+    "ads.deleteCampaigns": CallAPI<
+        Params.AdsDeleteCampaignsParams,
+        Responses.AdsDeleteCampaignsResponse
     >
     /**
-     * Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot. Returns *True* on success.
+     * Archives clients of an advertising agency.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setmyshortdescription)
+     * [Documentation](https://dev.vk.com/method/ads.deleteClients)
      */
-    setMyShortDescription: CallAPIWithOptionalParams<
-        Params.SetMyShortDescriptionParams,
-        true
+    "ads.deleteClients": CallAPI<
+        Params.AdsDeleteClientsParams,
+        Responses.AdsDeleteClientsResponse
     >
     /**
-     * Use this method to get the current bot short description for the given user language. Returns [BotShortDescription](https://core.telegram.org/bots/api#botshortdescription) on success.
+     * Deletes a retarget group.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getmyshortdescription)
+     * [Documentation](https://dev.vk.com/method/ads.deleteTargetGroup)
      */
-    getMyShortDescription: CallAPIWithOptionalParams<
-        Params.GetMyShortDescriptionParams,
-        Objects.TelegramBotShortDescription
+    "ads.deleteTargetGroup": CallAPI<
+        Params.AdsDeleteTargetGroupParams,
+        Responses.BaseOkResponse
     >
     /**
-     * Changes the profile photo of the bot. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setmyprofilephoto)
-     */
-    setMyProfilePhoto: CallAPI<Params.SetMyProfilePhotoParams, true>
-    /**
-     * Removes the profile photo of the bot. Requires no parameters. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#removemyprofilephoto)
+     * [Documentation](https://dev.vk.com/method/ads.deleteTargetPixel)
      */
-    removeMyProfilePhoto: CallAPIWithoutParams<true>
-    /**
-     * Use this method to change the bot's menu button in a private chat, or the default menu button. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setchatmenubutton)
-     */
-    setChatMenuButton: CallAPIWithOptionalParams<
-        Params.SetChatMenuButtonParams,
-        true
+    "ads.deleteTargetPixel": CallAPI<
+        Params.AdsDeleteTargetPixelParams,
+        Responses.BaseUndefinedResponse
     >
     /**
-     * Use this method to get the current value of the bot's menu button in a private chat, or the default menu button. Returns [MenuButton](https://core.telegram.org/bots/api#menubutton) on success.
+     * Returns a list of advertising accounts.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getchatmenubutton)
+     * [Documentation](https://dev.vk.com/method/ads.getAccounts)
      */
-    getChatMenuButton: CallAPIWithOptionalParams<
-        Params.GetChatMenuButtonParams,
-        Objects.TelegramMenuButton
+    "ads.getAccounts": CallAPIWithoutParams<Responses.AdsGetAccountsResponse>
+    /**
+     * Returns number of ads.
+     *
+     * [Documentation](https://dev.vk.com/method/ads.getAds)
+     */
+    "ads.getAds": CallAPI<Params.AdsGetAdsParams, Responses.AdsGetAdsResponse>
+    /**
+     * Returns descriptions of ad layouts.
+     *
+     * [Documentation](https://dev.vk.com/method/ads.getAdsLayout)
+     */
+    "ads.getAdsLayout": CallAPI<
+        Params.AdsGetAdsLayoutParams,
+        Responses.AdsGetAdsLayoutResponse
     >
     /**
-     * Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels. These rights will be suggested to users, but they are free to modify the list before adding the bot. Returns *True* on success.
+     * Returns ad targeting parameters.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setmydefaultadministratorrights)
+     * [Documentation](https://dev.vk.com/method/ads.getAdsTargeting)
      */
-    setMyDefaultAdministratorRights: CallAPIWithOptionalParams<
-        Params.SetMyDefaultAdministratorRightsParams,
-        true
+    "ads.getAdsTargeting": CallAPI<
+        Params.AdsGetAdsTargetingParams,
+        Responses.AdsGetAdsTargetingResponse
     >
     /**
-     * Use this method to get the current default administrator rights of the bot. Returns [ChatAdministratorRights](https://core.telegram.org/bots/api#chatadministratorrights) on success.
+     * Returns current budget of the advertising account.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getmydefaultadministratorrights)
+     * [Documentation](https://dev.vk.com/method/ads.getBudget)
      */
-    getMyDefaultAdministratorRights: CallAPIWithOptionalParams<
-        Params.GetMyDefaultAdministratorRightsParams,
-        Objects.TelegramChatAdministratorRights
+    "ads.getBudget": CallAPI<
+        Params.AdsGetBudgetParams,
+        Responses.AdsGetBudgetResponse
     >
     /**
-     * Returns the list of gifts that can be sent by the bot to users and channel chats. Requires no parameters. Returns a [Gifts](https://core.telegram.org/bots/api#gifts) object.
+     * Returns a list of campaigns in an advertising account.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getavailablegifts)
+     * [Documentation](https://dev.vk.com/method/ads.getCampaigns)
      */
-    getAvailableGifts: CallAPIWithoutParams<Objects.TelegramGifts>
-    /**
-     * Sends a gift to the given user or channel chat. The gift can't be converted to Telegram Stars by the receiver. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendgift)
-     */
-    sendGift: CallAPI<Params.SendGiftParams, true>
-    /**
-     * Gifts a Telegram Premium subscription to the given user. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#giftpremiumsubscription)
-     */
-    giftPremiumSubscription: CallAPI<Params.GiftPremiumSubscriptionParams, true>
-    /**
-     * Verifies a user [on behalf of the organization](https://telegram.org/verify#third-party-verification) which is represented by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#verifyuser)
-     */
-    verifyUser: CallAPI<Params.VerifyUserParams, true>
-    /**
-     * Verifies a chat [on behalf of the organization](https://telegram.org/verify#third-party-verification) which is represented by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#verifychat)
-     */
-    verifyChat: CallAPI<Params.VerifyChatParams, true>
-    /**
-     * Removes verification from a user who is currently verified [on behalf of the organization](https://telegram.org/verify#third-party-verification) represented by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#removeuserverification)
-     */
-    removeUserVerification: CallAPI<Params.RemoveUserVerificationParams, true>
-    /**
-     * Removes verification from a chat that is currently verified [on behalf of the organization](https://telegram.org/verify#third-party-verification) represented by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#removechatverification)
-     */
-    removeChatVerification: CallAPI<Params.RemoveChatVerificationParams, true>
-    /**
-     * Marks incoming message as read on behalf of a business account. Requires the *can\_read\_messages* business bot right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#readbusinessmessage)
-     */
-    readBusinessMessage: CallAPI<Params.ReadBusinessMessageParams, true>
-    /**
-     * Delete messages on behalf of a business account. Requires the *can\_delete\_sent\_messages* business bot right to delete messages sent by the bot itself, or the *can\_delete\_all\_messages* business bot right to delete any message. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletebusinessmessages)
-     */
-    deleteBusinessMessages: CallAPI<Params.DeleteBusinessMessagesParams, true>
-    /**
-     * Changes the first and last name of a managed business account. Requires the *can\_change\_name* business bot right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setbusinessaccountname)
-     */
-    setBusinessAccountName: CallAPI<Params.SetBusinessAccountNameParams, true>
-    /**
-     * Changes the username of a managed business account. Requires the *can\_change\_username* business bot right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setbusinessaccountusername)
-     */
-    setBusinessAccountUsername: CallAPI<
-        Params.SetBusinessAccountUsernameParams,
-        true
+    "ads.getCampaigns": CallAPI<
+        Params.AdsGetCampaignsParams,
+        Responses.AdsGetCampaignsResponse
     >
     /**
-     * Changes the bio of a managed business account. Requires the *can\_change\_bio* business bot right. Returns *True* on success.
+     * Returns a list of possible ad categories.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setbusinessaccountbio)
+     * [Documentation](https://dev.vk.com/method/ads.getCategories)
      */
-    setBusinessAccountBio: CallAPI<Params.SetBusinessAccountBioParams, true>
-    /**
-     * Changes the profile photo of a managed business account. Requires the *can\_edit\_profile\_photo* business bot right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setbusinessaccountprofilephoto)
-     */
-    setBusinessAccountProfilePhoto: CallAPI<
-        Params.SetBusinessAccountProfilePhotoParams,
-        true
+    "ads.getCategories": CallAPIWithOptionalParams<
+        Params.AdsGetCategoriesParams,
+        Responses.AdsGetCategoriesResponse
     >
     /**
-     * Removes the current profile photo of a managed business account. Requires the *can\_edit\_profile\_photo* business bot right. Returns *True* on success.
+     * Returns a list of advertising agency's clients.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#removebusinessaccountprofilephoto)
+     * [Documentation](https://dev.vk.com/method/ads.getClients)
      */
-    removeBusinessAccountProfilePhoto: CallAPI<
-        Params.RemoveBusinessAccountProfilePhotoParams,
-        true
+    "ads.getClients": CallAPI<
+        Params.AdsGetClientsParams,
+        Responses.AdsGetClientsResponse
     >
     /**
-     * Changes the privacy settings pertaining to incoming gifts in a managed business account. Requires the *can\_change\_gift\_settings* business bot right. Returns *True* on success.
+     * Returns demographics for ads or campaigns.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#setbusinessaccountgiftsettings)
+     * [Documentation](https://dev.vk.com/method/ads.getDemographics)
      */
-    setBusinessAccountGiftSettings: CallAPI<
-        Params.SetBusinessAccountGiftSettingsParams,
-        true
+    "ads.getDemographics": CallAPI<
+        Params.AdsGetDemographicsParams,
+        Responses.AdsGetDemographicsResponse
     >
     /**
-     * Returns the amount of Telegram Stars owned by a managed business account. Requires the *can\_view\_gifts\_and\_stars* business bot right. Returns [StarAmount](https://core.telegram.org/bots/api#staramount) on success.
+     * Returns information about current state of a counter - number of remaining runs of methods and time to the next counter nulling in seconds.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getbusinessaccountstarbalance)
+     * [Documentation](https://dev.vk.com/method/ads.getFloodStats)
      */
-    getBusinessAccountStarBalance: CallAPI<
-        Params.GetBusinessAccountStarBalanceParams,
-        Objects.TelegramStarAmount
+    "ads.getFloodStats": CallAPI<
+        Params.AdsGetFloodStatsParams,
+        Objects.VKAdsFloodStats
     >
     /**
-     * Transfers Telegram Stars from the business account balance to the bot's balance. Requires the *can\_transfer\_stars* business bot right. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#transferbusinessaccountstars)
+     *
+     * [Documentation](https://dev.vk.com/method/ads.getLookalikeRequests)
      */
-    transferBusinessAccountStars: CallAPI<
-        Params.TransferBusinessAccountStarsParams,
-        true
+    "ads.getLookalikeRequests": CallAPI<
+        Params.AdsGetLookalikeRequestsParams,
+        Responses.AdsGetLookalikeRequestsResponse
     >
     /**
-     * Returns the gifts received and owned by a managed business account. Requires the *can\_view\_gifts\_and\_stars* business bot right. Returns [OwnedGifts](https://core.telegram.org/bots/api#ownedgifts) on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getbusinessaccountgifts)
+     *
+     * [Documentation](https://dev.vk.com/method/ads.getMusicians)
      */
-    getBusinessAccountGifts: CallAPI<
-        Params.GetBusinessAccountGiftsParams,
-        Objects.TelegramOwnedGifts
+    "ads.getMusicians": CallAPI<
+        Params.AdsGetMusiciansParams,
+        Responses.AdsGetMusiciansResponse
     >
     /**
-     * Returns the gifts owned and hosted by a user. Returns [OwnedGifts](https://core.telegram.org/bots/api#ownedgifts) on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getusergifts)
-     */
-    getUserGifts: CallAPI<Params.GetUserGiftsParams, Objects.TelegramOwnedGifts>
-    /**
-     * Returns the gifts owned by a chat. Returns [OwnedGifts](https://core.telegram.org/bots/api#ownedgifts) on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getchatgifts)
+     * [Documentation](https://dev.vk.com/method/ads.getMusiciansByIds)
      */
-    getChatGifts: CallAPI<Params.GetChatGiftsParams, Objects.TelegramOwnedGifts>
-    /**
-     * Converts a given regular gift to Telegram Stars. Requires the *can\_convert\_gifts\_to\_stars* business bot right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#convertgifttostars)
-     */
-    convertGiftToStars: CallAPI<Params.ConvertGiftToStarsParams, true>
-    /**
-     * Upgrades a given regular gift to a unique gift. Requires the *can\_transfer\_and\_upgrade\_gifts* business bot right. Additionally requires the *can\_transfer\_stars* business bot right if the upgrade is paid. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#upgradegift)
-     */
-    upgradeGift: CallAPI<Params.UpgradeGiftParams, true>
-    /**
-     * Transfers an owned unique gift to another user. Requires the *can\_transfer\_and\_upgrade\_gifts* business bot right. Requires *can\_transfer\_stars* business bot right if the transfer is paid. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#transfergift)
-     */
-    transferGift: CallAPI<Params.TransferGiftParams, true>
-    /**
-     * Posts a story on behalf of a managed business account. Requires the *can\_manage\_stories* business bot right. Returns [Story](https://core.telegram.org/bots/api#story) on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#poststory)
-     */
-    postStory: CallAPI<Params.PostStoryParams, Objects.TelegramStory>
-    /**
-     * Reposts a story on behalf of a business account from another business account. Both business accounts must be managed by the same bot, and the story on the source account must have been posted (or reposted) by the bot. Requires the *can\_manage\_stories* business bot right for both business accounts. Returns [Story](https://core.telegram.org/bots/api#story) on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#repoststory)
-     */
-    repostStory: CallAPI<Params.RepostStoryParams, Objects.TelegramStory>
-    /**
-     * Edits a story previously posted by the bot on behalf of a managed business account. Requires the *can\_manage\_stories* business bot right. Returns [Story](https://core.telegram.org/bots/api#story) on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#editstory)
-     */
-    editStory: CallAPI<Params.EditStoryParams, Objects.TelegramStory>
-    /**
-     * Deletes a story previously posted by the bot on behalf of a managed business account. Requires the *can\_manage\_stories* business bot right. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletestory)
-     */
-    deleteStory: CallAPI<Params.DeleteStoryParams, true>
-    /**
-     * Use this method to edit text and [game](https://core.telegram.org/bots/api#games) messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#editmessagetext)
-     */
-    editMessageText: CallAPI<
-        Params.EditMessageTextParams,
-        Objects.TelegramMessage | true
+    "ads.getMusiciansByIds": CallAPI<
+        Params.AdsGetMusiciansByIdsParams,
+        Responses.AdsGetMusiciansResponse
     >
     /**
-     * Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
+     * Returns a list of managers and supervisors of advertising account.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editmessagecaption)
+     * [Documentation](https://dev.vk.com/method/ads.getOfficeUsers)
      */
-    editMessageCaption: CallAPIWithOptionalParams<
-        Params.EditMessageCaptionParams,
-        Objects.TelegramMessage | true
+    "ads.getOfficeUsers": CallAPI<
+        Params.AdsGetOfficeUsersParams,
+        Responses.AdsGetOfficeUsersResponse
     >
     /**
-     * Use this method to edit animation, audio, document, photo, or video messages, or to add media to text messages. If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise. When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its file\_id or specify a URL. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
+     * Returns detailed statistics of promoted posts reach from campaigns and ads.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editmessagemedia)
+     * [Documentation](https://dev.vk.com/method/ads.getPostsReach)
      */
-    editMessageMedia: CallAPI<
-        Params.EditMessageMediaParams,
-        Objects.TelegramMessage | true
+    "ads.getPostsReach": CallAPI<
+        Params.AdsGetPostsReachParams,
+        Responses.AdsGetPostsReachResponse
     >
     /**
-     * Use this method to edit live location messages. A location can be edited until its *live\_period* expires or editing is explicitly disabled by a call to [stopMessageLiveLocation](https://core.telegram.org/bots/api#stopmessagelivelocation). On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned.
+     * Returns a reason of ad rejection for pre-moderation.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editmessagelivelocation)
+     * [Documentation](https://dev.vk.com/method/ads.getRejectionReason)
      */
-    editMessageLiveLocation: CallAPI<
-        Params.EditMessageLiveLocationParams,
-        Objects.TelegramMessage | true
+    "ads.getRejectionReason": CallAPI<
+        Params.AdsGetRejectionReasonParams,
+        Objects.VKAdsRejectReason
     >
     /**
-     * Use this method to stop updating a live location message before *live\_period* expires. On success, if the message is not an inline message, the edited [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned.
+     * Returns statistics of performance indicators for ads, campaigns, clients or the whole account.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#stopmessagelivelocation)
+     * [Documentation](https://dev.vk.com/method/ads.getStatistics)
      */
-    stopMessageLiveLocation: CallAPIWithOptionalParams<
-        Params.StopMessageLiveLocationParams,
-        Objects.TelegramMessage | true
+    "ads.getStatistics": CallAPI<
+        Params.AdsGetStatisticsParams,
+        Responses.AdsGetStatisticsResponse
     >
     /**
-     * Use this method to edit a checklist on behalf of a connected business account. On success, the edited [Message](https://core.telegram.org/bots/api#message) is returned.
+     * Returns a set of auto-suggestions for various targeting parameters.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editmessagechecklist)
+     * [Documentation](https://dev.vk.com/method/ads.getSuggestions)
      */
-    editMessageChecklist: CallAPI<
-        Params.EditMessageChecklistParams,
-        Objects.TelegramMessage
+    "ads.getSuggestions": {
+        (
+            params: Params.AdsGetSuggestionsParams,
+        ): Promise<Responses.AdsGetSuggestionsResponse>
+        (
+            params: Params.AdsGetSuggestionsParams,
+        ): Promise<Responses.AdsGetSuggestionsRegionsResponse>
+        (
+            params: Params.AdsGetSuggestionsParams,
+        ): Promise<Responses.AdsGetSuggestionsCitiesResponse>
+        (
+            params: Params.AdsGetSuggestionsParams,
+        ): Promise<Responses.AdsGetSuggestionsSchoolsResponse>
+    }
+    /**
+     * Returns a list of target groups.
+     *
+     * [Documentation](https://dev.vk.com/method/ads.getTargetGroups)
+     */
+    "ads.getTargetGroups": CallAPI<
+        Params.AdsGetTargetGroupsParams,
+        Responses.AdsGetTargetGroupsResponse
     >
     /**
-     * Use this method to edit only the reply markup of messages. On success, if the edited message is not an inline message, the edited [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned. Note that business messages that were not sent by the bot and do not contain an inline keyboard can only be edited within **48 hours** from the time they were sent.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#editmessagereplymarkup)
+     *
+     * [Documentation](https://dev.vk.com/method/ads.getTargetPixels)
      */
-    editMessageReplyMarkup: CallAPIWithOptionalParams<
-        Params.EditMessageReplyMarkupParams,
-        Objects.TelegramMessage | true
+    "ads.getTargetPixels": CallAPI<
+        Params.AdsGetTargetPixelsParams,
+        Responses.AdsGetTargetPixelsResponse
     >
     /**
-     * Use this method to stop a poll which was sent by the bot. On success, the stopped [Poll](https://core.telegram.org/bots/api#poll) is returned.
+     * Returns the size of targeting audience, and also recommended values for CPC and CPM.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#stoppoll)
+     * [Documentation](https://dev.vk.com/method/ads.getTargetingStats)
      */
-    stopPoll: CallAPI<Params.StopPollParams, Objects.TelegramPoll>
-    /**
-     * Use this method to approve a suggested post in a direct messages chat. The bot must have the 'can\_post\_messages' administrator right in the corresponding channel chat. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#approvesuggestedpost)
-     */
-    approveSuggestedPost: CallAPI<Params.ApproveSuggestedPostParams, true>
-    /**
-     * Use this method to decline a suggested post in a direct messages chat. The bot must have the 'can\_manage\_direct\_messages' administrator right in the corresponding channel chat. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#declinesuggestedpost)
-     */
-    declineSuggestedPost: CallAPI<Params.DeclineSuggestedPostParams, true>
-    /**
-     * Use this method to delete a message, including service messages, with the following limitations:
-     * \- A message can only be deleted if it was sent less than 48 hours ago.
-     * \- Service messages about a supergroup, channel, or forum topic creation can't be deleted.
-     * \- A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.
-     * \- Bots can delete outgoing messages in private chats, groups, and supergroups.
-     * \- Bots can delete incoming messages in private chats.
-     * \- Bots granted *can\_post\_messages* permissions can delete outgoing messages in channels.
-     * \- If the bot is an administrator of a group, it can delete any message there.
-     * \- If the bot has *can\_delete\_messages* administrator right in a supergroup or a channel, it can delete any message there.
-     * \- If the bot has *can\_manage\_direct\_messages* administrator right in a channel, it can delete any message in the corresponding direct messages chat.
-     * Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletemessage)
-     */
-    deleteMessage: CallAPI<Params.DeleteMessageParams, true>
-    /**
-     * Use this method to delete multiple messages simultaneously. If some of the specified messages can't be found, they are skipped. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletemessages)
-     */
-    deleteMessages: CallAPI<Params.DeleteMessagesParams, true>
-    /**
-     * Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS, or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendsticker)
-     */
-    sendSticker: CallAPI<Params.SendStickerParams, Objects.TelegramMessage>
-    /**
-     * Use this method to get a sticker set. On success, a [StickerSet](https://core.telegram.org/bots/api#stickerset) object is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getstickerset)
-     */
-    getStickerSet: CallAPI<
-        Params.GetStickerSetParams,
-        Objects.TelegramStickerSet
+    "ads.getTargetingStats": CallAPI<
+        Params.AdsGetTargetingStatsParams,
+        Objects.VKAdsTargStats
     >
     /**
-     * Use this method to get information about custom emoji stickers by their identifiers. Returns an Array of [Sticker](https://core.telegram.org/bots/api#sticker) objects.
+     * Returns URL to upload an ad photo to.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#getcustomemojistickers)
+     * [Documentation](https://dev.vk.com/method/ads.getUploadURL)
      */
-    getCustomEmojiStickers: CallAPI<
-        Params.GetCustomEmojiStickersParams,
-        Objects.TelegramSticker[]
+    "ads.getUploadURL": CallAPI<
+        Params.AdsGetUploadURLParams,
+        Responses.AdsGetUploadURLResponse
     >
     /**
-     * Use this method to upload a file with a sticker for later use in the [createNewStickerSet](https://core.telegram.org/bots/api#createnewstickerset), [addStickerToSet](https://core.telegram.org/bots/api#addstickertoset), or [replaceStickerInSet](https://core.telegram.org/bots/api#replacestickerinset) methods (the file can be used multiple times). Returns the uploaded [File](https://core.telegram.org/bots/api#file) on success.
+     * Returns URL to upload an ad video to.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#uploadstickerfile)
+     * [Documentation](https://dev.vk.com/method/ads.getVideoUploadURL)
      */
-    uploadStickerFile: CallAPI<
-        Params.UploadStickerFileParams,
-        Objects.TelegramFile
+    "ads.getVideoUploadURL": CallAPIWithoutParams<Responses.AdsGetVideoUploadURLResponse>
+    /**
+     * Imports a list of advertiser's contacts to count VK registered users against the target group.
+     *
+     * [Documentation](https://dev.vk.com/method/ads.importTargetContacts)
+     */
+    "ads.importTargetContacts": CallAPI<
+        Params.AdsImportTargetContactsParams,
+        Responses.AdsImportTargetContactsResponse
     >
     /**
-     * Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. Returns *True* on success.
+     * Removes managers and/or supervisors from advertising account.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#createnewstickerset)
+     * [Documentation](https://dev.vk.com/method/ads.removeOfficeUsers)
      */
-    createNewStickerSet: CallAPI<Params.CreateNewStickerSetParams, true>
-    /**
-     * Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#addstickertoset)
-     */
-    addStickerToSet: CallAPI<Params.AddStickerToSetParams, true>
-    /**
-     * Use this method to move a sticker in a set created by the bot to a specific position. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setstickerpositioninset)
-     */
-    setStickerPositionInSet: CallAPI<Params.SetStickerPositionInSetParams, true>
-    /**
-     * Use this method to delete a sticker from a set created by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#deletestickerfromset)
-     */
-    deleteStickerFromSet: CallAPI<Params.DeleteStickerFromSetParams, true>
-    /**
-     * Use this method to replace an existing sticker in a sticker set with a new one. The method is equivalent to calling [deleteStickerFromSet](https://core.telegram.org/bots/api#deletestickerfromset), then [addStickerToSet](https://core.telegram.org/bots/api#addstickertoset), then [setStickerPositionInSet](https://core.telegram.org/bots/api#setstickerpositioninset). Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#replacestickerinset)
-     */
-    replaceStickerInSet: CallAPI<Params.ReplaceStickerInSetParams, true>
-    /**
-     * Use this method to change the list of emoji assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setstickeremojilist)
-     */
-    setStickerEmojiList: CallAPI<Params.SetStickerEmojiListParams, true>
-    /**
-     * Use this method to change search keywords assigned to a regular or custom emoji sticker. The sticker must belong to a sticker set created by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setstickerkeywords)
-     */
-    setStickerKeywords: CallAPI<Params.SetStickerKeywordsParams, true>
-    /**
-     * Use this method to change the [mask position](https://core.telegram.org/bots/api#maskposition) of a mask sticker. The sticker must belong to a sticker set that was created by the bot. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setstickermaskposition)
-     */
-    setStickerMaskPosition: CallAPI<Params.SetStickerMaskPositionParams, true>
-    /**
-     * Use this method to set the title of a created sticker set. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setstickersettitle)
-     */
-    setStickerSetTitle: CallAPI<Params.SetStickerSetTitleParams, true>
-    /**
-     * Use this method to set the thumbnail of a regular or mask sticker set. The format of the thumbnail file must match the format of the stickers in the set. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setstickersetthumbnail)
-     */
-    setStickerSetThumbnail: CallAPI<Params.SetStickerSetThumbnailParams, true>
-    /**
-     * Use this method to set the thumbnail of a custom emoji sticker set. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setcustomemojistickersetthumbnail)
-     */
-    setCustomEmojiStickerSetThumbnail: CallAPI<
-        Params.SetCustomEmojiStickerSetThumbnailParams,
-        true
+    "ads.removeOfficeUsers": CallAPI<
+        Params.AdsRemoveOfficeUsersParams,
+        Responses.AdsRemoveOfficeUsersResponse
     >
     /**
-     * Use this method to delete a sticker set that was created by the bot. Returns *True* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#deletestickerset)
-     */
-    deleteStickerSet: CallAPI<Params.DeleteStickerSetParams, true>
-    /**
-     * Use this method to send answers to an inline query. On success, *True* is returned.
-     * No more than **50** results per query are allowed.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#answerinlinequery)
+     * [Documentation](https://dev.vk.com/method/ads.removeTargetContacts)
      */
-    answerInlineQuery: CallAPI<Params.AnswerInlineQueryParams, true>
-    /**
-     * Use this method to set the result of an interaction with a [Web App](https://core.telegram.org/bots/webapps) and send a corresponding message on behalf of the user to the chat from which the query originated. On success, a [SentWebAppMessage](https://core.telegram.org/bots/api#sentwebappmessage) object is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#answerwebappquery)
-     */
-    answerWebAppQuery: CallAPI<
-        Params.AnswerWebAppQueryParams,
-        Objects.TelegramSentWebAppMessage
+    "ads.removeTargetContacts": CallAPI<
+        Params.AdsRemoveTargetContactsParams,
+        Responses.AdsRemoveTargetContactsResponse
     >
     /**
-     * Stores a message that can be sent by a user of a Mini App. Returns a [PreparedInlineMessage](https://core.telegram.org/bots/api#preparedinlinemessage) object.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#savepreparedinlinemessage)
+     *
+     * [Documentation](https://dev.vk.com/method/ads.saveLookalikeRequestResult)
      */
-    savePreparedInlineMessage: CallAPI<
-        Params.SavePreparedInlineMessageParams,
-        Objects.TelegramPreparedInlineMessage
+    "ads.saveLookalikeRequestResult": CallAPI<
+        Params.AdsSaveLookalikeRequestResultParams,
+        Responses.AdsSaveLookalikeRequestResultResponse
     >
     /**
-     * Use this method to send invoices. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#sendinvoice)
-     */
-    sendInvoice: CallAPI<Params.SendInvoiceParams, Objects.TelegramMessage>
-    /**
-     * Use this method to create a link for an invoice. Returns the created invoice link as *String* on success.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#createinvoicelink)
+     * [Documentation](https://dev.vk.com/method/ads.shareTargetGroup)
      */
-    createInvoiceLink: CallAPI<Params.CreateInvoiceLinkParams, string>
-    /**
-     * If you sent an invoice requesting a shipping address and the parameter *is\_flexible* was specified, the Bot API will send an [Update](https://core.telegram.org/bots/api#update) with a *shipping\_query* field to the bot. Use this method to reply to shipping queries. On success, *True* is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#answershippingquery)
-     */
-    answerShippingQuery: CallAPI<Params.AnswerShippingQueryParams, true>
-    /**
-     * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an [Update](https://core.telegram.org/bots/api#update) with the field *pre\_checkout\_query*. Use this method to respond to such pre-checkout queries. On success, *True* is returned. **Note:** The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#answerprecheckoutquery)
-     */
-    answerPreCheckoutQuery: CallAPI<Params.AnswerPreCheckoutQueryParams, true>
-    /**
-     * A method to get the current Telegram Stars balance of the bot. Requires no parameters. On success, returns a [StarAmount](https://core.telegram.org/bots/api#staramount) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getmystarbalance)
-     */
-    getMyStarBalance: CallAPIWithoutParams<Objects.TelegramStarAmount>
-    /**
-     * Returns the bot's Telegram Star transactions in chronological order. On success, returns a [StarTransactions](https://core.telegram.org/bots/api#startransactions) object.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getstartransactions)
-     */
-    getStarTransactions: CallAPIWithOptionalParams<
-        Params.GetStarTransactionsParams,
-        Objects.TelegramStarTransactions
+    "ads.shareTargetGroup": CallAPI<
+        Params.AdsShareTargetGroupParams,
+        Responses.AdsShareTargetGroupResponse
     >
     /**
-     * Refunds a successful payment in [Telegram Stars](https://t.me/BotNews/90). Returns *True* on success.
+     * Edits ads.
      *
-     * [Documentation](https://core.telegram.org/bots/api/#refundstarpayment)
+     * [Documentation](https://dev.vk.com/method/ads.updateAds)
      */
-    refundStarPayment: CallAPI<Params.RefundStarPaymentParams, true>
-    /**
-     * Allows the bot to cancel or re-enable extension of a subscription paid in Telegram Stars. Returns *True* on success.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#edituserstarsubscription)
-     */
-    editUserStarSubscription: CallAPI<
-        Params.EditUserStarSubscriptionParams,
-        true
+    "ads.updateAds": CallAPI<
+        Params.AdsUpdateAdsParams,
+        Responses.AdsUpdateAdsResponse
     >
     /**
-     * Informs a user that some of the Telegram Passport elements they provided contains errors. The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change). Returns *True* on success.
+     * Edits advertising campaigns.
      *
-     * Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason. For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply some details in the error message to make sure the user knows how to correct the issues.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setpassportdataerrors)
+     * [Documentation](https://dev.vk.com/method/ads.updateCampaigns)
      */
-    setPassportDataErrors: CallAPI<Params.SetPassportDataErrorsParams, true>
-    /**
-     * Use this method to send a game. On success, the sent [Message](https://core.telegram.org/bots/api#message) is returned.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#sendgame)
-     */
-    sendGame: CallAPI<Params.SendGameParams, Objects.TelegramMessage>
-    /**
-     * Use this method to set the score of the specified user in a game message. On success, if the message is not an inline message, the [Message](https://core.telegram.org/bots/api#message) is returned, otherwise *True* is returned. Returns an error, if the new score is not greater than the user's current score in the chat and *force* is *False*.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#setgamescore)
-     */
-    setGameScore: CallAPI<
-        Params.SetGameScoreParams,
-        Objects.TelegramMessage | true
+    "ads.updateCampaigns": CallAPI<
+        Params.AdsUpdateCampaignsParams,
+        Responses.AdsUpdateCampaignsResponse
     >
     /**
-     * Use this method to get data for high score tables. Will return the score of the specified user and several of their neighbors in a game. Returns an Array of [GameHighScore](https://core.telegram.org/bots/api#gamehighscore) objects.
+     * Edits clients of an advertising agency.
      *
-     * > This method will currently return scores for the target user, plus two of their closest neighbors on each side. Will also return the top three users if the user and their neighbors are not among them. Please note that this behavior is subject to change.
-     *
-     * [Documentation](https://core.telegram.org/bots/api/#getgamehighscores)
+     * [Documentation](https://dev.vk.com/method/ads.updateClients)
      */
-    getGameHighScores: CallAPI<
-        Params.GetGameHighScoresParams,
-        Objects.TelegramGameHighScore[]
+    "ads.updateClients": CallAPI<
+        Params.AdsUpdateClientsParams,
+        Responses.AdsUpdateClientsResponse
+    >
+    /**
+     * Adds managers and/or supervisors to advertising account.
+     *
+     * [Documentation](https://dev.vk.com/method/ads.updateOfficeUsers)
+     */
+    "ads.updateOfficeUsers": CallAPI<
+        Params.AdsUpdateOfficeUsersParams,
+        Responses.AdsUpdateOfficeUsersResponse
+    >
+    /**
+     * Edits a retarget group.
+     *
+     * [Documentation](https://dev.vk.com/method/ads.updateTargetGroup)
+     */
+    "ads.updateTargetGroup": CallAPI<
+        Params.AdsUpdateTargetGroupParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/ads.updateTargetPixel)
+     */
+    "ads.updateTargetPixel": CallAPI<
+        Params.AdsUpdateTargetPixelParams,
+        Responses.BaseUndefinedResponse
+    >
+    /**
+     * Returns a URL for uploading a photo to the community collection for community app widgets
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.getAppImageUploadServer)
+     */
+    "appWidgets.getAppImageUploadServer": CallAPI<
+        Params.AppWidgetsGetAppImageUploadServerParams,
+        Responses.AppWidgetsGetAppImageUploadServerResponse
+    >
+    /**
+     * Returns an app collection of images for community app widgets
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.getAppImages)
+     */
+    "appWidgets.getAppImages": CallAPIWithOptionalParams<
+        Params.AppWidgetsGetAppImagesParams,
+        Objects.VKAppWidgetsPhotos
+    >
+    /**
+     * Returns a URL for uploading a photo to the community collection for community app widgets
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.getGroupImageUploadServer)
+     */
+    "appWidgets.getGroupImageUploadServer": CallAPI<
+        Params.AppWidgetsGetGroupImageUploadServerParams,
+        Responses.AppWidgetsGetGroupImageUploadServerResponse
+    >
+    /**
+     * Returns a community collection of images for community app widgets
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.getGroupImages)
+     */
+    "appWidgets.getGroupImages": CallAPIWithOptionalParams<
+        Params.AppWidgetsGetGroupImagesParams,
+        Objects.VKAppWidgetsPhotos
+    >
+    /**
+     * Returns an image for community app widgets by its ID
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.getImagesById)
+     */
+    "appWidgets.getImagesById": CallAPI<
+        Params.AppWidgetsGetImagesByIdParams,
+        Responses.AppWidgetsGetImagesByIdResponse
+    >
+    /**
+     * Allows to save image into app collection for community app widgets
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.saveAppImage)
+     */
+    "appWidgets.saveAppImage": CallAPI<
+        Params.AppWidgetsSaveAppImageParams,
+        Objects.VKAppWidgetsPhoto
+    >
+    /**
+     * Allows to save image into community collection for community app widgets
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.saveGroupImage)
+     */
+    "appWidgets.saveGroupImage": CallAPI<
+        Params.AppWidgetsSaveGroupImageParams,
+        Objects.VKAppWidgetsPhoto
+    >
+    /**
+     * Allows to update community app widget
+     *
+     * [Documentation](https://dev.vk.com/method/appWidgets.update)
+     */
+    "appWidgets.update": CallAPI<
+        Params.AppWidgetsUpdateParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.addSnippet)
+     */
+    "apps.addSnippet": CallAPIWithOptionalParams<
+        Params.AppsAddSnippetParams,
+        Responses.AppsAddSnippetResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.addUsersToTestingGroup)
+     */
+    "apps.addUsersToTestingGroup": CallAPI<
+        Params.AppsAddUsersToTestingGroupParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Deletes all request notifications from the current app.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.deleteAppRequests)
+     */
+    "apps.deleteAppRequests": CallAPIWithoutParams<Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.deleteSnippet)
+     */
+    "apps.deleteSnippet": CallAPIWithOptionalParams<
+        Params.AppsDeleteSnippetParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns applications data.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.get)
+     */
+    "apps.get": CallAPIWithOptionalParams<
+        Params.AppsGetParams,
+        Responses.AppsGetResponse
+    >
+    /**
+     * Returns a list of applications (apps) available to users in the App Catalog.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getCatalog)
+     */
+    "apps.getCatalog": CallAPIWithOptionalParams<
+        Params.AppsGetCatalogParams,
+        Objects.VKAppsCatalogList
+    >
+    /**
+     * Creates friends list for requests and invites in current app.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getFriendsList)
+     */
+    "apps.getFriendsList": {
+        (
+            params: Params.AppsGetFriendsListParams,
+        ): Promise<Responses.AppsGetFriendsListResponse>
+        (
+            params: Params.AppsGetFriendsListParams,
+        ): Promise<Responses.AppsGetFriendsListExtendedResponse>
+    }
+    /**
+     * Returns players rating in the game.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getLeaderboard)
+     */
+    "apps.getLeaderboard": {
+        (
+            params: Params.AppsGetLeaderboardParams,
+        ): Promise<Responses.AppsGetLeaderboardResponse>
+        (
+            params: Params.AppsGetLeaderboardParams,
+        ): Promise<Responses.AppsGetLeaderboardExtendedResponse>
+    }
+    /**
+     * Returns policies and terms given to a mini app.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getMiniAppPolicies)
+     */
+    "apps.getMiniAppPolicies": CallAPI<
+        Params.AppsGetMiniAppPoliciesParams,
+        Responses.AppsGetMiniAppPoliciesResponse
+    >
+    /**
+     * Returns scopes for auth
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getScopes)
+     */
+    "apps.getScopes": CallAPIWithOptionalParams<
+        Params.AppsGetScopesParams,
+        Responses.AppsGetScopesResponse
+    >
+    /**
+     * Returns user score in app
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getScore)
+     */
+    "apps.getScore": CallAPIWithOptionalParams<
+        Params.AppsGetScoreParams,
+        Responses.AppsGetScoreResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getSnippets)
+     */
+    "apps.getSnippets": CallAPIWithoutParams<Responses.AppsGetSnippetsResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.getTestingGroups)
+     */
+    "apps.getTestingGroups": CallAPIWithOptionalParams<
+        Params.AppsGetTestingGroupsParams,
+        Responses.AppsGetTestingGroupsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.isNotificationsAllowed)
+     */
+    "apps.isNotificationsAllowed": CallAPIWithOptionalParams<
+        Params.AppsIsNotificationsAllowedParams,
+        Responses.AppsIsNotificationsAllowedResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.promoHasActiveGift)
+     */
+    "apps.promoHasActiveGift": CallAPI<
+        Params.AppsPromoHasActiveGiftParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.promoUseGift)
+     */
+    "apps.promoUseGift": CallAPI<
+        Params.AppsPromoUseGiftParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.removeTestingGroup)
+     */
+    "apps.removeTestingGroup": CallAPI<
+        Params.AppsRemoveTestingGroupParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.removeUsersFromTestingGroups)
+     */
+    "apps.removeUsersFromTestingGroups": CallAPI<
+        Params.AppsRemoveUsersFromTestingGroupsParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Sends a request to another user in an app that uses VK authorization.
+     *
+     * [Documentation](https://dev.vk.com/method/apps.sendRequest)
+     */
+    "apps.sendRequest": CallAPI<
+        Params.AppsSendRequestParams,
+        Responses.AppsSendRequestResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/apps.updateMetaForTestingGroup)
+     */
+    "apps.updateMetaForTestingGroup": CallAPI<
+        Params.AppsUpdateMetaForTestingGroupParams,
+        Responses.AppsCreatedGroupResponse
+    >
+    /**
+     * Allows to restore account access using a code received via SMS. " This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. "
+     *
+     * [Documentation](https://dev.vk.com/method/auth.restore)
+     */
+    "auth.restore": CallAPI<
+        Params.AuthRestoreParams,
+        Responses.AuthRestoreResponse
+    >
+    /**
+     * Creates a new topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.addTopic)
+     */
+    "board.addTopic": CallAPI<
+        Params.BoardAddTopicParams,
+        Responses.BoardAddTopicResponse
+    >
+    /**
+     * Closes a topic on a community's discussion board so that comments cannot be posted.
+     *
+     * [Documentation](https://dev.vk.com/method/board.closeTopic)
+     */
+    "board.closeTopic": CallAPI<
+        Params.BoardCloseTopicParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Adds a comment on a topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.createComment)
+     */
+    "board.createComment": CallAPI<
+        Params.BoardCreateCommentParams,
+        Responses.BoardCreateCommentResponse
+    >
+    /**
+     * Deletes a comment on a topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.deleteComment)
+     */
+    "board.deleteComment": CallAPI<
+        Params.BoardDeleteCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a topic from a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.deleteTopic)
+     */
+    "board.deleteTopic": CallAPI<
+        Params.BoardDeleteTopicParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits a comment on a topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.editComment)
+     */
+    "board.editComment": CallAPI<
+        Params.BoardEditCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits the title of a topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.editTopic)
+     */
+    "board.editTopic": CallAPI<
+        Params.BoardEditTopicParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Pins a topic (fixes its place) to the top of a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.fixTopic)
+     */
+    "board.fixTopic": CallAPI<
+        Params.BoardFixTopicParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of comments on a topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.getComments)
+     */
+    "board.getComments": {
+        (
+            params: Params.BoardGetCommentsParams,
+        ): Promise<Responses.BoardGetCommentsResponse>
+        (
+            params: Params.BoardGetCommentsParams,
+        ): Promise<Responses.BoardGetCommentsExtendedResponse>
+    }
+    /**
+     * Returns a list of topics on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.getTopics)
+     */
+    "board.getTopics": {
+        (
+            params: Params.BoardGetTopicsParams,
+        ): Promise<Responses.BoardGetTopicsResponse>
+        (
+            params: Params.BoardGetTopicsParams,
+        ): Promise<Responses.BoardGetTopicsExtendedResponse>
+    }
+    /**
+     * Re-opens a previously closed topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.openTopic)
+     */
+    "board.openTopic": CallAPI<
+        Params.BoardOpenTopicParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a comment deleted from a topic on a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.restoreComment)
+     */
+    "board.restoreComment": CallAPI<
+        Params.BoardRestoreCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Unpins a pinned topic from the top of a community's discussion board.
+     *
+     * [Documentation](https://dev.vk.com/method/board.unfixTopic)
+     */
+    "board.unfixTopic": CallAPI<
+        Params.BoardUnfixTopicParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.addCompanyGroupsMembers)
+     */
+    "bugtracker.addCompanyGroupsMembers": CallAPI<
+        Params.BugtrackerAddCompanyGroupsMembersParams,
+        Responses.BugtrackerAddCompanyGroupsMembersResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.addCompanyMembers)
+     */
+    "bugtracker.addCompanyMembers": CallAPI<
+        Params.BugtrackerAddCompanyMembersParams,
+        Responses.BugtrackerAddCompanyMembersResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.changeBugreportStatus)
+     */
+    "bugtracker.changeBugreportStatus": CallAPI<
+        Params.BugtrackerChangeBugreportStatusParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Creates the comment to bugreport
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.createComment)
+     */
+    "bugtracker.createComment": CallAPI<
+        Params.BugtrackerCreateCommentParams,
+        Responses.BugtrackerCreateCommentResponse
+    >
+    /**
+     * Returns extended bugreport data
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.getBugreportById)
+     */
+    "bugtracker.getBugreportById": CallAPI<
+        Params.BugtrackerGetBugreportByIdParams,
+        Responses.BugtrackerGetBugreportByIdResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.getCompanyGroupMembers)
+     */
+    "bugtracker.getCompanyGroupMembers": CallAPI<
+        Params.BugtrackerGetCompanyGroupMembersParams,
+        Responses.BugtrackerGetCompanyGroupMembersResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.getCompanyMembers)
+     */
+    "bugtracker.getCompanyMembers": CallAPI<
+        Params.BugtrackerGetCompanyMembersParams,
+        Responses.BugtrackerGetCompanyMembersResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.getDownloadVersionUrl)
+     */
+    "bugtracker.getDownloadVersionUrl": CallAPI<
+        Params.BugtrackerGetDownloadVersionUrlParams,
+        Responses.BugtrackerGetDownloadVersionUrlResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.getProductBuildUploadServer)
+     */
+    "bugtracker.getProductBuildUploadServer": CallAPI<
+        Params.BugtrackerGetProductBuildUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.removeCompanyGroupMember)
+     */
+    "bugtracker.removeCompanyGroupMember": CallAPI<
+        Params.BugtrackerRemoveCompanyGroupMemberParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.removeCompanyMember)
+     */
+    "bugtracker.removeCompanyMember": CallAPI<
+        Params.BugtrackerRemoveCompanyMemberParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.saveProductVersion)
+     */
+    "bugtracker.saveProductVersion": CallAPI<
+        Params.BugtrackerSaveProductVersionParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.setCompanyMemberRole)
+     */
+    "bugtracker.setCompanyMemberRole": CallAPI<
+        Params.BugtrackerSetCompanyMemberRoleParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/bugtracker.setProductIsOver)
+     */
+    "bugtracker.setProductIsOver": CallAPI<
+        Params.BugtrackerSetProductIsOverParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/calls.forceFinish)
+     */
+    "calls.forceFinish": CallAPI<
+        Params.CallsForceFinishParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/calls.start)
+     */
+    "calls.start": CallAPIWithOptionalParams<
+        Params.CallsStartParams,
+        Responses.CallsStartResponse
+    >
+    /**
+     * Returns list of chairs on a specified faculty.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getChairs)
+     */
+    "database.getChairs": CallAPI<
+        Params.DatabaseGetChairsParams,
+        Responses.DatabaseGetChairsResponse
+    >
+    /**
+     * Returns a list of cities.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getCities)
+     */
+    "database.getCities": CallAPIWithOptionalParams<
+        Params.DatabaseGetCitiesParams,
+        Responses.DatabaseGetCitiesResponse
+    >
+    /**
+     * Returns information about cities by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getCitiesById)
+     */
+    "database.getCitiesById": CallAPIWithOptionalParams<
+        Params.DatabaseGetCitiesByIdParams,
+        Responses.DatabaseGetCitiesByIdResponse
+    >
+    /**
+     * Returns a list of countries.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getCountries)
+     */
+    "database.getCountries": CallAPIWithOptionalParams<
+        Params.DatabaseGetCountriesParams,
+        Responses.DatabaseGetCountriesResponse
+    >
+    /**
+     * Returns information about countries by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getCountriesById)
+     */
+    "database.getCountriesById": CallAPIWithOptionalParams<
+        Params.DatabaseGetCountriesByIdParams,
+        Responses.DatabaseGetCountriesByIdResponse
+    >
+    /**
+     * Returns a list of faculties (i.e., university departments).
+     *
+     * [Documentation](https://dev.vk.com/method/database.getFaculties)
+     */
+    "database.getFaculties": CallAPI<
+        Params.DatabaseGetFacultiesParams,
+        Responses.DatabaseGetFacultiesResponse
+    >
+    /**
+     * Get metro stations by city
+     *
+     * [Documentation](https://dev.vk.com/method/database.getMetroStations)
+     */
+    "database.getMetroStations": CallAPI<
+        Params.DatabaseGetMetroStationsParams,
+        Responses.DatabaseGetMetroStationsResponse
+    >
+    /**
+     * Get metro station by his id
+     *
+     * [Documentation](https://dev.vk.com/method/database.getMetroStationsById)
+     */
+    "database.getMetroStationsById": CallAPIWithOptionalParams<
+        Params.DatabaseGetMetroStationsByIdParams,
+        Responses.DatabaseGetMetroStationsByIdResponse
+    >
+    /**
+     * Returns a list of regions.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getRegions)
+     */
+    "database.getRegions": CallAPIWithOptionalParams<
+        Params.DatabaseGetRegionsParams,
+        Responses.DatabaseGetRegionsResponse
+    >
+    /**
+     * Returns a list of school classes specified for the country.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getSchoolClasses)
+     */
+    "database.getSchoolClasses": CallAPIWithOptionalParams<
+        Params.DatabaseGetSchoolClassesParams,
+        Responses.DatabaseGetSchoolClassesNewResponse
+    >
+    /**
+     * Returns a list of schools.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getSchools)
+     */
+    "database.getSchools": CallAPI<
+        Params.DatabaseGetSchoolsParams,
+        Responses.DatabaseGetSchoolsResponse
+    >
+    /**
+     * Returns a list of higher education institutions.
+     *
+     * [Documentation](https://dev.vk.com/method/database.getUniversities)
+     */
+    "database.getUniversities": CallAPIWithOptionalParams<
+        Params.DatabaseGetUniversitiesParams,
+        Responses.DatabaseGetUniversitiesResponse
+    >
+    /**
+     * Copies a document to a user's or community's document list.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.add)
+     */
+    "docs.add": CallAPI<Params.DocsAddParams, Responses.DocsAddResponse>
+    /**
+     * Deletes a user or community document.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.delete)
+     */
+    "docs.delete": CallAPI<Params.DocsDeleteParams, Responses.BaseOkResponse>
+    /**
+     * Edits a document.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.edit)
+     */
+    "docs.edit": CallAPI<Params.DocsEditParams, Responses.BaseOkResponse>
+    /**
+     * Returns detailed information about user or community documents.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.get)
+     */
+    "docs.get": CallAPIWithOptionalParams<
+        Params.DocsGetParams,
+        Responses.DocsGetResponse
+    >
+    /**
+     * Returns information about documents by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.getById)
+     */
+    "docs.getById": CallAPI<
+        Params.DocsGetByIdParams,
+        Responses.DocsGetByIdResponse
+    >
+    /**
+     * Returns the server address for document upload.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.getMessagesUploadServer)
+     */
+    "docs.getMessagesUploadServer": CallAPIWithOptionalParams<
+        Params.DocsGetMessagesUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns documents types available for current user.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.getTypes)
+     */
+    "docs.getTypes": CallAPIWithOptionalParams<
+        Params.DocsGetTypesParams,
+        Responses.DocsGetTypesResponse
+    >
+    /**
+     * Returns the server address for document upload.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.getUploadServer)
+     */
+    "docs.getUploadServer": CallAPIWithOptionalParams<
+        Params.DocsGetUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns the server address for document upload onto a user's or community's wall.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.getWallUploadServer)
+     */
+    "docs.getWallUploadServer": CallAPIWithOptionalParams<
+        Params.DocsGetWallUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/docs.restore)
+     */
+    "docs.restore": CallAPI<Params.DocsRestoreParams, Responses.BaseOkResponse>
+    /**
+     * Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
+     *
+     * [Documentation](https://dev.vk.com/method/docs.save)
+     */
+    "docs.save": CallAPI<Params.DocsSaveParams, Responses.DocsSaveResponse>
+    /**
+     * Returns a list of documents matching the search criteria.
+     *
+     * [Documentation](https://dev.vk.com/method/docs.search)
+     */
+    "docs.search": CallAPIWithOptionalParams<
+        Params.DocsSearchParams,
+        Responses.DocsSearchResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/donut.getFriends)
+     */
+    "donut.getFriends": CallAPI<
+        Params.DonutGetFriendsParams,
+        Responses.GroupsGetMembersFieldsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/donut.getSubscription)
+     */
+    "donut.getSubscription": CallAPI<
+        Params.DonutGetSubscriptionParams,
+        Objects.VKDonutDonatorSubscriptionInfo
+    >
+    /**
+     * Returns a list of user's VK Donut subscriptions.
+     *
+     * [Documentation](https://dev.vk.com/method/donut.getSubscriptions)
+     */
+    "donut.getSubscriptions": CallAPIWithOptionalParams<
+        Params.DonutGetSubscriptionsParams,
+        Responses.DonutGetSubscriptionsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/donut.isDon)
+     */
+    "donut.isDon": CallAPI<Params.DonutIsDonParams, Objects.VKBaseBoolInt>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/downloadedGames.getPaidStatus)
+     */
+    "downloadedGames.getPaidStatus": CallAPIWithOptionalParams<
+        Params.DownloadedGamesGetPaidStatusParams,
+        Responses.DownloadedGamesPaidStatusResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/execute)
+     */
+    execute: CallAPIWithoutParams<Responses.BaseUndefinedResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addArticle)
+     */
+    "fave.addArticle": CallAPI<
+        Params.FaveAddArticleParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Adds a link to user faves.
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addLink)
+     */
+    "fave.addLink": CallAPI<Params.FaveAddLinkParams, Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addPage)
+     */
+    "fave.addPage": CallAPIWithOptionalParams<
+        Params.FaveAddPageParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addPost)
+     */
+    "fave.addPost": CallAPI<Params.FaveAddPostParams, Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addProduct)
+     */
+    "fave.addProduct": CallAPI<
+        Params.FaveAddProductParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addTag)
+     */
+    "fave.addTag": CallAPIWithOptionalParams<
+        Params.FaveAddTagParams,
+        Objects.VKFaveTag
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.addVideo)
+     */
+    "fave.addVideo": CallAPI<
+        Params.FaveAddVideoParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.editTag)
+     */
+    "fave.editTag": CallAPI<Params.FaveEditTagParams, Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.get)
+     */
+    "fave.get": {
+        (params: Params.FaveGetParams): Promise<Responses.FaveGetResponse>
+        (
+            params: Params.FaveGetParams,
+        ): Promise<Responses.FaveGetExtendedResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.getPages)
+     */
+    "fave.getPages": CallAPIWithOptionalParams<
+        Params.FaveGetPagesParams,
+        Responses.FaveGetPagesResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.getTags)
+     */
+    "fave.getTags": CallAPIWithoutParams<Responses.FaveGetTagsResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.markSeen)
+     */
+    "fave.markSeen": CallAPIWithoutParams<Objects.VKBaseBoolInt>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removeArticle)
+     */
+    "fave.removeArticle": CallAPI<
+        Params.FaveRemoveArticleParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Removes link from the user's faves.
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removeLink)
+     */
+    "fave.removeLink": CallAPIWithOptionalParams<
+        Params.FaveRemoveLinkParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removePage)
+     */
+    "fave.removePage": CallAPIWithOptionalParams<
+        Params.FaveRemovePageParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removePost)
+     */
+    "fave.removePost": CallAPI<
+        Params.FaveRemovePostParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removeProduct)
+     */
+    "fave.removeProduct": CallAPI<
+        Params.FaveRemoveProductParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removeTag)
+     */
+    "fave.removeTag": CallAPI<
+        Params.FaveRemoveTagParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.removeVideo)
+     */
+    "fave.removeVideo": CallAPI<
+        Params.FaveRemoveVideoParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.reorderTags)
+     */
+    "fave.reorderTags": CallAPI<
+        Params.FaveReorderTagsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.setPageTags)
+     */
+    "fave.setPageTags": CallAPIWithOptionalParams<
+        Params.FaveSetPageTagsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.setTags)
+     */
+    "fave.setTags": CallAPIWithOptionalParams<
+        Params.FaveSetTagsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/fave.trackPageInteraction)
+     */
+    "fave.trackPageInteraction": CallAPIWithOptionalParams<
+        Params.FaveTrackPageInteractionParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Approves or creates a friend request.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.add)
+     */
+    "friends.add": CallAPIWithOptionalParams<
+        Params.FriendsAddParams,
+        Responses.FriendsAddResponse
+    >
+    /**
+     * Creates a new friend list for the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.addList)
+     */
+    "friends.addList": CallAPI<
+        Params.FriendsAddListParams,
+        Responses.FriendsAddListResponse
+    >
+    /**
+     * Checks the current user's friendship status with other specified users.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.areFriends)
+     */
+    "friends.areFriends": {
+        (
+            params: Params.FriendsAreFriendsParams,
+        ): Promise<Responses.FriendsAreFriendsResponse>
+        (
+            params: Params.FriendsAreFriendsParams,
+        ): Promise<Responses.FriendsAreFriendsExtendedResponse>
+    }
+    /**
+     * Declines a friend request or deletes a user from the current user's friend list.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.delete)
+     */
+    "friends.delete": CallAPIWithOptionalParams<
+        Params.FriendsDeleteParams,
+        Responses.FriendsDeleteResponse
+    >
+    /**
+     * Marks all incoming friend requests as viewed.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.deleteAllRequests)
+     */
+    "friends.deleteAllRequests": CallAPIWithoutParams<Responses.BaseOkResponse>
+    /**
+     * Deletes a friend list of the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.deleteList)
+     */
+    "friends.deleteList": CallAPI<
+        Params.FriendsDeleteListParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits the friend lists of the selected user.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.edit)
+     */
+    "friends.edit": CallAPI<Params.FriendsEditParams, Responses.BaseOkResponse>
+    /**
+     * Edits a friend list of the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.editList)
+     */
+    "friends.editList": CallAPI<
+        Params.FriendsEditListParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of user IDs or detailed information about a user's friends.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.get)
+     */
+    "friends.get": {
+        (params: Params.FriendsGetParams): Promise<Responses.FriendsGetResponse>
+        (
+            params: Params.FriendsGetParams,
+        ): Promise<Responses.FriendsGetFieldsResponse>
+    }
+    /**
+     * Returns a list of IDs of the current user's friends who installed the application.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getAppUsers)
+     */
+    "friends.getAppUsers": CallAPIWithoutParams<Responses.FriendsGetAppUsersResponse>
+    /**
+     * Returns a list of the user's friend lists.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getLists)
+     */
+    "friends.getLists": CallAPIWithOptionalParams<
+        Params.FriendsGetListsParams,
+        Responses.FriendsGetListsResponse
+    >
+    /**
+     * Returns a list of user IDs of the mutual friends of two users.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getMutual)
+     */
+    "friends.getMutual": {
+        (
+            params: Params.FriendsGetMutualParams,
+        ): Promise<Responses.FriendsGetMutualResponse>
+        (
+            params: Params.FriendsGetMutualParams,
+        ): Promise<Responses.FriendsGetMutualTargetUidsResponse>
+        (
+            params: Params.FriendsGetMutualParams,
+        ): Promise<Objects.VKFriendsMutualFriend>
+    }
+    /**
+     * Returns a list of user IDs of a user's friends who are online.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getOnline)
+     */
+    "friends.getOnline": {
+        (
+            params: Params.FriendsGetOnlineParams,
+        ): Promise<Responses.FriendsGetOnlineResponse>
+        (
+            params: Params.FriendsGetOnlineParams,
+        ): Promise<Responses.FriendsGetOnlineOnlineMobileResponse>
+        (
+            params: Params.FriendsGetOnlineParams,
+        ): Promise<Objects.VKFriendsOnlineUsers>
+        (
+            params: Params.FriendsGetOnlineParams,
+        ): Promise<Objects.VKFriendsOnlineUsersWithMobile>
+    }
+    /**
+     * Returns a list of user IDs of the current user's recently added friends.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getRecent)
+     */
+    "friends.getRecent": CallAPIWithOptionalParams<
+        Params.FriendsGetRecentParams,
+        Responses.FriendsGetRecentResponse
+    >
+    /**
+     * Returns information about the current user's incoming and outgoing friend requests.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getRequests)
+     */
+    "friends.getRequests": {
+        (
+            params: Params.FriendsGetRequestsParams,
+        ): Promise<Responses.FriendsGetRequestsResponse>
+        (
+            params: Params.FriendsGetRequestsParams,
+        ): Promise<Responses.FriendsGetRequestsNeedMutualResponse>
+        (
+            params: Params.FriendsGetRequestsParams,
+        ): Promise<Responses.FriendsGetRequestsExtendedResponse>
+    }
+    /**
+     * Returns a list of profiles of users whom the current user may know.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.getSuggestions)
+     */
+    "friends.getSuggestions": CallAPIWithOptionalParams<
+        Params.FriendsGetSuggestionsParams,
+        Responses.FriendsGetSuggestionsResponse
+    >
+    /**
+     * Returns a list of friends matching the search criteria.
+     *
+     * [Documentation](https://dev.vk.com/method/friends.search)
+     */
+    "friends.search": CallAPIWithOptionalParams<
+        Params.FriendsSearchParams,
+        Responses.FriendsSearchResponse
+    >
+    /**
+     * Returns a list of user gifts.
+     *
+     * [Documentation](https://dev.vk.com/method/gifts.get)
+     */
+    "gifts.get": CallAPIWithOptionalParams<
+        Params.GiftsGetParams,
+        Responses.GiftsGetResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.addAddress)
+     */
+    "groups.addAddress": CallAPI<
+        Params.GroupsAddAddressParams,
+        Objects.VKGroupsAddress
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.addCallbackServer)
+     */
+    "groups.addCallbackServer": CallAPI<
+        Params.GroupsAddCallbackServerParams,
+        Responses.GroupsAddCallbackServerResponse
+    >
+    /**
+     * Allows to add a link to the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.addLink)
+     */
+    "groups.addLink": CallAPI<
+        Params.GroupsAddLinkParams,
+        Objects.VKGroupsLinksItem
+    >
+    /**
+     * Allows to approve join request to the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.approveRequest)
+     */
+    "groups.approveRequest": CallAPI<
+        Params.GroupsApproveRequestParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.ban)
+     */
+    "groups.ban": CallAPI<Params.GroupsBanParams, Responses.BaseOkResponse>
+    /**
+     * Creates a new community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.create)
+     */
+    "groups.create": CallAPI<
+        Params.GroupsCreateParams,
+        Objects.VKGroupsGroupFull
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.deleteAddress)
+     */
+    "groups.deleteAddress": CallAPI<
+        Params.GroupsDeleteAddressParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.deleteCallbackServer)
+     */
+    "groups.deleteCallbackServer": CallAPI<
+        Params.GroupsDeleteCallbackServerParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to delete a link from the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.deleteLink)
+     */
+    "groups.deleteLink": CallAPI<
+        Params.GroupsDeleteLinkParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.disableOnline)
+     */
+    "groups.disableOnline": CallAPI<
+        Params.GroupsDisableOnlineParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits a community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.edit)
+     */
+    "groups.edit": CallAPI<Params.GroupsEditParams, Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.editAddress)
+     */
+    "groups.editAddress": CallAPI<
+        Params.GroupsEditAddressParams,
+        Objects.VKGroupsAddress
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.editCallbackServer)
+     */
+    "groups.editCallbackServer": CallAPI<
+        Params.GroupsEditCallbackServerParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to edit a link in the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.editLink)
+     */
+    "groups.editLink": CallAPI<
+        Params.GroupsEditLinkParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to add, remove or edit the community manager.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.editManager)
+     */
+    "groups.editManager": CallAPI<
+        Params.GroupsEditManagerParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.enableOnline)
+     */
+    "groups.enableOnline": CallAPI<
+        Params.GroupsEnableOnlineParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of the communities to which a user belongs.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.get)
+     */
+    "groups.get": {
+        (params: Params.GroupsGetParams): Promise<Responses.GroupsGetResponse>
+        (
+            params: Params.GroupsGetParams,
+        ): Promise<Responses.GroupsGetObjectExtendedResponse>
+    }
+    /**
+     * Returns a list of community addresses.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getAddresses)
+     */
+    "groups.getAddresses": CallAPI<
+        Params.GroupsGetAddressesParams,
+        Responses.GroupsGetAddressesResponse
+    >
+    /**
+     * Returns a list of users on a community blacklist.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getBanned)
+     */
+    "groups.getBanned": CallAPI<
+        Params.GroupsGetBannedParams,
+        Responses.GroupsGetBannedResponse
+    >
+    /**
+     * Returns information about communities by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getById)
+     */
+    "groups.getById": CallAPIWithOptionalParams<
+        Params.GroupsGetByIdParams,
+        Responses.GroupsGetByIdObjectResponse
+    >
+    /**
+     * Returns Callback API confirmation code for the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getCallbackConfirmationCode)
+     */
+    "groups.getCallbackConfirmationCode": CallAPI<
+        Params.GroupsGetCallbackConfirmationCodeParams,
+        Responses.GroupsGetCallbackConfirmationCodeResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getCallbackServers)
+     */
+    "groups.getCallbackServers": CallAPI<
+        Params.GroupsGetCallbackServersParams,
+        Responses.GroupsGetCallbackServersResponse
+    >
+    /**
+     * Returns [vk.com/dev/callback_api|Callback API] notifications settings.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getCallbackSettings)
+     */
+    "groups.getCallbackSettings": CallAPI<
+        Params.GroupsGetCallbackSettingsParams,
+        Objects.VKGroupsCallbackSettings
+    >
+    /**
+     * Returns categories list for communities catalog
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getCatalogInfo)
+     */
+    "groups.getCatalogInfo": {
+        (
+            params: Params.GroupsGetCatalogInfoParams,
+        ): Promise<Responses.GroupsGetCatalogInfoResponse>
+        (
+            params: Params.GroupsGetCatalogInfoParams,
+        ): Promise<Responses.GroupsGetCatalogInfoExtendedResponse>
+    }
+    /**
+     * Returns invited users list of a community
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getInvitedUsers)
+     */
+    "groups.getInvitedUsers": CallAPI<
+        Params.GroupsGetInvitedUsersParams,
+        Responses.GroupsGetInvitedUsersResponse
+    >
+    /**
+     * Returns a list of invitations to join communities and events.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getInvites)
+     */
+    "groups.getInvites": {
+        (
+            params: Params.GroupsGetInvitesParams,
+        ): Promise<Responses.GroupsGetInvitesResponse>
+        (
+            params: Params.GroupsGetInvitesParams,
+        ): Promise<Responses.GroupsGetInvitesExtendedResponse>
+    }
+    /**
+     * Returns the data needed to query a Long Poll server for events
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getLongPollServer)
+     */
+    "groups.getLongPollServer": CallAPI<
+        Params.GroupsGetLongPollServerParams,
+        Objects.VKGroupsLongPollServer
+    >
+    /**
+     * Returns Long Poll notification settings
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getLongPollSettings)
+     */
+    "groups.getLongPollSettings": CallAPI<
+        Params.GroupsGetLongPollSettingsParams,
+        Objects.VKGroupsLongPollSettings
+    >
+    /**
+     * Returns a list of community members.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getMembers)
+     */
+    "groups.getMembers": {
+        (
+            params: Params.GroupsGetMembersParams,
+        ): Promise<Responses.GroupsGetMembersResponse>
+        (
+            params: Params.GroupsGetMembersParams,
+        ): Promise<Responses.GroupsGetMembersFieldsResponse>
+        (
+            params: Params.GroupsGetMembersParams,
+        ): Promise<Responses.GroupsGetMembersFilterResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getOnlineStatus)
+     */
+    "groups.getOnlineStatus": CallAPI<
+        Params.GroupsGetOnlineStatusParams,
+        Responses.GroupsGetOnlineStatusResponse
+    >
+    /**
+     * Returns a list of requests to the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getRequests)
+     */
+    "groups.getRequests": {
+        (
+            params: Params.GroupsGetRequestsParams,
+        ): Promise<Responses.GroupsGetRequestsResponse>
+        (
+            params: Params.GroupsGetRequestsParams,
+        ): Promise<Responses.GroupsGetRequestsFieldsResponse>
+    }
+    /**
+     * Returns community settings.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getSettings)
+     */
+    "groups.getSettings": CallAPI<
+        Params.GroupsGetSettingsParams,
+        Responses.GroupsGetSettingsResponse
+    >
+    /**
+     * List of group's tags
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getTagList)
+     */
+    "groups.getTagList": CallAPI<
+        Params.GroupsGetTagListParams,
+        Responses.GroupsGetTagListResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.getTokenPermissions)
+     */
+    "groups.getTokenPermissions": CallAPIWithoutParams<Responses.GroupsGetTokenPermissionsResponse>
+    /**
+     * Allows to invite friends to the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.invite)
+     */
+    "groups.invite": {
+        (params: Params.GroupsInviteParams): Promise<Responses.BaseOkResponse>
+        (
+            params: Params.GroupsInviteParams,
+        ): Promise<Responses.GroupsInviteUserIdsListResponse>
+    }
+    /**
+     * Returns information specifying whether a user is a member of a community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.isMember)
+     */
+    "groups.isMember": {
+        (params: Params.GroupsIsMemberParams): Promise<Objects.VKBaseBoolInt>
+        (
+            params: Params.GroupsIsMemberParams,
+        ): Promise<Responses.GroupsIsMemberUserIdsResponse>
+        (
+            params: Params.GroupsIsMemberParams,
+        ): Promise<Responses.GroupsIsMemberExtendedResponse>
+        (
+            params: Params.GroupsIsMemberParams,
+        ): Promise<Responses.GroupsIsMemberUserIdsExtendedResponse>
+    }
+    /**
+     * With this method you can join the group or public page, and also confirm your participation in an event.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.join)
+     */
+    "groups.join": CallAPI<Params.GroupsJoinParams, Responses.BaseOkResponse>
+    /**
+     * With this method you can leave a group, public page, or event.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.leave)
+     */
+    "groups.leave": CallAPI<Params.GroupsLeaveParams, Responses.BaseOkResponse>
+    /**
+     * Removes a user from the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.removeUser)
+     */
+    "groups.removeUser": CallAPI<
+        Params.GroupsRemoveUserParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to reorder links in the community.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.reorderLink)
+     */
+    "groups.reorderLink": CallAPI<
+        Params.GroupsReorderLinkParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of communities matching the search criteria.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.search)
+     */
+    "groups.search": CallAPI<
+        Params.GroupsSearchParams,
+        Responses.GroupsSearchResponse
+    >
+    /**
+     * Allow to set notifications settings for group.
+     *
+     * [Documentation](https://dev.vk.com/method/groups.setCallbackSettings)
+     */
+    "groups.setCallbackSettings": CallAPI<
+        Params.GroupsSetCallbackSettingsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Sets Long Poll notification settings
+     *
+     * [Documentation](https://dev.vk.com/method/groups.setLongPollSettings)
+     */
+    "groups.setLongPollSettings": CallAPI<
+        Params.GroupsSetLongPollSettingsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.setSettings)
+     */
+    "groups.setSettings": CallAPI<
+        Params.GroupsSetSettingsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * In order to save note about group participant
+     *
+     * [Documentation](https://dev.vk.com/method/groups.setUserNote)
+     */
+    "groups.setUserNote": CallAPI<
+        Params.GroupsSetUserNoteParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Add new group's tag
+     *
+     * [Documentation](https://dev.vk.com/method/groups.tagAdd)
+     */
+    "groups.tagAdd": CallAPI<Params.GroupsTagAddParams, Objects.VKBaseBoolInt>
+    /**
+     * Bind or unbind group's tag to user
+     *
+     * [Documentation](https://dev.vk.com/method/groups.tagBind)
+     */
+    "groups.tagBind": CallAPI<Params.GroupsTagBindParams, Objects.VKBaseBoolInt>
+    /**
+     * Delete group's tag
+     *
+     * [Documentation](https://dev.vk.com/method/groups.tagDelete)
+     */
+    "groups.tagDelete": CallAPI<
+        Params.GroupsTagDeleteParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Update group's tag
+     *
+     * [Documentation](https://dev.vk.com/method/groups.tagUpdate)
+     */
+    "groups.tagUpdate": CallAPI<
+        Params.GroupsTagUpdateParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.toggleMarket)
+     */
+    "groups.toggleMarket": CallAPI<
+        Params.GroupsToggleMarketParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/groups.unban)
+     */
+    "groups.unban": CallAPI<Params.GroupsUnbanParams, Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.create)
+     */
+    "leadForms.create": CallAPI<
+        Params.LeadFormsCreateParams,
+        Responses.LeadFormsCreateResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.delete)
+     */
+    "leadForms.delete": CallAPI<
+        Params.LeadFormsDeleteParams,
+        Responses.LeadFormsDeleteResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.get)
+     */
+    "leadForms.get": CallAPI<Params.LeadFormsGetParams, Objects.VKLeadFormsForm>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.getLeads)
+     */
+    "leadForms.getLeads": CallAPI<
+        Params.LeadFormsGetLeadsParams,
+        Responses.LeadFormsGetLeadsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.getUploadURL)
+     */
+    "leadForms.getUploadURL": CallAPIWithoutParams<Responses.LeadFormsUploadUrlResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.list)
+     */
+    "leadForms.list": CallAPI<
+        Params.LeadFormsListParams,
+        Responses.LeadFormsListResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/leadForms.update)
+     */
+    "leadForms.update": CallAPI<
+        Params.LeadFormsUpdateParams,
+        Responses.LeadFormsCreateResponse
+    >
+    /**
+     * Adds the specified object to the 'Likes' list of the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/likes.add)
+     */
+    "likes.add": CallAPI<Params.LikesAddParams, Responses.LikesAddResponse>
+    /**
+     * Deletes the specified object from the 'Likes' list of the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/likes.delete)
+     */
+    "likes.delete": CallAPI<
+        Params.LikesDeleteParams,
+        Responses.LikesDeleteResponse
+    >
+    /**
+     * Returns a list of IDs of users who added the specified object to their 'Likes' list.
+     *
+     * [Documentation](https://dev.vk.com/method/likes.getList)
+     */
+    "likes.getList": {
+        (
+            params: Params.LikesGetListParams,
+        ): Promise<Responses.LikesGetListResponse>
+        (
+            params: Params.LikesGetListParams,
+        ): Promise<Responses.LikesGetListExtendedResponse>
+    }
+    /**
+     * Checks for the object in the 'Likes' list of the specified user.
+     *
+     * [Documentation](https://dev.vk.com/method/likes.isLiked)
+     */
+    "likes.isLiked": CallAPI<
+        Params.LikesIsLikedParams,
+        Responses.LikesIsLikedResponse
+    >
+    /**
+     * Ads a new item to the market.
+     *
+     * [Documentation](https://dev.vk.com/method/market.add)
+     */
+    "market.add": CallAPI<Params.MarketAddParams, Responses.MarketAddResponse>
+    /**
+     * Creates new collection of items
+     *
+     * [Documentation](https://dev.vk.com/method/market.addAlbum)
+     */
+    "market.addAlbum": CallAPI<
+        Params.MarketAddAlbumParams,
+        Responses.MarketAddAlbumResponse
+    >
+    /**
+     * Adds property
+     *
+     * [Documentation](https://dev.vk.com/method/market.addProperty)
+     */
+    "market.addProperty": CallAPI<
+        Params.MarketAddPropertyParams,
+        Responses.MarketAddPropertyResponse
+    >
+    /**
+     * Adds property variant
+     *
+     * [Documentation](https://dev.vk.com/method/market.addPropertyVariant)
+     */
+    "market.addPropertyVariant": CallAPI<
+        Params.MarketAddPropertyVariantParams,
+        Responses.MarketAddPropertyVariantResponse
+    >
+    /**
+     * Adds an item to one or multiple collections.
+     *
+     * [Documentation](https://dev.vk.com/method/market.addToAlbum)
+     */
+    "market.addToAlbum": {
+        (
+            params: Params.MarketAddToAlbumParams,
+        ): Promise<Responses.BaseOkResponse>
+    }
+    /**
+     * Creates a new comment for an item.
+     *
+     * [Documentation](https://dev.vk.com/method/market.createComment)
+     */
+    "market.createComment": CallAPI<
+        Params.MarketCreateCommentParams,
+        Responses.MarketCreateCommentResponse
+    >
+    /**
+     * Deletes an item.
+     *
+     * [Documentation](https://dev.vk.com/method/market.delete)
+     */
+    "market.delete": CallAPI<
+        Params.MarketDeleteParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a collection of items.
+     *
+     * [Documentation](https://dev.vk.com/method/market.deleteAlbum)
+     */
+    "market.deleteAlbum": CallAPI<
+        Params.MarketDeleteAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes an item's comment
+     *
+     * [Documentation](https://dev.vk.com/method/market.deleteComment)
+     */
+    "market.deleteComment": CallAPI<
+        Params.MarketDeleteCommentParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.deleteProperty)
+     */
+    "market.deleteProperty": CallAPI<
+        Params.MarketDeletePropertyParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.deletePropertyVariant)
+     */
+    "market.deletePropertyVariant": CallAPI<
+        Params.MarketDeletePropertyVariantParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits an item.
+     *
+     * [Documentation](https://dev.vk.com/method/market.edit)
+     */
+    "market.edit": CallAPI<Params.MarketEditParams, Responses.BaseOkResponse>
+    /**
+     * Edits a collection of items
+     *
+     * [Documentation](https://dev.vk.com/method/market.editAlbum)
+     */
+    "market.editAlbum": CallAPI<
+        Params.MarketEditAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Chages item comment's text
+     *
+     * [Documentation](https://dev.vk.com/method/market.editComment)
+     */
+    "market.editComment": CallAPI<
+        Params.MarketEditCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edit order
+     *
+     * [Documentation](https://dev.vk.com/method/market.editOrder)
+     */
+    "market.editOrder": CallAPI<
+        Params.MarketEditOrderParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Adds property
+     *
+     * [Documentation](https://dev.vk.com/method/market.editProperty)
+     */
+    "market.editProperty": CallAPI<
+        Params.MarketEditPropertyParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edit property variant name
+     *
+     * [Documentation](https://dev.vk.com/method/market.editPropertyVariant)
+     */
+    "market.editPropertyVariant": CallAPI<
+        Params.MarketEditPropertyVariantParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a filter list of market categories.
+     *
+     * [Documentation](https://dev.vk.com/method/market.filterCategories)
+     */
+    "market.filterCategories": CallAPIWithOptionalParams<
+        Params.MarketFilterCategoriesParams,
+        Responses.MarketGetCategoriesNewResponse
+    >
+    /**
+     * Returns items list for a community.
+     *
+     * [Documentation](https://dev.vk.com/method/market.get)
+     */
+    "market.get": {
+        (params: Params.MarketGetParams): Promise<Responses.MarketGetResponse>
+        (
+            params: Params.MarketGetParams,
+        ): Promise<Responses.MarketGetExtendedResponse>
+    }
+    /**
+     * Returns items album's data
+     *
+     * [Documentation](https://dev.vk.com/method/market.getAlbumById)
+     */
+    "market.getAlbumById": CallAPI<
+        Params.MarketGetAlbumByIdParams,
+        Responses.MarketGetAlbumByIdResponse
+    >
+    /**
+     * Returns community's market collections list.
+     *
+     * [Documentation](https://dev.vk.com/method/market.getAlbums)
+     */
+    "market.getAlbums": CallAPI<
+        Params.MarketGetAlbumsParams,
+        Responses.MarketGetAlbumsResponse
+    >
+    /**
+     * Returns information about market items by their ids.
+     *
+     * [Documentation](https://dev.vk.com/method/market.getById)
+     */
+    "market.getById": {
+        (
+            params: Params.MarketGetByIdParams,
+        ): Promise<Responses.MarketGetByIdResponse>
+        (
+            params: Params.MarketGetByIdParams,
+        ): Promise<Responses.MarketGetByIdExtendedResponse>
+    }
+    /**
+     * Returns a list of market categories.
+     *
+     * [Documentation](https://dev.vk.com/method/market.getCategories)
+     */
+    "market.getCategories": CallAPIWithOptionalParams<
+        Params.MarketGetCategoriesParams,
+        Responses.MarketGetCategoriesNewResponse
+    >
+    /**
+     * Returns comments list for an item.
+     *
+     * [Documentation](https://dev.vk.com/method/market.getComments)
+     */
+    "market.getComments": CallAPI<
+        Params.MarketGetCommentsParams,
+        Responses.MarketGetCommentsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.getFavesForAttach)
+     */
+    "market.getFavesForAttach": CallAPIWithOptionalParams<
+        Params.MarketGetFavesForAttachParams,
+        Responses.MarketGetFavesForAttachResponse
+    >
+    /**
+     * Get market orders
+     *
+     * [Documentation](https://dev.vk.com/method/market.getGroupOrders)
+     */
+    "market.getGroupOrders": CallAPIWithOptionalParams<
+        Params.MarketGetGroupOrdersParams,
+        Responses.MarketGetGroupOrdersResponse
+    >
+    /**
+     * Get order
+     *
+     * [Documentation](https://dev.vk.com/method/market.getOrderById)
+     */
+    "market.getOrderById": CallAPI<
+        Params.MarketGetOrderByIdParams,
+        Responses.MarketGetOrderByIdResponse
+    >
+    /**
+     * Get market items in the order
+     *
+     * [Documentation](https://dev.vk.com/method/market.getOrderItems)
+     */
+    "market.getOrderItems": CallAPI<
+        Params.MarketGetOrderItemsParams,
+        Responses.MarketGetOrderItemsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.getOrders)
+     */
+    "market.getOrders": {
+        (
+            params: Params.MarketGetOrdersParams,
+        ): Promise<Responses.MarketGetOrdersResponse>
+        (
+            params: Params.MarketGetOrdersParams,
+        ): Promise<Responses.MarketGetOrdersExtendedResponse>
+    }
+    /**
+     * Returns the server address for market photo upload.
+     *
+     * [Documentation](https://dev.vk.com/method/market.getProductPhotoUploadServer)
+     */
+    "market.getProductPhotoUploadServer": CallAPI<
+        Params.MarketGetProductPhotoUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Get properties
+     *
+     * [Documentation](https://dev.vk.com/method/market.getProperties)
+     */
+    "market.getProperties": CallAPI<
+        Params.MarketGetPropertiesParams,
+        Responses.MarketGetPropertiesResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.groupItems)
+     */
+    "market.groupItems": CallAPI<
+        Params.MarketGroupItemsParams,
+        Responses.MarketGroupItemsResponse
+    >
+    /**
+     * Removes an item from one or multiple collections.
+     *
+     * [Documentation](https://dev.vk.com/method/market.removeFromAlbum)
+     */
+    "market.removeFromAlbum": CallAPI<
+        Params.MarketRemoveFromAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reorders the collections list.
+     *
+     * [Documentation](https://dev.vk.com/method/market.reorderAlbums)
+     */
+    "market.reorderAlbums": CallAPI<
+        Params.MarketReorderAlbumsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Changes item place in a collection.
+     *
+     * [Documentation](https://dev.vk.com/method/market.reorderItems)
+     */
+    "market.reorderItems": CallAPI<
+        Params.MarketReorderItemsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Sends a complaint to the item.
+     *
+     * [Documentation](https://dev.vk.com/method/market.report)
+     */
+    "market.report": CallAPI<
+        Params.MarketReportParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Sends a complaint to the item's comment.
+     *
+     * [Documentation](https://dev.vk.com/method/market.reportComment)
+     */
+    "market.reportComment": CallAPI<
+        Params.MarketReportCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores recently deleted item
+     *
+     * [Documentation](https://dev.vk.com/method/market.restore)
+     */
+    "market.restore": CallAPI<
+        Params.MarketRestoreParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a recently deleted comment
+     *
+     * [Documentation](https://dev.vk.com/method/market.restoreComment)
+     */
+    "market.restoreComment": CallAPI<
+        Params.MarketRestoreCommentParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Save market photo after upload.
+     *
+     * [Documentation](https://dev.vk.com/method/market.saveProductPhoto)
+     */
+    "market.saveProductPhoto": CallAPI<
+        Params.MarketSaveProductPhotoParams,
+        Responses.MarketPhotoIdResponse
+    >
+    /**
+     * Bulk save market photo after upload.
+     *
+     * [Documentation](https://dev.vk.com/method/market.saveProductPhotoBulk)
+     */
+    "market.saveProductPhotoBulk": CallAPI<
+        Params.MarketSaveProductPhotoBulkParams,
+        Responses.MarketPhotoIdBulkResponse
+    >
+    /**
+     * Searches market items in a community's catalog
+     *
+     * [Documentation](https://dev.vk.com/method/market.search)
+     */
+    "market.search": {
+        (
+            params: Params.MarketSearchParams,
+        ): Promise<Responses.MarketSearchResponse>
+        (
+            params: Params.MarketSearchParams,
+        ): Promise<Responses.MarketSearchExtendedResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.searchItems)
+     */
+    "market.searchItems": CallAPI<
+        Params.MarketSearchItemsParams,
+        Responses.MarketSearchResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.searchItemsBasic)
+     */
+    "market.searchItemsBasic": CallAPI<
+        Params.MarketSearchItemsBasicParams,
+        Responses.MarketSearchBasicResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/market.ungroupItems)
+     */
+    "market.ungroupItems": CallAPI<
+        Params.MarketUngroupItemsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Adds a new user to a chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.addChatUser)
+     */
+    "messages.addChatUser": CallAPI<
+        Params.MessagesAddChatUserParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Adds new users to a chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.addChatUsers)
+     */
+    "messages.addChatUsers": CallAPIWithOptionalParams<
+        Params.MessagesAddChatUsersParams,
+        Responses.MessagesAddChatUsersResponse
+    >
+    /**
+     * Allows sending messages from community to the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.allowMessagesFromGroup)
+     */
+    "messages.allowMessagesFromGroup": CallAPI<
+        Params.MessagesAllowMessagesFromGroupParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Creates a chat with several participants.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.createChat)
+     */
+    "messages.createChat": CallAPIWithOptionalParams<
+        Params.MessagesCreateChatParams,
+        Responses.MessagesCreateChatWithPeerIdsResponse
+    >
+    /**
+     * Deletes one or more messages.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.delete)
+     */
+    "messages.delete": CallAPIWithOptionalParams<
+        Params.MessagesDeleteParams,
+        Responses.MessagesDeleteFullResponse
+    >
+    /**
+     * Deletes a chat's cover picture.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.deleteChatPhoto)
+     */
+    "messages.deleteChatPhoto": CallAPI<
+        Params.MessagesDeleteChatPhotoParams,
+        Responses.MessagesDeleteChatPhotoResponse
+    >
+    /**
+     * Deletes all private messages in a conversation.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.deleteConversation)
+     */
+    "messages.deleteConversation": CallAPIWithOptionalParams<
+        Params.MessagesDeleteConversationParams,
+        Responses.MessagesDeleteConversationResponse
+    >
+    /**
+     * Delete message reaction
+     *
+     * [Documentation](https://dev.vk.com/method/messages.deleteReaction)
+     */
+    "messages.deleteReaction": CallAPI<
+        Params.MessagesDeleteReactionParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Denies sending message from community to the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.denyMessagesFromGroup)
+     */
+    "messages.denyMessagesFromGroup": CallAPI<
+        Params.MessagesDenyMessagesFromGroupParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits the message.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.edit)
+     */
+    "messages.edit": CallAPI<Params.MessagesEditParams, Objects.VKBaseBoolInt>
+    /**
+     * Edits the title of a chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.editChat)
+     */
+    "messages.editChat": CallAPI<
+        Params.MessagesEditChatParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns messages by their IDs within the conversation.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getByConversationMessageId)
+     */
+    "messages.getByConversationMessageId": {
+        (
+            params: Params.MessagesGetByConversationMessageIdParams,
+        ): Promise<Responses.MessagesGetByConversationMessageIdResponse>
+        (
+            params: Params.MessagesGetByConversationMessageIdParams,
+        ): Promise<Responses.MessagesGetByConversationMessageIdExtendedResponse>
+    }
+    /**
+     * Returns messages by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getById)
+     */
+    "messages.getById": {
+        (
+            params: Params.MessagesGetByIdParams,
+        ): Promise<Responses.MessagesGetByIdResponse>
+        (
+            params: Params.MessagesGetByIdParams,
+        ): Promise<Responses.MessagesGetByIdExtendedResponse>
+    }
+    /**
+     * Returns information about a chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getChat)
+     */
+    "messages.getChat": {
+        (params: Params.MessagesGetChatParams): Promise<Objects.VKMessagesChat>
+        (
+            params: Params.MessagesGetChatParams,
+        ): Promise<Objects.VKMessagesChatFull>
+        (
+            params: Params.MessagesGetChatParams,
+        ): Promise<Responses.MessagesGetChatChatIdsResponse>
+        (
+            params: Params.MessagesGetChatParams,
+        ): Promise<Responses.MessagesGetChatChatIdsFieldsResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getChatPreview)
+     */
+    "messages.getChatPreview": CallAPIWithOptionalParams<
+        Params.MessagesGetChatPreviewParams,
+        Responses.MessagesGetChatPreviewResponse
+    >
+    /**
+     * Returns a list of IDs of users participating in a chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getConversationMembers)
+     */
+    "messages.getConversationMembers": CallAPI<
+        Params.MessagesGetConversationMembersParams,
+        Objects.VKMessagesGetConversationMembers
+    >
+    /**
+     * Returns a list of the current user's conversations.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getConversations)
+     */
+    "messages.getConversations": CallAPIWithOptionalParams<
+        Params.MessagesGetConversationsParams,
+        Responses.MessagesGetConversationsResponse
+    >
+    /**
+     * Returns conversations by their IDs
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getConversationsById)
+     */
+    "messages.getConversationsById": {
+        (
+            params: Params.MessagesGetConversationsByIdParams,
+        ): Promise<Objects.VKMessagesGetConversationById>
+        (
+            params: Params.MessagesGetConversationsByIdParams,
+        ): Promise<Objects.VKMessagesGetConversationByIdExtended>
+    }
+    /**
+     * Returns message history for the specified user or group chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getHistory)
+     */
+    "messages.getHistory": {
+        (
+            params: Params.MessagesGetHistoryParams,
+        ): Promise<Responses.MessagesGetHistoryResponse>
+        (
+            params: Params.MessagesGetHistoryParams,
+        ): Promise<Responses.MessagesGetHistoryExtendedResponse>
+    }
+    /**
+     * Returns media files from the dialog or group chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getHistoryAttachments)
+     */
+    "messages.getHistoryAttachments": CallAPIWithOptionalParams<
+        Params.MessagesGetHistoryAttachmentsParams,
+        Responses.MessagesGetHistoryAttachmentsResponse
+    >
+    /**
+     * Returns a list of user's important messages.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getImportantMessages)
+     */
+    "messages.getImportantMessages": {
+        (
+            params: Params.MessagesGetImportantMessagesParams,
+        ): Promise<Responses.MessagesGetImportantMessagesResponse>
+        (
+            params: Params.MessagesGetImportantMessagesParams,
+        ): Promise<Responses.MessagesGetImportantMessagesExtendedResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getIntentUsers)
+     */
+    "messages.getIntentUsers": CallAPI<
+        Params.MessagesGetIntentUsersParams,
+        Responses.MessagesGetIntentUsersResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getInviteLink)
+     */
+    "messages.getInviteLink": {
+        (
+            params: Params.MessagesGetInviteLinkParams,
+        ): Promise<Responses.MessagesGetInviteLinkResponse>
+        (
+            params: Params.MessagesGetInviteLinkParams,
+        ): Promise<Responses.MessagesGetInviteLinkByOwnerResponse>
+    }
+    /**
+     * Returns a user's current status and date of last activity.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getLastActivity)
+     */
+    "messages.getLastActivity": CallAPI<
+        Params.MessagesGetLastActivityParams,
+        Objects.VKMessagesLastActivity
+    >
+    /**
+     * Returns updates in user's private messages.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getLongPollHistory)
+     */
+    "messages.getLongPollHistory": CallAPIWithOptionalParams<
+        Params.MessagesGetLongPollHistoryParams,
+        Responses.MessagesGetLongPollHistoryResponse
+    >
+    /**
+     * Returns data required for connection to a Long Poll server.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getLongPollServer)
+     */
+    "messages.getLongPollServer": CallAPIWithOptionalParams<
+        Params.MessagesGetLongPollServerParams,
+        Objects.VKMessagesLongpollParams
+    >
+    /**
+     * Get reaction counters for message
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getMessagesReactions)
+     */
+    "messages.getMessagesReactions": CallAPI<
+        Params.MessagesGetMessagesReactionsParams,
+        Responses.MessagesGetMessagesReactionsResponse
+    >
+    /**
+     * Get reacted users and counters for message
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getReactedPeers)
+     */
+    "messages.getReactedPeers": CallAPI<
+        Params.MessagesGetReactedPeersParams,
+        Responses.MessagesGetReactedPeersResponse
+    >
+    /**
+     * Get assets to display message reactions
+     *
+     * [Documentation](https://dev.vk.com/method/messages.getReactionsAssets)
+     */
+    "messages.getReactionsAssets": CallAPIWithOptionalParams<
+        Params.MessagesGetReactionsAssetsParams,
+        Responses.MessagesGetReactionsAssetsResponse
+    >
+    /**
+     * Returns information whether sending messages from the community to current user is allowed.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.isMessagesFromGroupAllowed)
+     */
+    "messages.isMessagesFromGroupAllowed": CallAPI<
+        Params.MessagesIsMessagesFromGroupAllowedParams,
+        Responses.MessagesIsMessagesFromGroupAllowedResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.joinChatByInviteLink)
+     */
+    "messages.joinChatByInviteLink": CallAPI<
+        Params.MessagesJoinChatByInviteLinkParams,
+        Responses.MessagesJoinChatByInviteLinkResponse
+    >
+    /**
+     * Marks and unmarks conversations as unanswered.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.markAsAnsweredConversation)
+     */
+    "messages.markAsAnsweredConversation": CallAPI<
+        Params.MessagesMarkAsAnsweredConversationParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Marks and unmarks messages as important (starred).
+     *
+     * [Documentation](https://dev.vk.com/method/messages.markAsImportant)
+     */
+    "messages.markAsImportant": CallAPIWithOptionalParams<
+        Params.MessagesMarkAsImportantParams,
+        Responses.MessagesMarkAsImportantDeprecatedResponse
+    >
+    /**
+     * Marks and unmarks conversations as important.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.markAsImportantConversation)
+     */
+    "messages.markAsImportantConversation": CallAPI<
+        Params.MessagesMarkAsImportantConversationParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Marks messages as read.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.markAsRead)
+     */
+    "messages.markAsRead": CallAPIWithOptionalParams<
+        Params.MessagesMarkAsReadParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Mark messages reactions as read
+     *
+     * [Documentation](https://dev.vk.com/method/messages.markReactionsAsRead)
+     */
+    "messages.markReactionsAsRead": CallAPI<
+        Params.MessagesMarkReactionsAsReadParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.muteChatMentions)
+     */
+    "messages.muteChatMentions": CallAPI<
+        Params.MessagesMuteChatMentionsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Pin a message.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.pin)
+     */
+    "messages.pin": CallAPI<
+        Params.MessagesPinParams,
+        Objects.VKMessagesPinnedMessage
+    >
+    /**
+     * Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.removeChatUser)
+     */
+    "messages.removeChatUser": CallAPI<
+        Params.MessagesRemoveChatUserParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a deleted message.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.restore)
+     */
+    "messages.restore": CallAPIWithOptionalParams<
+        Params.MessagesRestoreParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of the current user's private messages that match search criteria.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.search)
+     */
+    "messages.search": {
+        (
+            params: Params.MessagesSearchParams,
+        ): Promise<Responses.MessagesSearchResponse>
+        (
+            params: Params.MessagesSearchParams,
+        ): Promise<Responses.MessagesSearchExtendedResponse>
+    }
+    /**
+     * Returns a list of the current user's conversations that match search criteria.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.searchConversations)
+     */
+    "messages.searchConversations": {
+        (
+            params: Params.MessagesSearchConversationsParams,
+        ): Promise<Responses.MessagesSearchConversationsResponse>
+        (
+            params: Params.MessagesSearchConversationsParams,
+        ): Promise<Responses.MessagesSearchConversationsExtendedResponse>
+    }
+    /**
+     * Sends a message.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.send)
+     */
+    "messages.send": {
+        (
+            params: Params.MessagesSendParams,
+        ): Promise<Responses.MessagesSendDeprecatedResponse>
+        (
+            params: Params.MessagesSendParams,
+        ): Promise<Responses.MessagesSendUserIdsResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.sendMessageEventAnswer)
+     */
+    "messages.sendMessageEventAnswer": CallAPI<
+        Params.MessagesSendMessageEventAnswerParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Send message reaction
+     *
+     * [Documentation](https://dev.vk.com/method/messages.sendReaction)
+     */
+    "messages.sendReaction": CallAPI<
+        Params.MessagesSendReactionParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Changes the status of a user as typing in a conversation.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.setActivity)
+     */
+    "messages.setActivity": CallAPIWithOptionalParams<
+        Params.MessagesSetActivityParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Sets a previously-uploaded picture as the cover picture of a chat.
+     *
+     * [Documentation](https://dev.vk.com/method/messages.setChatPhoto)
+     */
+    "messages.setChatPhoto": CallAPI<
+        Params.MessagesSetChatPhotoParams,
+        Responses.MessagesSetChatPhotoResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/messages.unpin)
+     */
+    "messages.unpin": CallAPI<
+        Params.MessagesUnpinParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Prevents news from specified users and communities from appearing in the current user's newsfeed.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.addBan)
+     */
+    "newsfeed.addBan": CallAPIWithOptionalParams<
+        Params.NewsfeedAddBanParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Allows news from previously banned users and communities to be shown in the current user's newsfeed.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.deleteBan)
+     */
+    "newsfeed.deleteBan": CallAPIWithOptionalParams<
+        Params.NewsfeedDeleteBanParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.deleteList)
+     */
+    "newsfeed.deleteList": CallAPI<
+        Params.NewsfeedDeleteListParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns data required to show newsfeed for the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.get)
+     */
+    "newsfeed.get": CallAPIWithOptionalParams<
+        Params.NewsfeedGetParams,
+        Responses.NewsfeedGenericResponse
+    >
+    /**
+     * Returns a list of users and communities banned from the current user's newsfeed.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.getBanned)
+     */
+    "newsfeed.getBanned": {
+        (
+            params: Params.NewsfeedGetBannedParams,
+        ): Promise<Responses.NewsfeedGetBannedResponse>
+        (
+            params: Params.NewsfeedGetBannedParams,
+        ): Promise<Responses.NewsfeedGetBannedExtendedResponse>
+    }
+    /**
+     * Returns a list of comments in the current user's newsfeed.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.getComments)
+     */
+    "newsfeed.getComments": CallAPIWithOptionalParams<
+        Params.NewsfeedGetCommentsParams,
+        Responses.NewsfeedGetCommentsResponse
+    >
+    /**
+     * Returns a list of newsfeeds followed by the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.getLists)
+     */
+    "newsfeed.getLists": {
+        (
+            params: Params.NewsfeedGetListsParams,
+        ): Promise<Responses.NewsfeedGetListsResponse>
+        (
+            params: Params.NewsfeedGetListsParams,
+        ): Promise<Responses.NewsfeedGetListsExtendedResponse>
+    }
+    /**
+     * Returns a list of posts on user walls in which the current user is mentioned.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.getMentions)
+     */
+    "newsfeed.getMentions": CallAPIWithOptionalParams<
+        Params.NewsfeedGetMentionsParams,
+        Responses.NewsfeedGetMentionsResponse
+    >
+    /**
+     * , Returns a list of newsfeeds recommended to the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.getRecommended)
+     */
+    "newsfeed.getRecommended": CallAPIWithOptionalParams<
+        Params.NewsfeedGetRecommendedParams,
+        Responses.NewsfeedGenericResponse
+    >
+    /**
+     * Returns communities and users that current user is suggested to follow.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.getSuggestedSources)
+     */
+    "newsfeed.getSuggestedSources": CallAPIWithOptionalParams<
+        Params.NewsfeedGetSuggestedSourcesParams,
+        Responses.NewsfeedGetSuggestedSourcesResponse
+    >
+    /**
+     * Hides an item from the newsfeed.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.ignoreItem)
+     */
+    "newsfeed.ignoreItem": CallAPI<
+        Params.NewsfeedIgnoreItemParams,
+        Responses.NewsfeedIgnoreItemResponse
+    >
+    /**
+     * Creates and edits user newsfeed lists
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.saveList)
+     */
+    "newsfeed.saveList": CallAPI<
+        Params.NewsfeedSaveListParams,
+        Responses.NewsfeedSaveListResponse
+    >
+    /**
+     * Returns search results by statuses.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.search)
+     */
+    "newsfeed.search": {
+        (
+            params: Params.NewsfeedSearchParams,
+        ): Promise<Responses.NewsfeedSearchResponse>
+        (
+            params: Params.NewsfeedSearchParams,
+        ): Promise<Responses.NewsfeedSearchStrictResponse>
+        (
+            params: Params.NewsfeedSearchParams,
+        ): Promise<Responses.NewsfeedSearchExtendedResponse>
+        (
+            params: Params.NewsfeedSearchParams,
+        ): Promise<Responses.NewsfeedSearchExtendedStrictResponse>
+    }
+    /**
+     * Returns a hidden item to the newsfeed.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.unignoreItem)
+     */
+    "newsfeed.unignoreItem": CallAPI<
+        Params.NewsfeedUnignoreItemParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Unsubscribes the current user from specified newsfeeds.
+     *
+     * [Documentation](https://dev.vk.com/method/newsfeed.unsubscribe)
+     */
+    "newsfeed.unsubscribe": CallAPI<
+        Params.NewsfeedUnsubscribeParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Creates a new note for the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.add)
+     */
+    "notes.add": CallAPI<Params.NotesAddParams, Responses.NotesAddResponse>
+    /**
+     * Adds a new comment on a note.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.createComment)
+     */
+    "notes.createComment": CallAPI<
+        Params.NotesCreateCommentParams,
+        Responses.NotesCreateCommentResponse
+    >
+    /**
+     * Deletes a note of the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.delete)
+     */
+    "notes.delete": CallAPI<Params.NotesDeleteParams, Responses.BaseOkResponse>
+    /**
+     * Deletes a comment on a note.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.deleteComment)
+     */
+    "notes.deleteComment": CallAPI<
+        Params.NotesDeleteCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits a note of the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.edit)
+     */
+    "notes.edit": CallAPI<Params.NotesEditParams, Responses.BaseOkResponse>
+    /**
+     * Edits a comment on a note.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.editComment)
+     */
+    "notes.editComment": CallAPI<
+        Params.NotesEditCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of notes created by a user.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.get)
+     */
+    "notes.get": CallAPIWithOptionalParams<
+        Params.NotesGetParams,
+        Responses.NotesGetResponse
+    >
+    /**
+     * Returns a note by its ID.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.getById)
+     */
+    "notes.getById": CallAPI<Params.NotesGetByIdParams, Objects.VKNotesNote>
+    /**
+     * Returns a list of comments on a note.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.getComments)
+     */
+    "notes.getComments": CallAPI<
+        Params.NotesGetCommentsParams,
+        Responses.NotesGetCommentsResponse
+    >
+    /**
+     * Restores a deleted comment on a note.
+     *
+     * [Documentation](https://dev.vk.com/method/notes.restoreComment)
+     */
+    "notes.restoreComment": CallAPI<
+        Params.NotesRestoreCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of notifications about other users' feedback to the current user's wall posts.
+     *
+     * [Documentation](https://dev.vk.com/method/notifications.get)
+     */
+    "notifications.get": CallAPIWithOptionalParams<
+        Params.NotificationsGetParams,
+        Responses.NotificationsGetResponse
+    >
+    /**
+     * Resets the counter of new notifications about other users' feedback to the current user's wall posts.
+     *
+     * [Documentation](https://dev.vk.com/method/notifications.markAsViewed)
+     */
+    "notifications.markAsViewed": CallAPIWithoutParams<Objects.VKBaseBoolInt>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/notifications.sendMessage)
+     */
+    "notifications.sendMessage": CallAPI<
+        Params.NotificationsSendMessageParams,
+        Responses.NotificationsSendMessageResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/orders.cancelSubscription)
+     */
+    "orders.cancelSubscription": CallAPI<
+        Params.OrdersCancelSubscriptionParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Changes order status.
+     *
+     * [Documentation](https://dev.vk.com/method/orders.changeState)
+     */
+    "orders.changeState": CallAPI<
+        Params.OrdersChangeStateParams,
+        Responses.OrdersChangeStateResponse
+    >
+    /**
+     * Returns a list of orders.
+     *
+     * [Documentation](https://dev.vk.com/method/orders.get)
+     */
+    "orders.get": CallAPIWithOptionalParams<
+        Params.OrdersGetParams,
+        Responses.OrdersGetResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/orders.getAmount)
+     */
+    "orders.getAmount": CallAPI<
+        Params.OrdersGetAmountParams,
+        Responses.OrdersGetAmountResponse
+    >
+    /**
+     * Returns information about orders by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/orders.getById)
+     */
+    "orders.getById": CallAPIWithOptionalParams<
+        Params.OrdersGetByIdParams,
+        Responses.OrdersGetByIdResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/orders.getUserSubscriptionById)
+     */
+    "orders.getUserSubscriptionById": CallAPI<
+        Params.OrdersGetUserSubscriptionByIdParams,
+        Objects.VKOrdersSubscription
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/orders.getUserSubscriptions)
+     */
+    "orders.getUserSubscriptions": CallAPI<
+        Params.OrdersGetUserSubscriptionsParams,
+        Responses.OrdersGetUserSubscriptionsResponse
+    >
+    /**
+     * Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.clearCache)
+     */
+    "pages.clearCache": CallAPI<
+        Params.PagesClearCacheParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns information about a wiki page.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.get)
+     */
+    "pages.get": CallAPIWithOptionalParams<
+        Params.PagesGetParams,
+        Objects.VKPagesWikipageFull
+    >
+    /**
+     * Returns a list of all previous versions of a wiki page.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.getHistory)
+     */
+    "pages.getHistory": CallAPI<
+        Params.PagesGetHistoryParams,
+        Responses.PagesGetHistoryResponse
+    >
+    /**
+     * Returns a list of wiki pages in a group.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.getTitles)
+     */
+    "pages.getTitles": CallAPIWithOptionalParams<
+        Params.PagesGetTitlesParams,
+        Responses.PagesGetTitlesResponse
+    >
+    /**
+     * Returns the text of one of the previous versions of a wiki page.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.getVersion)
+     */
+    "pages.getVersion": CallAPI<
+        Params.PagesGetVersionParams,
+        Responses.PagesGetVersionResponse
+    >
+    /**
+     * Returns HTML representation of the wiki markup.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.parseWiki)
+     */
+    "pages.parseWiki": CallAPI<
+        Params.PagesParseWikiParams,
+        Responses.PagesParseWikiResponse
+    >
+    /**
+     * Saves the text of a wiki page.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.save)
+     */
+    "pages.save": CallAPIWithOptionalParams<
+        Params.PagesSaveParams,
+        Responses.PagesSaveResponse
+    >
+    /**
+     * Saves modified read and edit access settings for a wiki page.
+     *
+     * [Documentation](https://dev.vk.com/method/pages.saveAccess)
+     */
+    "pages.saveAccess": CallAPI<
+        Params.PagesSaveAccessParams,
+        Responses.PagesSaveAccessResponse
+    >
+    /**
+     * Confirms a tag on a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.confirmTag)
+     */
+    "photos.confirmTag": CallAPI<
+        Params.PhotosConfirmTagParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to copy a photo to the "Saved photos" album
+     *
+     * [Documentation](https://dev.vk.com/method/photos.copy)
+     */
+    "photos.copy": CallAPI<
+        Params.PhotosCopyParams,
+        Responses.PhotosCopyResponse
+    >
+    /**
+     * Creates an empty photo album.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.createAlbum)
+     */
+    "photos.createAlbum": CallAPI<
+        Params.PhotosCreateAlbumParams,
+        Objects.VKPhotosPhotoAlbumFull
+    >
+    /**
+     * Adds a new comment on the photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.createComment)
+     */
+    "photos.createComment": CallAPI<
+        Params.PhotosCreateCommentParams,
+        Responses.PhotosCreateCommentResponse
+    >
+    /**
+     * Deletes a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.delete)
+     */
+    "photos.delete": CallAPIWithOptionalParams<
+        Params.PhotosDeleteParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a photo album belonging to the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.deleteAlbum)
+     */
+    "photos.deleteAlbum": CallAPI<
+        Params.PhotosDeleteAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a comment on the photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.deleteComment)
+     */
+    "photos.deleteComment": CallAPI<
+        Params.PhotosDeleteCommentParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Edits the caption of a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.edit)
+     */
+    "photos.edit": CallAPI<Params.PhotosEditParams, Responses.BaseOkResponse>
+    /**
+     * Edits information about a photo album.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.editAlbum)
+     */
+    "photos.editAlbum": CallAPI<
+        Params.PhotosEditAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits a comment on a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.editComment)
+     */
+    "photos.editComment": CallAPI<
+        Params.PhotosEditCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of a user's or community's photos.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.get)
+     */
+    "photos.get": CallAPIWithOptionalParams<
+        Params.PhotosGetParams,
+        Responses.PhotosGetResponse
+    >
+    /**
+     * Returns a list of a user's or community's photo albums.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getAlbums)
+     */
+    "photos.getAlbums": CallAPIWithOptionalParams<
+        Params.PhotosGetAlbumsParams,
+        Responses.PhotosGetAlbumsResponse
+    >
+    /**
+     * Returns the number of photo albums belonging to a user or community.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getAlbumsCount)
+     */
+    "photos.getAlbumsCount": CallAPIWithOptionalParams<
+        Params.PhotosGetAlbumsCountParams,
+        Responses.PhotosGetAlbumsCountResponse
+    >
+    /**
+     * Returns a list of photos belonging to a user or community, in reverse chronological order.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getAll)
+     */
+    "photos.getAll": CallAPIWithOptionalParams<
+        Params.PhotosGetAllParams,
+        Responses.PhotosGetAllResponse
+    >
+    /**
+     * Returns a list of comments on a specific photo album or all albums of the user sorted in reverse chronological order.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getAllComments)
+     */
+    "photos.getAllComments": CallAPIWithOptionalParams<
+        Params.PhotosGetAllCommentsParams,
+        Responses.PhotosGetAllCommentsResponse
+    >
+    /**
+     * Returns information about photos by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getById)
+     */
+    "photos.getById": CallAPI<
+        Params.PhotosGetByIdParams,
+        Responses.PhotosGetByIdResponse
+    >
+    /**
+     * Returns an upload link for chat cover pictures.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getChatUploadServer)
+     */
+    "photos.getChatUploadServer": CallAPI<
+        Params.PhotosGetChatUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns a list of comments on a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getComments)
+     */
+    "photos.getComments": {
+        (
+            params: Params.PhotosGetCommentsParams,
+        ): Promise<Responses.PhotosGetCommentsResponse>
+        (
+            params: Params.PhotosGetCommentsParams,
+        ): Promise<Responses.PhotosGetCommentsExtendedResponse>
+    }
+    /**
+     * Returns the server address for market album photo upload.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getMarketAlbumUploadServer)
+     */
+    "photos.getMarketAlbumUploadServer": CallAPI<
+        Params.PhotosGetMarketAlbumUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns the server address for photo upload in a private message for a user.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getMessagesUploadServer)
+     */
+    "photos.getMessagesUploadServer": CallAPIWithOptionalParams<
+        Params.PhotosGetMessagesUploadServerParams,
+        Objects.VKPhotosPhotoUpload
+    >
+    /**
+     * Returns a list of photos with tags that have not been viewed.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getNewTags)
+     */
+    "photos.getNewTags": CallAPIWithOptionalParams<
+        Params.PhotosGetNewTagsParams,
+        Responses.PhotosGetNewTagsResponse
+    >
+    /**
+     * Returns the server address for owner cover upload.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getOwnerCoverPhotoUploadServer)
+     */
+    "photos.getOwnerCoverPhotoUploadServer": CallAPIWithOptionalParams<
+        Params.PhotosGetOwnerCoverPhotoUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns an upload server address for a profile or community photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getOwnerPhotoUploadServer)
+     */
+    "photos.getOwnerPhotoUploadServer": CallAPIWithOptionalParams<
+        Params.PhotosGetOwnerPhotoUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns a list of tags on a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getTags)
+     */
+    "photos.getTags": CallAPI<
+        Params.PhotosGetTagsParams,
+        Responses.PhotosGetTagsResponse
+    >
+    /**
+     * Returns the server address for photo upload.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getUploadServer)
+     */
+    "photos.getUploadServer": CallAPIWithOptionalParams<
+        Params.PhotosGetUploadServerParams,
+        Objects.VKPhotosPhotoUpload
+    >
+    /**
+     * Returns a list of photos in which a user is tagged.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getUserPhotos)
+     */
+    "photos.getUserPhotos": CallAPIWithOptionalParams<
+        Params.PhotosGetUserPhotosParams,
+        Responses.PhotosGetUserPhotosResponse
+    >
+    /**
+     * Returns the server address for photo upload onto a user's wall.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.getWallUploadServer)
+     */
+    "photos.getWallUploadServer": CallAPIWithOptionalParams<
+        Params.PhotosGetWallUploadServerParams,
+        Objects.VKPhotosPhotoUpload
+    >
+    /**
+     * Makes a photo into an album cover.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.makeCover)
+     */
+    "photos.makeCover": CallAPI<
+        Params.PhotosMakeCoverParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Moves a photo from one album to another.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.move)
+     */
+    "photos.move": CallAPI<Params.PhotosMoveParams, Responses.BaseOkResponse>
+    /**
+     * Adds a tag on the photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.putTag)
+     */
+    "photos.putTag": CallAPI<
+        Params.PhotosPutTagParams,
+        Responses.PhotosPutTagResponse
+    >
+    /**
+     * Removes a tag from a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.removeTag)
+     */
+    "photos.removeTag": CallAPI<
+        Params.PhotosRemoveTagParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reorders the album in the list of user albums.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.reorderAlbums)
+     */
+    "photos.reorderAlbums": CallAPI<
+        Params.PhotosReorderAlbumsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reorders the photo in the list of photos of the user album.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.reorderPhotos)
+     */
+    "photos.reorderPhotos": CallAPI<
+        Params.PhotosReorderPhotosParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reports (submits a complaint about) a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.report)
+     */
+    "photos.report": CallAPI<
+        Params.PhotosReportParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reports (submits a complaint about) a comment on a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.reportComment)
+     */
+    "photos.reportComment": CallAPI<
+        Params.PhotosReportCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a deleted photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.restore)
+     */
+    "photos.restore": CallAPI<
+        Params.PhotosRestoreParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a deleted comment on a photo.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.restoreComment)
+     */
+    "photos.restoreComment": CallAPI<
+        Params.PhotosRestoreCommentParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Saves photos after successful uploading.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.save)
+     */
+    "photos.save": CallAPIWithOptionalParams<
+        Params.PhotosSaveParams,
+        Responses.PhotosSaveResponse
+    >
+    /**
+     * Saves market album photos after successful uploading.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.saveMarketAlbumPhoto)
+     */
+    "photos.saveMarketAlbumPhoto": CallAPI<
+        Params.PhotosSaveMarketAlbumPhotoParams,
+        Responses.PhotosSaveMarketAlbumPhotoResponse
+    >
+    /**
+     * Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.saveMessagesPhoto)
+     */
+    "photos.saveMessagesPhoto": CallAPI<
+        Params.PhotosSaveMessagesPhotoParams,
+        Responses.PhotosSaveMessagesPhotoResponse
+    >
+    /**
+     * Saves cover photo after successful uploading.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.saveOwnerCoverPhoto)
+     */
+    "photos.saveOwnerCoverPhoto": CallAPIWithOptionalParams<
+        Params.PhotosSaveOwnerCoverPhotoParams,
+        Responses.PhotosSaveOwnerCoverPhotoResponse
+    >
+    /**
+     * Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.saveOwnerPhoto)
+     */
+    "photos.saveOwnerPhoto": CallAPIWithOptionalParams<
+        Params.PhotosSaveOwnerPhotoParams,
+        Responses.PhotosSaveOwnerPhotoResponse
+    >
+    /**
+     * Saves a photo to a user's or community's wall after being uploaded.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.saveWallPhoto)
+     */
+    "photos.saveWallPhoto": CallAPI<
+        Params.PhotosSaveWallPhotoParams,
+        Responses.PhotosSaveWallPhotoResponse
+    >
+    /**
+     * Returns a list of photos.
+     *
+     * [Documentation](https://dev.vk.com/method/photos.search)
+     */
+    "photos.search": CallAPIWithOptionalParams<
+        Params.PhotosSearchParams,
+        Responses.PhotosSearchResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/podcasts.searchPodcast)
+     */
+    "podcasts.searchPodcast": CallAPI<
+        Params.PodcastsSearchPodcastParams,
+        Responses.PodcastsSearchPodcastResponse
+    >
+    /**
+     * Adds the current user's vote to the selected answer in the poll.
+     *
+     * [Documentation](https://dev.vk.com/method/polls.addVote)
+     */
+    "polls.addVote": CallAPI<Params.PollsAddVoteParams, Objects.VKBaseBoolInt>
+    /**
+     * Creates polls that can be attached to the users' or communities' posts.
+     *
+     * [Documentation](https://dev.vk.com/method/polls.create)
+     */
+    "polls.create": CallAPIWithOptionalParams<
+        Params.PollsCreateParams,
+        Objects.VKPollsPoll
+    >
+    /**
+     * Deletes the current user's vote from the selected answer in the poll.
+     *
+     * [Documentation](https://dev.vk.com/method/polls.deleteVote)
+     */
+    "polls.deleteVote": CallAPI<
+        Params.PollsDeleteVoteParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Edits created polls
+     *
+     * [Documentation](https://dev.vk.com/method/polls.edit)
+     */
+    "polls.edit": CallAPI<Params.PollsEditParams, Responses.BaseOkResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/polls.getBackgrounds)
+     */
+    "polls.getBackgrounds": CallAPIWithoutParams<Responses.PollsGetBackgroundsResponse>
+    /**
+     * Returns detailed information about a poll by its ID.
+     *
+     * [Documentation](https://dev.vk.com/method/polls.getById)
+     */
+    "polls.getById": CallAPI<
+        Params.PollsGetByIdParams,
+        Objects.VKPollsPollExtended
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/polls.getPhotoUploadServer)
+     */
+    "polls.getPhotoUploadServer": CallAPIWithOptionalParams<
+        Params.PollsGetPhotoUploadServerParams,
+        Objects.VKBaseUploadServer
+    >
+    /**
+     * Returns a list of IDs of users who selected specific answers in the poll.
+     *
+     * [Documentation](https://dev.vk.com/method/polls.getVoters)
+     */
+    "polls.getVoters": {
+        (
+            params: Params.PollsGetVotersParams,
+        ): Promise<Responses.PollsGetVotersResponse>
+        (
+            params: Params.PollsGetVotersParams,
+        ): Promise<Responses.PollsGetVotersFieldsResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/polls.savePhoto)
+     */
+    "polls.savePhoto": CallAPIWithOptionalParams<
+        Params.PollsSavePhotoParams,
+        Objects.VKPollsBackground
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/prettyCards.create)
+     */
+    "prettyCards.create": CallAPI<
+        Params.PrettyCardsCreateParams,
+        Responses.PrettyCardsCreateResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/prettyCards.delete)
+     */
+    "prettyCards.delete": CallAPI<
+        Params.PrettyCardsDeleteParams,
+        Responses.PrettyCardsDeleteResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/prettyCards.edit)
+     */
+    "prettyCards.edit": CallAPI<
+        Params.PrettyCardsEditParams,
+        Responses.PrettyCardsEditResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/prettyCards.get)
+     */
+    "prettyCards.get": CallAPI<
+        Params.PrettyCardsGetParams,
+        Responses.PrettyCardsGetResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/prettyCards.getById)
+     */
+    "prettyCards.getById": CallAPI<
+        Params.PrettyCardsGetByIdParams,
+        Responses.PrettyCardsGetByIdResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/prettyCards.getUploadURL)
+     */
+    "prettyCards.getUploadURL": CallAPIWithoutParams<Responses.PrettyCardsGetUploadURLResponse>
+    /**
+     * Allows the programmer to do a quick search for any substring.
+     *
+     * [Documentation](https://dev.vk.com/method/search.getHints)
+     */
+    "search.getHints": CallAPIWithOptionalParams<
+        Params.SearchGetHintsParams,
+        Responses.SearchGetHintsResponse
+    >
+    /**
+     * Adds user activity information to an application
+     *
+     * [Documentation](https://dev.vk.com/method/secure.addAppEvent)
+     */
+    "secure.addAppEvent": CallAPI<
+        Params.SecureAddAppEventParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.checkToken)
+     */
+    "secure.checkToken": CallAPIWithOptionalParams<
+        Params.SecureCheckTokenParams,
+        Objects.VKSecureTokenChecked
+    >
+    /**
+     * Returns payment balance of the application in hundredth of a vote.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.getAppBalance)
+     */
+    "secure.getAppBalance": CallAPIWithoutParams<Responses.SecureGetAppBalanceResponse>
+    /**
+     * Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.getSMSHistory)
+     */
+    "secure.getSMSHistory": CallAPIWithOptionalParams<
+        Params.SecureGetSMSHistoryParams,
+        Responses.SecureGetSMSHistoryResponse
+    >
+    /**
+     * Shows history of votes transaction between users and the application.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.getTransactionsHistory)
+     */
+    "secure.getTransactionsHistory": CallAPIWithOptionalParams<
+        Params.SecureGetTransactionsHistoryParams,
+        Responses.SecureGetTransactionsHistoryResponse
+    >
+    /**
+     * Returns one of the previously set game levels of one or more users in the application.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.getUserLevel)
+     */
+    "secure.getUserLevel": CallAPI<
+        Params.SecureGetUserLevelParams,
+        Responses.SecureGetUserLevelResponse
+    >
+    /**
+     * Opens the game achievement and gives the user a sticker
+     *
+     * [Documentation](https://dev.vk.com/method/secure.giveEventSticker)
+     */
+    "secure.giveEventSticker": CallAPI<
+        Params.SecureGiveEventStickerParams,
+        Responses.SecureGiveEventStickerResponse
+    >
+    /**
+     * Sends notification to the user.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.sendNotification)
+     */
+    "secure.sendNotification": CallAPI<
+        Params.SecureSendNotificationParams,
+        Responses.SecureSendNotificationResponse
+    >
+    /**
+     * Sends 'SMS' notification to a user's mobile device.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.sendSMSNotification)
+     */
+    "secure.sendSMSNotification": CallAPI<
+        Params.SecureSendSMSNotificationParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Sets a counter which is shown to the user in bold in the left menu.
+     *
+     * [Documentation](https://dev.vk.com/method/secure.setCounter)
+     */
+    "secure.setCounter": {
+        (params: Params.SecureSetCounterParams): Promise<Objects.VKBaseBoolInt>
+        (
+            params: Params.SecureSetCounterParams,
+        ): Promise<Responses.SecureSetCounterArrayResponse>
+    }
+    /**
+     * Returns statistics of a community or an application.
+     *
+     * [Documentation](https://dev.vk.com/method/stats.get)
+     */
+    "stats.get": CallAPIWithOptionalParams<
+        Params.StatsGetParams,
+        Responses.StatsGetResponse
+    >
+    /**
+     * Returns stats for a wall post.
+     *
+     * [Documentation](https://dev.vk.com/method/stats.getPostReach)
+     */
+    "stats.getPostReach": CallAPI<
+        Params.StatsGetPostReachParams,
+        Responses.StatsGetPostReachResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/stats.trackVisitor)
+     */
+    "stats.trackVisitor": CallAPIWithOptionalParams<
+        Params.StatsTrackVisitorParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns data required to show the status of a user or community.
+     *
+     * [Documentation](https://dev.vk.com/method/status.get)
+     */
+    "status.get": CallAPIWithOptionalParams<
+        Params.StatusGetParams,
+        Objects.VKStatusStatus
+    >
+    /**
+     * Sets a new status for the current user.
+     *
+     * [Documentation](https://dev.vk.com/method/status.set)
+     */
+    "status.set": CallAPIWithOptionalParams<
+        Params.StatusSetParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a value of variable with the name set by key parameter.
+     *
+     * [Documentation](https://dev.vk.com/method/storage.get)
+     */
+    "storage.get": CallAPIWithOptionalParams<
+        Params.StorageGetParams,
+        Responses.StorageGetResponse
+    >
+    /**
+     * Returns the names of all variables.
+     *
+     * [Documentation](https://dev.vk.com/method/storage.getKeys)
+     */
+    "storage.getKeys": CallAPIWithOptionalParams<
+        Params.StorageGetKeysParams,
+        Responses.StorageGetKeysResponse
+    >
+    /**
+     * Saves a value of variable with the name set by 'key' parameter.
+     *
+     * [Documentation](https://dev.vk.com/method/storage.set)
+     */
+    "storage.set": CallAPI<Params.StorageSetParams, Responses.BaseOkResponse>
+    /**
+     * Adds given sticker IDs to the list of user's favorite stickers
+     *
+     * [Documentation](https://dev.vk.com/method/store.addStickersToFavorite)
+     */
+    "store.addStickersToFavorite": CallAPI<
+        Params.StoreAddStickersToFavoriteParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/store.getFavoriteStickers)
+     */
+    "store.getFavoriteStickers": CallAPIWithoutParams<Responses.StoreGetFavoriteStickersResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/store.getProducts)
+     */
+    "store.getProducts": CallAPIWithOptionalParams<
+        Params.StoreGetProductsParams,
+        Responses.StoreGetProductsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/store.getStickersKeywords)
+     */
+    "store.getStickersKeywords": CallAPIWithOptionalParams<
+        Params.StoreGetStickersKeywordsParams,
+        Responses.StoreGetStickersKeywordsResponse
+    >
+    /**
+     * Removes given sticker IDs from the list of user's favorite stickers
+     *
+     * [Documentation](https://dev.vk.com/method/store.removeStickersFromFavorite)
+     */
+    "store.removeStickersFromFavorite": CallAPI<
+        Params.StoreRemoveStickersFromFavoriteParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to hide stories from chosen sources from current user's feed.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.banOwner)
+     */
+    "stories.banOwner": CallAPI<
+        Params.StoriesBanOwnerParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to delete story.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.delete)
+     */
+    "stories.delete": CallAPIWithOptionalParams<
+        Params.StoriesDeleteParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns stories available for current user.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.get)
+     */
+    "stories.get": CallAPIWithOptionalParams<
+        Params.StoriesGetParams,
+        Responses.StoriesGetV5113Response
+    >
+    /**
+     * Returns list of sources hidden from current user's feed.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getBanned)
+     */
+    "stories.getBanned": {
+        (
+            params: Params.StoriesGetBannedParams,
+        ): Promise<Responses.StoriesGetBannedResponse>
+        (
+            params: Params.StoriesGetBannedParams,
+        ): Promise<Responses.StoriesGetBannedExtendedResponse>
+    }
+    /**
+     * Returns story by its ID.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getById)
+     */
+    "stories.getById": CallAPI<
+        Params.StoriesGetByIdParams,
+        Responses.StoriesGetByIdExtendedResponse
+    >
+    /**
+     * Returns URL for uploading a story with photo.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getPhotoUploadServer)
+     */
+    "stories.getPhotoUploadServer": CallAPIWithOptionalParams<
+        Params.StoriesGetPhotoUploadServerParams,
+        Responses.StoriesGetPhotoUploadServerResponse
+    >
+    /**
+     * Returns replies to the story.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getReplies)
+     */
+    "stories.getReplies": CallAPI<
+        Params.StoriesGetRepliesParams,
+        Responses.StoriesGetV5113Response
+    >
+    /**
+     * Returns stories available for current user.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getStats)
+     */
+    "stories.getStats": CallAPI<
+        Params.StoriesGetStatsParams,
+        Objects.VKStoriesStoryStats
+    >
+    /**
+     * Allows to receive URL for uploading story with video.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getVideoUploadServer)
+     */
+    "stories.getVideoUploadServer": CallAPIWithOptionalParams<
+        Params.StoriesGetVideoUploadServerParams,
+        Responses.StoriesGetVideoUploadServerResponse
+    >
+    /**
+     * Returns a list of story viewers.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.getViewers)
+     */
+    "stories.getViewers": CallAPI<
+        Params.StoriesGetViewersParams,
+        Responses.StoriesGetViewersExtendedV5115Response
+    >
+    /**
+     * Hides all replies in the last 24 hours from the user to current user's stories.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.hideAllReplies)
+     */
+    "stories.hideAllReplies": CallAPI<
+        Params.StoriesHideAllRepliesParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Hides the reply to the current user's story.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.hideReply)
+     */
+    "stories.hideReply": CallAPI<
+        Params.StoriesHideReplyParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/stories.save)
+     */
+    "stories.save": CallAPIWithOptionalParams<
+        Params.StoriesSaveParams,
+        Responses.StoriesSaveResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/stories.search)
+     */
+    "stories.search": CallAPIWithOptionalParams<
+        Params.StoriesSearchParams,
+        Responses.StoriesGetV5113Response
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/stories.sendInteraction)
+     */
+    "stories.sendInteraction": CallAPI<
+        Params.StoriesSendInteractionParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to show stories from hidden sources in current user's feed.
+     *
+     * [Documentation](https://dev.vk.com/method/stories.unbanOwner)
+     */
+    "stories.unbanOwner": CallAPI<
+        Params.StoriesUnbanOwnerParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to receive data for the connection to Streaming API.
+     *
+     * [Documentation](https://dev.vk.com/method/streaming.getServerUrl)
+     */
+    "streaming.getServerUrl": CallAPIWithoutParams<Responses.StreamingGetServerUrlResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/streaming.getStats)
+     */
+    "streaming.getStats": CallAPIWithOptionalParams<
+        Params.StreamingGetStatsParams,
+        Responses.StreamingGetStatsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/streaming.getStem)
+     */
+    "streaming.getStem": CallAPI<
+        Params.StreamingGetStemParams,
+        Responses.StreamingGetStemResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/translations.translate)
+     */
+    "translations.translate": CallAPI<
+        Params.TranslationsTranslateParams,
+        Responses.TranslationsTranslateResponse
+    >
+    /**
+     * Returns detailed information on users.
+     *
+     * [Documentation](https://dev.vk.com/method/users.get)
+     */
+    "users.get": CallAPIWithOptionalParams<
+        Params.UsersGetParams,
+        Responses.UsersGetResponse
+    >
+    /**
+     * Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
+     *
+     * [Documentation](https://dev.vk.com/method/users.getFollowers)
+     */
+    "users.getFollowers": {
+        (
+            params: Params.UsersGetFollowersParams,
+        ): Promise<Responses.UsersGetFollowersResponse>
+        (
+            params: Params.UsersGetFollowersParams,
+        ): Promise<Responses.UsersGetFollowersFieldsResponse>
+    }
+    /**
+     * Returns a list of IDs of users and communities followed by the user.
+     *
+     * [Documentation](https://dev.vk.com/method/users.getSubscriptions)
+     */
+    "users.getSubscriptions": {
+        (
+            params: Params.UsersGetSubscriptionsParams,
+        ): Promise<Responses.UsersGetSubscriptionsResponse>
+        (
+            params: Params.UsersGetSubscriptionsParams,
+        ): Promise<Responses.UsersGetSubscriptionsExtendedResponse>
+    }
+    /**
+     * Reports (submits a complain about) a user.
+     *
+     * [Documentation](https://dev.vk.com/method/users.report)
+     */
+    "users.report": CallAPI<Params.UsersReportParams, Responses.BaseOkResponse>
+    /**
+     * Returns a list of users matching the search criteria.
+     *
+     * [Documentation](https://dev.vk.com/method/users.search)
+     */
+    "users.search": CallAPIWithOptionalParams<
+        Params.UsersSearchParams,
+        Responses.UsersSearchResponse
+    >
+    /**
+     * Checks whether a link is blocked in VK.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.checkLink)
+     */
+    "utils.checkLink": CallAPI<
+        Params.UtilsCheckLinkParams,
+        Objects.VKUtilsLinkChecked
+    >
+    /**
+     * Deletes shortened link from user's list.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.deleteFromLastShortened)
+     */
+    "utils.deleteFromLastShortened": CallAPI<
+        Params.UtilsDeleteFromLastShortenedParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of user's shortened links.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.getLastShortenedLinks)
+     */
+    "utils.getLastShortenedLinks": CallAPIWithOptionalParams<
+        Params.UtilsGetLastShortenedLinksParams,
+        Responses.UtilsGetLastShortenedLinksResponse
+    >
+    /**
+     * Returns stats data for shortened link.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.getLinkStats)
+     */
+    "utils.getLinkStats": {
+        (
+            params: Params.UtilsGetLinkStatsParams,
+        ): Promise<Objects.VKUtilsLinkStats>
+        (
+            params: Params.UtilsGetLinkStatsParams,
+        ): Promise<Objects.VKUtilsLinkStatsExtended>
+    }
+    /**
+     * Returns the current time of the VK server.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.getServerTime)
+     */
+    "utils.getServerTime": CallAPIWithoutParams<Responses.UtilsGetServerTimeResponse>
+    /**
+     * Allows to receive a link shortened via vk.cc.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.getShortLink)
+     */
+    "utils.getShortLink": CallAPI<
+        Params.UtilsGetShortLinkParams,
+        Objects.VKUtilsShortLink
+    >
+    /**
+     * Detects a type of object (e.g., user, community, application) and its ID by screen name.
+     *
+     * [Documentation](https://dev.vk.com/method/utils.resolveScreenName)
+     */
+    "utils.resolveScreenName": CallAPI<
+        Params.UtilsResolveScreenNameParams,
+        Objects.VKUtilsDomainResolved
+    >
+    /**
+     * Adds a video to a user or community page.
+     *
+     * [Documentation](https://dev.vk.com/method/video.add)
+     */
+    "video.add": CallAPI<Params.VideoAddParams, Responses.BaseOkResponse>
+    /**
+     * Creates an empty album for videos.
+     *
+     * [Documentation](https://dev.vk.com/method/video.addAlbum)
+     */
+    "video.addAlbum": CallAPIWithOptionalParams<
+        Params.VideoAddAlbumParams,
+        Responses.VideoAddAlbumResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.addToAlbum)
+     */
+    "video.addToAlbum": {
+        (
+            params: Params.VideoAddToAlbumParams,
+        ): Promise<Responses.BaseOkResponse>
+        (
+            params: Params.VideoAddToAlbumParams,
+        ): Promise<Responses.VideoChangeVideoAlbumsResponse>
+    }
+    /**
+     * Adds a new comment on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.createComment)
+     */
+    "video.createComment": CallAPI<
+        Params.VideoCreateCommentParams,
+        Responses.VideoCreateCommentResponse
+    >
+    /**
+     * Deletes a video from a user or community page.
+     *
+     * [Documentation](https://dev.vk.com/method/video.delete)
+     */
+    "video.delete": CallAPI<Params.VideoDeleteParams, Responses.BaseOkResponse>
+    /**
+     * Deletes a video album.
+     *
+     * [Documentation](https://dev.vk.com/method/video.deleteAlbum)
+     */
+    "video.deleteAlbum": CallAPI<
+        Params.VideoDeleteAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a comment on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.deleteComment)
+     */
+    "video.deleteComment": CallAPI<
+        Params.VideoDeleteCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a thread on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.deleteThread)
+     */
+    "video.deleteThread": CallAPI<
+        Params.VideoDeleteThreadParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits information about a video on a user or community page.
+     *
+     * [Documentation](https://dev.vk.com/method/video.edit)
+     */
+    "video.edit": CallAPI<Params.VideoEditParams, Responses.VideoEditResponse>
+    /**
+     * Edits the title of a video album.
+     *
+     * [Documentation](https://dev.vk.com/method/video.editAlbum)
+     */
+    "video.editAlbum": CallAPI<
+        Params.VideoEditAlbumParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits the text of a comment on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.editComment)
+     */
+    "video.editComment": CallAPI<
+        Params.VideoEditCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns detailed information about videos.
+     *
+     * [Documentation](https://dev.vk.com/method/video.get)
+     */
+    "video.get": CallAPIWithOptionalParams<
+        Params.VideoGetParams,
+        Responses.VideoGetResponse
+    >
+    /**
+     * Returns video album info
+     *
+     * [Documentation](https://dev.vk.com/method/video.getAlbumById)
+     */
+    "video.getAlbumById": CallAPI<
+        Params.VideoGetAlbumByIdParams,
+        Objects.VKVideoVideoAlbumFull
+    >
+    /**
+     * Returns a list of video albums owned by a user or community.
+     *
+     * [Documentation](https://dev.vk.com/method/video.getAlbums)
+     */
+    "video.getAlbums": {
+        (
+            params: Params.VideoGetAlbumsParams,
+        ): Promise<Responses.VideoGetAlbumsResponse>
+        (
+            params: Params.VideoGetAlbumsParams,
+        ): Promise<Responses.VideoGetAlbumsExtendedResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.getAlbumsByVideo)
+     */
+    "video.getAlbumsByVideo": {
+        (
+            params: Params.VideoGetAlbumsByVideoParams,
+        ): Promise<Responses.VideoGetAlbumsByVideoResponse>
+        (
+            params: Params.VideoGetAlbumsByVideoParams,
+        ): Promise<Responses.VideoGetAlbumsByVideoExtendedResponse>
+    }
+    /**
+     * Returns a list of comments on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.getComments)
+     */
+    "video.getComments": {
+        (
+            params: Params.VideoGetCommentsParams,
+        ): Promise<Responses.VideoGetCommentsResponse>
+        (
+            params: Params.VideoGetCommentsParams,
+        ): Promise<Responses.VideoGetCommentsExtendedResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.getLongPollServer)
+     */
+    "video.getLongPollServer": CallAPI<
+        Params.VideoGetLongPollServerParams,
+        Responses.VideoGetLongPollServerResponse
+    >
+    /**
+     * Returns oEmbed player to video
+     *
+     * [Documentation](https://dev.vk.com/method/video.getOembed)
+     */
+    "video.getOembed": CallAPI<
+        Params.VideoGetOembedParams,
+        Responses.VideoGetOembedResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.getThumbUploadUrl)
+     */
+    "video.getThumbUploadUrl": CallAPI<
+        Params.VideoGetThumbUploadUrlParams,
+        Responses.VideoGetThumbUploadUrlResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.liveGetCategories)
+     */
+    "video.liveGetCategories": CallAPIWithoutParams<Responses.VideoLiveGetCategoriesResponse>
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.removeFromAlbum)
+     */
+    "video.removeFromAlbum": {
+        (
+            params: Params.VideoRemoveFromAlbumParams,
+        ): Promise<Responses.BaseOkResponse>
+        (
+            params: Params.VideoRemoveFromAlbumParams,
+        ): Promise<Responses.VideoChangeVideoAlbumsResponse>
+    }
+    /**
+     * Reorders the album in the list of user video albums.
+     *
+     * [Documentation](https://dev.vk.com/method/video.reorderAlbums)
+     */
+    "video.reorderAlbums": CallAPI<
+        Params.VideoReorderAlbumsParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reorders the video in the video album.
+     *
+     * [Documentation](https://dev.vk.com/method/video.reorderVideos)
+     */
+    "video.reorderVideos": CallAPI<
+        Params.VideoReorderVideosParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reports (submits a complaint about) a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.report)
+     */
+    "video.report": CallAPI<Params.VideoReportParams, Responses.BaseOkResponse>
+    /**
+     * Reports (submits a complaint about) a comment on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.reportComment)
+     */
+    "video.reportComment": CallAPI<
+        Params.VideoReportCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a previously deleted video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.restore)
+     */
+    "video.restore": CallAPI<
+        Params.VideoRestoreParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a previously deleted comment on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.restoreComment)
+     */
+    "video.restoreComment": CallAPI<
+        Params.VideoRestoreCommentParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Restores a deleted thread on a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.restoreThread)
+     */
+    "video.restoreThread": CallAPI<
+        Params.VideoRestoreThreadParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a server address (required for upload) and video data.
+     *
+     * [Documentation](https://dev.vk.com/method/video.save)
+     */
+    "video.save": CallAPIWithOptionalParams<
+        Params.VideoSaveParams,
+        Objects.VKVideoSaveResult
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.saveUploadedThumb)
+     */
+    "video.saveUploadedThumb": CallAPI<
+        Params.VideoSaveUploadedThumbParams,
+        Responses.VideoSaveUploadedThumbResponse
+    >
+    /**
+     * Returns a list of videos under the set search criterion.
+     *
+     * [Documentation](https://dev.vk.com/method/video.search)
+     */
+    "video.search": {
+        (
+            params: Params.VideoSearchParams,
+        ): Promise<Responses.VideoSearchResponse>
+        (
+            params: Params.VideoSearchParams,
+        ): Promise<Responses.VideoSearchExtendedResponse>
+    }
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.startStreaming)
+     */
+    "video.startStreaming": CallAPIWithOptionalParams<
+        Params.VideoStartStreamingParams,
+        Responses.VideoStartStreamingResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/video.stopStreaming)
+     */
+    "video.stopStreaming": CallAPIWithOptionalParams<
+        Params.VideoStopStreamingParams,
+        Responses.VideoStopStreamingResponse
+    >
+    /**
+     * Unpin comment of a video.
+     *
+     * [Documentation](https://dev.vk.com/method/video.unpinComment)
+     */
+    "video.unpinComment": CallAPI<
+        Params.VideoUnpinCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/wall.checkCopyrightLink)
+     */
+    "wall.checkCopyrightLink": CallAPI<
+        Params.WallCheckCopyrightLinkParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/wall.closeComments)
+     */
+    "wall.closeComments": CallAPI<
+        Params.WallCloseCommentsParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     * Adds a comment to a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.createComment)
+     */
+    "wall.createComment": CallAPI<
+        Params.WallCreateCommentParams,
+        Responses.WallCreateCommentResponse
+    >
+    /**
+     * Deletes a post from a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.delete)
+     */
+    "wall.delete": CallAPIWithOptionalParams<
+        Params.WallDeleteParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Deletes a comment on a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.deleteComment)
+     */
+    "wall.deleteComment": CallAPI<
+        Params.WallDeleteCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.edit)
+     */
+    "wall.edit": CallAPI<Params.WallEditParams, Responses.WallEditResponse>
+    /**
+     * Allows to edit hidden post.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.editAdsStealth)
+     */
+    "wall.editAdsStealth": CallAPI<
+        Params.WallEditAdsStealthParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Edits a comment on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.editComment)
+     */
+    "wall.editComment": CallAPI<
+        Params.WallEditCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Returns a list of posts on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.get)
+     */
+    "wall.get": {
+        (params: Params.WallGetParams): Promise<Responses.WallGetResponse>
+        (
+            params: Params.WallGetParams,
+        ): Promise<Responses.WallGetExtendedResponse>
+    }
+    /**
+     * Returns a list of posts from user or community walls by their IDs.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.getById)
+     */
+    "wall.getById": {
+        (
+            params: Params.WallGetByIdParams,
+        ): Promise<Responses.WallGetByIdResponse>
+        (
+            params: Params.WallGetByIdParams,
+        ): Promise<Responses.WallGetByIdExtendedResponse>
+    }
+    /**
+     * Returns a comment on a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.getComment)
+     */
+    "wall.getComment": {
+        (
+            params: Params.WallGetCommentParams,
+        ): Promise<Responses.WallGetCommentResponse>
+        (
+            params: Params.WallGetCommentParams,
+        ): Promise<Responses.WallGetCommentExtendedResponse>
+    }
+    /**
+     * Returns a list of comments on a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.getComments)
+     */
+    "wall.getComments": {
+        (
+            params: Params.WallGetCommentsParams,
+        ): Promise<Responses.WallGetCommentsResponse>
+        (
+            params: Params.WallGetCommentsParams,
+        ): Promise<Responses.WallGetCommentsExtendedResponse>
+    }
+    /**
+     * Returns information about reposts of a post on user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.getReposts)
+     */
+    "wall.getReposts": CallAPIWithOptionalParams<
+        Params.WallGetRepostsParams,
+        Responses.WallGetRepostsResponse
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/wall.openComments)
+     */
+    "wall.openComments": CallAPI<
+        Params.WallOpenCommentsParams,
+        Objects.VKBaseBoolInt
+    >
+    /**
+     *
+     *
+     * [Documentation](https://dev.vk.com/method/wall.parseAttachedLink)
+     */
+    "wall.parseAttachedLink": CallAPI<
+        Params.WallParseAttachedLinkParams,
+        Responses.WallParseAttachedLinkResponse
+    >
+    /**
+     * Pins the post on wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.pin)
+     */
+    "wall.pin": CallAPI<Params.WallPinParams, Responses.BaseOkResponse>
+    /**
+     * Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.post)
+     */
+    "wall.post": CallAPIWithOptionalParams<
+        Params.WallPostParams,
+        Responses.WallPostResponse
+    >
+    /**
+     * Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type "Community post".
+     *
+     * [Documentation](https://dev.vk.com/method/wall.postAdsStealth)
+     */
+    "wall.postAdsStealth": CallAPI<
+        Params.WallPostAdsStealthParams,
+        Responses.WallPostAdsStealthResponse
+    >
+    /**
+     * Reports (submits a complaint about) a comment on a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.reportComment)
+     */
+    "wall.reportComment": CallAPI<
+        Params.WallReportCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reports (submits a complaint about) a post on a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.reportPost)
+     */
+    "wall.reportPost": CallAPI<
+        Params.WallReportPostParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Reposts (copies) an object to a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.repost)
+     */
+    "wall.repost": CallAPI<
+        Params.WallRepostParams,
+        Responses.WallRepostResponse
+    >
+    /**
+     * Restores a post deleted from a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.restore)
+     */
+    "wall.restore": CallAPIWithOptionalParams<
+        Params.WallRestoreParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Restores a comment deleted from a user wall or community wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.restoreComment)
+     */
+    "wall.restoreComment": CallAPI<
+        Params.WallRestoreCommentParams,
+        Responses.BaseOkResponse
+    >
+    /**
+     * Allows to search posts on user or community walls.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.search)
+     */
+    "wall.search": {
+        (params: Params.WallSearchParams): Promise<Responses.WallSearchResponse>
+        (
+            params: Params.WallSearchParams,
+        ): Promise<Responses.WallSearchExtendedResponse>
+    }
+    /**
+     * Unpins the post on wall.
+     *
+     * [Documentation](https://dev.vk.com/method/wall.unpin)
+     */
+    "wall.unpin": CallAPI<Params.WallUnpinParams, Responses.BaseOkResponse>
+    /**
+     * Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+     *
+     * [Documentation](https://dev.vk.com/method/widgets.getComments)
+     */
+    "widgets.getComments": CallAPIWithOptionalParams<
+        Params.WidgetsGetCommentsParams,
+        Responses.WidgetsGetCommentsResponse
+    >
+    /**
+     * Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
+     *
+     * [Documentation](https://dev.vk.com/method/widgets.getPages)
+     */
+    "widgets.getPages": CallAPIWithOptionalParams<
+        Params.WidgetsGetPagesParams,
+        Responses.WidgetsGetPagesResponse
     >
 }

@@ -1,14 +1,7 @@
-import type {
-	VKError,
-	VKMethod,
-	VKSchema,
-	VKSchemaProperty,
-} from "./types";
+import type { VKError, VKMethod, VKSchema, VKSchemaProperty } from "./types";
 
-const BASE_RAW =
-	"https://raw.githubusercontent.com/VKCOM/vk-api-schema/master";
-const API_BASE =
-	"https://api.github.com/repos/VKCOM/vk-api-schema/contents";
+const BASE_RAW = "https://raw.githubusercontent.com/VKCOM/vk-api-schema/master";
+const API_BASE = "https://api.github.com/repos/VKCOM/vk-api-schema/contents";
 
 interface GHContent {
 	name: string;

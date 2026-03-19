@@ -17,7 +17,9 @@ export class Errors {
 			"error_code: VKErrorCode",
 			...CodeGenerator.generateComment("Error message"),
 			"error_msg: string",
-			...CodeGenerator.generateComment("Request parameters that caused the error"),
+			...CodeGenerator.generateComment(
+				"Request parameters that caused the error",
+			),
 			"request_params: { key: string; value: string }[]",
 			"}",
 			"",
