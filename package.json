@@ -1,22 +1,19 @@
 {
-	"name": "@gramio/types",
-	"version": "9.5.0",
-	"homepage": "https://github.com/gramiojs/types",
-	"readme": "https://github.com/gramiojs/types",
-	"description": "Code-generated and Auto-published Telegram Bot API types",
+	"name": "@vkraft/types",
+	"version": "5.199.0",
+	"homepage": "https://github.com/vkraft/types",
+	"readme": "https://github.com/vkraft/types",
+	"description": "Code-generated VK API TypeScript types",
 	"type": "commonjs",
 	"author": "kravets",
 	"license": "MIT",
 	"keywords": [
-		"telegram",
-		"bot",
-		"tba",
+		"vk",
+		"vkontakte",
+		"vk-api",
 		"types",
-		"telegram-bot-api",
-		"code-generated",
-		"auto-published",
-		"cicd",
-		"api"
+		"vkraft",
+		"code-generated"
 	],
 	"types": "./out/index.d.ts",
 	"typings": "./out/index.d.ts",
@@ -29,16 +26,15 @@
 		}
 	},
 	"scripts": {
-		"dirty-fix": "bun scripts/dirty-fix.ts",
 		"cicd": "bun scripts/cicd.ts",
 		"jsr": "bun scripts/release-jsr.ts",
 		"generate": "bun src/index.ts",
 		"lint": "bunx @biomejs/biome check ./src",
-		"lint:fix": "bun lint --apply"
+		"lint:fix": "bun lint --apply",
+		"test": "bun test"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.5.3",
-		"@gramio/schema-parser": "^1.0.0",
 		"@types/node": "^20.11.10",
 		"prettier": "^3.2.4"
 	},

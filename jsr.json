@@ -1,12 +1,14 @@
 {
   "$schema": "https://jsr.io/schema/config-file.v1.json",
-  "name": "@gramio/types",
-  "version": "9.5.0",
+  "name": "@vkraft/types",
+  "version": "5.199.0",
   "exports": {
     ".": "./source/index.ts",
     "./methods": "./source/methods.ts",
     "./objects": "./source/objects.ts",
     "./params": "./source/params.ts",
+    "./responses": "./source/responses.ts",
+    "./errors": "./source/errors.ts",
     "./utils": "./source/utils.ts"
   },
   "publish": {

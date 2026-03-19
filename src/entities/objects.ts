@@ -1,122 +1,162 @@
-import type {
-	Field,
-	Object as TGObject,
-	ObjectUnknown,
-	ObjectWithFields,
-	ObjectWithOneOf,
-} from "@gramio/schema-parser";
 import { OBJECTS_PREFIX } from "../config";
 import { CodeGenerator, TextEditor } from "../helpers";
-import type { FieldContext } from "./properties";
-import { Properties, fieldToType } from "./properties";
-
-/** Local shape for ObjectWithEnum — new variant emitted by updated schema-parser. */
-type ObjectWithEnum = { name: string; anchor: string; description?: string; type: "enum"; values: string[] };
-
-const TG_DOCS = "https://core.telegram.org/bots/api/";
+import { flattenAllOf } from "../schema/allof-merger";
+import { defNameToPascal, parseRef } from "../schema/resolver";
+import type { VKSchemaProperty } from "../schema/types";
+import {
+	Properties,
+	collectEnumAliases,
+	schemaToType,
+} from "./properties";
 
 export class Objects {
-	static generateMany(objects: TGObject[], markupTypes: Set<string> = new Set()) {
-		return objects.flatMap((o) => Objects.generate(o, markupTypes));
+	static generateMany(
+		objects: Map<string, VKSchemaProperty>,
+		allDefinitions: Map<string, VKSchemaProperty>,
+	): string[] {
+		const lines: string[] = [];
+		for (const [defName, def] of objects) {
+			lines.push(...Objects.generate(defName, def, allDefinitions));
+		}
+		return lines;
 	}
 
-	static generate(object: TGObject, markupTypes: Set<string> = new Set()): string[] {
-		const name = OBJECTS_PREFIX + object.name;
-		const GENERICS: Record<string, string> = {
-			APIResponseOk: "<Methods extends keyof APIMethods = keyof APIMethods>",
-			APIResponse: "<Methods extends keyof APIMethods = keyof APIMethods>",
+	static generate(
+		defName: string,
+		def: VKSchemaProperty,
+		allDefinitions: Map<string, VKSchemaProperty>,
+	): string[] {
+		const typeName = OBJECTS_PREFIX + defNameToPascal(defName);
+		const ctx = {
+			objectName: defName,
+			objectType: "object" as const,
+			allDefinitions,
 		};
-		const generic = GENERICS[object.name] ?? "";
-		const doc = `${object.description ?? ""}\n\n[Documentation](${TG_DOCS}${object.anchor})`;
 
-		// ── File upload type — ObjectWithFile (InputFile) ───────────────────
-		if (object.type === "file") {
+		const doc = def.description ?? "";
+
+		// ── Pure enum (has enum, no properties) ────────────────────────────
+		if (def.enum && !def.properties && !def.allOf && !def.oneOf) {
+			const isNumeric = def.type === "integer" || def.type === "number";
+
+			const commentLines: string[] = [doc];
+			if (def.enumNames && def.enumNames.length === def.enum.length) {
+				commentLines.push(
+					"",
+					...def.enum.map(
+						(val, i) => `- \`${val}\` — ${def.enumNames![i]}`,
+					),
+				);
+			}
+
 			return [
 				"",
-				...CodeGenerator.generateComment(doc),
-				`export type ${name} = Blob`,
+				...CodeGenerator.generateComment(commentLines),
+				CodeGenerator.generateUnionType(
+					typeName,
+					def.enum,
+					isNumeric ? "number" : "string",
+				),
 				"",
 			];
 		}
 
-		// ── String enum object — ObjectWithEnum (e.g. Currencies) ──────────
-		if (object.type === "enum") {
+		// ── $ref only (type alias) ──────────────────────────────────────────
+		if (def.$ref && !def.properties && !def.allOf && !def.oneOf) {
+			const target = schemaToType(def, ctx);
 			return [
 				"",
 				...CodeGenerator.generateComment(doc),
-				`export type ${name} = ${object.values.map((v) => `"${v}"`).join(" | ")}`,
+				`export type ${typeName} = ${target}`,
 				"",
 			];
 		}
 
-		// ── Union type (e.g. ChatMember → ChatMemberOwner | … ) ─────────────
-		if (object.type === "oneOf") {
-			const ctx: FieldContext = {
-				objectName: object.name,
-				objectType: "object",
-				markupTypes,
-			};
-			const union = (object as ObjectWithOneOf).oneOf
-				.map((f) => fieldToType(f as Field, ctx))
+		// ── allOf (inheritance) ─────────────────────────────────────────────
+		if (def.allOf) {
+			const flat = flattenAllOf(def, allDefinitions);
+			const entries = Object.entries(flat.properties);
+
+			if (entries.length === 0) {
+				return [
+					"",
+					...CodeGenerator.generateComment(doc),
+					`export interface ${typeName} {}`,
+					"",
+				];
+			}
+
+			const enumAliases = collectEnumAliases(
+				flat.properties,
+				defName,
+				"object",
+			);
+
+			return [
+				...enumAliases,
+				"",
+				...CodeGenerator.generateComment(doc),
+				`export interface ${typeName} {`,
+				...Properties.convertMany(flat.properties, flat.required, ctx).flat(),
+				"}",
+				"",
+			];
+		}
+
+		// ── oneOf with discriminator ────────────────────────────────────────
+		if (def.oneOf && def.discriminator) {
+			const union = def.oneOf
+				.map((variant) => schemaToType(variant, ctx))
 				.join(" | ");
 			return [
 				"",
 				...CodeGenerator.generateComment(doc),
-				`export type ${name + generic} = ${union}`,
+				`export type ${typeName} = ${union}`,
 				"",
 			];
 		}
 
-		// ── Empty / marker object (e.g. ForumTopicClosed, CallbackGame) ─────
-		if (object.type === "unknown") {
+		// ── oneOf (plain union) ─────────────────────────────────────────────
+		if (def.oneOf) {
+			const union = def.oneOf
+				.map((variant) => schemaToType(variant, ctx))
+				.join(" | ");
 			return [
 				"",
 				...CodeGenerator.generateComment(doc),
-				`export interface ${name + generic} {}`,
+				`export type ${typeName} = ${union}`,
 				"",
 			];
 		}
 
-		// ── Object with fields ────────────────────────────────────────────────
-		const fieldsObject = object as ObjectWithFields;
-		const ctx: FieldContext = {
-			objectName: object.name,
-			objectType: "object",
-			markupTypes,
-		};
-
-		// Collect enum union type aliases for fields that have string/integer enums
-		const unionTypes = fieldsObject.fields
-			.filter(
-				(f): f is Field & { enum: (string | number)[] } =>
-					(f.type === "string" || f.type === "integer") &&
-					"enum" in f &&
-					Array.isArray((f as any).enum) &&
-					// Guard: skip non-numeric values in integer enums (Dice.value parser bug)
-					!(
-						f.type === "integer" &&
-						(f as any).enum.some((v: unknown) => typeof v !== "number")
-					),
-			)
-			.map((f) =>
-				CodeGenerator.generateUnionType(
-					OBJECTS_PREFIX +
-						object.name +
-						TextEditor.uppercaseFirstLetter(
-							TextEditor.fromSnakeToCamelCase(f.key),
-						),
-					(f as any).enum as string[],
-					f.type === "integer" ? "number" : "string",
-				),
+		// ── Object with properties ──────────────────────────────────────────
+		if (def.properties) {
+			const reqSet = new Set(
+				Array.isArray(def.required) ? def.required : [],
 			);
 
+			const enumAliases = collectEnumAliases(
+				def.properties,
+				defName,
+				"object",
+			);
+
+			return [
+				...enumAliases,
+				"",
+				...CodeGenerator.generateComment(doc),
+				`export interface ${typeName} {`,
+				...Properties.convertMany(def.properties, reqSet, ctx).flat(),
+				"}",
+				"",
+			];
+		}
+
+		// ── Empty definition ────────────────────────────────────────────────
 		return [
-			...unionTypes,
 			"",
 			...CodeGenerator.generateComment(doc),
-			`export interface ${name + generic} {`,
-			...Properties.convertMany(fieldsObject.fields, ctx).flat(),
-			"}",
+			`export interface ${typeName} {}`,
 			"",
 		];
 	}

@@ -1,51 +1,59 @@
-import type { Field, Method } from "@gramio/schema-parser";
 import { CodeGenerator, TextEditor } from "../helpers";
-import type { FieldContext } from "./properties";
-import { Properties } from "./properties";
+import type { VKMethod, VKSchemaProperty } from "../schema/types";
+import { collectEnumAliases, schemaToType } from "./properties";
 
 export class Params {
-	static generateMany(methods: Method[], markupTypes: Set<string> = new Set()) {
-		return methods.flatMap((m) => Params.generate(m, markupTypes));
+	static generateMany(
+		methods: VKMethod[],
+		allDefinitions: Map<string, VKSchemaProperty>,
+	): string[] {
+		return methods.flatMap((m) => Params.generate(m, allDefinitions));
 	}
 
-	static generate(method: Method, markupTypes: Set<string> = new Set()) {
-		if (!method.parameters.length) return [];
+	static generate(
+		method: VKMethod,
+		allDefinitions: Map<string, VKSchemaProperty>,
+	): string[] {
+		if (!method.parameters || method.parameters.length === 0) return [];
 
-		const ctx: FieldContext = {
-			objectName: method.name,
-			objectType: "method",
-			markupTypes,
+		const methodPascal = TextEditor.methodToPascalCase(method.name);
+		const ctx = {
+			objectName: method.name.replace(".", "_"),
+			objectType: "method" as const,
+			allDefinitions,
 		};
 
-		// Collect enum union type aliases for parameters that carry string/integer enums
-		const unionTypes = method.parameters
-			.filter(
-				(p): p is Field & { enum: (string | number)[] } =>
-					(p.type === "string" || p.type === "integer") &&
-					"enum" in p &&
-					Array.isArray((p as any).enum),
-			)
-			.map((p) =>
-				CodeGenerator.generateUnionType(
-					TextEditor.uppercaseFirstLetter(method.name) +
-						TextEditor.uppercaseFirstLetter(
-							TextEditor.fromSnakeToCamelCase(p.key),
-						),
-					(p as any).enum as string[],
-					p.type === "integer" || p.type === "float" ? "number" : "string",
-				),
-			);
+		// Build a properties map from parameters for enum alias collection
+		const propsMap: Record<string, VKSchemaProperty> = {};
+		for (const param of method.parameters) {
+			propsMap[param.name] = param;
+		}
 
-		return [
-			...unionTypes,
+		const enumAliases = collectEnumAliases(
+			propsMap,
+			method.name.replace(".", "_"),
+			"method",
+		);
+
+		const lines: string[] = [
+			...enumAliases,
 			"",
 			...CodeGenerator.generateComment(
-				`Params object for {@link APIMethods.${method.name} | ${method.name}} method`,
+				`Params for {@link APIMethods["${method.name}"] | ${method.name}} method`,
 			),
-			`export interface ${TextEditor.uppercaseFirstLetter(method.name)}Params {`,
-			...Properties.convertMany(method.parameters, ctx).flat(),
-			"}",
-			"",
+			`export interface ${methodPascal}Params {`,
 		];
+
+		for (const param of method.parameters) {
+			const type = schemaToType(param, ctx, param.name);
+			if (param.description) {
+				lines.push(...CodeGenerator.generateComment(param.description));
+			}
+			const isRequired = param.required === true;
+			lines.push(`${param.name}${isRequired ? "" : "?"}: ${type}`);
+		}
+
+		lines.push("}", "");
+		return lines;
 	}
 }

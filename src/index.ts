@@ -1,10 +1,10 @@
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
-import { getCustomSchema } from "@gramio/schema-parser";
 import prettier from "prettier";
 import { OUTPUT_PATH, PRETTIER_OPTIONS } from "./config";
-import { APIMethods, Objects, Params } from "./entities";
+import { APIMethods, Errors, Objects, Params, Responses } from "./entities";
 import { CodeGenerator, generateHeader } from "./helpers";
+import { fetchVKSchema } from "./schema/fetcher";
 
 export interface IGeneratedFile {
 	name: string;
@@ -13,18 +13,10 @@ export interface IGeneratedFile {
 
 // ─── Fetch & parse ────────────────────────────────────────────────────────────
 
-const schema = await getCustomSchema();
-const { methods } = schema;
-const objects = schema.objects
-
-// ─── Build markupTypes from schema ────────────────────────────────────────────
-// schema-parser marks objects like InlineKeyboardMarkup with semanticType:"markup".
-// We derive the set once so generators can emit `| { toJSON(): T }` unions.
-
-const markupTypes = new Set(
-	objects
-		.filter((o) => o.semanticType === "markup")
-		.map((o) => o.name),
+console.log("Fetching VK API schema...");
+const schema = await fetchVKSchema();
+console.log(
+	`Schema v${schema.version}: ${schema.objects.size} objects, ${schema.responses.size} responses, ${schema.methods.length} methods, ${schema.errors.length} errors`,
 );
 
 // ─── File generation ──────────────────────────────────────────────────────────
@@ -36,31 +28,45 @@ const files: IGeneratedFile[] = [
 		name: "objects.d.ts",
 		lines: [
 			header(
-				"This module contains [Objects](https://core.telegram.org/bots/api#available-types) with the `Telegram` prefix",
+				"This module contains VK API object types with the `VK` prefix",
 				[
 					"@example import object",
 					"```typescript",
-					`import { TelegramUser } from "@gramio/types/objects";`,
+					`import { VKUsersUserFull } from "@vkraft/types/objects";`,
+					"```",
+				],
+			),
+			Objects.generateMany(schema.objects, schema.objects),
+		],
+	},
+	{
+		name: "responses.d.ts",
+		lines: [
+			header(
+				"This module contains VK API response types",
+				[
+					"@example import response",
+					"```typescript",
+					`import { UsersGetResponse } from "@vkraft/types/responses";`,
 					"```",
 				],
 			),
 			[
-				`import type { APIMethods } from "./methods";`,
-				`import type { APIMethodReturn } from "./utils"`,
+				`import type * as Objects from "./objects"`,
 				"",
 			],
-			Objects.generateMany(objects, markupTypes),
+			Responses.generateMany(schema.responses, schema.responses, schema.objects),
 		],
 	},
 	{
 		name: "params.d.ts",
 		lines: [
 			header(
-				"This module contains params for [methods](https://core.telegram.org/bots/api#available-methods) with the `Params` postfix",
+				"This module contains params for VK API methods with the `Params` postfix",
 				[
 					"@example import params",
 					"```typescript",
-					`import { SendMessageParams } from "@gramio/types/params";`,
+					`import { UsersGetParams } from "@vkraft/types/params";`,
 					"```",
 				],
 			),
@@ -69,21 +75,20 @@ const files: IGeneratedFile[] = [
 				`import type * as Objects from "./objects"`,
 				"",
 			],
-			Params.generateMany(methods, markupTypes),
+			Params.generateMany(schema.methods, schema.objects),
 		],
 	},
 	{
 		name: "methods.d.ts",
 		lines: [
 			header(
-				"This module contains [API methods](https://core.telegram.org/bots/api#available-methods) types (functions map with input/output)",
+				"This module contains VK API method types (functions map with input/output)",
 				[
 					"@example import API methods map",
 					"```typescript",
-					`import { APIMethods } from "@gramio/types/methods";`,
+					`import { APIMethods } from "@vkraft/types/methods";`,
 					"",
-					`type SendMessageReturn = Awaited<ReturnType<APIMethods["sendMessage"]>>;`,
-					`//   ^? type SendMessageReturn = TelegramMessage"`,
+					`type UsersGetReturn = Awaited<ReturnType<APIMethods["users.get"]>>;`,
 					"```",
 				],
 			),
@@ -91,28 +96,44 @@ const files: IGeneratedFile[] = [
 				`import type { CallAPIWithOptionalParams, CallAPI, CallAPIWithoutParams } from "./utils"`,
 				`import type * as Params from "./params"`,
 				`import type * as Objects from "./objects"`,
+				`import type * as Responses from "./responses"`,
 				"",
 			],
-			APIMethods.generateMany(methods),
+			APIMethods.generateMany(schema.methods, schema.responses, schema.objects),
+		],
+	},
+	{
+		name: "errors.d.ts",
+		lines: [
+			header("This module contains VK API error types", [
+				"@example import errors",
+				"```typescript",
+				`import { VKError, VKErrorCode } from "@vkraft/types/errors";`,
+				"```",
+			]),
+			Errors.generate(schema.errors),
 		],
 	},
 	{
 		name: "index.d.ts",
 		lines: [
 			header(
-				"This module re-export another modules (+ export params as TelegramParams/objects as TelegramObjects)",
+				"This module re-exports all VK API type modules",
 				[
 					"@example import",
 					"```typescript",
-					`import { TelegramUser, SendMessageParams, APIMethods, APIMethodReturn } from "@gramio/types";`,
+					`import { VKUsersUserFull, APIMethods, APIMethodReturn } from "@vkraft/types";`,
 					"```",
 				],
 			),
 			[`export type * from "./methods"`],
 			[`export type * from "./params"`],
-			[`export type * as TelegramParams from "./params"`],
+			[`export type * as VKParams from "./params"`],
 			[`export type * from "./objects"`],
-			[`export type * as TelegramObjects from "./objects"`],
+			[`export type * as VKObjects from "./objects"`],
+			[`export type * from "./responses"`],
+			[`export type * as VKResponses from "./responses"`],
+			[`export type * from "./errors"`],
 			[`export type { APIMethodParams, APIMethodReturn } from "./utils"`],
 		],
 	},
@@ -122,12 +143,10 @@ const files: IGeneratedFile[] = [
 			header("This module contains type-utils for convenient work", [
 				"@example import utils",
 				"```typescript",
-				`import { APIMethodParams, APIMethodReturn } from "@gramio/types/utils";`,
+				`import { APIMethodParams, APIMethodReturn } from "@vkraft/types/utils";`,
 				"",
-				`type SendMessageReturn = APIMethodReturn<"sendMessage">;`,
-				`//   ^? type SendMessageReturn = TelegramMessage"`,
-				`type SendMessageParams = APIMethodParams<"sendMessage">;`,
-				`//   ^? type SendMessageParams = SendMessageParams"`,
+				`type UsersGetReturn = APIMethodReturn<"users.get">;`,
+				`type UsersGetParams = APIMethodParams<"users.get">;`,
 				"```",
 			]),
 			[
@@ -140,16 +159,14 @@ const files: IGeneratedFile[] = [
 				...CodeGenerator.generateComment([
 					"@example",
 					"```typescript",
-					`type SendMessageParams = APIMethodParams<"sendMessage">;`,
-					`//   ^? type SendMessageParams = SendMessageParams"`,
+					`type UsersGetParams = APIMethodParams<"users.get">;`,
 					"```",
 				]),
 				"export type APIMethodParams<APIMethod extends keyof APIMethods> = Parameters<APIMethods[APIMethod]>[0]",
 				...CodeGenerator.generateComment([
 					"@example",
 					"```typescript",
-					`type SendMessageReturn = APIMethodReturn<"sendMessage">;`,
-					`//   ^? type SendMessageReturn = TelegramMessage"`,
+					`type UsersGetReturn = APIMethodReturn<"users.get">;`,
 					"```",
 				]),
 				"export type APIMethodReturn<APIMethod extends keyof APIMethods> = Awaited<ReturnType<APIMethods[APIMethod]>>",
@@ -162,8 +179,18 @@ const files: IGeneratedFile[] = [
 if (!existsSync(OUTPUT_PATH)) await fs.mkdir(OUTPUT_PATH);
 
 for await (const file of files) {
-	await fs.writeFile(
-		`${OUTPUT_PATH}/${file.name}`,
-		await prettier.format(file.lines.flat().join("\n"), PRETTIER_OPTIONS),
-	);
+	console.log(`Writing ${file.name}...`);
+	const raw = file.lines.flat().join("\n");
+	try {
+		await fs.writeFile(
+			`${OUTPUT_PATH}/${file.name}`,
+			await prettier.format(raw, PRETTIER_OPTIONS),
+		);
+	} catch (err) {
+		// Write raw output for debugging
+		await fs.writeFile(`${OUTPUT_PATH}/${file.name}.raw.ts`, raw);
+		console.error(`Prettier failed for ${file.name}, wrote raw output. Error: ${(err as Error).message?.slice(0, 200)}`);
+	}
 }
+
+console.log("Done!");

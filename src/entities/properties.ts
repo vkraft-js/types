@@ -1,137 +1,202 @@
-import type { Field, FieldInteger, FieldString } from "@gramio/schema-parser";
 import { OBJECTS_PREFIX } from "../config";
 import { CodeGenerator, TextEditor } from "../helpers";
+import { flattenAllOf } from "../schema/allof-merger";
+import { defNameToPascal, parseRef } from "../schema/resolver";
+import type { VKSchemaProperty } from "../schema/types";
 import type { TObjectType } from "../types";
 
 export type FieldContext = {
-	/** Name of the enclosing object or method. */
+	/** Name of the enclosing object or method (used for naming inline enums). */
 	objectName: string;
 	objectType: TObjectType;
-	/** The direct parent field (e.g. the `array` field when resolving `arrayOf`). */
-	parentField?: Field;
-	/** Object names that carry semanticType:"markup" — used to emit `| { toJSON() }` unions. */
-	markupTypes?: Set<string>;
+	/** All object definitions for resolving $ref and allOf. */
+	allDefinitions: Map<string, VKSchemaProperty>;
 };
 
 function objectsPrefix(objectType: TObjectType) {
 	return objectType === "object" ? "" : "Objects.";
 }
 
+const VK_TYPE_MAP: Record<string, string> = {
+	string: "string",
+	integer: "number",
+	number: "number",
+	boolean: "boolean",
+};
+
 /**
- * Map a single `Field` to its TypeScript type string.
- *
- * The `ctx.parentField` is set when recursing into `arrayOf` / `variants`
- * so that checks like `allowed_updates` work correctly.
+ * Convert a VK schema property to a TypeScript type string.
  */
-export function fieldToType(field: Field, ctx: FieldContext): string {
-	switch (field.type) {
-		case "float":
-			return "number";
-
-		case "integer": {
-			// Guard: skip non-numeric enum values (parser bug — Dice.value gets
-			// emoji strings placed in an integer field's enum).
-			if (
-				field.enum &&
-				field.enum.every((v) => typeof v === "number")
-			)
-				return (
-					(ctx.objectType === "object" ? OBJECTS_PREFIX : "") +
-					TextEditor.uppercaseFirstLetter(ctx.objectName) +
-					TextEditor.uppercaseFirstLetter(
-						TextEditor.fromSnakeToCamelCase(field.key),
-					)
-				);
-			return "number";
+export function schemaToType(
+	prop: VKSchemaProperty,
+	ctx: FieldContext,
+	fieldName?: string,
+): string {
+	// $ref → resolve to VK-prefixed type name
+	if (prop.$ref) {
+		const parsed = parseRef(prop.$ref);
+		if (parsed.kind === "response") {
+			return defNameToPascal(parsed.definitionName);
 		}
-
-		case "string": {
-			// Parse-mode literal union
-			if (field.key?.includes("parse_mode"))
-				return `"HTML" | "MarkdownV2" | "Markdown"`;
-
-			// FormattableString — schema-parser emits semanticType:"formattable" for
-			// fields whose description contains "after entities parsing" and for the
-			// known hardcoded set (message_text, InputPollOption.text, etc.).
-			if (field.semanticType === "formattable")
-				return "(string | { toString(): string})"
-
-			if (ctx.objectName === "APIResponseOk" && field.key === "result")
-				return "APIMethodReturn<Methods>";
-
-			// Update type discriminator — schema-parser emits semanticType:"updateType"
-			// on string elements inside the allowed_updates array.
-			if (field.semanticType === "updateType")
-				return `Exclude<keyof ${
-					objectsPrefix(ctx.objectType) + OBJECTS_PREFIX
-				}Update, "update_id">`;
-
-			// String enum → generate a named union type alias (referenced here)
-			if (field.enum)
-				return (
-					(ctx.objectType === "object" ? OBJECTS_PREFIX : "") +
-					TextEditor.uppercaseFirstLetter(ctx.objectName) +
-					TextEditor.uppercaseFirstLetter(
-						TextEditor.fromSnakeToCamelCase(field.key),
-					)
-				);
-
-			// Discriminator literal — `default` (e.g. "creator") or `const`
-			if (field.default) return `"${field.default}"`;
-			if (field.const) return `"${field.const}"`;
-
-			return "string";
-		}
-
-		case "boolean": {
-			// `const: true` / `const: false` → literal type (e.g. User.is_premium)
-			if (field.const !== undefined) return `${field.const}`;
-			return "boolean";
-		}
-
-		case "reference": {
-			const refName =
-				objectsPrefix(ctx.objectType) +
-				OBJECTS_PREFIX +
-				TextEditor.uppercaseFirstLetter(field.reference.name);
-
-			if (field.reference.name === "APIResponseOk")
-				return `${refName}<Methods>`;
-
-			// Keyboard markup types — objects whose schema carries semanticType:"markup".
-			// The markupTypes set is built once in index.ts from schema.objects.
-			if (ctx.markupTypes?.has(field.reference.name))
-				return `${refName} | { toJSON(): ${refName} }`;
-
-			return refName;
-		}
-
-		case "array":
-			return `(${fieldToType(field.arrayOf as Field, {
-				...ctx,
-				parentField: field,
-			})})[]`;
-
-		case "one_of":
-			return field.variants
-				.map((v) => fieldToType(v as Field, { ...ctx, parentField: field }))
-				.join(" | ");
+		return objectsPrefix(ctx.objectType) + OBJECTS_PREFIX + defNameToPascal(parsed.definitionName);
 	}
+
+	// allOf → flatten and emit inline object
+	if (prop.allOf) {
+		const flat = flattenAllOf(prop, ctx.allDefinitions);
+		const entries = Object.entries(flat.properties);
+		if (entries.length === 0) return "Record<string, unknown>";
+
+		const lines = entries.map(([key, val]) => {
+			const optional = !flat.required.has(key);
+			const type = schemaToType(val, ctx, key);
+			return `${key}${optional ? "?" : ""}: ${type}`;
+		});
+		return `{ ${lines.join("; ")} }`;
+	}
+
+	// oneOf → union
+	if (prop.oneOf) {
+		return prop.oneOf
+			.map((variant) => schemaToType(variant, ctx, fieldName))
+			.join(" | ");
+	}
+
+	// Multi-type: type is an array (e.g. ["integer", "string"])
+	if (Array.isArray(prop.type)) {
+		return prop.type.map((t) => VK_TYPE_MAP[t] ?? "unknown").join(" | ");
+	}
+
+	// enum → named union type alias (reference by name; the alias is emitted elsewhere)
+	if (prop.enum && fieldName) {
+		const enumTypeName =
+			(ctx.objectType === "object" ? OBJECTS_PREFIX : "") +
+			TextEditor.snakeToPascalCase(ctx.objectName) +
+			TextEditor.snakeToPascalCase(fieldName);
+		return enumTypeName;
+	}
+
+	// Single primitive type
+	if (prop.type) {
+		switch (prop.type) {
+			case "string":
+				return "string";
+			case "integer":
+			case "number":
+				return "number";
+			case "boolean":
+				return "boolean";
+
+			case "array": {
+				if (prop.items) {
+					const itemType = schemaToType(prop.items, ctx, fieldName);
+					return `(${itemType})[]`;
+				}
+				return "unknown[]";
+			}
+
+			case "object": {
+				// Has explicit properties → inline object type
+				if (prop.properties) {
+					const reqSet = new Set(
+						Array.isArray(prop.required) ? prop.required : [],
+					);
+					const lines = Object.entries(prop.properties).map(([key, val]) => {
+						const optional = !reqSet.has(key) && val.required !== true;
+						const type = schemaToType(val, ctx, key);
+						return `${key}${optional ? "?" : ""}: ${type}`;
+					});
+					return `{ ${lines.join("; ")} }`;
+				}
+				// additionalProperties
+				if (
+					prop.additionalProperties &&
+					typeof prop.additionalProperties === "object"
+				) {
+					const valType = schemaToType(prop.additionalProperties, ctx);
+					return `Record<string, ${valType}>`;
+				}
+				return "Record<string, unknown>";
+			}
+		}
+	}
+
+	return "unknown";
 }
 
 // ─── Properties helper ────────────────────────────────────────────────────────
 
 export class Properties {
-	static convertMany(fields: Field[], ctx: FieldContext): string[][] {
-		return fields.map((f) => Properties.convert(f, ctx));
+	static convertMany(
+		properties: Record<string, VKSchemaProperty>,
+		required: Set<string>,
+		ctx: FieldContext,
+	): string[][] {
+		return Object.entries(properties).map(([key, prop]) =>
+			Properties.convert(
+				key,
+				prop,
+				required.has(key) || prop.required === true,
+				ctx,
+			),
+		);
 	}
 
-	static convert(field: Field, ctx: FieldContext): string[] {
-		const type = fieldToType(field, ctx);
+	static convert(
+		key: string,
+		prop: VKSchemaProperty,
+		isRequired: boolean,
+		ctx: FieldContext,
+	): string[] {
+		const type = schemaToType(prop, ctx, key);
+		const lines: string[] = [];
 
-		return [
-			...CodeGenerator.generateComment(field.description ?? ""),
-			`${field.key + (!field.required ? "?" : "")}: ${type}`,
-		];
+		if (prop.description) {
+			lines.push(...CodeGenerator.generateComment(prop.description));
+		}
+
+		lines.push(`${key + (isRequired ? "" : "?")}: ${type}`);
+		return lines;
 	}
+}
+
+/**
+ * Collect enum type aliases that need to be emitted before an interface.
+ * Returns lines of `export type ...` declarations.
+ */
+export function collectEnumAliases(
+	properties: Record<string, VKSchemaProperty>,
+	ownerName: string,
+	objectType: TObjectType,
+): string[] {
+	const lines: string[] = [];
+
+	for (const [key, prop] of Object.entries(properties)) {
+		if (!prop.enum) continue;
+
+		const typeName =
+			(objectType === "object" ? OBJECTS_PREFIX : "") +
+			TextEditor.snakeToPascalCase(ownerName) +
+			TextEditor.snakeToPascalCase(key);
+
+		const isNumeric = prop.type === "integer" || prop.type === "number";
+
+		// Generate JSDoc with enumNames if available
+		if (prop.enumNames && prop.enumNames.length === prop.enum.length) {
+			const commentLines = prop.enum.map(
+				(val, i) => `- \`${val}\` — ${prop.enumNames![i]}`,
+			);
+			lines.push(...CodeGenerator.generateComment(commentLines));
+		}
+
+		lines.push(
+			CodeGenerator.generateUnionType(
+				typeName,
+				prop.enum,
+				isNumeric ? "number" : "string",
+			),
+		);
+	}
+
+	return lines;
 }

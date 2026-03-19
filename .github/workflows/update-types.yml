@@ -28,7 +28,7 @@ jobs:
               run: bun install
 
             - id: cicd
-              name: Get hash from schema
+              name: Get hash from VK API schema
               run: bun cicd
 
             - name: Generate types

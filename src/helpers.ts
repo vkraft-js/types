@@ -1,5 +1,3 @@
-import type { Version } from "@gramio/schema-parser";
-
 export class CodeGenerator {
 	static generateComment(value: string | string[]) {
 		const valueLines = typeof value === "string" ? value.split("\n") : value;
@@ -9,7 +7,7 @@ export class CodeGenerator {
 
 	static generateUnionType(
 		name: string,
-		enumeration: string[] | number[],
+		enumeration: (string | number)[],
 		type: "number" | "string" = "string",
 	) {
 		return `export type ${name} = ${enumeration
@@ -32,14 +30,31 @@ export class TextEditor {
 				"",
 			);
 	}
+
+	/**
+	 * Convert a snake_case definition name to PascalCase.
+	 * `"users_user_full"` → `"UsersUserFull"`
+	 */
+	static snakeToPascalCase(text: string) {
+		return text
+			.split("_")
+			.map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+			.join("");
+	}
+
+	/**
+	 * Convert a VK method name (dot-separated) to PascalCase.
+	 * `"users.get"` → `"UsersGet"`
+	 */
+	static methodToPascalCase(name: string) {
+		return name
+			.split(".")
+			.map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+			.join("");
+	}
 }
 
-export function generateHeader(version: Version) {
-	const { major, minor, release_date } = version;
-	const dateStr = `${String(release_date.day).padStart(2, "0")}.${String(
-		release_date.month,
-	).padStart(2, "0")}.${release_date.year}`;
-
+export function generateHeader(version: string) {
 	return (description: string, additional: string[] = []) => [
 		"/**",
 		"* @module",
@@ -48,22 +63,13 @@ export function generateHeader(version: Version) {
 		"* ",
 		...additional.map((x) => `* ${x}`),
 		"* ",
-		`* Based on Bot API v${major}.${minor} (${dateStr})`,
+		`* Based on VK API v${version}`,
 		"* ",
 		`* Generated at ${new Date().toLocaleString(
 			"ru",
-		)} using [types](https://github.com/gramiojs/types) and [schema](https://github.com/gramiojs/schema-parser) generators`,
+		)} using [types](https://github.com/vkraft/types) generator`,
 		"*/",
 		"",
 		"",
 	];
-}
-
-export async function fetchCurrencies() {
-	const res = await fetch(
-		"https://core.telegram.org/bots/payments/currencies.json",
-	);
-	const data = await res.json();
-
-	return Object.keys(data);
 }

@@ -1,1 +1,1 @@
-export type TObjectType = "object" | "method";
+export type TObjectType = "object" | "method" | "response";
