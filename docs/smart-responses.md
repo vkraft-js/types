@@ -13,9 +13,12 @@ The generated types use **TypeScript overloaded signatures** to automatically se
 const friends = await api.friends.get({ user_id: 1 });
 //    ^? { count: number; items: number[] }
 
-// Full objects — FriendsGetFieldsResponse
-const friends = await api.friends.get({ user_id: 1, fields: ["photo_100"] });
-//    ^? { count: number; items: VKUsersUserFull[] }
+// Full objects with specific fields required
+const friends = await api.friends.get({ user_id: 1, fields: ["photo_100", "sex"] });
+//    ^? { count: number; items: WithFields<VKUsersUserFull, "photo_100" | "sex">[] }
+//    friends.items[0].photo_100  → string (required!)
+//    friends.items[0].sex        → VKBaseSex (required!)
+//    friends.items[0].bdate      → string | undefined (not requested)
 ```
 
 ## Supported Patterns
@@ -34,28 +37,41 @@ const wall = await api.wall.get({ owner_id: 1, extended: 1 });
 //    ^? WallGetExtendedResponse
 ```
 
-### `fields` parameter
+### `fields` parameter — automatic `WithFields` narrowing
 
-When you pass `fields`, methods return objects with full profile data instead of just IDs:
+When you pass `fields` with literal string values, TypeScript **automatically narrows the response items** so that only the requested fields are required:
 
 ```typescript
 const followers = await api.users.getFollowers({ user_id: 1 });
 //    ^? { count: number; items: number[] }
 
-const followers = await api.users.getFollowers({ user_id: 1, fields: ["photo_100"] });
-//    ^? { count: number; items: VKUsersUserFull[] }
+const followers = await api.users.getFollowers({
+    user_id: 1,
+    fields: ["photo_100", "city", "sex"],
+});
+// items are WithFields<VKUsersUserFull, "photo_100" | "city" | "sex">
+followers.items[0].photo_100  // string ✓ required
+followers.items[0].city       // { id; title } ✓ required
+followers.items[0].sex        // VKBaseSex ✓ required
+followers.items[0].bdate      // string | undefined (not requested)
 ```
+
+This works automatically for methods with `fieldsResponse` in the VK schema:
+- `friends.get`
+- `users.getFollowers`
+- `groups.getMembers`
+- `groups.getRequests`
 
 ### Combined parameters
 
 Some methods have multiple axes. TypeScript picks the most specific overload:
 
 ```typescript
-// friends.getOnline has 4 variants:
-api.friends.getOnline({})                                          // → base
-api.friends.getOnline({ online_mobile: 1 })                       // → onlineMobile
-api.friends.getOnline({ extended: 1 })                             // → extended
-api.friends.getOnline({ online_mobile: 1, extended: 1 })           // → onlineMobileExtended
+// groups.isMember has 4 variants:
+api.groups.isMember({ group_id: "1" })                                    // → base
+api.groups.isMember({ group_id: "1", user_ids: [1] })                    // → userIds
+api.groups.isMember({ group_id: "1", extended: 1 })                      // → extended
+api.groups.isMember({ group_id: "1", user_ids: [1], extended: 1 })       // → userIds + extended
 ```
 
 ## How Overloads Are Generated
@@ -65,67 +81,56 @@ The generator maps VK schema response variant keys to method parameters:
 | Variant Key | Trigger Parameter | Constraint |
 |---|---|---|
 | `extendedResponse` | `extended` | `{ extended: 1 \| true }` |
-| `fieldsResponse` | `fields` | `{ fields: ... }` (required) |
+| `fieldsResponse` | `fields` | `{ fields: F[] }` (generic) |
 | `userIdsResponse` | `user_ids` | `{ user_ids: ... }` (required) |
 | `onlineMobileResponse` | `online_mobile` | `{ online_mobile: 1 \| true }` |
 | `userIds_Extended_Response` | `user_ids` + `extended` | both required |
 
-Overloads are ordered from **most specific** (most constraints) to **least specific** (base response), so TypeScript's overload resolution picks the right one.
+Overloads are ordered from **most specific** to **least specific**:
+
+1. Generic `<F extends FieldsEnum>` overload (if applicable) — narrowed `WithFields` return
+2. Non-generic trigger overloads — full response type
+3. Base overload (no constraints) — default response
 
 ## Under the Hood
 
-The generated `.d.ts` for a method like `wall.get` looks like:
+The generated `.d.ts` for `friends.get` looks like:
 
 ```typescript
-"wall.get": {
-    // Most specific first
-    (params: WallGetParams & { extended: 1 | true }): Promise<WallGetExtendedResponse>
-    // Fallback
-    (params?: WallGetParams): Promise<WallGetResponse>
+"friends.get": {
+    // 1. Generic — captures literal field names, narrows items
+    <F extends Objects.VKUsersFields>(
+        params: Params.FriendsGetParams & { fields: F[] }
+    ): Promise<
+        Omit<Responses.FriendsGetFieldsResponse, "items"> & {
+            items: WithFields<Objects.VKUsersUserFull, F>[]
+        }
+    >
+    // 2. Non-generic fallback with fields — all properties optional
+    (params: Params.FriendsGetParams & { fields: ... }): Promise<Responses.FriendsGetFieldsResponse>
+    // 3. Without fields — just IDs
+    (params?: Params.FriendsGetParams): Promise<Responses.FriendsGetResponse>
 }
 ```
 
-TypeScript picks the first overload whose parameter type matches the argument. When you pass `{ extended: 1 }`, the first overload matches. When you pass `{}`, it falls through to the base overload.
+TypeScript picks the first matching overload. When you pass `{ fields: ["sex", "city"] }`, the generic overload captures `F = "sex" | "city"` and returns items with those properties required.
 
-## Fallback Behavior
+## `WithFields<T, F>` — The Utility Type
 
-For response variants that can't be mapped to parameters (rare), all variant types are merged into a union on the base overload. You can narrow with a type assertion when needed:
-
-```typescript
-const result = await api.someMethod(params) as SpecificResponseType;
-```
-
-## `WithFields<T, F>` — Narrow Object Types by Requested Fields
-
-VK API returns all properties on "full" objects (e.g., `VKUsersUserFull`), but only the ones matching your `fields` parameter are actually populated. Use `WithFields` to make exactly those properties required:
-
-```typescript
-import type { WithFields, VKUsersUserFull, VKUsersFields } from "@vkraft/types";
-
-// Only photo_100, sex, city become required — everything else stays optional
-type MyUser = WithFields<VKUsersUserFull, "photo_100" | "sex" | "city">;
-
-const user: MyUser = /* ... */;
-user.photo_100; // string (required — no undefined)
-user.sex;       // VKBaseSex (required)
-user.city;      // { id: number; title: string } (required)
-user.bdate;     // string | undefined (not requested — stays optional)
-```
-
-### How it works
+The core type that powers field narrowing:
 
 ```typescript
 type WithFields<T, F extends string> =
     Omit<T, F & keyof T> & Required<Pick<T, F & keyof T>>
 ```
 
-1. `F & keyof T` — intersects requested field names with actual property names. Fields like `"education"` that don't match a property name are silently ignored (safe!)
+1. `F & keyof T` — intersects requested field names with actual property names. Fields like `"education"` that don't match a property are silently ignored (safe!)
 2. `Pick<T, ...>` + `Required` — makes matched properties required
 3. `Omit<T, ...> &` — merges back with the rest of the object (unchanged)
 
 ### Coverage
 
-~87% of `fields` enum values directly match property names and work perfectly with `WithFields`. The remaining ~13% are **composite fields** that expand into multiple properties:
+~87% of `fields` enum values directly match property names and work perfectly. The remaining ~13% are **composite fields** that expand into multiple properties:
 
 | Field | Expands to |
 |---|---|
@@ -133,24 +138,22 @@ type WithFields<T, F extends string> =
 | `education` | `university`, `faculty`, `graduation`, `education_form`, `education_status` |
 | `connections` | `skype`, `facebook`, `twitter`, `livejournal` |
 
-For composite fields, `WithFields` safely ignores the mismatch — the expanded properties remain optional. You can include them explicitly if needed:
+For composite fields, `WithFields` safely ignores the mismatch — no errors, no bugs. You can include the actual property names explicitly:
 
 ```typescript
 type MyUser = WithFields<VKUsersUserFull,
-    | "education"            // ignored (composite), but doesn't break anything
-    | "university"           // ← this one actually makes it required
-    | "faculty"
+    | "education"            // ignored (no matching property), but safe
+    | "university"           // ← this makes university required
+    | "faculty"              // ← this makes faculty required
 >;
 ```
 
-### Usage with API calls
+### Manual usage
+
+You can also use `WithFields` directly for any VK object type:
 
 ```typescript
-const followers = await api.users.getFollowers({
-    user_id: 1,
-    fields: ["photo_100", "sex"],
-});
+import type { WithFields, VKUsersUserFull } from "@vkraft/types";
 
-// Narrow the response items:
-type Item = WithFields<(typeof followers)["items"][number], "photo_100" | "sex">;
+type MyUser = WithFields<VKUsersUserFull, "photo_100" | "sex" | "city">;
 ```

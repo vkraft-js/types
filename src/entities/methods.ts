@@ -1,5 +1,6 @@
 import { VK_API_DOCS } from "../config";
 import { CodeGenerator, TextEditor } from "../helpers";
+import { defNameToPascal, parseRef } from "../schema/resolver";
 import type { VKMethod, VKParameter, VKSchemaProperty } from "../schema/types";
 import { Responses } from "./responses";
 
@@ -67,6 +68,8 @@ export function variantToTriggerParams(
 interface ResolvedVariant {
 	returnType: string;
 	triggerParams: string[];
+	variantKey?: string;
+	ref?: string;
 }
 
 function buildConstraint(
@@ -93,6 +96,57 @@ function buildConstraint(
 	}
 
 	return `${paramsType} & { ${constraints.join("; ")} }`;
+}
+
+interface GenericFieldsInfo {
+	fieldsEnumType: string;
+	itemType: string;
+	itemProp: string;
+	responseType: string;
+}
+
+/**
+ * Try to detect if a fieldsResponse can be made generic with WithFields.
+ * Returns info needed to generate the generic overload, or null.
+ */
+function detectGenericFields(
+	method: VKMethod,
+	variantRef: string,
+	responses: Map<string, VKSchemaProperty>,
+): GenericFieldsInfo | null {
+	// Find the fields parameter with items.$ref
+	const fieldsParam = method.parameters?.find((p) => p.name === "fields");
+	if (!fieldsParam?.items?.$ref) return null;
+
+	const fieldsEnumType = `Objects.VK${defNameToPascal(
+		parseRef(fieldsParam.items.$ref).definitionName,
+	)}`;
+
+	// Look up the response definition
+	const { definitionName } = parseRef(variantRef);
+	const responseDef = responses.get(definitionName);
+	if (!responseDef?.properties?.response) return null;
+
+	const innerResponse = responseDef.properties.response;
+	if (!innerResponse.properties) return null;
+
+	// Find an array property with $ref items (usually "items")
+	for (const [propName, prop] of Object.entries(innerResponse.properties)) {
+		if (
+			prop.type === "array" &&
+			prop.items?.$ref &&
+			parseRef(prop.items.$ref).kind === "object"
+		) {
+			const itemType = `Objects.VK${defNameToPascal(
+				parseRef(prop.items.$ref).definitionName,
+			)}`;
+			const responseType = `Responses.${defNameToPascal(definitionName)}`;
+
+			return { fieldsEnumType, itemType, itemProp: propName, responseType };
+		}
+	}
+
+	return null;
 }
 
 export class APIMethods {
@@ -140,7 +194,12 @@ export class APIMethods {
 				baseReturnType = returnType;
 			} else {
 				const triggerParams = variantToTriggerParams(key, availableParamNames);
-				variants.push({ returnType, triggerParams });
+				variants.push({
+					returnType,
+					triggerParams,
+					variantKey: key,
+					ref: refObj.$ref,
+				});
 			}
 		}
 
@@ -231,6 +290,18 @@ export class APIMethods {
 		const lines: string[] = [];
 		lines.push(...CodeGenerator.generateComment(doc));
 		lines.push(`"${method.name}": {`);
+
+		// Generate generic WithFields overloads for fieldsResponse variants
+		for (const v of resolved) {
+			if (!v.triggerParams.includes("fields") || !v.ref) continue;
+
+			const info = detectGenericFields(method, v.ref, responses);
+			if (!info) continue;
+
+			lines.push(
+				`<F extends ${info.fieldsEnumType}>(params: ${paramsType} & { fields: F[] }): Promise<Omit<${info.responseType}, "${info.itemProp}"> & { ${info.itemProp}: WithFields<${info.itemType}, F>[] }>`,
+			);
+		}
 
 		for (const variant of sorted) {
 			const constraint = buildConstraint(

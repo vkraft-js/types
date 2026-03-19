@@ -88,7 +88,7 @@ const files: IGeneratedFile[] = [
 				],
 			),
 			[
-				`import type { CallAPIWithOptionalParams, CallAPI, CallAPIWithoutParams } from "./utils"`,
+				`import type { CallAPIWithOptionalParams, CallAPI, CallAPIWithoutParams, WithFields } from "./utils"`,
 				`import type * as Params from "./params"`,
 				`import type * as Objects from "./objects"`,
 				`import type * as Responses from "./responses"`,

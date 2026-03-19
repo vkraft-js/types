@@ -23,6 +23,27 @@ type UsersGetReturn = APIMethodReturn<"users.get">;
 type UsersGetParams = APIMethodParams<"users.get">;
 ```
 
+## Smart Response Inference
+
+TypeScript automatically infers the correct response type based on the parameters you pass:
+
+```typescript
+// extended: 1 → extended response type
+const wall = await api.wall.get({ owner_id: 1 });              // → WallGetResponse
+const wall = await api.wall.get({ owner_id: 1, extended: 1 }); // → WallGetExtendedResponse
+
+// fields → WithFields narrows exact properties
+const friends = await api.friends.get({
+    user_id: 1,
+    fields: ["photo_100", "sex", "city"],
+});
+friends.items[0].photo_100  // string ✓ required
+friends.items[0].sex        // VKBaseSex ✓ required
+friends.items[0].bdate      // string | undefined (not requested)
+```
+
+See [docs/smart-responses.md](docs/smart-responses.md) for details.
+
 ## Imports
 
 - `index` — exports everything
@@ -31,7 +52,7 @@ type UsersGetParams = APIMethodParams<"users.get">;
 - `params` — exports parameter interfaces with `Params` postfix (e.g. `UsersGetParams`)
 - `responses` — exports response types (e.g. `UsersGetResponse`)
 - `errors` — exports `VKError`, `VKErrorCode`
-- `utils` — exports `APIMethodParams`, `APIMethodReturn`, `VKAPINested`, `CallAPI` helpers
+- `utils` — exports `APIMethodParams`, `APIMethodReturn`, `VKAPINested`, `WithFields`, `CallAPI`
 
 ## Write your own type-safe VK API wrapper
 
@@ -101,6 +122,19 @@ const api = new Proxy({} as APIMethods, {
 
 await api["users.get"]({ user_ids: [1] });
 ```
+
+## `WithFields` — Narrow by Requested Fields
+
+Use `WithFields` to make only the requested fields required on VK objects:
+
+```typescript
+import type { WithFields, VKUsersUserFull } from "@vkraft/types";
+
+type MyUser = WithFields<VKUsersUserFull, "photo_100" | "sex" | "city">;
+// photo_100, sex, city → required; everything else → optional
+```
+
+Applied automatically in methods with `fieldsResponse` (`friends.get`, `users.getFollowers`, `groups.getMembers`, `groups.getRequests`). ~87% of field names match properties directly; composite fields like `"education"` are safely ignored.
 
 ## Generate types manually
 

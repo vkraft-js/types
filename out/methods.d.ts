@@ -12,13 +12,14 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 13:04:11 using [types](https://github.com/vkraft/types) generator
+ * Generated at 19.03.2026, 13:17:19 using [types](https://github.com/vkraft/types) generator
  */
 
 import type {
     CallAPIWithOptionalParams,
     CallAPI,
     CallAPIWithoutParams,
+    WithFields,
 } from "./utils"
 import type * as Params from "./params"
 import type * as Objects from "./objects"
@@ -1658,6 +1659,13 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/friends.get)
      */
     "friends.get": {
+        <F extends Objects.VKUsersFields>(
+            params: Params.FriendsGetParams & { fields: F[] },
+        ): Promise<
+            Omit<Responses.FriendsGetFieldsResponse, "items"> & {
+                items: WithFields<Objects.VKUsersUserFull, F>[]
+            }
+        >
         (
             params: Params.FriendsGetParams & {
                 fields: Required<
@@ -2040,6 +2048,13 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/groups.getMembers)
      */
     "groups.getMembers": {
+        <F extends Objects.VKUsersFields>(
+            params: Params.GroupsGetMembersParams & { fields: F[] },
+        ): Promise<
+            Omit<Responses.GroupsGetMembersFieldsResponse, "items"> & {
+                items: WithFields<Objects.VKGroupsUserXtrRole, F>[]
+            }
+        >
         (
             params: Params.GroupsGetMembersParams & {
                 fields: Required<
@@ -2073,6 +2088,13 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/groups.getRequests)
      */
     "groups.getRequests": {
+        <F extends Objects.VKUsersFields>(
+            params: Params.GroupsGetRequestsParams & { fields: F[] },
+        ): Promise<
+            Omit<Responses.GroupsGetRequestsFieldsResponse, "items"> & {
+                items: WithFields<Objects.VKUsersUserFull, F>[]
+            }
+        >
         (
             params: Params.GroupsGetRequestsParams & {
                 fields: Required<
@@ -4587,6 +4609,13 @@ export interface APIMethods {
      * [Documentation](https://dev.vk.com/method/users.getFollowers)
      */
     "users.getFollowers": {
+        <F extends Objects.VKUsersFields>(
+            params: Params.UsersGetFollowersParams & { fields: F[] },
+        ): Promise<
+            Omit<Responses.UsersGetFollowersFieldsResponse, "items"> & {
+                items: WithFields<Objects.VKUsersUserFull, F>[]
+            }
+        >
         (
             params: Params.UsersGetFollowersParams & {
                 fields: Required<
