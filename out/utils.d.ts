@@ -13,7 +13,7 @@
  *
  * Based on VK API v5.199
  *
- * Generated at 19.03.2026, 16:49:52 using [types](https://github.com/vkraft/types) generator
+ * Generated at 20.03.2026, 01:21:50 using [types](https://github.com/vkraft/types) generator
  */
 
 import type { APIMethods } from "./methods"
@@ -111,7 +111,7 @@ export interface VKCallbackEventMap {
     group_change_settings: Objects.VKCallbackGroupChangeSettings
     group_officers_edit: Objects.VKCallbackGroupOfficersEdit
     lead_forms_new: Record<string, unknown>
-    market_comment_new: Objects.VKCallbackMarketComment
+    market_comment_new: Record<string, unknown>
     market_comment_delete: Objects.VKCallbackMarketCommentDelete
     market_comment_edit: Record<string, unknown>
     market_comment_restore: Record<string, unknown>

@@ -1,6 +1,6 @@
 {
 	"name": "@vkraft/types",
-	"version": "5.199.2",
+	"version": "5.199.3",
 	"homepage": "https://github.com/vkraft/types",
 	"readme": "https://github.com/vkraft/types",
 	"description": "Code-generated VK API TypeScript types",
