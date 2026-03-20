@@ -1,9 +1,10 @@
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import prettier from "prettier";
-import { OUTPUT_PATH, PRETTIER_OPTIONS } from "./config";
+import { OBJECTS_PREFIX, OUTPUT_PATH, PRETTIER_OPTIONS } from "./config";
 import { APIMethods, Errors, Objects, Params, Responses } from "./entities";
 import { CodeGenerator, generateHeader } from "./helpers";
+import { defNameToPascal } from "./schema/resolver";
 import { fetchVKSchema } from "./schema/fetcher";
 
 export interface IGeneratedFile {
@@ -18,6 +19,49 @@ const schema = await fetchVKSchema();
 console.log(
 	`Schema v${schema.version}: ${schema.objects.size} objects, ${schema.responses.size} responses, ${schema.methods.length} methods, ${schema.errors.length} errors`,
 );
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+/** Events whose object type should be wrapped with Required (schema marks fields optional but they're always present) */
+const REQUIRED_EVENTS = new Set(["message_new"]);
+
+function generateCallbackEventMap(
+	objects: Map<string, unknown>,
+): string[] {
+	const callbackType = schema.objects.get("callback_type") as
+		| { enum?: string[] }
+		| undefined;
+	if (!callbackType?.enum) return [];
+
+	const lines: string[] = [
+		"",
+		...CodeGenerator.generateComment([
+			"Maps VK callback event type strings to their corresponding object types.",
+			"",
+			"Enables discriminated union narrowing:",
+			"```typescript",
+			'if (event.type === "message_new") {',
+			"    event.object.message; // fully typed",
+			"}",
+			"```",
+		]),
+		"export interface VKCallbackEventMap {",
+	];
+
+	for (const eventType of callbackType.enum) {
+		const defName = `callback_${eventType}`;
+		if (!objects.has(defName)) {
+			lines.push(`    ${eventType}: Record<string, unknown>`);
+			continue;
+		}
+		const ref = `Objects.${OBJECTS_PREFIX}${defNameToPascal(defName)}`;
+		const typeName = REQUIRED_EVENTS.has(eventType) ? `Required<${ref}>` : ref;
+		lines.push(`    ${eventType}: ${typeName}`);
+	}
+
+	lines.push("}", "");
+	return lines;
+}
 
 // ─── File generation ──────────────────────────────────────────────────────────
 
@@ -127,7 +171,7 @@ const files: IGeneratedFile[] = [
 			[`export type * as VKResponses from "./responses"`],
 			[`export type * from "./errors"`],
 			[
-				`export type { APIMethod, APIMethodParams, APIMethodReturn, VKAPINested, WithFields } from "./utils"`,
+				`export type { APIMethod, APIMethodParams, APIMethodReturn, VKAPINested, VKCallbackEventMap, WithFields } from "./utils"`,
 			],
 		],
 	},
@@ -145,6 +189,7 @@ const files: IGeneratedFile[] = [
 			]),
 			[
 				`import type { APIMethods } from "./methods"`,
+				`import type * as Objects from "./objects"`,
 				"",
 				"export type CallAPI<T, R> = (params: T) => Promise<R>",
 				"export type CallAPIWithoutParams<R> = () => Promise<R>",
@@ -205,6 +250,7 @@ const files: IGeneratedFile[] = [
 				]),
 				"export type WithFields<T, F extends string> = Omit<T, F & keyof T> & Required<Pick<T, F & keyof T>>",
 				"",
+				...generateCallbackEventMap(schema.objects),
 			],
 		],
 	},

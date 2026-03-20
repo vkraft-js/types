@@ -26,5 +26,6 @@ export type {
     APIMethodParams,
     APIMethodReturn,
     VKAPINested,
+    VKCallbackEventMap,
     WithFields,
 } from "./utils"
